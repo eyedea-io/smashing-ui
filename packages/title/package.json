@@ -10,6 +10,9 @@
   "module": "dist/title.m.js",
   "source": "src/index.tsx",
   "author": "Eyedea AS",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "prepublish": "smashing-build"
   },
