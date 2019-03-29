@@ -4,7 +4,8 @@
     "packages/*"
   ],
   "scripts": {
-    "changelog": "lerna-changelog"
+    "changelog": "lerna-changelog",
+    "publish:canary": "lerna publish --canary"
   },
   "eslintIgnore": [
     "dist"
