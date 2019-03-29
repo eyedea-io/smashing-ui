@@ -1,0 +1,27 @@
+{
+  "name": "@smashing/head",
+  "version": "0.1.0",
+  "description": "Manage page head",
+  "license": "MIT",
+  "sideEffects": false,
+  "types": "dist/head/src/index.d.ts",
+  "main": "dist/head.js",
+  "umd:main": "dist/head.umd.js",
+  "module": "dist/head.m.js",
+  "source": "src/index.tsx",
+  "author": "Eyedea AS",
+  "scripts": {
+    "prepublish": "smashing-build"
+  },
+  "devDependencies": {
+    "@smashing/build-utils": "0.1.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6"
+  },
+  "keywords": [
+    "smashing",
+    "react",
+    "ui"
+  ]
+}

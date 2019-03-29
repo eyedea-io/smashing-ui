@@ -1,0 +1,30 @@
+{
+  "name": "@smashing/title",
+  "version": "0.1.0",
+  "description": "Manage page title",
+  "license": "MIT",
+  "sideEffects": false,
+  "types": "dist/title/src/index.d.ts",
+  "main": "dist/title.js",
+  "umd:main": "dist/title.umd.js",
+  "module": "dist/title.m.js",
+  "source": "src/index.tsx",
+  "author": "Eyedea AS",
+  "scripts": {
+    "prepublish": "smashing-build"
+  },
+  "dependencies": {
+    "@smashing/head": "0.1.0"
+  },
+  "devDependencies": {
+    "@smashing/build-utils": "0.1.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6"
+  },
+  "keywords": [
+    "smashing",
+    "react",
+    "ui"
+  ]
+}
