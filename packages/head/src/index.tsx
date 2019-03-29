@@ -51,6 +51,7 @@ export class Head extends Component {
 
   updateTitle(component) {
     let title
+
     if (component) {
       const {children} = component.props
       title = typeof children === "string" ? children : children.join("")
@@ -115,8 +116,9 @@ function unique() {
         if (tags.has(h.type)) {
           return false
         }
+
         tags.add(h.type)
-        return false
+        return true
       case "meta":
         for (let i = 0, len = METATYPES.length; i < len; i++) {
           const metatype = METATYPES[i]

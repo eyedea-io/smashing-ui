@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "description": "Manage page head",
   "license": "MIT",
-  "sideEffects": false,
   "types": "dist/head/src/index.d.ts",
   "main": "dist/head.js",
   "umd:main": "dist/head.umd.js",
@@ -17,7 +16,8 @@
     "prepublish": "smashing-build"
   },
   "devDependencies": {
-    "@smashing/build-utils": "0.1.0"
+    "@smashing/build-utils": "0.1.0",
+    "react": "^16.8.6"
   },
   "peerDependencies": {
     "react": "^16.8.6"

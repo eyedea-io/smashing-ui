@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "description": "Manage page title",
   "license": "MIT",
-  "sideEffects": false,
   "types": "dist/title/src/index.d.ts",
   "main": "dist/title.js",
   "umd:main": "dist/title.umd.js",
@@ -20,7 +19,8 @@
     "@smashing/head": "0.1.0"
   },
   "devDependencies": {
-    "@smashing/build-utils": "0.1.0"
+    "@smashing/build-utils": "0.1.0",
+    "react": "^16.8.6"
   },
   "peerDependencies": {
     "react": "^16.8.6"

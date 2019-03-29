@@ -9,5 +9,5 @@
     "typescript",
     "typescriptreact"
   ],
-  "eslint.enable": true
+  "eslint.enable": false
 }

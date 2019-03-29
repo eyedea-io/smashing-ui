@@ -6,12 +6,21 @@ process.on("unhandledRejection", err => {
 
 const {resolve} = require("path")
 const spawn = require("cross-spawn")
-// const pkg = require(resolve(process.cwd(), "package.json"))
-// const args = process.argv.slice(2)
 
 const result = spawn.sync(
   "microbundle",
-  ["--cwd", process.cwd(), "--output", resolve(process.cwd(), "dist")],
+  [
+    "--cwd",
+    process.cwd(),
+    "--output",
+    resolve(process.cwd(), "dist"),
+    "--format",
+    "es,umd",
+    "--external",
+    "react,@smashing/*",
+    "--target",
+    "web"
+  ],
   {
     stdio: "inherit"
   }
