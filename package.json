@@ -5,7 +5,7 @@
   ],
   "scripts": {
     "changelog": "node ./tasks/changelog",
-    "publish": "lerna publish",
+    "release": "lerna publish",
     "publish:canary": "lerna publish --canary",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
