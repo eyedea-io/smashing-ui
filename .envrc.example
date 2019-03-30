@@ -1,0 +1,3 @@
+# Allow lerna changelog to access repository
+# Token can be generated at https://github.com/settings/tokens
+export GITHUB_AUTH=

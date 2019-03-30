@@ -26,6 +26,7 @@
     "eslint-plugin-react": "7.x",
     "eslint-plugin-react-hooks": "1.5.0",
     "lerna": "^3.13.1",
+    "lerna-changelog": "^0.8.2",
     "styled-components": "^4.2.0",
     "typescript": "^3.3.4000"
   }
