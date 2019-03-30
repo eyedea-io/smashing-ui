@@ -2,6 +2,7 @@
   "name": "@smashing/title",
   "version": "0.1.1",
   "description": "Manage page title",
+  "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
   "types": "dist/title/src/index.d.ts",
   "main": "dist/title.js",
