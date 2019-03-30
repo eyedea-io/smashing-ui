@@ -2,6 +2,7 @@
   "name": "@smashing/head",
   "version": "0.1.1",
   "description": "Manage page head",
+  "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
   "types": "dist/head/src/index.d.ts",
   "main": "dist/head.js",
