@@ -1,6 +1,6 @@
 {
   "name": "@smashing/head",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "Manage page head",
   "license": "MIT",
   "types": "dist/head/src/index.d.ts",
@@ -16,7 +16,7 @@
     "prepublish": "smashing-build"
   },
   "devDependencies": {
-    "@smashing/build-utils": "^0.1.1",
+    "@smashing/build-utils": "0.1.0",
     "react": "^16.8.6"
   },
   "peerDependencies": {
