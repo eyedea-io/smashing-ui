@@ -13,3 +13,4 @@ yarn.lock
 .idea
 .rts2*
 .envrc
+.changelog

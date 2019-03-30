@@ -4,7 +4,7 @@
     "packages/*"
   ],
   "scripts": {
-    "changelog": "lerna-changelog",
+    "changelog": "node ./tasks/changelog",
     "publish": "lerna publish",
     "publish:canary": "lerna publish --canary",
     "storybook": "start-storybook -p 6006",
