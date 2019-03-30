@@ -18,11 +18,9 @@ const result = spawn.sync(
     "--output",
     resolve(process.cwd(), "dist"),
     "--format",
-    "es,umd",
+    "es,cjs",
     "--external",
-    "react,@smashing/*",
-    "--target",
-    "web"
+    "react,@smashing/*"
   ],
   {
     stdio: "inherit"
