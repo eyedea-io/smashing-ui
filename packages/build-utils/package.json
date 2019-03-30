@@ -2,6 +2,7 @@
   "name": "@smashing/build-utils",
   "version": "0.1.1",
   "description": "Build scripts for smashing components",
+  "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
   "main": "index.js",
   "module": "index.js",
