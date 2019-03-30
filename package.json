@@ -6,7 +6,9 @@
   "scripts": {
     "changelog": "lerna-changelog",
     "publish": "lerna publish",
-    "publish:canary": "lerna publish --canary"
+    "publish:canary": "lerna publish --canary",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "eslintIgnore": [
     "dist"
@@ -30,5 +32,13 @@
     "lerna-changelog": "^0.8.2",
     "styled-components": "^4.2.0",
     "typescript": "^3.3.4000"
+  },
+  "devDependencies": {
+    "@storybook/react": "^5.0.5",
+    "@storybook/addon-actions": "^5.0.5",
+    "@storybook/addon-links": "^5.0.5",
+    "@storybook/addons": "^5.0.5",
+    "@babel/core": "^7.4.0",
+    "babel-loader": "^8.0.5"
   }
 }
