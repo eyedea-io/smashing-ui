@@ -10,7 +10,7 @@ export const TitleContext = React.createContext<{
 })
 
 export const Title = ({children}: {children?: React.ReactChild}) => {
-  const {title, separator = " = "} = React.useContext(TitleContext)
+  const {title, separator = " - "} = React.useContext(TitleContext)
 
   return (
     <Head>
