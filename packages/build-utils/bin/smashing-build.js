@@ -4,8 +4,11 @@ process.on("unhandledRejection", err => {
   throw err
 })
 
+const {removeSync} = require("fs-extra")
 const {resolve} = require("path")
 const spawn = require("cross-spawn")
+
+removeSync(resolve(process.cwd(), "dist"))
 
 const result = spawn.sync(
   "microbundle",
