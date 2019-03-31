@@ -8,6 +8,7 @@
     "release": "lerna publish",
     "canary": "lerna publish --canary",
     "storybook": "start-storybook -p 6006",
+    "watch": "npx lerna run --parallel prepare -- watch",
     "build-storybook": "build-storybook"
   },
   "eslintIgnore": [
@@ -40,6 +41,8 @@
     "@storybook/addon-links": "^5.0.5",
     "@storybook/addons": "^5.0.5",
     "@storybook/react": "^5.0.5",
+    "@types/storybook__react": "^4.0.1",
+    "@types/styled-components": "^4.1.12",
     "babel-loader": "^8.0.5"
   }
 }

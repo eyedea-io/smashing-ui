@@ -1,0 +1,34 @@
+{
+  "name": "@smashing/typography",
+  "version": "0.1.0",
+  "description": "Typography components",
+  "repository": "eyedea-io/smashing-ui",
+  "license": "MIT",
+  "types": "dist/typography/src/index.d.ts",
+  "main": "dist/typography.js",
+  "umd:main": "dist/typography.umd.js",
+  "module": "dist/typography.m.js",
+  "source": "src/index.tsx",
+  "author": "Eyedea AS",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "prepare": "smashing-build"
+  },
+  "dependencies": {
+    "@smashing/theme": "0.1.0"
+  },
+  "devDependencies": {
+    "@smashing/build-utils": "^0.1.4",
+    "react": "^16.8.6"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6"
+  },
+  "keywords": [
+    "smashing",
+    "react",
+    "ui"
+  ]
+}
