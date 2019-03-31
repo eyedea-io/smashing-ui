@@ -22,7 +22,7 @@ if (/Must provide GITHUB_AUTH/.test(result)) {
 }
 
 writeFileSync(
-  resolve(process.cwd(), "changelog.md"),
+  resolve(process.cwd(), "changelog.next.md"),
   result.toString().trimLeft()
 )
 
