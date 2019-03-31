@@ -1,6 +1,9 @@
 import React from "react"
-import {storiesOf} from "@storybook/react"
+import {storiesOf, addDecorator} from "@storybook/react"
 import {Text, Heading, Strong, Paragraph} from "@smashing/typography/src/index"
+import {withA11y} from "@storybook/addon-a11y"
+
+addDecorator(withA11y)
 
 storiesOf("Typography|Text", module)
   .add("size:300", () => <Text size={300}>Hello</Text>)

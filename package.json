@@ -18,6 +18,7 @@
     "extends": "smashing-app"
   },
   "dependencies": {
+    "@storybook/addon-a11y": "^5.0.5",
     "@types/react": "^16.8.10",
     "@typescript-eslint/eslint-plugin": "^1.5.0",
     "@typescript-eslint/parser": "^1.5.0",
