@@ -1,6 +1,6 @@
 import React from "react"
 import {storiesOf} from "@storybook/react"
-import {Text, Heading, Strong} from "@smashing/typography/src/index"
+import {Text, Heading, Strong, Paragraph} from "@smashing/typography/src/index"
 
 storiesOf("Typography|Text", module)
   .add("size:300", () => <Text size={300}>Hello</Text>)
@@ -27,6 +27,50 @@ storiesOf("Typography|Strong", module)
   .add("intent:info", () => <Strong intent="info">Hello</Strong>)
   .add("intent:success", () => <Strong intent="success">Hello</Strong>)
   .add("intent:warning", () => <Strong intent="warning">Hello</Strong>)
+
+storiesOf("Typography|Paragraph", module)
+  .add("size:300", () => (
+    <Paragraph size={300}>
+      Leverage agile frameworks to provide a robust synopsis for high level
+      overviews.
+    </Paragraph>
+  ))
+  .add("size:400:default", () => (
+    <Paragraph>
+      Leverage agile frameworks to provide a robust synopsis for high level
+      overviews.
+    </Paragraph>
+  ))
+  .add("size:500", () => (
+    <Paragraph size={500}>
+      Leverage agile frameworks to provide a robust synopsis for high level
+      overviews.
+    </Paragraph>
+  ))
+  .add("size:600", () => (
+    <Paragraph size={600}>
+      Leverage agile frameworks to provide a robust synopsis for high level
+      overviews.
+    </Paragraph>
+  ))
+  .add("color:muted", () => (
+    <Paragraph color="muted">
+      Leverage agile frameworks to provide a robust synopsis for high level
+      overviews.
+    </Paragraph>
+  ))
+  .add("color:default", () => (
+    <Paragraph color="default">
+      Leverage agile frameworks to provide a robust synopsis for high level
+      overviews.
+    </Paragraph>
+  ))
+  .add("color:dark", () => (
+    <Paragraph color="dark">
+      Leverage agile frameworks to provide a robust synopsis for high level
+      overviews.
+    </Paragraph>
+  ))
 
 storiesOf("Typography|Heading", module)
   .add("size:100", () => <Heading size={100}>Hello</Heading>)
