@@ -20,6 +20,7 @@
     "@types/react": "^16.8.10",
     "@typescript-eslint/eslint-plugin": "^1.5.0",
     "@typescript-eslint/parser": "^1.5.0",
+    "awesome-typescript-loader": "^5.2.1",
     "babel-eslint": "9.x",
     "eslint": "5.x",
     "eslint-config-smashing-app": "^0.2.0",
@@ -34,11 +35,11 @@
     "typescript": "^3.3.4000"
   },
   "devDependencies": {
-    "@storybook/react": "^5.0.5",
+    "@babel/core": "^7.4.0",
     "@storybook/addon-actions": "^5.0.5",
     "@storybook/addon-links": "^5.0.5",
     "@storybook/addons": "^5.0.5",
-    "@babel/core": "^7.4.0",
+    "@storybook/react": "^5.0.5",
     "babel-loader": "^8.0.5"
   }
 }
