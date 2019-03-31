@@ -6,7 +6,7 @@ export interface HeadingProps {
   fontFamily?: "ui" | "display" | "mono"
 }
 
-export const Heading: React.FC<HeadingProps> = styled.span<HeadingProps>`
+export const Heading: React.FC<HeadingProps> = styled.h2<HeadingProps>`
   ${({size = 400, fontFamily = "display"}) => css`
     ${theme.getHeadingStyle(size)}
     font-family: ${theme.getFontFamily(fontFamily)};
