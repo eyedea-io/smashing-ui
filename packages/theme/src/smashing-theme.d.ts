@@ -2,7 +2,7 @@ import "styled-components"
 import {colors} from "./default-theme/foundational-styles"
 import spacing from "./default-theme/spacing"
 import {fontFamilies} from "./default-theme/typography"
-import {theme, Theme} from "."
+import {Theme} from "."
 
 declare const theme: Theme
 type ColorsType = typeof colors
