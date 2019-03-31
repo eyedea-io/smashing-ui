@@ -22,3 +22,38 @@ yarn add @smashing/typography
 <Text size={500}>I'm inline text</Text>
 <Text size={600}>I'm inline text</Text>
 ```
+
+### Heading (h2)
+
+```jsx
+<Heading>I'm a heading</Heading>
+<Heading as="h1" size={100}>I'm a heading</Heading>
+<Heading as="h6" size={200}>I'm a heading</Heading>
+<Heading size={300}>I'm a heading</Heading>
+<Heading size={400}>I'm a heading</Heading>
+<Heading size={500}>I'm a heading</Heading>
+<Heading size={600}>I'm a heading</Heading>
+<Heading size={700}>I'm a heading</Heading>
+<Heading size={800}>I'm a heading</Heading>
+<Heading size={900}>I'm a heading</Heading>
+```
+
+### Paragraph (p)
+
+```jsx
+<Paragraph>I'm a paragraph</Paragraph>
+<Paragraph size={300}>I'm a paragraph</Paragraph>
+<Paragraph size={400}>I'm a paragraph</Paragraph>
+<Paragraph size={500}>I'm a paragraph</Paragraph>
+<Paragraph size={600}>I'm a paragraph</Paragraph>
+```
+
+### Strong (strong)
+
+```jsx
+<Strong>I'm a strong tag</Strong>
+<Strong size={300}>I'm a strong tag</Strong>
+<Strong size={400}>I'm a strong tag</Strong>
+<Strong size={500}>I'm a strong tag</Strong>
+<Strong size={600}>I'm a strong tag</Strong>
+```
