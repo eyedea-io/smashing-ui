@@ -5,7 +5,7 @@
   ],
   "scripts": {
     "changelog": "node ./tasks/changelog",
-    "release": "lerna publish",
+    "release": "node ./tasks/release",
     "canary": "lerna publish --canary",
     "storybook": "start-storybook -p 6006",
     "watch": "npx lerna run --parallel prepare -- watch",
