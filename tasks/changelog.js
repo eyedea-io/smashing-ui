@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const {writeFileSync} = require("fs")
+const {writeFileSync, readFileSync} = require("fs")
 const {resolve} = require("path")
 const spawn = require("cross-spawn")
 const result = spawn.sync("yarn", ["exec", "lerna-changelog"], {
@@ -21,13 +21,31 @@ if (/Must provide GITHUB_AUTH/.test(result)) {
   process.exit(1)
 }
 
-writeFileSync(
-  resolve(process.cwd(), "changelog.md"),
-  result.toString().trimLeft()
-)
+const changelog = result.toString().trimLeft()
+
+if (changelog === "") {
+  console.log()
+  console.log("Changelog was not generated. No changes to add.")
+  console.log()
+  process.exit(0)
+}
+
+const changeogPath = resolve(process.cwd(), "changelog.md")
+let currentChangelog = ""
+
+try {
+  currentChangelog = readFileSync(changeogPath, {
+    encoding: "utf-8"
+  })
+} catch (err) {}
+
+if (changelog) {
+  currentChangelog = `${changelog}\n${currentChangelog}`
+}
+
+writeFileSync(changeogPath, currentChangelog)
 
 console.log()
 console.log("Changelog was generated.")
 console.log()
-
 process.exit(0)

@@ -1,13 +1,13 @@
 {
-  "name": "@smashing/title",
-  "version": "0.2.4",
-  "description": "Manage page title",
+  "name": "@smashing/typography",
+  "version": "0.2.0",
+  "description": "Typography components",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
-  "types": "dist/title/src/index.d.ts",
-  "main": "dist/title.js",
-  "umd:main": "dist/title.umd.js",
-  "module": "dist/title.m.js",
+  "types": "dist/typography/src/index.d.ts",
+  "main": "dist/typography.js",
+  "umd:main": "dist/typography.umd.js",
+  "module": "dist/typography.m.js",
   "source": "src/index.tsx",
   "author": "Eyedea AS",
   "publishConfig": {
@@ -17,14 +17,15 @@
     "prepare": "smashing-build"
   },
   "dependencies": {
-    "@smashing/head": "^0.1.5"
+    "@smashing/theme": "^0.1.2"
   },
   "devDependencies": {
     "@smashing/build-utils": "^0.1.5",
     "react": "^16.8.6"
   },
   "peerDependencies": {
-    "react": "^16.8.6"
+    "react": "^16.8.6",
+    "styled-components": "^4.2.0"
   },
   "keywords": [
     "smashing",

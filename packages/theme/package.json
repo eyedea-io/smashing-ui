@@ -1,0 +1,27 @@
+{
+  "name": "@smashing/theme",
+  "version": "0.1.2",
+  "description": "Theme configuration for smashing components",
+  "repository": "eyedea-io/smashing-ui",
+  "license": "MIT",
+  "types": "src/smashing-theme.d.ts",
+  "main": "dist/theme.js",
+  "umd:main": "dist/theme.umd.js",
+  "module": "dist/theme.m.js",
+  "source": "src/index.tsx",
+  "author": "Eyedea AS",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "prepare": "smashing-build"
+  },
+  "devDependencies": {
+    "@smashing/build-utils": "^0.1.5"
+  },
+  "keywords": [
+    "smashing",
+    "react",
+    "ui"
+  ]
+}

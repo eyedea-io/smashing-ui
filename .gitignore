@@ -14,3 +14,4 @@ yarn.lock
 .rts2*
 .envrc
 .changelog
+storybook-static
