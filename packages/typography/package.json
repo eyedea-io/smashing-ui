@@ -1,6 +1,6 @@
 {
   "name": "@smashing/typography",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Typography components",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -17,10 +17,10 @@
     "prepare": "smashing-build"
   },
   "dependencies": {
-    "@smashing/theme": "0.1.0"
+    "@smashing/theme": "^0.1.1"
   },
   "devDependencies": {
-    "@smashing/build-utils": "^0.1.4",
+    "@smashing/build-utils": "^0.1.5",
     "react": "^16.8.6"
   },
   "peerDependencies": {
