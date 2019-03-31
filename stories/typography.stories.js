@@ -1,6 +1,6 @@
 import React from "react"
 import {storiesOf} from "@storybook/react"
-import {Text, Heading} from "@smashing/typography/src/index"
+import {Text, Heading, Strong} from "@smashing/typography/src/index"
 
 storiesOf("Typography|Text", module)
   .add("size:300", () => <Text size={300}>Hello</Text>)
@@ -14,6 +14,19 @@ storiesOf("Typography|Text", module)
   .add("intent:info", () => <Text intent="info">Hello</Text>)
   .add("intent:success", () => <Text intent="success">Hello</Text>)
   .add("intent:warning", () => <Text intent="warning">Hello</Text>)
+
+storiesOf("Typography|Strong", module)
+  .add("size:300", () => <Strong size={300}>Hello</Strong>)
+  .add("size:400:default", () => <Strong>Hello</Strong>)
+  .add("size:500", () => <Strong size={500}>Hello</Strong>)
+  .add("size:600", () => <Strong size={600}>Hello</Strong>)
+  .add("color:muted", () => <Strong color="muted">Hello</Strong>)
+  .add("color:default", () => <Strong color="default">Hello</Strong>)
+  .add("color:dark", () => <Strong color="dark">Hello</Strong>)
+  .add("intent:danger", () => <Strong intent="danger">Hello</Strong>)
+  .add("intent:info", () => <Strong intent="info">Hello</Strong>)
+  .add("intent:success", () => <Strong intent="success">Hello</Strong>)
+  .add("intent:warning", () => <Strong intent="warning">Hello</Strong>)
 
 storiesOf("Typography|Heading", module)
   .add("size:100", () => <Heading size={100}>Hello</Heading>)
