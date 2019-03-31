@@ -7,21 +7,26 @@ process.on("unhandledRejection", err => {
 const {removeSync} = require("fs-extra")
 const {resolve} = require("path")
 const spawn = require("cross-spawn")
+const [command] = process.argv.slice(2)
+const watch = command === "watch"
+const args = [
+  "--cwd",
+  process.cwd(),
+  "--output",
+  resolve(process.cwd(), "dist"),
+  "--format",
+  "es,cjs",
+  "--external",
+  "react,@smashing/*,styled-components"
+]
 
-removeSync(resolve(process.cwd(), "dist"))
+if (!watch) {
+  removeSync(resolve(process.cwd(), "dist"))
+}
 
 const result = spawn.sync(
   "microbundle",
-  [
-    "--cwd",
-    process.cwd(),
-    "--output",
-    resolve(process.cwd(), "dist"),
-    "--format",
-    "es,cjs",
-    "--external",
-    "react,@smashing/*"
-  ],
+  (watch ? ["watch"] : []).concat(args),
   {
     stdio: "inherit"
   }
