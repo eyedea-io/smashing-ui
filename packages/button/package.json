@@ -17,7 +17,7 @@
     "prepare": "smashing-build"
   },
   "devDependencies": {
-    "@smashing/build-utils": "^0.1.4",
+    "@smashing/build-utils": "^0.1.5",
     "react": "^16.8.6"
   },
   "peerDependencies": {

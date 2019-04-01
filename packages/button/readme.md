@@ -6,11 +6,17 @@
 yarn add @smashing/button
 ```
 
-### Change page title
-
-This will set page title to `About`. If app title is configured, it will be set to `About - App Title`
-
 ```jsx
+<Button>Hulk smash!</Button>
+<Button height={32}>Hulk smash!</Button>
+<Button height={40}>Hulk smash!</Button>
+<Button height={48}>Hulk smash!</Button>
 <Button appearance="primary">Hulk smash!</Button>
+<Button appearance="minimal">Hulk smash!</Button>
+<Button appearance="flat">Hulk smash!</Button>
+<Button appearance="flat" intent="success">Hulk smash!</Button>
+<Button appearance="flat" intent="danger">Hulk smash!</Button>
+<Button appearance="flat" intent="info">Hulk smash!</Button>
+<Button appearance="flat" intent="warning">Hulk smash!</Button>
 ```
 

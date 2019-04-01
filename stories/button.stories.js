@@ -91,28 +91,6 @@ storiesOf("Core|Button", module)
       </p>
     </React.Fragment>
   ))
-  .add("appearance:minimal", () => (
-    <React.Fragment>
-      <p>
-        <Button appearance="minimal">Hulk smash!</Button>
-      </p>
-      <p>
-        <Button appearance="minimal" intent="success">
-          Hulk smash!
-        </Button>
-      </p>
-      <p>
-        <Button appearance="minimal" intent="warning">
-          Hulk smash!
-        </Button>
-      </p>
-      <p>
-        <Button appearance="minimal" intent="danger">
-          Hulk smash!
-        </Button>
-      </p>
-    </React.Fragment>
-  ))
   .add("height", () => (
     <React.Fragment>
       <p>
