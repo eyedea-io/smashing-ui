@@ -1,5 +1,4 @@
 import styled, {css} from "styled-components"
-import {theme} from "@smashing/theme"
 
 export interface ParagraphProps {
   size?: 300 | 400 | 500 | 600
@@ -7,10 +6,10 @@ export interface ParagraphProps {
   fontFamily?: "ui" | "display" | "mono"
 }
 
-export const Paragraph: React.FC<ParagraphProps> = styled.p<ParagraphProps>`
+export const Paragraph = styled.p<ParagraphProps>`
   ${({size = 400, fontFamily = "ui", color = "default"}) => css`
-    color: ${theme.getTextColor(color)};
-    font-family: ${theme.getFontFamily(fontFamily)};
-    ${theme.getTextStyle(size)}
+    color: ${_ => _.theme.getTextColor(color)};
+    font-family: ${_ => _.theme.getFontFamily(fontFamily)};
+    ${_ => _.theme.getTextStyle(size)}
   `}
 `

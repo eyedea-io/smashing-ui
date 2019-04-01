@@ -2,10 +2,13 @@ import React from "react"
 import {storiesOf, addDecorator} from "@storybook/react"
 import {Text, Heading, Strong, Paragraph} from "@smashing/typography/src/index"
 import {withA11y} from "@storybook/addon-a11y"
+import {ThemeProvider} from "styled-components"
+import {theme} from "@smashing/theme"
 
 addDecorator(withA11y)
 
 storiesOf("Typography|Text", module)
+  .addDecorator(story => <ThemeProvider theme={theme}>{story()}</ThemeProvider>)
   .add("size:300", () => <Text size={300}>Hello</Text>)
   .add("size:400:default", () => <Text>Hello</Text>)
   .add("size:500", () => <Text size={500}>Hello</Text>)
@@ -19,6 +22,7 @@ storiesOf("Typography|Text", module)
   .add("intent:warning", () => <Text intent="warning">Hello</Text>)
 
 storiesOf("Typography|Strong", module)
+  .addDecorator(story => <ThemeProvider theme={theme}>{story()}</ThemeProvider>)
   .add("size:300", () => <Strong size={300}>Hello</Strong>)
   .add("size:400:default", () => <Strong>Hello</Strong>)
   .add("size:500", () => <Strong size={500}>Hello</Strong>)
@@ -32,6 +36,7 @@ storiesOf("Typography|Strong", module)
   .add("intent:warning", () => <Strong intent="warning">Hello</Strong>)
 
 storiesOf("Typography|Paragraph", module)
+  .addDecorator(story => <ThemeProvider theme={theme}>{story()}</ThemeProvider>)
   .add("size:300", () => (
     <Paragraph size={300}>
       Leverage agile frameworks to provide a robust synopsis for high level
@@ -76,6 +81,7 @@ storiesOf("Typography|Paragraph", module)
   ))
 
 storiesOf("Typography|Heading", module)
+  .addDecorator(story => <ThemeProvider theme={theme}>{story()}</ThemeProvider>)
   .add("size:100", () => <Heading size={100}>Hello</Heading>)
   .add("size:200", () => <Heading size={200}>Hello</Heading>)
   .add("size:300", () => <Heading size={300}>Hello</Heading>)

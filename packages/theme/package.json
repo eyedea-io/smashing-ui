@@ -4,7 +4,7 @@
   "description": "Theme configuration for smashing components",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
-  "types": "src/smashing-theme.d.ts",
+  "types": "dist/theme/src/index.d.ts",
   "main": "dist/theme.js",
   "umd:main": "dist/theme.umd.js",
   "module": "dist/theme.m.js",
@@ -17,11 +17,15 @@
     "prepare": "smashing-build"
   },
   "devDependencies": {
-    "@smashing/build-utils": "^0.1.5"
+    "@smashing/build-utils": "^0.1.5",
+    "@types/tinycolor2": "^1.4.1"
   },
   "keywords": [
     "smashing",
     "react",
     "ui"
-  ]
+  ],
+  "dependencies": {
+    "tinycolor2": "^1.4.1"
+  }
 }
