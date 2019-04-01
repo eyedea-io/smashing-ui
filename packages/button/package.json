@@ -1,0 +1,31 @@
+{
+  "name": "@smashing/button",
+  "version": "0.0.0",
+  "description": "The Button component is the most common button component",
+  "repository": "eyedea-io/smashing-ui",
+  "license": "MIT",
+  "types": "dist/button/src/index.d.ts",
+  "main": "dist/button.js",
+  "umd:main": "dist/button.umd.js",
+  "module": "dist/button.m.js",
+  "source": "src/index.tsx",
+  "author": "Eyedea AS",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "prepare": "smashing-build"
+  },
+  "devDependencies": {
+    "@smashing/build-utils": "^0.1.5",
+    "react": "^16.8.6"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6"
+  },
+  "keywords": [
+    "smashing",
+    "react",
+    "ui"
+  ]
+}

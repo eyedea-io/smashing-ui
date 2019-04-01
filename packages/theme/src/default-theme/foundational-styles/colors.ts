@@ -28,6 +28,7 @@ const colors = {
     selected: palette.blue.base,
 
     // Intent.
+    none: scales.neutral.N8,
     success: palette.green.dark,
     info: palette.blue.dark,
     danger: palette.red.dark,

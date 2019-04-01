@@ -15,9 +15,11 @@ const args = [
   "--output",
   resolve(process.cwd(), "dist"),
   "--format",
-  "es,cjs",
+  watch ? "es" : "es,cjs",
   "--external",
-  "react,@smashing/*,styled-components"
+  "react,@smashing/*,styled-components",
+  `--compress=`,
+  watch ? "false" : "true"
 ]
 
 if (!watch) {

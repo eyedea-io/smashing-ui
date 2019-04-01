@@ -1,48 +1,31 @@
-import {DefaultTheme} from "styled-components"
 import spacing from "./default-theme/spacing"
 import {colors} from "./default-theme/foundational-styles"
-import {fontFamilies, text, headings} from "./default-theme/typography"
+import {fontFamilies, text} from "./default-theme/typography"
+import {helpers} from "./default-theme/helpers"
+import {theme as smashingTheme} from "./default-theme/theme"
 
-export interface WithTheme {
-  theme: DefaultTheme
+export const theme = {
+  ...smashingTheme,
+  ...helpers
 }
 
-export const themedProperty = (object: any, keyOrValue: string | number) => {
-  if (Object.prototype.hasOwnProperty.call(object, keyOrValue)) {
-    return object[keyOrValue]
+// Helper that allows interface to extend type
+export type I<T> = T
+
+export interface SmashingThemeStyle {
+  text: typeof text
+  headings: typeof text
+}
+export interface SmashingThemeFontFamilies extends I<typeof fontFamilies> {}
+export interface SmashingThemeColors extends I<typeof colors> {}
+export interface SmashingThemeSpacing extends I<typeof spacing> {}
+
+declare module "styled-components" {
+  export interface DefaultTheme extends I<typeof helpers> {
+    radius: string
+    style: SmashingThemeStyle
+    colors: SmashingThemeColors
+    spacing: SmashingThemeSpacing
+    fontFamilies: SmashingThemeFontFamilies
   }
-
-  return keyOrValue
-}
-
-export const ensureTheme = (cb: (config: DefaultTheme) => any) => (
-  props: WithTheme
-) => {
-  return cb(Object.is(props.theme, {}) ? props.theme : theme)
-}
-
-export const getTextColor = (color: string) =>
-  ensureTheme(_ => themedProperty(_.colors.text, color))
-
-export const getFontFamily = (fontFamily: string) =>
-  ensureTheme(_ => themedProperty(_.fontFamilies, fontFamily))
-
-export const getTextStyle = (size: number) => themedProperty(text, String(size))
-export const getHeadingStyle = (size: number) =>
-  themedProperty(headings, String(size))
-
-const helpers = {
-  getTextColor,
-  getFontFamily,
-  getTextStyle,
-  getHeadingStyle
-}
-
-export type Theme = typeof helpers & DefaultTheme
-export const theme: Theme = {
-  ...helpers,
-  spacing,
-  colors,
-  fontFamilies,
-  radius: "5px"
 }
