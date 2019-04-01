@@ -6,7 +6,7 @@ import {Text} from "@smashing/typography"
 export interface ButtonProps {
   height?: number
   intent?: "none" | "success" | "info" | "danger" | "warning"
-  appearance?: "primary" | "minimal" | "default"
+  appearance?: "primary" | "minimal" | "default" | "flat"
 }
 
 const DEFAULT_APPEARANCE = "default"
