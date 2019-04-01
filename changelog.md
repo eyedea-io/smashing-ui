@@ -1,3 +1,15 @@
+## 2019-04-01
+
+#### :rocket: New Feature
+* `typography`, `button`, `theme`
+  * [#9](https://github.com/eyedea-io/smashing-ui/pull/9) Add Button component ([@Idered](https://github.com/Idered))
+
+#### :house: Internal
+* [#8](https://github.com/eyedea-io/smashing-ui/pull/8) Add a11y to storybook ([@Idered](https://github.com/Idered))
+
+#### Committers: 1
+- Kasper Mikiewicz ([@Idered](https://github.com/Idered))
+
 ## 2019-03-31
 
 #### :rocket: New Feature
