@@ -1,17 +1,17 @@
-import colors from "./colors"
 import palette from "./palette"
+import scales from "./scales"
 
 const solid = {
   neutral: {
-    color: "white",
+    color: "#d8e0e4",
     backgroundColor: palette.neutral.base
   },
   blue: {
-    color: "white",
+    color: "#002952",
     backgroundColor: palette.blue.base
   },
   red: {
-    color: "white",
+    color: palette.red.darkest,
     backgroundColor: palette.red.base
   },
   orange: {
@@ -23,7 +23,7 @@ const solid = {
     backgroundColor: palette.yellow.base
   },
   green: {
-    color: "white",
+    color: "#025a53",
     backgroundColor: palette.green.base
   },
   teal: {
@@ -38,7 +38,7 @@ const solid = {
 
 const subtle = {
   neutral: {
-    color: colors.text.default,
+    color: scales.neutral.N9,
     backgroundColor: palette.neutral.light
   },
   blue: {
@@ -71,10 +71,29 @@ const subtle = {
   }
 }
 
-const fills = {
-  solid,
-  subtle,
-  options: Object.keys(solid)
+const minimal = {
+  neutral: {
+    color: palette.neutral.dark,
+    backgroundColor: "transparent"
+  },
+  green: {
+    color: palette.green.dark,
+    backgroundColor: "transparent"
+  },
+  orange: {
+    color: palette.orange.dark,
+    backgroundColor: "transparent"
+  },
+  red: {
+    color: palette.red.dark,
+    backgroundColor: "transparent"
+  },
+  blue: {
+    color: palette.blue.dark,
+    backgroundColor: "transparent"
+  }
 }
+
+const fills = {solid, subtle, minimal}
 
 export default fills

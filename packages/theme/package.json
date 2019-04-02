@@ -26,6 +26,7 @@
     "ui"
   ],
   "dependencies": {
+    "deepmerge": "^3.2.0",
     "tinycolor2": "^1.4.1"
   }
 }

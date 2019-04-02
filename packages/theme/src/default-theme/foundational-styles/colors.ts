@@ -1,5 +1,6 @@
 import palette from "./palette"
 import scales from "./scales"
+import fills from "./fills"
 
 const colors = {
   background: {
@@ -64,10 +65,38 @@ const colors = {
     success: palette.green.base,
     danger: palette.red.base,
     warning: palette.orange.base
+  },
+
+  button: {
+    primary: {
+      none: {start: "#557491", end: "#425A70"},
+      success: {start: "#23C277", end: "#399D6C"},
+      warning: {start: "#EE9913", end: "#D9822B"},
+      danger: {start: "#EC4C47", end: "#D64540"},
+      info: {start: "#0788DE", end: "#116AB8"}
+    },
+    subtle: {
+      none: fills.subtle.neutral,
+      success: fills.subtle.green,
+      warning: fills.subtle.yellow,
+      danger: fills.subtle.red,
+      info: fills.subtle.blue
+    },
+    flat: {
+      none: fills.solid.neutral,
+      success: fills.solid.green,
+      warning: fills.solid.yellow,
+      danger: fills.solid.red,
+      info: fills.solid.blue
+    },
+    minimal: {
+      none: fills.minimal.neutral,
+      success: fills.minimal.green,
+      warning: fills.minimal.orange,
+      danger: fills.minimal.red,
+      info: fills.minimal.blue
+    }
   }
 }
-
-type ColorsType = typeof colors
-export interface SmashingThemeColors extends ColorsType {}
 
 export default colors

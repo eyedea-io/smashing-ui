@@ -11,15 +11,16 @@ export default {
   blue: {
     lightest: scales.blue.B1,
     light: scales.blue.B4,
-    base: scales.blue.B9,
+    base: scales.blue.B7,
     dark: scales.blue.B10
   },
 
   red: {
     lightest: "#fef6f6",
     light: "#fae2e2",
-    base: "#ec4c47",
-    dark: "#bf0e08"
+    base: "#f16e6e",
+    dark: "#bf0e08",
+    darkest: "#500200"
   },
 
   orange: {
@@ -31,15 +32,15 @@ export default {
 
   yellow: {
     lightest: "#fef8e7",
-    light: "#fbe6a2",
-    base: "#f7d154",
-    dark: "#7e6514"
+    light: "#f7eaca",
+    base: "#e8d093",
+    dark: "#735202"
   },
 
   green: {
     lightest: "#f1faf5",
     light: "#d4eee2",
-    base: "#47b881",
+    base: "#6bd692",
     dark: "#00783e"
   },
 

@@ -1,4 +1,6 @@
 import styled, {css} from "styled-components"
+import {getTextColor, getFontFamily} from "../utils"
+import {getTextStyle} from "../styles/text"
 
 export interface StrongProps {
   size?: 300 | 400 | 500 | 600
@@ -9,9 +11,12 @@ export interface StrongProps {
 
 export const Strong = styled.strong<StrongProps>`
   ${({size = 400, fontFamily = "ui", color = "default", intent}) => css`
-    ${_ => _.theme.getTextStyle(size)}
-    color: ${_ => _.theme.getTextColor(intent || color)};
-    font-family: ${_ => _.theme.getFontFamily(fontFamily)};
+    ${getTextStyle(size)}
+    color: ${getTextColor(intent || color)};
     font-weight: 600;
+    ${fontFamily &&
+      css`
+        font-family: ${getFontFamily(fontFamily)};
+      `};
   `}
 `
