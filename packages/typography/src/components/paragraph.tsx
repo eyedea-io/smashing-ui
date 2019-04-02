@@ -1,15 +1,19 @@
 import styled, {css} from "styled-components"
+import {getTextColor, getFontFamily} from "../utils"
+import {getParagraphStyle} from "../styles/paragraph"
 
 export interface ParagraphProps {
-  size?: 300 | 400 | 500 | 600
+  size?: 300 | 400 | 500
   color?: "muted" | "default" | "dark"
   fontFamily?: "ui" | "display" | "mono"
 }
-
 export const Paragraph = styled.p<ParagraphProps>`
   ${({size = 400, fontFamily = "ui", color = "default"}) => css`
-    color: ${_ => _.theme.getTextColor(color)};
-    font-family: ${_ => _.theme.getFontFamily(fontFamily)};
-    ${_ => _.theme.getTextStyle(size)}
+    ${getParagraphStyle(size)};
+    color: ${getTextColor(color)};
+    ${fontFamily &&
+      css`
+        font-family: ${getFontFamily(fontFamily)};
+      `};
   `}
 `

@@ -1,4 +1,6 @@
 import styled, {css} from "styled-components"
+import {getTextColor, getFontFamily} from "../utils"
+import {getTextStyle} from "../styles/text"
 
 export interface TextProps {
   size?: 300 | 400 | 500 | 600
@@ -9,8 +11,8 @@ export interface TextProps {
 
 export const Text = styled.span<TextProps>`
   ${({size = 400, fontFamily = "ui", color = "default", intent}) => css`
-    ${_ => _.theme.getTextStyle(size)}
-    color: ${_ => _.theme.getTextColor(intent || color)};
-    font-family: ${_ => _.theme.getFontFamily(fontFamily)};
+    ${getTextStyle(size)};
+    color: ${getTextColor(intent || color)};
+    font-family: ${getFontFamily(fontFamily)};
   `}
 `

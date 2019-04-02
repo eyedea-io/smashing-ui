@@ -1,5 +1,8 @@
-import {linearGradient} from "./linear-gradient"
 import tinycolor from "tinycolor2"
+
+export const linearGradient = (top: string, bottom: string) => {
+  return `linear-gradient(to bottom, ${top}, ${bottom})`
+}
 
 export const getLinearGradientWithStates = (
   startColor: string,
@@ -23,6 +26,8 @@ export const getLinearGradientWithStates = (
       tinycolor(endColor)
         .darken(intensityMultiplier * 5)
         .toString()
-    )
+    ),
+    startColor: startColor,
+    endColor: endColor
   }
 }

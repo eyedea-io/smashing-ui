@@ -2,17 +2,32 @@ import React from "react"
 import {storiesOf, addDecorator} from "@storybook/react"
 import {Button} from "@smashing/button/src/index"
 import {withA11y} from "@storybook/addon-a11y"
-import {ThemeProvider} from "styled-components"
-import {theme} from "@smashing/theme"
+import {SmashingThemeProvider} from "@smashing/theme"
 
 addDecorator(withA11y)
 
 storiesOf("Core|Button", module)
-  .addDecorator(story => <ThemeProvider theme={theme}>{story()}</ThemeProvider>)
+  .addDecorator(story => (
+    <SmashingThemeProvider
+      theme={{
+        fontFamilies: {
+          display: "arial"
+        }
+      }}
+    >
+      {story()}
+    </SmashingThemeProvider>
+  ))
   .add("appearance:default", () => (
     <React.Fragment>
       <p>
+        <Button disabled>Hulk smash!</Button>
+      </p>
+      <p>
         <Button>Hulk smash!</Button>
+      </p>
+      <p>
+        <Button intent="info">Hulk smash!</Button>
       </p>
       <p>
         <Button intent="success">Hulk smash!</Button>
@@ -28,7 +43,17 @@ storiesOf("Core|Button", module)
   .add("appearance:primary", () => (
     <React.Fragment>
       <p>
+        <Button appearance="primary" disabled>
+          Hulk smash!
+        </Button>
+      </p>
+      <p>
         <Button appearance="primary">Hulk smash!</Button>
+      </p>
+      <p>
+        <Button appearance="primary" intent="info">
+          Hulk smash!
+        </Button>
       </p>
       <p>
         <Button appearance="primary" intent="success">
@@ -50,7 +75,17 @@ storiesOf("Core|Button", module)
   .add("appearance:minimal", () => (
     <React.Fragment>
       <p>
+        <Button appearance="minimal" disabled>
+          Hulk smash!
+        </Button>
+      </p>
+      <p>
         <Button appearance="minimal">Hulk smash!</Button>
+      </p>
+      <p>
+        <Button appearance="minimal" intent="info">
+          Hulk smash!
+        </Button>
       </p>
       <p>
         <Button appearance="minimal" intent="success">
@@ -72,7 +107,17 @@ storiesOf("Core|Button", module)
   .add("appearance:flat", () => (
     <React.Fragment>
       <p>
+        <Button appearance="flat" disabled>
+          Hulk smash!
+        </Button>
+      </p>
+      <p>
         <Button appearance="flat">Hulk smash!</Button>
+      </p>
+      <p>
+        <Button appearance="flat" intent="info">
+          Hulk smash!
+        </Button>
       </p>
       <p>
         <Button appearance="flat" intent="success">
@@ -86,6 +131,38 @@ storiesOf("Core|Button", module)
       </p>
       <p>
         <Button appearance="flat" intent="danger">
+          Hulk smash!
+        </Button>
+      </p>
+    </React.Fragment>
+  ))
+  .add("appearance:subtle", () => (
+    <React.Fragment>
+      <p>
+        <Button appearance="subtle" disabled>
+          Hulk smash!
+        </Button>
+      </p>
+      <p>
+        <Button appearance="subtle">Hulk smash!</Button>
+      </p>
+      <p>
+        <Button appearance="subtle" intent="info">
+          Hulk smash!
+        </Button>
+      </p>
+      <p>
+        <Button appearance="subtle" intent="success">
+          Hulk smash!
+        </Button>
+      </p>
+      <p>
+        <Button appearance="subtle" intent="warning">
+          Hulk smash!
+        </Button>
+      </p>
+      <p>
+        <Button appearance="subtle" intent="danger">
           Hulk smash!
         </Button>
       </p>
