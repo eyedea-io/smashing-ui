@@ -1,3 +1,12 @@
+## 2019-04-02
+
+#### :nail_care: Enhancement
+* `button`, `theme`, `typography`
+  * [#10](https://github.com/eyedea-io/smashing-ui/pull/10) Make components styleable via SmashingThemeProvider ([@Idered](https://github.com/Idered))
+
+#### Committers: 1
+- Kasper Mikiewicz ([@Idered](https://github.com/Idered))
+
 ## 2019-04-01
 
 #### :rocket: New Feature
