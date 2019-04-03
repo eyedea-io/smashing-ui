@@ -1,3 +1,16 @@
+## 2019-04-03
+
+#### :rocket: New Feature
+* `button`, `text-input`, `theme`, `typography`
+  * [#12](https://github.com/eyedea-io/smashing-ui/pull/12) Add TextInput component ([@Idered](https://github.com/Idered))
+
+#### :bug: Bug Fix
+* `typography`
+  * [#11](https://github.com/eyedea-io/smashing-ui/pull/11) Fix fontFamily always overriding component style ([@Idered](https://github.com/Idered))
+
+#### Committers: 1
+- Kasper Mikiewicz ([@Idered](https://github.com/Idered))
+
 ## 2019-04-02
 
 #### :nail_care: Enhancement
