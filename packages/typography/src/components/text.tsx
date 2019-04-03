@@ -3,15 +3,15 @@ import {getTextColor, getFontFamily} from "../utils"
 import {getTextStyle} from "../styles/text"
 
 export interface TextProps {
-  size?: 300 | 400 | 500 | 600
+  variant?: 300 | 400 | 500 | 600
   color?: "muted" | "default" | "dark"
   intent?: "none" | "success" | "info" | "danger" | "warning"
   fontFamily?: "ui" | "display" | "mono"
 }
 
 export const Text = styled.span<TextProps>`
-  ${({size = 400, fontFamily, color = "default", intent}) => css`
-    ${getTextStyle(size)};
+  ${({variant = 400, fontFamily, color = "default", intent}) => css`
+    ${getTextStyle(variant)};
     color: ${getTextColor(intent || color)};
     ${fontFamily &&
       css`

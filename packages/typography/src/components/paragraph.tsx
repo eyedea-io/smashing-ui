@@ -3,13 +3,13 @@ import {getTextColor, getFontFamily} from "../utils"
 import {getParagraphStyle} from "../styles/paragraph"
 
 export interface ParagraphProps {
-  size?: 300 | 400 | 500
+  variant?: 300 | 400 | 500
   color?: "muted" | "default" | "dark"
   fontFamily?: "ui" | "display" | "mono"
 }
 export const Paragraph = styled.p<ParagraphProps>`
-  ${({size = 400, fontFamily, color = "default"}) => css`
-    ${getParagraphStyle(size)};
+  ${({variant = 400, fontFamily, color = "default"}) => css`
+    ${getParagraphStyle(variant)};
     color: ${getTextColor(color)};
     ${fontFamily &&
       css`

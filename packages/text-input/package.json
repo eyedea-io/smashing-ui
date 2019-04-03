@@ -1,13 +1,13 @@
 {
-  "name": "@smashing/typography",
-  "version": "0.2.1",
-  "description": "Typography components",
+  "name": "@smashing/text-input",
+  "version": "0.0.0",
+  "description": "Text input component used in forms",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
-  "types": "dist/typography/src/index.d.ts",
-  "main": "dist/typography.js",
-  "umd:main": "dist/typography.umd.js",
-  "module": "dist/typography.m.js",
+  "types": "dist/text-input/src/index.d.ts",
+  "main": "dist/text-input.js",
+  "umd:main": "dist/text-input.umd.js",
+  "module": "dist/text-input.m.js",
   "source": "src/index.tsx",
   "author": "Eyedea AS",
   "publishConfig": {
@@ -16,9 +16,6 @@
   "scripts": {
     "prepare": "smashing-build"
   },
-  "dependencies": {
-    "@smashing/theme": "^0.2.0"
-  },
   "devDependencies": {
     "@smashing/build-utils": "^0.1.6",
     "react": "^16.8.6"
@@ -26,6 +23,7 @@
   "peerDependencies": {
     "react": "^16.8.6",
     "styled-components": "^4.2.0",
+    "@smashing/typography": "^0.3.0",
     "@smashing/theme": "^0.3.0"
   },
   "keywords": [

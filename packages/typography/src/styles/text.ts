@@ -1,6 +1,6 @@
 import {DefaultTheme} from "styled-components"
 
-export const getTextStyle = (size: number) => (_: {theme: DefaultTheme}) => {
+export const getTextStyle = (variant: number) => (_: {theme: DefaultTheme}) => {
   return {
     /**
      * It's useful to have 600 because `Link` uses the `Text` component.
@@ -37,5 +37,5 @@ export const getTextStyle = (size: number) => (_: {theme: DefaultTheme}) => {
       letter-spacing: 0;
       font-family: ${_.theme.fontFamilies.ui};
     `
-  }[size]
+  }[variant]
 }

@@ -38,7 +38,7 @@ const Button: React.FC<ButtonProps> = ({children, height, ...props}) => {
   const textSize = getTextSizeForControlHeight(get.height(height)({theme}))
 
   return (
-    <StyledText as="button" size={textSize} height={height} {...props}>
+    <StyledText as="button" variant={textSize} height={height} {...props}>
       {children}
     </StyledText>
   )
@@ -53,13 +53,12 @@ export interface ButtonProps {
 export {Button, AppearanceType, IntentType}
 
 declare module "styled-components" {
-  export interface DefaultTheme {
-    defaults?: {
+  export interface SmashingButtonDefaults
+    extends Partial<{
       button?: {
         height?: number
         appearance?: AppearanceType
         intent?: IntentType
       }
-    }
-  }
+    }> {}
 }
