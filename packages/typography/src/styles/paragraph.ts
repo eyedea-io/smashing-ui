@@ -8,7 +8,7 @@ import {DefaultTheme} from "styled-components"
  * @property {Object} text.400 - Required property. Default.
  * @property {Object} text.300 - Required property.
  */
-export const getParagraphStyle = (size: number) => (_: {
+export const getParagraphStyle = (variant: number) => (_: {
   theme: DefaultTheme
 }) => {
   return {
@@ -27,5 +27,5 @@ export const getParagraphStyle = (size: number) => (_: {
       line-height: 18px;
       margin-top: 12px;
     `
-  }[size]
+  }[variant]
 }

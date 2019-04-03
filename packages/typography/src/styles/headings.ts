@@ -1,6 +1,8 @@
 import {DefaultTheme} from "styled-components"
 
-export const getHeadingStyle = (size: number) => (_: {theme: DefaultTheme}) => {
+export const getHeadingStyle = (variant: number) => (_: {
+  theme: DefaultTheme
+}) => {
   return {
     900: `
       font-size: 35px;
@@ -74,5 +76,5 @@ export const getHeadingStyle = (size: number) => (_: {theme: DefaultTheme}) => {
       font-family: ${_.theme.fontFamilies.ui};
       color: ${_.theme.colors.text.muted};
     `
-  }[size]
+  }[variant]
 }

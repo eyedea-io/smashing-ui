@@ -2,14 +2,17 @@ import * as foundation from "./default-theme/foundational-styles"
 import deepmerge from "deepmerge"
 import * as React from "react"
 import {themedProperty} from "./utils/themed-property"
+import {getDefault} from "./utils/get-default"
 import {DefaultTheme, ThemeProvider} from "styled-components"
+import {
+  getTextSizeForControlHeight,
+  getBorderRadiusForControlHeight
+} from "./utils/get-text-size-for-control-height"
 
 export const theme: DefaultTheme = {
   radius: "5px",
   ...foundation
 }
-
-export {themedProperty}
 
 export const SmashingThemeProvider = ({
   theme: userTheme = {},
@@ -25,35 +28,11 @@ export const SmashingThemeProvider = ({
   )
 }
 
-export const getDefault = (
-  component: string,
-  prop: string,
-  defaultValue: string | number,
-  propValue?: string | number
-): any => (_: {theme: DefaultTheme}) => {
-  if (propValue !== undefined) {
-    return propValue
-  }
-
-  if (
-    _.theme.defaults &&
-    _.theme.defaults[component] !== undefined &&
-    _.theme.defaults[component][prop] !== undefined
-  ) {
-    return _.theme.defaults[component][prop]
-  }
-
-  return defaultValue
-}
-
-export const getTextSizeForControlHeight = (height: number) => {
-  if (height <= 24) return 300
-  if (height <= 28) return 300
-  if (height <= 32) return 300
-  if (height <= 36) return 400
-  if (height <= 40) return 400
-
-  return 500
+export {
+  themedProperty,
+  getDefault,
+  getTextSizeForControlHeight,
+  getBorderRadiusForControlHeight
 }
 
 export type I<T> = T
@@ -67,6 +46,11 @@ declare module "styled-components" {
   export interface SmashingThemePalette extends I<typeof foundation.palette> {}
   export interface SmashingThemeColors extends I<typeof foundation.colors> {}
   export interface SmashingThemeSpacing extends I<typeof foundation.spacing> {}
+  export interface SmashingButtonDefaults {}
+  export interface SmashingTextInputDefaults {}
+  export interface SmashingDefaults
+    extends SmashingButtonDefaults,
+      SmashingTextInputDefaults {}
   export interface DefaultTheme {
     radius: string
     palette: SmashingThemePalette
@@ -75,5 +59,6 @@ declare module "styled-components" {
     colors: SmashingThemeColors
     spacing: SmashingThemeSpacing
     fontFamilies: SmashingThemeFontFamilies
+    defaults?: SmashingDefaults
   }
 }

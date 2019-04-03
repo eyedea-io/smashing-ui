@@ -10,10 +10,10 @@ storiesOf("Typography|Text", module)
   .addDecorator(story => (
     <SmashingThemeProvider>{story()}</SmashingThemeProvider>
   ))
-  .add("size:300", () => <Text size={300}>Hello</Text>)
-  .add("size:400:default", () => <Text>Hello</Text>)
-  .add("size:500", () => <Text size={500}>Hello</Text>)
-  .add("size:600", () => <Text size={600}>Hello</Text>)
+  .add("variant:300", () => <Text variant={300}>Hello</Text>)
+  .add("variant:400:default", () => <Text>Hello</Text>)
+  .add("variant:500", () => <Text variant={500}>Hello</Text>)
+  .add("variant:600", () => <Text variant={600}>Hello</Text>)
   .add("color:muted", () => <Text color="muted">Hello</Text>)
   .add("color:default", () => <Text color="default">Hello</Text>)
   .add("color:dark", () => <Text color="dark">Hello</Text>)
@@ -26,10 +26,10 @@ storiesOf("Typography|Strong", module)
   .addDecorator(story => (
     <SmashingThemeProvider>{story()}</SmashingThemeProvider>
   ))
-  .add("size:300", () => <Strong size={300}>Hello</Strong>)
-  .add("size:400:default", () => <Strong>Hello</Strong>)
-  .add("size:500", () => <Strong size={500}>Hello</Strong>)
-  .add("size:600", () => <Strong size={600}>Hello</Strong>)
+  .add("variant:300", () => <Strong variant={300}>Hello</Strong>)
+  .add("variant:400:default", () => <Strong>Hello</Strong>)
+  .add("variant:500", () => <Strong variant={500}>Hello</Strong>)
+  .add("variant:600", () => <Strong variant={600}>Hello</Strong>)
   .add("color:muted", () => <Strong color="muted">Hello</Strong>)
   .add("color:default", () => <Strong color="default">Hello</Strong>)
   .add("color:dark", () => <Strong color="dark">Hello</Strong>)
@@ -42,20 +42,20 @@ storiesOf("Typography|Paragraph", module)
   .addDecorator(story => (
     <SmashingThemeProvider>{story()}</SmashingThemeProvider>
   ))
-  .add("size:300", () => (
-    <Paragraph size={300}>
+  .add("variant:300", () => (
+    <Paragraph variant={300}>
       Leverage agile frameworks to provide a robust synopsis for high level
       overviews.
     </Paragraph>
   ))
-  .add("size:400:default", () => (
+  .add("variant:400:default", () => (
     <Paragraph>
       Leverage agile frameworks to provide a robust synopsis for high level
       overviews.
     </Paragraph>
   ))
-  .add("size:500", () => (
-    <Paragraph size={500}>
+  .add("variant:500", () => (
+    <Paragraph variant={500}>
       Leverage agile frameworks to provide a robust synopsis for high level
       overviews.
     </Paragraph>
@@ -83,15 +83,15 @@ storiesOf("Typography|Heading", module)
   .addDecorator(story => (
     <SmashingThemeProvider>{story()}</SmashingThemeProvider>
   ))
-  .add("size:100", () => <Heading size={100}>Hello</Heading>)
-  .add("size:200", () => <Heading size={200}>Hello</Heading>)
-  .add("size:300", () => <Heading size={300}>Hello</Heading>)
-  .add("size:400:default", () => <Heading>Hello</Heading>)
-  .add("size:500", () => <Heading size={500}>Hello</Heading>)
-  .add("size:600", () => <Heading size={600}>Hello</Heading>)
-  .add("size:700", () => <Heading size={700}>Hello</Heading>)
-  .add("size:800", () => <Heading size={800}>Hello</Heading>)
-  .add("size:900", () => <Heading size={900}>Hello</Heading>)
+  .add("variant:100", () => <Heading variant={100}>Hello</Heading>)
+  .add("variant:200", () => <Heading variant={200}>Hello</Heading>)
+  .add("variant:300", () => <Heading variant={300}>Hello</Heading>)
+  .add("variant:400:default", () => <Heading>Hello</Heading>)
+  .add("variant:500", () => <Heading variant={500}>Hello</Heading>)
+  .add("variant:600", () => <Heading variant={600}>Hello</Heading>)
+  .add("variant:700", () => <Heading variant={700}>Hello</Heading>)
+  .add("variant:800", () => <Heading variant={800}>Hello</Heading>)
+  .add("variant:900", () => <Heading variant={900}>Hello</Heading>)
   .add("fontFamily:ui", () => <Heading fontFamily="ui">Hello</Heading>)
   .add("fontFamily:display:default", () => (
     <Heading fontFamily="display">Hello</Heading>
