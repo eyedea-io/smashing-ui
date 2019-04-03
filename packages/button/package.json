@@ -21,7 +21,10 @@
     "react": "^16.8.6"
   },
   "peerDependencies": {
-    "react": "^16.8.6"
+    "react": "^16.8.6",
+    "styled-components": "^4.2.0",
+    "@smashing/typography": "^0.3.0",
+    "@smashing/theme": "^0.3.0"
   },
   "keywords": [
     "smashing",
