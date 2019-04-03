@@ -10,9 +10,12 @@ export interface TextProps {
 }
 
 export const Text = styled.span<TextProps>`
-  ${({size = 400, fontFamily = "ui", color = "default", intent}) => css`
+  ${({size = 400, fontFamily, color = "default", intent}) => css`
     ${getTextStyle(size)};
     color: ${getTextColor(intent || color)};
-    font-family: ${getFontFamily(fontFamily)};
+    ${fontFamily &&
+      css`
+        font-family: ${getFontFamily(fontFamily)};
+      `};
   `}
 `

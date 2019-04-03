@@ -21,18 +21,21 @@ export const getTextStyle = (size: number) => (_: {theme: DefaultTheme}) => {
       font-weight: 400;
       line-height: 20px;
       letter-spacing: -0.05px;
+      font-family: ${_.theme.fontFamilies.ui};
     `,
     400: `
       font-size: 14px;
       font-weight: 400;
       line-height: 20px;
       letter-spacing: -0.05px;
+      font-family: ${_.theme.fontFamilies.ui};
     `,
     300: `
       font-size: 12px;
       font-weight: 400;
       line-height: 16px;
       letter-spacing: 0;
+      font-family: ${_.theme.fontFamilies.ui};
     `
   }[size]
 }

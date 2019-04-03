@@ -8,7 +8,7 @@ export interface ParagraphProps {
   fontFamily?: "ui" | "display" | "mono"
 }
 export const Paragraph = styled.p<ParagraphProps>`
-  ${({size = 400, fontFamily = "ui", color = "default"}) => css`
+  ${({size = 400, fontFamily, color = "default"}) => css`
     ${getParagraphStyle(size)};
     color: ${getTextColor(color)};
     ${fontFamily &&
