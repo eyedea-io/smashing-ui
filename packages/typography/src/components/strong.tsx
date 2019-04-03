@@ -10,7 +10,7 @@ export interface StrongProps {
 }
 
 export const Strong = styled.strong<StrongProps>`
-  ${({size = 400, fontFamily = "ui", color = "default", intent}) => css`
+  ${({size = 400, fontFamily, color = "default", intent}) => css`
     ${getTextStyle(size)}
     color: ${getTextColor(intent || color)};
     font-weight: 600;
