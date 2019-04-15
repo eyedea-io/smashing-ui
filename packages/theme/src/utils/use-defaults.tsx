@@ -10,6 +10,17 @@ export function useDefaults<P>(
 ): P {
   const theme = useContext(ThemeContext)
   const defaults = get(theme.defaults, component, {default: {}})
+  const merged: P = deepmerge(defaults, props)
 
-  return deepmerge(componentDefaults, deepmerge(defaults, props))
+  Object.keys(merged).forEach(key => {
+    if (merged[key] === undefined) {
+      if (defaults[key]) {
+        merged[key] = defaults[key]
+      } else {
+        delete merged[key]
+      }
+    }
+  })
+
+  return deepmerge(componentDefaults, merged)
 }

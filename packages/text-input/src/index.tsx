@@ -31,7 +31,6 @@ const TextInput: React.FC<TextInputProps> = ({children, ...props}) => {
       borderRadius={getBorderRadiusForControlHeight(defaults.height)}
       color={props.disabled ? "muted" : undefined}
       {...defaults}
-      {...props}
     />
   )
 }

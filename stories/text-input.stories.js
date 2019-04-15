@@ -10,6 +10,7 @@ storiesOf("Core|TextInput", module)
   .addDecorator(story => (
     <SmashingThemeProvider
       theme={{
+        defaults: {},
         fontFamilies: {
           display: "arial"
         }
@@ -93,6 +94,20 @@ storiesOf("Core|TextInput", module)
     <React.Fragment>
       <div>
         <TextInput placeholder="Your name" borderRadius={30} />
+      </div>
+    </React.Fragment>
+  ))
+  .add("height:40", () => (
+    <React.Fragment>
+      <div>
+        <TextInput placeholder="Your name" height={40} />
+      </div>
+    </React.Fragment>
+  ))
+  .add("height:undefined", () => (
+    <React.Fragment>
+      <div>
+        <TextInput placeholder="Your name" height={undefined} />
       </div>
     </React.Fragment>
   ))
