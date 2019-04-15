@@ -2,7 +2,7 @@ import * as foundation from "./default-theme/foundational-styles"
 import deepmerge from "deepmerge"
 import * as React from "react"
 import {themedProperty} from "./utils/themed-property"
-import {getDefault} from "./utils/get-default"
+import {useDefaults} from "./utils/use-defaults"
 import {DefaultTheme, ThemeProvider} from "styled-components"
 import {
   getTextSizeForControlHeight,
@@ -30,7 +30,7 @@ export const SmashingThemeProvider = ({
 
 export {
   themedProperty,
-  getDefault,
+  useDefaults,
   getTextSizeForControlHeight,
   getBorderRadiusForControlHeight
 }

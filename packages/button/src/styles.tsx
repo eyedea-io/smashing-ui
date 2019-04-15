@@ -11,8 +11,8 @@ export type AppearanceType =
   | "subtle"
 
 export const getButtonStyle = (
-  appearance: AppearanceType,
-  intent: IntentType
+  appearance?: AppearanceType,
+  intent: IntentType = "none"
 ) => (_: {theme: DefaultTheme}) => {
   const {scales, colors} = _.theme
   const disabled = {
@@ -83,6 +83,7 @@ export const getButtonStyle = (
             ? scales.blue.B3A
             : tinycolor(theme.backgroundColor)
                 .darken()
+                .desaturate()
                 .toString()
         },
         focusColor: backgroundIsTransparent

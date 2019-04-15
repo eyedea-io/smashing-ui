@@ -1,56 +1,43 @@
 import * as React from "react"
-import styled, {css, ThemeContext} from "styled-components"
+import styled from "styled-components"
 import {Text} from "@smashing/typography"
 import {getButtonStyle} from "./styles"
-import {getTextSizeForControlHeight, getDefault} from "@smashing/theme"
-import {IntentType, AppearanceType} from "./types"
+import {
+  useDefaults,
+  getTextSizeForControlHeight,
+  getBorderRadiusForControlHeight
+} from "@smashing/theme"
+import {IntentType, AppearanceType, ButtonProps, StyledTextProps} from "./types"
 
-const DEFAULT_APPEARANCE = "default"
-const DEFAULT_INTENT = "none"
-const DEFAULT_HEIGHT = 32
-
-const get = {
-  height: (value?: number) =>
-    getDefault("button", "height", DEFAULT_HEIGHT, value),
-  appearance: (value?: AppearanceType) =>
-    getDefault("button", "appearance", DEFAULT_APPEARANCE, value),
-  intent: (value?: IntentType) =>
-    getDefault("button", "intent", DEFAULT_INTENT, value)
-}
-
-const StyledText = styled(Text)<ButtonProps>`
+const StyledText = styled(Text)<StyledTextProps>`
   border: none;
-  border-radius: ${_ => _.theme.radius};
-  ${({height}) => css`
-    height: ${get.height(height)}px;
-    padding-left: ${_ => Math.round(get.height(height)(_) / 2)}px;
-    padding-right: ${_ => Math.round(get.height(height)(_) / 2)}px;
-  `}
-  ${({appearance, intent, theme}) =>
-    getButtonStyle(
-      get.appearance(appearance)({theme}),
-      get.intent(intent)({theme})
-    )};
+  border-radius: ${_ => _.borderRadius}px;
+  height: ${_ => _.height}px;
+  padding-left: ${_ => Math.round(_.height / 2)}px;
+  padding-right: ${_ => Math.round(_.height / 2)}px;
+  ${_ => getButtonStyle(_.appearance, _.intent)};
 `
-
-const Button: React.FC<ButtonProps> = ({children, height, ...props}) => {
-  const theme = React.useContext(ThemeContext)
-  const textSize = getTextSizeForControlHeight(get.height(height)({theme}))
+const Button: React.FC<ButtonProps> = ({children, ...props}) => {
+  const defaults = useDefaults("button", props, {
+    height: 32,
+    appearance: "default" as AppearanceType,
+    intent: "none" as IntentType
+  })
 
   return (
-    <StyledText as="button" variant={textSize} height={height} {...props}>
+    <StyledText
+      as="button"
+      borderRadius={getBorderRadiusForControlHeight(defaults.height)}
+      variant={getTextSizeForControlHeight(defaults.height)}
+      {...defaults}
+      {...props}
+    >
       {children}
     </StyledText>
   )
 }
 
-export interface ButtonProps {
-  height?: number
-  intent?: IntentType
-  appearance?: AppearanceType
-}
-
-export {Button, AppearanceType, IntentType}
+export {Button, ButtonProps, AppearanceType, IntentType}
 
 declare module "styled-components" {
   export interface SmashingButtonDefaults

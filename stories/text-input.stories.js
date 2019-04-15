@@ -89,3 +89,10 @@ storiesOf("Core|TextInput", module)
       </div>
     </React.Fragment>
   ))
+  .add("borderRadius:30", () => (
+    <React.Fragment>
+      <div>
+        <TextInput placeholder="Your name" borderRadius={30} />
+      </div>
+    </React.Fragment>
+  ))

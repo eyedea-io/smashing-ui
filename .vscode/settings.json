@@ -1,5 +1,5 @@
 {
-  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "typescript.tsdk": "./node_modules/typescript/lib",
   "eslint.autoFixOnSave": true,
   "editor.formatOnSave": true,
   "prettier.eslintIntegration": true,
@@ -9,5 +9,9 @@
     "typescript",
     "typescriptreact"
   ],
-  "eslint.enable": false
+  "eslint.enable": true,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true
+  }
 }

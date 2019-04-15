@@ -7,11 +7,13 @@
     "changelog": "node ./tasks/changelog",
     "release": "lerna publish",
     "canary": "lerna publish --canary",
+    "lint": "eslint packages",
     "storybook": "start-storybook -p 6006",
     "watch": "npx lerna run --parallel prepare -- watch",
     "build-storybook": "build-storybook"
   },
   "eslintIgnore": [
+    "node_modules",
     "dist"
   ],
   "eslintConfig": {
@@ -19,7 +21,7 @@
   },
   "dependencies": {
     "@storybook/addon-a11y": "^5.0.6",
-    "@types/react": "^16.8.10",
+    "@types/react": "^16.8.12",
     "@typescript-eslint/eslint-plugin": "^1.5.0",
     "@typescript-eslint/parser": "^1.5.0",
     "awesome-typescript-loader": "^5.2.1",
@@ -33,6 +35,8 @@
     "eslint-plugin-react-hooks": "1.5.0",
     "lerna": "^3.13.1",
     "lerna-changelog": "^0.8.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "styled-components": "^4.2.0",
     "typescript": "^3.3.4000"
   },

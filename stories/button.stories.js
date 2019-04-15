@@ -10,8 +10,8 @@ storiesOf("Core|Button", module)
   .addDecorator(story => (
     <SmashingThemeProvider
       theme={{
-        fontFamilies: {
-          display: "arial"
+        defaults: {
+          button: {}
         }
       }}
     >
@@ -134,7 +134,17 @@ storiesOf("Core|Button", module)
           Hulk smash!
         </Button>
       </p>
+      <p>
+        <Button appearance="flat" intent="success" borderRadius={30}>
+          Hulk smash!
+        </Button>
+      </p>
     </React.Fragment>
+  ))
+  .add("borderRadius:30", () => (
+    <Button appearance="flat" intent="success" borderRadius={30}>
+      Hulk smash!
+    </Button>
   ))
   .add("appearance:subtle", () => (
     <React.Fragment>
@@ -171,16 +181,16 @@ storiesOf("Core|Button", module)
   .add("height", () => (
     <React.Fragment>
       <p>
-        <Button height="24">Hulk smash!</Button>
+        <Button height={24}>Hulk smash!</Button>
       </p>
       <p>
-        <Button height="32">Hulk smash!</Button>
+        <Button height={32}>Hulk smash!</Button>
       </p>
       <p>
-        <Button height="40">Hulk smash!</Button>
+        <Button height={40}>Hulk smash!</Button>
       </p>
       <p>
-        <Button height="48">Hulk smash!</Button>
+        <Button height={48}>Hulk smash!</Button>
       </p>
     </React.Fragment>
   ))
