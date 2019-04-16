@@ -1,3 +1,12 @@
+## 2019-04-16
+
+#### :rocket: New Feature
+* `typography`
+  * [#14](https://github.com/eyedea-io/smashing-ui/pull/14) Add label component ([@Idered](https://github.com/Idered))
+
+#### Committers: 1
+- Kasper Mikiewicz ([@Idered](https://github.com/Idered))
+
 ## 2019-04-03
 
 #### :rocket: New Feature
