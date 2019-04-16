@@ -1,8 +1,10 @@
 ## 2019-04-16
 
 #### :rocket: New Feature
+* `alert`, `theme`
+  * [#15](https://github.com/eyedea-io/smashing-ui/pull/15) Add Alert component ([@Idered](https://github.com/Idered))
 * `typography`
-  * [#14](https://github.com/eyedea-io/smashing-ui/pull/14) Add label component ([@Idered](https://github.com/Idered))
+  * [#14](https://github.com/eyedea-io/smashing-ui/pull/14) Add Label component ([@Idered](https://github.com/Idered))
 
 #### Committers: 1
 - Kasper Mikiewicz ([@Idered](https://github.com/Idered))
