@@ -48,9 +48,11 @@ declare module "styled-components" {
   export interface SmashingThemeSpacing extends I<typeof foundation.spacing> {}
   export interface SmashingButtonDefaults {}
   export interface SmashingTextInputDefaults {}
+  export interface SmashingAlertDefaults {}
   export interface SmashingDefaults
     extends SmashingButtonDefaults,
-      SmashingTextInputDefaults {}
+      SmashingTextInputDefaults,
+      SmashingAlertDefaults {}
   export interface DefaultTheme {
     radius: string
     palette: SmashingThemePalette
