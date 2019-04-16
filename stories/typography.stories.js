@@ -1,6 +1,12 @@
 import React from "react"
 import {storiesOf, addDecorator} from "@storybook/react"
-import {Text, Heading, Strong, Paragraph} from "@smashing/typography/src/index"
+import {
+  Text,
+  Heading,
+  Strong,
+  Paragraph,
+  Label
+} from "@smashing/typography/src/index"
 import {withA11y} from "@storybook/addon-a11y"
 import {SmashingThemeProvider} from "@smashing/theme"
 
@@ -97,3 +103,16 @@ storiesOf("Typography|Heading", module)
     <Heading fontFamily="display">Hello</Heading>
   ))
   .add("fontFamily:mono", () => <Heading fontFamily="mono">Hello</Heading>)
+
+storiesOf("Typography|Label", module)
+  .addDecorator(story => (
+    <SmashingThemeProvider>{story()}</SmashingThemeProvider>
+  ))
+  .add("variant:300", () => <Label variant={300}>Hello</Label>)
+  .add("variant:400:default", () => <Label>Hello</Label>)
+  .add("variant:500", () => <Label variant={500}>Hello</Label>)
+  .add("fontFamily:ui", () => <Label fontFamily="ui">Hello</Label>)
+  .add("fontFamily:display:default", () => (
+    <Label fontFamily="display">Hello</Label>
+  ))
+  .add("fontFamily:mono", () => <Label fontFamily="mono">Hello</Label>)
