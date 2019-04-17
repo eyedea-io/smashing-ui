@@ -17,7 +17,7 @@ const StyledText = styled(Text)<StyledTextProps>`
   padding-right: ${_ => Math.round(_.height / 2)}px;
   ${_ => getButtonStyle(_.appearance, _.intent)};
 `
-const Button: React.FC<ButtonProps> = ({children, ...props}) => {
+const ButtonFC: React.FC<ButtonProps> = ({children, ...props}) => {
   const defaults = useDefaults("button", props, {
     height: 32,
     appearance: "default" as AppearanceType,
@@ -36,6 +36,8 @@ const Button: React.FC<ButtonProps> = ({children, ...props}) => {
     </StyledText>
   )
 }
+
+const Button = styled(ButtonFC)``
 
 export {Button, ButtonProps, AppearanceType, IntentType}
 
