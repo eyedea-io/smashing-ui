@@ -1,4 +1,6 @@
-![](https://i.imgur.com/zttpCqn.png)
+<p align="center">
+  <img src="https://i.imgur.com/FA2WEcJ.png" />
+</p>
 
 ```sh
 yarn add @smashing/alert
