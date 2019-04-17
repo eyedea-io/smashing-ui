@@ -1,13 +1,16 @@
-# Alert
-
-> Component used to give feedback to the user about an action or state.
+![](https://i.imgur.com/zttpCqn.png)
 
 ```sh
 yarn add @smashing/alert
 ```
 
+[![Edit alert](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/qvxn187xr4?fontsize=14)
+
+## Design
+
 ![](https://i.imgur.com/jf1rlVb.png)
 
+## Usage
 
 ```jsx
 <Heading>Default style</Heading>
