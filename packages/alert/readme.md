@@ -1,6 +1,6 @@
 # Alert
 
-> Component are used to give feedback to the user about an action or state.
+> Component used to give feedback to the user about an action or state.
 
 ```sh
 yarn add @smashing/alert
