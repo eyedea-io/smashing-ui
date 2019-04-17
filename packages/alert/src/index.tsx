@@ -82,9 +82,13 @@ const Alert: React.FC<AlertProps> = ({children, title, ...props}) => {
         <Icon>{getAlertIconForIntent(defaults.intent)({theme})}</Icon>
       )}
       <div>
-        <Title as="h4" color={"dark"}>
-          {title}
-        </Title>
+        {typeof title === "string" ? (
+          <Title as="h4" color={"dark"}>
+            {title}
+          </Title>
+        ) : (
+          title
+        )}
         {typeof children === "string" ? <Text>{children}</Text> : children}
       </div>
     </Box>
