@@ -49,10 +49,12 @@ declare module "styled-components" {
   export interface SmashingButtonDefaults {}
   export interface SmashingTextInputDefaults {}
   export interface SmashingAlertDefaults {}
+  export interface SmashingAvatarDefaults {}
   export interface SmashingDefaults
     extends SmashingButtonDefaults,
       SmashingTextInputDefaults,
-      SmashingAlertDefaults {}
+      SmashingAlertDefaults,
+      SmashingAvatarDefaults {}
   export interface DefaultTheme {
     radius: string
     palette: SmashingThemePalette
