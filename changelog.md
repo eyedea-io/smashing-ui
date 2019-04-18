@@ -1,3 +1,12 @@
+## 2019-04-18
+
+#### :rocket: New Feature
+* `avatar`, `theme`
+  * [#16](https://github.com/eyedea-io/smashing-ui/pull/16) Add Avatar component ([@Idered](https://github.com/Idered))
+
+#### Committers: 1
+- Kasper Mikiewicz ([@Idered](https://github.com/Idered))
+
 ## 2019-04-16
 
 #### :rocket: New Feature
