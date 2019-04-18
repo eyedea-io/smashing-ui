@@ -1,6 +1,6 @@
 {
   "name": "@smashing/avatar",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Component used to represent users.",
   "repository": "eyedea-io/smashing-ui/tree/master/packages/avatar",
   "license": "MIT",
