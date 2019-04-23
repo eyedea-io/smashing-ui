@@ -1,6 +1,6 @@
 {
   "name": "@smashing/stack",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Component utility to help with stacking dialogs, tooltips, etc.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -17,10 +17,10 @@
     "prepare": "smashing-build"
   },
   "dependencies": {
-    "@smashing/theme": "^0.3.5"
+    "@smashing/theme": "^0.4.0"
   },
   "devDependencies": {
-    "@smashing/build-utils": "^0.1.6",
+    "@smashing/build-utils": "^0.1.7",
     "react": "^16.8.6"
   },
   "peerDependencies": {

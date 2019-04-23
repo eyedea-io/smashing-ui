@@ -1,6 +1,6 @@
 {
   "name": "@smashing/build-utils",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Build scripts for smashing components",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",

@@ -1,6 +1,6 @@
 {
   "name": "@smashing/tooltip",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "Component used to describe icon buttons.",
   "repository": "eyedea-io/smashing-ui",
@@ -18,14 +18,14 @@
     "prepare": "smashing-build"
   },
   "dependencies": {
-    "@smashing/positioner": "^0.0.0",
-    "@smashing/theme": "^0.3.5",
-    "@smashing/typography": "^0.4.2",
+    "@smashing/positioner": "^0.1.0",
+    "@smashing/theme": "^0.4.0",
+    "@smashing/typography": "^0.4.3",
     "debounce": "^1.2.0",
     "react-transition-group": "^4.0.0"
   },
   "devDependencies": {
-    "@smashing/build-utils": "^0.1.6",
+    "@smashing/build-utils": "^0.1.7",
     "@types/debounce": "^1.2.0",
     "@types/react-transition-group": "^2.9.0",
     "react": "^16.8.6",

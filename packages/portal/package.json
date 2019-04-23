@@ -1,6 +1,6 @@
 {
   "name": "@smashing/portal",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Component utility to help with the ReactDOM.createPortal API.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -17,14 +17,14 @@
     "prepare": "smashing-build"
   },
   "dependencies": {
-    "@smashing/theme": "^0.3.5"
+    "@smashing/theme": "^0.4.0"
   },
   "devDependencies": {
-    "@smashing/build-utils": "^0.1.6",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "@smashing/build-utils": "^0.1.7",
     "@types/react": "^16.8.13",
-    "@types/react-dom": "^16.8.4"
+    "@types/react-dom": "^16.8.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "peerDependencies": {
     "react": "^16.8.6",
