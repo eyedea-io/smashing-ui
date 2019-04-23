@@ -1,13 +1,13 @@
 {
-  "name": "@smashing/typography",
-  "version": "0.4.2",
-  "description": "Typography components",
+  "name": "@smashing/stack",
+  "version": "0.0.0",
+  "description": "Component utility to help with stacking dialogs, tooltips, etc.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
-  "types": "dist/typography/src/index.d.ts",
-  "main": "dist/typography.js",
-  "umd:main": "dist/typography.umd.js",
-  "module": "dist/typography.m.js",
+  "types": "dist/stack/src/index.d.ts",
+  "main": "dist/stack.js",
+  "umd:main": "dist/stack.umd.js",
+  "module": "dist/stack.m.js",
   "source": "src/index.tsx",
   "author": "Eyedea AS",
   "publishConfig": {
@@ -24,8 +24,7 @@
     "react": "^16.8.6"
   },
   "peerDependencies": {
-    "react": "^16.8.6",
-    "styled-components": "^4.2.0"
+    "react": "^16.8.6"
   },
   "keywords": [
     "smashing",

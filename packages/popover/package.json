@@ -1,13 +1,13 @@
 {
-  "name": "@smashing/typography",
-  "version": "0.4.2",
-  "description": "Typography components",
+  "name": "@smashing/popover",
+  "version": "0.0.0",
+  "description": "Component displays floating content in relation to a target.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
-  "types": "dist/typography/src/index.d.ts",
-  "main": "dist/typography.js",
-  "umd:main": "dist/typography.umd.js",
-  "module": "dist/typography.m.js",
+  "types": "dist/popover/src/index.d.ts",
+  "main": "dist/popover.js",
+  "umd:main": "dist/popover.umd.js",
+  "module": "dist/popover.m.js",
   "source": "src/index.tsx",
   "author": "Eyedea AS",
   "publishConfig": {
@@ -17,7 +17,9 @@
     "prepare": "smashing-build"
   },
   "dependencies": {
-    "@smashing/theme": "^0.3.5"
+    "@smashing/theme": "^0.3.5",
+    "@smashing/positioner": "^0.0.0",
+    "@smashing/tooltip": "^0.0.0"
   },
   "devDependencies": {
     "@smashing/build-utils": "^0.1.6",
@@ -25,7 +27,7 @@
   },
   "peerDependencies": {
     "react": "^16.8.6",
-    "styled-components": "^4.2.0"
+    "styled-components": "4.2.0"
   },
   "keywords": [
     "smashing",

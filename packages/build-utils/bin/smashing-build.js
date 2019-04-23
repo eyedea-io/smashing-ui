@@ -4,7 +4,6 @@ process.on("unhandledRejection", err => {
   throw err
 })
 
-const {removeSync} = require("fs-extra")
 const {resolve} = require("path")
 const spawn = require("cross-spawn")
 const [command] = process.argv.slice(2)
@@ -17,14 +16,10 @@ const args = [
   "--format",
   watch ? "es" : "es,cjs",
   "--external",
-  "react,@smashing/*,styled-components",
+  "react,@smashing/*,styled-components,react-transition-group",
   `--compress=`,
   watch ? "false" : "true"
 ]
-
-if (!watch) {
-  removeSync(resolve(process.cwd(), "dist"))
-}
 
 const result = spawn.sync(
   "microbundle",

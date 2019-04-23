@@ -2,7 +2,7 @@
   "name": "@smashing/avatar",
   "version": "0.1.0",
   "description": "Component used to represent users.",
-  "repository": "eyedea-io/smashing-ui/tree/master/packages/avatar",
+  "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
   "types": "dist/avatar/src/index.d.ts",
   "main": "dist/avatar.js",
@@ -16,13 +16,15 @@
   "scripts": {
     "prepare": "smashing-build"
   },
+  "dependencies": {
+    "@smashing/theme": "^0.3.5",
+    "@smashing/typography": "^0.4.2"
+  },
   "devDependencies": {
     "@smashing/build-utils": "^0.1.6",
     "react": "^16.8.6"
   },
   "peerDependencies": {
-    "@smashing/theme": "^0.3.4",
-    "@smashing/typography": "^0.4.1",
     "react": "^16.8.6",
     "styled-components": "^4.2.0"
   },
