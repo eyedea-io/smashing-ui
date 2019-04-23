@@ -213,7 +213,6 @@ export class Tooltip extends PureComponent<TooltipProps, TooltipState> {
   }
 
   isPopoverShown = () =>
-    // eslint-disable-next-line react/prop-types
     this.props.popoverProps && this.props.popoverProps.isShown
 
   handleMouseEnterTarget = () => {

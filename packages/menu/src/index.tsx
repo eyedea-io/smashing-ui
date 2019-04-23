@@ -1,12 +1,6 @@
 import * as React from "react"
 import styled from "styled-components"
 import {Text, Heading} from "@smashing/typography"
-// import {Pane} from "../../layers"
-// import MenuItem from "./MenuItem"
-// import MenuDivider from "./MenuDivider"
-// import MenuGroup from "./MenuGroup"
-// import MenuOption from "./MenuOption"
-// import MenuOptionsGroup from "./MenuOptionsGroup"
 
 const KeyCodes = {
   ArrowUp: 38,
@@ -232,28 +226,6 @@ export interface MenuGroupProps {
    */
   children: React.ReactNode
 }
-
-// class MenuItem extends React.PureComponent {
-//   static propTypes =
-//
-
-//   render() {
-//     const {
-//       is,
-//       children,
-//       theme,
-//       appearance,
-//       secondaryText,
-//       intent,
-//       icon,
-//       ...passthroughProps
-//     } = this.props
-
-//     const themedClassName = theme.getMenuItemClassName(appearance, "none")
-
-//     return
-//   }
-// }
 
 function safeInvoke(fn, ...args) {
   if (typeof fn === "function") {
