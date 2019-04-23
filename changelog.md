@@ -1,3 +1,12 @@
+## 2019-04-23
+
+#### :rocket: New Feature
+* `alert`, `avatar`, `build-utils`, `button`, `menu`, `popover`, `portal`, `positioner`, `stack`, `text-input`, `theme`, `tooltip`, `typography`
+  * [#17](https://github.com/eyedea-io/smashing-ui/pull/17) feat(*): add stack, portal, positioner, menu, popover, tooltip ([@Idered](https://github.com/Idered))
+
+#### Committers: 1
+- Kasper Mikiewicz ([@Idered](https://github.com/Idered))
+
 ## 2019-04-18
 
 #### :rocket: New Feature
