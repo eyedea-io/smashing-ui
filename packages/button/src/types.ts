@@ -18,6 +18,7 @@ export interface ButtonProps {
   appearance?: AppearanceType
   className?: string
   borderRadius?: number
+  innerRef?: any
   disabled?: boolean
   onClick?: React.MouseEventHandler<HTMLButtonElement>
 }

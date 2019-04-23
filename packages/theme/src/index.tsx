@@ -1,4 +1,5 @@
 import * as foundation from "./default-theme/foundational-styles"
+import * as constants from "./default-theme/constants"
 import deepmerge from "deepmerge"
 import * as React from "react"
 import {themedProperty} from "./utils/themed-property"
@@ -13,6 +14,8 @@ export const theme: DefaultTheme = {
   radius: "5px",
   ...foundation
 }
+
+export {constants}
 
 export const SmashingThemeProvider = ({
   theme: userTheme = {},

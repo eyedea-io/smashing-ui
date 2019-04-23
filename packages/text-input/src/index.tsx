@@ -18,22 +18,25 @@ const StyledText = styled(Text)<StyledTextProps>`
   padding-right: ${_ => Math.round(_.height / 3.2)}px;
   ${_ => getTextInputStyle(_.appearance)}
 `
-const TextInput: React.FC<TextInputProps> = ({children, ...props}) => {
-  const defaults = useDefaults("textInput", props, {
-    height: 32,
-    appearance: "default" as AppearanceType
-  })
+const TextInput: React.FC<TextInputProps> = React.forwardRef(
+  ({children, ...props}, ref: any) => {
+    const defaults = useDefaults("textInput", props, {
+      height: 32,
+      appearance: "default" as AppearanceType
+    })
 
-  return (
-    <StyledText
-      as="input"
-      variant={getTextSizeForControlHeight(defaults.height)}
-      borderRadius={getBorderRadiusForControlHeight(defaults.height)}
-      color={props.disabled ? "muted" : undefined}
-      {...defaults}
-    />
-  )
-}
+    return (
+      <StyledText
+        as="input"
+        ref={ref}
+        variant={getTextSizeForControlHeight(defaults.height)}
+        borderRadius={getBorderRadiusForControlHeight(defaults.height)}
+        color={props.disabled ? "muted" : undefined}
+        {...defaults}
+      />
+    )
+  }
+)
 
 export {TextInput, TextInputProps, AppearanceType}
 

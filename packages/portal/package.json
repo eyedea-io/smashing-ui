@@ -1,13 +1,13 @@
 {
-  "name": "@smashing/typography",
-  "version": "0.4.2",
-  "description": "Typography components",
+  "name": "@smashing/portal",
+  "version": "0.0.0",
+  "description": "Component utility to help with the ReactDOM.createPortal API.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
-  "types": "dist/typography/src/index.d.ts",
-  "main": "dist/typography.js",
-  "umd:main": "dist/typography.umd.js",
-  "module": "dist/typography.m.js",
+  "types": "dist/portal/src/index.d.ts",
+  "main": "dist/portal.js",
+  "umd:main": "dist/portal.umd.js",
+  "module": "dist/portal.m.js",
   "source": "src/index.tsx",
   "author": "Eyedea AS",
   "publishConfig": {
@@ -21,11 +21,14 @@
   },
   "devDependencies": {
     "@smashing/build-utils": "^0.1.6",
-    "react": "^16.8.6"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "@types/react": "^16.8.13",
+    "@types/react-dom": "^16.8.4"
   },
   "peerDependencies": {
     "react": "^16.8.6",
-    "styled-components": "^4.2.0"
+    "react-dom": "^16.8.6"
   },
   "keywords": [
     "smashing",
