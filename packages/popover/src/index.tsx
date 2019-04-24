@@ -1,6 +1,6 @@
 import * as React from "react"
-import {Positioner} from "../../positioner"
-import {Tooltip} from "../../tooltip"
+import {Positioner} from "@smashing/positioner"
+import {Tooltip} from "@smashing/tooltip"
 import {constants} from "@smashing/theme"
 import styled from "styled-components"
 

@@ -18,7 +18,8 @@
   },
   "dependencies": {
     "@smashing/theme": "^0.4.0",
-    "@smashing/typography": "^0.4.3",
+    "@smashing/portal": "^0.1.0",
+    "@smashing/stack": "^0.1.0",
     "react-transition-group": "^4.0.0"
   },
   "devDependencies": {

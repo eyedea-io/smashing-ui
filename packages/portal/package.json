@@ -16,9 +16,6 @@
   "scripts": {
     "prepare": "smashing-build"
   },
-  "dependencies": {
-    "@smashing/theme": "^0.4.0"
-  },
   "devDependencies": {
     "@smashing/build-utils": "^0.1.7",
     "@types/react": "^16.8.13",
