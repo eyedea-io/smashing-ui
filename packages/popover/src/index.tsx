@@ -42,7 +42,7 @@ export interface PopoverProps {
         toggle: () => void
         getRef: (ref: any) => void
         isShown: boolean
-      }) => HTMLElement | null)
+      }) => React.ReactNode)
 
   /**
    * The display property passed to the Popover card.
