@@ -154,23 +154,24 @@ const S = {
 }
 
 const MenuItem: React.FC<MenuItemProps> = ({
+  intent = "none",
+  appearance = "default",
+  onSelect = () => {},
   children,
-  appearance,
   secondaryText,
-  intent,
   ...passthroughProps
 }) => {
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    safeInvoke(passthroughProps.onSelect, event)
-    safeInvoke(passthroughProps.onClick, event)
+    safeInvoke(onSelect, event)
+    safeInvoke((passthroughProps as any).onClick, event)
   }
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === "Enter" || event.key === " ") {
-      safeInvoke(passthroughProps.onSelect, event)
+      safeInvoke(onSelect, event)
       event.preventDefault()
     }
-    safeInvoke(passthroughProps.onKeyPress, event)
+    safeInvoke((passthroughProps as any).onKeyPress, event)
   }
 
   if (process.env.NODE_ENV !== "production" && "onClick" in passthroughProps) {
@@ -196,24 +197,16 @@ const MenuItem: React.FC<MenuItemProps> = ({
   )
 }
 
-MenuItem.defaultProps = {
-  intent: "none",
-  appearance: "default",
-  onSelect: () => {}
-}
+const MenuGroup: React.FC<MenuGroupProps> = ({title, children}) => (
+  <S.Group>
+    {title && <S.GroupHeading variant={100}>{title}</S.GroupHeading>}
+    {children}
+  </S.Group>
+)
 
-const MenuGroup: React.FC<MenuGroupProps> = ({title, children}) => {
-  return (
-    <S.Group>
-      {title && <S.GroupHeading variant={100}>{title}</S.GroupHeading>}
-      {children}
-    </S.Group>
-  )
-}
-
-Menu.Group = MenuGroup
-Menu.Item = MenuItem
-Menu.Divider = S.Divider
+Menu.Group = styled(MenuGroup)``
+Menu.Item = styled(MenuItem)``
+Menu.Divider = styled(S.Divider)``
 
 export interface MenuGroupProps {
   /**
@@ -227,12 +220,6 @@ export interface MenuGroupProps {
   children: React.ReactNode
 }
 
-function safeInvoke(fn, ...args) {
-  if (typeof fn === "function") {
-    return fn(...args)
-  }
-}
-
 export interface MenuItemProps {
   /**
    * Function that is called on click and enter/space keypress.
@@ -242,10 +229,6 @@ export interface MenuItemProps {
       | React.MouseEvent<HTMLDivElement>
       | React.KeyboardEvent<HTMLDivElement>
   ) => void
-
-  onKeyPress?: (event: React.KeyboardEvent<HTMLDivElement>) => void
-
-  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void
 
   /**
    * The children of the component.
@@ -266,4 +249,12 @@ export interface MenuItemProps {
    * The intent of the menu item.
    */
   intent?: "none" | "success" | "warning" | "danger" | "info"
+
+  [key: string]: any
+}
+
+function safeInvoke(fn, ...args) {
+  if (typeof fn === "function") {
+    return fn(...args)
+  }
 }
