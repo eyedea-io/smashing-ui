@@ -1,3 +1,3 @@
 ```sh
-yarn add @smashing/menu
+yarn add @smashing/dialog
 ```
