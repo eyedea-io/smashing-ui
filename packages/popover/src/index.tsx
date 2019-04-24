@@ -177,22 +177,33 @@ const S = {
   `
 }
 
-export const Popover: React.FC<PopoverProps> = props => {
+export const Popover: React.FC<PopoverProps> = ({
+  position = Position.BOTTOM as Position,
+  minWidth = 200,
+  minHeight = 40,
+  animationDuration = 300,
+  onOpen = () => {},
+  onClose = () => {},
+  onOpenComplete = () => {},
+  onCloseComplete = () => {},
+  bringFocusInside = false,
+  ...props
+}) => {
   const [isShown, setIsShown] = React.useState(false)
   let targetRef = React.useRef<HTMLSpanElement | null>(null)
   let popoverNode = React.useRef<HTMLDivElement | null>(null)
   const open = React.useCallback(() => {
     if (isShown) return
     setIsShown(true)
-    props.onOpen()
-  }, [isShown, props])
+    onOpen()
+  }, [isShown, onOpen])
   const close = React.useCallback(() => {
     if (!isShown) return
     setIsShown(false)
     // TODO:
     // this.bringFocusBackToTarget()
-    props.onClose()
-  }, [isShown, props])
+    onClose()
+  }, [isShown, onClose])
   const onBodyClick = React.useCallback(
     e => {
       // Ignore clicks on the popover or button
@@ -231,8 +242,8 @@ export const Popover: React.FC<PopoverProps> = props => {
   const handleOpenComplete = React.useCallback(() => {
     // TODO:
     // if (this.props.bringFocusInside) this.bringFocusInside()
-    props.onOpenComplete()
-  }, [props])
+    onOpenComplete()
+  }, [onOpenComplete])
 
   React.useEffect(() => {
     return () => {
@@ -259,10 +270,10 @@ export const Popover: React.FC<PopoverProps> = props => {
         </Target>
       )}
       isShown={shown}
-      position={props.position}
-      animationDuration={props.animationDuration}
+      position={position}
+      animationDuration={animationDuration}
       onOpenComplete={handleOpenComplete}
-      onCloseComplete={props.onCloseComplete}
+      onCloseComplete={onCloseComplete}
     >
       {({style, state, getRef}) => (
         <S.Popup
@@ -281,16 +292,4 @@ export const Popover: React.FC<PopoverProps> = props => {
       )}
     </Positioner>
   )
-}
-
-Popover.defaultProps = {
-  position: Position.BOTTOM as Position,
-  minWidth: 200,
-  minHeight: 40,
-  animationDuration: 300,
-  onOpen: () => {},
-  onClose: () => {},
-  onOpenComplete: () => {},
-  onCloseComplete: () => {},
-  bringFocusInside: false
 }
