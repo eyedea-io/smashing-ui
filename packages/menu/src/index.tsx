@@ -161,13 +161,13 @@ const MenuItem: React.FC<MenuItemProps> = ({
   ...passthroughProps
 }) => {
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    passthroughProps.onSelect(event)
+    safeInvoke(passthroughProps.onSelect, event)
     safeInvoke(passthroughProps.onClick, event)
   }
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === "Enter" || event.key === " ") {
-      passthroughProps.onSelect(event)
+      safeInvoke(passthroughProps.onSelect, event)
       event.preventDefault()
     }
     safeInvoke(passthroughProps.onKeyPress, event)
@@ -219,7 +219,7 @@ export interface MenuGroupProps {
   /**
    * Title of the menu group.
    */
-  title: React.ReactNode
+  title?: React.ReactNode
 
   /**
    * The children of the menu group.
@@ -237,15 +237,15 @@ export interface MenuItemProps {
   /**
    * Function that is called on click and enter/space keypress.
    */
-  onSelect: (
+  onSelect?: (
     event:
       | React.MouseEvent<HTMLDivElement>
       | React.KeyboardEvent<HTMLDivElement>
   ) => void
 
-  onKeyPress: (event: React.KeyboardEvent<HTMLDivElement>) => void
+  onKeyPress?: (event: React.KeyboardEvent<HTMLDivElement>) => void
 
-  onClick: (event: React.MouseEvent<HTMLDivElement>) => void
+  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void
 
   /**
    * The children of the component.
@@ -255,14 +255,15 @@ export interface MenuItemProps {
   /**
    * Secondary text shown on the right.
    */
-  secondaryText: React.ReactNode
+  secondaryText?: React.ReactNode
 
   /**
    * The default theme only supports one default appearance.
    */
-  appearance: "default"
+  appearance?: "default"
+
   /**
    * The intent of the menu item.
    */
-  intent: "none" | "success" | "warning" | "danger" | "info"
+  intent?: "none" | "success" | "warning" | "danger" | "info"
 }
