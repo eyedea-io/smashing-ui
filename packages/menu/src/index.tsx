@@ -1,5 +1,5 @@
 import * as React from "react"
-import styled, {StyledComponent, DefaultTheme} from "styled-components"
+import styled from "styled-components"
 import {Text, Heading} from "@smashing/typography"
 
 const KeyCodes = {
