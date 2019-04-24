@@ -10,6 +10,8 @@ import {SmashingThemeProvider} from "@smashing/theme"
 
 addDecorator(withA11y)
 
+const Link = ({children, ...props}) => <div {...props}>{children}</div>
+
 storiesOf("Core|Menu", module)
   .addDecorator(story => (
     <SmashingThemeProvider theme={{}}>{story()}</SmashingThemeProvider>
@@ -17,7 +19,7 @@ storiesOf("Core|Menu", module)
   .add("appearance:default", () => (
     <Menu>
       <Menu.Group>
-        <Menu.Item>Edit</Menu.Item>
+        <Menu.Item as={Link}>Edit</Menu.Item>
         <Menu.Item>Rename</Menu.Item>
       </Menu.Group>
       <Menu.Divider />

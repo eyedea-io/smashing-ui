@@ -1,5 +1,5 @@
 import * as React from "react"
-import styled from "styled-components"
+import styled, {StyledComponent, DefaultTheme} from "styled-components"
 import {Text, Heading} from "@smashing/typography"
 
 const KeyCodes = {
@@ -9,7 +9,7 @@ const KeyCodes = {
   End: 35
 }
 
-export const Menu = ({children}) => {
+export const Menu = ({children, ...props}) => {
   const menuRef = React.useRef<HTMLDivElement | null>(null)
 
   React.useEffect(() => {
@@ -101,7 +101,7 @@ export const Menu = ({children}) => {
   }, [])
 
   return (
-    <div ref={menuRef} role="menu">
+    <div ref={menuRef} role="menu" {...props}>
       {children}
     </div>
   )
@@ -159,11 +159,11 @@ const MenuItem: React.FC<MenuItemProps> = ({
   onSelect = () => {},
   children,
   secondaryText,
-  ...passthroughProps
+  ...props
 }) => {
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     safeInvoke(onSelect, event)
-    safeInvoke((passthroughProps as any).onClick, event)
+    safeInvoke((props as any).onClick, event)
   }
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -171,10 +171,10 @@ const MenuItem: React.FC<MenuItemProps> = ({
       safeInvoke(onSelect, event)
       event.preventDefault()
     }
-    safeInvoke((passthroughProps as any).onKeyPress, event)
+    safeInvoke((props as any).onKeyPress, event)
   }
 
-  if (process.env.NODE_ENV !== "production" && "onClick" in passthroughProps) {
+  if (process.env.NODE_ENV !== "production" && "onClick" in props) {
     console.warn(
       "<Menu.Item> expects `onSelect` prop, but you passed `onClick`."
     )
@@ -187,7 +187,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
       onKeyPress={handleKeyPress}
       tabIndex={0}
       data-isselectable="true"
-      {...passthroughProps}
+      {...props}
     >
       <S.Text intent={intent}>{children}</S.Text>
       {secondaryText && (
@@ -197,15 +197,15 @@ const MenuItem: React.FC<MenuItemProps> = ({
   )
 }
 
-const MenuGroup: React.FC<MenuGroupProps> = ({title, children}) => (
-  <S.Group>
+const MenuGroup: React.FC<MenuGroupProps> = ({title, children, ...props}) => (
+  <S.Group {...props}>
     {title && <S.GroupHeading variant={100}>{title}</S.GroupHeading>}
     {children}
   </S.Group>
 )
 
 Menu.Group = styled(MenuGroup)``
-Menu.Item = styled(MenuItem)``
+Menu.Item = MenuItem
 Menu.Divider = styled(S.Divider)``
 
 export interface MenuGroupProps {
@@ -249,6 +249,12 @@ export interface MenuItemProps {
    * The intent of the menu item.
    */
   intent?: "none" | "success" | "warning" | "danger" | "info"
+
+  /**
+   * Element type to use for the menu item.
+   * For example: `<Menu.Item as={Link}>...</Menu.Item>`
+   */
+  as?: keyof JSX.IntrinsicElements | React.ComponentType<any>
 
   [key: string]: any
 }
