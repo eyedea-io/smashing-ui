@@ -1,6 +1,5 @@
 import React from "react"
 import {storiesOf, addDecorator} from "@storybook/react"
-import {Text} from "@smashing/typography"
 import {TextInput} from "@smashing/text-input"
 import {Popover} from "@smashing/popover"
 import {Menu} from "@smashing/menu"

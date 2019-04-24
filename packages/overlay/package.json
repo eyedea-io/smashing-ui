@@ -1,0 +1,39 @@
+{
+  "name": "@smashing/overlay",
+  "version": "0.0.0",
+  "description": "",
+  "repository": "eyedea-io/smashing-ui",
+  "license": "MIT",
+  "types": "dist/overlay/src/index.d.ts",
+  "main": "dist/overlay.js",
+  "umd:main": "dist/overlay.umd.js",
+  "module": "dist/overlay.m.js",
+  "source": "src/index.tsx",
+  "author": "Eyedea AS",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "prepare": "smashing-build"
+  },
+  "dependencies": {
+    "@smashing/theme": "^0.4.0",
+    "@smashing/portal": "^0.1.1",
+    "@smashing/stack": "^0.1.0",
+    "react-transition-group": "^4.0.0"
+  },
+  "devDependencies": {
+    "@smashing/build-utils": "^0.1.7",
+    "@types/react-transition-group": "^2.9.0",
+    "react": "^16.8.6"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "styled-components": "4.2.0"
+  },
+  "keywords": [
+    "smashing",
+    "react",
+    "ui"
+  ]
+}
