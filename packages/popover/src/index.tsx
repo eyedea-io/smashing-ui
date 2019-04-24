@@ -72,22 +72,22 @@ export interface PopoverProps {
   /**
    * Function called when the Popover opens.
    */
-  onOpen: () => void
+  onOpen?: () => void
 
   /**
    * Function fired when Popover closes.
    */
-  onClose: () => void
+  onClose?: () => void
 
   /**
    * Function that will be called when the enter transition is complete.
    */
-  onOpenComplete: () => void
+  onOpenComplete?: () => void
 
   /**
    * Function that will be called when the exit transition is complete.
    */
-  onCloseComplete: () => void
+  onCloseComplete?: () => void
 
   /**
    * When true, bring focus inside of the Popover on open.
