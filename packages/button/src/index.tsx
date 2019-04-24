@@ -11,6 +11,7 @@ import {IntentType, AppearanceType, ButtonProps, StyledTextProps} from "./types"
 
 const StyledText = styled(Text)<StyledTextProps>`
   border: none;
+  cursor: pointer;
   border-radius: ${_ => _.borderRadius}px;
   height: ${_ => _.height}px;
   padding-left: ${_ => Math.round(_.height / 2)}px;

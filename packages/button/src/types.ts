@@ -21,6 +21,7 @@ export interface ButtonProps {
   innerRef?: any
   disabled?: boolean
   onClick?: React.MouseEventHandler<HTMLButtonElement>
+  tabIndex?: number
 }
 export type StyledTextProps = ButtonProps & {} & Required<
     Pick<ButtonProps, "height" | "appearance" | "intent">

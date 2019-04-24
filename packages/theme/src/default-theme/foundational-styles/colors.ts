@@ -96,6 +96,10 @@ const colors = {
       danger: fills.minimal.red,
       info: fills.minimal.blue
     }
+  },
+
+  overlay: {
+    default: scales.neutral.N7A
   }
 }
 
