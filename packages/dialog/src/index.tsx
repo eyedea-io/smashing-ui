@@ -211,7 +211,11 @@ export const Dialog: React.FC<DialogProps> = ({
             <S.Footer>
               {/* Cancel should be first to make sure focus gets on it first. */}
               {hasCancel && (
-                <Button tabIndex={0} onClick={() => onCancel(close)}>
+                <Button
+                  tabIndex={0}
+                  appearance="primary"
+                  onClick={() => onCancel(close)}
+                >
                   {cancelLabel}
                 </Button>
               )}
