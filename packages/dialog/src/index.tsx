@@ -213,7 +213,7 @@ export const Dialog: React.FC<DialogProps> = ({
               {hasCancel && (
                 <Button
                   tabIndex={0}
-                  appearance="primary"
+                  appearance="default"
                   onClick={() => onCancel(close)}
                 >
                   {cancelLabel}
