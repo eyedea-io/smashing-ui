@@ -4,10 +4,9 @@
   "description": "Text input component used in forms",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
-  "types": "dist/text-input/src/index.d.ts",
-  "main": "dist/text-input.js",
-  "umd:main": "dist/text-input.umd.js",
-  "module": "dist/text-input.m.js",
+  "main": "lib/cjs/index.js",
+  "typings": "lib/cjs/index.d.ts",
+  "module": "lib/esm/index.js",
   "source": "src/index.tsx",
   "author": "Eyedea AS",
   "publishConfig": {
