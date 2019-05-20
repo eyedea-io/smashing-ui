@@ -1,19 +1,20 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "noImplicitAny": false,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "noEmit": true,
-    "jsx": "react"
-  },
-  "include": ["packages"],
-  "exclude": ["packages/**/bin/*", "dist"]
+  "files": [],
+  "references": [
+    { "path": "packages/alert" },
+    { "path": "packages/avatar" },
+    { "path": "packages/button" },
+    { "path": "packages/dialog" },
+    { "path": "packages/head" },
+    { "path": "packages/menu" },
+    { "path": "packages/overlay" },
+    { "path": "packages/popover" },
+    { "path": "packages/positioner" },
+    { "path": "packages/stack" },
+    { "path": "packages/text-input" },
+    { "path": "packages/theme" },
+    { "path": "packages/title" },
+    { "path": "packages/tooltip" },
+    { "path": "packages/typography" }
+  ]
 }

@@ -14,14 +14,13 @@
     "access": "public"
   },
   "scripts": {
-    "prepare": "smashing-build"
+    "prepublishOnly": "tsc -b ."
   },
   "dependencies": {
     "@smashing/theme": "^0.4.1",
     "@smashing/typography": "^0.4.4"
   },
   "devDependencies": {
-    "@smashing/build-utils": "^0.1.7",
     "react": "^16.8.6"
   },
   "peerDependencies": {

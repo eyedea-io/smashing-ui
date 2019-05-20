@@ -4,52 +4,54 @@
     "packages/*"
   ],
   "scripts": {
+    "build": "yarn build:cjs && yarn build:esm",
+    "build:cjs": "tsc -b",
+    "build:esm": "lerna exec --stream --parallel -- ../../node_modules/.bin/tsc --outDir lib/esm --module esnext --target esnext",
+    "build:clean": "rm -rf ./packages/*/lib && yarn build",
     "changelog": "node ./tasks/changelog",
     "release": "lerna publish",
     "canary": "lerna publish --canary",
-    "lint": "eslint packages",
+    "lint": "eslint packages/**/src/*.tsx",
     "storybook": "start-storybook -p 6006",
-    "watch": "lerna run --parallel prepare -- watch",
+    "watch": "tsc -b -w",
     "build-storybook": "build-storybook"
   },
   "eslintIgnore": [
     "node_modules",
-    "dist"
+    "lib"
   ],
   "eslintConfig": {
     "extends": "smashing-app"
   },
   "dependencies": {
-    "@storybook/addon-a11y": "^5.0.6",
-    "@types/react": "^16.8.13",
-    "@types/react-dom": "^16.8.4",
-    "@typescript-eslint/eslint-plugin": "^1.5.0",
-    "@typescript-eslint/parser": "^1.5.0",
-    "awesome-typescript-loader": "^5.2.1",
+    "@storybook/addon-a11y": "5.0.11",
+    "@types/react": "16.8.17",
+    "@types/react-dom": "16.8.4",
+    "@typescript-eslint/eslint-plugin": "1.5.0",
+    "@typescript-eslint/parser": "1.5.0",
     "babel-eslint": "9.x",
     "eslint": "5.x",
-    "eslint-config-smashing-app": "^0.2.0",
+    "eslint-config-smashing-app": "0.2.0",
     "eslint-plugin-flowtype": "2.x",
     "eslint-plugin-import": "2.x",
     "eslint-plugin-jsx-a11y": "6.x",
     "eslint-plugin-react": "7.x",
     "eslint-plugin-react-hooks": "1.5.0",
-    "lerna": "^3.13.1",
-    "lerna-changelog": "^0.8.2",
-    "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "styled-components": "^4.2.0",
-    "typescript": "^3.3.4000"
+    "lerna": "3.14.1",
+    "lerna-changelog": "0.8.2",
+    "prop-types": "15.7.2",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
+    "styled-components": "4.2.0",
+    "typescript": "3.3.4000"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.0",
-    "@storybook/addon-actions": "^5.0.6",
-    "@storybook/addon-links": "^5.0.6",
-    "@storybook/addons": "^5.0.6",
-    "@storybook/react": "^5.0.6",
-    "@types/storybook__react": "^4.0.1",
-    "@types/styled-components": "^4.1.12",
-    "babel-loader": "^8.0.5"
+    "@storybook/addon-actions": "5.0.11",
+    "@storybook/addon-links": "5.0.11",
+    "@storybook/addons": "5.0.11",
+    "@storybook/react": "5.0.11",
+    "@types/storybook__react": "4.0.1",
+    "@types/styled-components": "4.1.8",
+    "dts-bundle": "0.7.3"
   }
 }

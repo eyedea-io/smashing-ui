@@ -4,20 +4,17 @@
   "description": "Manage page head",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
-  "types": "dist/head/src/index.d.ts",
-  "main": "dist/head.js",
-  "umd:main": "dist/head.umd.js",
-  "module": "dist/head.m.js",
-  "source": "src/index.tsx",
+  "main": "lib/cjs/index.js",
+  "typings": "lib/cjs/index.d.ts",
+  "module": "lib/esm/index.js",
   "author": "Eyedea AS",
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "prepare": "smashing-build"
+    "prepublishOnly": "tsc -b ."
   },
   "devDependencies": {
-    "@smashing/build-utils": "^0.1.7",
     "react": "^16.8.6"
   },
   "peerDependencies": {

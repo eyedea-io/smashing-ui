@@ -4,17 +4,15 @@
   "description": "Component utility to help with the ReactDOM.createstack API.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
-  "types": "dist/positioner/src/index.d.ts",
-  "main": "dist/positioner.js",
-  "umd:main": "dist/positioner.umd.js",
-  "module": "dist/positioner.m.js",
-  "source": "src/index.tsx",
+  "main": "lib/cjs/index.js",
+  "typings": "lib/cjs/index.d.ts",
+  "module": "lib/esm/index.js",
   "author": "Eyedea AS",
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "prepare": "smashing-build"
+    "prepublishOnly": "tsc -b ."
   },
   "dependencies": {
     "@smashing/portal": "^0.1.1",
@@ -23,7 +21,6 @@
     "react-transition-group": "^4.0.0"
   },
   "devDependencies": {
-    "@smashing/build-utils": "^0.1.7",
     "@types/react-transition-group": "^2.9.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"

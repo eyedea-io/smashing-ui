@@ -6,22 +6,29 @@ const METATYPES = ["name", "httpEquiv", "charSet", "itemProp"]
 
 const DEFAULT_HEAD = [<meta key={-1} charSet="utf-8" className="custom-head" />]
 
-const DOMAttributeNames = {
+const DOMAttributeNames: {
+  [key: string]: string
+} = {
   acceptCharset: "accept-charset",
   className: "class",
   htmlFor: "for",
   httpEquiv: "http-equiv"
 }
 
-export class Head extends Component {
+export interface Props {}
+export interface State {}
+
+export class Head extends Component<Props, State> {
   updatePromise: Promise<any> | null = null
 
-  constructor(props, state) {
+  constructor(props: Props, state: State) {
     super(props, state)
     this.updatePromise = null
   }
 
-  updateHead(head) {
+  updateHead(
+    head: React.DetailedReactHTMLElement<{className: string}, HTMLElement>[]
+  ) {
     const promise = (this.updatePromise = Promise.resolve().then(() => {
       if (promise !== this.updatePromise) {
         return
@@ -32,7 +39,9 @@ export class Head extends Component {
     }))
   }
 
-  doUpdateHead(head) {
+  doUpdateHead(
+    head: React.DetailedReactHTMLElement<{className: string}, HTMLElement>[]
+  ) {
     const tags: any = {}
 
     head.forEach(h => {
@@ -49,7 +58,7 @@ export class Head extends Component {
     })
   }
 
-  updateTitle(component) {
+  updateTitle(component: {props: {children: any}}) {
     let title
 
     if (component) {
@@ -63,7 +72,7 @@ export class Head extends Component {
     }
   }
 
-  updateElements(type, components) {
+  updateElements(type: string, components: any[]) {
     const headEl = document.getElementsByTagName("head")[0]
     const oldTags = Array.prototype.slice.call(
       headEl.querySelectorAll(type + ".custom-head")
@@ -107,9 +116,11 @@ export class Head extends Component {
 function unique() {
   const tags = new Set()
   const metaTypes = new Set()
-  const metaCategories = {}
+  const metaCategories: {
+    [key: string]: any
+  } = {}
 
-  return h => {
+  return (h: any): boolean => {
     switch (h.type) {
       case "title":
       case "base":
@@ -148,7 +159,7 @@ function unique() {
   }
 }
 
-function reactElementToDOM({type, props}) {
+function reactElementToDOM({type, props}: {type: any; props: any}) {
   const el = document.createElement(type)
   for (const p in props) {
     if (!props.hasOwnProperty(p)) {
