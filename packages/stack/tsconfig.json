@@ -1,6 +1,6 @@
 {
   "extends": "../tsconfig.build.json",
-  "files": ["src"],
+  "files": ["src/*.tsx"],
   "compilerOptions": {
     "outDir": "lib/cjs"
   },
