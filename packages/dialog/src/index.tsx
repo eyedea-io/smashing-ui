@@ -33,14 +33,16 @@ const closeAnimation = keyframes`
   }
 `
 
+type BoxProps = {
+  width: number | string
+  maxWidth: number | string
+  maxHeight: number | string
+  sideOffsetWithUnit: number | string
+  topOffsetWithUnit: number | string
+}
+
 const S = {
-  Box: styled.div.attrs({})<{
-    width: number | string
-    maxWidth: number | string
-    maxHeight: number | string
-    sideOffsetWithUnit: number | string
-    topOffsetWithUnit: number | string
-  }>`
+  Box: styled.div.attrs({})<BoxProps>`
     box-shadow: 0 0 1px ${_ => _.theme.scales.neutral.N6A},
       0 16px 24px -8px ${_ => _.theme.scales.neutral.N5A};
     background-color: white;
@@ -81,9 +83,7 @@ const S = {
     flex: 1;
     margin: 0;
   `,
-  Content: styled.div.attrs({})<{
-    minHeight: string | number
-  }>`
+  Content: styled.div.attrs({})<{minHeight: string | number}>`
     padding: ${_ => _.theme.spacing.sm};
     display: flex;
     overflow: auto;
