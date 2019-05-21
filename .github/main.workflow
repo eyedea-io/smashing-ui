@@ -1,31 +1,12 @@
-workflow "Deploy Storybook" {
-  resolves = [
-    "Install",
-    "Lint",
-    "Build Storybook",
-  ]
+workflow "Deploy" {
   on = "push"
+  resolves = ["Deploy Storybook"]
 }
 
-action "Install" {
-  uses = "nuxt/actions-yarn@master"
-  args = "install"
-}
-
-action "Lint" {
-  uses = "nuxt/actions-yarn@master"
-  args = "lint"
-  needs = ["Install"]
-}
-
-action "Build packages" {
-  uses = "nuxt/actions-yarn@master"
-  args = "build"
-  needs = ["Install"]
-}
-
-action "Build Storybook" {
-  uses = "nuxt/actions-yarn@master"
-  args = "build-storybook"
-  needs = ["Build packages"]
+action "Deploy Storybook" {
+  uses = "./actions/deploy-storybook"
+  env = {
+    MY_NAME = "John"
+  }
+  args = "\"Hello world, I'm $MY_NAME!\""
 }
