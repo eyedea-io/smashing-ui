@@ -1,4 +1,4 @@
-import React, {PureComponent, Ref} from "react"
+import * as React from "react"
 import {Transition} from "react-transition-group"
 import {Portal} from "@smashing/portal"
 import {Stack} from "@smashing/stack"
@@ -80,7 +80,7 @@ interface PositionerProps {
   /**
    * Function that returns the ref of the element being positioned.
    */
-  innerRef: (ref: Ref<HTMLElement>) => void
+  innerRef: (ref: React.Ref<HTMLElement>) => void
 
   /**
    * The minimum distance from the body to the element being positioned.
@@ -128,7 +128,7 @@ export interface PositionerState {
   style: any
 }
 
-export class Positioner extends PureComponent<
+export class Positioner extends React.PureComponent<
   PositionerProps,
   PositionerState
 > {

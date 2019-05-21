@@ -6,7 +6,7 @@ import {
   Strong,
   Paragraph,
   Label
-} from "@smashing/typography/src/index"
+} from "@smashing/typography"
 import {withA11y} from "@storybook/addon-a11y"
 import {SmashingThemeProvider} from "@smashing/theme"
 

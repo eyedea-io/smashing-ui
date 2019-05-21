@@ -15,7 +15,7 @@
     "canary": "lerna publish --canary",
     "lint": "eslint packages/**/src/*.tsx",
     "storybook": "start-storybook -p 6006",
-    "watch": "tsc -b -w",
+    "watch": "yarn module:esm && tsc -b -w && yarn module:cjs",
     "build-storybook": "build-storybook"
   },
   "eslintIgnore": [

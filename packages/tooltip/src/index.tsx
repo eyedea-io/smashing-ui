@@ -1,10 +1,10 @@
-import React, {PureComponent} from "react"
-import debounce from "debounce"
+import * as React from "react"
+import * as debounce from "debounce"
 import {Positioner} from "@smashing/positioner"
 import {constants} from "@smashing/theme"
 import {Paragraph} from "@smashing/typography"
 import styled, {css} from "styled-components"
-import tinycolor from "tinycolor2"
+import * as tinycolor from "tinycolor2"
 
 const {position: Position} = constants
 export type Position =
@@ -140,7 +140,7 @@ export interface TooltipState {
   isShownByTarget: boolean
 }
 
-export class Tooltip extends PureComponent<TooltipProps, TooltipState> {
+export class Tooltip extends React.PureComponent<TooltipProps, TooltipState> {
   static defaultProps = {
     appearance: "default",
     position: Position.BOTTOM,

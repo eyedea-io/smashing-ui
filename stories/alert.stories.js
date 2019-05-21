@@ -1,6 +1,6 @@
 import React from "react"
 import {storiesOf, addDecorator} from "@storybook/react"
-import {Alert} from "@smashing/alert/src/index"
+import {Alert} from "@smashing/alert"
 import {Heading} from "@smashing/typography"
 import {withA11y} from "@storybook/addon-a11y"
 import {SmashingThemeProvider} from "@smashing/theme"

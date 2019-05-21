@@ -1,4 +1,4 @@
-import React from "react"
+import * as React from "react"
 import {Paragraph, Heading} from "@smashing/typography"
 import {Overlay} from "@smashing/overlay"
 import {Button} from "@smashing/button"
@@ -128,13 +128,15 @@ export const Dialog: React.FC<DialogProps> = ({
   children,
   ...props
 }) => {
-  const sideOffsetWithUnit = Number.isInteger(sideOffset as number)
-    ? `${sideOffset}px`
-    : sideOffset
+  const sideOffsetWithUnit =
+    typeof sideOffset === "number" && Number.isInteger(sideOffset)
+      ? `${sideOffset}px`
+      : sideOffset
   const maxWidth = `calc(100% - ${sideOffsetWithUnit} * 2)`
-  const topOffsetWithUnit = Number.isInteger(topOffset as number)
-    ? `${topOffset}px`
-    : topOffset
+  const topOffsetWithUnit =
+    typeof topOffset === "number" && Number.isInteger(topOffset)
+      ? `${topOffset}px`
+      : topOffset
   const maxHeight = `calc(100% - ${topOffsetWithUnit} * 2)`
   const renderChildren = (close: () => void) => {
     if (typeof children === "function") {

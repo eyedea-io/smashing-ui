@@ -1,4 +1,4 @@
-import React, {Component} from "react"
+import * as React from "react"
 
 const DEFAULT_TITLE = ""
 
@@ -18,7 +18,7 @@ const DOMAttributeNames: {
 export interface Props {}
 export interface State {}
 
-export class Head extends Component<Props, State> {
+export class Head extends React.Component<Props, State> {
   updatePromise: Promise<any> | null = null
 
   constructor(props: Props, state: State) {

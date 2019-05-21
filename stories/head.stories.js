@@ -1,6 +1,6 @@
 import React from "react"
 import {storiesOf} from "@storybook/react"
-import {Head} from "@smashing/head/src/index"
+import {Head} from "@smashing/head"
 
 storiesOf("Functional|Head", module)
   .add("add title to page head", () => (
