@@ -4,7 +4,6 @@
     "packages/*"
   ],
   "scripts": {
-    "now-build": "yarn build",
     "build": "yarn build:cjs && yarn build:esm",
     "build:cjs": "yarn module:cjs && tsc -b",
     "build:esm": "yarn module:esm && tsc -b && yarn module:cjs",
