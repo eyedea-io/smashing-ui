@@ -2,9 +2,7 @@
 const Octokit = require("@octokit/rest")
 const octokit = new Octokit({
   auth: process.env.GH_AUTH_TOKEN,
-  headers: {
-    Accept: "application/vnd.github.ant-man-preview+json"
-  }
+  previews: ["ant-man"]
 })
 
 const buildTargetUrl = (repoID, buildNum, pathToRepo) => {
