@@ -20,13 +20,20 @@ const buildLink = (repoID, buildNum, pathToRepo) => {
 
   console.log("Link:", link)
 
-  octokit.repos.createDeploymentStatus({
+  const deployment = await octokit.repos.createDeployment({
     environment: "staging",
     owner: process.env.CIRCLE_PROJECT_USERNAME,
     repo: process.env.CIRCLE_PROJECT_REPONAME,
-    deployment_id: process.env.CIRCLE_BUILD_NUM,
-    description: "Storybook",
-    log_url: link
+    ref: process.env.CIRCLE_SHA1
+  })
+
+  octokit.repos.createDeploymentStatus({
+    deployment_id: deployment.data.id,
+    environment: "staging",
+    owner: process.env.CIRCLE_PROJECT_USERNAME,
+    repo: process.env.CIRCLE_PROJECT_REPONAME,
+    log_url: link,
+    state: "success"
   })
 
   // await octokit.issues.createComment({
