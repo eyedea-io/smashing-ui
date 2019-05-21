@@ -3,6 +3,7 @@ workflow "Deploy Storybook" {
     "Install",
     "Lint",
     "Build packages",
+    "eyedea-io/smashing-ui",
   ]
   on = "push"
 }
@@ -22,4 +23,8 @@ action "Build packages" {
   uses = "nuxt/actions-yarn@master"
   args = "build"
   needs = ["Install"]
+}
+
+action "eyedea-io/smashing-ui" {
+  uses = "./actions/deploy"
 }
