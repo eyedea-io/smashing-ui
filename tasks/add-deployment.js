@@ -18,21 +18,24 @@ const buildTargetUrl = (repoID, buildNum, pathToRepo) => {
     process.env.CIRCLE_WORKING_DIRECTORY.replace("~", process.env.HOME)
   )
 
-  const deployment = await octokit.repos.createDeployment({
-    environment: "staging",
-    owner: process.env.CIRCLE_PROJECT_USERNAME,
-    repo: process.env.CIRCLE_PROJECT_REPONAME,
-    ref: process.env.CIRCLE_BRANCH,
-    task: "deploy"
-  })
-
-  octokit.repos.createDeploymentStatus({
-    deployment_id: deployment.data.id,
-    environment: "staging",
-    owner: process.env.CIRCLE_PROJECT_USERNAME,
-    repo: process.env.CIRCLE_PROJECT_REPONAME,
-    target_url: targetUrl,
-    description: "Deployment has completed",
-    state: "success"
-  })
+  try {
+    const deployment = await octokit.repos.createDeployment({
+      environment: "staging",
+      owner: process.env.CIRCLE_PROJECT_USERNAME,
+      repo: process.env.CIRCLE_PROJECT_REPONAME,
+      ref: process.env.CIRCLE_BRANCH,
+      task: "deploy"
+    })
+    await octokit.repos.createDeploymentStatus({
+      deployment_id: deployment.data.id,
+      environment: "staging",
+      owner: process.env.CIRCLE_PROJECT_USERNAME,
+      repo: process.env.CIRCLE_PROJECT_REPONAME,
+      target_url: targetUrl,
+      description: "Deployment has completed",
+      state: "success"
+    })
+  } catch (err) {
+    console.log(err)
+  }
 })()
