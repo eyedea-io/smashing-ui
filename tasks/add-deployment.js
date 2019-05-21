@@ -20,12 +20,12 @@ const buildTargetUrl = (repoID, buildNum, pathToRepo) => {
 
   try {
     const deployment = await octokit.repos.createDeployment({
-      environment: "staging",
+      environment: "qa",
       owner: process.env.CIRCLE_PROJECT_USERNAME,
       repo: process.env.CIRCLE_PROJECT_REPONAME,
-      ref: process.env.CIRCLE_BRANCH,
-      task: "deploy"
+      ref: process.env.CIRCLE_BRANCH
     })
+
     await octokit.repos.createDeploymentStatus({
       deployment_id: deployment.data.id,
       environment: "staging",
