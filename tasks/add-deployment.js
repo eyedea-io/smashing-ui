@@ -27,7 +27,8 @@ const buildTargetUrl = (repoID, buildNum, pathToRepo) => {
       owner: process.env.CIRCLE_PROJECT_USERNAME,
       repo: process.env.CIRCLE_PROJECT_REPONAME,
       ref: process.env.CIRCLE_SHA1,
-      required_contexts: []
+      required_contexts: [],
+      task: "deploy"
     })
 
     await octokit.repos.createDeploymentStatus({
