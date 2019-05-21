@@ -2,7 +2,7 @@ workflow "Deploy Storybook" {
   resolves = [
     "Install",
     "Lint",
-    "Build Storybook",
+    "Build packages",
   ]
   on = "push"
 }
@@ -22,10 +22,4 @@ action "Build packages" {
   uses = "nuxt/actions-yarn@master"
   args = "build"
   needs = ["Install"]
-}
-
-action "Build Storybook" {
-  uses = "nuxt/actions-yarn@master"
-  args = "build-storybook"
-  needs = ["Build packages"]
 }
