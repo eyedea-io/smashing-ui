@@ -23,7 +23,8 @@ const buildTargetUrl = (repoID, buildNum, pathToRepo) => {
       environment: "qa",
       owner: process.env.CIRCLE_PROJECT_USERNAME,
       repo: process.env.CIRCLE_PROJECT_REPONAME,
-      ref: process.env.CIRCLE_BRANCH
+      ref: process.env.CIRCLE_BRANCH,
+      required_contexts: []
     })
 
     await octokit.repos.createDeploymentStatus({
@@ -36,8 +37,7 @@ const buildTargetUrl = (repoID, buildNum, pathToRepo) => {
       state: "success"
     })
   } catch (err) {
-    const json = JSON.stringify(err)
-    var fs = require("fs")
-    fs.writeFile("test.json", json, "utf8", () => [])
+    console.log(err)
+    process.exit(1)
   }
 })()
