@@ -1,7 +1,7 @@
 {
   "extends": "../tsconfig.build.json",
-  "files": ["src/*.tsx"],
   "compilerOptions": {
-    "outDir": "lib/cjs"
+    "outDir": "lib/cjs",
+    "rootDir": "."
   }
 }
