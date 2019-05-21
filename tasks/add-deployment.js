@@ -23,7 +23,7 @@ const buildTargetUrl = (repoID, buildNum, pathToRepo) => {
 
   try {
     const deployment = await octokit.repos.createDeployment({
-      environment: "qa",
+      environment: "staging",
       owner: process.env.CIRCLE_PROJECT_USERNAME,
       repo: process.env.CIRCLE_PROJECT_REPONAME,
       ref: process.env.CIRCLE_SHA1,
