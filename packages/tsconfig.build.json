@@ -11,11 +11,9 @@
     "jsx": "react",
 
     "strict": true,
-    "esModuleInterop": true,
     "noImplicitAny": false,
     "noImplicitReturns": true,
     "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "pretty": true
