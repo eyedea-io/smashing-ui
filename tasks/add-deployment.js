@@ -1,6 +1,11 @@
 #!/usr/bin/env node
 const Octokit = require("@octokit/rest")
-const octokit = new Octokit({auth: process.env.GH_AUTH_TOKEN})
+const octokit = new Octokit({
+  auth: process.env.GH_AUTH_TOKEN,
+  headers: {
+    Accept: "application/vnd.github.ant-man-preview+json"
+  }
+})
 
 const buildTargetUrl = (repoID, buildNum, pathToRepo) => {
   return `https://${buildNum}-${repoID}-gh.circle-artifacts.com/0${pathToRepo}/storybook-static/index.html`
