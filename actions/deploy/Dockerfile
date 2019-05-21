@@ -9,5 +9,5 @@ LABEL "repository"="http://github.com/eyedea-io/smashing-ui"
 LABEL "homepage"="http://github.com/eyedea-io/smashing-ui"
 LABEL "maintainer"="Eyedea <hello@eyedea.io>"
 
-ADD entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+ADD start.sh /start.sh
+ENTRYPOINT ["/start.sh"]
