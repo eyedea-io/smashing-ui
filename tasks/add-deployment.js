@@ -33,6 +33,7 @@ const buildTargetUrl = (repoID, buildNum, pathToRepo) => {
       owner: process.env.CIRCLE_PROJECT_USERNAME,
       repo: process.env.CIRCLE_PROJECT_REPONAME,
       target_url: targetUrl,
+      log_url: targetUrl,
       description: "Deployment has completed",
       state: "success"
     })
