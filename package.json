@@ -27,6 +27,7 @@
     "extends": "smashing-app"
   },
   "dependencies": {
+    "@octokit/rest": "^16.26.0",
     "@storybook/addon-a11y": "5.0.11",
     "@types/react": "16.8.17",
     "@types/react-dom": "16.8.4",
