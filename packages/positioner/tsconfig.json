@@ -2,7 +2,7 @@
   "extends": "../tsconfig.build.json",
   "compilerOptions": {
     "outDir": "lib/cjs",
-    "rootDir": "."
+    "rootDir": "src"
   },
   "references": [
     { "path": "../theme" },
