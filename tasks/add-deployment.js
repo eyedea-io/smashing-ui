@@ -36,6 +36,8 @@ const buildTargetUrl = (repoID, buildNum, pathToRepo) => {
       state: "success"
     })
   } catch (err) {
-    console.log(err)
+    const json = JSON.stringify(err)
+    var fs = require("fs")
+    fs.writeFile("test.json", json, "utf8")
   }
 })()
