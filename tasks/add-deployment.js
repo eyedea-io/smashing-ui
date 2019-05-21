@@ -38,6 +38,6 @@ const buildTargetUrl = (repoID, buildNum, pathToRepo) => {
   } catch (err) {
     const json = JSON.stringify(err)
     var fs = require("fs")
-    fs.writeFile("test.json", json, "utf8")
+    fs.writeFile("test.json", json, "utf8", () => [])
   }
 })()
