@@ -15,9 +15,9 @@ jobs:
           command: ./tasks/deployment/start.sh > deployment
       - restore_cache:
           keys:
-            - cache-{{ .Environment.cache }}-{{ checksum "package.json" }}
+            - cache-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
-            - cache-{{ .Environment.cache }}-dependencies-
+            - cache-
       - run:
           name: Installing Dependencies
           command: yarn
@@ -34,8 +34,8 @@ jobs:
           path: storybook-static
       - save_cache:
           paths:
-            - node_modules
-          key: cache-{{ .Environment.cache }}-{{ checksum "package.json" }}
+            - ./node_modules/
+          key: cache-{{ checksum "package.json" }}
       - run:
           name: Add GitHub Deployment success status
           command: ./tasks/deployment/end-with-success.sh
