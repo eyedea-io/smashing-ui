@@ -16,9 +16,11 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - cache-{{ .Environment.cache }}-dependencies-
       - run:
+          name: Create GitHub Deployment
+          command: ./tasks/deployment/start.sh > deployment
+      - run:
           name: Installing Dependencies
           command: yarn
-      - run: ./tasks/deployment/start.sh > deployment
       - run:
           name: Build Components
           command: yarn build
@@ -27,7 +29,9 @@ jobs:
           command: yarn build-storybook
       - store_artifacts:
           path: storybook-static
-      - run: ./tasks/deployment/end.sh
+      - run:
+          name: Add GitHub Deployment success status
+          command: ./tasks/deployment/end.sh
       - save_cache:
           paths:
             - node_modules
