@@ -18,7 +18,7 @@ jobs:
       - run:
           name: Installing Dependencies
           command: yarn
-      - run: ./tasks/deployment/start.js > deployment
+      - run: ./tasks/deployment/start.sh > deployment
       - run:
           name: Build Components
           command: yarn build
@@ -27,7 +27,7 @@ jobs:
           command: yarn build-storybook
       - store_artifacts:
           path: storybook-static
-      - run: ./tasks/deployment/end.js \<<< echo "$(cat deployment)"
+      - run: ./tasks/deployment/end.sh
       - save_cache:
           paths:
             - node_modules
