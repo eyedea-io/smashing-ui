@@ -6,7 +6,7 @@ build_num=${CIRCLE_BUILD_NUM}
 owner=${CIRCLE_PROJECT_USERNAME}
 repo=${CIRCLE_PROJECT_REPONAME}
 ref=${CIRCLE_SHA1}
-token=${GITHUB_DEPLOYMENT_TOKEN:?"Missing GITHUB_TOKEN environment variable"}
+token=${GITHUB_DEPLOYMENTS_TOKEN:?"Missing GITHUB_TOKEN environment variable"}
 
 if ! deployment_id=$(cat deployment); then
   echo "Deployment ID was not found" 1>&2
