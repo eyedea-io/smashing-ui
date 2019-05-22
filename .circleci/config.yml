@@ -22,6 +22,9 @@ jobs:
           name: Installing Dependencies
           command: yarn
       - run:
+          name: Lint
+          command: yarn lint
+      - run:
           name: Build Components
           command: yarn build
       - run:
@@ -29,16 +32,20 @@ jobs:
           command: yarn build-storybook
       - store_artifacts:
           path: storybook-static
-      - run:
-          name: Add GitHub Deployment success status
-          command: ./tasks/deployment/end.sh
       - save_cache:
           paths:
             - node_modules
           key: cache-{{ .Environment.cache }}-{{ checksum "package.json" }}
+      - run:
+          name: Add GitHub Deployment success status
+          command: ./tasks/deployment/end-with-success.sh
+          when: on_success
+      - run:
+          name: Add GitHub Deployment error status
+          command: ./tasks/deployment/end-with-error.sh
+          when: on_fail
 
 workflows:
-  version: 2
   deploy:
     jobs:
       - deploy
