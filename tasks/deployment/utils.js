@@ -1,6 +1,6 @@
 const Octokit = require("@octokit/rest")
 const octokit = new Octokit({
-  auth: process.env.GH_AUTH_TOKEN,
+  auth: process.env.GITHUB_DEPLOYMENTS_TOKEN,
   previews: ["ant-man"]
 })
 
