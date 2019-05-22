@@ -2,7 +2,7 @@ import * as React from "react"
 import styled, {ThemeContext, css} from "styled-components"
 import {useDefaults} from "@smashing/theme"
 import {IntentType, AppearanceType, AlertProps} from "./types"
-import {Text, Strong, Heading} from "@smashing/typography"
+import {Text, Strong} from "@smashing/typography"
 import {getAlertIconForIntent, getTrimColorByIntent} from "./styles"
 
 interface BoxProps {
