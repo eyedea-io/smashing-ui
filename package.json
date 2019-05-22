@@ -14,7 +14,7 @@
     "changelog": "node ./tasks/changelog",
     "release": "lerna publish",
     "canary": "lerna publish --canary",
-    "lint": "eslint packages/**/src/*.tsx",
+    "lint": "eslint packages/**/src/*.tsx --max-warnings 0",
     "storybook": "start-storybook -p 6006",
     "watch": "yarn module:esm && tsc -b -w",
     "build-storybook": "build-storybook"
