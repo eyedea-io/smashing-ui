@@ -10,14 +10,14 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      - run:
+          name: Create GitHub Deployment
+          command: ./tasks/deployment/start.sh > deployment
       - restore_cache:
           keys:
             - cache-{{ .Environment.cache }}-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
             - cache-{{ .Environment.cache }}-dependencies-
-      - run:
-          name: Create GitHub Deployment
-          command: ./tasks/deployment/start.sh > deployment
       - run:
           name: Installing Dependencies
           command: yarn
