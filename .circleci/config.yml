@@ -27,7 +27,8 @@ jobs:
           command: yarn build-storybook
       - store_artifacts:
           path: storybook-static
-      - run: ./tasks/deployment/end.js <<< echo "$(cat deployment)"
+      - run: |
+          ./tasks/deployment/end.js <<< echo "$(cat deployment)"
       - save_cache:
           paths:
             - node_modules
