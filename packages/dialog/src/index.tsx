@@ -3,6 +3,7 @@ import {Paragraph, Heading} from "@smashing/typography"
 import {Overlay} from "@smashing/overlay"
 import {Button} from "@smashing/button"
 import styled, {keyframes} from "styled-components"
+import {AppearanceType} from "../../avatar/src"
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -111,6 +112,8 @@ export const Dialog: React.FC<DialogProps> = ({
   topOffset = "12vmin",
   sideOffset = "16px",
   minHeightContent = 80,
+  cancelAppearance = "default",
+  confirmAppearance = "primary",
   confirmLabel = "Confirm",
   isConfirmLoading = false,
   isConfirmDisabled = false,
@@ -215,7 +218,7 @@ export const Dialog: React.FC<DialogProps> = ({
               {hasCancel && (
                 <Button
                   tabIndex={0}
-                  appearance="default"
+                  appearance={cancelAppearance}
                   onClick={() => onCancel(close)}
                 >
                   {cancelLabel}
@@ -224,7 +227,7 @@ export const Dialog: React.FC<DialogProps> = ({
 
               <Button
                 tabIndex={0}
-                appearance="primary"
+                appearance={confirmAppearance}
                 // TODO: Handle loading
                 // isLoading={isConfirmLoading}
                 disabled={isConfirmDisabled}
@@ -306,6 +309,11 @@ export interface DialogProps {
   confirmLabel?: string
 
   /**
+   * Appearance of the confirm button.
+   */
+  confirmAppearance?: AppearanceType
+
+  /**
    * When true, the confirm button is set to loading.
    */
   isConfirmLoading?: boolean
@@ -325,6 +333,11 @@ export interface DialogProps {
    * Label of the cancel button.
    */
   cancelLabel?: string
+
+  /**
+   * Appearance of the cancel button.
+   */
+  cancelAppearance?: AppearanceType
 
   /**
    * Boolean indicating if clicking the overlay should close the overlay.
