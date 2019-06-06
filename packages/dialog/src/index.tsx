@@ -246,7 +246,7 @@ export const Dialog: React.FC<DialogProps> = ({
 export interface DialogProps {
   /**
    * Children can be a string, node or a function accepting `({ close })`.
-   * When passing a string, <Paragraph /> is used to wrap the string.
+   * When passing a string, <Paragraph /> is used to wrap the string
    */
   children: React.ReactNode | React.FC<{close: () => void}>
 
