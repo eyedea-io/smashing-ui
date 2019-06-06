@@ -14,7 +14,7 @@ fi
 if ! deployment=$(curl -s \
                   -X POST \
                   -H "Authorization: bearer ${token}" \
-                  -d "{\"state\": \"error\", \"environment\": \"storybook\"}" \
+                  -d "{\"state\": \"$1\", \"environment\": \"storybook\"}" \
                   -H "Content-Type: application/json" \
                   "https://api.github.com/repos/${owner}/${repo}/deployments/${deployment_id}/statuses" > res); then
   echo "POSTing deployment status failed, exiting (not failing build)" 1>&2

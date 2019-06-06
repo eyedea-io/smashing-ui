@@ -38,11 +38,11 @@ jobs:
           key: cache-{{ checksum "package.json" }}
       - run:
           name: Add GitHub Deployment success status
-          command: ./tasks/deployment/end-with-success.sh
+          command: ./tasks/deployment/end.sh success
           when: on_success
       - run:
           name: Add GitHub Deployment error status
-          command: ./tasks/deployment/end-with-error.sh
+          command: ./tasks/deployment/end.sh error
           when: on_fail
 
 workflows:
