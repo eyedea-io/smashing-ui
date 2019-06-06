@@ -281,7 +281,7 @@ export interface DialogProps {
   hasCancel?: boolean
 
   /**
-   * When true, the close button is shown
+   * When true, the close button is shown.
    */
   hasClose?: boolean
 
