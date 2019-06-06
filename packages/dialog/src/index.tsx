@@ -1,9 +1,8 @@
 import * as React from "react"
 import {Paragraph, Heading} from "@smashing/typography"
 import {Overlay} from "@smashing/overlay"
-import {Button} from "@smashing/button"
+import {Button, AppearanceType} from "@smashing/button"
 import styled, {keyframes} from "styled-components"
-import {AppearanceType} from "../../avatar/src"
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
