@@ -383,7 +383,7 @@ export interface DialogProps {
   contentContainerProps?: object
 
   /**
-   * Whether or not to prevent scrolling in the outer body
+   * Whether or not to prevent scrolling in the outer body.
    */
   preventBodyScrolling?: boolean
 }
