@@ -11,9 +11,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "prepublishOnly": "rm -rf lib && tsc -b && tsc -b --outDir lib/esm --module esnext --target esnext"
-  },
   "dependencies": {
     "@smashing/portal": "^0.1.1",
     "@smashing/stack": "^0.1.1",
