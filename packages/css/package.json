@@ -1,0 +1,27 @@
+{
+  "name": "@smashing/css",
+  "version": "0.0.0",
+  "description": "CSS utils: reset, normalize.",
+  "repository": "eyedea-io/smashing-ui",
+  "license": "MIT",
+  "main": "lib/cjs/index.js",
+  "typings": "lib/cjs/index.d.ts",
+  "module": "lib/esm/index.js",
+  "author": "Eyedea AS",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "react": "^16.8.6"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "styled-components": "^4.2.0"
+  },
+  "keywords": [
+    "smashing",
+    "react",
+    "ui"
+  ]
+}
