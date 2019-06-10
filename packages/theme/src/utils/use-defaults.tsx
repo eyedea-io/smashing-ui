@@ -1,7 +1,7 @@
 import {useContext} from "react"
 import {ThemeContext} from "styled-components"
-import get from "get-value"
-import deepmerge from "deepmerge"
+import * as deepmerge from "deepmerge"
+import {getValue} from "./get-value"
 
 export function useDefaults<P>(
   component: string,
@@ -9,7 +9,7 @@ export function useDefaults<P>(
   componentDefaults: P
 ): P {
   const theme = useContext(ThemeContext)
-  const defaults = get(theme.defaults, component, {default: {}})
+  const defaults = getValue(theme.defaults, component, {default: {}})
   const merged: P = deepmerge(defaults, props)
 
   Object.keys(merged).forEach(key => {

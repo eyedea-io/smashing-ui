@@ -1,6 +1,6 @@
 export declare type IntentType = "success" | "warning" | "info" | "danger"
 export declare type AppearanceType = "default" | "inline" | "card"
-export interface AlertProps {
+export type AlertProps = {
   intent?: IntentType
   appearance?: AppearanceType
   title?: React.ReactNode

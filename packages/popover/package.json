@@ -4,17 +4,12 @@
   "description": "Component displays floating content in relation to a target.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
-  "types": "dist/popover/src/index.d.ts",
-  "main": "dist/popover.js",
-  "umd:main": "dist/popover.umd.js",
-  "module": "dist/popover.m.js",
-  "source": "src/index.tsx",
+  "main": "lib/cjs/index.js",
+  "typings": "lib/cjs/index.d.ts",
+  "module": "lib/esm/index.js",
   "author": "Eyedea AS",
   "publishConfig": {
     "access": "public"
-  },
-  "scripts": {
-    "prepare": "smashing-build"
   },
   "dependencies": {
     "@smashing/positioner": "^0.1.2",
@@ -22,7 +17,6 @@
     "@smashing/tooltip": "^0.1.3"
   },
   "devDependencies": {
-    "@smashing/build-utils": "^0.1.7",
     "react": "^16.8.6"
   },
   "peerDependencies": {

@@ -1,6 +1,6 @@
 import * as foundation from "./default-theme/foundational-styles"
 import * as constants from "./default-theme/constants"
-import deepmerge from "deepmerge"
+import * as deepmerge from "deepmerge"
 import * as React from "react"
 import {themedProperty} from "./utils/themed-property"
 import {useDefaults} from "./utils/use-defaults"

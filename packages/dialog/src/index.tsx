@@ -1,9 +1,8 @@
-import React from "react"
+import * as React from "react"
 import {Paragraph, Heading} from "@smashing/typography"
 import {Overlay} from "@smashing/overlay"
-import {Button} from "@smashing/button"
+import {Button, AppearanceType} from "@smashing/button"
 import styled, {keyframes} from "styled-components"
-import {AppearanceType} from "../../avatar/src"
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -34,14 +33,16 @@ const closeAnimation = keyframes`
   }
 `
 
+type BoxProps = {
+  width: number | string
+  maxWidth: number | string
+  maxHeight: number | string
+  sideOffsetWithUnit: number | string
+  topOffsetWithUnit: number | string
+}
+
 const S = {
-  Box: styled.div.attrs({})<{
-    width: number | string
-    maxWidth: number | string
-    maxHeight: number | string
-    sideOffsetWithUnit: number | string
-    topOffsetWithUnit: number | string
-  }>`
+  Box: styled.div.attrs({})<BoxProps>`
     box-shadow: 0 0 1px ${_ => _.theme.scales.neutral.N6A},
       0 16px 24px -8px ${_ => _.theme.scales.neutral.N5A};
     background-color: white;
@@ -82,9 +83,7 @@ const S = {
     flex: 1;
     margin: 0;
   `,
-  Content: styled.div.attrs({})<{
-    minHeight: string | number
-  }>`
+  Content: styled.div.attrs({})<{minHeight: string | number}>`
     padding: ${_ => _.theme.spacing.sm};
     display: flex;
     overflow: auto;
@@ -131,13 +130,15 @@ export const Dialog: React.FC<DialogProps> = ({
   children,
   ...props
 }) => {
-  const sideOffsetWithUnit = Number.isInteger(sideOffset as number)
-    ? `${sideOffset}px`
-    : sideOffset
+  const sideOffsetWithUnit =
+    typeof sideOffset === "number" && Number.isInteger(sideOffset)
+      ? `${sideOffset}px`
+      : sideOffset
   const maxWidth = `calc(100% - ${sideOffsetWithUnit} * 2)`
-  const topOffsetWithUnit = Number.isInteger(topOffset as number)
-    ? `${topOffset}px`
-    : topOffset
+  const topOffsetWithUnit =
+    typeof topOffset === "number" && Number.isInteger(topOffset)
+      ? `${topOffset}px`
+      : topOffset
   const maxHeight = `calc(100% - ${topOffsetWithUnit} * 2)`
   const renderChildren = (close: () => void) => {
     if (typeof children === "function") {
@@ -245,7 +246,7 @@ export const Dialog: React.FC<DialogProps> = ({
 export interface DialogProps {
   /**
    * Children can be a string, node or a function accepting `({ close })`.
-   * When passing a string, <Paragraph /> is used to wrap the string.
+   * When passing a string, <Paragraph /> is used to wrap the string
    */
   children: React.ReactNode | React.FC<{close: () => void}>
 
@@ -280,7 +281,7 @@ export interface DialogProps {
   hasCancel?: boolean
 
   /**
-   * When true, the close button is shown
+   * When true, the close button is shown.
    */
   hasClose?: boolean
 
@@ -382,7 +383,7 @@ export interface DialogProps {
   contentContainerProps?: object
 
   /**
-   * Whether or not to prevent scrolling in the outer body
+   * Whether or not to prevent scrolling in the outer body.
    */
   preventBodyScrolling?: boolean
 }

@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.build.json",
+  "compilerOptions": {
+    "outDir": "lib/cjs",
+    "rootDir": "src"
+  },
+  "references": [
+    { "path": "../theme" },
+    { "path": "../typography" },
+    { "path": "../overlay" }
+  ]
+}

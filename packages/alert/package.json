@@ -4,24 +4,18 @@
   "description": "Component used to give feedback to the user about an action or state.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
-  "types": "dist/alert/src/index.d.ts",
-  "main": "dist/alert.js",
-  "umd:main": "dist/alert.umd.js",
-  "module": "dist/alert.m.js",
-  "source": "src/index.tsx",
   "author": "Eyedea AS",
+  "main": "lib/cjs/index.js",
+  "typings": "lib/cjs/index.d.ts",
+  "module": "lib/esm/index.js",
   "publishConfig": {
     "access": "public"
-  },
-  "scripts": {
-    "prepare": "smashing-build"
   },
   "dependencies": {
     "@smashing/theme": "^0.4.1",
     "@smashing/typography": "^0.4.4"
   },
   "devDependencies": {
-    "@smashing/build-utils": "^0.1.7",
     "react": "^16.8.6"
   },
   "peerDependencies": {

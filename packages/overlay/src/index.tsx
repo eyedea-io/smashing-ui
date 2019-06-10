@@ -37,9 +37,7 @@ const fadeOutAnimation = keyframes`
 `
 
 const S = {
-  Background: styled.div.attrs({})<{
-    zIndex: number
-  }>`
+  Background: styled.div.attrs({})<{zIndex: number}>`
     position: fixed;
     top: 0;
     left: 0;

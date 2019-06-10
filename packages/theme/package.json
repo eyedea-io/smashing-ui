@@ -4,20 +4,14 @@
   "description": "Theme configuration for smashing components",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
-  "types": "dist/theme/src/index.d.ts",
-  "main": "dist/theme.js",
-  "umd:main": "dist/theme.umd.js",
-  "module": "dist/theme.m.js",
-  "source": "src/index.tsx",
+  "main": "lib/cjs/index.js",
+  "typings": "lib/cjs/index.d.ts",
+  "module": "lib/esm/index.js",
   "author": "Eyedea AS",
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "prepare": "smashing-build"
-  },
   "devDependencies": {
-    "@smashing/build-utils": "^0.1.7",
     "@types/tinycolor2": "^1.4.1"
   },
   "keywords": [
@@ -27,7 +21,6 @@
   ],
   "dependencies": {
     "deepmerge": "^3.2.0",
-    "get-value": "^3.0.1",
     "tinycolor2": "^1.4.1"
   }
 }

@@ -1,6 +1,6 @@
 import React from "react"
 import {storiesOf, addDecorator} from "@storybook/react"
-import {TextInput} from "@smashing/text-input/src/index"
+import {TextInput} from "@smashing/text-input"
 import {withA11y} from "@storybook/addon-a11y"
 import {SmashingThemeProvider} from "@smashing/theme"
 

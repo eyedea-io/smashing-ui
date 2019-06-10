@@ -4,17 +4,12 @@
   "description": "Component used to describe icon buttons.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
-  "types": "dist/tooltip/src/index.d.ts",
-  "main": "dist/tooltip.js",
-  "umd:main": "dist/tooltip.umd.js",
-  "module": "dist/tooltip.m.js",
-  "source": "src/index.tsx",
+  "main": "lib/cjs/index.js",
+  "typings": "lib/cjs/index.d.ts",
+  "module": "lib/esm/index.js",
   "author": "Eyedea AS",
   "publishConfig": {
     "access": "public"
-  },
-  "scripts": {
-    "prepare": "smashing-build"
   },
   "dependencies": {
     "@smashing/positioner": "^0.1.2",
@@ -24,7 +19,6 @@
     "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
-    "@smashing/build-utils": "^0.1.7",
     "@types/debounce": "^1.2.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"

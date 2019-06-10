@@ -1,4 +1,4 @@
-import tinycolor from "tinycolor2"
+import * as tinycolor from "tinycolor2"
 import {DefaultTheme} from "styled-components"
 import {getLinearGradientWithStates} from "./helpers"
 
