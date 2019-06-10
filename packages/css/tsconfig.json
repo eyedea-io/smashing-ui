@@ -4,5 +4,5 @@
     "outDir": "lib/cjs",
     "rootDir": "src"
   },
-  "references": []
+  "references": [{"path": "../theme"}]
 }

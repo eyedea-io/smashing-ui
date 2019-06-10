@@ -11,6 +11,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "dependencies": {
+    "@smashing/theme": "^0.4.2"
+  },
   "devDependencies": {
     "react": "^16.8.6"
   },
