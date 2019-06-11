@@ -42,7 +42,7 @@ export const Reset = createGlobalStyle`
   li > {
     ol,
     ul {
-      margin-bottom: 0;
+      margin-top: 0;
     }
   }
 
