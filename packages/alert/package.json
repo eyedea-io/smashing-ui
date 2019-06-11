@@ -1,6 +1,6 @@
 {
   "name": "@smashing/alert",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Component used to give feedback to the user about an action or state.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@smashing/theme": "^0.4.2",
-    "@smashing/typography": "^0.4.6"
+    "@smashing/typography": "^0.4.7"
   },
   "devDependencies": {
     "react": "^16.8.6"
