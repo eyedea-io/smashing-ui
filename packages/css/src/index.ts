@@ -1,4 +1,5 @@
 import {createGlobalStyle} from "styled-components"
+import "@smashing/theme"
 
 export const Reset = createGlobalStyle`
   html {
@@ -31,11 +32,11 @@ export const Reset = createGlobalStyle`
   hr,
   table,
   fieldset {
-    margin-bottom: var(--base-spacing, 16px);
+    margin-top: ${_ => _.theme.spacing.md};
   }
 
   dd, ol, ul {
-    margin-left: var(--base-spacing, 16px);
+    margin-left: ${_ => _.theme.spacing.md};
   }
 
   li > {
@@ -49,7 +50,7 @@ export const Reset = createGlobalStyle`
   *::before,
   *::after {
     box-sizing: inherit;
-    border: 0 solid var(--border-color, #e5e5e5);
+    border: 0 solid ${_ => _.theme.colors.border.default};
   }
 
   [role=button], button {
@@ -110,16 +111,6 @@ export const Normalize = createGlobalStyle`
 
   main {
     display: block;
-  }
-
-  /**
-  * Correct the font size and margin on 'h1' elements within 'section' and
-  * 'article' contexts in Chrome, Firefox, and Safari.
-  */
-
-  h1 {
-    font-size: 2em;
-    margin: 0.67em 0;
   }
 
   /* Grouping content
