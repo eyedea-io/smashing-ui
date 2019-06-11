@@ -11,6 +11,7 @@ export const getHeadingStyle = (variant: number) => (_: {
       letter-spacing: -0.2px;
       font-family: ${_.theme.fontFamilies.display};
       color: ${_.theme.colors.text.dark};
+      margin-top: ${_.theme.spacing.lg};
     `,
     800: `
       font-size: 29px;
@@ -19,6 +20,7 @@ export const getHeadingStyle = (variant: number) => (_: {
       letter-spacing: -0.2px;
       font-family: ${_.theme.fontFamilies.display};
       color: ${_.theme.colors.text.dark};
+      margin-top: ${_.theme.spacing.lg};
     `,
     700: `
       font-size: 24px;
@@ -27,6 +29,7 @@ export const getHeadingStyle = (variant: number) => (_: {
       letter-spacing: -0.07px;
       font-family: ${_.theme.fontFamilies.display};
       color: ${_.theme.colors.text.dark};
+      margin-top: ${_.theme.spacing.md};
     `,
     600: `
       font-size: 20px;
@@ -35,6 +38,7 @@ export const getHeadingStyle = (variant: number) => (_: {
       letter-spacing: -0.07px;
       font-family: ${_.theme.fontFamilies.display};
       color: ${_.theme.colors.text.dark};
+      margin-top: ${_.theme.spacing.md};
     `,
     500: `
       font-size: 16px;
@@ -43,6 +47,7 @@ export const getHeadingStyle = (variant: number) => (_: {
       letter-spacing: -0.05px;
       font-family: ${_.theme.fontFamilies.ui};
       color: ${_.theme.colors.text.dark};
+      margin-top: ${_.theme.spacing.xs};
     `,
     400: `
       font-size: 14px;
@@ -51,6 +56,7 @@ export const getHeadingStyle = (variant: number) => (_: {
       letter-spacing: -0.05px;
       font-family: ${_.theme.fontFamilies.ui};
       color: ${_.theme.colors.text.dark};
+      margin-top: ${_.theme.spacing.xs};
     `,
     300: `
       font-size: 12px;
@@ -59,6 +65,7 @@ export const getHeadingStyle = (variant: number) => (_: {
       letter-spacing: 0;
       font-family: ${_.theme.fontFamilies.ui};
       color: ${_.theme.colors.text.dark};
+      margin-top: ${_.theme.spacing.xxs};
     `,
     200: `
       font-size: 12px;
@@ -66,6 +73,7 @@ export const getHeadingStyle = (variant: number) => (_: {
       line-height: 16px;
       font-family: ${_.theme.fontFamilies.ui};
       color: ${_.theme.colors.text.muted};
+      margin-top: ${_.theme.spacing.xxs};
     `,
     100: `
       font-size: 11px;
@@ -75,6 +83,7 @@ export const getHeadingStyle = (variant: number) => (_: {
       letter-spacing: 0.6px;
       font-family: ${_.theme.fontFamilies.ui};
       color: ${_.theme.colors.text.muted};
+      margin-top: ${_.theme.spacing.xxs};
     `
   }[variant]
 }

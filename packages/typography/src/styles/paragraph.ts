@@ -15,17 +15,17 @@ export const getParagraphStyle = (variant: number) => (_: {
     500: `
       ${getTextStyle(500)(_)};
       line-height: 24px;
-      margin-top: 16px;
+      margin-top: ${_.theme.spacing.md};
     `,
     400: `
       ${getTextStyle(400)(_)};
       line-height: 21px;
-      margin-top: 12px;
+      margin-top: ${_.theme.spacing.xs};
     `,
     300: `
       ${getTextStyle(300)(_)};
       line-height: 18px;
-      margin-top: 12px;
+      margin-top: ${_.theme.spacing.xs};
     `
   }[variant]
 }

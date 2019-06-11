@@ -7,16 +7,21 @@ export interface StrongProps {
   color?: "muted" | "default" | "dark"
   intent?: "success" | "info" | "danger" | "warning"
   fontFamily?: "ui" | "display" | "mono"
+  marginTop?: number
 }
 
 export const Strong = styled.strong<StrongProps>`
-  ${({variant = 400, fontFamily, color = "default", intent}) => css`
+  ${({variant = 400, fontFamily, color = "default", intent, marginTop}) => css`
     ${getTextStyle(variant)}
     color: ${getTextColor(intent || color)};
     font-weight: 600;
     ${fontFamily &&
       css`
         font-family: ${getFontFamily(fontFamily)};
+      `};
+    ${marginTop &&
+      css`
+        margin-top: ${marginTop}px;
       `};
   `}
 `

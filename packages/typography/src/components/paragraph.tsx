@@ -6,14 +6,19 @@ export interface ParagraphProps {
   variant?: 300 | 400 | 500
   color?: "muted" | "default" | "dark"
   fontFamily?: "ui" | "display" | "mono"
+  marginTop?: number
 }
 export const Paragraph = styled.p<ParagraphProps>`
-  ${({variant = 400, fontFamily, color = "default"}) => css`
+  ${({variant = 400, fontFamily, color = "default", marginTop}) => css`
     ${getParagraphStyle(variant)};
     color: ${getTextColor(color)};
     ${fontFamily &&
       css`
         font-family: ${getFontFamily(fontFamily)};
+      `};
+    ${marginTop &&
+      css`
+        margin-top: ${marginTop}px;
       `};
   `}
 `
