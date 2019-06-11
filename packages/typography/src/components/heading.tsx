@@ -15,7 +15,7 @@ export const Heading = styled.h2<HeadingProps>`
       css`
         font-family: ${getFontFamily(fontFamily)};
       `};
-    ${marginTop &&
+    ${typeof marginTop === "number" &&
       css`
         margin-top: ${marginTop}px;
       `};

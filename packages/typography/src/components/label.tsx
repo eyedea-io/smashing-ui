@@ -17,7 +17,7 @@ export const Label = styled.label<LabelProps>`
       css`
         font-family: ${getFontFamily(fontFamily)};
       `};
-    ${marginTop &&
+    ${typeof marginTop === "number" &&
       css`
         margin-top: ${marginTop};
       `};

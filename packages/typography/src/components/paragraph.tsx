@@ -16,7 +16,7 @@ export const Paragraph = styled.p<ParagraphProps>`
       css`
         font-family: ${getFontFamily(fontFamily)};
       `};
-    ${marginTop &&
+    ${typeof marginTop === "number" &&
       css`
         margin-top: ${marginTop}px;
       `};
