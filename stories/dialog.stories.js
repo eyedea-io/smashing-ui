@@ -35,3 +35,36 @@ storiesOf("Core|Dialog", module)
       )}
     </Wrapper>
   ))
+  .add("options", () => (
+    <Wrapper>
+      {({setIsShown, isShown}) => (
+        <Dialog
+          title="Example dialog"
+          isShown={isShown}
+          onCloseComplete={() => setIsShown(false)}
+          cancelAppearance="subtle"
+          confirmAppearance="subtle"
+          cancelLabel="Abort"
+          intent="success"
+          confirmLabel="Go"
+          isFooterSeparated={false}
+          isHeaderSeparated={false}
+        >
+          Hello
+        </Dialog>
+      )}
+    </Wrapper>
+  ))
+  .add("default", () => (
+    <Wrapper>
+      {({setIsShown, isShown}) => (
+        <Dialog
+          title="Example dialog"
+          isShown={isShown}
+          onCloseComplete={() => setIsShown(false)}
+        >
+          Hello
+        </Dialog>
+      )}
+    </Wrapper>
+  ))

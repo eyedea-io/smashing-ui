@@ -72,12 +72,17 @@ const S = {
     display: flex;
     justify-content: center;
   `,
-  Header: styled.header`
+  Header: styled.header<{isHeaderSeparated: boolean}>`
     padding: ${_ => _.theme.spacing.sm};
     flex-shrink: 0;
-    border-bottom: 1px solid ${_ => _.theme.colors.border.muted};
     display: flex;
     align-items: center;
+    ${_ =>
+      _.isHeaderSeparated
+        ? {
+            borderBottom: `1px solid ${_.theme.colors.border.muted}`
+          }
+        : {}}
   `,
   Title: styled(Heading)`
     flex: 1;
@@ -90,13 +95,18 @@ const S = {
     flex-direction: column;
     min-height: ${_ => _.minHeight};
   `,
-  Footer: styled.footer`
+  Footer: styled.footer<{isFooterSeparated: boolean}>`
     padding: ${_ => _.theme.spacing.sm};
-    border-top: 1px solid ${_ => _.theme.colors.border.muted};
     display: grid;
     grid-auto-flow: column;
     column-gap: ${_ => _.theme.spacing.xxs};
     justify-content: flex-end;
+    ${_ =>
+      _.isFooterSeparated
+        ? {
+            borderTop: `1px solid ${_.theme.colors.border.muted}`
+          }
+        : {}}
   `
 }
 
@@ -106,17 +116,19 @@ export const Dialog: React.FC<DialogProps> = ({
   hasClose = true,
   hasFooter = true,
   hasCancel = true,
+  isHeaderSeparated = true,
+  isFooterSeparated = true,
   intent = "info",
   width = 560,
   topOffset = "12vmin",
   sideOffset = "16px",
   minHeightContent = 80,
   cancelAppearance = "default",
+  cancelLabel = "Cancel",
   confirmAppearance = "primary",
   confirmLabel = "Confirm",
   isConfirmLoading = false,
   isConfirmDisabled = false,
-  cancelLabel = "Cancel",
   shouldCloseOnOverlayClick = true,
   shouldCloseOnEscapePress = true,
   onCancel = close => close(),
@@ -127,8 +139,7 @@ export const Dialog: React.FC<DialogProps> = ({
   onOpenComplete,
   containerProps,
   contentContainerProps,
-  children,
-  ...props
+  children
 }) => {
   const sideOffsetWithUnit =
     typeof sideOffset === "number" && Number.isInteger(sideOffset)
@@ -178,7 +189,7 @@ export const Dialog: React.FC<DialogProps> = ({
           {...containerProps}
         >
           {hasHeader && (
-            <S.Header>
+            <S.Header isHeaderSeparated={isHeaderSeparated}>
               <S.Title as="h4" variant={600}>
                 {title}
               </S.Title>
@@ -212,7 +223,7 @@ export const Dialog: React.FC<DialogProps> = ({
           </S.Content>
 
           {hasFooter && (
-            <S.Footer>
+            <S.Footer isFooterSeparated={isFooterSeparated}>
               {/* Cancel should be first to make sure focus gets on it first. */}
               {hasCancel && (
                 <Button
@@ -261,6 +272,16 @@ export interface DialogProps {
   isShown?: boolean
 
   /**
+   * When true dialog header is separated from content with border line
+   */
+  isHeaderSeparated?: boolean
+
+  /**
+   * When true dialog footer is separated from content with border line
+   */
+  isFooterSeparated?: boolean
+
+  /**
    * Title of the Dialog. Titles should use Title Case.
    */
   title?: React.ReactNode
@@ -298,7 +319,7 @@ export interface DialogProps {
   /**
    * Function that will be called when the confirm button is clicked.
    * This does not close the Dialog. A close function will be passed
-   * as a paramater you can use to close the dialog.
+   * as a parameter you can use to close the dialog.
    */
   onConfirm?: (close: () => void) => void
 
