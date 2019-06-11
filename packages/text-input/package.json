@@ -1,6 +1,6 @@
 {
   "name": "@smashing/text-input",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Text input component used in forms",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@smashing/theme": "^0.4.2",
-    "@smashing/typography": "^0.4.5"
+    "@smashing/typography": "^0.4.6"
   },
   "devDependencies": {
     "react": "^16.8.6"
