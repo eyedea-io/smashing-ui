@@ -8,6 +8,10 @@
   "main": "lib/cjs/index.js",
   "typings": "lib/cjs/index.d.ts",
   "module": "lib/esm/index.js",
+  "files": [
+    "src",
+    "lib"
+  ],
   "publishConfig": {
     "access": "public"
   },
