@@ -1,6 +1,6 @@
 {
   "name": "@smashing/css",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "CSS utils: reset, normalize.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
