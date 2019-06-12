@@ -1,9 +1,9 @@
-export declare type AppearanceType = "subtle" | "solid"
+export declare type AvatarAppearanceType = "subtle" | "solid"
 export interface AvatarProps {
   /**
    * The look of avatar.
    */
-  appearance?: AppearanceType
+  appearance?: AvatarAppearanceType
 
   /**
    * The name used for the initials and title attribute.
@@ -53,7 +53,7 @@ declare module "styled-components" {
   export interface SmashingAvatarDefaults
     extends Partial<{
       avatar?: {
-        appearance?: AppearanceType
+        appearance?: AvatarAppearanceType
         size: number
         sizeLimitOneCharacter: number
         forceShowInitials: boolean

@@ -1,8 +1,8 @@
 import {DefaultTheme} from "styled-components"
-import {IntentType} from "./types"
+import {AlertIntentType} from "./types"
 import * as React from "react"
 
-export const getAlertIconForIntent = (intent?: IntentType) => (_: {
+export const getAlertIconForIntent = (intent?: AlertIntentType) => (_: {
   theme: DefaultTheme
 }) => {
   switch (intent) {
@@ -46,7 +46,7 @@ export const getAlertIconForIntent = (intent?: IntentType) => (_: {
   }
 }
 
-export const getTrimColorByIntent = (intent?: IntentType) => (_: {
+export const getTrimColorByIntent = (intent?: AlertIntentType) => (_: {
   theme: DefaultTheme
 }) => {
   const {colors} = _.theme

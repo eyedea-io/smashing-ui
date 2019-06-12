@@ -1,9 +1,13 @@
-export type AppearanceType = "default" | "neutral" | "minimal" | "underline"
+export type TextInputAppearanceType =
+  | "default"
+  | "neutral"
+  | "minimal"
+  | "underline"
 export type TextInputType = "email" | "password" | "tel" | "hidden" | "text"
 export interface TextInputProps {
   id?: string
   name?: string
-  appearance?: AppearanceType
+  appearance?: TextInputAppearanceType
   type?: TextInputType
   borderRadius?: number
   height?: number

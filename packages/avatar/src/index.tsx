@@ -1,7 +1,7 @@
 import * as React from "react"
 import styled, {ThemeContext} from "styled-components"
 import {useDefaults} from "@smashing/theme"
-import {AppearanceType, AvatarProps} from "./types"
+import {AvatarAppearanceType, AvatarProps} from "./types"
 import {
   getInitials,
   getAvatarInitialsFontSize,
@@ -60,7 +60,7 @@ const Avatar: React.FC<AvatarProps> = ({
   ...props
 }) => {
   const defaults = useDefaults("avatar", props, {
-    appearance: "subtle" as AppearanceType,
+    appearance: "subtle" as AvatarAppearanceType,
     color: "automatic" as Exclude<AvatarProps["color"], undefined>,
     size: 32,
     sizeLimitOneCharacter: 20,
@@ -114,4 +114,4 @@ const Avatar: React.FC<AvatarProps> = ({
   )
 }
 
-export {Avatar, AvatarProps, AppearanceType}
+export {Avatar, AvatarProps, AvatarAppearanceType}

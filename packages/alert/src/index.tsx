@@ -1,14 +1,14 @@
 import * as React from "react"
 import styled, {ThemeContext, css} from "styled-components"
 import {useDefaults} from "@smashing/theme"
-import {IntentType, AppearanceType, AlertProps} from "./types"
+import {AlertIntentType, AlertAppearanceType, AlertProps} from "./types"
 import {Text, Strong} from "@smashing/typography"
 import {getAlertIconForIntent, getTrimColorByIntent} from "./styles"
 
 interface BoxProps {
   hasTrim: boolean
-  intent: IntentType
-  appearance: AppearanceType
+  intent: AlertIntentType
+  appearance: AlertAppearanceType
 }
 
 const Box = styled.div.attrs({})<BoxProps>`
@@ -67,8 +67,8 @@ const Alert: React.FC<AlertProps> = ({children, title, ...props}) => {
   const defaults = useDefaults("alert", props, {
     hasTrim: true,
     hasIcon: true,
-    intent: "info" as IntentType,
-    appearance: "default" as AppearanceType
+    intent: "info" as AlertIntentType,
+    appearance: "default" as AlertAppearanceType
   })
   const theme = React.useContext(ThemeContext)
 
@@ -95,14 +95,14 @@ const Alert: React.FC<AlertProps> = ({children, title, ...props}) => {
   )
 }
 
-export {Alert, AlertProps, AppearanceType}
+export {Alert, AlertProps, AlertAppearanceType}
 
 declare module "styled-components" {
   export interface SmashingAlertDefaults
     extends Partial<{
       alert?: {
-        intent?: IntentType
-        appearance?: AppearanceType
+        intent?: AlertIntentType
+        appearance?: AlertAppearanceType
         hasTrim: boolean
         hasIcon: boolean
       }

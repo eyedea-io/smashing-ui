@@ -9,7 +9,13 @@ export const TitleContext = React.createContext<{
   separator: ""
 })
 
-export const Title = ({children}: {children?: React.ReactChild}) => {
+/**
+ * Set page title using react component.
+ *
+ * @example
+ * <Title>Page Title</Title>
+ */
+export const Title: React.FC = ({children}) => {
   const {title, separator = " - "} = React.useContext(TitleContext)
 
   return (

@@ -1,7 +1,7 @@
 import {DefaultTheme} from "styled-components"
-import {AppearanceType} from "./types"
+import {TextInputAppearanceType} from "./types"
 
-export const getTextInputStyle = (appearance?: AppearanceType) => (_: {
+export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
   theme: DefaultTheme
 }) => {
   const {scales, palette} = _.theme

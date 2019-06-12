@@ -6,7 +6,7 @@ import {
   getBorderRadiusForControlHeight,
   useDefaults
 } from "@smashing/theme"
-import {AppearanceType, TextInputProps, StyledTextProps} from "./types"
+import {TextInputAppearanceType, TextInputProps, StyledTextProps} from "./types"
 import {getTextInputStyle} from "./styles"
 
 const StyledText = styled(Text)<StyledTextProps>`
@@ -22,7 +22,7 @@ const TextInput: React.FC<TextInputProps> = React.forwardRef(
   ({children, ...props}, ref: any) => {
     const defaults = useDefaults("textInput", props, {
       height: 32,
-      appearance: "default" as AppearanceType
+      appearance: "default" as TextInputAppearanceType
     })
 
     return (
@@ -38,14 +38,14 @@ const TextInput: React.FC<TextInputProps> = React.forwardRef(
   }
 )
 
-export {TextInput, TextInputProps, AppearanceType}
+export {TextInput, TextInputProps, TextInputAppearanceType}
 
 declare module "styled-components" {
   export interface SmashingTextInputDefaults
     extends Partial<{
       textInput?: {
         height?: number
-        appearance?: AppearanceType
+        appearance?: TextInputAppearanceType
       }
     }> {}
 }

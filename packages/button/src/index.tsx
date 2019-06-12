@@ -7,7 +7,12 @@ import {
   getTextSizeForControlHeight,
   getBorderRadiusForControlHeight
 } from "@smashing/theme"
-import {IntentType, AppearanceType, ButtonProps, StyledTextProps} from "./types"
+import {
+  ButtonIntentType,
+  ButtonAppearanceType,
+  ButtonProps,
+  StyledTextProps
+} from "./types"
 
 const StyledText = styled(Text)<StyledTextProps>`
   border: none;
@@ -21,8 +26,8 @@ const StyledText = styled(Text)<StyledTextProps>`
 const ButtonFC: React.FC<ButtonProps> = ({children, innerRef, ...props}) => {
   const defaults = useDefaults("button", props, {
     height: 32,
-    appearance: "default" as AppearanceType,
-    intent: "none" as IntentType
+    appearance: "default" as ButtonAppearanceType,
+    intent: "none" as ButtonIntentType
   })
 
   return (
@@ -41,15 +46,15 @@ const ButtonFC: React.FC<ButtonProps> = ({children, innerRef, ...props}) => {
 
 const Button = styled(ButtonFC)``
 
-export {Button, ButtonProps, AppearanceType, IntentType}
+export {Button, ButtonProps, ButtonAppearanceType, ButtonIntentType}
 
 declare module "styled-components" {
   export interface SmashingButtonDefaults
     extends Partial<{
       button?: {
         height?: number
-        appearance?: AppearanceType
-        intent?: IntentType
+        appearance?: ButtonAppearanceType
+        intent?: ButtonIntentType
       }
     }> {}
 }
