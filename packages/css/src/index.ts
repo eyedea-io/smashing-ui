@@ -3,6 +3,7 @@ import "@smashing/theme"
 
 export const Reset = createGlobalStyle`
   html {
+    height: 100%;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
