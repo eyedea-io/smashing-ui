@@ -1,7 +1,7 @@
 import * as React from "react"
 import {Paragraph, Heading} from "@smashing/typography"
 import {Overlay} from "@smashing/overlay"
-import {Button, AppearanceType} from "@smashing/button"
+import {Button, ButtonAppearanceType} from "@smashing/button"
 import styled, {keyframes} from "styled-components"
 
 const animationEasing = {
@@ -331,7 +331,7 @@ export interface DialogProps {
   /**
    * Appearance of the confirm button.
    */
-  confirmAppearance?: AppearanceType
+  confirmAppearance?: ButtonAppearanceType
 
   /**
    * When true, the confirm button is set to loading.
@@ -357,7 +357,7 @@ export interface DialogProps {
   /**
    * Appearance of the cancel button.
    */
-  cancelAppearance?: AppearanceType
+  cancelAppearance?: ButtonAppearanceType
 
   /**
    * Boolean indicating if clicking the overlay should close the overlay.

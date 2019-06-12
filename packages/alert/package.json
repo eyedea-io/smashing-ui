@@ -6,7 +6,7 @@
   "license": "MIT",
   "author": "Eyedea AS",
   "main": "lib/cjs/index.js",
-  "typings": "lib/cjs/index.d.ts",
+  "types": "lib/cjs/index.d.ts",
   "module": "lib/esm/index.js",
   "files": [
     "src",

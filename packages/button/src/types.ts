@@ -1,8 +1,13 @@
 import * as React from "react"
 
-export type IntentType = "success" | "warning" | "info" | "danger" | "none"
+export type ButtonIntentType =
+  | "success"
+  | "warning"
+  | "info"
+  | "danger"
+  | "none"
 
-export type AppearanceType =
+export type ButtonAppearanceType =
   | "flat"
   | "primary"
   | "minimal"
@@ -14,8 +19,8 @@ export interface ButtonProps {
   name?: string
   type?: string
   height?: number
-  intent?: IntentType
-  appearance?: AppearanceType
+  intent?: ButtonIntentType
+  appearance?: ButtonAppearanceType
   className?: string
   borderRadius?: number
   innerRef?: any
@@ -23,6 +28,6 @@ export interface ButtonProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>
   tabIndex?: number
 }
-export type StyledTextProps = ButtonProps & {} & Required<
-    Pick<ButtonProps, "height" | "appearance" | "intent">
-  >
+
+export type StyledTextProps = ButtonProps &
+  Required<Pick<ButtonProps, "height" | "appearance" | "intent">>
