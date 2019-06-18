@@ -27,6 +27,11 @@ storiesOf("Core|Avatar", module)
       <Avatar name="Sasha Ho" appearance="solid" />
     </React.Fragment>
   ))
+  .add("size", () => (
+    <React.Fragment>
+      <Avatar name="Sasha Ho" size={64} />
+    </React.Fragment>
+  ))
   .add("with photo", () => (
     <React.Fragment>
       <Avatar name="Sasha Ho" src="https://i.imgur.com/6EITnfO.png" />
