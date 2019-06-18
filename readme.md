@@ -2,6 +2,24 @@
 
 > **[View Storybook](https://github.com/eyedea-io/smashing-ui/deployments?environment=storybook#activity-log)**
 
+## Getting started
+
+**Install theme**
+
+```sh
+yarn add @smashing/theme
+```
+
+**Add Theme Provider**
+
+```tsx
+import {SmashingThemeProvider} from "@smashing/theme"
+
+const App = () => <SmashingThemeProvider>{/* ... */}</SmashingThemeProvider>
+```
+
+You can read more about [smashing theme provider](https://github.com/eyedea-io/smashing-ui/tree/master/packages/theme) to learn how to customize theme.
+
 ## Components
 
 ### Core
