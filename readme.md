@@ -17,11 +17,11 @@
 
 ### Typography
 
-- **[Text](https://github.com/eyedea-io/smashing-ui/tree/master/packages/text)** - Inline text component.
-- **[Strong](https://github.com/eyedea-io/smashing-ui/tree/master/packages/strong)** - Bold variant of Text component.
-- **[Paragraph](https://github.com/eyedea-io/smashing-ui/tree/master/packages/paragraph)** - Component used for bigger chunks of texts.
-- **[Heading](https://github.com/eyedea-io/smashing-ui/tree/master/packages/heading)** - Component used for article and section titles.
-- **[Label](https://github.com/eyedea-io/smashing-ui/tree/master/packages/label)** - Component used to describe form inputs.
+- **[Text](https://github.com/eyedea-io/smashing-ui/tree/master/packages/typography)** - Inline text component.
+- **[Strong](https://github.com/eyedea-io/smashing-ui/tree/master/packages/typography)** - Bold variant of Text component.
+- **[Paragraph](https://github.com/eyedea-io/smashing-ui/tree/master/packages/typography)** - Component used for bigger chunks of texts.
+- **[Heading](https://github.com/eyedea-io/smashing-ui/tree/master/packages/typography)** - Component used for article and section titles.
+- **[Label](https://github.com/eyedea-io/smashing-ui/tree/master/packages/typography)** - Component used to describe form inputs.
 
 ### Functional
 
