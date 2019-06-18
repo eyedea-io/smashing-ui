@@ -5,9 +5,12 @@
 ```sh
 yarn add @smashing/alert
 ```
+
 [![Edit alert](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/qvxn187xr4?fontsize=14)
 
-![](https://i.imgur.com/HOXiD49.png)
+#### Default appearance
+
+![](https://i.imgur.com/aTOMmI5.png)
 
 ```jsx
 <Alert title="Your account is active" />
@@ -16,7 +19,9 @@ yarn add @smashing/alert
 <Alert title="Your account is active" intent="warning" />
 ```
 
-![](https://i.imgur.com/QdKJPt6.png)
+#### Card appearance
+
+![](https://i.imgur.com/ZGi6w9e.png)
 
 ```jsx
 <Alert title="Your account is active" appearance="card" />
@@ -25,7 +30,9 @@ yarn add @smashing/alert
 <Alert title="Your account is active" appearance="card" intent="warning" />
 ```
 
-![](https://i.imgur.com/augOXjN.png)
+#### Inline appearance
+
+![](https://i.imgur.com/vmXFlNm.png)
 
 ```jsx
 <Alert title="Your account is active" appearance="inline" />
@@ -34,15 +41,17 @@ yarn add @smashing/alert
 <Alert title="Your account is active" appearance="inline" intent="warning" />
 ```
 
-![](https://i.imgur.com/d9vIc8c.png)
+#### With description
+
+![](https://i.imgur.com/8igOXGy.png)
 
 ```jsx
-<Alert title="Your account is active">
-  Lorem ipsum dolor sit amet.
-</Alert>
+<Alert title="Your account is active">Lorem ipsum dolor sit amet.</Alert>
 ```
 
-![](https://i.imgur.com/3jYMPog.png)
+#### Without icon
+
+![](https://i.imgur.com/jFJPWDW.png)
 
 ```jsx
 <Alert title="Your account is active" hasIcon={false}>
@@ -50,7 +59,9 @@ yarn add @smashing/alert
 </Alert>
 ```
 
-![](https://i.imgur.com/UjU5cFu.png)
+#### Without trim(border)
+
+![](https://i.imgur.com/NWX0EAL.png)
 
 ```jsx
 <Alert title="Your account is active" hasTrim={false}>
