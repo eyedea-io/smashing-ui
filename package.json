@@ -12,7 +12,7 @@
     "build:esm": "yarn module:esm && tsc -b",
     "module:cjs": "sed -i -e '0,/target/{s:esnext:es5:}' -e '0,/module/{s:esnext:commonjs:}' packages/tsconfig.build.json && sed -i -e s:lib/esm:lib/cjs: packages/**/tsconfig.json",
     "module:esm": "sed -i -e s:es5:esnext: -e s:commonjs:esnext: packages/tsconfig.build.json && sed -i -e s:lib/cjs:lib/esm: packages/**/tsconfig.json",
-    "prepublishOnly": "yarn module:cjs",
+    "prepublishOnly": "yarn build",
     "changelog": "node ./tasks/changelog",
     "release": "lerna publish",
     "canary": "lerna publish --canary",
