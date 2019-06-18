@@ -9,7 +9,7 @@
     "prebuild": "rm -rf ./packages/*/lib",
     "build": "yarn build:cjs && yarn build:esm",
     "build:cjs": "yarn module:cjs && tsc -b",
-    "build:esm": "yarn module:esm && tsc -b && yarn module:cjs",
+    "build:esm": "yarn module:esm && tsc -b",
     "module:cjs": "git checkout packages/tsconfig.build.json && git checkout packages/**/tsconfig.json",
     "module:esm": "sed -i -e s:es5:esnext: -e s:commonjs:esnext: packages/tsconfig.build.json && sed -i -e s:lib/cjs:lib/esm: packages/**/tsconfig.json",
     "prepublishOnly": "yarn module:cjs",
