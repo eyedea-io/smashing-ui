@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://i.imgur.com/dZGaYSr.png" />
+  <img src="https://i.imgur.com/JXxOMDT.png" />
 </p>
 
 ```sh
