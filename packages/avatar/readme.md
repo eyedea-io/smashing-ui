@@ -24,6 +24,14 @@ yarn add @smashing/avatar
 <Avatar name="Sasha Ho" appearance="solid" />
 ```
 
+#### Size
+
+![](https://i.imgur.com/KZqCakW.png)
+
+```jsx
+<Avatar name="Sasha Ho" size={64} />
+```
+
 #### With photo
 
 ![](https://i.imgur.com/m39Q4TY.png)
