@@ -2,7 +2,7 @@ export function isObject(val: any) {
   return val != null && typeof val === "object" && Array.isArray(val) === false
 }
 
-export const getValue = (target: object, path: string, options) => {
+export const getValue = (target, path, options) => {
   if (!isObject(options)) {
     options = {default: options}
   }
