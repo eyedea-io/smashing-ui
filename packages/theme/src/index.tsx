@@ -38,10 +38,10 @@ export {
   getBorderRadiusForControlHeight
 }
 
+// Helper that allows interface to extend type
 export type I<T> = T
 
 declare module "styled-components" {
-  // Helper that allows interface to extend type
   export interface SmashingThemeFontFamilies
     extends I<typeof foundation.fontFamilies> {}
   export interface SmashingThemeFills extends I<typeof foundation.fills> {}
