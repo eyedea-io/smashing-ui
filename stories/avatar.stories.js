@@ -15,7 +15,7 @@ const listStyle = {
 
 storiesOf("Core|Avatar", module)
   .addDecorator(story => (
-    <SmashingThemeProvider theme={{}}>{story()}</SmashingThemeProvider>
+    <SmashingThemeProvider>{story()}</SmashingThemeProvider>
   ))
   .add("appearance:subtle:default", () => (
     <React.Fragment>

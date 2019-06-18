@@ -22,7 +22,7 @@ export const SmashingThemeProvider = ({
   children
 }: {
   children: React.ReactChild
-  theme: Partial<DefaultTheme>
+  theme?: Partial<DefaultTheme>
 }) => {
   return (
     <ThemeProvider theme={deepmerge(theme, userTheme)}>
