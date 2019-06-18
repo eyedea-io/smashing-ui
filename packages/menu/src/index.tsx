@@ -9,7 +9,11 @@ const KeyCodes = {
   End: 35
 }
 
-export const Menu = ({children, ...props}) => {
+export const Menu: React.FC & {
+  Divider: React.FC
+  Item: React.FC<MenuItemProps>
+  Group: React.FC<MenuGroupProps>
+} = ({children, ...props}) => {
   const menuRef = React.useRef<HTMLDivElement | null>(null)
 
   React.useEffect(() => {
