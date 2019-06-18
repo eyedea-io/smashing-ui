@@ -1,6 +1,6 @@
 {
   "name": "@smashing/dialog",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Component is used to show content on top of an overlay. ",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -16,9 +16,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@smashing/overlay": "^0.1.4",
-    "@smashing/theme": "^0.5.1",
-    "@smashing/typography": "^0.4.9"
+    "@smashing/overlay": "^0.1.5",
+    "@smashing/theme": "^0.5.2",
+    "@smashing/typography": "^0.4.10"
   },
   "devDependencies": {
     "react": "^16.8.6"
