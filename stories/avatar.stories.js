@@ -1,6 +1,6 @@
 import React from "react"
 import {storiesOf, addDecorator} from "@storybook/react"
-import {Avatar} from "@smashing/avatar"
+import {Avatar, AvatarStack} from "@smashing/avatar"
 import {withA11y} from "@storybook/addon-a11y"
 import {SmashingThemeProvider} from "@smashing/theme"
 
@@ -50,4 +50,29 @@ storiesOf("Core|Avatar", module)
       <Avatar name="Anonymous User" hashValue="id-20" />
       <Avatar name="Anonymous User" hashValue="id-30" />
     </div>
+  ))
+  .add("stack", () => (
+    <AvatarStack>
+      <Avatar name="Anonymous User" hashValue="id-10" />
+      <Avatar name="Anonymous User" hashValue="id-20" />
+      <Avatar name="Anonymous User" hashValue="id-30" />
+    </AvatarStack>
+  ))
+  .add("stack with limit", () => (
+    <AvatarStack limit={2}>
+      <Avatar name="Anonymous User" hashValue="id-10" />
+      <Avatar name="Anonymous User" hashValue="id-20" />
+      <Avatar name="Anonymous User" hashValue="id-30" />
+      <Avatar name="Anonymous User" hashValue="id-40" />
+      <Avatar name="Anonymous User" hashValue="id-50" />
+    </AvatarStack>
+  ))
+  .add("hide more avatars", () => (
+    <AvatarStack limit={2} showMore={false}>
+      <Avatar name="Anonymous User" hashValue="id-10" />
+      <Avatar name="Anonymous User" hashValue="id-20" />
+      <Avatar name="Anonymous User" hashValue="id-30" />
+      <Avatar name="Anonymous User" hashValue="id-40" />
+      <Avatar name="Anonymous User" hashValue="id-50" />
+    </AvatarStack>
   ))

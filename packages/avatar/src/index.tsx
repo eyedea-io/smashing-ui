@@ -1,7 +1,13 @@
 import * as React from "react"
 import styled, {ThemeContext} from "styled-components"
 import {useDefaults} from "@smashing/theme"
-import {AvatarAppearanceType, AvatarProps} from "./types"
+import {
+  AvatarAppearanceType,
+  AvatarProps,
+  InitialsProps,
+  BoxProps,
+  AvatarStackProps
+} from "./types"
 import {
   getInitials,
   getAvatarInitialsFontSize,
@@ -9,11 +15,7 @@ import {
   hashCode
 } from "./utils"
 import {Text} from "@smashing/typography"
-
-interface BoxProps {
-  size: number
-  backgroundColor: string
-}
+import {ColorProperty} from "csstype"
 
 const Box = styled.div.attrs({})<BoxProps>`
   overflow: hidden;
@@ -26,13 +28,6 @@ const Box = styled.div.attrs({})<BoxProps>`
   height: ${_ => _.size}px;
   background-color: ${_ => _.backgroundColor};
 `
-
-interface InitialsProps {
-  fontSize: string
-  lineHeight: string
-  textColor: string
-  size: number
-}
 
 const Initials = styled(Text).attrs({})<InitialsProps>`
   top: 0;
@@ -57,6 +52,7 @@ const Avatar: React.FC<AvatarProps> = ({
   name,
   src,
   hashValue,
+  count,
   ...props
 }) => {
   const defaults = useDefaults("avatar", props, {
@@ -99,19 +95,81 @@ const Avatar: React.FC<AvatarProps> = ({
       backgroundColor={colorProps.backgroundColor}
       {...props}
     >
-      {(imageUnavailable || defaults.forceShowInitials) && (
+      {count !== undefined ? (
         <Initials
           fontSize={initialsFontSize}
           lineHeight={initialsFontSize}
           size={defaults.size}
           textColor={colorProps.color as any}
         >
-          {initials}
+          +{count}
         </Initials>
+      ) : (
+        <React.Fragment>
+          {(imageUnavailable || defaults.forceShowInitials) && (
+            <Initials
+              fontSize={initialsFontSize}
+              lineHeight={initialsFontSize}
+              size={defaults.size}
+              textColor={colorProps.color as any}
+            >
+              {initials}
+            </Initials>
+          )}
+          {!imageUnavailable && <Image src={src} onError={handleError} />}
+        </React.Fragment>
       )}
-      {!imageUnavailable && <Image src={src} onError={handleError} />}
     </Box>
   )
 }
 
-export {Avatar, AvatarProps, AvatarAppearanceType}
+const More = styled(Avatar)``
+
+const Stack = styled.div<{borderColor: ColorProperty}>`
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+  position: relative;
+
+  > * {
+    border: 2px solid ${_ => _.borderColor};
+    margin-right: -0.5rem;
+    order: 2;
+    z-index: 1;
+  }
+
+  > ${More} {
+    order: 0;
+    z-index: 0;
+  }
+`
+
+const AvatarStack: React.FC<AvatarStackProps> = ({
+  children,
+  limit,
+  showMore = true,
+  borderColor = "#fff"
+}) => {
+  return (
+    <Stack borderColor={borderColor}>
+      {React.Children.toArray(children)
+        .slice(0, limit)
+        .map(child => {
+          return child
+        })}
+      {typeof limit === "number" &&
+        showMore &&
+        React.Children.count(children) > limit && (
+          <More count={React.Children.count(children) - limit} />
+        )}
+    </Stack>
+  )
+}
+
+export {
+  Avatar,
+  AvatarStack,
+  AvatarStackProps,
+  AvatarProps,
+  AvatarAppearanceType
+}
