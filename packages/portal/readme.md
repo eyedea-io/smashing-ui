@@ -9,15 +9,12 @@ yarn add @smashing/portal
 ## Usage
 
 ```jsx
-import {Portal} from '@smashing/portal'
+import {Portal} from "@smashing/portal"
 
 export default () => (
   <div>
     App content...
-
-    <Portal>
-      Content moved outside of react tree
-    </Portal>
+    <Portal>Content moved outside of react tree.</Portal>
   </div>
 )
 ```
