@@ -1,6 +1,6 @@
 {
   "name": "@smashing/overlay",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -16,9 +16,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@smashing/portal": "^0.1.3",
-    "@smashing/stack": "^0.1.5",
-    "@smashing/theme": "^0.5.2",
+    "@smashing/portal": "^0.1.4",
+    "@smashing/stack": "^0.1.6",
+    "@smashing/theme": "^0.5.3",
     "react-transition-group": "^4.0.0"
   },
   "devDependencies": {
