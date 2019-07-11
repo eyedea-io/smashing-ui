@@ -1,5 +1,7 @@
 import * as React from "react"
 import * as d3 from "d3"
+import styled, {ThemeContext} from "styled-components"
+import {useDefaults} from "@smashing/theme"
 
 import Axes from "./axes"
 import Bar from "./bar"
@@ -10,6 +12,7 @@ interface IProps {
   height: number
   data: DataItem[]
   titles?: Titles
+  colors?: [string,string,string,string]
 }
 
 interface Titles {
@@ -47,7 +50,8 @@ const BarChart: React.SFC<IProps> = ({
   width,
   height,
   data,
-  titles = {left: "", right: ""}
+  titles = {left: "", right: ""},
+  colors
 }) => {
   const margins = {
     top: height / 5,
@@ -102,6 +106,7 @@ const BarChart: React.SFC<IProps> = ({
           data={data}
           maxValue={maxValue}
           dimensions={{width, height}}
+          colors = {colors}
         />
         {titles.left && (
           <Title
@@ -122,6 +127,14 @@ const BarChart: React.SFC<IProps> = ({
       </svg>
     </div>
   )
+}
+declare module "styled-components" {
+  export interface SmashingBarChartDefaults
+    extends Partial<{
+      barChart?: {
+        colors?: [string,string,string,string]
+      }
+    }> {}
 }
 
 export default BarChart

@@ -100,6 +100,11 @@ const colors = {
 
   overlay: {
     default: scales.neutral.N7A
+  },
+
+  chart: {
+    bar: ["#313153", "#8080AB", "#82B0E4", "#1C6BC4"]
+
   }
 }
 

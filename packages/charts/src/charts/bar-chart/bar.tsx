@@ -1,6 +1,8 @@
 import * as React from "react"
 import * as d3 from "d3"
 import BrandSprintResult from "./brand-sprint-result"
+import {ThemeContext} from "styled-components"
+import {useDefaults} from "@smashing/theme"
 
 import {Margins, Dimensions, Scales, DataItem} from "./bar-chart"
 
@@ -10,16 +12,23 @@ interface IProps {
   margins: Margins
   dimensions: Dimensions
   data: DataItem[]
+  colors?: [string,string,string,string]
 }
 
-const Bar: React.SFC<IProps> = ({scales, margins, dimensions, data}) => {
+const Bar: React.SFC<IProps> = ({scales, margins, dimensions, data,...props}) => {
+  const theme = React.useContext(ThemeContext)
+  const defaults = useDefaults("barChart", props, {
+    colors: theme.colors.chart.bar,
+  })
+  console.log(defaults)
   const colorScale = d3
     .scaleLinear<string>()
     .domain([0, data.length / 2 - 1, data.length / 2, data.length])
-    .range(["#313153", "#8080AB", "#82B0E4", "#1C6BC4"])
+    .range(defaults.colors)
 
   const r = 6
   const ref = React.useRef(null)
+
 
   React.useEffect(() => {
     data.map((d: any, index) => {

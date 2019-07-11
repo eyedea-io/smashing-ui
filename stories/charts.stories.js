@@ -109,7 +109,15 @@ storiesOf("Charts|Progress Bar", module)
 
   storiesOf("Charts|Bar Chart", module)
   .addDecorator(story => (
-    <SmashingThemeProvider>{story()}</SmashingThemeProvider>
+    <SmashingThemeProvider
+    theme={{
+      defaults: {
+      barChart: {
+        colors: ["red","pink","blue","steelblue"]
+      }
+      }
+    }}>
+    {story()}</SmashingThemeProvider>
   )).add("default", () => (
     <React.Fragment>
       <BarChart
@@ -117,6 +125,7 @@ storiesOf("Charts|Progress Bar", module)
       height={250}
       data={barChartData}
       titles={{left: "Serious 45%", right: "Playful 55%"}}
+      colors={["orange","pink","green","red"]}
     />
     </React.Fragment>
   ))
