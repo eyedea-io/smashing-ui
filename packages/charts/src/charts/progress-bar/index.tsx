@@ -1,10 +1,22 @@
 import * as React from "react"
 import Bar from "./bar"
 import Axis from "./axis"
+import {ThemeContext} from "styled-components"
+import {useDefaults} from "@smashing/theme"
 
 interface IProps {
   width: number
   data: DataItem[]
+  colors?: Colors
+}
+
+export interface Colors {
+  greyBackground: string
+  restValues: string
+  topValues: string
+  greyLabels: string
+  topIsResult: string
+  restIsResult: string
 }
 
 export interface DataItem {
@@ -19,7 +31,11 @@ export interface Margins {
   right: number
 }
 
-const Chart: React.SFC<IProps> = ({width, data}) => {
+const Chart: React.SFC<IProps> = ({width, data, ...props}) => {
+  const theme = React.useContext(ThemeContext)
+  const defaults = useDefaults("progressBarChart", props, {
+    colors: theme.colors.chart.progress
+  })
   const ref = React.useRef(null)
   const maxHeight = data.reduce(sum => sum + 34, 0) + 30
   const margins = {
@@ -58,9 +74,18 @@ const Chart: React.SFC<IProps> = ({width, data}) => {
         topValues={topValues}
         restValues={restValues}
         totalSum={totalSum}
+        colors={defaults.colors}
       />
     </svg>
   )
+}
+declare module "styled-components" {
+  export interface SmashingProgressBarChartDefaults
+    extends Partial<{
+      progressBarChart?: {
+        colors?: Colors
+      }
+    }> {}
 }
 
 export default Chart

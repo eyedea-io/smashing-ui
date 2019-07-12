@@ -1,6 +1,8 @@
 import * as React from "react"
 import * as d3 from "d3"
-import {DefaultArcObject, ValueFn} from "d3"
+import {DefaultArcObject} from "d3"
+import {ThemeContext} from "styled-components"
+import {useDefaults} from "@smashing/theme"
 
 interface IProps {
   x: number
@@ -12,10 +14,14 @@ interface IProps {
 }
 
 const Arc: React.SFC<IProps> = props => {
-  const {x, y, data, radius, description, color} = props
+  const {x, y, data, radius, description} = props
   const ref = React.useRef(null)
   const reff = React.useRef(null)
   var tau = 2 * Math.PI
+  const theme = React.useContext(ThemeContext)
+  const defaults = useDefaults("radialProgress", props, {
+    color: theme.colors.chart.radial
+  })
 
   const arc = d3
     .arc()
@@ -41,7 +47,7 @@ const Arc: React.SFC<IProps> = props => {
     d3.select(reff.current)
       .append("path")
       .datum({endAngle: 0})
-      .style("fill", color as any)
+      .style("fill", defaults.color as any)
       .attr("d", arc as any)
       .transition()
       .ease(d3.easeBack)
@@ -85,8 +91,7 @@ const Arc: React.SFC<IProps> = props => {
 }
 
 Arc.defaultProps = {
-  description: "",
-  color: "#78D0AF"
+  description: ""
 }
 
 export default Arc

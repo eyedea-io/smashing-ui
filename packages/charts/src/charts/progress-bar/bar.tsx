@@ -1,8 +1,7 @@
 import * as React from "react"
 import * as d3 from "d3"
 
-import { DataItem } from "./index"
-import { Colors } from "./config"
+import { DataItem,Colors } from "./index"
 
 interface IProps {
   width: number
@@ -10,6 +9,7 @@ interface IProps {
   topValues: DataItem[]
   restValues: DataItem[]
   totalSum: number
+  colors:Colors
 }
 
 const Bar: React.SFC<IProps> = ({
@@ -17,7 +17,8 @@ const Bar: React.SFC<IProps> = ({
   margins,
   topValues,
   restValues,
-  totalSum
+  totalSum,
+  colors
 }) => {
   const ref = React.useRef(null)
   const margin = width - 3 * margins.left
@@ -34,13 +35,13 @@ const Bar: React.SFC<IProps> = ({
       .append("g")
       .attr("id", id)
     data.map((d, i) => {
-      color = label === "TOP VALUES" ? Colors.topValues : Colors.restValues
+      color = label === "TOP VALUES" ? colors.topValues : colors.restValues
       if (d.isResult) {
         if (label === "TOP VALUES") {
-          color = Colors.topIsResult
+          color = colors.topIsResult
           icon = String.fromCharCode(0x2714)
         } else if (label === "REST VALUES") {
-          color = Colors.restIsResult
+          color = colors.restIsResult
           icon = String.fromCharCode(215)
         }
       }
@@ -48,7 +49,7 @@ const Bar: React.SFC<IProps> = ({
         .append("rect")
         .attr("rx", 3)
         .attr("ry", 3)
-        .attr("fill", Colors.greyBackground)
+        .attr("fill", colors.greyBackground)
         .attr("y", offsetTop + 60 + 34 * i)
         .attr("x", 2 * margins.left)
         .attr("height", 4)
@@ -126,7 +127,7 @@ const Bar: React.SFC<IProps> = ({
     d3.select("#" + id)
       .append("g")
       .call(yAxis)
-      .style("color", Colors.greyLabels)
+      .style("color", colors.greyLabels)
       .attr(
         "transform",
         `translate(${1.65 * margins.left},${offsetTop + margins.top})`
@@ -159,7 +160,7 @@ const Bar: React.SFC<IProps> = ({
         margins.top +
         domainHeight / 2})`
       )
-      .style("fill", Colors.greyLabels)
+      .style("fill", colors.greyLabels)
       .style("font-size", "11px")
       .attr("font-family", "sans-serif")
   }

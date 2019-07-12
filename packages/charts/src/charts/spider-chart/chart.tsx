@@ -3,13 +3,16 @@ import * as d3 from "d3"
 import Circles from "./circles"
 import Axes from "./axes"
 import Polygon from "./polygon"
-import { angleToCoordinate } from "./axes"
-import { LineData } from "./polygon"
+import {angleToCoordinate} from "./axes"
+import {LineData} from "./polygon"
 import useAlgorithm from "./algorithm"
+import {ThemeContext} from "styled-components"
+import {useDefaults} from "@smashing/theme"
 
 interface IProps {
   width: number
   data: DataItems
+  colors?: [string, string]
 }
 
 export interface DataItems {
@@ -23,7 +26,12 @@ export interface DataObject {
   values: number[]
 }
 
-const SpiderChart: React.SFC<IProps> = ({ width, data }) => {
+const SpiderChart: React.SFC<IProps> = ({width, data, ...props}) => {
+  const theme = React.useContext(ThemeContext)
+  const defaults = useDefaults("spiderChart", props, {
+    colors: theme.colors.chart.spider
+  })
+
   const radialScale = d3
     .scaleLinear()
     .domain([0, 5])
@@ -47,20 +55,29 @@ const SpiderChart: React.SFC<IProps> = ({ width, data }) => {
           width={width}
           data={data}
           radialScale={radialScale}
-          colors={data.colors}
+          colors={defaults.colors}
         />
         {data.datasets.map((d, i) => {
           return (
             <Polygon
               data={d.values}
               coordinates={getPathCoordinates}
-              color={data.colors[i]}
+              color={defaults.colors[i]}
             />
           )
         })}
       </svg>
     </>
   )
+}
+
+declare module "styled-components" {
+  export interface SmashingSpiderChartDefaults
+    extends Partial<{
+      spiderChart?: {
+        colors?: [string, string]
+      }
+    }> {}
 }
 
 export default SpiderChart

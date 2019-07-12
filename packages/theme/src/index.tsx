@@ -54,11 +54,19 @@ declare module "styled-components" {
   export interface SmashingAlertDefaults {}
   export interface SmashingAvatarDefaults {}
   export interface SmashingBarChartDefaults {}
+  export interface SmashingPieChartDefaults {}
+  export interface SmashingProgressBarChartDefaults {}
+  export interface SmashingSpiderChartDefaults {}
+  export interface SmashingRadialProgressDefaults {}
   export interface SmashingDefaults
     extends SmashingButtonDefaults,
       SmashingTextInputDefaults,
       SmashingAlertDefaults,
       SmashingBarChartDefaults,
+      SmashingPieChartDefaults,
+      SmashingSpiderChartDefaults,
+      SmashingRadialProgressDefaults,
+      SmashingProgressBarChartDefaults,
       SmashingAvatarDefaults {}
   export interface DefaultTheme {
     radius: string

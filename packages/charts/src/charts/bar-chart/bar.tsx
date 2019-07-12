@@ -12,15 +12,20 @@ interface IProps {
   margins: Margins
   dimensions: Dimensions
   data: DataItem[]
-  colors?: [string,string,string,string]
+  colors?: [string, string, string, string]
 }
 
-const Bar: React.SFC<IProps> = ({scales, margins, dimensions, data,...props}) => {
+const Bar: React.SFC<IProps> = ({
+  scales,
+  margins,
+  dimensions,
+  data,
+  ...props
+}) => {
   const theme = React.useContext(ThemeContext)
   const defaults = useDefaults("barChart", props, {
-    colors: theme.colors.chart.bar,
+    colors: theme.colors.chart.bar
   })
-  console.log(defaults)
   const colorScale = d3
     .scaleLinear<string>()
     .domain([0, data.length / 2 - 1, data.length / 2, data.length])
@@ -28,7 +33,6 @@ const Bar: React.SFC<IProps> = ({scales, margins, dimensions, data,...props}) =>
 
   const r = 6
   const ref = React.useRef(null)
-
 
   React.useEffect(() => {
     data.map((d: any, index) => {

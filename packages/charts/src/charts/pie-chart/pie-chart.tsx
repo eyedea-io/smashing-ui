@@ -7,7 +7,7 @@ interface IProps {
   width: number
   height: number
   data: Data[]
-  colors?: string[]
+  colors?: [string,string]
   isDonut?: boolean
 }
 
@@ -32,8 +32,15 @@ const PieChart: React.SFC<IProps> = props => {
 }
 
 PieChart.defaultProps = {
-  colors: ["#8080AB", "#313153"],
   isDonut: true
+}
+declare module "styled-components" {
+  export interface SmashingPieChartDefaults
+    extends Partial<{
+      pieChart?: {
+        colors?: [string,string]
+      }
+    }> {}
 }
 
 export default PieChart

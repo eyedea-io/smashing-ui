@@ -54,7 +54,6 @@ const progressBarData = [
 
 const spiderChartData = {
   labels: ["Mass Appeal", "Rebel", "Friend", "Young", "Playful"],
-  colors: ["#6969AB", "#47B881"],
   datasets: [
     {
       title: "BS",
@@ -80,7 +79,7 @@ const barChartData = [
   {value: 0.44, description: "5 votes"}
 ]
 
-const pieChartData=[
+const pieChartData = [
   {name: "USA", value: 60},
   {name: "UK", value: 20},
   {name: "Canada", value: 30},
@@ -90,69 +89,123 @@ const pieChartData=[
 
 storiesOf("Charts|Progress Bar", module)
   .addDecorator(story => (
-    <SmashingThemeProvider>{story()}</SmashingThemeProvider>
+    <SmashingThemeProvider
+      theme={{
+        defaults: {
+          progressBarChart: {
+            colors: {
+              topValues: "pink",
+              topIsResult: "royalblue",
+              restIsResult: "navy"
+            }
+          }
+        }
+      }}
+    >
+      {story()}
+    </SmashingThemeProvider>
   ))
   .add("default", () => (
     <React.Fragment>
-     <ProgressBar width={600} data={progressBarData} />
+      <ProgressBar
+        width={600}
+        data={progressBarData}
+        colors={{
+          topValues: "orange",
+          topIsResult: "royalblue",
+          restIsResult: "navy"
+        }}
+      />
     </React.Fragment>
   ))
 
-  storiesOf("Charts|Spider Chart", module)
+storiesOf("Charts|Spider Chart", module)
   .addDecorator(story => (
-    <SmashingThemeProvider>{story()}</SmashingThemeProvider>
-  )).add("default", () => (
+    <SmashingThemeProvider
+      theme={{
+        defaults: {
+          spiderChart: {
+            colors: ["pink", "royalblue"]
+          }
+        }
+      }}
+    >
+      {story()}
+    </SmashingThemeProvider>
+  ))
+  .add("default", () => (
     <React.Fragment>
       <SpiderChart width={500} data={spiderChartData} />
     </React.Fragment>
   ))
 
-  storiesOf("Charts|Bar Chart", module)
+storiesOf("Charts|Bar Chart", module)
   .addDecorator(story => (
     <SmashingThemeProvider
-    theme={{
-      defaults: {
-      barChart: {
-        colors: ["red","pink","blue","steelblue"]
-      }
-      }
-    }}>
-    {story()}</SmashingThemeProvider>
-  )).add("default", () => (
+      theme={{
+        defaults: {
+          barChart: {
+            colors: ["red", "pink", "blue", "steelblue"]
+          }
+        }
+      }}
+    >
+      {story()}
+    </SmashingThemeProvider>
+  ))
+  .add("default", () => (
     <React.Fragment>
       <BarChart
-      width={600}
-      height={250}
-      data={barChartData}
-      titles={{left: "Serious 45%", right: "Playful 55%"}}
-      colors={["orange","pink","green","red"]}
-    />
+        width={600}
+        height={250}
+        data={barChartData}
+        titles={{left: "Serious 45%", right: "Playful 55%"}}
+        colors={["orange", "pink", "green", "red"]}
+      />
     </React.Fragment>
   ))
 
-  storiesOf("Charts|Radial Progress", module)
+storiesOf("Charts|Radial Progress", module)
   .addDecorator(story => (
-    <SmashingThemeProvider>{story()}</SmashingThemeProvider>
-  )).add("default", () => (
+    <SmashingThemeProvider
+      theme={{
+        defaults: {
+          radialProgress: {
+            color: "royalblue"
+          }
+        }
+      }}
+    >
+      {story()}
+    </SmashingThemeProvider>
+  ))
+  .add("default", () => (
     <React.Fragment>
-       <RadialProgress
-      width={200}
-      height={200}
-      data={40}
-      description={"45 votes"}
-    />
+      <RadialProgress
+        width={200}
+        height={200}
+        data={40}
+        description={"45 votes"}
+      />
     </React.Fragment>
   ))
 
-  storiesOf("Charts|Pie Chart", module)
+storiesOf("Charts|Pie Chart", module)
   .addDecorator(story => (
-    <SmashingThemeProvider>{story()}</SmashingThemeProvider>
-  )).add("default", () => (
+    <SmashingThemeProvider
+      theme={{
+        defaults: {
+          pieChart: {
+            colors: ["pink", "royalblue"]
+          }
+        }
+      }}
+    >
+      {story()}
+    </SmashingThemeProvider>
+  ))
+  .add("default", () => (
     <React.Fragment>
-       <PieChart
-      width={300}
-      height={300}
-      data={pieChartData}
-    />
+      <PieChart width={300} height={300} data={pieChartData} />
     </React.Fragment>
   ))

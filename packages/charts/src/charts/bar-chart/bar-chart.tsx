@@ -1,6 +1,6 @@
 import * as React from "react"
 import * as d3 from "d3"
-import styled, {ThemeContext} from "styled-components"
+import {ThemeContext} from "styled-components"
 import {useDefaults} from "@smashing/theme"
 
 import Axes from "./axes"

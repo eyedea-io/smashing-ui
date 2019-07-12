@@ -55,7 +55,7 @@ export const Slice: React.FC<IProps> = props => {
         transform={`translate(${arc.centroid(value)})`}
         textAnchor="middle"
         fill="white"
-        style={{fontFamily:"sans-serif",fontSize:"12"}}
+        style={{fontFamily: "sans-serif", fontSize: "12"}}
       >
         {label.name}
       </text>
@@ -64,7 +64,7 @@ export const Slice: React.FC<IProps> = props => {
         dy=".95em"
         textAnchor="middle"
         fill="white"
-        style={{fontFamily:"sans-serif",fontSize:"12"}}
+        style={{fontFamily: "sans-serif", fontSize: "12"}}
       >
         {value.data}
       </text>
