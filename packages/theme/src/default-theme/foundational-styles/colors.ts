@@ -4,6 +4,7 @@ import fills from "./fills"
 
 const colors = {
   background: {
+    white: "white",
     tint1: scales.neutral.N1,
     tint2: scales.neutral.N2,
     overlay: scales.neutral.N7A,
@@ -96,10 +97,6 @@ const colors = {
       danger: fills.minimal.red,
       info: fills.minimal.blue
     }
-  },
-
-  overlay: {
-    default: scales.neutral.N7A
   }
 }
 

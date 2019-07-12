@@ -33,13 +33,7 @@ const Box = styled.div.attrs({})<BoxProps>`
         .setAlpha(0.95)
         .toString()};
     `}
-  ${_ =>
-    _.appearance === "card" &&
-    css`
-      backgroundcolor: "white";
-      box-shadow: 0 0 1px ${_ => _.theme.scales.neutral.N6A},
-        0 8px 10px -4px ${_ => _.theme.scales.neutral.N5A};
-    `}
+  ${_ => _.appearance === "card" && _.theme.elevation.dropdown}
 `
 
 interface StyledParagraphProps {
