@@ -45,6 +45,8 @@ declare module "styled-components" {
   export interface SmashingThemeFontFamilies
     extends I<typeof foundation.fontFamilies> {}
   export interface SmashingThemeFills extends I<typeof foundation.fills> {}
+  export interface SmashingThemeElevation
+    extends I<typeof foundation.elevation> {}
   export interface SmashingThemeScales extends I<typeof foundation.scales> {}
   export interface SmashingThemePalette extends I<typeof foundation.palette> {}
   export interface SmashingThemeColors extends I<typeof foundation.colors> {}
@@ -70,6 +72,7 @@ declare module "styled-components" {
       SmashingAvatarDefaults {}
   export interface DefaultTheme {
     radius: string
+    elevation: SmashingThemeElevation
     palette: SmashingThemePalette
     scales: SmashingThemeScales
     fills: SmashingThemeFills

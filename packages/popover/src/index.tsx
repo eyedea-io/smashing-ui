@@ -139,7 +139,7 @@ const Target = (props: {
         // getTargetRef,
         isShown: props.isShown,
 
-        // These propeties will be spread as `popoverTargetProps`
+        // These properties will be spread as `popoverTargetProps`
         // in the Tooltip component.
         ...popoverTargetProps
       }
@@ -168,12 +168,10 @@ const Target = (props: {
 
 const S = {
   Popup: styled.div`
+    ${_ => _.theme.elevation.dropdown};
     border-radius: ${_ => _.theme.radius};
-    box-shadow: 0 0 1px ${_ => _.theme.scales.neutral.N6A},
-      0 8px 10px -4px ${_ => _.theme.scales.neutral.N5A};
     overflow: hidden;
     min-width: 200px;
-    background-color: white;
   `
 }
 

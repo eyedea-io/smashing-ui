@@ -3,6 +3,7 @@ import {Paragraph, Heading} from "@smashing/typography"
 import {Overlay} from "@smashing/overlay"
 import {Button, ButtonAppearanceType} from "@smashing/button"
 import styled, {keyframes} from "styled-components"
+import "@smashing/theme"
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -43,9 +44,7 @@ type BoxProps = {
 
 const S = {
   Box: styled.div.attrs({})<BoxProps>`
-    box-shadow: 0 0 1px ${_ => _.theme.scales.neutral.N6A},
-      0 16px 24px -8px ${_ => _.theme.scales.neutral.N5A};
-    background-color: white;
+    ${_ => _.theme.elevation.dialog};
     border-radius: ${_ => _.theme.radius};
     width: ${_ => _.width}px;
     max-width: ${_ => _.maxWidth};

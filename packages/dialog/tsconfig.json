@@ -5,8 +5,8 @@
     "rootDir": "src"
   },
   "references": [
-    { "path": "../theme" },
-    { "path": "../typography" },
-    { "path": "../overlay" }
+    {"path": "../theme"},
+    {"path": "../typography"},
+    {"path": "../overlay"}
   ]
 }

@@ -49,7 +49,7 @@ const S = {
     justify-content: center;
 
     &::before {
-      background-color: ${_ => _.theme.colors.overlay.default};
+      ${_ => _.theme.elevation.overlay};
       left: 0;
       top: 0;
       position: fixed;

@@ -19,14 +19,13 @@ const Box = styled.div.attrs({})<BoxProps>`
     _.appearance === "card" &&
     css`
       border-radius: 3px;
-      box-shadow: 0 0 0 1px ${_.theme.scales.neutral.N5A},
-        0px 2px 4px -2px ${_.theme.scales.neutral.N6A};
+      ${_.theme.elevation.card};
     `}
 
   ${_ =>
     _.appearance === "default" &&
     css`
-      box-shadow: inset 0 0 0 1px ${_ => _.theme.scales.neutral.N4A};
+      ${_.theme.elevation.container};
     `}
 
   ${_ =>
