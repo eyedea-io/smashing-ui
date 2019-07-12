@@ -19,7 +19,7 @@ const Arc: React.SFC<IProps> = props => {
   const reff = React.useRef(null)
   var tau = 2 * Math.PI
   const theme = React.useContext(ThemeContext)
-  const defaults = useDefaults("radialProgress", props, {
+  const defaults = useDefaults("radialProgressChart", props, {
     color: theme.colors.chart.radial
   })
 

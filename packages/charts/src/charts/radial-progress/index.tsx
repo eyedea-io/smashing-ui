@@ -42,7 +42,7 @@ const ProgressChart: React.SFC<IProps> = props => {
 declare module "styled-components" {
   export interface SmashingRadialProgressDefaults
     extends Partial<{
-      radialProgress?: {
+      radialProgressChart?: {
         color?: string
       }
     }> {}
