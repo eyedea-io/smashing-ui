@@ -97,6 +97,26 @@ const colors = {
       danger: fills.minimal.red,
       info: fills.minimal.blue
     }
+  },
+
+  overlay: {
+    default: scales.neutral.N7A
+  },
+
+  chart: {
+    bar: ["#313153", "#8080AB", "#82B0E4", "#1C6BC4"],
+    pie: ["#8080AB", "#313153"],
+    spider: ["#6969AB", "#47B881"],
+    radial: "#78D0AF",
+    progress:{
+      greyBackground: "#ECECEF",
+      restValues: "#C5C5D7",
+      topValues: "#585882",
+      greyLabels: "#C5C5DB",
+      topIsResult: "#47B881",
+      restIsResult: "#EC4C47"
+    }
+
   }
 }
 
