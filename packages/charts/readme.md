@@ -1,13 +1,13 @@
 
 
-#Chart Components
+# Chart Components
 
 **Simple charts components for data visualization**
 
 ```sh
 yarn add @smashing/charts
 ```
-##Usage
+## Usage
 
 **Pie Chart**
 
@@ -15,7 +15,7 @@ yarn add @smashing/charts
   <img src="https://imgur.com/VdUMbLi.png" />
 </p>
 
-####Example Data
+#### Example Data
 
 ```jsx
 const pieChartData = [
