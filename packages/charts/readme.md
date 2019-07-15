@@ -125,8 +125,5 @@ const progressBarData = [
 ]
 ```
 ```jsx
-<ProgressBar
-        width={600}
-        data={progressBarData}
-      />
+<ProgressBar width={600} data={progressBarData} />
 ```
