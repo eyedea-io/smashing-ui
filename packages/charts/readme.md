@@ -15,7 +15,7 @@ yarn add @smashing/charts
   <img src="https://imgur.com/VdUMbLi.png" />
 </p>
 
-#### Example Data
+Example Data
 
 ```jsx
 const pieChartData = [
@@ -30,22 +30,103 @@ const pieChartData = [
 <PieChart width={300} height={300} data={pieChartData} />
 ```
 
-<!-- [![Edit avatar](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/smashingavatar-yov92?fontsize=14)
+**Radial Progress Chart**
 
-#### Subtle(default) appearance
-
-![](https://i.imgur.com/YjcCils.png)
+<p align="center">
+  <img src="https://imgur.com/46rpIFy.png" />
+</p>
 
 ```jsx
-<Avatar name="Sasha Ho" />
+
+<RadialProgress
+        width={200}
+        height={200}
+        data={40}
+        description={"45 votes"}
+      />
+```
+**Bar Chart**
+
+<p align="center">
+  <img src="https://imgur.com/P9Jbl45.png" />
+</p>
+
+Example Data
+
+```jsx
+const barChartData = [
+  {value: 0.27, description: "5 votes"},
+  {value: 0.63, description: "5 votes"},
+  {value: 0.17, description: "5 votes"},
+  {value: 0.55, description: "5 votes"},
+  {value: 0.73, description: "5 votes"},
+  {value: 0.13, description: "5 votes", isResult: true},
+  {value: 0.68, description: "5 votes"},
+  {value: 0.23, description: "5 votes"},
+  {value: 0.36, description: "5 votes"},
+  {value: 0.44, description: "5 votes"}
+]
+```
+```jsx
+<BarChart
+        width={600}
+        height={250}
+        data={barChartData}
+        titles={{left: "Serious 45%", right: "Playful 55%"}}
+      />
+```
+**Spider Chart**
+
+<p align="center">
+  <img src="https://imgur.com/56dFNG6.png" />
+</p>
+
+Example Data
+
+```jsx
+const spiderChartData = {
+  labels: ["Mass Appeal", "Rebel", "Friend", "Young", "Playful"],
+  datasets: [
+    {
+      title: "BS",
+      values: [5, 5, 5, 5, 5]
+    },
+    {
+      title: "Votes",
+      values: [2.5, 2.5, 2.5, 2.5, 2.5]
+    }
+  ]
+}
+```
+```jsx
+<SpiderChart width={500} data={spiderChartData} />
 ```
 
-#### Solid appearance
+**Progress Bar Chart**
 
-![](https://i.imgur.com/C9R6lGt.png)
+<p align="center">
+  <img src="https://imgur.com/w8xaLFz.png" />
+</p>
+
+Example Data
 
 ```jsx
-<Avatar name="Sasha Ho" appearance="solid" />
-``` -->
 
-
+const progressBarData = [
+  {option: "London", votes: 4},
+  {option: "New York", votes: 14, isResult: true},
+  {option: "Sydney", votes: 19},
+  {option: "Paris", votes: 35},
+  {option: "Beijing", votes: 87, isResult: true},
+  {option: "New York", votes: 67},
+  {option: "Sydney", votes: 76},
+  {option: "Sydney", votes: 76},
+  {option: "Paris", votes: 1, isResult: true}
+]
+```
+```jsx
+<ProgressBar
+        width={600}
+        data={progressBarData}
+      />
+```
