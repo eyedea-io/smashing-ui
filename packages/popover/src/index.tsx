@@ -2,7 +2,7 @@ import * as React from "react"
 import {Positioner} from "@smashing/positioner"
 import {Tooltip} from "@smashing/tooltip"
 import {constants} from "@smashing/theme"
-import styled from "styled-components"
+import styled from "styled-components/macro"
 
 const {position: Position} = constants
 export type Position =

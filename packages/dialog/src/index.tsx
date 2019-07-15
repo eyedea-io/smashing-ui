@@ -2,7 +2,7 @@ import * as React from "react"
 import {Paragraph, Heading} from "@smashing/typography"
 import {Overlay} from "@smashing/overlay"
 import {Button, ButtonAppearanceType} from "@smashing/button"
-import styled, {keyframes} from "styled-components"
+import styled, {keyframes} from "styled-components/macro"
 import "@smashing/theme"
 
 const animationEasing = {
