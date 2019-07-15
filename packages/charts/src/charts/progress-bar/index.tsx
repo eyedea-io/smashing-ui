@@ -3,27 +3,8 @@ import Bar from "./bar"
 import Axis from "./axis"
 import {ThemeContext} from "styled-components"
 import {useDefaults} from "@smashing/theme"
+import {ProgressBarProps,ProgressBarDataItem,ProgressBarColors} from '../../types'
 
-interface IProps {
-  width: number
-  data: DataItem[]
-  colors?: Colors
-}
-
-export interface Colors {
-  greyBackground: string
-  restValues: string
-  topValues: string
-  greyLabels: string
-  topIsResult: string
-  restIsResult: string
-}
-
-export interface DataItem {
-  option: string
-  votes: number
-  isResult?: boolean
-}
 
 export interface Margins {
   top: number
@@ -31,7 +12,7 @@ export interface Margins {
   right: number
 }
 
-const Chart: React.SFC<IProps> = ({width, data, ...props}) => {
+const Chart: React.SFC<ProgressBarProps> = ({width, data, ...props}) => {
   const theme = React.useContext(ThemeContext)
   const defaults = useDefaults("progressBarChart", props, {
     colors: theme.colors.chart.progress
@@ -45,8 +26,8 @@ const Chart: React.SFC<IProps> = ({width, data, ...props}) => {
   }
 
   let totalSum = 0
-  let topValues: DataItem[] = []
-  let restValues: DataItem[] = []
+  let topValues: ProgressBarDataItem[] = []
+  let restValues: ProgressBarDataItem[] = []
   data.map(d => (totalSum += d.votes))
   data.sort((a, b) => {
     return b.votes - a.votes
@@ -83,7 +64,7 @@ declare module "styled-components" {
   export interface SmashingProgressBarChartDefaults
     extends Partial<{
       progressBarChart?: {
-        colors?: Colors
+        colors?: ProgressBarColors
       }
     }> {}
 }

@@ -1,9 +1,9 @@
 import * as React from "react"
 import * as d3 from "d3"
-import { DataItems } from "./chart"
+import{SpiderDataItems} from '../../types'
 
 interface IProps {
-  data: DataItems
+  data: SpiderDataItems
   radialScale: Function
   width: number
   colors: string[]

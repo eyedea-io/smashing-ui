@@ -6,26 +6,8 @@ import {useDefaults} from "@smashing/theme"
 import Axes from "./axes"
 import Bar from "./bar"
 import Title from "./title"
+import {BarChartProps,BarChartDataItem} from '../../types'
 
-interface IProps {
-  width: number
-  height: number
-  data: DataItem[]
-  titles?: Titles
-  colors?: [string,string,string,string]
-}
-
-interface Titles {
-  left: string
-  right: string
-}
-
-export interface DataItem {
-  label: number
-  value: number
-  description: string
-  isResult?: boolean
-}
 
 export interface Margins {
   top: number
@@ -46,7 +28,7 @@ export interface Scales {
 
 //TODO: add gradient on domain
 
-const BarChart: React.SFC<IProps> = ({
+const BarChart: React.SFC<BarChartProps> = ({
   width,
   height,
   data,
@@ -61,7 +43,7 @@ const BarChart: React.SFC<IProps> = ({
   }
   const maxValue = Math.max(...data.map(d => d.value))
 
-  const makeLabels = (data: DataItem[]) => {
+  const makeLabels = (data: BarChartDataItem[]) => {
     if (data.length % 2 === 0) {
       let label = data.length / 2
       data.map(item => {
