@@ -1,15 +1,15 @@
 import * as React from "react"
 import * as d3 from "d3"
 
-import { DataItem,Colors } from "./index"
+import {ProgressBarDataItem,ProgressBarColors} from '../../types'
 
 interface IProps {
   width: number
   margins: any
-  topValues: DataItem[]
-  restValues: DataItem[]
+  topValues: ProgressBarDataItem[]
+  restValues: ProgressBarDataItem[]
   totalSum: number
-  colors:Colors
+  colors:ProgressBarColors
 }
 
 const Bar: React.SFC<IProps> = ({
@@ -24,7 +24,7 @@ const Bar: React.SFC<IProps> = ({
   const margin = width - 3 * margins.left
 
   const renderBars = (
-    data: DataItem[],
+    data: ProgressBarDataItem[],
     offsetTop: number,
     id: string,
     label: string

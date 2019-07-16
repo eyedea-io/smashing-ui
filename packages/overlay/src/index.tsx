@@ -3,7 +3,7 @@ import {Transition} from "react-transition-group"
 import {Portal} from "@smashing/portal"
 import {Stack} from "@smashing/stack"
 import {constants} from "@smashing/theme"
-import styled, {keyframes} from "styled-components"
+import styled, {keyframes} from "styled-components/macro"
 import {useCallback} from "react"
 
 const {stackingOrder: StackingOrder} = constants

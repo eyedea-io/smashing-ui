@@ -1,5 +1,5 @@
 import * as tinycolor from "tinycolor2"
-import {DefaultTheme} from "styled-components"
+import {DefaultTheme} from "styled-components/macro"
 import {getLinearGradientWithStates} from "./helpers"
 
 export type IntentType = "success" | "warning" | "info" | "danger" | "none"

@@ -1,4 +1,4 @@
-import {DefaultTheme} from "styled-components"
+import {DefaultTheme} from "styled-components/macro"
 import {TextInputAppearanceType} from "./types"
 
 export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {

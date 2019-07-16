@@ -5,19 +5,15 @@ import * as d3 from "d3"
 import Slice from "./slice"
 import {ThemeContext} from "styled-components"
 import {useDefaults} from "@smashing/theme"
+import {PieChartData} from '../../types'
 
 interface IProps {
   x: number
   y: number
   radius: number
-  data: Data[]
+  data: PieChartData[]
   colors?: [string, string]
   isDonut?: boolean
-}
-
-export interface Data {
-  name: string
-  value: number
 }
 
 const Pie: React.SFC<IProps> = ({x, y, radius, data, isDonut, ...props}) => {

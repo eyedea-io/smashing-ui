@@ -4,14 +4,16 @@ import BrandSprintResult from "./brand-sprint-result"
 import {ThemeContext} from "styled-components"
 import {useDefaults} from "@smashing/theme"
 
-import {Margins, Dimensions, Scales, DataItem} from "./bar-chart"
+import {Margins, Dimensions, Scales} from "./bar-chart"
+import {BarChartDataItem} from '../../types'
+
 
 interface IProps {
   maxValue: number
   scales: Scales
   margins: Margins
   dimensions: Dimensions
-  data: DataItem[]
+  data: BarChartDataItem[]
   colors?: [string, string, string, string]
 }
 

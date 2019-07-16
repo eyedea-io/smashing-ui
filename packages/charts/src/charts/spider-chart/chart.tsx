@@ -8,25 +8,9 @@ import {LineData} from "./polygon"
 import useAlgorithm from "./algorithm"
 import {ThemeContext} from "styled-components"
 import {useDefaults} from "@smashing/theme"
+import{SpiderProps} from '../../types'
 
-interface IProps {
-  width: number
-  data: DataItems
-  colors?: [string, string]
-}
-
-export interface DataItems {
-  labels: string[]
-  colors: string[]
-  datasets: DataObject[]
-}
-
-export interface DataObject {
-  title: string
-  values: number[]
-}
-
-const SpiderChart: React.SFC<IProps> = ({width, data, ...props}) => {
+const SpiderChart: React.SFC<SpiderProps> = ({width, data, ...props}) => {
   const theme = React.useContext(ThemeContext)
   const defaults = useDefaults("spiderChart", props, {
     colors: theme.colors.chart.spider

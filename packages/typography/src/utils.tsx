@@ -1,4 +1,4 @@
-import {DefaultTheme} from "styled-components"
+import {DefaultTheme} from "styled-components/macro"
 import {themedProperty} from "@smashing/theme"
 
 export const getTextColor = (color: string) => (_: {theme: DefaultTheme}) =>

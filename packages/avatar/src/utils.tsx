@@ -1,4 +1,4 @@
-import {DefaultTheme} from "styled-components"
+import {DefaultTheme} from "styled-components/macro"
 import {AvatarProps} from "."
 
 export function hashCode(s: any) {
