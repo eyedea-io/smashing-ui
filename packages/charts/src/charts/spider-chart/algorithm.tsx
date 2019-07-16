@@ -1,5 +1,5 @@
 import * as React from "react"
-import { DataItems } from "./chart"
+import{SpiderDataItems} from '../../types'
 import * as d3 from "d3"
 
 interface Coordinates {
@@ -7,7 +7,7 @@ interface Coordinates {
   y: number
 }
 
-const useAlgorithm = (data: DataItems, calculateCoordinates: Function) => {
+const useAlgorithm = (data: SpiderDataItems, calculateCoordinates: Function) => {
   const [result, setResult] = React.useState(0)
   React.useEffect(() => {
     let polygonsValues = [] as number[][]

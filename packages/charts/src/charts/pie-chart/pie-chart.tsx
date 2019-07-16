@@ -1,17 +1,10 @@
 import * as React from "react"
 
 import Pie from "./pie"
-import {Data} from "./pie"
+import {PieChartData,PieChartProps} from '../../types'
 
-interface IProps {
-  width: number
-  height: number
-  data: Data[]
-  colors?: [string,string]
-  isDonut?: boolean
-}
 
-const PieChart: React.SFC<IProps> = props => {
+const PieChart: React.SFC<PieChartProps> = props => {
   const x = props.width / 2
   const y = props.height / 2
   const minSize = Math.min(props.width, props.height)

@@ -4,7 +4,7 @@ import {Portal} from "@smashing/portal"
 import {Stack} from "@smashing/stack"
 import {constants} from "@smashing/theme"
 import getPosition from "./get-position"
-import styled from "styled-components"
+import styled from "styled-components/macro"
 
 const {position: Position, stackingOrder: StackingOrder} = constants
 export type Position =

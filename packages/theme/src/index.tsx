@@ -4,7 +4,7 @@ import * as deepmerge from "deepmerge"
 import * as React from "react"
 import {themedProperty} from "./utils/themed-property"
 import {useDefaults} from "./utils/use-defaults"
-import {DefaultTheme, ThemeProvider} from "styled-components"
+import {DefaultTheme, ThemeProvider} from "styled-components/macro"
 import {
   getTextSizeForControlHeight,
   getBorderRadiusForControlHeight
