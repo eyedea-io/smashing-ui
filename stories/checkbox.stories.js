@@ -21,7 +21,7 @@ storiesOf("Core|Checkbox", module)
   .add("appearance:primary", () => (
     <React.Fragment>
       <p>
-        <Checkbox checked label="sign" />
+        <Checkbox checked disabled label="sign" />
       </p>
     </React.Fragment>
   ))

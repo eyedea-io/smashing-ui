@@ -1,7 +1,7 @@
 import * as tinycolor from "tinycolor2"
 import {DefaultTheme} from "styled-components/macro"
 import {getLinearGradientWithStates} from "./helpers"
-import {CheckboxProps} from './types'
+
 
 export type AppearanceType =
   "primary"

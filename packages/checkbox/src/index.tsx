@@ -3,27 +3,25 @@ import styled from "styled-components/macro"
 import {Text} from "@smashing/typography"
 import {getCheckboxStyle} from "./styles"
 import {
-  useDefaults,
-  getTextSizeForControlHeight,
-  getBorderRadiusForControlHeight
+  useDefaults
 } from "@smashing/theme"
 import {CheckboxAppearanceType, CheckboxProps, StyledTextProps} from "./types"
 
 const Label = styled(Text)<StyledTextProps>`
   display: flex;
-  align-items:center;
+  align-items: center;
   margin: 0;
-  cursor: ${_ => _.disabled ? "not-allowed":"pointer"}
+  cursor: ${_ => (_.disabled ? "not-allowed" : "pointer")};
 `
 const Box = styled.div.attrs({})<StyledTextProps>`
-width:16px;
-height:16px;
-display: flex;
-justify-content:center;
-margin-right:8px;
-align-items:center;
-border-radius:4px;
- ${_ => getCheckboxStyle(_.appearance)}
+  width: 16px;
+  height: 16px;
+  display: flex;
+  justify-content: center;
+  margin-right: 8px;
+  align-items: center;
+  border-radius: 4px;
+  ${_ => getCheckboxStyle(_.appearance)}
   svg {
     display: flex;
     height: 8px;
@@ -42,20 +40,20 @@ const CheckIcon = ({fill = "currentColor", ...props}) => (
   </svg>
 )
 
-const CheckboxFC: React.FC<CheckboxProps> = ({children,checked, label, ...props}) => {
+const CheckboxFC: React.FC<CheckboxProps> = ({
+  children,
+  checked,
+  label,
+  ...props
+}) => {
   const defaults = useDefaults("checkbox", props, {
-    appearance: "minimal" as CheckboxAppearanceType,
+    appearance: "primary" as CheckboxAppearanceType,
     label: "Stay signed in"
   })
 
   return (
-    <Label as="label" {...defaults}>
-    <Box appearance={defaults.appearance} >
-    {
-      checked && <CheckIcon /> 
-    }
-        
-    </Box>
+    <Label as="label" {...defaults} {...props}>
+      <Box appearance={defaults.appearance}>{checked && <CheckIcon />}</Box>
       {defaults.label}
     </Label>
   )
