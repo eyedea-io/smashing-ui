@@ -29,7 +29,7 @@ export interface CheckboxProps {
   /**
    * Function called when state changes.
    */
-  // onChange?: Function
+  onChange?: React.ChangeEventHandler<HTMLInputElement>
 }
 
 export type StyledTextProps = CheckboxProps &

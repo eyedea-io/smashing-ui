@@ -4,6 +4,33 @@ import {getLinearGradientWithStates} from "./helpers"
 
 export type AppearanceType = "primary" | "minimal"
 
+export const getLabelStyle = (appearance: AppearanceType, disabled:boolean = false, checked:boolean=false) => (_: {
+  theme: DefaultTheme
+}) => {
+  const { colors,fills} = _.theme
+  const disabledAppearance = {
+    color: colors.text.muted
+  }
+  if (disabled) {
+    return disabledAppearance
+  }
+  switch (appearance) {
+    case "primary":
+    return {
+      color: colors.text.dark
+    }
+    case "minimal":
+    if(checked) {
+     return {color: fills.minimal.darkBlue.color}
+    }
+    return {
+      color: colors.text.muted
+    }
+
+}
+}
+
+
 export const getCheckboxStyle = (appearance: AppearanceType, disabled:boolean = false, checked:boolean=false) => (_: {
   theme: DefaultTheme
 }) => {
@@ -18,7 +45,6 @@ export const getCheckboxStyle = (appearance: AppearanceType, disabled:boolean = 
 
   if (disabled) {
     return disabledAppearance
-  } else {
   }
   switch (appearance) {
     case "primary":
@@ -86,7 +112,7 @@ export const getCheckboxStyle = (appearance: AppearanceType, disabled:boolean = 
 
       return {
         color: flat.color,
-        border: checked ? "1px solid #596B87" : "1px solid #A2ADC2",
+        border: checked ? `1px solid ${colors.checkbox.minimal.color}` : `1px solid ${colors.text.muted}`,
         backgroundColor: flat.backgroundColor.base,
         fontWeight: 600,
         ":hover": {

@@ -11,7 +11,9 @@ storiesOf("Core|Checkbox", module)
     <SmashingThemeProvider
       theme={{
         defaults: {
-          label: "Stay signed in"
+          checkbox: {
+            label: 'Stay signed in'
+          }
         }
       }}
     >
@@ -21,42 +23,42 @@ storiesOf("Core|Checkbox", module)
   .add("appearance:primary default", () => (
     <React.Fragment>
       <p>
-        <Checkbox label="sign" />
+        <Checkbox />
       </p>
     </React.Fragment>
   ))
   .add("appearance:primary checked", () => (
     <React.Fragment>
       <p>
-        <Checkbox checked label="sign" />
+        <Checkbox checked />
       </p>
     </React.Fragment>
   ))
   .add("disabled", () => (
     <React.Fragment>
       <p>
-        <Checkbox disabled label="sign" />
+        <Checkbox disabled  />
       </p>
     </React.Fragment>
   ))
   .add("checked disabled", () => (
     <React.Fragment>
       <p>
-        <Checkbox checked disabled label="sign" />
+        <Checkbox checked disabled />
       </p>
     </React.Fragment>
   ))
   .add("appearance:minimal default", () => (
     <React.Fragment>
       <p>
-        <Checkbox appearance="minimal" label="sign" />
+        <Checkbox appearance="minimal" />
       </p>
     </React.Fragment>
   ))
   .add("appearance:minimal checked", () => (
     <React.Fragment>
       <p>
-        <Checkbox appearance="minimal" checked label="sign" />
+        <Checkbox appearance="minimal" checked />
       </p>
     </React.Fragment>
   ))

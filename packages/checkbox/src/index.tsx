@@ -1,7 +1,7 @@
 import * as React from "react"
-import styled from "styled-components/macro"
+import styled,{css} from "styled-components/macro"
 import {Text} from "@smashing/typography"
-import {getCheckboxStyle} from "./styles"
+import {getCheckboxStyle,getLabelStyle} from "./styles"
 import {
   useDefaults
 } from "@smashing/theme"
@@ -12,7 +12,21 @@ const Label = styled(Text)<StyledTextProps>`
   align-items: center;
   margin: 0;
   cursor: ${_ => (_.disabled ? "not-allowed" : "pointer")};
+  ${_ => getLabelStyle(_.appearance,_.disabled,_.checked)};
 `
+const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
+  border: 0;
+  clip: rect(0 0 0 0);
+  clippath: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+`
+
 const Box = styled.div.attrs({})<StyledTextProps>`
   width: 16px;
   height: 16px;
@@ -21,6 +35,7 @@ const Box = styled.div.attrs({})<StyledTextProps>`
   margin-right: 8px;
   align-items: center;
   border-radius: 4px;
+  transition: all 150ms;
   ${_ => getCheckboxStyle(_.appearance,_.disabled,_.checked)};
   svg {
     display: flex;
@@ -34,16 +49,15 @@ const CheckIcon = ({fill = "currentColor"}) => (
     <path
       d="M1 3L3 5L7 1"
       stroke={fill}
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 )
 
 const CheckboxFC: React.FC<CheckboxProps> = ({
   children,
-  label,
   ...props
 }) => {
   const defaults = useDefaults("checkbox", props, {
@@ -53,7 +67,8 @@ const CheckboxFC: React.FC<CheckboxProps> = ({
 
   return (
     <Label as="label" {...defaults} {...props}>
-      <Box appearance={defaults.appearance} {...props}><CheckIcon /></Box>
+    <HiddenCheckbox checked={props.checked} onChange={props.onChange} {...props} />
+      <Box appearance={defaults.appearance} checked={props.checked}  {...props}><CheckIcon /></Box>
       {defaults.label}
     </Label>
   )
