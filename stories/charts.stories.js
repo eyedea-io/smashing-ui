@@ -170,7 +170,7 @@ storiesOf("Charts|Radial Progress", module)
     <SmashingThemeProvider
       theme={{
         defaults: {
-          radialProgress: {
+          radialProgressChart: {
             color: "royalblue"
           }
         }

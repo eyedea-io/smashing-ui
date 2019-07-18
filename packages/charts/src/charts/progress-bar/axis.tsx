@@ -1,11 +1,12 @@
 import * as React from "react"
 import * as d3 from "d3"
-import {DataItem, Margins} from "./index"
+import {Margins} from "./index"
+import {ProgressBarDataItem} from '../../types'
 
 interface IProps {
   width: number
   height: number
-  data?: DataItem[]
+  data?: ProgressBarDataItem[]
   margins: Margins
 }
 

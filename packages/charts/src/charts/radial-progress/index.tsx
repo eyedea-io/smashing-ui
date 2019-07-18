@@ -1,15 +1,7 @@
 import * as React from "react"
 
 import Arc from "./arc"
-
-interface IProps {
-  width: number
-  height: number
-  data: number
-  title?: string
-  description?: string
-  color?: string
-}
+import {RadialProgressProps} from '../../types'
 // TODO : Title with dynamic size
 // const Title = styled.h1`
 //   font-family: sans-serif;
@@ -18,7 +10,7 @@ interface IProps {
 //   margin-bottom: 12px;
 // `
 
-const ProgressChart: React.SFC<IProps> = props => {
+const ProgressChart: React.SFC<RadialProgressProps> = props => {
   const x = props.width / 2
   const y = props.height / 2
   const minSize = Math.min(props.width, props.height)

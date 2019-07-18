@@ -3,7 +3,7 @@ import * as debounce from "debounce"
 import {Positioner} from "@smashing/positioner"
 import {constants} from "@smashing/theme"
 import {Paragraph} from "@smashing/typography"
-import styled, {css} from "styled-components"
+import styled, {css} from "styled-components/macro"
 import * as tinycolor from "tinycolor2"
 
 const {position: Position} = constants

@@ -1,4 +1,4 @@
-import {DefaultTheme} from "styled-components"
+import {DefaultTheme} from "styled-components/macro"
 import {AlertIntentType} from "./types"
 import * as React from "react"
 

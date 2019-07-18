@@ -1,11 +1,11 @@
 import * as React from "react"
 import * as d3 from "d3"
-import { DataItems } from "./chart"
+import{SpiderDataItems} from '../../types'
 
 interface IProps {
   width: number
   radialScale: Function
-  data: DataItems
+  data: SpiderDataItems
 }
 
 const Circles: React.SFC<IProps> = ({ width, data, radialScale }) => {

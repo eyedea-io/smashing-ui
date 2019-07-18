@@ -1,5 +1,5 @@
 import * as React from "react"
-import styled, {ThemeContext, css} from "styled-components"
+import styled, {ThemeContext, css} from "styled-components/macro"
 import {useDefaults} from "@smashing/theme"
 import {AlertIntentType, AlertAppearanceType, AlertProps} from "./types"
 import {Text, Strong} from "@smashing/typography"

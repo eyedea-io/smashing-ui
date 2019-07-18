@@ -1,11 +1,13 @@
 import * as React from "react"
 import * as d3 from "d3"
 
-import {Margins, Scales, DataItem} from "./bar-chart"
+import {Margins, Scales} from "./bar-chart"
+import {BarChartDataItem} from '../../types'
+
 
 interface IProps {
   scales: Scales
-  data: DataItem[]
+  data: BarChartDataItem[]
   margins: Margins
 }
 
