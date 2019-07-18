@@ -8,7 +8,7 @@ export type AppearanceType =
   | "minimal"
 
 export const getCheckboxStyle = (
-  appearance: AppearanceType, props:CheckboxProps
+  appearance: AppearanceType
 ) => (_: {theme: DefaultTheme}) => {
   const {scales, colors} = _.theme
   const disabled = {
