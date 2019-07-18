@@ -30,14 +30,15 @@ export const getCheckboxStyle = (appearance: AppearanceType, disabled:boolean = 
         ),
         focusColor: tinycolor(gradient.start)
           .setAlpha(0.4)
-          .toString()
+          .toString(),
+        border: gradient.end
       }
       return {
         color: "white",
         backgroundColor: "white",
         backgroundImage: primary.backgroundImage.base,
         fontWeight: 600,
-        border: "1px solid #596B87",
+        border: `1px solid ${primary.border}`,
         boxShadow: `inset 0 0 0 1px ${scales.neutral.N5A}, inset 0 -1px 1px 0 ${
           scales.neutral.N2A
         }`,
@@ -85,9 +86,9 @@ export const getCheckboxStyle = (appearance: AppearanceType, disabled:boolean = 
 
       return {
         color: flat.color,
+        border: checked ? "1px solid #596B87" : "1px solid #A2ADC2",
         backgroundColor: flat.backgroundColor.base,
         fontWeight: 600,
-        border: "1px solid #596B87",
         ":hover": {
           backgroundColor: flat.backgroundColor.hover
         },
