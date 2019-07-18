@@ -101,6 +101,7 @@ const colors = {
 
   checkbox: {
     primary: {start: "#557491", end: "#425A70"},
+    default: {start: "#fff", end: "#ccc"},
     minimal:fills.subtle.neutral,
   },
 

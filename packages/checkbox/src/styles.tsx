@@ -2,16 +2,13 @@ import * as tinycolor from "tinycolor2"
 import {DefaultTheme} from "styled-components/macro"
 import {getLinearGradientWithStates} from "./helpers"
 
+export type AppearanceType = "primary" | "minimal"
 
-export type AppearanceType =
-  "primary"
-  | "minimal"
-
-export const getCheckboxStyle = (
-  appearance: AppearanceType
-) => (_: {theme: DefaultTheme}) => {
+export const getCheckboxStyle = (appearance: AppearanceType, disabled:boolean = false, checked:boolean=false) => (_: {
+  theme: DefaultTheme
+}) => {
   const {scales, colors} = _.theme
-  const disabled = {
+  const disabledAppearance = {
     opacity: 0.8,
     backgroundImage: "none",
     backgroundColor: scales.neutral.N2A,
@@ -19,21 +16,28 @@ export const getCheckboxStyle = (
     color: scales.neutral.N7A
   }
 
+  if (disabled) {
+    return disabledAppearance
+  } else {
+  }
   switch (appearance) {
     case "primary":
-      const gradient = colors.checkbox.primary
+      const gradient = checked ? colors.checkbox.primary : colors.checkbox.default
       const primary = {
-        backgroundImage: getLinearGradientWithStates(gradient.start, gradient.end),
+        backgroundImage: getLinearGradientWithStates(
+          gradient.start,
+          gradient.end
+        ),
         focusColor: tinycolor(gradient.start)
           .setAlpha(0.4)
           .toString()
       }
-
       return {
         color: "white",
         backgroundColor: "white",
         backgroundImage: primary.backgroundImage.base,
         fontWeight: 600,
+        border: "1px solid #596B87",
         boxShadow: `inset 0 0 0 1px ${scales.neutral.N5A}, inset 0 -1px 1px 0 ${
           scales.neutral.N2A
         }`,
@@ -51,12 +55,10 @@ export const getCheckboxStyle = (
           boxShadow: `inset 0 0 0 1px ${
             scales.neutral.N4A
           }, inset 0 1px 1px 0 ${scales.neutral.N2A}`
-        },
-        ":disabled": disabled
+        }
       }
     case "minimal":
-      const theme =
-        colors.checkbox[appearance]
+      const theme = colors.checkbox[appearance]
       const backgroundIsTransparent = theme.backgroundColor === "transparent"
       const flat = {
         color: theme.color,
@@ -96,8 +98,7 @@ export const getCheckboxStyle = (
         ":active": {
           backgroundColor: flat.backgroundColor.active,
           boxShadow: `none`
-        },
-        ":disabled": disabled
+        }
       }
   }
 }

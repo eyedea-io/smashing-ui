@@ -18,10 +18,45 @@ storiesOf("Core|Checkbox", module)
       {story()}
     </SmashingThemeProvider>
   ))
-  .add("appearance:primary", () => (
+  .add("appearance:primary default", () => (
+    <React.Fragment>
+      <p>
+        <Checkbox label="sign" />
+      </p>
+    </React.Fragment>
+  ))
+  .add("appearance:primary checked", () => (
+    <React.Fragment>
+      <p>
+        <Checkbox checked label="sign" />
+      </p>
+    </React.Fragment>
+  ))
+  .add("disabled", () => (
+    <React.Fragment>
+      <p>
+        <Checkbox disabled label="sign" />
+      </p>
+    </React.Fragment>
+  ))
+  .add("checked disabled", () => (
     <React.Fragment>
       <p>
         <Checkbox checked disabled label="sign" />
+      </p>
+    </React.Fragment>
+  ))
+  .add("appearance:minimal default", () => (
+    <React.Fragment>
+      <p>
+        <Checkbox appearance="minimal" label="sign" />
+      </p>
+    </React.Fragment>
+  ))
+  .add("appearance:minimal checked", () => (
+    <React.Fragment>
+      <p>
+        <Checkbox appearance="minimal" checked label="sign" />
       </p>
     </React.Fragment>
   ))

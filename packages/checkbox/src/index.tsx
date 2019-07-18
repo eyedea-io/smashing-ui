@@ -21,14 +21,15 @@ const Box = styled.div.attrs({})<StyledTextProps>`
   margin-right: 8px;
   align-items: center;
   border-radius: 4px;
-  ${_ => getCheckboxStyle(_.appearance)}
+  ${_ => getCheckboxStyle(_.appearance,_.disabled,_.checked)};
   svg {
     display: flex;
     height: 8px;
+    visibility: ${_ => (_.checked ? 'visible' : 'hidden')}
   }
 `
 
-const CheckIcon = ({fill = "currentColor", ...props}) => (
+const CheckIcon = ({fill = "currentColor"}) => (
   <svg width="8" height="6" viewBox="0 0 8 6" fill="none">
     <path
       d="M1 3L3 5L7 1"
@@ -42,7 +43,6 @@ const CheckIcon = ({fill = "currentColor", ...props}) => (
 
 const CheckboxFC: React.FC<CheckboxProps> = ({
   children,
-  checked,
   label,
   ...props
 }) => {
@@ -53,7 +53,7 @@ const CheckboxFC: React.FC<CheckboxProps> = ({
 
   return (
     <Label as="label" {...defaults} {...props}>
-      <Box appearance={defaults.appearance}>{checked && <CheckIcon />}</Box>
+      <Box appearance={defaults.appearance} {...props}><CheckIcon /></Box>
       {defaults.label}
     </Label>
   )
