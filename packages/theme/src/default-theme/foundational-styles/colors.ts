@@ -99,6 +99,11 @@ const colors = {
     }
   },
 
+  checkbox: {
+    primary: {start: "#557491", end: "#425A70"},
+    minimal:fills.subtle.neutral,
+  },
+
   overlay: {
     default: scales.neutral.N7A
   },
