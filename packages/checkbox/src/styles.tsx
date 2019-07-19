@@ -4,10 +4,12 @@ import {getLinearGradientWithStates} from "./helpers"
 
 export type AppearanceType = "primary" | "minimal"
 
-export const getLabelStyle = (appearance: AppearanceType, disabled:boolean = false, checked:boolean=false) => (_: {
-  theme: DefaultTheme
-}) => {
-  const { colors,fills} = _.theme
+export const getLabelStyle = (
+  appearance: AppearanceType,
+  disabled: boolean = false,
+  checked: boolean = false
+) => (_: {theme: DefaultTheme}) => {
+  const {colors, fills} = _.theme
   const disabledAppearance = {
     color: colors.text.muted
   }
@@ -16,24 +18,24 @@ export const getLabelStyle = (appearance: AppearanceType, disabled:boolean = fal
   }
   switch (appearance) {
     case "primary":
-    return {
-      color: colors.text.dark
-    }
+      return {
+        color: colors.text.dark
+      }
     case "minimal":
-    if(checked) {
-     return {color: fills.minimal.darkBlue.color}
-    }
-    return {
-      color: colors.text.muted
-    }
-
+      if (checked) {
+        return {color: fills.minimal.darkBlue.color}
+      }
+      return {
+        color: colors.text.muted
+      }
+  }
 }
-}
 
-
-export const getCheckboxStyle = (appearance: AppearanceType, disabled:boolean = false, checked:boolean=false) => (_: {
-  theme: DefaultTheme
-}) => {
+export const getCheckboxStyle = (
+  appearance: AppearanceType,
+  disabled: boolean = false,
+  checked: boolean = false
+) => (_: {theme: DefaultTheme}) => {
   const {scales, colors} = _.theme
   const disabledAppearance = {
     opacity: 0.8,
@@ -48,7 +50,9 @@ export const getCheckboxStyle = (appearance: AppearanceType, disabled:boolean = 
   }
   switch (appearance) {
     case "primary":
-      const gradient = checked ? colors.checkbox.primary : colors.checkbox.default
+      const gradient = checked
+        ? colors.checkbox.primary
+        : colors.checkbox.default
       const primary = {
         backgroundImage: getLinearGradientWithStates(
           gradient.start,
@@ -112,7 +116,9 @@ export const getCheckboxStyle = (appearance: AppearanceType, disabled:boolean = 
 
       return {
         color: flat.color,
-        border: checked ? `1px solid ${colors.checkbox.minimal.color}` : `1px solid ${colors.text.muted}`,
+        border: checked
+          ? `1px solid ${colors.checkbox.minimal.color}`
+          : `1px solid ${colors.text.muted}`,
         backgroundColor: flat.backgroundColor.base,
         fontWeight: 600,
         ":hover": {

@@ -1,10 +1,8 @@
 import * as React from "react"
-import styled,{css} from "styled-components/macro"
+import styled from "styled-components/macro"
 import {Text} from "@smashing/typography"
-import {getCheckboxStyle,getLabelStyle} from "./styles"
-import {
-  useDefaults
-} from "@smashing/theme"
+import {getCheckboxStyle, getLabelStyle} from "./styles"
+import {useDefaults} from "@smashing/theme"
 import {CheckboxAppearanceType, CheckboxProps, StyledTextProps} from "./types"
 
 const Label = styled(Text)<StyledTextProps>`
@@ -12,9 +10,9 @@ const Label = styled(Text)<StyledTextProps>`
   align-items: center;
   margin: 0;
   cursor: ${_ => (_.disabled ? "not-allowed" : "pointer")};
-  ${_ => getLabelStyle(_.appearance,_.disabled,_.checked)};
+  ${_ => getLabelStyle(_.appearance, _.disabled, _.checked)};
 `
-const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
+const HiddenCheckbox = styled.input.attrs({type: "checkbox"})`
   border: 0;
   clip: rect(0 0 0 0);
   clippath: inset(50%);
@@ -36,11 +34,11 @@ const Box = styled.div.attrs({})<StyledTextProps>`
   align-items: center;
   border-radius: 4px;
   transition: all 150ms;
-  ${_ => getCheckboxStyle(_.appearance,_.disabled,_.checked)};
+  ${_ => getCheckboxStyle(_.appearance, _.disabled, _.checked)};
   svg {
     display: flex;
     height: 8px;
-    visibility: ${_ => (_.checked ? 'visible' : 'hidden')}
+    visibility: ${_ => (_.checked ? "visible" : "hidden")};
   }
 `
 
@@ -56,10 +54,7 @@ const CheckIcon = ({fill = "currentColor"}) => (
   </svg>
 )
 
-const CheckboxFC: React.FC<CheckboxProps> = ({
-  children,
-  ...props
-}) => {
+const CheckboxFC: React.FC<CheckboxProps> = ({children, ...props}) => {
   const defaults = useDefaults("checkbox", props, {
     appearance: "primary" as CheckboxAppearanceType,
     label: "Stay signed in"
@@ -67,8 +62,14 @@ const CheckboxFC: React.FC<CheckboxProps> = ({
 
   return (
     <Label as="label" {...defaults} {...props}>
-    <HiddenCheckbox checked={props.checked} onChange={props.onChange} {...props} />
-      <Box appearance={defaults.appearance} checked={props.checked}  {...props}><CheckIcon /></Box>
+      <HiddenCheckbox
+        checked={props.checked}
+        onChange={props.onChange}
+        {...props}
+      />
+      <Box appearance={defaults.appearance} checked={props.checked} {...props}>
+        <CheckIcon />
+      </Box>
       {defaults.label}
     </Label>
   )
