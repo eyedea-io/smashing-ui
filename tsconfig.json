@@ -2,6 +2,7 @@
   "files": [],
   "references": [
     {"path": "packages/alert"},
+    {"path": "packages/select"},
     {"path": "packages/avatar"},
     {"path": "packages/button"},
     {"path": "packages/css"},
