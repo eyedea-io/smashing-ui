@@ -93,6 +93,11 @@ export interface PopoverProps {
    * When true, bring focus inside of the Popover on open.
    */
   bringFocusInside?: boolean
+
+  /**
+   * The minimum distance from the target to the element being positioned.
+   */
+  targetOffset: number
 }
 
 const Target = (props: {
@@ -184,6 +189,7 @@ export const Popover: React.FC<PopoverProps> = ({
   onClose = () => {},
   onOpenComplete = () => {},
   onCloseComplete = () => {},
+  targetOffset = 6,
   bringFocusInside = false,
   ...props
 }) => {
@@ -267,6 +273,7 @@ export const Popover: React.FC<PopoverProps> = ({
           {props.children}
         </Target>
       )}
+      targetOffset={targetOffset}
       isShown={shown}
       position={position}
       animationDuration={animationDuration}

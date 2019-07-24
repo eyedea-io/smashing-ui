@@ -16,22 +16,11 @@ const optionsWithLabels = [
 
 storiesOf("Core|Select", module)
   .addDecorator(story => (
-    <SmashingThemeProvider
-      theme={{
-        defaults: {
-          alert: {
-            hasTrim: true,
-            hasIcon: true
-          }
-        }
-      }}
-    >
-      {story()}
-    </SmashingThemeProvider>
+    <SmashingThemeProvider theme={{}}>{story()}</SmashingThemeProvider>
   ))
   .add("select:default", () => (
     <React.Fragment>
       <Select options={optionsWithLabels} defaultValue="a" />
-      <Select options={options} defaultValue="b" />
+      {/* <Select options={options} defaultValue="b" /> */}
     </React.Fragment>
   ))

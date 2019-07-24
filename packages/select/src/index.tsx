@@ -3,7 +3,7 @@ import {ThemeContext} from "styled-components/macro"
 import {useDefaults} from "@smashing/theme"
 import {AlertIntentType, AlertAppearanceType} from "./types"
 import {Text, Strong} from "@smashing/typography"
-import {} from "./styles"
+import {S, CheckIcon} from "./styles"
 import {Button} from "@smashing/button"
 import {Popover} from "@smashing/popover"
 
@@ -20,23 +20,20 @@ interface SelectProps {
   onChange: (e) => void
 }
 
-const SelectOptions = props => {
-  return (
-    <ul>
-      {props.options.map((item, idx) =>
-        typeof item === "string" ? (
-          <div key={idx} onClick={() => props.onClick(item)}>
-            {item}
-          </div>
-        ) : (
-          <div key={idx} onClick={() => props.onClick(item)}>
-            {item.label}
-          </div>
-        )
-      )}
-    </ul>
-  )
+interface OptionProps {
+  item: Option
+  onClick: (e: React.MouseEvent<HTMLLIElement>) => void
+  isActive: boolean
 }
+
+const Option: React.FC<OptionProps> = ({item, onClick, isActive}) => (
+  <S.SelectListItem onClick={onClick} isActive={isActive}>
+    {isActive && <CheckIcon />}
+    <Text color={isActive ? "dark" : "muted"}>
+      {typeof item === "string" ? item : item.label}
+    </Text>
+  </S.SelectListItem>
+)
 
 const Select: React.FC<SelectProps> = ({children, ...props}) => {
   const {options, defaultValue} = useDefaults<SelectProps>("select", props, {
@@ -54,18 +51,31 @@ const Select: React.FC<SelectProps> = ({children, ...props}) => {
   )
 
   return (
-    <>
-      <Popover
-        content={() => (
-          <SelectOptions options={options} onClick={setChosenOption} />
-        )}
-        position="top"
-      >
-        <Button>
+    <Popover
+      targetOffset={-1}
+      content={() => (
+        <S.SelectList>
+          {options.map((item, idx) => (
+            <Option
+              key={idx}
+              item={item}
+              isActive={
+                typeof item !== "string"
+                  ? item.value === (chosenOption as any).value
+                  : item === chosenOption
+              }
+              onClick={() => setChosenOption(item)}
+            />
+          ))}
+        </S.SelectList>
+      )}
+    >
+      <S.SelectButton>
+        <Text color="dark">
           {typeof chosenOption === "string" ? chosenOption : chosenOption.label}
-        </Button>
-      </Popover>
-    </>
+        </Text>
+      </S.SelectButton>
+    </Popover>
   )
 }
 
