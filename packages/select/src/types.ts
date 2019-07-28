@@ -1,10 +1,18 @@
-export declare type AlertIntentType = "success" | "warning" | "info" | "danger"
-export declare type AlertAppearanceType = "default" | "inline" | "card"
-export type AlertProps = {
-  intent?: AlertIntentType
-  appearance?: AlertAppearanceType
-  title?: React.ReactNode
-  children?: React.ReactNode
-  hasTrim?: boolean
-  hasIcon?: boolean
+export type Option =
+  | {
+      label: string
+      value: string
+    }
+  | string
+
+export interface SelectProps {
+  options: Option[]
+  defaultValue: string
+  onChange: (e) => void
+}
+
+export interface OptionProps {
+  item: Option
+  onClick: (e: React.MouseEvent<HTMLLIElement>) => void
+  isActive: boolean
 }

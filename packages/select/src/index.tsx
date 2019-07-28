@@ -1,32 +1,11 @@
 import * as React from "react"
-import {ThemeContext} from "styled-components/macro"
 import {useDefaults} from "@smashing/theme"
-import {AlertIntentType, AlertAppearanceType} from "./types"
-import {Text, Strong} from "@smashing/typography"
-import {S, CheckIcon} from "./styles"
-import {Button} from "@smashing/button"
+import {SelectProps, OptionProps, Option} from "./types"
+import {Text} from "@smashing/typography"
+import {S, CheckIcon, ArrowIcon} from "./styles"
 import {Popover} from "@smashing/popover"
 
-type Option =
-  | {
-      label: string
-      value: string
-    }
-  | string
-
-interface SelectProps {
-  options: Option[]
-  defaultValue: string
-  onChange: (e) => void
-}
-
-interface OptionProps {
-  item: Option
-  onClick: (e: React.MouseEvent<HTMLLIElement>) => void
-  isActive: boolean
-}
-
-const Option: React.FC<OptionProps> = ({item, onClick, isActive}) => (
+const OptionItem: React.FC<OptionProps> = ({item, onClick, isActive}) => (
   <S.SelectListItem onClick={onClick} isActive={isActive}>
     {isActive && <CheckIcon />}
     <Text color={isActive ? "dark" : "muted"}>
@@ -42,21 +21,28 @@ const Select: React.FC<SelectProps> = ({children, ...props}) => {
     onChange: () => undefined
   })
 
-  const theme = React.useContext(ThemeContext)
-
+  const [isOpen, setOpen] = React.useState(false)
   const [chosenOption, setChosenOption] = React.useState<Option>(
     options.find(
       item => typeof item !== "string" && item.value === defaultValue
     ) || defaultValue
   )
 
+  const handleOpen = () => setOpen(!isOpen)
+
   return (
     <Popover
+      style={{
+        borderTopLeftRadius: 0,
+        borderTopRightRadius: 0
+      }}
       targetOffset={-1}
+      onOpen={handleOpen}
+      onClose={handleOpen}
       content={() => (
         <S.SelectList>
           {options.map((item, idx) => (
-            <Option
+            <OptionItem
               key={idx}
               item={item}
               isActive={
@@ -70,10 +56,13 @@ const Select: React.FC<SelectProps> = ({children, ...props}) => {
         </S.SelectList>
       )}
     >
-      <S.SelectButton>
-        <Text color="dark">
+      <S.SelectButton isOpen={isOpen}>
+        <Text>
           {typeof chosenOption === "string" ? chosenOption : chosenOption.label}
         </Text>
+        <S.RotateAnimation isOpen={isOpen}>
+          <ArrowIcon />
+        </S.RotateAnimation>
       </S.SelectButton>
     </Popover>
   )
@@ -85,10 +74,9 @@ declare module "styled-components" {
   export interface SmashingAlertDefaults
     extends Partial<{
       select?: {
-        intent?: AlertIntentType
-        appearance?: AlertAppearanceType
-        hasTrim: boolean
-        hasIcon: boolean
+        options: Option[]
+        defaultValue: string
+        onChange: (e) => void
       }
     }> {}
 }

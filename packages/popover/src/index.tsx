@@ -98,6 +98,11 @@ export interface PopoverProps {
    * The minimum distance from the target to the element being positioned.
    */
   targetOffset: number
+
+  /**
+   * Custom styles
+   */
+  style: React.CSSProperties
 }
 
 const Target = (props: {
@@ -190,6 +195,7 @@ export const Popover: React.FC<PopoverProps> = ({
   onOpenComplete = () => {},
   onCloseComplete = () => {},
   targetOffset = 6,
+  style: componentStyle,
   bringFocusInside = false,
   ...props
 }) => {
@@ -287,7 +293,7 @@ export const Popover: React.FC<PopoverProps> = ({
             popoverNode.current = ref
           }}
           data-state={state}
-          style={style}
+          style={{...style, ...componentStyle}}
           {...props.statelessProps}
         >
           {typeof props.content === "function"
