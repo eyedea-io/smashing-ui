@@ -2,14 +2,14 @@ import * as tinycolor from "tinycolor2"
 import {DefaultTheme} from "styled-components/macro"
 import {getLinearGradientWithStates} from "./helpers"
 
-export type AppearanceType = "primary" | "minimal"
+export type AppearanceType = "primary" | "minimal" | "card"
 
 export const getLabelStyle = (
   appearance: AppearanceType,
   disabled: boolean = false,
   checked: boolean = false
 ) => (_: {theme: DefaultTheme}) => {
-  const {colors, fills} = _.theme
+  const {colors, fills, scales} = _.theme
   const disabledAppearance = {
     color: colors.text.muted
   }
@@ -22,11 +22,19 @@ export const getLabelStyle = (
         color: colors.text.dark
       }
     case "minimal":
-      if (checked) {
-        return {color: fills.minimal.darkBlue.color}
-      }
       return {
-        color: colors.text.muted
+        color: checked ? fills.minimal.darkBlue.color : colors.text.muted
+      }
+    case "card":
+      return {
+        color: checked ? "white" : fills.minimal.darkBlue.color,
+        backgroundColor: checked ? colors.checkbox.card : "white",
+        fontWeight: 600,
+        padding: 16,
+        borderRadius: 8,
+        boxShadow: checked
+          ? ` inset 0px 2px 4px ${scales.neutral.N6A}`
+          : `0px 2px 4px ${scales.neutral.N6A}`
       }
   }
 }
@@ -133,5 +141,7 @@ export const getCheckboxStyle = (
           boxShadow: `none`
         }
       }
+    case "card":
+      return {}
   }
 }

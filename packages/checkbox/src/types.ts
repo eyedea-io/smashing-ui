@@ -10,10 +10,6 @@ export interface CheckboxProps {
    */
   name?: string
   /**
-   * Label of the checkbox.
-   */
-  label?: string
-  /**
    * Apperance of the checkbox.
    * Can be "primary" or "minimal".
    */

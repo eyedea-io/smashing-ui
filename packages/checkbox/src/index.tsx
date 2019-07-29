@@ -11,11 +11,14 @@ const Label = styled(Text)<StyledTextProps>`
   margin: 0;
   cursor: ${_ => (_.disabled ? "not-allowed" : "pointer")};
   ${_ => getLabelStyle(_.appearance, _.disabled, _.checked)};
+  svg {
+    fill: ${_ => (_.checked ? "red" : "blue")};
+    padding-right: 8px;
+  }
 `
 const HiddenCheckbox = styled.input.attrs({type: "checkbox"})`
   border: 0;
   clip: rect(0 0 0 0);
-  clippath: inset(50%);
   height: 1px;
   margin: -1px;
   overflow: hidden;
@@ -56,8 +59,7 @@ const CheckIcon = ({fill = "currentColor"}) => (
 
 const CheckboxFC: React.FC<CheckboxProps> = ({children, ...props}) => {
   const defaults = useDefaults("checkbox", props, {
-    appearance: "primary" as CheckboxAppearanceType,
-    label: "Stay signed in"
+    appearance: "primary" as CheckboxAppearanceType
   })
 
   return (
@@ -67,10 +69,17 @@ const CheckboxFC: React.FC<CheckboxProps> = ({children, ...props}) => {
         onChange={props.onChange}
         {...props}
       />
-      <Box appearance={defaults.appearance} checked={props.checked} {...props}>
-        <CheckIcon />
-      </Box>
-      {defaults.label}
+      {defaults.appearance === "primary" ||
+      defaults.appearance === "minimal" ? (
+        <Box
+          appearance={defaults.appearance}
+          checked={props.checked}
+          {...props}
+        >
+          <CheckIcon />
+        </Box>
+      ) : null}
+      {children}
     </Label>
   )
 }
@@ -84,7 +93,6 @@ declare module "styled-components" {
     extends Partial<{
       checkbox?: {
         appearance?: CheckboxAppearanceType
-        label: string
       }
     }> {}
 }

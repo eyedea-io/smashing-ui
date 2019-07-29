@@ -103,6 +103,7 @@ const colors = {
     primary: {start: "#557491", end: "#425A70"},
     default: {start: "#fff", end: "#DCDCDC"},
     minimal:fills.minimal.darkBlue,
+    card: "#F43A45"
     
   },
 
