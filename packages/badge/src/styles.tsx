@@ -2,8 +2,7 @@ import {Strong, StrongProps} from "@smashing/typography"
 import styled, {css} from "styled-components/macro"
 import {Colors} from "./types"
 
-interface StyledBadgeProps
-  extends Pick<StrongProps, Exclude<keyof StrongProps, "color">> {
+interface StyledBadgeProps extends StrongProps {
   color: any
   backgroundColor: Colors
   appearance: "solid" | "subtle"
