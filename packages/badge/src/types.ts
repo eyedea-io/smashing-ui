@@ -9,7 +9,7 @@ export type Colors =
   | "teal"
   | "white"
 
-export interface BadgeProps {
+export interface Props {
   color: Colors
   appearance: "solid" | "subtle"
 }
