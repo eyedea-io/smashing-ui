@@ -13,6 +13,19 @@ export const getLabelStyle = (
   const disabledAppearance = {
     color: colors.text.muted
   }
+  const disabledCardAppearance = {
+    color: colors.text.muted,
+    backgroundColor: "white",
+    fontWeight: 600,
+    padding: 16,
+    borderRadius: 8,
+    boxShadow: checked
+      ? ` inset 0px 2px 4px ${scales.neutral.N6A}`
+      : `0px 2px 4px ${scales.neutral.N6A}`
+  }
+  if (disabled && appearance === "card") {
+    return disabledCardAppearance
+  }
   if (disabled) {
     return disabledAppearance
   }

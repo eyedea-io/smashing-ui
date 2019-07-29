@@ -110,3 +110,13 @@ storiesOf("Core|Checkbox", module)
       </p>
     </React.Fragment>
   ))
+  .add("appearance:card disabled", () => (
+    <React.Fragment>
+      <p>
+        <Checkbox appearance="card" disabled>
+          {icon}
+          Stay signed in
+        </Checkbox>
+      </p>
+    </React.Fragment>
+  ))

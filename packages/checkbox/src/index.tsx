@@ -12,8 +12,7 @@ const Label = styled(Text)<StyledTextProps>`
   cursor: ${_ => (_.disabled ? "not-allowed" : "pointer")};
   ${_ => getLabelStyle(_.appearance, _.disabled, _.checked)};
   svg {
-    fill: ${_ => (_.checked ? "red" : "blue")};
-    padding-right: 8px;
+    margin-right:${_ => (_.appearance ==="card" && "8px")};
   }
 `
 const HiddenCheckbox = styled.input.attrs({type: "checkbox"})`

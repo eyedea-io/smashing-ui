@@ -1,4 +1,4 @@
-export type CheckboxAppearanceType = "primary" | "minimal"
+export type CheckboxAppearanceType = "primary" | "minimal" | "card"
 
 export interface CheckboxProps {
   /**
