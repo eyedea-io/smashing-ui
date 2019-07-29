@@ -39,16 +39,16 @@ storiesOf("Core|Badge", module)
   ))
   .add("appearance:solid", () => (
     <React.Fragment>
-      <Badge color="green" marginLeft={8} isSolid>
+      <Badge color="green" marginLeft={8} appearance="solid">
         Green
       </Badge>
-      <Badge color="red" marginLeft={8} isSolid>
+      <Badge color="red" marginLeft={8} appearance="solid">
         Red
       </Badge>
-      <Badge color="blue" marginLeft={8} isSolid>
+      <Badge color="blue" marginLeft={8} appearance="solid">
         Blue
       </Badge>
-      <Badge color="teal" marginLeft={8} isSolid>
+      <Badge color="teal" marginLeft={8} appearance="solid">
         Teal
       </Badge>
     </React.Fragment>

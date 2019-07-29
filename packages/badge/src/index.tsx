@@ -1,25 +1,20 @@
 import * as React from "react"
 import {ThemeContext} from "styled-components/macro"
 import {useDefaults} from "@smashing/theme"
-import {BadgeProps} from "./types"
-import {Strong} from "@smashing/typography"
-import {getBadgeProps} from "./styles"
+import {BadgeProps, Colors} from "./types"
+import {StyledBadge} from "./styles"
 
 const Badge: React.FC<BadgeProps> = ({children, ...props}) => {
-  const {color: propsColor, isSolid, ...defaults} = useDefaults(
+  const {color, appearance, ...defaults} = useDefaults<BadgeProps>(
     "badge",
     props,
     {
       color: "blue",
-      isSolid: false
+      appearance: "subtle"
     }
   )
 
   const theme = React.useContext(ThemeContext)
-  const {color, backgroundColor} = getBadgeProps(theme, {
-    color: propsColor,
-    isSolid
-  })
 
   const style = {
     padding: "2px 6px",
@@ -27,25 +22,26 @@ const Badge: React.FC<BadgeProps> = ({children, ...props}) => {
   }
 
   return (
-    <Strong
+    <StyledBadge
       variant={300}
-      color={color}
-      backgroundColor={backgroundColor}
+      color={appearance === "subtle" ? color : "white"}
+      backgroundColor={color}
+      appearance={appearance}
       style={{...style, ...defaults}}
     >
       {children}
-    </Strong>
+    </StyledBadge>
   )
 }
 
 export {Badge, BadgeProps}
 
 declare module "styled-components" {
-  export interface SmashingAlertDefaults
+  export interface SmashingBadgeDefaults
     extends Partial<{
       badge?: {
-        color: string
-        isSolid: boolean
+        color: Colors
+        appearance: "solid" | "subtle"
       }
     }> {}
 }
