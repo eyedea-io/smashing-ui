@@ -12,7 +12,6 @@ storiesOf("Core|Spinner", module)
       theme={{
         defaults: {
           Spinner: {
-            size:24
           }
         }
       }}
@@ -20,10 +19,24 @@ storiesOf("Core|Spinner", module)
       {story()}
     </SmashingThemeProvider>
   ))
-  .add("appearance:default", () => (
+  .add("Default", () => (
     <React.Fragment>
       <p>
         <Spinner />
+      </p>
+    </React.Fragment>
+  ))
+  .add("Small", () => (
+    <React.Fragment>
+      <p>
+        <Spinner size={24}/>
+      </p>
+    </React.Fragment>
+  ))
+  .add("Color", () => (
+    <React.Fragment>
+      <p>
+        <Spinner color="royalblue"/>
       </p>
     </React.Fragment>
   ))
