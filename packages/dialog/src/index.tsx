@@ -1,9 +1,9 @@
-import * as React from "react"
-import {Paragraph, Heading} from "@smashing/typography"
-import {Overlay} from "@smashing/overlay"
-import {Button, ButtonAppearanceType} from "@smashing/button"
-import styled, {keyframes} from "styled-components/macro"
-import "@smashing/theme"
+import * as React from 'react'
+import {Paragraph, Heading} from '@smashing/typography'
+import {Overlay} from '@smashing/overlay'
+import {Button, ButtonAppearanceType} from '@smashing/button'
+import styled, {keyframes} from 'styled-components'
+import '@smashing/theme'
 
 const animationEasing = {
   deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
@@ -53,12 +53,12 @@ const S = {
     display: flex;
     flex-direction: column;
 
-    &[data-state="entering"],
-    &[data-state="entered"] {
+    &[data-state='entering'],
+    &[data-state='entered'] {
       animation: ${openAnimation} ${ANIMATION_DURATION}ms
         ${animationEasing.deceleration} both;
     }
-    &[data-state="exiting"] {
+    &[data-state='exiting'] {
       animation: ${closeAnimation} ${ANIMATION_DURATION}ms
         ${animationEasing.acceleration} both;
     }
@@ -117,15 +117,15 @@ export const Dialog: React.FC<DialogProps> = ({
   hasCancel = true,
   isHeaderSeparated = true,
   isFooterSeparated = true,
-  intent = "info",
+  intent = 'info',
   width = 560,
-  topOffset = "12vmin",
-  sideOffset = "16px",
+  topOffset = '12vmin',
+  sideOffset = '16px',
   minHeightContent = 80,
-  cancelAppearance = "default",
-  cancelLabel = "Cancel",
-  confirmAppearance = "primary",
-  confirmLabel = "Confirm",
+  cancelAppearance = 'default',
+  cancelLabel = 'Cancel',
+  confirmAppearance = 'primary',
+  confirmLabel = 'Confirm',
   isConfirmLoading = false,
   isConfirmDisabled = false,
   shouldCloseOnOverlayClick = true,
@@ -141,21 +141,21 @@ export const Dialog: React.FC<DialogProps> = ({
   children
 }) => {
   const sideOffsetWithUnit =
-    typeof sideOffset === "number" && Number.isInteger(sideOffset)
+    typeof sideOffset === 'number' && Number.isInteger(sideOffset)
       ? `${sideOffset}px`
       : sideOffset
   const maxWidth = `calc(100% - ${sideOffsetWithUnit} * 2)`
   const topOffsetWithUnit =
-    typeof topOffset === "number" && Number.isInteger(topOffset)
+    typeof topOffset === 'number' && Number.isInteger(topOffset)
       ? `${topOffset}px`
       : topOffset
   const maxHeight = `calc(100% - ${topOffsetWithUnit} * 2)`
   const renderChildren = (close: () => void) => {
-    if (typeof children === "function") {
+    if (typeof children === 'function') {
       return (children as any)({close})
     }
 
-    if (typeof children === "string") {
+    if (typeof children === 'string') {
       return <Paragraph>{children}</Paragraph>
     }
 
@@ -170,9 +170,9 @@ export const Dialog: React.FC<DialogProps> = ({
       onExited={onCloseComplete}
       onEntered={onOpenComplete}
       containerProps={{
-        display: "flex",
-        alignItems: "flex-start",
-        justifyContent: "center"
+        display: 'flex',
+        alignItems: 'flex-start',
+        justifyContent: 'center'
       }}
       preventBodyScrolling={preventBodyScrolling}
     >
@@ -201,7 +201,7 @@ export const Dialog: React.FC<DialogProps> = ({
                     viewBox="0 0 16 16"
                     width={14}
                     height={14}
-                    style={{fill: "rgb(102, 120, 138)"}}
+                    style={{fill: 'rgb(102, 120, 138)'}}
                   >
                     <path
                       d="M9.41 8l3.29-3.29c.19-.18.3-.43.3-.71a1.003 1.003 0 0 0-1.71-.71L8 6.59l-3.29-3.3a1.003 1.003 0 0 0-1.42 1.42L6.59 8 3.3 11.29c-.19.18-.3.43-.3.71a1.003 1.003 0 0 0 1.71.71L8 9.41l3.29 3.29c.18.19.43.3.71.3a1.003 1.003 0 0 0 .71-1.71L9.41 8z"
@@ -263,7 +263,7 @@ export interface DialogProps {
   /**
    * The intent of the Dialog. Used for the button.
    */
-  intent?: "none" | "success" | "warning" | "danger" | "info"
+  intent?: 'none' | 'success' | 'warning' | 'danger' | 'info'
 
   /**
    * When true, the dialog is shown.

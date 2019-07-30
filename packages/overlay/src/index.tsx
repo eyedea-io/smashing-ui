@@ -1,10 +1,10 @@
-import * as React from "react"
-import {Transition} from "react-transition-group"
-import {Portal} from "@smashing/portal"
-import {Stack} from "@smashing/stack"
-import {constants} from "@smashing/theme"
-import styled, {keyframes} from "styled-components/macro"
-import {useCallback} from "react"
+import * as React from 'react'
+import {Transition} from 'react-transition-group'
+import {Portal} from '@smashing/portal'
+import {Stack} from '@smashing/stack'
+import {constants} from '@smashing/theme'
+import styled, {keyframes} from 'styled-components'
+import {useCallback} from 'react'
 
 const {stackingOrder: StackingOrder} = constants
 
@@ -56,16 +56,16 @@ const S = {
       display: block;
       width: 100%;
       height: 100%;
-      content: " ";
+      content: ' ';
     }
 
-    &[data-state="entering"]::before,
-    &[data-state="entered"]::before {
+    &[data-state='entering']::before,
+    &[data-state='entered']::before {
       animation: ${fadeInAnimation} ${ANIMATION_DURATION}ms
         ${animationEasing.deceleration} both;
     }
-    &[data-state="exiting"]::before,
-    &[data-state="exited"]::before {
+    &[data-state='exiting']::before,
+    &[data-state='exited']::before {
       animation: ${fadeOutAnimation} ${ANIMATION_DURATION}ms
         ${animationEasing.acceleration} both;
     }
@@ -120,13 +120,13 @@ export const Overlay: React.FC<OverlayProps> = ({
         // Element marked autofocus has higher priority than the other clowns
         const autofocusElement = containerElement.current.querySelector<
           HTMLElement
-        >("[autofocus]")
+        >('[autofocus]')
         const wrapperElement = containerElement.current.querySelector<
           HTMLElement
-        >("[tabindex]")
+        >('[tabindex]')
         const buttonElement = containerElement.current.querySelector<
           HTMLElement
-        >("button")
+        >('button')
 
         if (autofocusElement) {
           autofocusElement.focus()
@@ -191,7 +191,7 @@ export const Overlay: React.FC<OverlayProps> = ({
   }
 
   const handleEntering = (node: HTMLElement) => {
-    document.body.addEventListener("keydown", onEsc, false)
+    document.body.addEventListener('keydown', onEsc, false)
     onEntering(node)
   }
 
@@ -207,7 +207,7 @@ export const Overlay: React.FC<OverlayProps> = ({
   }
 
   const handleExiting = (node: HTMLElement) => {
-    document.body.removeEventListener("keydown", onEsc, false)
+    document.body.removeEventListener('keydown', onEsc, false)
     bringFocusBackToTarget()
     onExiting(node)
   }
@@ -231,7 +231,7 @@ export const Overlay: React.FC<OverlayProps> = ({
   React.useEffect(() => {
     return () => {
       handleBodyScroll(false)
-      document.body.removeEventListener("keydown", onEsc, false)
+      document.body.removeEventListener('keydown', onEsc, false)
     }
   }, [handleBodyScroll, onEsc])
 
@@ -261,7 +261,7 @@ export const Overlay: React.FC<OverlayProps> = ({
                 zIndex={zIndex}
                 {...containerProps}
               >
-                {typeof children === "function"
+                {typeof children === 'function'
                   ? children({
                       state,
                       close
@@ -346,7 +346,7 @@ export interface OverlayProps {
 }
 
 function safeInvoke(fn: any, ...args: any[]) {
-  if (typeof fn === "function") {
+  if (typeof fn === 'function') {
     return fn(...args)
   }
 }
@@ -361,9 +361,9 @@ function preventBodyScroll(preventScroll: boolean) {
   /** Apply or remove overflow style */
   if (preventScroll) {
     previousOverflow = document.body.style.overflow
-    document.body.style.overflow = "hidden"
+    document.body.style.overflow = 'hidden'
   } else {
-    document.body.style.overflow = previousOverflow || ""
+    document.body.style.overflow = previousOverflow || ''
   }
 
   /** Get the _new width_ of the body (this will tell us the scrollbar width) */
@@ -373,8 +373,8 @@ function preventBodyScroll(preventScroll: boolean) {
   /** If there's a diff due to scrollbars, then account for it with padding */
   if (preventScroll) {
     previousPaddingRight = document.body.style.paddingRight
-    document.body.style.paddingRight = Math.max(0, scrollBarWidth || 0) + "px"
+    document.body.style.paddingRight = Math.max(0, scrollBarWidth || 0) + 'px'
   } else {
-    document.body.style.paddingRight = previousPaddingRight || ""
+    document.body.style.paddingRight = previousPaddingRight || ''
   }
 }

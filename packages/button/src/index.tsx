@@ -1,18 +1,18 @@
-import * as React from "react"
-import styled from "styled-components/macro"
-import {Text} from "@smashing/typography"
-import {getButtonStyle} from "./styles"
+import * as React from 'react'
+import styled from 'styled-components'
+import {Text} from '@smashing/typography'
+import {getButtonStyle} from './styles'
 import {
   useDefaults,
   getTextSizeForControlHeight,
   getBorderRadiusForControlHeight
-} from "@smashing/theme"
+} from '@smashing/theme'
 import {
   ButtonIntentType,
   ButtonAppearanceType,
   ButtonProps,
   StyledTextProps
-} from "./types"
+} from './types'
 
 const StyledText = styled(Text)<StyledTextProps>`
   border: none;
@@ -24,10 +24,10 @@ const StyledText = styled(Text)<StyledTextProps>`
   ${_ => getButtonStyle(_.appearance, _.intent)};
 `
 const ButtonFC: React.FC<ButtonProps> = ({children, innerRef, ...props}) => {
-  const defaults = useDefaults("button", props, {
+  const defaults = useDefaults('button', props, {
     height: 32,
-    appearance: "default" as ButtonAppearanceType,
-    intent: "none" as ButtonIntentType
+    appearance: 'default' as ButtonAppearanceType,
+    intent: 'none' as ButtonIntentType
   })
 
   return (
@@ -48,7 +48,7 @@ const Button = styled(ButtonFC)``
 
 export {Button, ButtonProps, ButtonAppearanceType, ButtonIntentType}
 
-declare module "styled-components" {
+declare module 'styled-components' {
   export interface SmashingButtonDefaults
     extends Partial<{
       button?: {

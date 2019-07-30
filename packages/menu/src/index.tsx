@@ -1,6 +1,6 @@
-import * as React from "react"
-import styled from "styled-components/macro"
-import {Text, Heading} from "@smashing/typography"
+import * as React from 'react'
+import styled from 'styled-components'
+import {Text, Heading} from '@smashing/typography'
 
 const KeyCodes = {
   ArrowUp: 38,
@@ -27,7 +27,7 @@ export const Menu: React.FC & {
     )
 
     if (menuItems.length === 0) {
-      throw new Error("The menu has no menu items")
+      throw new Error('The menu has no menu items')
     }
 
     const firstItem = menuItems[0]
@@ -77,7 +77,7 @@ export const Menu: React.FC & {
 
     menuItems.forEach(menuItem => {
       // Handle key presses for menuItem
-      menuItem.addEventListener("keydown", e => {
+      menuItem.addEventListener('keydown', e => {
         // Go to next/previous item if it exists
         // or loop around
 
@@ -117,7 +117,7 @@ const S = {
     display: flex;
     align-items: center;
 
-    &[data-isselectable="true"] {
+    &[data-isselectable='true'] {
       cursor: pointer;
     }
 
@@ -158,8 +158,8 @@ const S = {
 }
 
 const MenuItem: React.FC<MenuItemProps> = ({
-  intent = "none",
-  appearance = "default",
+  intent = 'none',
+  appearance = 'default',
   onSelect = () => {},
   children,
   secondaryText,
@@ -171,16 +171,16 @@ const MenuItem: React.FC<MenuItemProps> = ({
   }
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === "Enter" || event.key === " ") {
+    if (event.key === 'Enter' || event.key === ' ') {
       safeInvoke(onSelect, event)
       event.preventDefault()
     }
     safeInvoke((props as any).onKeyPress, event)
   }
 
-  if (process.env.NODE_ENV !== "production" && "onClick" in props) {
+  if (process.env.NODE_ENV !== 'production' && 'onClick' in props) {
     console.warn(
-      "<Menu.Item> expects `onSelect` prop, but you passed `onClick`."
+      '<Menu.Item> expects `onSelect` prop, but you passed `onClick`.'
     )
   }
 
@@ -247,12 +247,12 @@ export interface MenuItemProps {
   /**
    * The default theme only supports one default appearance.
    */
-  appearance?: "default"
+  appearance?: 'default'
 
   /**
    * The intent of the menu item.
    */
-  intent?: "none" | "success" | "warning" | "danger" | "info"
+  intent?: 'none' | 'success' | 'warning' | 'danger' | 'info'
 
   /**
    * Element type to use for the menu item.
@@ -264,7 +264,7 @@ export interface MenuItemProps {
 }
 
 function safeInvoke(fn, ...args) {
-  if (typeof fn === "function") {
+  if (typeof fn === 'function') {
     return fn(...args)
   }
 }

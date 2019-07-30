@@ -6358,10 +6358,10 @@ escape-string-regexp@1.0.5, escape-string-regexp@^1.0.2, escape-string-regexp@^1
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
 
-eslint-config-smashing-app@0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/eslint-config-smashing-app/-/eslint-config-smashing-app-0.3.2.tgz#10805da69a47796d12e41b8a216fa616ea6e9a19"
-  integrity sha512-3Bp16kF1+zpZherKYN47yAsFmlf1SEyw/KUdzupTdyCktJ851xS9ZCI8FGj90W4Euj8F7Qxij4Cn8FD8X0huDg==
+eslint-config-smashing-app@0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/eslint-config-smashing-app/-/eslint-config-smashing-app-0.3.4.tgz#7a13a17c97cf256913c6c68069f4f4dda279dd98"
+  integrity sha512-pxbIFoMT8DUOeS2o6HVp9oavOfJFVfZYGX3p7Yg05Y4zGGBwVhWQPqeilHa7ySHjBOb6oJ+jPttmPMgOGw8NTA==
   dependencies:
     confusing-browser-globals "^1.0.7"
 

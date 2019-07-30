@@ -1,5 +1,5 @@
-import {DefaultTheme} from "styled-components/macro"
-import {AvatarProps} from "."
+import {DefaultTheme} from 'styled-components'
+import {AvatarProps} from '.'
 
 export function hashCode(s: any) {
   const str = String(s)
@@ -18,15 +18,15 @@ export function hashCode(s: any) {
   return Math.abs(hash)
 }
 
-export function getInitials(name?: string, fallback = "?") {
-  if (!name || typeof name !== "string") return fallback
+export function getInitials(name?: string, fallback = '?') {
+  if (!name || typeof name !== 'string') return fallback
 
   return name
-    .replace(/\s+/, " ")
-    .split(" ")
+    .replace(/\s+/, ' ')
+    .split(' ')
     .slice(0, 2)
     .map(v => v && v[0].toUpperCase())
-    .join("")
+    .join('')
 }
 
 export function getAvatarInitialsFontSize(
@@ -47,8 +47,8 @@ export const getAvatarProps = ({
   hashValue
 }: {
   theme: DefaultTheme
-  appearance: "solid" | "subtle"
-  color: Exclude<AvatarProps["color"], undefined>
+  appearance: 'solid' | 'subtle'
+  color: Exclude<AvatarProps['color'], undefined>
   hashValue: number
 }): {
   color: string
@@ -56,7 +56,7 @@ export const getAvatarProps = ({
 } => {
   const appearances = theme.fills[appearance]
 
-  if (color === "automatic") {
+  if (color === 'automatic') {
     const keys = Object.keys(appearances)
     const key = keys[hashValue % keys.length]
     return appearances[key]

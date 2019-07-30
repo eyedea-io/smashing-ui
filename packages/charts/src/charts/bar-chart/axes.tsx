@@ -1,7 +1,7 @@
-import * as React from "react"
-import Axis from "./axis"
+import * as React from 'react'
+import Axis from './axis'
 
-import {Margins, Dimensions, Scales} from "./bar-chart"
+import {Margins, Dimensions, Scales} from './bar-chart'
 
 interface IProps {
   scales: Scales
@@ -11,14 +11,14 @@ interface IProps {
 
 const Axes: React.SFC<IProps> = ({scales, margins, dimensions}) => {
   const xProps = {
-    orient: "Bottom",
+    orient: 'Bottom',
     scale: scales.xScale,
     translate: `translate(0,${dimensions.height - margins.bottom})`,
     tickSize: 0
   }
 
   const yProps = {
-    orient: "Left",
+    orient: 'Left',
     scale: scales.yScale,
     translate: `translate(${margins.left},0)`,
     tickSize: dimensions.width - margins.left - margins.right

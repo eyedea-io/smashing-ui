@@ -1,21 +1,21 @@
-import * as React from "react"
-import {Transition} from "react-transition-group"
-import {Portal} from "@smashing/portal"
-import {Stack} from "@smashing/stack"
-import {constants} from "@smashing/theme"
-import getPosition from "./get-position"
-import styled from "styled-components/macro"
+import * as React from 'react'
+import {Transition} from 'react-transition-group'
+import {Portal} from '@smashing/portal'
+import {Stack} from '@smashing/stack'
+import {constants} from '@smashing/theme'
+import getPosition from './get-position'
+import styled from 'styled-components'
 
 const {position: Position, stackingOrder: StackingOrder} = constants
 export type Position =
-  | "top"
-  | "top-left"
-  | "top-right"
-  | "bottom"
-  | "bottom-left"
-  | "bottom-right"
-  | "left"
-  | "right"
+  | 'top'
+  | 'top-left'
+  | 'top-right'
+  | 'bottom'
+  | 'bottom-left'
+  | 'bottom-right'
+  | 'left'
+  | 'right'
 
 const animationEasing = {
   spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
@@ -24,12 +24,12 @@ const animationEasing = {
 const transitionStyles = {
   entering: {
     opacity: 1,
-    visibility: "visible",
-    transform: "scale(1)"
+    visibility: 'visible',
+    transform: 'scale(1)'
   },
-  entered: {opacity: 1, visibility: "visible", transform: "scale(1)"},
-  exiting: {opacity: 0, transform: "scale(1)"},
-  exited: {opacity: 0, visibility: "hidden", transform: "scale(.8)"}
+  entered: {opacity: 1, visibility: 'visible', transform: 'scale(1)'},
+  exiting: {opacity: 0, transform: 'scale(1)'},
+  exited: {opacity: 0, visibility: 'hidden', transform: 'scale(.8)'}
 }
 
 const initialState = () => ({
@@ -190,7 +190,7 @@ export class Positioner extends React.PureComponent<
     if (!this.props.isShown || !this.targetRef || !this.positionerRef) return
     const targetRect = this.targetRef.getBoundingClientRect()
     const hasEntered =
-      this.positionerRef.getAttribute("data-state") === "entered"
+      this.positionerRef.getAttribute('data-state') === 'entered'
     const viewportHeight = document.documentElement.clientHeight
     const viewportWidth = document.documentElement.clientWidth
     let height: number
