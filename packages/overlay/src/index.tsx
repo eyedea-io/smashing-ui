@@ -9,11 +9,11 @@ import {useCallback} from 'react'
 const {stackingOrder: StackingOrder} = constants
 
 const animationEasing = {
-  standard: `cubic-bezier(0.4, 0.0, 0.2, 1)`,
-  deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
-  acceleration: `cubic-bezier(0.4, 0.0, 1, 1)`,
-  sharp: `cubic-bezier(0.4, 0.0, 0.6, 1)`,
-  spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
+  standard: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
+  deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
+  acceleration: 'cubic-bezier(0.4, 0.0, 1, 1)',
+  sharp: 'cubic-bezier(0.4, 0.0, 0.6, 1)',
+  spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
 }
 
 const ANIMATION_DURATION = 240
@@ -56,16 +56,16 @@ const S = {
       display: block;
       width: 100%;
       height: 100%;
-      content: ' ';
+      content: " ";
     }
 
-    &[data-state='entering']::before,
-    &[data-state='entered']::before {
+    &[data-state="entering"]::before,
+    &[data-state="entered"]::before {
       animation: ${fadeInAnimation} ${ANIMATION_DURATION}ms
         ${animationEasing.deceleration} both;
     }
-    &[data-state='exiting']::before,
-    &[data-state='exited']::before {
+    &[data-state="exiting"]::before,
+    &[data-state="exited"]::before {
       animation: ${fadeOutAnimation} ${ANIMATION_DURATION}ms
         ${animationEasing.acceleration} both;
     }

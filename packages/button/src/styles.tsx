@@ -100,7 +100,7 @@ export const getButtonStyle = (
         },
         ':active': {
           backgroundColor: flat.backgroundColor.active,
-          boxShadow: `none`
+          boxShadow: 'none'
         },
         ':disabled': disabled
       }

@@ -6,8 +6,8 @@ import styled, {keyframes} from 'styled-components'
 import '@smashing/theme'
 
 const animationEasing = {
-  deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
-  acceleration: `cubic-bezier(0.4, 0.0, 1, 1)`
+  deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
+  acceleration: 'cubic-bezier(0.4, 0.0, 1, 1)'
 }
 
 const ANIMATION_DURATION = 200
@@ -53,12 +53,12 @@ const S = {
     display: flex;
     flex-direction: column;
 
-    &[data-state='entering'],
-    &[data-state='entered'] {
+    &[data-state="entering"],
+    &[data-state="entered"] {
       animation: ${openAnimation} ${ANIMATION_DURATION}ms
         ${animationEasing.deceleration} both;
     }
-    &[data-state='exiting'] {
+    &[data-state="exiting"] {
       animation: ${closeAnimation} ${ANIMATION_DURATION}ms
         ${animationEasing.acceleration} both;
     }
