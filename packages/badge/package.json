@@ -1,7 +1,7 @@
 {
   "name": "@smashing/badge",
-  "version": "0.1.15",
-  "description": "Component used to give feedback to the user about an action or state.",
+  "version": "0.0.0",
+  "description": "Component used to count notification",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
   "author": "Eyedea AS",
