@@ -1,5 +1,6 @@
-import styled, {css} from "styled-components/macro"
+import styled from "styled-components/macro"
 import * as React from "react"
+import {Button} from "@smashing/button"
 
 export const CheckIcon = () => (
   <svg
@@ -19,63 +20,22 @@ export const CheckIcon = () => (
   </svg>
 )
 
-export const ArrowIcon = () => (
-  <svg
-    width="8"
-    height="8"
-    viewBox="0 0 8 8"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M7.70711 4.70711C7.31658 5.09763 6.68342 5.09763 6.29289 4.70711L4 2.41421L1.70711 4.70711C1.31658 5.09763 0.683417 5.09763 0.292893 4.70711C-0.0976314 4.31658 -0.0976313 3.68342 0.292894 3.29289L3.29289 0.292893C3.48043 0.105356 3.73478 -3.72877e-07 4 -3.49691e-07C4.26522 -3.26505e-07 4.51957 0.105356 4.70711 0.292893L7.70711 3.29289C8.09763 3.68342 8.09763 4.31658 7.70711 4.70711Z"
-      fill="#1D304E"
-    />
-  </svg>
-)
-
 export const S = {
-  SelectButton: styled.button<{isOpen: boolean}>`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    border-radius: 5px;
-    ${_ =>
-      _.isOpen && {
-        borderBottomLeftRadius: 0,
-        borderBottomRightRadius: 0
-      }}
-    background: white;
-    width: 200px;
-    border: 0;
-    outline: none;
-    padding: 16px;
-    text-align: left;
-    box-shadow: rgba(67, 90, 111, 0.3) 0px 0px 1px,
-      rgba(67, 90, 111, 0.47) 0px 5px 8px -4px;
-  `,
   SelectList: styled.ul`
     padding: 0;
     margin: 0;
   `,
+  StyledButton: styled(Button)`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  `,
   SelectListItem: styled.li<{isActive: boolean}>`
     list-style: none;
-    padding: 16px;
+    padding: 16px ${_ => (_.isActive ? "12px" : "32px")};
     background-color: ${_ =>
       _.isActive
         ? _.theme.colors.background.blueTint
         : _.theme.colors.background.white};
-  `,
-  RotateAnimation: styled.div<{isOpen: boolean}>`
-    transition: 0.5s;
-    transform: rotate(180deg);
-    ${_ =>
-      _.isOpen &&
-      css`
-        transform: rotate(0deg);
-      `}
   `
 }

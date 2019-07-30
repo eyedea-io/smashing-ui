@@ -20,7 +20,39 @@ storiesOf("Core|Select", module)
   ))
   .add("select:default", () => (
     <React.Fragment>
-      <Select options={optionsWithLabels} defaultValue="a" />
-      {/* <Select options={options} defaultValue="b" /> */}
+      <Select options={optionsWithLabels} />
+    </React.Fragment>
+  ))
+  .add("With selected option", () => (
+    <React.Fragment>
+      <Select
+        options={optionsWithLabels}
+        selected="a"
+        onDeselect={item => console.log("deselect", item)}
+        onSelect={item => console.log("select", item)}
+      />
+    </React.Fragment>
+  ))
+  .add("Custom title", () => (
+    <React.Fragment>
+      <Select
+        options={optionsWithLabels}
+        selected={["a", "b"]}
+        title="Custom title"
+        isMultiSelect
+        onDeselect={item => console.log("deselect", item)}
+        onSelect={item => console.log("select", item)}
+      />
+    </React.Fragment>
+  ))
+  .add("Multi select", () => (
+    <React.Fragment>
+      <Select
+        options={optionsWithLabels}
+        selected={["a", "b"]}
+        isMultiSelect
+        onDeselect={item => console.log("deselect", item)}
+        onSelect={item => console.log("select", item)}
+      />
     </React.Fragment>
   ))

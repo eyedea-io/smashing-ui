@@ -1,14 +1,14 @@
-export type Option =
-  | {
-      label: string
-      value: string
-    }
-  | string
+export type Option = {
+  label: string
+  value: string
+}
 
 export interface SelectProps {
   options: Option[]
-  defaultValue: string
-  onChange: (e) => void
+  selected: string
+  isMultiSelect: boolean
+  onSelect: (e) => void
+  onDeselect: (e) => void
 }
 
 export interface OptionProps {

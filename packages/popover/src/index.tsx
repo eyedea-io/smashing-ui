@@ -97,12 +97,12 @@ export interface PopoverProps {
   /**
    * The minimum distance from the target to the element being positioned.
    */
-  targetOffset: number
+  targetOffset?: number
 
   /**
    * Custom styles
    */
-  style: React.CSSProperties
+  style?: React.CSSProperties
 }
 
 const Target = (props: {

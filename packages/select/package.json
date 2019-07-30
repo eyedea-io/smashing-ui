@@ -1,6 +1,6 @@
 {
   "name": "@smashing/select",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "Component used to give feedback to the user about an action or state.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",

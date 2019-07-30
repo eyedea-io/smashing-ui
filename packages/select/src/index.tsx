@@ -2,68 +2,104 @@ import * as React from "react"
 import {useDefaults} from "@smashing/theme"
 import {SelectProps, OptionProps, Option} from "./types"
 import {Text} from "@smashing/typography"
-import {S, CheckIcon, ArrowIcon} from "./styles"
+import {S, CheckIcon} from "./styles"
 import {Popover} from "@smashing/popover"
 
 const OptionItem: React.FC<OptionProps> = ({item, onClick, isActive}) => (
   <S.SelectListItem onClick={onClick} isActive={isActive}>
     {isActive && <CheckIcon />}
-    <Text color={isActive ? "dark" : "muted"}>
-      {typeof item === "string" ? item : item.label}
-    </Text>
+    <Text color={isActive ? "dark" : "muted"}>{item.label}</Text>
   </S.SelectListItem>
 )
 
+const getDefaultOptions = (
+  options: any,
+  selected: string,
+  isMultiSelect: boolean
+) => {
+  if (isMultiSelect) {
+    return options.map(item => selected.includes(item.value)) || []
+  }
+
+  return (
+    options.find(item => item.value === selected) || {
+      label: "Select option",
+      value: ""
+    }
+  )
+}
+
 const Select: React.FC<SelectProps> = ({children, ...props}) => {
-  const {options, defaultValue} = useDefaults<SelectProps>("select", props, {
+  const defaults = useDefaults<SelectProps>("select", props, {
     options: [],
-    defaultValue: "",
-    onChange: () => undefined
+    selected: "",
+    isMultiSelect: false,
+    title: "Select options",
+    onSelect: () => undefined,
+    onDeselect: () => undefined
   })
 
-  const [isOpen, setOpen] = React.useState(false)
-  const [chosenOption, setChosenOption] = React.useState<Option>(
-    options.find(
-      item => typeof item !== "string" && item.value === defaultValue
-    ) || defaultValue
+  const [isOpen, setIsOpen] = React.useState(false)
+  const [chosenOption, setChosenOption] = React.useState<Option | Option[]>(
+    getDefaultOptions(
+      defaults.options,
+      defaults.selected,
+      defaults.isMultiSelect
+    )
   )
 
-  const handleOpen = () => setOpen(!isOpen)
+  const handleOpen = () => setIsOpen(!isOpen)
+  const handleSelect = React.useCallback(
+    item => {
+      if (defaults.isMultiSelect && Array.isArray(chosenOption)) {
+        const isChosen = chosenOption.some(
+          option => option.value === item.value
+        )
+
+        if (isChosen) {
+          defaults.onDeselect(item)
+          setChosenOption(
+            chosenOption.filter(option => option.value !== item.value)
+          )
+        } else {
+          defaults.onSelect(item)
+          setChosenOption([...chosenOption, item])
+        }
+      } else {
+        defaults.onDeselect(chosenOption)
+        defaults.onSelect(item)
+        setChosenOption(item)
+      }
+    },
+    [chosenOption]
+  )
 
   return (
     <Popover
-      style={{
-        borderTopLeftRadius: 0,
-        borderTopRightRadius: 0
-      }}
-      targetOffset={-1}
       onOpen={handleOpen}
       onClose={handleOpen}
       content={() => (
         <S.SelectList>
-          {options.map((item, idx) => (
+          {defaults.options.map((item, idx) => (
             <OptionItem
               key={idx}
               item={item}
               isActive={
-                typeof item !== "string"
-                  ? item.value === (chosenOption as any).value
-                  : item === chosenOption
+                Array.isArray(chosenOption)
+                  ? chosenOption.some(({value}) => value === item.value)
+                  : item.value === chosenOption.value
               }
-              onClick={() => setChosenOption(item)}
+              onClick={() => handleSelect(item)}
             />
           ))}
         </S.SelectList>
       )}
     >
-      <S.SelectButton isOpen={isOpen}>
+      <S.StyledButton>
         <Text>
-          {typeof chosenOption === "string" ? chosenOption : chosenOption.label}
+          {Array.isArray(chosenOption) ? defaults.title : chosenOption.label}
         </Text>
-        <S.RotateAnimation isOpen={isOpen}>
-          <ArrowIcon />
-        </S.RotateAnimation>
-      </S.SelectButton>
+      </S.StyledButton>
     </Popover>
   )
 }
