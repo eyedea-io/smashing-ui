@@ -14,7 +14,7 @@ const OptionItem: React.FC<OptionProps> = ({item, onClick, isActive}) => (
 
 const getDefaultOptions = (
   options: any,
-  selected: string,
+  selected: string | string[],
   isMultiSelect: boolean
 ) => {
   if (isMultiSelect) {
@@ -23,7 +23,7 @@ const getDefaultOptions = (
 
   return (
     options.find(item => item.value === selected) || {
-      label: "Select option",
+      label: "Select",
       value: ""
     }
   )
@@ -34,7 +34,6 @@ const Select: React.FC<SelectProps> = ({children, ...props}) => {
     options: [],
     selected: "",
     isMultiSelect: false,
-    title: "Select options",
     onSelect: () => undefined,
     onDeselect: () => undefined
   })
@@ -95,11 +94,7 @@ const Select: React.FC<SelectProps> = ({children, ...props}) => {
         </S.SelectList>
       )}
     >
-      <S.StyledButton>
-        <Text>
-          {Array.isArray(chosenOption) ? defaults.title : chosenOption.label}
-        </Text>
-      </S.StyledButton>
+      {children}
     </Popover>
   )
 }

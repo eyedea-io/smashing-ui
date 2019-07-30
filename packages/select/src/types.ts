@@ -5,7 +5,7 @@ export type Option = {
 
 export interface SelectProps {
   options: Option[]
-  selected: string
+  selected: string | string[]
   isMultiSelect: boolean
   onSelect: (e) => void
   onDeselect: (e) => void
