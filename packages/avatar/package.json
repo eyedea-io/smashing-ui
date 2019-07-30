@@ -1,6 +1,6 @@
 {
   "name": "@smashing/avatar",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Component used to represent users.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -16,8 +16,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@smashing/theme": "^0.5.4",
-    "@smashing/typography": "^0.4.12"
+    "@smashing/theme": "^0.5.5",
+    "@smashing/typography": "^0.4.13"
   },
   "devDependencies": {
     "react": "^16.8.6"
