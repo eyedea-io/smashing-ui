@@ -1,8 +1,7 @@
-import * as React from "react"
+import * as React from 'react'
 
-import Pie from "./pie"
-import {PieChartData,PieChartProps} from '../../types'
-
+import Pie from './pie'
+import {PieChartData, PieChartProps} from '../../types'
 
 const PieChart: React.SFC<PieChartProps> = props => {
   const x = props.width / 2
@@ -27,11 +26,11 @@ const PieChart: React.SFC<PieChartProps> = props => {
 PieChart.defaultProps = {
   isDonut: true
 }
-declare module "styled-components" {
+declare module 'styled-components' {
   export interface SmashingPieChartDefaults
     extends Partial<{
       pieChart?: {
-        colors?: [string,string]
+        colors?: [string, string]
       }
     }> {}
 }

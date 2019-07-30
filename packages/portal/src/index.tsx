@@ -1,11 +1,11 @@
-import * as React from "react"
-import * as ReactDOM from "react-dom"
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 
 /**
  * Check if current env has access to DOM
  */
 const canUseDOM = !!(
-  typeof window !== "undefined" &&
+  typeof window !== 'undefined' &&
   window.document &&
   window.document.createElement
 )
@@ -13,14 +13,14 @@ const canUseDOM = !!(
 let portalContainer: HTMLDivElement
 
 export const Portal: React.FC = ({children}) => {
-  const element = React.useRef(document.createElement("div"))
+  const element = React.useRef(document.createElement('div'))
 
   React.useEffect(() => {
     if (!canUseDOM) return
     const {current} = element
     if (!portalContainer) {
-      portalContainer = document.createElement("div")
-      portalContainer.setAttribute("smashing-portal-container", "")
+      portalContainer = document.createElement('div')
+      portalContainer.setAttribute('smashing-portal-container', '')
       document.body.append(portalContainer)
     }
     portalContainer.append(current)

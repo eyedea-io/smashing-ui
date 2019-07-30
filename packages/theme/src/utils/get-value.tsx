@@ -1,5 +1,5 @@
 export function isObject(val: any) {
-  return val != null && typeof val === "object" && Array.isArray(val) === false
+  return val != null && typeof val === 'object' && Array.isArray(val) === false
 }
 
 export const getValue = (target, path, options) => {
@@ -8,18 +8,18 @@ export const getValue = (target, path, options) => {
   }
 
   if (!isValidObject(target)) {
-    return typeof options.default !== "undefined" ? options.default : target
+    return typeof options.default !== 'undefined' ? options.default : target
   }
 
-  if (typeof path === "number") {
+  if (typeof path === 'number') {
     path = String(path)
   }
 
   const isArray = Array.isArray(path)
-  const isString = typeof path === "string"
-  const splitChar = options.separator || "."
+  const isString = typeof path === 'string'
+  const splitChar = options.separator || '.'
   const joinChar =
-    options.joinChar || (typeof splitChar === "string" ? splitChar : ".")
+    options.joinChar || (typeof splitChar === 'string' ? splitChar : '.')
 
   if (!isString && !isArray) {
     return target
@@ -35,12 +35,12 @@ export const getValue = (target, path, options) => {
 
   do {
     let prop = segs[idx]
-    if (typeof prop === "number") {
+    if (typeof prop === 'number') {
       prop = String(prop)
     }
 
-    while (prop && prop.slice(-1) === "\\") {
-      prop = join([prop.slice(0, -1), segs[++idx] || ""], joinChar, options)
+    while (prop && prop.slice(-1) === '\\') {
+      prop = join([prop.slice(0, -1), segs[++idx] || ''], joinChar, options)
     }
 
     if (prop in target) {
@@ -81,26 +81,26 @@ export const getValue = (target, path, options) => {
 }
 
 function join(segs, joinChar, options) {
-  if (typeof options.join === "function") {
+  if (typeof options.join === 'function') {
     return options.join(segs)
   }
   return segs[0] + joinChar + segs[1]
 }
 
 function split(path, splitChar, options) {
-  if (typeof options.split === "function") {
+  if (typeof options.split === 'function') {
     return options.split(path)
   }
   return path.split(splitChar)
 }
 
 function isValid(key, target, options) {
-  if (typeof options.isValid === "function") {
+  if (typeof options.isValid === 'function') {
     return options.isValid(key, target)
   }
   return true
 }
 
 function isValidObject(val) {
-  return isObject(val) || Array.isArray(val) || typeof val === "function"
+  return isObject(val) || Array.isArray(val) || typeof val === 'function'
 }

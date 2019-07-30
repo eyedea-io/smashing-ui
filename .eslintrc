@@ -1,0 +1,6 @@
+{
+  "extends": "smashing-app",
+  "rules": {
+    "no-restricted-imports": "off"
+  }
+}

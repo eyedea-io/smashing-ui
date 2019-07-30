@@ -1,17 +1,17 @@
-import * as foundation from "./default-theme/foundational-styles"
-import * as constants from "./default-theme/constants"
-import * as deepmerge from "deepmerge"
-import * as React from "react"
-import {themedProperty} from "./utils/themed-property"
-import {useDefaults} from "./utils/use-defaults"
-import {DefaultTheme, ThemeProvider} from "styled-components/macro"
+import * as foundation from './default-theme/foundational-styles'
+import * as constants from './default-theme/constants'
+import * as deepmerge from 'deepmerge'
+import * as React from 'react'
+import {themedProperty} from './utils/themed-property'
+import {useDefaults} from './utils/use-defaults'
+import {DefaultTheme, ThemeProvider} from 'styled-components'
 import {
   getTextSizeForControlHeight,
   getBorderRadiusForControlHeight
-} from "./utils/get-text-size-for-control-height"
+} from './utils/get-text-size-for-control-height'
 
 export const theme: DefaultTheme = {
-  radius: "5px",
+  radius: '5px',
   ...foundation
 }
 
@@ -41,7 +41,7 @@ export {
 // Helper that allows interface to extend type
 export type I<T> = T
 
-declare module "styled-components" {
+declare module 'styled-components' {
   export interface SmashingThemeFontFamilies
     extends I<typeof foundation.fontFamilies> {}
   export interface SmashingThemeFills extends I<typeof foundation.fills> {}

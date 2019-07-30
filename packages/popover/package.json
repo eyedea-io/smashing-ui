@@ -1,6 +1,6 @@
 {
   "name": "@smashing/popover",
-  "version": "0.1.13",
+  "version": "0.1.15",
   "description": "Component displays floating content in relation to a target.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -16,9 +16,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@smashing/positioner": "^0.1.8",
-    "@smashing/theme": "^0.5.3",
-    "@smashing/tooltip": "^0.1.11"
+    "@smashing/positioner": "^0.1.10",
+    "@smashing/theme": "^0.5.5",
+    "@smashing/tooltip": "^0.1.13"
   },
   "devDependencies": {
     "react": "^16.8.6"

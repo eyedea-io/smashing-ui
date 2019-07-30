@@ -1,4 +1,4 @@
-import * as tinycolor from "tinycolor2"
+import * as tinycolor from 'tinycolor2'
 
 export const linearGradient = (top: string, bottom: string) => {
   return `linear-gradient(to bottom, ${top}, ${bottom})`

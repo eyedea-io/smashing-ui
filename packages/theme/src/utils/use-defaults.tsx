@@ -1,7 +1,7 @@
-import {useContext} from "react"
-import {ThemeContext} from "styled-components"
-import * as deepmerge from "deepmerge"
-import {getValue} from "./get-value"
+import {useContext} from 'react'
+import {ThemeContext} from 'styled-components'
+import * as deepmerge from 'deepmerge'
+import {getValue} from './get-value'
 
 const overwriteMerge = (destinationArray, sourceArray) => sourceArray
 
@@ -12,7 +12,7 @@ export function useDefaults<P>(
 ): P {
   const theme = useContext(ThemeContext)
   const defaults = getValue(theme.defaults, component, {default: {}})
-  const merged: P = deepmerge(defaults, props,{arrayMerge: overwriteMerge})
+  const merged: P = deepmerge(defaults, props, {arrayMerge: overwriteMerge})
   Object.keys(merged).forEach(key => {
     if (merged[key] === undefined) {
       if (defaults[key]) {

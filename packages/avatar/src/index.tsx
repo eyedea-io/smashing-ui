@@ -1,21 +1,21 @@
-import * as React from "react"
-import styled, {ThemeContext} from "styled-components/macro"
-import {useDefaults} from "@smashing/theme"
+import * as React from 'react'
+import styled, {ThemeContext} from 'styled-components'
+import {useDefaults} from '@smashing/theme'
 import {
   AvatarAppearanceType,
   AvatarProps,
   InitialsProps,
   BoxProps,
   AvatarStackProps
-} from "./types"
+} from './types'
 import {
   getInitials,
   getAvatarInitialsFontSize,
   getAvatarProps,
   hashCode
-} from "./utils"
-import {Text} from "@smashing/typography"
-import {ColorProperty} from "csstype"
+} from './utils'
+import {Text} from '@smashing/typography'
+import {ColorProperty} from 'csstype'
 
 const Box = styled.div.attrs({})<BoxProps>`
   overflow: hidden;
@@ -55,9 +55,9 @@ const Avatar: React.FC<AvatarProps> = ({
   count,
   ...props
 }) => {
-  const defaults = useDefaults("avatar", props, {
-    appearance: "subtle" as AvatarAppearanceType,
-    color: "automatic" as Exclude<AvatarProps["color"], undefined>,
+  const defaults = useDefaults('avatar', props, {
+    appearance: 'subtle' as AvatarAppearanceType,
+    color: 'automatic' as Exclude<AvatarProps['color'], undefined>,
     size: 32,
     sizeLimitOneCharacter: 20,
     forceShowInitials: false
@@ -148,7 +148,7 @@ const AvatarStack: React.FC<AvatarStackProps> = ({
   children,
   limit,
   showMore = true,
-  borderColor = "#fff"
+  borderColor = '#fff'
 }) => {
   return (
     <Stack borderColor={borderColor}>
@@ -157,7 +157,7 @@ const AvatarStack: React.FC<AvatarStackProps> = ({
         .map(child => {
           return child
         })}
-      {typeof limit === "number" &&
+      {typeof limit === 'number' &&
         showMore &&
         React.Children.count(children) > limit && (
           <More count={React.Children.count(children) - limit} />

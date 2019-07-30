@@ -1,18 +1,18 @@
-import * as React from "react"
+import * as React from 'react'
 
-const DEFAULT_TITLE = ""
+const DEFAULT_TITLE = ''
 
-const METATYPES = ["name", "httpEquiv", "charSet", "itemProp"]
+const METATYPES = ['name', 'httpEquiv', 'charSet', 'itemProp']
 
 const DEFAULT_HEAD = [<meta key={-1} charSet="utf-8" className="custom-head" />]
 
 const DOMAttributeNames: {
   [key: string]: string
 } = {
-  acceptCharset: "accept-charset",
-  className: "class",
-  htmlFor: "for",
-  httpEquiv: "http-equiv"
+  acceptCharset: 'accept-charset',
+  className: 'class',
+  htmlFor: 'for',
+  httpEquiv: 'http-equiv'
 }
 
 export interface Props {}
@@ -52,7 +52,7 @@ export class Head extends React.Component<Props, State> {
 
     this.updateTitle(tags.title ? tags.title[0] : null)
 
-    const types = ["meta", "base", "link", "style", "script"]
+    const types = ['meta', 'base', 'link', 'style', 'script']
     types.forEach(type => {
       this.updateElements(type, tags[type] || [])
     })
@@ -63,7 +63,7 @@ export class Head extends React.Component<Props, State> {
 
     if (component) {
       const {children} = component.props
-      title = typeof children === "string" ? children : children.join("")
+      title = typeof children === 'string' ? children : children.join('')
     } else {
       title = DEFAULT_TITLE
     }
@@ -73,9 +73,9 @@ export class Head extends React.Component<Props, State> {
   }
 
   updateElements(type: string, components: any[]) {
-    const headEl = document.getElementsByTagName("head")[0]
+    const headEl = document.getElementsByTagName('head')[0]
     const oldTags = Array.prototype.slice.call(
-      headEl.querySelectorAll(type + ".custom-head")
+      headEl.querySelectorAll(type + '.custom-head')
     )
     const newTags = components.map(reactElementToDOM).filter(newTag => {
       for (let i = 0, len = oldTags.length; i < len; i++) {
@@ -102,7 +102,7 @@ export class Head extends React.Component<Props, State> {
       .filter(unique())
       .reverse()
       .map((c: any) => {
-        const className = (c.className ? c.className + " " : "") + "custom-head"
+        const className = (c.className ? c.className + ' ' : '') + 'custom-head'
 
         return React.cloneElement(c, {className})
       })
@@ -122,22 +122,22 @@ function unique() {
 
   return (h: any): boolean => {
     switch (h.type) {
-      case "title":
-      case "base":
+      case 'title':
+      case 'base':
         if (tags.has(h.type)) {
           return false
         }
 
         tags.add(h.type)
         return true
-      case "meta":
+      case 'meta':
         for (let i = 0, len = METATYPES.length; i < len; i++) {
           const metatype = METATYPES[i]
           if (!h.props.hasOwnProperty(metatype)) {
             continue
           }
 
-          if (metatype === "charSet") {
+          if (metatype === 'charSet') {
             if (metaTypes.has(metatype)) {
               return false
             }
@@ -165,7 +165,7 @@ function reactElementToDOM({type, props}: {type: any; props: any}) {
     if (!props.hasOwnProperty(p)) {
       continue
     }
-    if (p === "children" || p === "dangerouslySetInnerHTML") {
+    if (p === 'children' || p === 'dangerouslySetInnerHTML') {
       continue
     }
 
@@ -175,9 +175,9 @@ function reactElementToDOM({type, props}: {type: any; props: any}) {
 
   const {children, dangerouslySetInnerHTML} = props
   if (dangerouslySetInnerHTML) {
-    el.innerHTML = dangerouslySetInnerHTML.__html || ""
+    el.innerHTML = dangerouslySetInnerHTML.__html || ''
   } else if (children) {
-    el.textContent = typeof children === "string" ? children : children.join("")
+    el.textContent = typeof children === 'string' ? children : children.join('')
   }
   return el
 }
