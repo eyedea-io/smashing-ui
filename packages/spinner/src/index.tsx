@@ -1,7 +1,7 @@
-import * as React from "react"
-import styled, {keyframes} from "styled-components/macro"
-import {useDefaults, theme} from "@smashing/theme"
-import {SpinnerProps, SpinnerCircleProps} from "./types"
+import * as React from 'react'
+import styled, {keyframes} from 'styled-components/macro'
+import {useDefaults, theme} from '@smashing/theme'
+import {SpinnerProps, SpinnerCircleProps} from './types'
 
 const loadingKeyframes = keyframes`
 from {
@@ -38,7 +38,7 @@ const StyledSpinner = styled.circle<SpinnerCircleProps>`
 `
 
 const SpinnerFC: React.FC<SpinnerProps> = ({children, ...props}) => {
-  const defaults = useDefaults("spinner", props, {
+  const defaults = useDefaults('spinner', props, {
     size: 54,
     delay: 0,
     color: theme.palette.neutral.dark
@@ -80,7 +80,7 @@ const Spinner = styled(SpinnerFC)``
 
 export {Spinner, SpinnerProps}
 
-declare module "styled-components" {
+declare module 'styled-components' {
   export interface SmashingSpinnerDefaults
     extends Partial<{
       spinner?: {

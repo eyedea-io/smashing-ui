@@ -1,8 +1,8 @@
-import * as React from "react"
-import styled from "styled-components/macro"
-import {Text} from "@smashing/typography"
-import {Spinner} from "@smashing/spinner"
-import {getButtonStyle} from "./styles"
+import * as React from 'react'
+import styled from 'styled-components/macro'
+import {Text} from '@smashing/typography'
+import {Spinner} from '@smashing/spinner'
+import {getButtonStyle} from './styles'
 import {
   useDefaults,
   getTextSizeForControlHeight,
@@ -27,8 +27,8 @@ const StyledText = styled(Text)<StyledTextProps>`
 const ButtonFC: React.FC<ButtonProps> = ({children, innerRef, ...props}) => {
   const defaults = useDefaults('button', props, {
     height: 32,
-    appearance: "default" as ButtonAppearanceType,
-    intent: "none" as ButtonIntentType,
+    appearance: 'default' as ButtonAppearanceType,
+    intent: 'none' as ButtonIntentType,
     isLoading: false
   })
 
