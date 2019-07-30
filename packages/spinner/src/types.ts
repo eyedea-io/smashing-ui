@@ -10,7 +10,7 @@ export interface SpinnerProps {
     /**
      * The size of the spinner.
      */
-    size: number
+    size?: number
      /**
      * The color of the spinner.
      */
