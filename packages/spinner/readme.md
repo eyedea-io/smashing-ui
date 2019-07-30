@@ -1,5 +1,5 @@
 
-#Spinner
+# Spinner
 
 **The Spinner component is used to indicate a loading state.**
 
