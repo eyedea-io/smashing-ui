@@ -100,11 +100,10 @@ const colors = {
   },
 
   checkbox: {
-    primary: {start: "#557491", end: "#425A70"},
+    primary: {start: "#0788DE", end: "#116AB8"},
     default: {start: "#fff", end: "#DCDCDC"},
-    minimal:fills.minimal.darkBlue,
+    minimal:fills.minimal.blue,
     card: "#F43A45"
-    
   },
 
   overlay: {

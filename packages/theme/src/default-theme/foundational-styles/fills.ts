@@ -91,10 +91,6 @@ const minimal = {
   blue: {
     color: palette.blue.dark,
     backgroundColor: "transparent"
-  },
-  darkBlue: {
-    color: "#596B87",
-    backgroundColor: "#F8F9FC"
   }
 }
 

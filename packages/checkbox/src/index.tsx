@@ -11,9 +11,6 @@ const Label = styled(Text)<StyledTextProps>`
   margin: 0;
   cursor: ${_ => (_.disabled ? "not-allowed" : "pointer")};
   ${_ => getLabelStyle(_.appearance, _.disabled, _.checked)};
-  svg {
-    margin-right:${_ => (_.appearance ==="card" && "8px")};
-  }
 `
 const HiddenCheckbox = styled.input.attrs({type: "checkbox"})`
   border: 0;

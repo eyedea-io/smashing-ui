@@ -36,11 +36,11 @@ export const getLabelStyle = (
       }
     case "minimal":
       return {
-        color: checked ? fills.minimal.darkBlue.color : colors.text.muted
+        color: checked ? fills.minimal.blue.color : scales.neutral.N6
       }
     case "card":
       return {
-        color: checked ? "white" : fills.minimal.darkBlue.color,
+        color: checked ? "white" : fills.minimal.blue.color,
         backgroundColor: checked ? colors.checkbox.card : "white",
         fontWeight: 600,
         padding: 16,
@@ -63,7 +63,8 @@ export const getCheckboxStyle = (
     backgroundImage: "none",
     backgroundColor: scales.neutral.N2A,
     boxShadow: "none",
-    color: scales.neutral.N7A
+    color: scales.neutral.N7A,
+    border: `1px solid transparent`,
   }
 
   if (disabled) {
@@ -139,7 +140,7 @@ export const getCheckboxStyle = (
         color: flat.color,
         border: checked
           ? `1px solid ${colors.checkbox.minimal.color}`
-          : `1px solid ${colors.text.muted}`,
+          : `1px solid ${scales.neutral.N6}`,
         backgroundColor: flat.backgroundColor.base,
         fontWeight: 600,
         ":hover": {
