@@ -10,7 +10,7 @@ export const TitleContext = React.createContext<{
 })
 
 /**
- * Set page title using react component.
+ * Set page title using react component
  *
  * @example
  * <Title>Page Title</Title>
