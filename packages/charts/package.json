@@ -1,6 +1,6 @@
 {
   "name": "@smashing/charts",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Components used to represent various data.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -16,8 +16,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@smashing/theme": "^0.5.3",
-    "@smashing/typography": "^0.4.11",
+    "@smashing/theme": "^0.5.4",
+    "@smashing/typography": "^0.4.12",
     "@types/d3": "^5.7.2",
     "d3": "^5.9.4"
   },
