@@ -2,7 +2,6 @@ import * as React from "react"
 import styled, {keyframes} from "styled-components/macro"
 import {useDefaults, theme} from "@smashing/theme"
 import {SpinnerProps, SpinnerCircleProps} from "./types"
-import { colors } from "@smashing/theme/lib/esm/default-theme/foundational-styles";
 
 const loadingKeyframes = keyframes`
 from {
@@ -45,6 +44,19 @@ const SpinnerFC: React.FC<SpinnerProps> = ({children, ...props}) => {
     color: theme.palette.neutral.dark
   })
 
+  const [isVisible, setIsVisible] = React.useState(defaults.delay === 0)
+
+  React.useEffect(() => {
+    defaults.delay > 0 &&
+      setTimeout(() => {
+        setIsVisible(true)
+      }, defaults.delay)
+  })
+
+  if (!isVisible) {
+    return null
+  }
+
   return (
     <StyledSvg
       size={defaults.size}
@@ -72,7 +84,9 @@ declare module "styled-components" {
   export interface SmashingSpinnerDefaults
     extends Partial<{
       spinner?: {
-        size: number
+        size?: number
+        delay?: number
+        color?: string
       }
     }> {}
 }
