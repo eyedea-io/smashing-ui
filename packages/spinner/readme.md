@@ -15,7 +15,7 @@ yarn add @smashing/spinner
 ```
 
 ### Change the size
-<img src="https://imgur.com/z9VG3NQ.gif" />
+<img src="https://imgur.com/fQH51Tm.gif" />
 
 ```jsx
 <Spinner size={24} />
