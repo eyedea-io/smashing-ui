@@ -194,3 +194,10 @@ storiesOf("Core|Button", module)
       </p>
     </React.Fragment>
   ))
+  .add("loading", () => (
+    <React.Fragment>
+      <p>
+        <Button isLoading>Hulk smash!</Button>
+      </p>
+    </React.Fragment>
+  ))

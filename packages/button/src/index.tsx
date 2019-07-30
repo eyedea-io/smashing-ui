@@ -1,6 +1,7 @@
 import * as React from "react"
 import styled from "styled-components/macro"
 import {Text} from "@smashing/typography"
+import {Spinner} from "@smashing/spinner"
 import {getButtonStyle} from "./styles"
 import {
   useDefaults,
@@ -27,10 +28,14 @@ const ButtonFC: React.FC<ButtonProps> = ({children, innerRef, ...props}) => {
   const defaults = useDefaults("button", props, {
     height: 32,
     appearance: "default" as ButtonAppearanceType,
-    intent: "none" as ButtonIntentType
+    intent: "none" as ButtonIntentType,
+    isLoading: false
   })
 
   return (
+    <>
+    {
+      defaults.isLoading ? <Spinner /> :
     <StyledText
       as="button"
       borderRadius={getBorderRadiusForControlHeight(defaults.height)}
@@ -41,6 +46,8 @@ const ButtonFC: React.FC<ButtonProps> = ({children, innerRef, ...props}) => {
     >
       {children}
     </StyledText>
+    }
+    </>
   )
 }
 
@@ -54,7 +61,8 @@ declare module "styled-components" {
       button?: {
         height?: number
         appearance?: ButtonAppearanceType
-        intent?: ButtonIntentType
+        intent?: ButtonIntentType,
+        isLoading?: boolean
       }
     }> {}
 }

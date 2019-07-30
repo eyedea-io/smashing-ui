@@ -27,6 +27,7 @@ export interface ButtonProps {
   disabled?: boolean
   onClick?: React.MouseEventHandler<HTMLButtonElement>
   tabIndex?: number
+  isLoading?: boolean
 }
 
 export type StyledTextProps = ButtonProps &
