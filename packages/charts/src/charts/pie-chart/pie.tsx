@@ -1,10 +1,10 @@
-import * as React from "react"
+import * as React from 'react'
 
-import * as d3 from "d3"
+import * as d3 from 'd3'
 
-import Slice from "./slice"
-import {ThemeContext} from "styled-components"
-import {useDefaults} from "@smashing/theme"
+import Slice from './slice'
+import {ThemeContext} from 'styled-components'
+import {useDefaults} from '@smashing/theme'
 import {PieChartData} from '../../types'
 
 interface IProps {
@@ -18,7 +18,7 @@ interface IProps {
 
 const Pie: React.SFC<IProps> = ({x, y, radius, data, isDonut, ...props}) => {
   const theme = React.useContext(ThemeContext)
-  const defaults = useDefaults("pieChart", props, {
+  const defaults = useDefaults('pieChart', props, {
     colors: theme.colors.chart.pie
   })
   const colorScale: any = d3

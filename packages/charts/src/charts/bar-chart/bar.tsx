@@ -1,12 +1,11 @@
-import * as React from "react"
-import * as d3 from "d3"
-import BrandSprintResult from "./brand-sprint-result"
-import {ThemeContext} from "styled-components"
-import {useDefaults} from "@smashing/theme"
+import * as React from 'react'
+import * as d3 from 'd3'
+import BrandSprintResult from './brand-sprint-result'
+import {ThemeContext} from 'styled-components'
+import {useDefaults} from '@smashing/theme'
 
-import {Margins, Dimensions, Scales} from "./bar-chart"
+import {Margins, Dimensions, Scales} from './bar-chart'
 import {BarChartDataItem} from '../../types'
-
 
 interface IProps {
   maxValue: number
@@ -25,7 +24,7 @@ const Bar: React.SFC<IProps> = ({
   ...props
 }) => {
   const theme = React.useContext(ThemeContext)
-  const defaults = useDefaults("barChart", props, {
+  const defaults = useDefaults('barChart', props, {
     colors: theme.colors.chart.bar
   })
   const colorScale = d3
@@ -41,29 +40,29 @@ const Bar: React.SFC<IProps> = ({
       const bw = scales.xScale.bandwidth()
       const bh = dimensions.height - scales.yScale(d.value) - margins.top
       d3.select(ref.current)
-        .append("text")
-        .attr("x", `${(scales.xScale(d.label) as number) + bw - r}`)
-        .attr("y", `${scales.yScale(d.value) - 16}`)
-        .style("fill", colorScale(index))
-        .style("font-size", "10")
-        .style("font-weight", "700")
-        .style("font-family", "sans-serif")
-        .attr("text-anchor", "middle")
+        .append('text')
+        .attr('x', `${(scales.xScale(d.label) as number) + bw - r}`)
+        .attr('y', `${scales.yScale(d.value) - 16}`)
+        .style('fill', colorScale(index))
+        .style('font-size', '10')
+        .style('font-weight', '700')
+        .style('font-family', 'sans-serif')
+        .attr('text-anchor', 'middle')
         .text(`${Math.round(d.value * 100)}%`)
 
       d3.select(ref.current)
-        .append("text")
-        .attr("x", `${scales.xScale(d.label)}`)
-        .attr("y", `${scales.yScale(d.value) - 4}`)
-        .style("fill", colorScale(index))
-        .style("font-size", "9")
-        .style("font-family", "sans-serif")
+        .append('text')
+        .attr('x', `${scales.xScale(d.label)}`)
+        .attr('y', `${scales.yScale(d.value) - 4}`)
+        .style('fill', colorScale(index))
+        .style('font-size', '9')
+        .style('font-family', 'sans-serif')
         .text(`${d.description}`)
 
       d3.select(ref.current)
-        .append("path")
-        .attr("fill", colorScale(index))
-        .attr("d", item => {
+        .append('path')
+        .attr('fill', colorScale(index))
+        .attr('d', item => {
           return bar(
             scales.xScale(d.label) as number,
             dimensions.height - margins.bottom,
@@ -74,7 +73,7 @@ const Bar: React.SFC<IProps> = ({
         })
         .transition()
         .delay(d => 50 * index)
-        .attr("d", item => {
+        .attr('d', item => {
           return bar(
             scales.xScale(d.label) as number,
             dimensions.height - margins.bottom,
@@ -90,11 +89,11 @@ const Bar: React.SFC<IProps> = ({
     const x0 = x + r
     const x1 = x + w - r
     const y0 = y - h + r
-    const l = "L",
-      a = "A"
+    const l = 'L',
+      a = 'A'
 
     const parts = [
-      "M",
+      'M',
       x,
       y,
       l,
@@ -122,9 +121,9 @@ const Bar: React.SFC<IProps> = ({
       l,
       x + w,
       y,
-      "Z"
+      'Z'
     ]
-    return parts.join(" ")
+    return parts.join(' ')
   }
 
   return (
