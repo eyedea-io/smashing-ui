@@ -15,9 +15,9 @@
     {"path": "packages/text-input"},
     {"path": "packages/theme"},
     {"path": "packages/title"},
+    {"path": "packages/textarea"},
     {"path": "packages/tooltip"},
     {"path": "packages/typography"},
-    {"path": "packages/charts"},
-    {"path": "packages/textarea"}
+    {"path": "packages/charts"}
   ]
 }
