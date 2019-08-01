@@ -17,6 +17,7 @@
     {"path": "packages/title"},
     {"path": "packages/tooltip"},
     {"path": "packages/typography"},
-    {"path": "packages/charts"}
+    {"path": "packages/charts"},
+    {"path": "packages/textarea"}
   ]
 }
