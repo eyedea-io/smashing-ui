@@ -57,34 +57,47 @@ export interface SideSheetProps {
   preventBodyScrolling: boolean
 }
 
-export const boxPositionProps = {
-    [Position.LEFT]: {
-      height: '100vh',
-      maxWidth: '100vw',
-      position: 'absolute',
-      left: 0,
-      right: 'auto'
-    },
-    [Position.RIGHT]: {
-      height: '100vh',
-      maxWidth: '100vw',
-      position: 'absolute',
-      right: 0,
-      left: 'auto'
-    },
-    [Position.TOP]: {
-      width: '100vw',
-      position: 'absolute',
-      maxHeight: '100vh',
-      top: 0,
-      bottom: 'auto'
-    },
-    [Position.BOTTOM]: {
-      width: '100vw',
-      maxHeight: '100vh',
-      position: 'absolute',
-      bottom: 0,
-      top: 'auto'
-    }
+export const getBoxPosition = (position?: string) => {
+  switch (position) {
+    case Position.LEFT:
+      return {
+        height: '100vh',
+        maxWidth: '100vw',
+        position: 'absolute' as 'absolute',
+        left: 0,
+        right: 'auto'
+      }
+    case Position.RIGHT:
+      return {
+        height: '100vh',
+        maxWidth: '100vw',
+        position: 'absolute' as 'absolute',
+        right: 0,
+        left: 'auto'
+      }
+    case Position.TOP:
+      return {
+        width: '100vw',
+        position: 'absolute' as 'absolute',
+        maxHeight: '100vh',
+        top: 0,
+        bottom: 'auto'
+      }
+    case Position.BOTTOM:
+      return {
+        width: '100vw',
+        maxHeight: '100vh',
+        position: 'absolute' as 'absolute',
+        bottom: 0,
+        top: 'auto'
+      }
+    default:
+      return {
+        height: '100vh',
+        maxWidth: '100vw',
+        position: 'absolute' as 'absolute',
+        left: 0,
+        right: 'auto'
+      }
   }
-  
+}

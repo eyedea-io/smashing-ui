@@ -1,9 +1,9 @@
 import * as React from 'react'
 import {Overlay} from '@smashing/overlay'
 import {Button} from '@smashing/button'
-import styled, {keyframes} from 'styled-components'
+import styled, {keyframes, CSSProperties} from 'styled-components'
 import '@smashing/theme'
-import {SideSheetProps, boxPositionProps} from './types'
+import {SideSheetProps, getBoxPosition} from './types'
 
 import {constants, useDefaults} from '@smashing/theme'
 
@@ -110,6 +110,7 @@ const ANIMATION_DURATION = 240
 
 type BoxProps = {
   width: number | string
+  position : string
 }
 
 const S = {
@@ -119,6 +120,8 @@ const S = {
     width: ${_ => _.width}px;
     display: flex;
     flex-direction: column;
+    ${_ => getBoxPosition(_.position)};
+    
   `,
   IconButton: styled(Button)`
     width: 32px;
@@ -169,8 +172,8 @@ const SideSheetFC: React.FC<SideSheetProps> = ({
         role="dialog"
         data-state={state}
         width={defaults.width}
-        {...containerProps}
-          {...boxPositionProps[defaults.position]}
+        position ={defaults.position}
+        
         >
         {/* TODO: add isClosing bool */}
           <S.IconButton appearance="minimal" onClick={close}> 
