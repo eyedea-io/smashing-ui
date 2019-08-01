@@ -16,7 +16,8 @@ const Textarea: React.FC<TextAreaProps> = ({children, ...props}) => {
     props,
     {
       disabled: false,
-      isInvalid: false
+      isInvalid: false,
+      required: false
     }
   )
 

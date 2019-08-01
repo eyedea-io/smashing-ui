@@ -40,7 +40,7 @@ export interface TextAreaProps extends TextProps {
   /**
    * The height of the TextInput.
    */
-  height?: number
+  height?: string | number
 
   /**
    * Class name passed to the button.
