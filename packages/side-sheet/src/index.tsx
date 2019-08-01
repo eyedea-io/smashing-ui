@@ -1,9 +1,10 @@
 import * as React from 'react'
 import {Overlay} from '@smashing/overlay'
 import {Button} from '@smashing/button'
-import styled, {keyframes, CSSProperties} from 'styled-components'
+import styled, {keyframes, css} from 'styled-components'
 import '@smashing/theme'
-import {SideSheetProps, getBoxPosition} from './types'
+import {SideSheetProps} from './types'
+import {getAnimationIn,getBoxPosition, getAnimationOut, getTransform} from './helpers'
 
 import {constants, useDefaults} from '@smashing/theme'
 
@@ -17,100 +18,9 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 240
 
-// const openAnimation = keyframes`
-//   from {
-//     transform: scale(0.8);
-//     opacity: 0;
-//   }
-//   to {
-//     transform: scale(1);
-//     opacity: 1;
-//   }
-// `
-
-// const closeAnimation = keyframes`
-//   from {
-//     transform: "scale(1)";
-//     opacity: 1;
-//   }
-//   to {
-//     transform: "scale(0.8)";
-//     opacity: 0;
-//   }
-// `
-// const withAnimations = (animateIn, animateOut) => {
-//   return {
-//     '&[data-state="entering"], &[data-state="entered"]': {
-//       animation: `${animateIn} ${ANIMATION_DURATION}ms ${
-//         animationEasing.deceleration
-//       } both`
-//     },
-//     '&[data-state="exiting"]': {
-//       animation: `${animateOut} ${ANIMATION_DURATION}ms ${
-//         animationEasing.acceleration
-//       } both`
-//     }
-//   }
-// }
-
-// const animationStyles = {
-//   [Position.LEFT]: {
-//     transform: `translateX(-100%)`,
-//     ...withAnimations(
-//       keyframes`
-//   from { transform: "translateX(-100%)"  }
-//   to { transform: "translateX(0)"  }
-// `,
-//       keyframes`
-//   from { transform: "translateX(0)"  }
-//   to { transform: "translateX(-100%)"  }
-// `
-//     )
-//   },
-//   [Position.RIGHT]: {
-//     transform: `translateX(100%)`,
-//     ...withAnimations(
-//       keyframes`
-//   from { transform: "translateX(100%)"  }
-//   to { transform: "translateX(0)"  }
-// `,
-//       keyframes`
-//   from { transform: "translateX(0)"  }
-//   to { transform: "translateX(100%)"  }
-// `
-//     )
-//   },
-//   [Position.TOP]: {
-//     transform: `translateY(-100%)`,
-//     ...withAnimations(
-//       keyframes`
-//   from { transform: "translateY(-100%)"  }
-//   to { transform: "translateY(0)"  }
-// `,
-//       keyframes`
-//   from { transform: "translateY(0)"  }
-//   to { transform: "translateY(-100%)"  }
-// `
-//     )
-//   },
-//   [Position.BOTTOM]: {
-//     transform: `translateY(100%)`,
-//     ...withAnimations(
-//       keyframes`
-//   from { transform: "translateY(100%)"  }
-//   to { transform: "translateY(0)"  }
-// `,
-//       keyframes`
-//   from { transform: "translateY(0)"  }
-//   to { transform: "translateY(100%)"  }
-// `
-//     )
-//   }
-// }
-
 type BoxProps = {
   width: number | string
-  position : string
+  position: string
 }
 
 const S = {
@@ -120,8 +30,17 @@ const S = {
     width: ${_ => _.width}px;
     display: flex;
     flex-direction: column;
+    transform:  ${_ => getTransform(_.position)};
     ${_ => getBoxPosition(_.position)};
-    
+    &[data-state="entering"],
+    &[data-state="entered"] {
+      animation: ${_ => getAnimationIn(_.position)} ${ANIMATION_DURATION}ms
+        ${animationEasing.deceleration} both;
+    }
+    &[data-state="exiting"] {
+      animation: ${_ => getAnimationOut(_.position)}  ${ANIMATION_DURATION}ms
+        ${animationEasing.acceleration} both;
+    }
   `,
   IconButton: styled(Button)`
     width: 32px;
@@ -130,7 +49,7 @@ const S = {
     padding-right: 0;
     display: flex;
     justify-content: center;
-  `,
+  `
 }
 
 const SideSheetFC: React.FC<SideSheetProps> = ({
@@ -145,7 +64,7 @@ const SideSheetFC: React.FC<SideSheetProps> = ({
     onBeforeClose: () => true,
     shouldCloseOnOverlayClick: true,
     shouldCloseOnEscapePress: true,
-    position: Position.RIGHT,
+    position: Position.LEFT,
     isShown: false,
     preventBodyScrolling: false
   })
@@ -169,14 +88,13 @@ const SideSheetFC: React.FC<SideSheetProps> = ({
     >
       {({state, close}) => (
         <S.Box
-        role="dialog"
-        data-state={state}
-        width={defaults.width}
-        position ={defaults.position}
-        
+          role="dialog"
+          data-state={state}
+          width={defaults.width}
+          position={defaults.position}
         >
-        {/* TODO: add isClosing bool */}
-          <S.IconButton appearance="minimal" onClick={close}> 
+          {/* TODO: add isClosing bool */}
+          <S.IconButton appearance="minimal" onClick={close}>
             <svg
               viewBox="0 0 16 16"
               width={14}
@@ -198,7 +116,7 @@ const SideSheetFC: React.FC<SideSheetProps> = ({
 
 const SideSheet = styled(SideSheetFC)``
 
-export {SideSheet,SideSheetProps}
+export {SideSheet, SideSheetProps}
 
 declare module 'styled-components' {
   export interface SmashingSideSheetDefaults
