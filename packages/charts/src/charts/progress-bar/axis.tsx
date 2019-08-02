@@ -1,6 +1,6 @@
-import * as React from "react"
-import * as d3 from "d3"
-import {Margins} from "./index"
+import * as React from 'react'
+import * as d3 from 'd3'
+import {Margins} from './index'
 import {ProgressBarDataItem} from '../../types'
 
 interface IProps {
@@ -26,22 +26,22 @@ const Axis: React.SFC<IProps> = ({width, height, data, margins}) => {
       .tickFormat((d, i) => `${ticks[i]} %`)
 
     d3.select(ref.current)
-      .append("g")
+      .append('g')
       .call(axis)
-      .style("font-size", "11px")
-      .call(g => g.select(".domain").remove())
-      .call(g => g.selectAll("text").style("fill", "#C5C5DB"))
-      .style("color", "#ECECEF")
-      .style("stroke-dasharray", "2 3")
-      .attr("transform", `translate(${margins.left},${margins.top})`)
+      .style('font-size', '11px')
+      .call(g => g.select('.domain').remove())
+      .call(g => g.selectAll('text').style('fill', '#C5C5DB'))
+      .style('color', '#ECECEF')
+      .style('stroke-dasharray', '2 3')
+      .attr('transform', `translate(${margins.left},${margins.top})`)
 
     d3.select(ref.current)
-      .append("text")
-      .attr("transform", `translate(${2 * margins.left},${margins.top - 9})`)
-      .text("VOTES")
-      .style("font-size", "11px")
-      .style("fill", "#C5C5DB")
-      .attr("font-family", "sans-serif")
+      .append('text')
+      .attr('transform', `translate(${2 * margins.left},${margins.top - 9})`)
+      .text('VOTES')
+      .style('font-size', '11px')
+      .style('fill', '#C5C5DB')
+      .attr('font-family', 'sans-serif')
   })
 
   return <g ref={ref} />

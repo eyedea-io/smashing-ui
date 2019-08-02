@@ -1,6 +1,6 @@
-import * as React from "react"
+import * as React from 'react'
 
-import * as d3 from "d3"
+import * as d3 from 'd3'
 
 interface IProps {
   key: number
@@ -42,7 +42,7 @@ export const Slice: React.FC<IProps> = props => {
       .transition()
       .duration(1000)
       .ease(d3.easeExpInOut)
-      .attrTween("d", arcTween)
+      .attrTween('d', arcTween)
   })
 
   const label = data.find(
@@ -55,7 +55,7 @@ export const Slice: React.FC<IProps> = props => {
         transform={`translate(${arc.centroid(value)})`}
         textAnchor="middle"
         fill="white"
-        style={{fontFamily: "sans-serif", fontSize: "12"}}
+        style={{fontFamily: 'sans-serif', fontSize: '12'}}
       >
         {label.name}
       </text>
@@ -64,7 +64,7 @@ export const Slice: React.FC<IProps> = props => {
         dy=".95em"
         textAnchor="middle"
         fill="white"
-        style={{fontFamily: "sans-serif", fontSize: "12"}}
+        style={{fontFamily: 'sans-serif', fontSize: '12'}}
       >
         {value.data}
       </text>
@@ -73,7 +73,7 @@ export const Slice: React.FC<IProps> = props => {
 }
 
 Slice.defaultProps = {
-  fill: "white"
+  fill: 'white'
 }
 
 export default Slice

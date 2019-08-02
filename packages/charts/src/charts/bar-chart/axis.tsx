@@ -1,6 +1,6 @@
-import * as React from "react"
-import * as d3 from "d3"
-import {AxisDomain} from "d3"
+import * as React from 'react'
+import * as d3 from 'd3'
+import {AxisDomain} from 'd3'
 
 interface IProps {
   orient: string
@@ -16,7 +16,7 @@ const Axis: React.SFC<IProps> = ({orient, scale, translate, tickSize}) => {
     let axis: any
 
     const renderAxis = () => {
-      if (orient === "Bottom") {
+      if (orient === 'Bottom') {
         axis = d3
           .axisBottom(scale)
           .tickPadding(8)
@@ -28,24 +28,24 @@ const Axis: React.SFC<IProps> = ({orient, scale, translate, tickSize}) => {
           .tickSize(-tickSize)
           .tickPadding(12)
           .ticks(3)
-          .tickFormat(d3.format("~%") as any)
+          .tickFormat(d3.format('~%') as any)
       }
     }
     renderAxis()
 
-    if (orient === "Bottom") {
+    if (orient === 'Bottom') {
       d3.select(ref.current)
-        .append("g")
+        .append('g')
         .call(axis)
-        .style("color", "#5B5B82")
-        .style("font-weight", "700")
+        .style('color', '#5B5B82')
+        .style('font-weight', '700')
     } else {
       d3.select(ref.current)
-        .append("g")
+        .append('g')
         .call(axis)
-        .call(g => g.select(".domain").remove())
-        .style("color", "#C5C5DB")
-        .style("stroke-dasharray", "2 3")
+        .call(g => g.select('.domain').remove())
+        .style('color', '#C5C5DB')
+        .style('stroke-dasharray', '2 3')
     }
   })
 

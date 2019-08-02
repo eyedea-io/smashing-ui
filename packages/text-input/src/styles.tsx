@@ -1,5 +1,5 @@
-import {DefaultTheme} from "styled-components/macro"
-import {TextInputAppearanceType} from "./types"
+import {DefaultTheme} from 'styled-components'
+import {TextInputAppearanceType} from './types'
 
 export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
   theme: DefaultTheme
@@ -7,84 +7,74 @@ export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
   const {scales, palette} = _.theme
 
   switch (appearance) {
-    case "underline":
+    case 'underline':
       return {
-        backgroundColor: "white",
+        backgroundColor: 'white',
         borderRadius: 0,
         boxShadow: `inset 0 -2px 0 0 ${scales.neutral.N4A}`,
-        ":focus": {
-          outline: "none",
+        ':focus': {
+          outline: 'none',
           boxShadow: `inset 0 -2px 0 0 ${scales.blue.B7}`
         },
-        ":invalid": {
-          boxShadow: `inset 0 0 0 1px ${palette.red.base}, inset 0 1px 2px ${
-            scales.neutral.N4A
-          }`
+        ':invalid': {
+          boxShadow: `inset 0 0 0 1px ${palette.red.base}, inset 0 1px 2px ${scales.neutral.N4A}`
         },
-        "::placeholder": {
+        '::placeholder': {
           color: scales.neutral.N6A
         },
-        ":disabled": {
+        ':disabled': {
           boxShadow: `inset 0 -2px 0 0 ${scales.neutral.N2A}`
         }
       }
-    case "minimal":
+    case 'minimal':
       return {
-        backgroundColor: "white",
-        ":invalid": {},
-        "::placeholder": {
+        backgroundColor: 'white',
+        ':invalid': {},
+        '::placeholder': {
           color: scales.neutral.N6A
         },
-        ":focus": {
-          outline: "none"
+        ':focus': {
+          outline: 'none'
         },
-        ":disabled": {
+        ':disabled': {
           backgroundColor: scales.neutral.N2
         }
       }
-    case "neutral":
+    case 'neutral':
       return {
         backgroundColor: scales.neutral.N2A,
-        ":invalid": {
+        ':invalid': {
           boxShadow: `inset 0 0 0 1px ${palette.red.base}`
         },
-        "::placeholder": {
+        '::placeholder': {
           color: scales.neutral.N6A
         },
-        ":focus": {
-          outline: "none",
-          backgroundColor: "white",
-          boxShadow: `inset 0 0 2px ${scales.neutral.N4A}, inset 0 0 0 1px ${
-            scales.blue.B7
-          }, 0 0 0 3px ${scales.blue.B4A}`
+        ':focus': {
+          outline: 'none',
+          backgroundColor: 'white',
+          boxShadow: `inset 0 0 2px ${scales.neutral.N4A}, inset 0 0 0 1px ${scales.blue.B7}, 0 0 0 3px ${scales.blue.B4A}`
         },
-        ":disabled": {
+        ':disabled': {
           boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}`,
           backgroundColor: scales.neutral.N2
         }
       }
-    case "default":
+    case 'default':
     default:
       return {
-        backgroundColor: "white",
-        boxShadow: `inset 0 0 0 1px ${scales.neutral.N5A}, inset 0 1px 2px ${
-          scales.neutral.N4A
-        }`,
-        ":focus": {
-          outline: "none",
-          boxShadow: `inset 0 0 2px ${scales.neutral.N4A}, inset 0 0 0 1px ${
-            scales.blue.B7
-          }, 0 0 0 3px ${scales.blue.B4A}`
+        backgroundColor: 'white',
+        boxShadow: `inset 0 0 0 1px ${scales.neutral.N5A}, inset 0 1px 2px ${scales.neutral.N4A}`,
+        ':focus': {
+          outline: 'none',
+          boxShadow: `inset 0 0 2px ${scales.neutral.N4A}, inset 0 0 0 1px ${scales.blue.B7}, 0 0 0 3px ${scales.blue.B4A}`
         },
-        ":invalid": {
-          boxShadow: `inset 0 0 0 1px ${palette.red.base}, inset 0 1px 2px ${
-            scales.neutral.N4A
-          }`
+        ':invalid': {
+          boxShadow: `inset 0 0 0 1px ${palette.red.base}, inset 0 1px 2px ${scales.neutral.N4A}`
         },
-        "::placeholder": {
+        '::placeholder': {
           color: scales.neutral.N6A
         },
-        ":disabled": {
+        ':disabled': {
           boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}`,
           backgroundColor: scales.neutral.N2
         }

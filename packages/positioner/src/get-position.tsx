@@ -1,4 +1,4 @@
-import {constants} from "@smashing/theme"
+import {constants} from '@smashing/theme'
 
 const {position: Position} = constants
 

@@ -1,9 +1,9 @@
-import * as React from "react"
-import styled, {ThemeContext, css} from "styled-components/macro"
-import {useDefaults} from "@smashing/theme"
-import {AlertIntentType, AlertAppearanceType, AlertProps} from "./types"
-import {Text, Strong} from "@smashing/typography"
-import {getAlertIconForIntent, getTrimColorByIntent} from "./styles"
+import * as React from 'react'
+import styled, {ThemeContext, css} from 'styled-components'
+import {useDefaults} from '@smashing/theme'
+import {AlertIntentType, AlertAppearanceType, AlertProps} from './types'
+import {Text, Strong} from '@smashing/typography'
+import {getAlertIconForIntent, getTrimColorByIntent} from './styles'
 
 interface BoxProps {
   hasTrim: boolean
@@ -16,26 +16,26 @@ const Box = styled.div.attrs({})<BoxProps>`
   position: relative;
 
   ${_ =>
-    _.appearance === "card" &&
+    _.appearance === 'card' &&
     css`
       border-radius: 3px;
       ${_.theme.elevation.card};
     `}
 
   ${_ =>
-    _.appearance === "default" &&
+    _.appearance === 'default' &&
     css`
       ${_.theme.elevation.container};
     `}
 
   ${_ =>
-    ["card", "default"].includes(_.appearance) &&
+    ['card', 'default'].includes(_.appearance) &&
     css`
       background-color: #fff;
       padding: 12px 16px;
 
       ::before {
-        content: ${_.hasTrim ? '""' : "none"};
+        content: ${_.hasTrim ? '""' : 'none'};
         width: 3px;
         height: 100%;
         position: absolute;
@@ -63,11 +63,11 @@ const Icon = styled.div`
 `
 
 const Alert: React.FC<AlertProps> = ({children, title, ...props}) => {
-  const defaults = useDefaults("alert", props, {
+  const defaults = useDefaults('alert', props, {
     hasTrim: true,
     hasIcon: true,
-    intent: "info" as AlertIntentType,
-    appearance: "default" as AlertAppearanceType
+    intent: 'info' as AlertIntentType,
+    appearance: 'default' as AlertAppearanceType
   })
   const theme = React.useContext(ThemeContext)
 
@@ -81,14 +81,14 @@ const Alert: React.FC<AlertProps> = ({children, title, ...props}) => {
         <Icon>{getAlertIconForIntent(defaults.intent)({theme})}</Icon>
       )}
       <div>
-        {typeof title === "string" ? (
-          <Title as="h4" color={"dark"}>
+        {typeof title === 'string' ? (
+          <Title as="h4" color={'dark'}>
             {title}
           </Title>
         ) : (
           title
         )}
-        {typeof children === "string" ? <Text>{children}</Text> : children}
+        {typeof children === 'string' ? <Text>{children}</Text> : children}
       </div>
     </Box>
   )
@@ -96,7 +96,7 @@ const Alert: React.FC<AlertProps> = ({children, title, ...props}) => {
 
 export {Alert, AlertProps, AlertAppearanceType}
 
-declare module "styled-components" {
+declare module 'styled-components' {
   export interface SmashingAlertDefaults
     extends Partial<{
       alert?: {

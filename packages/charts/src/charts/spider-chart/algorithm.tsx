@@ -1,13 +1,16 @@
-import * as React from "react"
-import{SpiderDataItems} from '../../types'
-import * as d3 from "d3"
+import * as React from 'react'
+import {SpiderDataItems} from '../../types'
+import * as d3 from 'd3'
 
 interface Coordinates {
   x: number
   y: number
 }
 
-const useAlgorithm = (data: SpiderDataItems, calculateCoordinates: Function) => {
+const useAlgorithm = (
+  data: SpiderDataItems,
+  calculateCoordinates: Function
+) => {
   const [result, setResult] = React.useState(0)
   React.useEffect(() => {
     let polygonsValues = [] as number[][]

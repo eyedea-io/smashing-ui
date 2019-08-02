@@ -1,13 +1,12 @@
-import * as React from "react"
-import * as d3 from "d3"
-import {ThemeContext} from "styled-components"
-import {useDefaults} from "@smashing/theme"
+import * as React from 'react'
+import * as d3 from 'd3'
+import {ThemeContext} from 'styled-components'
+import {useDefaults} from '@smashing/theme'
 
-import Axes from "./axes"
-import Bar from "./bar"
-import Title from "./title"
-import {BarChartProps,BarChartDataItem} from '../../types'
-
+import Axes from './axes'
+import Bar from './bar'
+import Title from './title'
+import {BarChartProps, BarChartDataItem} from '../../types'
 
 export interface Margins {
   top: number
@@ -32,7 +31,7 @@ const BarChart: React.SFC<BarChartProps> = ({
   width,
   height,
   data,
-  titles = {left: "", right: ""},
+  titles = {left: '', right: ''},
   colors
 }) => {
   const margins = {
@@ -88,7 +87,7 @@ const BarChart: React.SFC<BarChartProps> = ({
           data={data}
           maxValue={maxValue}
           dimensions={{width, height}}
-          colors = {colors}
+          colors={colors}
         />
         {titles.left && (
           <Title
@@ -110,11 +109,11 @@ const BarChart: React.SFC<BarChartProps> = ({
     </div>
   )
 }
-declare module "styled-components" {
+declare module 'styled-components' {
   export interface SmashingBarChartDefaults
     extends Partial<{
       barChart?: {
-        colors?: [string,string,string,string]
+        colors?: [string, string, string, string]
       }
     }> {}
 }

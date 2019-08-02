@@ -1,18 +1,18 @@
-import * as React from "react"
-import * as d3 from "d3"
-import Circles from "./circles"
-import Axes from "./axes"
-import Polygon from "./polygon"
-import {angleToCoordinate} from "./axes"
-import {LineData} from "./polygon"
-import useAlgorithm from "./algorithm"
-import {ThemeContext} from "styled-components"
-import {useDefaults} from "@smashing/theme"
-import{SpiderProps} from '../../types'
+import * as React from 'react'
+import * as d3 from 'd3'
+import Circles from './circles'
+import Axes from './axes'
+import Polygon from './polygon'
+import {angleToCoordinate} from './axes'
+import {LineData} from './polygon'
+import useAlgorithm from './algorithm'
+import {ThemeContext} from 'styled-components'
+import {useDefaults} from '@smashing/theme'
+import {SpiderProps} from '../../types'
 
 const SpiderChart: React.SFC<SpiderProps> = ({width, data, ...props}) => {
   const theme = React.useContext(ThemeContext)
-  const defaults = useDefaults("spiderChart", props, {
+  const defaults = useDefaults('spiderChart', props, {
     colors: theme.colors.chart.spider
   })
 
@@ -55,7 +55,7 @@ const SpiderChart: React.SFC<SpiderProps> = ({width, data, ...props}) => {
   )
 }
 
-declare module "styled-components" {
+declare module 'styled-components' {
   export interface SmashingSpiderChartDefaults
     extends Partial<{
       spiderChart?: {
