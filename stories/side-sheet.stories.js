@@ -33,8 +33,39 @@ storiesOf("Core|Side Sheet", module)
                 flex: '1',
                 flexDirection: 'column'
               }}
-            > Hello </SideSheet>
-        // <div>dsdsds</div>
+            > Hello World!</SideSheet>
+      )}
+    </Wrapper>
+  ))
+  .add("change position", () => (
+    <Wrapper>
+      {({setIsShown, isShown}) => (
+        <SideSheet
+              isShown={isShown}
+              onCloseComplete={() => setIsShown(false)}
+              position='top'
+              containerProps={{
+                display: 'flex',
+                flex: '1',
+                flexDirection: 'column'
+              }}
+            > Hello World!</SideSheet>
+      )}
+    </Wrapper>
+  ))
+  .add("hide closing button", () => (
+    <Wrapper>
+      {({setIsShown, isShown}) => (
+        <SideSheet
+              isShown={isShown}
+              onCloseComplete={() => setIsShown(false)}
+              isClosingButtonVisible={false}
+              containerProps={{
+                display: 'flex',
+                flex: '1',
+                flexDirection: 'column'
+              }}
+            > Hello World!</SideSheet>
       )}
     </Wrapper>
   ))
