@@ -55,6 +55,7 @@ declare module 'styled-components' {
   export interface SmashingTextInputDefaults {}
   export interface SmashingAlertDefaults {}
   export interface SmashingAvatarDefaults {}
+  export interface SmashingAutocompleteDefaults {}
   export interface SmashingBarChartDefaults {}
   export interface SmashingPieChartDefaults {}
   export interface SmashingProgressBarChartDefaults {}
@@ -69,6 +70,7 @@ declare module 'styled-components' {
       SmashingSpiderChartDefaults,
       SmashingRadialProgressDefaults,
       SmashingProgressBarChartDefaults,
+      SmashingAutocompleteDefaults,
       SmashingAvatarDefaults {}
   export interface DefaultTheme {
     radius: string
