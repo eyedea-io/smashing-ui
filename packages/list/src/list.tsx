@@ -18,8 +18,10 @@ export const List: React.FC<ListProps> = ({children, ...props}) => {
 
   return (
     <ListContainer>
-      {children.map(child => (
-        <ListItem overlapSize={overlapSize}>{child}</ListItem>
+      {children.map((child, key) => (
+        <ListItem key={key} overlapSize={overlapSize}>
+          {child}
+        </ListItem>
       ))}
     </ListContainer>
   )
