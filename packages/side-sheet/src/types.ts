@@ -54,5 +54,15 @@ export interface SideSheetProps {
   /**
    * Whether or not to prevent scrolling in the outer body
    */
-  preventBodyScrolling: boolean
+  preventBodyScrolling?: boolean
+
+  /**
+   * Size of close icon.
+   */
+  size?: number
+
+  /**
+   * Boolean indicating if closing button is visible.
+   */
+  isClosingButtonVisible? : boolean
 }

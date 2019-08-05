@@ -82,49 +82,104 @@ export const getTransform = (position: string) => {
   }
 }
 
-
 export const getBoxPosition = (position?: string) => {
-    switch (position) {
-      case Position.LEFT:
-        return {
-          height: '100vh',
-          maxWidth: '100vw',
-          position: 'absolute' as 'absolute',
-          left: 0,
-          right: 'auto'
-        }
-      case Position.RIGHT:
-        return {
-          height: '100vh',
-          maxWidth: '100vw',
-          position: 'absolute' as 'absolute',
-          right: 0,
-          left: 'auto'
-        }
-      case Position.TOP:
-        return {
-          width: '100vw',
-          position: 'absolute' as 'absolute',
-          maxHeight: '100vh',
-          top: 0,
-          bottom: 'auto'
-        }
-      case Position.BOTTOM:
-        return {
-          width: '100vw',
-          maxHeight: '100vh',
-          position: 'absolute' as 'absolute',
-          bottom: 0,
-          top: 'auto'
-        }
-      default:
-        return {
-          height: '100vh',
-          maxWidth: '100vw',
-          position: 'absolute' as 'absolute',
-          left: 0,
-          right: 'auto'
-        }
-    }
+  switch (position) {
+    case Position.LEFT:
+      return {
+        height: '100vh',
+        maxWidth: '100vw',
+        position: 'absolute' as 'absolute',
+        left: 0,
+        right: 'auto'
+      }
+    case Position.RIGHT:
+      return {
+        height: '100vh',
+        maxWidth: '100vw',
+        position: 'absolute' as 'absolute',
+        right: 0,
+        left: 'auto'
+      }
+    case Position.TOP:
+      return {
+        width: '100vw',
+        position: 'absolute' as 'absolute',
+        maxHeight: '100vh',
+        top: 0,
+        bottom: 'auto'
+      }
+    case Position.BOTTOM:
+      return {
+        width: '100vw',
+        maxHeight: '100vh',
+        position: 'absolute' as 'absolute',
+        bottom: 0,
+        top: 'auto'
+      }
+    default:
+      return {
+        height: '100vh',
+        maxWidth: '100vw',
+        position: 'absolute' as 'absolute',
+        left: 0,
+        right: 'auto'
+      }
   }
-  
+}
+
+export const getContentPosition = (position?: string) => {
+  switch (position) {
+    case Position.LEFT:
+      return {height: '100vh'}
+    case Position.RIGHT:
+      return {height: '100vh'}
+    case Position.TOP:
+      return {width: '100vw'}
+    case Position.BOTTOM:
+      return {width: '100vw'}
+    default:
+      return {height: '100vh'}
+  }
+}
+
+export const getIconPosition = (position?: string) => {
+  switch (position) {
+    case Position.LEFT:
+      return {
+        right: 0,
+        marginRight: -12,
+        marginTop: 12,
+        transform: `translateX(100%)`
+      }
+    case Position.RIGHT:
+      return {
+        left: 0,
+        marginLeft: -12,
+        marginTop: 12,
+        transform: `translateX(-100%)`
+      }
+    case Position.TOP:
+      return {
+        right: 0,
+        marginRight: 12,
+        top: '100%',
+        marginTop: 12,
+        transform: `translateY(0)`
+      }
+    case Position.BOTTOM:
+      return {
+        right: 0,
+        marginRight: 12,
+        bottom: '100%',
+        marginBottom: 12,
+        transform: `translateY(0)`
+      }
+    default:
+      return {
+        left: 0,
+        marginLeft: -12,
+        marginTop: 12,
+        transform: `translateX(-100%)`
+      }
+  }
+}

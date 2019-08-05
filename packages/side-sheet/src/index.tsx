@@ -1,11 +1,17 @@
 import * as React from 'react'
 import {Overlay} from '@smashing/overlay'
 import {Button} from '@smashing/button'
-import styled, {keyframes, css} from 'styled-components'
+import styled from 'styled-components'
 import '@smashing/theme'
 import {SideSheetProps} from './types'
-import {getAnimationIn,getBoxPosition, getAnimationOut, getTransform} from './helpers'
-
+import {
+  getAnimationIn,
+  getBoxPosition,
+  getAnimationOut,
+  getTransform,
+  getIconPosition,
+  getContentPosition
+} from './helpers'
 import {constants, useDefaults} from '@smashing/theme'
 
 const {position: Position} = constants
@@ -19,8 +25,14 @@ const animationEasing = {
 const ANIMATION_DURATION = 240
 
 type BoxProps = {
-  width: number | string
+  width?: number | string
   position: string
+}
+
+type IconProps = {
+  size: number | string
+  position: string
+  isClosing?: boolean
 }
 
 const S = {
@@ -30,28 +42,48 @@ const S = {
     width: ${_ => _.width}px;
     display: flex;
     flex-direction: column;
-    transform:  ${_ => getTransform(_.position)};
+    transform: ${_ => getTransform(_.position)};
     ${_ => getBoxPosition(_.position)};
-    &[data-state="entering"],
-    &[data-state="entered"] {
+    &[data-state='entering'],
+    &[data-state='entered'] {
       animation: ${_ => getAnimationIn(_.position)} ${ANIMATION_DURATION}ms
         ${animationEasing.deceleration} both;
     }
-    &[data-state="exiting"] {
-      animation: ${_ => getAnimationOut(_.position)}  ${ANIMATION_DURATION}ms
+    &[data-state='exiting'] {
+      animation: ${_ => getAnimationOut(_.position)} ${ANIMATION_DURATION}ms
         ${animationEasing.acceleration} both;
     }
   `,
-  IconButton: styled(Button)`
-    width: 32px;
-    height: 32px;
-    padding-left: 0;
-    padding-right: 0;
+  Content: styled.div.attrs({})<BoxProps>`
+    padding: ${_ => _.theme.spacing.sm};
+    ${_ => _.theme.elevation.dialog};
+    width: ${_ => _.width}px;
     display: flex;
+    flex-direction: column;
+    overflow: auto;
+    max-height: '100vh';
+    ${_ => getContentPosition(_.position)};
+  `,
+  IconButton: styled(Button)<IconProps>`
+    width: ${_ => _.size}px;
+    height: ${_ => _.size}px;
+    display: flex;
+    padding: 0;
     justify-content: center;
+    border-radius: 9999px;
+    position: absolute;
+    ${_ => getIconPosition(_.position)};
+    &[data-state='entering'],
+    &[data-state='entered'] {
+      animation: ${_ => getAnimationIn(_.position)} ${ANIMATION_DURATION}ms
+        ${animationEasing.deceleration} both;
+    }
+    &[data-state='exiting'] {
+      animation: ${_ => getAnimationOut(_.position)} ${ANIMATION_DURATION}ms
+        ${animationEasing.acceleration} both;
+    }
   `
 }
-
 const SideSheetFC: React.FC<SideSheetProps> = ({
   children,
   containerProps,
@@ -66,7 +98,10 @@ const SideSheetFC: React.FC<SideSheetProps> = ({
     shouldCloseOnEscapePress: true,
     position: Position.LEFT,
     isShown: false,
-    preventBodyScrolling: false
+    preventBodyScrolling: false,
+    size: 34,
+    isClosing: false,
+    isClosingButtonVisible: true
   })
 
   const renderChildren = (close: () => void) => {
@@ -93,21 +128,35 @@ const SideSheetFC: React.FC<SideSheetProps> = ({
           width={defaults.width}
           position={defaults.position}
         >
-          {/* TODO: add isClosing bool */}
-          <S.IconButton appearance="minimal" onClick={close}>
-            <svg
-              viewBox="0 0 16 16"
-              width={14}
-              height={14}
-              style={{fill: 'rgb(102, 120, 138)'}}
+          {defaults.isClosingButtonVisible && (
+            <S.IconButton
+              appearance="minimal"
+              size={defaults.size}
+              position={defaults.position}
+              onClick={close}
+              isClosing={false}
             >
-              <path
-                d="M9.41 8l3.29-3.29c.19-.18.3-.43.3-.71a1.003 1.003 0 0 0-1.71-.71L8 6.59l-3.29-3.3a1.003 1.003 0 0 0-1.42 1.42L6.59 8 3.3 11.29c-.19.18-.3.43-.3.71a1.003 1.003 0 0 0 1.71.71L8 9.41l3.29 3.29c.18.19.43.3.71.3a1.003 1.003 0 0 0 .71-1.71L9.41 8z"
-                fillRule="evenodd"
-              />
-            </svg>
-          </S.IconButton>
-          <div>{renderChildren(close)}</div>
+              <svg
+                viewBox="0 0 16 16"
+                width={defaults.size / 2}
+                height={defaults.size / 2}
+                style={{fill: 'white'}}
+              >
+                <path
+                  d="M9.41 8l3.29-3.29c.19-.18.3-.43.3-.71a1.003 1.003 0 0 0-1.71-.71L8 6.59l-3.29-3.3a1.003 1.003 0 0 0-1.42 1.42L6.59 8 3.3 11.29c-.19.18-.3.43-.3.71a1.003 1.003 0 0 0 1.71.71L8 9.41l3.29 3.29c.18.19.43.3.71.3a1.003 1.003 0 0 0 .71-1.71L9.41 8z"
+                  fillRule="evenodd"
+                />
+              </svg>
+            </S.IconButton>
+          )}
+          <S.Content
+            data-state={state}
+            width={defaults.width}
+            position={defaults.position}
+            {...containerProps}
+          >
+            <div>{renderChildren(close)}</div>
+          </S.Content>
         </S.Box>
       )}
     </Overlay>
@@ -128,9 +177,12 @@ declare module 'styled-components' {
         onBeforeClose?: () => boolean
         shouldCloseOnOverlayClick?: boolean
         shouldCloseOnEscapePress?: boolean
-        position?: any //TODO: fix position type
+        position?: string
         isShown?: boolean
         preventBodyScrolling?: boolean
+        size?: number
+        isClosing?: boolean
+        isClosingButtonVisible: boolean
       }
     }> {}
 }
