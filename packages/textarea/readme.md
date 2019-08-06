@@ -1,5 +1,5 @@
 ```sh
-yarn add @smashing/badge
+yarn add @smashing/textarea
 ```
 
 #### Default appearance
