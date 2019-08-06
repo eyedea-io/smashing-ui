@@ -1,6 +1,7 @@
 {
   "extends": "smashing-app",
   "rules": {
-    "no-restricted-imports": "off"
+    "no-restricted-imports": "off",
+    "quotes": ["error", "single", {"avoidEscape": true}]
   }
 }
