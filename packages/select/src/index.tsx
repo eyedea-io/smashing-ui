@@ -1,14 +1,14 @@
-import * as React from "react"
-import {useDefaults} from "@smashing/theme"
-import {SelectProps, OptionProps, Option} from "./types"
-import {Text} from "@smashing/typography"
-import {S, CheckIcon} from "./styles"
-import {Popover} from "@smashing/popover"
+import * as React from 'react'
+import {useDefaults} from '@smashing/theme'
+import {SelectProps, OptionProps, Option} from './types'
+import {Text} from '@smashing/typography'
+import {S, CheckIcon} from './styles'
+import {Popover} from '@smashing/popover'
 
 const OptionItem: React.FC<OptionProps> = ({item, onClick, isActive}) => (
   <S.SelectListItem onClick={onClick} isActive={isActive}>
     {isActive && <CheckIcon />}
-    <Text color={isActive ? "dark" : "muted"}>{item.label}</Text>
+    <Text color={isActive ? 'dark' : 'muted'}>{item.label}</Text>
   </S.SelectListItem>
 )
 
@@ -23,16 +23,16 @@ const getDefaultOptions = (
 
   return (
     options.find(item => item.value === selected) || {
-      label: "Select",
-      value: ""
+      label: 'Select',
+      value: ''
     }
   )
 }
 
 const Select: React.FC<SelectProps> = ({children, ...props}) => {
-  const defaults = useDefaults<SelectProps>("select", props, {
+  const defaults = useDefaults<SelectProps>('select', props, {
     options: [],
-    selected: "",
+    selected: '',
     isMultiSelect: false,
     onSelect: () => undefined,
     onDeselect: () => undefined
@@ -101,7 +101,7 @@ const Select: React.FC<SelectProps> = ({children, ...props}) => {
 
 export {Select}
 
-declare module "styled-components" {
+declare module 'styled-components' {
   export interface SmashingAlertDefaults
     extends Partial<{
       select?: {
