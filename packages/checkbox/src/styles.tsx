@@ -64,7 +64,7 @@ export const getCheckboxStyle = (
     backgroundColor: scales.neutral.N2A,
     boxShadow: 'none',
     color: scales.neutral.N7A,
-    border: `1px solid transparent`,
+    border: '1px solid transparent',
   }
 
   if (disabled) {
@@ -152,7 +152,7 @@ export const getCheckboxStyle = (
         },
         ':active': {
           backgroundColor: flat.backgroundColor.active,
-          boxShadow: `none`
+          boxShadow: 'none'
         }
       }
     case 'card':
