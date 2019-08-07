@@ -1,4 +1,4 @@
-export type CheckboxAppearanceType = "primary" | "minimal" | "card"
+export type CheckboxAppearanceType = 'primary' | 'minimal' | 'card'
 
 export interface CheckboxProps {
   /**
@@ -11,7 +11,7 @@ export interface CheckboxProps {
   name?: string
   /**
    * Apperance of the checkbox.
-   * Can be "primary", "minimal" or "card".
+   * Can be 'primary', 'minimal' or 'card'.
    */
   appearance?: CheckboxAppearanceType
   /**
@@ -29,4 +29,4 @@ export interface CheckboxProps {
 }
 
 export type StyledTextProps = CheckboxProps &
-  Required<Pick<CheckboxProps, "appearance">>
+  Required<Pick<CheckboxProps, 'appearance'>>
