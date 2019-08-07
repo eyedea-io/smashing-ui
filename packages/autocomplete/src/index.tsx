@@ -9,6 +9,9 @@ import {Popover} from '@smashing/popover'
 import {AutocompleteProps} from './types'
 import {useDefaults, constants} from '@smashing/theme'
 
+
+
+
 const {position: Position} = constants
 export type Position =
   | 'top'
@@ -41,10 +44,12 @@ const autocompleteItemRenderer = props => <AutocompleteItem {...props} />
 
 const S = {
   Box: styled.div`
-    ${_ => _.theme.elevation.dropdown};
-    border-radius: ${_ => _.theme.radius};
-    overflow: hidden;
-    min-width: 200px;
+    width: '100%';
+  `,
+  ListBox: styled.div<{width: number}>`
+    width: ${_ => _.width};
+    padding: 8px;
+    border-bottom: 'muted';
   `
 }
 
@@ -61,17 +66,19 @@ const Autocomplete: React.SFC<AutocompleteProps> = ({
     popoverMaxHeight: 240,
     renderItem: autocompleteItemRenderer,
     items: ['Apple', 'Cherry', 'Apricot'],
-    defaultSelectedItem: '',
+    defaultSelectedItem: 'Apple',
     position: 'bottom' as Position,
-    title:'Fruits'
+    title: 'Fruits'
   })
 
   const [targetWidth, setTargetWidth] = React.useState(0)
-  let targetRef = React.useRef<HTMLSpanElement | null>(null)
+  let targetRef = React.useRef(document.createElement("div"))
 
-  // React.useEffect(()=> {
-  //   setTargetWidth(targetRef.getBoundingClientRect().width)
-  // })
+  React.useEffect(()=> {
+    const nextWidth = targetRef.current.getBoundingClientRect().width // nie dziaa
+    console.log(nextWidth)
+    setTargetWidth(nextWidth)
+  })
 
   const renderResults = ({
     width,
@@ -98,7 +105,7 @@ const Autocomplete: React.SFC<AutocompleteProps> = ({
 
     if (items.length === 0) return null
     return (
-      <S.Box>
+      <S.ListBox width={width}>
         {defaults.title && <Heading variant={100}>{defaults.title}</Heading>}
         {items.length > 0 && (
           <VirtualList
@@ -108,7 +115,7 @@ const Autocomplete: React.SFC<AutocompleteProps> = ({
             itemCount={items.length}
             scrollToIndex={highlightedIndex || 0}
             overscanCount={3}
-            //TODO: scrollToAlignment="auto"
+            scrollToAlignment={'auto' as any}
             renderItem={({index, style}) => {
               const item = items[index]
               const itemString = itemToString(item)
@@ -129,10 +136,9 @@ const Autocomplete: React.SFC<AutocompleteProps> = ({
             }}
           />
         )}
-      </S.Box>
+      </S.ListBox>
     )
   }
-
   return (
     <Downshift defaultSelectedItem={defaults.defaultSelectedItem} {...props}>
       {({
@@ -146,6 +152,7 @@ const Autocomplete: React.SFC<AutocompleteProps> = ({
         ...restDownshiftProps
       }) => (
         <S.Box width="100%" {...getRootProps({refKey: 'innerRef'})}>
+
           <Popover
             bringFocusInside={false}
             isShown={isShown}
@@ -192,7 +199,6 @@ const Autocomplete: React.SFC<AutocompleteProps> = ({
   )
 }
 
-
 export {Autocomplete, AutocompleteProps}
 
 declare module 'styled-components' {
@@ -205,7 +211,7 @@ declare module 'styled-components' {
         popoverMinWidth?: number
         popoverMaxHeight?: number
         renderItem?: () => void
-        title? : string
+        title?: string
       }
     }> {}
 }

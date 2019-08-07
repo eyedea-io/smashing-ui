@@ -26,7 +26,8 @@ storiesOf("Core|Autocomplete", module)
             placeholder="Starwars names"
             value={inputValue}
             innerRef={ref => getRef(ref)}
-            {...getInputProps()}
+            {...getInputProps({
+            })}
           />
         )}
       </Autocomplete>

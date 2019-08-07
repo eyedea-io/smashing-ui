@@ -22,7 +22,7 @@ export interface AutocompleteProps extends DownshiftProps<any> {
   /**
    * An array of items to be used as options for the select
    */
-  items?: []
+  items?: any
   /**
    * The selected Item to be shown on the autocomplete
    */
@@ -81,5 +81,11 @@ export interface AutocompleteProps extends DownshiftProps<any> {
 export interface AutocompleteItemProps {
   children?: React.ReactNode
   isSelected?: boolean
-  isHighlited?: boolean
+  isHighlighted?: boolean
+  height?: number
+  onSelect?: () => void
+  onDeselect?: () => void,
+  onClick?: (e) => void,
+  isSelectable?: boolean
+  disabled?: boolean
 }
