@@ -1,7 +1,7 @@
-export {default as colors} from "./colors"
-export {default as fills} from "./fills"
-export {default as palette} from "./palette"
-export {default as scales} from "./scales"
-export {default as fontFamilies} from "./font-families"
-export {default as spacing} from "./spacing"
-export {default as elevation} from "./elevation"
+export {default as colors} from './colors'
+export {default as fills} from './fills'
+export {default as palette} from './palette'
+export {default as scales} from './scales'
+export {default as fontFamilies} from './font-families'
+export {default as spacing} from './spacing'
+export {default as elevation} from './elevation'

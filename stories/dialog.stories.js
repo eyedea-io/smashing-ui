@@ -1,9 +1,9 @@
-import React, {useState} from "react"
-import {storiesOf, addDecorator} from "@storybook/react"
-import {Dialog} from "@smashing/dialog"
-import {Button} from "@smashing/button"
-import {withA11y} from "@storybook/addon-a11y"
-import {SmashingThemeProvider} from "@smashing/theme"
+import React, {useState} from 'react'
+import {storiesOf, addDecorator} from '@storybook/react'
+import {Dialog} from '@smashing/dialog'
+import {Button} from '@smashing/button'
+import {withA11y} from '@storybook/addon-a11y'
+import {SmashingThemeProvider} from '@smashing/theme'
 
 addDecorator(withA11y)
 
@@ -18,11 +18,11 @@ const Wrapper = ({children}) => {
   )
 }
 
-storiesOf("Core|Dialog", module)
+storiesOf('Core|Dialog', module)
   .addDecorator(story => (
     <SmashingThemeProvider theme={{}}>{story()}</SmashingThemeProvider>
   ))
-  .add("default", () => (
+  .add('default', () => (
     <Wrapper>
       {({setIsShown, isShown}) => (
         <Dialog
@@ -35,7 +35,7 @@ storiesOf("Core|Dialog", module)
       )}
     </Wrapper>
   ))
-  .add("options", () => (
+  .add('options', () => (
     <Wrapper>
       {({setIsShown, isShown}) => (
         <Dialog
@@ -49,19 +49,6 @@ storiesOf("Core|Dialog", module)
           confirmLabel="Go"
           isFooterSeparated={false}
           isHeaderSeparated={false}
-        >
-          Hello
-        </Dialog>
-      )}
-    </Wrapper>
-  ))
-  .add("default", () => (
-    <Wrapper>
-      {({setIsShown, isShown}) => (
-        <Dialog
-          title="Example dialog"
-          isShown={isShown}
-          onCloseComplete={() => setIsShown(false)}
         >
           Hello
         </Dialog>
