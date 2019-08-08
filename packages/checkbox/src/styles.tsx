@@ -16,9 +16,6 @@ export const getLabelStyle = (
       padding: 16,
       borderRadius: _.theme.radius,
       ..._.theme.elevation.card
-      // boxShadow: checked
-      //   ? ` inset 0px 2px 4px ${scales.neutral.N6A}`
-      //   : `0px 2px 4px ${scales.neutral.N6A}`
     }
   }
 
@@ -70,7 +67,7 @@ export const getCheckboxStyle = (
           gradient.start,
           gradient.end
         ),
-        focusColor: tinycolor(gradient.start)
+        focusColor: tinycolor(colors.checkbox.primary.start)
           .setAlpha(0.4)
           .toString(),
         border: gradient.end
@@ -90,7 +87,7 @@ export const getCheckboxStyle = (
         },
         ':focus:not([disabled]) + div': {
           outline: 'none',
-          boxShadow: `0 0 0 3px ${primary.focusColor}, inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 -1px 1px 0 ${scales.neutral.N5A}`
+          boxShadow: `0 0 0 2px ${primary.focusColor}, inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 -1px 1px 0 ${scales.neutral.N5A}`
         },
         ':active:not([disabled]) + div': {
           backgroundImage: primary.backgroundImage.active,
@@ -137,7 +134,7 @@ export const getCheckboxStyle = (
         },
         ':focus:not([disabled]) + div': {
           outline: 'none',
-          boxShadow: `inset 0 0 0 1px ${scales.neutral.N6}, 0 0 0 3px ${flat.focusColor}`
+          boxShadow: `inset 0 0 0 1px ${scales.neutral.N6}, 0 0 0 2px ${flat.focusColor}`
         },
         ':active:not([disabled]) + div': {
           backgroundColor: flat.backgroundColor.active,

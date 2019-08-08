@@ -66,7 +66,7 @@ const CheckboxFC: React.FC<CheckboxProps> = ({children, ...props}) => {
     defaults.appearance === 'primary' || defaults.appearance === 'minimal'
 
   return (
-    <Label as="label" variant={300} {...defaults} {...props}>
+    <Label as="label" {...defaults} {...props}>
       <HiddenCheckbox
         checked={props.checked}
         onChange={props.onChange}
