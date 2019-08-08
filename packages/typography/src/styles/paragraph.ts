@@ -1,5 +1,5 @@
-import {getTextStyle} from "./text"
-import {DefaultTheme} from "styled-components"
+import {getTextStyle} from './text'
+import {DefaultTheme} from 'styled-components'
 
 /**
  * Text styles for paragraphs (multi line text).

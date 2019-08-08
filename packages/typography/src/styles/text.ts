@@ -1,4 +1,4 @@
-import {DefaultTheme} from "styled-components"
+import {DefaultTheme} from 'styled-components'
 
 export const getTextStyle = (variant: number) => (_: {theme: DefaultTheme}) => {
   return {
