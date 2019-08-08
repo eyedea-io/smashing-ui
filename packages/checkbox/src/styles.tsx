@@ -1,77 +1,67 @@
-import * as tinycolor from "tinycolor2"
-import {DefaultTheme} from "styled-components/macro"
-import {getLinearGradientWithStates} from "./helpers"
-
-export type AppearanceType = "primary" | "minimal" | "card"
+import * as tinycolor from 'tinycolor2'
+import {DefaultTheme} from 'styled-components'
+import {getLinearGradientWithStates} from './helpers'
+import {CheckboxAppearanceType} from './types'
 
 export const getLabelStyle = (
-  appearance: AppearanceType,
-  disabled: boolean = false,
-  checked: boolean = false
+  appearance: CheckboxAppearanceType,
+  disabled = false,
+  checked = false
 ) => (_: {theme: DefaultTheme}) => {
-  const {colors, fills, scales} = _.theme
-  const disabledAppearance = {
-    color: colors.text.muted
+  if (disabled && appearance === 'card') {
+    return {
+      color: _.theme.colors.text.muted,
+      backgroundColor: 'white',
+      fontWeight: 600,
+      padding: 16,
+      borderRadius: _.theme.radius,
+      ..._.theme.elevation.card
+      // boxShadow: checked
+      //   ? ` inset 0px 2px 4px ${scales.neutral.N6A}`
+      //   : `0px 2px 4px ${scales.neutral.N6A}`
+    }
   }
-  const disabledCardAppearance = {
-    color: colors.text.muted,
-    backgroundColor: "white",
-    fontWeight: 600,
-    padding: 16,
-    borderRadius: 8,
-    boxShadow: checked
-      ? ` inset 0px 2px 4px ${scales.neutral.N6A}`
-      : `0px 2px 4px ${scales.neutral.N6A}`
-  }
-  if (disabled && appearance === "card") {
-    return disabledCardAppearance
-  }
-  if (disabled) {
-    return disabledAppearance
-  }
-  switch (appearance) {
-    case "primary":
-      return {
-        color: colors.text.dark
+
+  if (appearance === 'card') {
+    return {
+      ...{..._.theme.elevation.card},
+      ...(checked && {
+        ..._.theme.colors.checkbox.card.checked,
+        boxShadow: `inset 0px 2px 4px ${_.theme.scales.neutral.N6A}`
+      }),
+      fontWeight: 600,
+      padding: _.theme.spacing.sm,
+      borderRadius: _.theme.radius,
+      '&:focus, &:focus-within': {
+        outline: 'none',
+        boxShadow: `0 0 0 3px ${tinycolor(
+          _.theme.colors.checkbox.card.checked.backgroundColor
+        )
+          .setAlpha(0.4)
+          .toString()}, inset 0 -1px 1px 0 ${_.theme.scales.neutral.N5A}`
       }
-    case "minimal":
-      return {
-        color: checked ? fills.minimal.blue.color : scales.neutral.N6
-      }
-    case "card":
-      return {
-        color: checked ? "white" : fills.minimal.blue.color,
-        backgroundColor: checked ? colors.checkbox.card : "white",
-        fontWeight: 600,
-        padding: 16,
-        borderRadius: 8,
-        boxShadow: checked
-          ? ` inset 0px 2px 4px ${scales.neutral.N6A}`
-          : `0px 2px 4px ${scales.neutral.N6A}`
-      }
+    }
   }
+
+  return {}
 }
 
 export const getCheckboxStyle = (
-  appearance: AppearanceType,
-  disabled: boolean = false,
-  checked: boolean = false
+  appearance: CheckboxAppearanceType,
+  disabled = false,
+  checked = false
 ) => (_: {theme: DefaultTheme}) => {
   const {scales, colors} = _.theme
   const disabledAppearance = {
     opacity: 0.8,
-    backgroundImage: "none",
+    backgroundImage: 'none',
     backgroundColor: scales.neutral.N2A,
-    boxShadow: "none",
-    color: scales.neutral.N7A,
-    border: `1px solid transparent`,
+    color: scales.neutral.N7,
+    boxShadow: `inset 0 0 0 1px ${scales.neutral.N5A}`
   }
 
-  if (disabled) {
-    return disabledAppearance
-  }
   switch (appearance) {
-    case "primary":
+    case 'primary':
       const gradient = checked
         ? colors.checkbox.primary
         : colors.checkbox.default
@@ -85,34 +75,31 @@ export const getCheckboxStyle = (
           .toString(),
         border: gradient.end
       }
+
       return {
-        color: "white",
-        backgroundColor: "white",
-        backgroundImage: primary.backgroundImage.base,
-        fontWeight: 600,
-        border: `1px solid ${primary.border}`,
-        boxShadow: `inset 0 0 0 1px ${scales.neutral.N5A}, inset 0 -1px 1px 0 ${
-          scales.neutral.N2A
-        }`,
-        ":hover": {
+        '& + div': {
+          color: 'white',
+          backgroundColor: 'white',
+          backgroundImage: primary.backgroundImage.base,
+          fontWeight: 600,
+          boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 -1px 1px 0 ${scales.neutral.N3A}`,
+          ...((disabled && disabledAppearance) || {})
+        },
+        ':hover:not([disabled]) + div': {
           backgroundImage: primary.backgroundImage.hover
         },
-        ":focus": {
-          outline: "none",
-          boxShadow: `0 0 0 3px ${primary.focusColor}, inset 0 0 0 1px ${
-            scales.neutral.N4A
-          }, inset 0 -1px 1px 0 ${scales.neutral.N5A}`
+        ':focus:not([disabled]) + div': {
+          outline: 'none',
+          boxShadow: `0 0 0 3px ${primary.focusColor}, inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 -1px 1px 0 ${scales.neutral.N5A}`
         },
-        ":active": {
+        ':active:not([disabled]) + div': {
           backgroundImage: primary.backgroundImage.active,
-          boxShadow: `inset 0 0 0 1px ${
-            scales.neutral.N4A
-          }, inset 0 1px 1px 0 ${scales.neutral.N2A}`
+          boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}, inset 0 1px 1px 0 ${scales.neutral.N2A}`
         }
       }
-    case "minimal":
+    case 'minimal':
       const theme = colors.checkbox[appearance]
-      const backgroundIsTransparent = theme.backgroundColor === "transparent"
+      const backgroundIsTransparent = theme.backgroundColor === 'transparent'
       const flat = {
         color: theme.color,
         backgroundColor: {
@@ -130,32 +117,34 @@ export const getCheckboxStyle = (
                 .toString()
         },
         focusColor: backgroundIsTransparent
-          ? scales.blue.B5A
+          ? scales.blue.B4A
           : tinycolor(theme.backgroundColor)
               .setAlpha(0.4)
               .toString()
       }
 
       return {
-        color: flat.color,
-        border: checked
-          ? `1px solid ${colors.checkbox.minimal.color}`
-          : `1px solid ${scales.neutral.N6}`,
-        backgroundColor: flat.backgroundColor.base,
-        fontWeight: 600,
-        ":hover": {
+        '& + div': {
+          color: flat.color,
+          boxShadow: checked
+            ? `inset 0 0 0 1px ${colors.checkbox.minimal.color}`
+            : `inset 0 0 0 1px ${scales.neutral.N6}`,
+          backgroundColor: flat.backgroundColor.base,
+          fontWeight: 600
+        },
+        ':hover:not([disabled]) + div': {
           backgroundColor: flat.backgroundColor.hover
         },
-        ":focus": {
-          outline: "none",
-          boxShadow: `0 0 0 3px ${flat.focusColor}`
+        ':focus:not([disabled]) + div': {
+          outline: 'none',
+          boxShadow: `inset 0 0 0 1px ${scales.neutral.N6}, 0 0 0 3px ${flat.focusColor}`
         },
-        ":active": {
+        ':active:not([disabled]) + div': {
           backgroundColor: flat.backgroundColor.active,
-          boxShadow: `none`
+          boxShadow: 'none'
         }
       }
-    case "card":
+    default:
       return {}
   }
 }

@@ -1,4 +1,4 @@
-import {DefaultTheme} from "styled-components"
+import {DefaultTheme} from 'styled-components'
 
 export const getHeadingStyle = (variant: number) => (_: {
   theme: DefaultTheme

@@ -1,10 +1,10 @@
-import palette from "./palette"
-import scales from "./scales"
-import fills from "./fills"
+import palette from './palette'
+import scales from './scales'
+import fills from './fills'
 
 const colors = {
   background: {
-    white: "white",
+    white: 'white',
     tint1: scales.neutral.N1,
     tint2: scales.neutral.N2,
     overlay: scales.neutral.N7A,
@@ -70,11 +70,11 @@ const colors = {
 
   button: {
     primary: {
-      none: {start: "#557491", end: "#425A70"},
-      success: {start: "#23C277", end: "#399D6C"},
-      warning: {start: "#EE9913", end: "#D9822B"},
-      danger: {start: "#EC4C47", end: "#D64540"},
-      info: {start: "#0788DE", end: "#116AB8"}
+      none: {start: '#557491', end: '#425A70'},
+      success: {start: '#23C277', end: '#399D6C'},
+      warning: {start: '#EE9913', end: '#D9822B'},
+      danger: {start: '#EC4C47', end: '#D64540'},
+      info: {start: '#0788DE', end: '#116AB8'}
     },
     subtle: {
       none: fills.subtle.neutral,
@@ -100,10 +100,19 @@ const colors = {
   },
 
   checkbox: {
-    primary: {start: "#0788DE", end: "#116AB8"},
-    default: {start: "#fff", end: "#DCDCDC"},
-    minimal:fills.minimal.blue,
-    card: "#F43A45"
+    default: {start: '#fff', end: '#DCDCDC'},
+    minimal: fills.minimal.blue,
+    primary: {
+      start: '#0788DE',
+      end: '#116AB8'
+    },
+    card: {
+      checked: {
+        color: 'white',
+        backgroundColor: '#116AB8',
+        boxShadow: `inset 0px 2px 4px ${scales.neutral.N6A}`
+      }
+    }
   },
 
   overlay: {
@@ -111,19 +120,18 @@ const colors = {
   },
 
   chart: {
-    bar: ["#313153", "#8080AB", "#82B0E4", "#1C6BC4"],
-    pie: ["#8080AB", "#313153"],
-    spider: ["#6969AB", "#47B881"],
-    radial: "#78D0AF",
-    progress:{
-      greyBackground: "#ECECEF",
-      restValues: "#C5C5D7",
-      topValues: "#585882",
-      greyLabels: "#C5C5DB",
-      topIsResult: "#47B881",
-      restIsResult: "#EC4C47"
+    bar: ['#313153', '#8080AB', '#82B0E4', '#1C6BC4'],
+    pie: ['#8080AB', '#313153'],
+    spider: ['#6969AB', '#47B881'],
+    radial: '#78D0AF',
+    progress: {
+      greyBackground: '#ECECEF',
+      restValues: '#C5C5D7',
+      topValues: '#585882',
+      greyLabels: '#C5C5DB',
+      topIsResult: '#47B881',
+      restIsResult: '#EC4C47'
     }
-
   }
 }
 

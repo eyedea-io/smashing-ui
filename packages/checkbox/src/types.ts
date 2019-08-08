@@ -1,4 +1,4 @@
-export type CheckboxAppearanceType = "primary" | "minimal" | "card"
+export type CheckboxAppearanceType = 'primary' | 'minimal' | 'card'
 
 export interface CheckboxProps {
   /**
@@ -10,7 +10,7 @@ export interface CheckboxProps {
    */
   name?: string
   /**
-   * Apperance of the checkbox.
+   * Appearance of the checkbox.
    * Can be "primary", "minimal" or "card".
    */
   appearance?: CheckboxAppearanceType
@@ -28,5 +28,5 @@ export interface CheckboxProps {
   onChange?: React.ChangeEventHandler<HTMLInputElement>
 }
 
-export type StyledTextProps = CheckboxProps &
-  Required<Pick<CheckboxProps, "appearance">>
+export type StyledLabelProps = CheckboxProps &
+  Required<Pick<CheckboxProps, 'appearance'>>
