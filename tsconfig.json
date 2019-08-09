@@ -16,6 +16,7 @@
     {"path": "packages/theme"},
     {"path": "packages/title"},
     {"path": "packages/tooltip"},
+    {"path": "packages/toaster"},
     {"path": "packages/typography"},
     {"path": "packages/charts"}
   ]

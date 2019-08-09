@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import {Toast, ToastProps} from './Toast'
+import {Toast} from './toast'
 
 const WrapperClass = styled.span`
   max-width: 560;
@@ -17,24 +17,24 @@ interface ToastManagerProps {
   /**
    * Function called with the `this.notify` function.
    */
-  bindNotify: () => void
+  bindNotify: any
 
   /**
    * Function called with the `this.getToasts` function.
    */
-  bindGetToasts: () => void
+  bindGetToasts: any
 
   /**
    * Function called with the `this.closeAll` function.
    */
-  bindCloseAll: () => void
+  bindCloseAll: any
 }
 
 const hasCustomId = settings => Object.hasOwnProperty.call(settings, 'id')
 
-const ToastManagerFunc: React.FC<ToastManagerProps> = props => {
+const ToastManager: React.FC<ToastManagerProps> = props => {
   const [idCounter, setIdCounter] = React.useState(0)
-  const [toasts, setToasts] = React.useState([])
+  const [toasts, setToasts] = React.useState<any>([])
 
   const closeToast = React.useCallback(
     id => {
@@ -107,8 +107,11 @@ const ToastManagerFunc: React.FC<ToastManagerProps> = props => {
   )
 
   React.useEffect(() => {
+    //@ts-ignore-next-line
     props.bindNotify(notify)
+    //@ts-ignore-next-line
     props.bindGetToasts(getToasts)
+    //@ts-ignore-next-line
     props.bindCloseAll(closeAll)
   }, [])
 
@@ -124,3 +127,5 @@ const ToastManagerFunc: React.FC<ToastManagerProps> = props => {
     </WrapperClass>
   )
 }
+
+export default ToastManager

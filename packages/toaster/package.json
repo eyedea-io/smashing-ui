@@ -1,5 +1,5 @@
 {
-  "name": "@smashing/badge",
+  "name": "@smashing/toaster",
   "version": "0.0.0",
   "description": "Component used to count notification",
   "repository": "eyedea-io/smashing-ui",
@@ -16,8 +16,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@smashing/theme": "^0.5.3",
-    "@smashing/typography": "^0.4.11"
+    "@smashing/theme": "^0.6.0",
+    "@smashing/typography": "^0.4.14",
+    "@smashing/alert": "^0.1.18",
+    "react-transition-group": "4.2.2"
   },
   "devDependencies": {
     "react": "^16.8.6",
