@@ -1,6 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import ToastManager from './toastManager'
+import ToastManager from './toast-manager'
+import {SmashingThemeProvider} from '@smashing/theme'
 
 const isBrowser =
   typeof window !== 'undefined' && typeof window.document !== 'undefined'
@@ -18,15 +19,17 @@ export default class Toaster {
     if (!isBrowser) return
 
     const container = document.createElement('div')
-    container.setAttribute('data-evergreen-toaster-container', '')
+    container.setAttribute('data-toaster-container', '')
     document.body.append(container)
 
     ReactDOM.render(
-      <ToastManager
-        bindNotify={this._bindNotify}
-        bindGetToasts={this._bindGetToasts}
-        bindCloseAll={this._bindCloseAll}
-      />,
+      <SmashingThemeProvider>
+        <ToastManager
+          bindNotify={this._bindNotify}
+          bindGetToasts={this._bindGetToasts}
+          bindCloseAll={this._bindCloseAll}
+        />
+      </SmashingThemeProvider>,
       container
     )
   }

@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled, {keyframes} from 'styled-components'
 import {Transition} from 'react-transition-group'
+import {TransitionStatus} from 'react-transition-group/Transition'
 import {useDefaults} from '@smashing/theme'
 import {Alert} from '@smashing/alert'
 
@@ -13,38 +14,41 @@ const animationEasing = {
 const ANIMATION_DURATION = 240
 
 const openAnimation = keyframes`
-  from: {
-    opacity: 0,
-    transform: 'translateY(-120%)'
-  },
-  to: {
-    transform: 'translateY(0)'
+  from {
+    opacity: 0;
+    transform: 'translateY(-120%)';
+  }
+
+  to {
+    transform: 'translateY(0)';
   }
 `
 
 const closeAnimation = keyframes`
-  from: {
-    transform: 'scale(1)',
-    opacity: 1
-  },
-  to: {
-    transform: 'scale(0.9)',
-    opacity: 0
+  from {
+    transform: 'scale(1)';
+    opacity: 1;
+  }
+
+  to {
+    transform: 'scale(0.9)';
+    opacity: 0;
   }
 `
 
-const WrapperAnimated = styled.div`
+const WrapperAnimated = styled.div<{state: TransitionStatus}>`
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 0;
   transition: all ${ANIMATION_DURATION}ms ${animationEasing.deceleration};
-  & {
+
+  & ~ .fade-entering {
     animation: ${openAnimation} ${ANIMATION_DURATION}ms
       ${animationEasing.spring} both;
   }
 
-  & {
+  & ~ .fade-exiting {
     animation: ${closeAnimation} 120ms ${animationEasing.acceleration} both;
   }
 `
@@ -95,7 +99,7 @@ export const Toast: React.FC<Props> = ({children, ...props}) => {
   const [isShown, setIsShown] = React.useState(true)
   const [closeTimer, setCloseTimer] = React.useState<number | null>(null)
   const [height, setHeight] = React.useState(0)
-  const defaults = useDefaults<Props>('toast', props, {
+  const defaults = useDefaults<any>('toast', props, {
     intent: 'success',
     zIndex: 10,
     duration: 1000,
@@ -136,11 +140,11 @@ export const Toast: React.FC<Props> = ({children, ...props}) => {
   }
 
   React.useEffect(() => {
-    setIsShown(defaults.isShown || true)
+    setIsShown(defaults.isShown)
   }, [defaults.isShown])
 
   React.useEffect(() => {
-    if (props.duration) {
+    if (defaults.duration) {
       startCloseTimer()
     }
 
@@ -163,11 +167,12 @@ export const Toast: React.FC<Props> = ({children, ...props}) => {
       unmountOnExit
       timeout={ANIMATION_DURATION}
       in={isShown}
-      onExited={props.onRemove}
+      onExited={defaults.onRemove}
     >
       {state => (
         <WrapperAnimated
-          data-state={state}
+          state={state}
+          className={`fade-${state}`}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           style={{
@@ -189,4 +194,11 @@ export const Toast: React.FC<Props> = ({children, ...props}) => {
       )}
     </Transition>
   )
+}
+
+declare module 'styled-components' {
+  export interface SmashingToastDefaults
+    extends Partial<{
+      toast?: Partial<Props>
+    }> {}
 }
