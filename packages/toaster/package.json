@@ -1,7 +1,7 @@
 {
   "name": "@smashing/toaster",
   "version": "0.0.0",
-  "description": "Component used to count notification",
+  "description": "Component used for notifications",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
   "author": "Eyedea AS",

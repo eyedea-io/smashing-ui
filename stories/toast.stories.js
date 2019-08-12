@@ -32,7 +32,7 @@ storiesOf('Core|Toaster', module)
       <Button onClick={() => toaster.notify('Notify alert!')}>Notify</Button>
       <Button onClick={() => toaster.warning('Warning alert!')}>Warning</Button>
       <Button onClick={() => toaster.danger('Danger alert!')}>Danger</Button>
-      <Button onClick={() => toaster.closeAll()}>Close all</Button>
+      <Button onClick={toaster.closeAll}>Close all</Button>
     </React.Fragment>
   ))
   .add('with description', () => (
@@ -51,7 +51,7 @@ storiesOf('Core|Toaster', module)
       <Button onClick={() => toaster.danger('Danger alert!', {description})}>
         Danger
       </Button>
-      <Button onClick={() => toaster.closeAll()}>Close all</Button>
+      <Button onClick={toaster.closeAll}>Close all</Button>
     </React.Fragment>
   ))
   .add('with custom duration', () => (
@@ -70,7 +70,7 @@ storiesOf('Core|Toaster', module)
       <Button onClick={() => toaster.danger('Danger alert!', {duration: 20})}>
         Danger 20s
       </Button>
-      <Button onClick={() => toaster.closeAll()}>Close all</Button>
+      <Button onClick={toaster.closeAll}>Close all</Button>
     </React.Fragment>
   ))
   .add('unique toast', () => (
