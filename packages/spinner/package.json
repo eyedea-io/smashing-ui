@@ -1,7 +1,7 @@
 {
   "name": "@smashing/spinner",
   "version": "0.0.0",
-  "description": "The Spinner component",
+  "description": "Component used to indicate a loading state.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
   "main": "lib/cjs/index.js",
