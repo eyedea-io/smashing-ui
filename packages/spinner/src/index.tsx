@@ -23,7 +23,7 @@ const loadingCircleKeyframes = keyframes`
 `
 
 const S = {
-  Wrapper: styled.svg<SpinnerProps>`
+  Wrapper: styled.div<SpinnerProps>`
     height: ${_ => _.size}px;
     width: ${_ => _.size}px;
     line-height: 0;
