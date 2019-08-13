@@ -18,6 +18,7 @@
     {"path": "packages/tooltip"},
     {"path": "packages/typography"},
     {"path": "packages/charts"},
-    {"path": "packages/checkbox"}
+    {"path": "packages/checkbox"},
+    {"path": "packages/table"}
   ]
 }
