@@ -19,6 +19,7 @@ import {
 const StyledText = styled(Text)<StyledTextProps>`
   border: none;
   cursor: pointer;
+  display: inline-flex;
   border-radius: ${_ => _.borderRadius}px;
   height: ${_ => _.height}px;
   padding-left: ${_ => Math.round(_.height / 2)}px;
