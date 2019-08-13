@@ -74,7 +74,7 @@ const SpinnerFC: React.FC<SpinnerProps> = ({
   }
 
   return (
-    <S.Wrapper size={size} {...props}>
+    <S.Wrapper size={defaults.size} {...props}>
       <S.Svg
         size={defaults.size}
         delay={defaults.delay}

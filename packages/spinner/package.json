@@ -16,7 +16,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@smashing/theme": "^0.5.3",
+    "@smashing/theme": "^0.6.0",
     "@smashing/typography": "^0.4.11"
   },
   "devDependencies": {

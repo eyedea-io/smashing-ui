@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import {storiesOf, addDecorator} from '@storybook/react'
-import {Checkbox} from '../packages/checkbox/src'
+import {Checkbox} from '@smashing/checkbox'
 import {withA11y} from '@storybook/addon-a11y'
-import {SmashingThemeProvider} from '../packages/theme'
+import {SmashingThemeProvider} from '@smashing/theme'
 
 addDecorator(withA11y)
 
