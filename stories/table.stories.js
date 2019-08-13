@@ -1,12 +1,12 @@
 import React from 'react'
 import {storiesOf, addDecorator} from '@storybook/react'
-import {Button} from '@smashing/button'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
+import {Table} from '@smashing/table'
 
 addDecorator(withA11y)
 
-storiesOf('Core|Button', module)
+storiesOf('Core|Table', module)
   .addDecorator(story => (
     <SmashingThemeProvider
       theme={{
@@ -18,4 +18,10 @@ storiesOf('Core|Button', module)
       {story()}
     </SmashingThemeProvider>
   ))
-  .add('appearance:default', () => <React.Fragment></React.Fragment>)
+  .add('appearance:default', () => (
+    <React.Fragment>
+      <Table>
+        <Table.TextCell>ssss</Table.TextCell>
+      </Table>
+    </React.Fragment>
+  ))
