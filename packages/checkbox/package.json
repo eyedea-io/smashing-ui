@@ -1,7 +1,7 @@
 {
-  "name": "@smashing/text-input",
-  "version": "0.1.16",
-  "description": "Text input component used in forms",
+  "name": "@smashing/checkbox",
+  "version": "0.1.0",
+  "description": "Simple Checkbox component",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
   "main": "lib/cjs/index.js",
@@ -11,7 +11,6 @@
     "src",
     "lib"
   ],
-  "source": "src/index.tsx",
   "author": "Eyedea AS",
   "publishConfig": {
     "access": "public"

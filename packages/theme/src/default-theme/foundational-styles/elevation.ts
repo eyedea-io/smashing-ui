@@ -1,5 +1,5 @@
-import colors from "./colors"
-import scales from "./scales"
+import colors from './colors'
+import scales from './scales'
 
 export default {
   background: {

@@ -52,6 +52,7 @@ declare module 'styled-components' {
   export interface SmashingThemeColors extends I<typeof foundation.colors> {}
   export interface SmashingThemeSpacing extends I<typeof foundation.spacing> {}
   export interface SmashingButtonDefaults {}
+  export interface SmashingCheckboxDefaults {}
   export interface SmashingTextInputDefaults {}
   export interface SmashingAlertDefaults {}
   export interface SmashingAvatarDefaults {}
@@ -63,6 +64,7 @@ declare module 'styled-components' {
   export interface SmashingRadialProgressDefaults {}
   export interface SmashingDefaults
     extends SmashingButtonDefaults,
+      SmashingCheckboxDefaults,
       SmashingTextInputDefaults,
       SmashingAlertDefaults,
       SmashingBarChartDefaults,
