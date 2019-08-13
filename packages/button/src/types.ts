@@ -27,7 +27,13 @@ export interface ButtonProps {
   disabled?: boolean
   onClick?: React.MouseEventHandler<HTMLButtonElement>
   tabIndex?: number
+  isLoading?: boolean
 }
 
 export type StyledTextProps = ButtonProps &
   Required<Pick<ButtonProps, 'height' | 'appearance' | 'intent'>>
+
+export type StyledSpinnerProps = {
+  marginRight: number
+  marginLeft: number
+}

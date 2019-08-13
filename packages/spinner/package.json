@@ -1,7 +1,7 @@
 {
-  "name": "@smashing/button",
-  "version": "0.2.15",
-  "description": "The Button component is the most common button component",
+  "name": "@smashing/spinner",
+  "version": "0.0.0",
+  "description": "Component used to indicate a loading state.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
   "main": "lib/cjs/index.js",
@@ -16,9 +16,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@smashing/spinner": "^0.0.0",
     "@smashing/theme": "^0.6.0",
-    "@smashing/typography": "^0.4.14"
+    "@smashing/typography": "^0.4.11"
   },
   "devDependencies": {
     "react": "^16.8.6"
