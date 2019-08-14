@@ -22,6 +22,7 @@ const CustomCheckbox = styled.div.attrs({})<StyledLabelProps>`
   align-items: center;
   border-radius: 4px;
   transition: all 150ms;
+  flex-shrink: 0;
 
   svg {
     display: flex;
