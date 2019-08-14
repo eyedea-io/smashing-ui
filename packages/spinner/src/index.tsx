@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styled, {keyframes} from 'styled-components/macro'
+import styled, {keyframes} from 'styled-components'
 import {useDefaults, theme} from '@smashing/theme'
 import {SpinnerProps, SpinnerCircleProps} from './types'
 

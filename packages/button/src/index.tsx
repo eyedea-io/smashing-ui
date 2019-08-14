@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styled from 'styled-components/macro'
+import styled from 'styled-components'
 import {Text} from '@smashing/typography'
 import {Spinner} from '@smashing/spinner'
 import {getButtonStyle} from './styles'
