@@ -37,9 +37,6 @@ export interface TableCellProps extends TableBoxProps {
    */
   arrowKeysOverrides?: ArrowKeysOverrides
   innerRef?: any
-  onkeydown?: any
-  onkeypress?: any
-  tabIndex?: any
   onClick?: () => void
   height?: number | string
 }

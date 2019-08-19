@@ -21,7 +21,18 @@ storiesOf('Core|Table', module)
   .add('appearance:default', () => (
     <React.Fragment>
       <Table>
-        <Table.TextCell>ssss</Table.TextCell>
+        <Table.Body>
+          <Table.Head>
+            <Table.TextHeaderCell>Age</Table.TextHeaderCell>
+            <Table.TextHeaderCell>Email</Table.TextHeaderCell>
+          </Table.Head>
+          <Table.Row>
+            <Table.TextCell flexBasis={560} flexShrink={0} flexGrow={0}>
+              ssss
+            </Table.TextCell>
+            <Table.TextCell>ssss</Table.TextCell>
+          </Table.Row>
+        </Table.Body>
       </Table>
     </React.Fragment>
   ))

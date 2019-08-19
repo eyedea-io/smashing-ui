@@ -16,14 +16,17 @@ export const TableHead: React.FC<TableHeadProps> = ({children, ...props}) => {
 
   const Box = styled.div<TableHeadProps>`
     padding-right: ${scrollbarWidth};
-    display: 'flex';
+    display: flex;
     flex-shrink: 0;
+    height: ${defaults.height};
+    background-color: ${_ => _.theme.scales.neutral.N2};
+    border-bottom: 1px solid ${_ => _.theme.colors.border.default};
   `
 
   return (
-    <TableBox {...props}>
+    <Box {...props}>
       {children}
-      {defaults.accountForScrollbar && <div>ddd</div>}
-    </TableBox>
+      {defaults.accountForScrollbar && <div></div>}
+    </Box>
   )
 }

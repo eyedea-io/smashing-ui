@@ -40,6 +40,7 @@ export const TableCell: React.FC<TableCellProps> = ({
     appearance: 'default',
     tabIndex: -1,
     onClick: () => {}
+    // height: '100px'
   })
 
   const handleKeyDown = e => {
@@ -70,28 +71,46 @@ export const TableCell: React.FC<TableCellProps> = ({
       }
     }
 
-    safeInvoke(props.onkeydown, e)
+    safeInvoke(props.onKeyDown, e)
   }
   const onRef = ref => {
     mainRef = ref
     safeInvoke(props.innerRef, ref)
   }
+
+  const Box = styled.div<TableCellProps>`
+    padding: 12px;
+    box-sizing: border-box;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    height: ${_ => props.height};
+    overflow: hidden;
+    /* ${_ => _.theme.elevation.dialog}; */
+    :focus {
+      outline: none;
+      background-color: ${_ => _.theme.scales.blue.B2A};
+      box-shadow: 'inset 0 0 0 1px  ${_ => _.theme.scales.blue.B2A}';
+    }
+    
+  `
   return (
     <TableRowConsumer>
       {height => {
         return (
-          <TableBox
+          <Box
             innerRef={onRef}
             height={height}
             tabIndex={isSelectable ? defaults.tabIndex : undefined}
             data-isselectable={isSelectable}
             onClick={defaults.onClick}
-            onkeydown={handleKeyDown}
+            onKeyDown={handleKeyDown}
             {...props}
           >
             {children}
             {rightView ? rightView : null}
-          </TableBox>
+          </Box>
         )
       }}
     </TableRowConsumer>

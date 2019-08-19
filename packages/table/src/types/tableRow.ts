@@ -1,4 +1,3 @@
-import * as React from 'react'
 import {TableBoxProps} from './tableBox'
 
 export interface TableRowProps extends TableBoxProps {

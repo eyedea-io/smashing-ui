@@ -3,14 +3,16 @@ import {TableRowProvider} from './TableRowContext'
 import {TableBox} from './tableBox'
 import {safeInvoke} from './tableCell'
 import {manageTableRowFocusInteraction} from './helpers/manageTableRowFocusInteraction'
+import {getRowAppearance} from './helpers/getRowAppearance'
 import {TableRowProps, TableRowIntentType} from './types/tableRow'
 import {useDefaults} from '@smashing/theme'
+import styled from 'styled-components'
 
 export const TableRow: React.FC<TableRowProps> = ({children, ...props}) => {
   const defaults = useDefaults('tableRow', props, {
     appearance: 'default',
     intent: 'none' as TableRowIntentType,
-    height: 48,
+    height: 20,
     onSelect: () => {},
     onDeselect: () => {},
     onKeyPress: e => {},
@@ -55,8 +57,16 @@ export const TableRow: React.FC<TableRowProps> = ({children, ...props}) => {
     safeInvoke(props.innerRef, ref)
   }
 
+  const Box = styled.div.attrs({'data-isselectable': true})<TableRowProps>`
+    ${_ => getRowAppearance(defaults.intent)};
+    cursor: 'pointer';
+    outline: none;
+    display: flex;
+    border-bottom: 1px solid ${_ => _.theme.colors.border.default};
+  `
+
   return (
-    <TableBox
+    <Box
       innerRef={onRef}
       aria-selected={props.isHighlighted}
       aria-current={props.isSelected}
@@ -69,6 +79,6 @@ export const TableRow: React.FC<TableRowProps> = ({children, ...props}) => {
       {...props}
     >
       {children}
-    </TableBox>
+    </Box>
   )
 }
