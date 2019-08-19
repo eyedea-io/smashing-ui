@@ -28,6 +28,8 @@ export interface ButtonProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>
   tabIndex?: number
   isLoading?: boolean
+  /** Make button full width */
+  full?: boolean
 }
 
 export type StyledTextProps = ButtonProps &

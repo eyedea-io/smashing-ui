@@ -19,12 +19,19 @@ import {
 const StyledText = styled(Text)<StyledTextProps>`
   border: none;
   cursor: pointer;
-  display: inline-flex;
   border-radius: ${_ => _.borderRadius}px;
   height: ${_ => _.height}px;
   padding-left: ${_ => Math.round(_.height / 2)}px;
   padding-right: ${_ => Math.round(_.height / 2)}px;
   vertical-align: middle;
+  ${_ =>
+    _.full
+      ? {
+          width: '100%'
+        }
+      : {
+          display: 'inline-flex'
+        }}
   ${_ => getButtonStyle(_.appearance, _.intent)};
 `
 
@@ -41,7 +48,8 @@ const ButtonFC: React.FC<ButtonProps> = ({children, innerRef, ...props}) => {
     height: 32,
     appearance: 'default' as ButtonAppearanceType,
     intent: 'none' as ButtonIntentType,
-    isLoading: false
+    isLoading: false,
+    full: false
   })
 
   return (

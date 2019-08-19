@@ -4,13 +4,13 @@ import {useDefaults, theme} from '@smashing/theme'
 import {SpinnerProps, SpinnerCircleProps} from './types'
 
 const loadingKeyframes = keyframes`
-from {
-  transform: rotate(0deg);
-}
+  from {
+    transform: rotate(0deg);
+  }
 
-to {
-  transform: rotate(360deg);
-}
+  to {
+    transform: rotate(360deg);
+  }
 `
 
 const loadingCircleKeyframes = keyframes`
@@ -27,8 +27,11 @@ const S = {
     height: ${_ => _.size}px;
     width: ${_ => _.size}px;
     line-height: 0;
+    display: inline-flex;
   `,
   Svg: styled.svg<SpinnerProps>`
+    height: ${_ => _.size}px;
+    width: ${_ => _.size}px;
     animation: ${loadingKeyframes} 2s linear infinite;
   `,
   Spinner: styled.circle<SpinnerCircleProps>`
