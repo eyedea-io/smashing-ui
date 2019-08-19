@@ -119,13 +119,11 @@ const ToastManager: React.FC<ToastManagerProps> = props => {
   return (
     <ToastsWrapper>
       <TransitionGroup>
-        {toasts.map(({id, description, ...props}) => {
-          return (
-            <Toast key={id} onRemove={() => removeToast(id)} {...props}>
-              {description}
-            </Toast>
-          )
-        })}
+        {toasts.map(({id, description, ...props}) => (
+          <Toast key={id} onRemove={() => removeToast(id)} {...props}>
+            {description}
+          </Toast>
+        ))}
       </TransitionGroup>
     </ToastsWrapper>
   )

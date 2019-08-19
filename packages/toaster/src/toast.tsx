@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styled, {keyframes} from 'styled-components'
+import styled, {keyframes, css} from 'styled-components'
 import {Transition} from 'react-transition-group'
 import {TransitionStatus} from 'react-transition-group/Transition'
 import {useDefaults} from '@smashing/theme'
@@ -11,30 +11,7 @@ const animationEasing = {
   spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
 }
 
-const ANIMATION_DURATION = 240
-
-const openAnimation = keyframes`
-  from {
-    opacity: 0;
-    transform: 'translateY(-120%)';
-  }
-
-  to {
-    transform: 'translateY(0)';
-  }
-`
-
-const closeAnimation = keyframes`
-  from {
-    transform: 'scale(1)';
-    opacity: 1;
-  }
-
-  to {
-    transform: 'scale(0.9)';
-    opacity: 0;
-  }
-`
+const ANIMATION_DURATION = 200
 
 const WrapperAnimated = styled.div<{state: TransitionStatus}>`
   display: flex;
@@ -43,14 +20,10 @@ const WrapperAnimated = styled.div<{state: TransitionStatus}>`
   height: 0;
   transition: all ${ANIMATION_DURATION}ms ${animationEasing.deceleration};
 
-  & ~ .fade-entering {
-    animation: ${openAnimation} ${ANIMATION_DURATION}ms
-      ${animationEasing.spring} both;
-  }
-
-  & ~ .fade-exiting {
-    animation: ${closeAnimation} 120ms ${animationEasing.acceleration} both;
-  }
+  ${_ => ({
+    transform: _.state === 'entering' ? 'translateY(-120%)' : 'translateY(0%)',
+    opacity: _.state === 'entered' ? 1 : 0
+  })}
 `
 
 interface Props {
@@ -163,16 +136,15 @@ export const Toast: React.FC<Props> = ({children, ...props}) => {
 
   return (
     <Transition
-      appear
-      unmountOnExit
-      timeout={ANIMATION_DURATION}
       in={isShown}
+      unmountOnExit
+      appear
+      timeout={ANIMATION_DURATION}
       onExited={defaults.onRemove}
     >
       {state => (
         <WrapperAnimated
           state={state}
-          className={`fade-${state}`}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           style={{
