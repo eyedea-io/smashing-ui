@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styled, {keyframes, css} from 'styled-components'
+import styled from 'styled-components'
 import {Transition} from 'react-transition-group'
 import {TransitionStatus} from 'react-transition-group/Transition'
 import {useDefaults} from '@smashing/theme'
