@@ -108,11 +108,8 @@ const ToastManager: React.FC<ToastManagerProps> = props => {
   )
 
   React.useEffect(() => {
-    //@ts-ignore-next-line
     props.bindNotify(notify)
-    //@ts-ignore-next-line
     props.bindGetToasts(getToasts)
-    //@ts-ignore-next-line
     props.bindCloseAll(closeAll)
   }, [toasts])
 
