@@ -1,6 +1,6 @@
 import React from 'react'
 import {storiesOf, addDecorator} from '@storybook/react'
-import toaster from '@smashing/toaster'
+import {toaster} from '@smashing/toaster'
 import {Button} from '@smashing/button'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
