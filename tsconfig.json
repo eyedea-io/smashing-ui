@@ -4,8 +4,6 @@
     {"path": "packages/alert"},
     {"path": "packages/avatar"},
     {"path": "packages/button"},
-    {"path": "packages/charts"},
-    {"path": "packages/charts"},
     {"path": "packages/checkbox"},
     {"path": "packages/css"},
     {"path": "packages/dialog"},
@@ -20,6 +18,8 @@
     {"path": "packages/theme"},
     {"path": "packages/title"},
     {"path": "packages/tooltip"},
-    {"path": "packages/typography"}
+    {"path": "packages/typography"},
+    {"path": "packages/toaster"},
+    {"path": "packages/charts"}
   ]
 }
