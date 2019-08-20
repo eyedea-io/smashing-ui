@@ -5,6 +5,17 @@ import {TransitionStatus} from 'react-transition-group/Transition'
 import {useDefaults} from '@smashing/theme'
 import {Alert} from '@smashing/alert'
 
+export interface ToastModel {
+  id: string | number
+  title: string
+  description?: string
+  hasCloseButton: boolean
+  duration: number
+  close: () => void
+  intent: 'success' | 'warning' | 'danger' | 'info'
+  isShown: boolean
+}
+
 const animationEasing = {
   deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
   acceleration: 'cubic-bezier(0.4, 0.0, 1, 1)',
@@ -51,11 +62,6 @@ interface Props {
    * The title of the alert.
    */
   title?: string
-
-  /**
-   * Description of the alert.
-   */
-  children?: React.ReactChildren
 
   /**
    * When true, show a close icon button inside of the toast.
@@ -171,6 +177,6 @@ export const Toast: React.FC<Props> = ({children, ...props}) => {
 declare module 'styled-components' {
   export interface SmashingToastDefaults
     extends Partial<{
-      toast?: Partial<Props>
+      toaster?: Partial<Props>
     }> {}
 }

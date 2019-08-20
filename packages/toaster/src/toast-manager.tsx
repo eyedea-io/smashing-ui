@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import {Toast} from './toast'
+import {Toast, ToastModel} from './toast'
 import {TransitionGroup} from 'react-transition-group'
 
 const ToastsWrapper = styled.span`
@@ -36,7 +36,7 @@ const hasCustomId = settings => Object.hasOwnProperty.call(settings, 'id')
 let idCounter = 0
 
 const ToastManager: React.FC<ToastManagerProps> = props => {
-  const [toasts, setToasts] = React.useState<any>([])
+  const [toasts, setToasts] = React.useState<ToastModel[]>([])
   const closeToast = React.useCallback(
     id => {
       setToasts(prev =>
