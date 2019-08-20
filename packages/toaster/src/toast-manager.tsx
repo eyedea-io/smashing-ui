@@ -6,10 +6,10 @@ import {TransitionGroup} from 'react-transition-group'
 const ToastsWrapper = styled.span`
   max-width: 560;
   margin: 0 auto;
-  top: 0 auto;
-  left: 0 auto;
-  right: 0 auto;
-  position: fixed auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
   z-index: 30;
   pointer-events: none;
 `
