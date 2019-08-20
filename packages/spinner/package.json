@@ -1,7 +1,7 @@
 {
-  "name": "@smashing/dialog",
-  "version": "0.1.15",
-  "description": "Component is used to show content on top of an overlay. ",
+  "name": "@smashing/spinner",
+  "version": "0.1.2",
+  "description": "Component used to indicate a loading state.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
   "main": "lib/cjs/index.js",
@@ -16,7 +16,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@smashing/overlay": "^0.1.10",
     "@smashing/theme": "^0.6.1",
     "@smashing/typography": "^0.4.15"
   },
@@ -31,6 +30,5 @@
     "smashing",
     "react",
     "ui"
-  ],
-  "gitHead": "63f302d37a36b2a8bd69c7c5437c29fbcb2ec684"
+  ]
 }

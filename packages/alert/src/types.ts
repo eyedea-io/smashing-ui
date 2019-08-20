@@ -1,5 +1,5 @@
-export declare type AlertIntentType = "success" | "warning" | "info" | "danger"
-export declare type AlertAppearanceType = "default" | "inline" | "card"
+export declare type AlertIntentType = 'success' | 'warning' | 'info' | 'danger'
+export declare type AlertAppearanceType = 'default' | 'inline' | 'card'
 export type AlertProps = {
   intent?: AlertIntentType
   appearance?: AlertAppearanceType

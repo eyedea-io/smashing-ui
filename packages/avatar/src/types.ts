@@ -1,6 +1,6 @@
-import {ColorProperty} from "csstype"
+import {ColorProperty} from 'csstype'
 
-export declare type AvatarAppearanceType = "subtle" | "solid"
+export declare type AvatarAppearanceType = 'subtle' | 'solid'
 export interface AvatarProps {
   /**
    * The look of avatar.
@@ -28,15 +28,15 @@ export interface AvatarProps {
    * When the value is `automatic`, use the hash function to determine the color.
    */
   color?:
-    | "neutral"
-    | "automatic"
-    | "blue"
-    | "red"
-    | "orange"
-    | "yellow"
-    | "green"
-    | "teal"
-    | "purple"
+    | 'neutral'
+    | 'automatic'
+    | 'blue'
+    | 'red'
+    | 'orange'
+    | 'yellow'
+    | 'green'
+    | 'teal'
+    | 'purple'
 
   /**
    * The value used for the hash function.
@@ -74,7 +74,7 @@ export type BoxProps = {
   backgroundColor: string
 }
 
-declare module "styled-components" {
+declare module 'styled-components' {
   export interface SmashingAvatarDefaults
     extends Partial<{
       avatar?: {

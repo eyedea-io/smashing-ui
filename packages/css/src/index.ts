@@ -1,5 +1,5 @@
-import {createGlobalStyle} from "styled-components"
-import "@smashing/theme"
+import {createGlobalStyle} from 'styled-components'
+import '@smashing/theme'
 
 export const Reset = createGlobalStyle`
   html {

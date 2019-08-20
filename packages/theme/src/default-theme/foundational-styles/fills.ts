@@ -1,13 +1,13 @@
-import palette from "./palette"
-import scales from "./scales"
+import palette from './palette'
+import scales from './scales'
 
 const solid = {
   neutral: {
-    color: "#d8e0e4",
+    color: '#d8e0e4',
     backgroundColor: palette.neutral.base
   },
   blue: {
-    color: "#002952",
+    color: '#002952',
     backgroundColor: palette.blue.base
   },
   red: {
@@ -15,7 +15,7 @@ const solid = {
     backgroundColor: palette.red.base
   },
   orange: {
-    color: "white",
+    color: 'white',
     backgroundColor: palette.orange.base
   },
   yellow: {
@@ -23,15 +23,15 @@ const solid = {
     backgroundColor: palette.yellow.base
   },
   green: {
-    color: "#025a53",
+    color: '#025a53',
     backgroundColor: palette.green.base
   },
   teal: {
-    color: "white",
+    color: 'white',
     backgroundColor: palette.teal.base
   },
   purple: {
-    color: "white",
+    color: 'white',
     backgroundColor: palette.purple.base
   }
 }
@@ -74,23 +74,23 @@ const subtle = {
 const minimal = {
   neutral: {
     color: palette.neutral.dark,
-    backgroundColor: "transparent"
+    backgroundColor: 'transparent'
   },
   green: {
     color: palette.green.dark,
-    backgroundColor: "transparent"
+    backgroundColor: 'transparent'
   },
   orange: {
     color: palette.orange.dark,
-    backgroundColor: "transparent"
+    backgroundColor: 'transparent'
   },
   red: {
     color: palette.red.dark,
-    backgroundColor: "transparent"
+    backgroundColor: 'transparent'
   },
   blue: {
     color: palette.blue.dark,
-    backgroundColor: "transparent"
+    backgroundColor: 'transparent'
   }
 }
 

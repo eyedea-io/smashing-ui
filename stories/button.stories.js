@@ -1,12 +1,12 @@
-import React from "react"
-import {storiesOf, addDecorator} from "@storybook/react"
-import {Button} from "@smashing/button"
-import {withA11y} from "@storybook/addon-a11y"
-import {SmashingThemeProvider} from "@smashing/theme"
+import React from 'react'
+import {storiesOf, addDecorator} from '@storybook/react'
+import {Button} from '@smashing/button'
+import {withA11y} from '@storybook/addon-a11y'
+import {SmashingThemeProvider} from '@smashing/theme'
 
 addDecorator(withA11y)
 
-storiesOf("Core|Button", module)
+storiesOf('Core|Button', module)
   .addDecorator(story => (
     <SmashingThemeProvider
       theme={{
@@ -18,7 +18,7 @@ storiesOf("Core|Button", module)
       {story()}
     </SmashingThemeProvider>
   ))
-  .add("appearance:default", () => (
+  .add('appearance:default', () => (
     <React.Fragment>
       <p>
         <Button disabled>Hulk smash!</Button>
@@ -40,7 +40,7 @@ storiesOf("Core|Button", module)
       </p>
     </React.Fragment>
   ))
-  .add("appearance:primary", () => (
+  .add('appearance:primary', () => (
     <React.Fragment>
       <p>
         <Button appearance="primary" disabled>
@@ -72,7 +72,7 @@ storiesOf("Core|Button", module)
       </p>
     </React.Fragment>
   ))
-  .add("appearance:minimal", () => (
+  .add('appearance:minimal', () => (
     <React.Fragment>
       <p>
         <Button appearance="minimal" disabled>
@@ -104,7 +104,7 @@ storiesOf("Core|Button", module)
       </p>
     </React.Fragment>
   ))
-  .add("appearance:flat", () => (
+  .add('appearance:flat', () => (
     <React.Fragment>
       <p>
         <Button appearance="flat" disabled>
@@ -141,12 +141,12 @@ storiesOf("Core|Button", module)
       </p>
     </React.Fragment>
   ))
-  .add("borderRadius:30", () => (
+  .add('borderRadius:30', () => (
     <Button appearance="flat" intent="success" borderRadius={30}>
       Hulk smash!
     </Button>
   ))
-  .add("appearance:subtle", () => (
+  .add('appearance:subtle', () => (
     <React.Fragment>
       <p>
         <Button appearance="subtle" disabled>
@@ -178,7 +178,7 @@ storiesOf("Core|Button", module)
       </p>
     </React.Fragment>
   ))
-  .add("height", () => (
+  .add('height', () => (
     <React.Fragment>
       <p>
         <Button height={24}>Hulk smash!</Button>
@@ -193,4 +193,10 @@ storiesOf("Core|Button", module)
         <Button height={48}>Hulk smash!</Button>
       </p>
     </React.Fragment>
+  ))
+  .add('loading', () => <Button isLoading>Hulk smash!</Button>)
+  .add('full', () => (
+    <Button isLoading full>
+      Hulk smash!
+    </Button>
   ))
