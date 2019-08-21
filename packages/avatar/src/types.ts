@@ -1,4 +1,5 @@
 import {ColorProperty} from 'csstype'
+import {RefObject} from 'react'
 
 export declare type AvatarAppearanceType = 'subtle' | 'solid'
 export interface AvatarProps {
@@ -54,6 +55,11 @@ export interface AvatarProps {
    * Used in AvatarStack to show number of not displayed avatars.
    */
   count?: number
+
+  /**
+   * Ref of the element being positioned.
+   */
+  innerRef?: RefObject<HTMLDivElement>
 }
 
 export interface AvatarStackProps {
