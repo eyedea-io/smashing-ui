@@ -61,6 +61,9 @@ declare module 'styled-components' {
   export interface SmashingProgressBarChartDefaults {}
   export interface SmashingSpiderChartDefaults {}
   export interface SmashingRadialProgressDefaults {}
+  export interface SmashingTableRowDefaults {}
+  export interface SmashingTableHeadDefaults {}
+  export interface SmashingTableCellDefaults {}
   export interface SmashingDefaults
     extends SmashingButtonDefaults,
       SmashingCheckboxDefaults,
@@ -71,6 +74,9 @@ declare module 'styled-components' {
       SmashingSpiderChartDefaults,
       SmashingRadialProgressDefaults,
       SmashingProgressBarChartDefaults,
+      SmashingTableRowDefaults,
+      SmashingTableHeadDefaults,
+      SmashingTableCellDefaults,
       SmashingAvatarDefaults {}
   export interface DefaultTheme {
     radius: string

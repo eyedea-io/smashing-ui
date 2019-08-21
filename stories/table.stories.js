@@ -26,11 +26,11 @@ storiesOf('Core|Table', module)
             <Table.TextHeaderCell>Age</Table.TextHeaderCell>
             <Table.TextHeaderCell>Email</Table.TextHeaderCell>
           </Table.Head>
-          <Table.Row>
+          <Table.Row isSelectable={false}>
             <Table.TextCell flexBasis={560} flexShrink={0} flexGrow={0}>
-              ssss
+              24
             </Table.TextCell>
-            <Table.TextCell>ssss</Table.TextCell>
+            <Table.TextCell>jon.example@com</Table.TextCell>
           </Table.Row>
         </Table.Body>
       </Table>

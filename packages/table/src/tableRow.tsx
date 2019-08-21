@@ -1,6 +1,5 @@
 import * as React from 'react'
 import {TableRowProvider} from './TableRowContext'
-import {TableBox} from './tableBox'
 import {safeInvoke} from './tableCell'
 import {manageTableRowFocusInteraction} from './helpers/manageTableRowFocusInteraction'
 import {getRowAppearance} from './helpers/getRowAppearance'
@@ -10,9 +9,8 @@ import styled from 'styled-components'
 
 export const TableRow: React.FC<TableRowProps> = ({children, ...props}) => {
   const defaults = useDefaults('tableRow', props, {
-    appearance: 'default',
     intent: 'none' as TableRowIntentType,
-    height: 20,
+    height: 32,
     onSelect: () => {},
     onDeselect: () => {},
     onKeyPress: e => {},
@@ -57,28 +55,46 @@ export const TableRow: React.FC<TableRowProps> = ({children, ...props}) => {
     safeInvoke(props.innerRef, ref)
   }
 
-  const Box = styled.div.attrs({'data-isselectable': true})<TableRowProps>`
-    ${_ => getRowAppearance(defaults.intent)};
-    cursor: 'pointer';
+  const Box = styled.div.attrs({'data-isselectable': defaults.isSelectable})<
+    TableRowProps
+  >`
+    ${_ => defaults.isSelectable && getRowAppearance(defaults.intent)};
+    cursor: ${defaults.isSelectable && 'pointer'};
     outline: none;
     display: flex;
     border-bottom: 1px solid ${_ => _.theme.colors.border.default};
+    height: '${defaults.height}px';
   `
 
   return (
-    <Box
-      innerRef={onRef}
-      aria-selected={props.isHighlighted}
-      aria-current={props.isSelected}
-      data-isselectable={defaults.isSelectable}
-      tabIndex={defaults.isSelectable ? defaults.tabIndex : undefined}
-      onClick={handleClick}
-      onKeyDown={handleKeyDown}
-      height={props.height}
-      borderBottom="muted"
-      {...props}
-    >
-      {children}
-    </Box>
+    <TableRowProvider value={defaults.height}>
+      <Box
+        innerRef={onRef}
+        aria-selected={props.isHighlighted}
+        aria-current={props.isSelected}
+        data-isselectable={defaults.isSelectable}
+        tabIndex={defaults.isSelectable ? defaults.tabIndex : undefined}
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
+        {...props}
+      >
+        {children}
+      </Box>
+    </TableRowProvider>
   )
+}
+
+declare module 'styled-components' {
+  export interface SmashingTableRowDefaults
+    extends Partial<{
+      tableRow?: {
+        height?: number
+        intent?: TableRowIntentType
+        onSelect?: () => void
+        onDeselect?: () => void
+        onKeyPress?: () => void
+        isSelectable: boolean
+        tabIndex: number
+      }
+    }> {}
 }

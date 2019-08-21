@@ -1,8 +1,8 @@
 import * as React from 'react'
-import {TableBox} from './tableBox'
 import {TableHeadProps} from './types/tableHead'
 import {useDefaults} from '@smashing/theme'
 import styled from 'styled-components'
+import {ScrollbarSize} from './scrollbarSize'
 
 export const TableHead: React.FC<TableHeadProps> = ({children, ...props}) => {
   const [scrollbarWidth, setScrollbarWidth] = React.useState(0)
@@ -26,7 +26,19 @@ export const TableHead: React.FC<TableHeadProps> = ({children, ...props}) => {
   return (
     <Box {...props}>
       {children}
-      {defaults.accountForScrollbar && <div></div>}
+      {defaults.accountForScrollbar && (
+        <ScrollbarSize handleScrollbarSize={handleScrollbarSize} />
+      )}
     </Box>
   )
+}
+
+declare module 'styled-components' {
+  export interface SmashingTableHeadDefaults
+    extends Partial<{
+      tableHead?: {
+        height?: number
+        accountForScrollbar?: boolean
+      }
+    }> {}
 }

@@ -7,5 +7,5 @@ export interface TableHeadProps extends TableBoxProps {
 }
 
 export interface ScrollbarSizeProps {
-  handleScrollbarSize?: () => void
+  handleScrollbarSize?: (width) => void
 }

@@ -1,11 +1,11 @@
 import * as React from 'react'
 import {ScrollbarSizeProps} from './types/tableHead'
 export const ScrollbarSize: React.FC<ScrollbarSizeProps> = ({
-  handleScrollbarSize = () => {},
+  handleScrollbarSize = e => {},
   ...props
 }) => {
-  const [innerWidth, setInnerWidth] = React.useState(null)
-  const [outerWidth, setOuterWidth] = React.useState(null)
+  const [innerWidth, setInnerWidth] = React.useState(0)
+  const [outerWidth, setOuterWidth] = React.useState(0)
   let outerRef = React.useRef(null)
   let innerRef = React.useRef(null)
 
@@ -17,10 +17,14 @@ export const ScrollbarSize: React.FC<ScrollbarSizeProps> = ({
     innerRef = ref
   }
   React.useEffect(() => {
-    const innerWidth = (innerRef as any).current.getBoundingClientRect().width
-    const outerWidth = (outerRef as any).current.getBoundingClientRect().width
-    setInnerWidth(innerWidth)
-    setOuterWidth(outerWidth)
+    const inner = innerRef
+    // const outer = (outerRef as any).current.getBoundingClientRect().width
+    console.log(inner)
+    // setInnerWidth(inner)
+    // setOuterWidth(outer)
+    // if (innerWidth > 0 && outerWidth > 0) {
+    //   handleScrollbarSize(outerWidth - innerWidth)
+    // }
   })
   return (
     <div

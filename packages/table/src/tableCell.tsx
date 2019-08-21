@@ -2,7 +2,6 @@ import * as React from 'react'
 import styled from 'styled-components'
 import {TableCellProps} from './types/tableCell'
 import {useDefaults} from '@smashing/theme'
-import {TableBox} from './tableBox'
 import {TableRowConsumer} from './TableRowContext'
 import {manageTableCellFocusInteraction} from './helpers/manageTableCellFocusInteraction'
 
@@ -30,23 +29,23 @@ const executeArrowKeyOverride = override => {
   override.focus()
 }
 export const TableCell: React.FC<TableCellProps> = ({
-  isSelectable,
   rightView,
   children,
   ...props
 }) => {
   let mainRef = React.useRef(null)
-  const defaults = useDefaults('button', props, {
+
+  const defaults = useDefaults('tableCell', props, {
     appearance: 'default',
     tabIndex: -1,
-    onClick: () => {}
-    // height: '100px'
+    onClick: () => {},
+    isSelectable: true
   })
 
   const handleKeyDown = e => {
     const {arrowKeysOverrides = {}} = props
 
-    if (isSelectable) {
+    if (defaults.isSelectable) {
       const {key} = e
       if (
         key === 'ArrowUp' ||
@@ -85,7 +84,7 @@ export const TableCell: React.FC<TableCellProps> = ({
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    height: ${_ => props.height};
+    height: ${_ => props.height}; 
     overflow: hidden;
     /* ${_ => _.theme.elevation.dialog}; */
     :focus {
@@ -102,8 +101,8 @@ export const TableCell: React.FC<TableCellProps> = ({
           <Box
             innerRef={onRef}
             height={height}
-            tabIndex={isSelectable ? defaults.tabIndex : undefined}
-            data-isselectable={isSelectable}
+            tabIndex={defaults.isSelectable ? defaults.tabIndex : undefined}
+            data-isselectable={defaults.isSelectable}
             onClick={defaults.onClick}
             onKeyDown={handleKeyDown}
             {...props}
@@ -117,4 +116,14 @@ export const TableCell: React.FC<TableCellProps> = ({
   )
 }
 
-// TODO:defaults
+declare module 'styled-components' {
+  export interface SmashingTableCellDefaults
+    extends Partial<{
+      tableCell?: {
+        appearance?: string
+        tabIndex: number
+        onClick: () => void
+        isSelectable: boolean
+      }
+    }> {}
+}
