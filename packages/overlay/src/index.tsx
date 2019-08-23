@@ -56,16 +56,16 @@ const S = {
       display: block;
       width: 100%;
       height: 100%;
-      content: " ";
+      content: ' ';
     }
 
-    &[data-state="entering"]::before,
-    &[data-state="entered"]::before {
+    &[data-state='entering']::before,
+    &[data-state='entered']::before {
       animation: ${fadeInAnimation} ${ANIMATION_DURATION}ms
         ${animationEasing.deceleration} both;
     }
-    &[data-state="exiting"]::before,
-    &[data-state="exited"]::before {
+    &[data-state='exiting']::before,
+    &[data-state='exited']::before {
       animation: ${fadeOutAnimation} ${ANIMATION_DURATION}ms
         ${animationEasing.acceleration} both;
     }
