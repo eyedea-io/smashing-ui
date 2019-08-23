@@ -4,7 +4,7 @@ import * as deepmerge from 'deepmerge'
 import * as React from 'react'
 import {themedProperty} from './utils/themed-property'
 import {useDefaults} from './utils/use-defaults'
-import {DefaultTheme, ThemeProvider} from 'styled-components'
+import {DefaultTheme, ThemeProvider, ThemeContext} from 'styled-components'
 import {
   getTextSizeForControlHeight,
   getBorderRadiusForControlHeight
@@ -26,6 +26,22 @@ export const SmashingThemeProvider = ({
 }) => {
   return (
     <ThemeProvider theme={deepmerge(theme, userTheme)}>
+      {children}
+    </ThemeProvider>
+  )
+}
+
+export const SmashingThemeModifier = ({
+  theme: modifiedTheme,
+  children
+}: {
+  children: React.ReactChild
+  theme: Partial<DefaultTheme>
+}) => {
+  const contextTheme = React.useContext(ThemeContext)
+
+  return (
+    <ThemeProvider theme={deepmerge(contextTheme, modifiedTheme)}>
       {children}
     </ThemeProvider>
   )
