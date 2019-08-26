@@ -1,8 +1,18 @@
 import React from 'react'
 import {storiesOf, addDecorator} from '@storybook/react'
-import {Text, Heading, Strong, Paragraph, Label} from '@smashing/typography'
+import {
+  Text,
+  Heading,
+  Strong,
+  Paragraph,
+  Label,
+  getTextStyle,
+  getParagraphStyle,
+  getHeadingStyle
+} from '@smashing/typography'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider, SmashingThemeModifier} from '@smashing/theme'
+import styled from 'styled-components'
 
 addDecorator(withA11y)
 
@@ -13,7 +23,7 @@ const DarkTheme = props => (
         text: {
           muted: '#7887A0',
           default: '#CDD4E3',
-          dark: '#FFFFFF',
+          intense: '#FFFFFF',
           success: '#00E074',
           warning: '#E88C32',
           danger: '#FF3730',
@@ -25,6 +35,16 @@ const DarkTheme = props => (
   />
 )
 
+const StyledText = styled.span`
+  ${getTextStyle()}
+`
+const StyledParagraph = styled.span`
+  ${getParagraphStyle()}
+`
+const StyledHeading = styled.span`
+  ${getHeadingStyle()}
+`
+
 storiesOf('Typography|Text/Dark', module)
   .addDecorator(story => (
     <SmashingThemeProvider>
@@ -33,13 +53,14 @@ storiesOf('Typography|Text/Dark', module)
       </div>
     </SmashingThemeProvider>
   ))
+  .add('getTextStyle', () => <StyledText>Hello</StyledText>)
   .add('variant:300', () => <Text variant={300}>Hello</Text>)
   .add('variant:400:default', () => <Text>Hello</Text>)
   .add('variant:500', () => <Text variant={500}>Hello</Text>)
   .add('variant:600', () => <Text variant={600}>Hello</Text>)
   .add('color:muted', () => <Text color="muted">Hello</Text>)
   .add('color:default', () => <Text color="default">Hello</Text>)
-  .add('color:dark', () => <Text color="dark">Hello</Text>)
+  .add('color:intense', () => <Text color="intense">Hello</Text>)
   .add('intent:danger', () => <Text intent="danger">Hello</Text>)
   .add('intent:info', () => <Text intent="info">Hello</Text>)
   .add('intent:success', () => <Text intent="success">Hello</Text>)
@@ -49,13 +70,14 @@ storiesOf('Typography|Text', module)
   .addDecorator(story => (
     <SmashingThemeProvider>{story()}</SmashingThemeProvider>
   ))
+  .add('getTextStyle', () => <StyledText>Hello</StyledText>)
   .add('variant:300', () => <Text variant={300}>Hello</Text>)
   .add('variant:400:default', () => <Text>Hello</Text>)
   .add('variant:500', () => <Text variant={500}>Hello</Text>)
   .add('variant:600', () => <Text variant={600}>Hello</Text>)
   .add('color:muted', () => <Text color="muted">Hello</Text>)
   .add('color:default', () => <Text color="default">Hello</Text>)
-  .add('color:dark', () => <Text color="dark">Hello</Text>)
+  .add('color:intense', () => <Text color="intense">Hello</Text>)
   .add('intent:danger', () => <Text intent="danger">Hello</Text>)
   .add('intent:info', () => <Text intent="info">Hello</Text>)
   .add('intent:success', () => <Text intent="success">Hello</Text>)
@@ -71,7 +93,7 @@ storiesOf('Typography|Strong', module)
   .add('variant:600', () => <Strong variant={600}>Hello</Strong>)
   .add('color:muted', () => <Strong color="muted">Hello</Strong>)
   .add('color:default', () => <Strong color="default">Hello</Strong>)
-  .add('color:dark', () => <Strong color="dark">Hello</Strong>)
+  .add('color:intense', () => <Strong color="intense">Hello</Strong>)
   .add('intent:danger', () => <Strong intent="danger">Hello</Strong>)
   .add('intent:info', () => <Strong intent="info">Hello</Strong>)
   .add('intent:success', () => <Strong intent="success">Hello</Strong>)
@@ -81,6 +103,7 @@ storiesOf('Typography|Paragraph', module)
   .addDecorator(story => (
     <SmashingThemeProvider>{story()}</SmashingThemeProvider>
   ))
+  .add('getParagraphStyle', () => <StyledParagraph>Hello</StyledParagraph>)
   .add('variant:300', () => (
     <Paragraph variant={300}>
       Leverage agile frameworks to provide a robust synopsis for high level
@@ -111,8 +134,8 @@ storiesOf('Typography|Paragraph', module)
       overviews.
     </Paragraph>
   ))
-  .add('color:dark', () => (
-    <Paragraph color="dark">
+  .add('color:intense', () => (
+    <Paragraph color="intense">
       Leverage agile frameworks to provide a robust synopsis for high level
       overviews.
     </Paragraph>
@@ -122,6 +145,7 @@ storiesOf('Typography|Heading', module)
   .addDecorator(story => (
     <SmashingThemeProvider>{story()}</SmashingThemeProvider>
   ))
+  .add('getHeadingStyle', () => <StyledHeading>Hello</StyledHeading>)
   .add('variant:100', () => <Heading variant={100}>Hello</Heading>)
   .add('variant:200', () => <Heading variant={200}>Hello</Heading>)
   .add('variant:300', () => <Heading variant={300}>Hello</Heading>)

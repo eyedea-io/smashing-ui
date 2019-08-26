@@ -1,6 +1,23 @@
 import {DefaultTheme} from 'styled-components'
+import {
+  TextIntent,
+  TextColor,
+  TextFontFamily,
+  TextVariant
+} from '../components/text'
+import {getTextColor, getFontFamily} from '../utils'
 
-export const getTextStyle = (variant: number) => (_: {theme: DefaultTheme}) => {
+export const getTextStyle = ({
+  variant = 400,
+  intent,
+  color = 'default',
+  fontFamily
+}: {
+  variant?: TextVariant
+  intent?: TextIntent
+  color?: TextColor
+  fontFamily?: TextFontFamily
+} = {}) => (_: {theme: DefaultTheme}) => {
   return {
     /**
      * It's useful to have 600 because `Link` uses the `Text` component.
@@ -14,28 +31,40 @@ export const getTextStyle = (variant: number) => (_: {theme: DefaultTheme}) => {
       /**
        * Use font family display because the font-size is 20px.
        */
-      font-family: ${_.theme.fontFamilies.display};
+      font-family: ${
+        fontFamily ? getFontFamily(fontFamily)(_) : _.theme.fontFamilies.display
+      };
+      color: ${getTextColor(intent || color)(_)}
     `,
     500: `
       font-size: 16px;
       font-weight: 400;
       line-height: 20px;
       letter-spacing: -0.05px;
-      font-family: ${_.theme.fontFamilies.ui};
+      font-family: ${
+        fontFamily ? getFontFamily(fontFamily)(_) : _.theme.fontFamilies.ui
+      };
+      color: ${getTextColor(intent || color)(_)}
     `,
     400: `
       font-size: 14px;
       font-weight: 400;
       line-height: 20px;
       letter-spacing: -0.05px;
-      font-family: ${_.theme.fontFamilies.ui};
+      font-family: ${
+        fontFamily ? getFontFamily(fontFamily)(_) : _.theme.fontFamilies.ui
+      };
+      color: ${getTextColor(intent || color)(_)}
     `,
     300: `
       font-size: 12px;
       font-weight: 400;
       line-height: 16px;
       letter-spacing: 0;
-      font-family: ${_.theme.fontFamilies.ui};
+      font-family: ${
+        fontFamily ? getFontFamily(fontFamily)(_) : _.theme.fontFamilies.ui
+      };
+      color: ${getTextColor(intent || color)(_)}
     `
   }[variant]
 }

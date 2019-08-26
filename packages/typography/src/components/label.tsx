@@ -10,13 +10,8 @@ export interface LabelProps {
 
 export const Label = styled.label<LabelProps>`
   ${({variant = 400, fontFamily, marginTop}) => css`
-    ${getTextStyle(variant)}
-    color: ${getTextColor('dark')};
+    ${getTextStyle({variant, fontFamily, color: 'intense'})}
     font-weight: 500;
-    ${fontFamily &&
-      css`
-        font-family: ${getFontFamily(fontFamily)};
-      `};
     ${typeof marginTop === 'number' &&
       css`
         margin-top: ${marginTop};

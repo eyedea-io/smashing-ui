@@ -26,7 +26,7 @@ const colors = {
   text: {
     muted: scales.neutral.N6,
     default: scales.neutral.N8,
-    dark: scales.neutral.N10,
+    intense: scales.neutral.N10,
     selected: palette.blue.base,
 
     // Intent.
@@ -35,6 +35,11 @@ const colors = {
     info: palette.blue.dark,
     danger: palette.red.dark,
     warning: palette.orange.dark
+  },
+
+  heading: {
+    muted: scales.neutral.N6,
+    intense: scales.neutral.N10
   },
 
   link: {
