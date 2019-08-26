@@ -1,10 +1,6 @@
 import styled, {css} from 'styled-components'
-import {getTextColor, getFontFamily} from '../utils'
 import {getParagraphStyle} from '../styles/paragraph'
-
-export type ParagraphVariant = 300 | 400 | 500
-export type ParagraphColor = 'muted' | 'default' | 'intense'
-export type ParagraphFontFamily = 'ui' | 'display' | 'mono'
+import {ParagraphVariant, ParagraphColor, ParagraphFontFamily} from '../types'
 
 export interface ParagraphProps {
   variant?: ParagraphVariant

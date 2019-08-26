@@ -1,11 +1,6 @@
 import {DefaultTheme} from 'styled-components'
-import {
-  TextIntent,
-  TextColor,
-  TextFontFamily,
-  TextVariant
-} from '../components/text'
 import {getTextColor, getFontFamily} from '../utils'
+import {TextVariant, TextIntent, TextColor, TextFontFamily} from '../types'
 
 export const getTextStyle = ({
   variant = 400,

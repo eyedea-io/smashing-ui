@@ -1,12 +1,17 @@
 import styled, {css} from 'styled-components'
-import {getTextColor, getFontFamily} from '../utils'
 import {getTextStyle} from '../styles/text'
+import {
+  StrongVariant,
+  StrongColor,
+  StrongIntent,
+  StrongFontFamily
+} from '../types'
 
 export interface StrongProps {
-  variant?: 300 | 400 | 500 | 600
-  color?: 'muted' | 'default' | 'intense'
-  intent?: 'success' | 'info' | 'danger' | 'warning'
-  fontFamily?: 'ui' | 'display' | 'mono'
+  variant?: StrongVariant
+  color?: StrongColor
+  intent?: StrongIntent
+  fontFamily?: StrongFontFamily
 }
 
 export const Strong = styled.strong<StrongProps>`

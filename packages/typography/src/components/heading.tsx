@@ -1,8 +1,6 @@
 import styled, {css} from 'styled-components'
 import {getHeadingStyle} from '../styles/headings'
-
-export type HeadingVariant = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
-export type HeadingFontFamily = 'ui' | 'display' | 'mono'
+import {HeadingVariant, HeadingFontFamily} from '../types'
 
 export interface HeadingProps {
   variant?: HeadingVariant

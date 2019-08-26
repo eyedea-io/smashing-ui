@@ -1,10 +1,10 @@
 import styled, {css} from 'styled-components'
-import {getTextColor, getFontFamily} from '../utils'
 import {getTextStyle} from '../styles/text'
+import {LabelVariant, LabelFontFamily} from '../types'
 
 export interface LabelProps {
-  variant?: 300 | 400 | 500
-  fontFamily?: 'ui' | 'display' | 'mono'
+  variant?: LabelVariant
+  fontFamily?: LabelFontFamily
   marginTop?: number
 }
 

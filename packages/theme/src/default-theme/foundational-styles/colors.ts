@@ -39,7 +39,7 @@ const colors = {
 
   heading: {
     muted: scales.neutral.N6,
-    intense: scales.neutral.N10
+    default: scales.neutral.N10
   },
 
   link: {

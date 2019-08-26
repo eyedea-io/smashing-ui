@@ -1,10 +1,6 @@
 import {getTextStyle} from './text'
 import {DefaultTheme} from 'styled-components'
-import {
-  ParagraphVariant,
-  ParagraphColor,
-  ParagraphFontFamily
-} from '../components/paragraph'
+import {ParagraphColor, ParagraphVariant, ParagraphFontFamily} from '../types'
 
 /**
  * Text styles for paragraphs (multi line text).

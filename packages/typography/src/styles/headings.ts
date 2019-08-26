@@ -1,6 +1,6 @@
 import {DefaultTheme} from 'styled-components'
-import {HeadingVariant, HeadingFontFamily} from '../components/heading'
 import {getFontFamily} from '../utils'
+import {HeadingVariant, HeadingFontFamily} from '../types'
 
 export const getHeadingStyle = ({
   variant = 400,
@@ -18,7 +18,7 @@ export const getHeadingStyle = ({
       font-family: ${
         fontFamily ? getFontFamily(fontFamily)(_) : _.theme.fontFamilies.display
       };
-      color: ${_.theme.colors.heading.intense};
+      color: ${_.theme.colors.heading.default};
       margin-top: ${_.theme.spacing.lg};
     `,
     800: `
@@ -29,7 +29,7 @@ export const getHeadingStyle = ({
       font-family: ${
         fontFamily ? getFontFamily(fontFamily)(_) : _.theme.fontFamilies.display
       };
-      color: ${_.theme.colors.heading.intense};
+      color: ${_.theme.colors.heading.default};
       margin-top: ${_.theme.spacing.lg};
     `,
     700: `
@@ -40,7 +40,7 @@ export const getHeadingStyle = ({
       font-family: ${
         fontFamily ? getFontFamily(fontFamily)(_) : _.theme.fontFamilies.display
       };
-      color: ${_.theme.colors.heading.intense};
+      color: ${_.theme.colors.heading.default};
       margin-top: ${_.theme.spacing.md};
     `,
     600: `
@@ -51,7 +51,7 @@ export const getHeadingStyle = ({
       font-family: ${
         fontFamily ? getFontFamily(fontFamily)(_) : _.theme.fontFamilies.display
       };
-      color: ${_.theme.colors.heading.intense};
+      color: ${_.theme.colors.heading.default};
       margin-top: ${_.theme.spacing.md};
     `,
     500: `
@@ -62,7 +62,7 @@ export const getHeadingStyle = ({
       font-family: ${
         fontFamily ? getFontFamily(fontFamily)(_) : _.theme.fontFamilies.ui
       };
-      color: ${_.theme.colors.heading.intense};
+      color: ${_.theme.colors.heading.default};
       margin-top: ${_.theme.spacing.xs};
     `,
     400: `
@@ -73,7 +73,7 @@ export const getHeadingStyle = ({
       font-family: ${
         fontFamily ? getFontFamily(fontFamily)(_) : _.theme.fontFamilies.ui
       };
-      color: ${_.theme.colors.heading.intense};
+      color: ${_.theme.colors.heading.default};
       margin-top: ${_.theme.spacing.xs};
     `,
     300: `
@@ -84,7 +84,7 @@ export const getHeadingStyle = ({
       font-family: ${
         fontFamily ? getFontFamily(fontFamily)(_) : _.theme.fontFamilies.ui
       };
-      color: ${_.theme.colors.heading.intense};
+      color: ${_.theme.colors.heading.default};
       margin-top: ${_.theme.spacing.xxs};
     `,
     200: `
