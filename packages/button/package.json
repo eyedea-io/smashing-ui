@@ -1,6 +1,6 @@
 {
   "name": "@smashing/button",
-  "version": "0.2.19",
+  "version": "0.2.20",
   "description": "The Button component is the most common button component",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -16,9 +16,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@smashing/spinner": "^0.1.3",
-    "@smashing/theme": "^0.7.0",
-    "@smashing/typography": "^0.4.16"
+    "@smashing/spinner": "^0.1.4",
+    "@smashing/theme": "^0.7.1",
+    "@smashing/typography": "^0.4.17"
   },
   "devDependencies": {
     "react": "^16.8.6"
