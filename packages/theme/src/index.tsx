@@ -21,7 +21,7 @@ export const SmashingThemeProvider = ({
   theme: userTheme = {},
   children
 }: {
-  children: React.ReactChild
+  children?: React.ReactChild
   theme?: Partial<DefaultTheme>
 }) => {
   return (
