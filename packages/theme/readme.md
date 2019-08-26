@@ -106,6 +106,6 @@ and use it:
 ```tsx
 <DarkTheme>
   <Header>Title</Header>
-  <Header color="muted">Meta data</Header>
+  <Header color="muted">Meta data...</Header>
 </DarkTheme>
 ```
