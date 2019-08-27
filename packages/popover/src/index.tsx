@@ -37,7 +37,7 @@ export interface PopoverProps {
    * ({ toggle: Function -> Void, getRef: Function -> Ref, isShown: Bool })
    */
   children:
-    | React.ReactElement
+    | React.ReactNode
     | ((props: {
         toggle: () => void
         getRef: (ref: any) => void

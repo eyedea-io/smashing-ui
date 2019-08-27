@@ -1,18 +1,12 @@
+import {ButtonLikeProps} from '@smashing/button/lib/esm/types'
+
 export type Option = {
   label: string
   value: string
 }
 
-export interface SelectProps {
+export interface SelectProps extends ButtonLikeProps {
   options: Option[]
-  selected: string | string[]
-  isMultiSelect: boolean
-  onSelect: (e) => void
-  onDeselect: (e) => void
-}
-
-export interface OptionProps {
-  item: Option
-  onClick: (e: React.MouseEvent<HTMLLIElement>) => void
-  isActive: boolean
+  selected: string
+  onChange: (e) => void
 }

@@ -2337,6 +2337,14 @@
   dependencies:
     "@sentry/cli" "^1.44.4"
 
+"@smashing/theme@^0.5.3":
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/@smashing/theme/-/theme-0.5.5.tgz#19f61637411fd5a7d6df1f97181760bc7599559c"
+  integrity sha512-/JYoUvaVBga+CiJtXcFbiHuc/FNxj8xK/703VjijDCWSOketOMuernZOPePFnmRW4aRdRq1Jc48sdPcco8dvvg==
+  dependencies:
+    deepmerge "^3.2.0"
+    tinycolor2 "^1.4.1"
+
 "@storybook/addon-a11y@5.2.0-beta.37":
   version "5.2.0-beta.37"
   resolved "https://registry.yarnpkg.com/@storybook/addon-a11y/-/addon-a11y-5.2.0-beta.37.tgz#88bfe911c9d02b1b637ec28e9223e82f77c1a1c3"
@@ -5712,6 +5720,11 @@ colors@1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/colors/-/colors-1.0.3.tgz#0433f44d809680fdeb60ed260f1b0c262e82a40b"
   integrity sha1-BDP0TYCWgP3rYO0mDxsMJi6CpAs=
+
+colors@1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/colors/-/colors-1.2.4.tgz#e0cb41d3e4b20806b3bfc27f4559f01b94bc2f7c"
+  integrity sha512-6Y+iBnWmXL+AWtlOp2Vr6R2w5MUlNJRwR0ShVFaAb1CqWzhPOpQg4L0jxD+xpw/Nc8QJwaq3KM79QUCriY8CWQ==
 
 colors@^1.1.2:
   version "1.3.3"
@@ -15023,6 +15036,15 @@ replace-ext@1.0.0:
   resolved "https://registry.yarnpkg.com/replace-ext/-/replace-ext-1.0.0.tgz#de63128373fcbf7c3ccfa4de5a480c45a67958eb"
   integrity sha1-3mMSg3P8v3w8z6TeWkgMRaZ5WOs=
 
+replace@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/replace/-/replace-1.1.1.tgz#3d1b5e5896bd55c365a42a8d6e220b07a6f5d635"
+  integrity sha512-RTLcKzfKEc8YPX+WbxZ5nQK921qOCpmMGWuKFWHWf727o7Ap84ydbhv8A/ipANXXXxFxI2M2PW+FaEhDsdZCdQ==
+  dependencies:
+    colors "1.2.4"
+    minimatch "3.0.4"
+    yargs "12.0.5"
+
 request-progress@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/request-progress/-/request-progress-3.0.0.tgz#4ca754081c7fec63f505e4faa825aa06cd669dbe"
@@ -18181,6 +18203,24 @@ yargs@12.0.2:
     y18n "^3.2.1 || ^4.0.0"
     yargs-parser "^10.1.0"
 
+yargs@12.0.5, yargs@^12.0.1:
+  version "12.0.5"
+  resolved "https://registry.yarnpkg.com/yargs/-/yargs-12.0.5.tgz#05f5997b609647b64f66b81e3b4b10a368e7ad13"
+  integrity sha512-Lhz8TLaYnxq/2ObqHDql8dX8CJi97oHxrjUcYtzKbbykPtVW9WB+poxI+NM2UIzsMgNCZTIf0AQwsjK5yMAqZw==
+  dependencies:
+    cliui "^4.0.0"
+    decamelize "^1.2.0"
+    find-up "^3.0.0"
+    get-caller-file "^1.0.1"
+    os-locale "^3.0.0"
+    require-directory "^2.1.1"
+    require-main-filename "^1.0.1"
+    set-blocking "^2.0.0"
+    string-width "^2.0.0"
+    which-module "^2.0.0"
+    y18n "^3.2.1 || ^4.0.0"
+    yargs-parser "^11.1.1"
+
 yargs@^10.0.3:
   version "10.1.2"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-10.1.2.tgz#454d074c2b16a51a43e2fb7807e4f9de69ccb5c5"
@@ -18216,24 +18256,6 @@ yargs@^11.0.0:
     which-module "^2.0.0"
     y18n "^3.2.1"
     yargs-parser "^9.0.2"
-
-yargs@^12.0.1:
-  version "12.0.5"
-  resolved "https://registry.yarnpkg.com/yargs/-/yargs-12.0.5.tgz#05f5997b609647b64f66b81e3b4b10a368e7ad13"
-  integrity sha512-Lhz8TLaYnxq/2ObqHDql8dX8CJi97oHxrjUcYtzKbbykPtVW9WB+poxI+NM2UIzsMgNCZTIf0AQwsjK5yMAqZw==
-  dependencies:
-    cliui "^4.0.0"
-    decamelize "^1.2.0"
-    find-up "^3.0.0"
-    get-caller-file "^1.0.1"
-    os-locale "^3.0.0"
-    require-directory "^2.1.1"
-    require-main-filename "^1.0.1"
-    set-blocking "^2.0.0"
-    string-width "^2.0.0"
-    which-module "^2.0.0"
-    y18n "^3.2.1 || ^4.0.0"
-    yargs-parser "^11.1.1"
 
 yargs@^13.2.2, yargs@^13.3.0:
   version "13.3.0"

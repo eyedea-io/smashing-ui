@@ -7,7 +7,7 @@
   "references": [
     {"path": "../theme"},
     {"path": "../typography"},
-    {"path": "../button"}
+    {"path": "../button"},
     {"path": "../popover"}
   ]
 }
