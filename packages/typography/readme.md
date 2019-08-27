@@ -12,7 +12,7 @@ yarn add @smashing/typography
 <Text>I'm inline text</Text>
 <Text color="muted">I'm inline text</Text>
 <Text color="default">I'm inline text</Text>
-<Text color="dark">I'm inline text</Text>
+<Text color="intense">I'm inline text</Text>
 <Text intent="danger">I'm inline text</Text>
 <Text intent="warning">I'm inline text</Text>
 <Text intent="info">I'm inline text</Text>
