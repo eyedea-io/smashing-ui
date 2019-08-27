@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {useDefaults} from '@smashing/theme'
-import {SelectProps, /* OptionProps,*/ Option} from './types'
+import {SelectProps, Option} from './types'
 import {S} from './styles'
 import styled from 'styled-components/macro'
 
