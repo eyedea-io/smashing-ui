@@ -62,7 +62,7 @@ const App = () => (
           text: {
             muted: '#7887A0',
             default: '#CDD4E3',
-            dark: '#FFFFFF',
+            intense: '#FFFFFF',
             success: '#00E074',
             warning: '#E88C32',
             danger: '#FF3730',
@@ -88,7 +88,7 @@ const DarkTheme = props => (
         text: {
           muted: '#7887A0',
           default: '#CDD4E3',
-          dark: '#FFFFFF',
+          intense: '#FFFFFF',
           success: '#00E074',
           warning: '#E88C32',
           danger: '#FF3730',
