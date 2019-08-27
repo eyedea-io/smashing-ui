@@ -8,5 +8,5 @@ export type Option = {
 export interface SelectProps extends ButtonLikeProps {
   options: Option[]
   selected: string
-  onChange: (e) => void
+  onChange: (value: string) => void
 }

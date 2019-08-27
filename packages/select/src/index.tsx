@@ -12,18 +12,20 @@ const SelectFC: React.FC<SelectProps> = ({children, ...props}) => {
     height: 32
   })
 
-  const onChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const internalOnChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     defaults.onChange(event.target.value)
   }
 
+  const {onChange, ...propsSansChange} = props
+
   return (
-    <S.SelectWrapper {...props}>
+    <S.SelectWrapper {...propsSansChange}>
       <S.SelectButtonComponent
         intent={props.intent}
         appearance={props.appearance}
         height={defaults.height}
         defaultValue={defaults.selected}
-        onChange={onChange}
+        onChange={internalOnChange}
         full={props.full}
         disabled={props.disabled}
       >

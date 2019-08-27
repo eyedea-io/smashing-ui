@@ -12,6 +12,7 @@ import {
   ButtonIntentType,
   ButtonAppearanceType,
   ButtonProps,
+  ButtonLikeProps,
   StyledTextProps,
   StyledSpinnerProps
 } from './types'
@@ -84,7 +85,14 @@ const Button = styled(ButtonFCFactory('button'))``
 const ButtonAs = <T extends {}>(as?: StyledComponentElement) =>
   styled(ButtonFCFactory<React.HTMLAttributes<T>>(as))``
 
-export {Button, ButtonAs, ButtonProps, ButtonAppearanceType, ButtonIntentType}
+export {
+  Button,
+  ButtonAs,
+  ButtonProps,
+  ButtonAppearanceType,
+  ButtonIntentType,
+  ButtonLikeProps
+}
 
 declare module 'styled-components' {
   export interface SmashingButtonDefaults
