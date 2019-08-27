@@ -17,7 +17,6 @@
   },
   "dependencies": {
     "@smashing/button": "^0.2.12",
-    "@smashing/popover": "^0.1.13",
     "@smashing/theme": "^0.5.3",
     "@smashing/typography": "^0.4.11"
   },
