@@ -34,7 +34,7 @@ storiesOf('Core|Select', module)
       return (
         <Select
           options={optionsWithLabels}
-          selected={selected}
+          value={selected}
           onChange={item => setSelected(item)}
         />
       )

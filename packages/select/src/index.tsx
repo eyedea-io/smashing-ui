@@ -1,13 +1,14 @@
 import * as React from 'react'
 import {useDefaults} from '@smashing/theme'
-import {SelectProps, Option} from './types'
+import {SelectProps} from './types'
 import {S} from './styles'
 import styled from 'styled-components/macro'
+import {ButtonAppearanceType, ButtonIntentType} from '@smashing/button'
 
 const SelectFC: React.FC<SelectProps> = ({children, ...props}) => {
   const defaults = useDefaults<SelectProps>('select', props, {
     options: [],
-    selected: '',
+    value: '',
     onChange: () => undefined,
     height: 32
   })
@@ -24,7 +25,7 @@ const SelectFC: React.FC<SelectProps> = ({children, ...props}) => {
         intent={props.intent}
         appearance={props.appearance}
         height={defaults.height}
-        defaultValue={defaults.selected}
+        defaultValue={defaults.value}
         onChange={internalOnChange}
         full={props.full}
         disabled={props.disabled}
@@ -44,12 +45,12 @@ const Select = styled(SelectFC)``
 export {Select}
 
 declare module 'styled-components' {
-  export interface SmashingAlertDefaults
+  export interface SmashingSelectDefaults
     extends Partial<{
       select?: {
-        options: Option[]
-        defaultValue: string
-        onChange: (e) => void
+        height?: number
+        appearance?: ButtonAppearanceType
+        intent?: ButtonIntentType
       }
     }> {}
 }
