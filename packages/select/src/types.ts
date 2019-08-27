@@ -1,4 +1,4 @@
-import {ButtonLikeProps} from '@smashing/button/lib/esm/types'
+import {ButtonLikeProps} from '@smashing/button'
 
 export type Option = {
   label: string
