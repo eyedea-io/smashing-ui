@@ -1,6 +1,6 @@
 {
   "name": "@smashing/positioner",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "Component utility to help with the ReactDOM.createstack API.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -16,9 +16,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@smashing/portal": "^0.1.5",
-    "@smashing/stack": "^0.1.15",
-    "@smashing/theme": "^0.9.0",
+    "@smashing/portal": "^0.1.6",
+    "@smashing/stack": "^0.1.16",
+    "@smashing/theme": "^0.9.1",
     "react-transition-group": "^4.0.0"
   },
   "devDependencies": {
