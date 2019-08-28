@@ -10,7 +10,7 @@ import {
   getAnimationOut,
   getTransform,
   getIconPosition,
-  getContentPosition
+  getContentSize
 } from './helpers'
 import {constants, useDefaults} from '@smashing/theme'
 
@@ -37,14 +37,10 @@ type IconProps = {
 
 const S = {
   Box: styled.div.attrs({})<BoxProps>`
-    ${_ => _.theme.elevation.dialog};
-    border-radius: ${_ => _.theme.radius};
-    width: ${_ => _.width}px;
     display: flex;
     flex-direction: column;
     transform: ${_ => getTransform(_.position)};
     ${_ => getBoxPosition(_.position)};
-    &[data-state='entering'],
     &[data-state='entered'] {
       animation: ${_ => getAnimationIn(_.position)} ${ANIMATION_DURATION}ms
         ${animationEasing.deceleration} both;
@@ -55,14 +51,12 @@ const S = {
     }
   `,
   Content: styled.div.attrs({})<BoxProps>`
-    padding: ${_ => _.theme.spacing.sm};
-    ${_ => _.theme.elevation.dialog};
-    width: ${_ => _.width}px;
-    display: flex;
-    flex-direction: column;
+    ${_ => ({
+      width: ['left', 'right'] ? `${_.width}px` : undefined,
+      ..._.theme.elevation.dialog,
+      ...getContentSize(_.position),
+    })}
     overflow: auto;
-    max-height: '100vh';
-    ${_ => getContentPosition(_.position)};
   `,
   IconButton: styled(Button)<IconProps>`
     width: ${_ => _.size}px;
@@ -70,10 +64,25 @@ const S = {
     display: flex;
     padding: 0;
     justify-content: center;
-    border-radius: 9999px;
+    border-radius: 30em;
     position: absolute;
+    background-color: rgba(255, 255, 255, 0.33);
     ${_ => getIconPosition(_.position)};
-    &[data-state='entering'],
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 4px ${_ => _.theme.scales.blue.B6A};
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    &:active {
+      box-shadow: none;
+      background-color: rgba(0, 0, 0, 0.17);
+    }
+
     &[data-state='entered'] {
       animation: ${_ => getAnimationIn(_.position)} ${ANIMATION_DURATION}ms
         ${animationEasing.deceleration} both;

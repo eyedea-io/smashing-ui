@@ -5,6 +5,7 @@ import {Stack} from '@smashing/stack'
 import {constants} from '@smashing/theme'
 import styled, {keyframes} from 'styled-components'
 import {useCallback} from 'react'
+import {TransitionStatus} from 'react-transition-group/Transition'
 
 const {stackingOrder: StackingOrder} = constants
 
@@ -18,26 +19,8 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 240
 
-const fadeInAnimation = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`
-
-const fadeOutAnimation = keyframes`
-  from: {
-    opacity: 1;
-  }
-  to: {
-    opacity: 0;
-  }
-`
-
 const S = {
-  Background: styled.div.attrs({})<{zIndex: number}>`
+  Background: styled.div.attrs({})<{zIndex: number, state: TransitionStatus}>`
     position: fixed;
     top: 0;
     left: 0;
@@ -58,17 +41,11 @@ const S = {
       height: 100%;
       content: ' ';
     }
+    transition: opacity ${ANIMATION_DURATION}ms ${_ => ['entered'].includes(_.state) ? animationEasing.deceleration : animationEasing.acceleration};
 
-    &[data-state='entering']::before,
-    &[data-state='entered']::before {
-      animation: ${fadeInAnimation} ${ANIMATION_DURATION}ms
-        ${animationEasing.deceleration} both;
-    }
-    &[data-state='exiting']::before,
-    &[data-state='exited']::before {
-      animation: ${fadeOutAnimation} ${ANIMATION_DURATION}ms
-        ${animationEasing.acceleration} both;
-    }
+    ${_ => ({
+      opacity: ['entered'].includes(_.state) ? 1 : 0
+    })}
   `
 }
 
@@ -235,8 +212,6 @@ export const Overlay: React.FC<OverlayProps> = ({
     }
   }, [handleBodyScroll, onEsc])
 
-  if (exited) return null
-
   return (
     <Stack value={StackingOrder.OVERLAY}>
       {zIndex => (
@@ -244,7 +219,7 @@ export const Overlay: React.FC<OverlayProps> = ({
           <Transition
             appear
             unmountOnExit
-            timeout={ANIMATION_DURATION}
+            timeout={isShown && !exiting ? 0 : ANIMATION_DURATION}
             in={isShown && !exiting}
             onExit={handleExit}
             onExiting={handleExiting}
@@ -257,7 +232,7 @@ export const Overlay: React.FC<OverlayProps> = ({
               <S.Background
                 onClick={handleBackdropClick}
                 ref={containerElement}
-                data-state={state}
+                state={state}
                 zIndex={zIndex}
                 {...containerProps}
               >

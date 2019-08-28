@@ -70,15 +70,15 @@ export const getAnimationOut = (position: string) => {
 export const getTransform = (position: string) => {
   switch (position) {
     case Position.LEFT:
-      return `translateX(-100%)`
+      return 'translateX(-100%)'
     case Position.RIGHT:
-      return `translateX(100%)`
+      return 'translateX(100%)'
     case Position.TOP:
-      return `translateY(-100%)`
+      return 'translateY(-100%)'
     case Position.BOTTOM:
-      return `translateY(100%)`
+      return 'translateY(100%)'
     default:
-      return `translateX(-100%)`
+      return 'translateX(-100%)'
   }
 }
 
@@ -127,16 +127,16 @@ export const getBoxPosition = (position?: string) => {
   }
 }
 
-export const getContentPosition = (position?: string) => {
+export const getContentSize = (position?: string) => {
   switch (position) {
     case Position.LEFT:
       return {height: '100vh'}
     case Position.RIGHT:
       return {height: '100vh'}
     case Position.TOP:
-      return {width: '100vw'}
+      return {width: '100vw', left: 0}
     case Position.BOTTOM:
-      return {width: '100vw'}
+      return {width: '100vw', left: 0}
     default:
       return {height: '100vh'}
   }
@@ -149,14 +149,14 @@ export const getIconPosition = (position?: string) => {
         right: 0,
         marginRight: -12,
         marginTop: 12,
-        transform: `translateX(100%)`
+        transform: 'translateX(100%)'
       }
     case Position.RIGHT:
       return {
         left: 0,
         marginLeft: -12,
         marginTop: 12,
-        transform: `translateX(-100%)`
+        transform: 'translateX(-100%)'
       }
     case Position.TOP:
       return {
@@ -164,7 +164,7 @@ export const getIconPosition = (position?: string) => {
         marginRight: 12,
         top: '100%',
         marginTop: 12,
-        transform: `translateY(0)`
+        transform: 'translateY(0)'
       }
     case Position.BOTTOM:
       return {
@@ -172,14 +172,14 @@ export const getIconPosition = (position?: string) => {
         marginRight: 12,
         bottom: '100%',
         marginBottom: 12,
-        transform: `translateY(0)`
+        transform: 'translateY(0)'
       }
     default:
       return {
         left: 0,
         marginLeft: -12,
         marginTop: 12,
-        transform: `translateX(-100%)`
+        transform: 'translateX(-100%)'
       }
   }
 }
