@@ -1,6 +1,6 @@
 {
   "name": "@smashing/charts",
-  "version": "0.1.1",
+  "version": "0.1.9",
   "description": "Components used to represent various data.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -8,16 +8,16 @@
   "types": "lib/esm/index.d.ts",
   "module": "lib/esm/index.js",
   "files": [
-    "src",
-    "lib"
+    "lib/esm",
+    "lib/cjs"
   ],
   "author": "Eyedea AS",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@smashing/theme": "^0.5.5",
-    "@smashing/typography": "^0.4.13",
+    "@smashing/theme": "^0.9.1",
+    "@smashing/typography": "^0.4.21",
     "@types/d3": "^5.7.2",
     "d3": "^5.9.4"
   },
