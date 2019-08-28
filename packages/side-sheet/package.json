@@ -1,7 +1,7 @@
 {
   "name": "@smashing/side-sheet",
   "version": "0.0.0",
-  "description": "The Side Sheet component is used to show more details about a certain object or person.",
+  "description": "Component used to show a panel attached to the edge of the screen.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
   "main": "lib/cjs/index.js",
