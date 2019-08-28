@@ -26,7 +26,7 @@ storiesOf('Core|Select', module)
       <Select options={optionsWithLabels} />
     </React.Fragment>
   ))
-  .add('With selected option', () => {
+  .add('With value', () => {
     const INITIAL_STATE = optionsWithLabels[1].value
 
     const ComponentWithState = () => {
