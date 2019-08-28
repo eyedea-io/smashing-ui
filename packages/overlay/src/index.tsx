@@ -3,7 +3,7 @@ import {Transition} from 'react-transition-group'
 import {Portal} from '@smashing/portal'
 import {Stack} from '@smashing/stack'
 import {constants} from '@smashing/theme'
-import styled, {keyframes} from 'styled-components'
+import styled from 'styled-components'
 import {useCallback} from 'react'
 import {TransitionStatus} from 'react-transition-group/Transition'
 
