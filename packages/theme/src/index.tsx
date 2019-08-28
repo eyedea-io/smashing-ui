@@ -92,6 +92,7 @@ declare module 'styled-components' {
   export interface SmashingProgressBarChartDefaults {}
   export interface SmashingSpiderChartDefaults {}
   export interface SmashingRadialProgressDefaults {}
+  export interface SmashingSideSheetDefaults {}
   export interface SmashingDefaults
     extends SmashingButtonDefaults,
       SmashingCheckboxDefaults,
@@ -102,6 +103,7 @@ declare module 'styled-components' {
       SmashingSpiderChartDefaults,
       SmashingRadialProgressDefaults,
       SmashingProgressBarChartDefaults,
+      SmashingSideSheetDefaults,
       SmashingSpinnerDefaults,
       SmashingAvatarDefaults {}
   export interface DefaultTheme {

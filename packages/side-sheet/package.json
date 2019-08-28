@@ -1,0 +1,36 @@
+{
+  "name": "@smashing/side-sheet",
+  "version": "0.0.0",
+  "description": "Component used to show a panel attached to the edge of the screen.",
+  "repository": "eyedea-io/smashing-ui",
+  "license": "MIT",
+  "main": "lib/cjs/index.js",
+  "types": "lib/esm/index.d.ts",
+  "module": "lib/esm/index.js",
+  "files": [
+    "src",
+    "lib"
+  ],
+  "author": "Eyedea AS",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@smashing/overlay": "^0.1.8",
+    "@smashing/theme": "^0.5.5",
+    "@smashing/typography": "^0.4.13"
+  },
+  "devDependencies": {
+    "react": "^16.8.6"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "styled-components": "^4.2.0"
+  },
+  "keywords": [
+    "smashing",
+    "react",
+    "ui"
+  ],
+  "gitHead": "63f302d37a36b2a8bd69c7c5437c29fbcb2ec684"
+}
