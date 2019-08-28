@@ -23,7 +23,7 @@ yarn add @smashing/select
 <Select options={/*...*/} height={64} />
 ```
 
-#### Difference appearances and intents
+#### Different appearances and intents
 
 ![](https://i.imgur.com/E8nr1oR.png)
 
