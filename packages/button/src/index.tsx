@@ -12,9 +12,14 @@ import {
   ButtonIntentType,
   ButtonAppearanceType,
   ButtonProps,
+  ButtonLikeProps,
   StyledTextProps,
   StyledSpinnerProps
 } from './types'
+
+type StyledComponentElement =
+  | keyof JSX.IntrinsicElements
+  | React.ComponentType<any>
 
 const StyledText = styled(Text)<StyledTextProps>`
   border: none;
@@ -34,7 +39,6 @@ const StyledText = styled(Text)<StyledTextProps>`
         }}
   ${_ => getButtonStyle(_.appearance, _.intent)};
 `
-
 const StyledSpinner = styled(Spinner)<StyledSpinnerProps>`
   opacity: 0.6;
   color: ${_ => _.theme.scales.neutral.N7A};
@@ -43,7 +47,10 @@ const StyledSpinner = styled(Spinner)<StyledSpinnerProps>`
   vertical-align: middle;
 `
 
-const ButtonFC: React.FC<ButtonProps> = ({children, innerRef, ...props}) => {
+const ButtonFCFactory = <AdditionalProps extends {}>(
+  as: StyledComponentElement = 'button'
+) => ({children, innerRef, ...props}) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const defaults = useDefaults('button', props, {
     height: 32,
     appearance: 'default' as ButtonAppearanceType,
@@ -54,7 +61,7 @@ const ButtonFC: React.FC<ButtonProps> = ({children, innerRef, ...props}) => {
 
   return (
     <StyledText
-      as="button"
+      as={as}
       borderRadius={getBorderRadiusForControlHeight(defaults.height)}
       variant={getTextSizeForControlHeight(defaults.height)}
       ref={innerRef}
@@ -74,9 +81,18 @@ const ButtonFC: React.FC<ButtonProps> = ({children, innerRef, ...props}) => {
   )
 }
 
-const Button = styled(ButtonFC)``
+const Button = styled(ButtonFCFactory('button'))``
+const ButtonAs = <T extends {}>(as?: StyledComponentElement) =>
+  styled(ButtonFCFactory<React.HTMLAttributes<T>>(as))``
 
-export {Button, ButtonProps, ButtonAppearanceType, ButtonIntentType}
+export {
+  Button,
+  ButtonAs,
+  ButtonProps,
+  ButtonAppearanceType,
+  ButtonIntentType,
+  ButtonLikeProps
+}
 
 declare module 'styled-components' {
   export interface SmashingButtonDefaults

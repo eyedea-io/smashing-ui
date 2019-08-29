@@ -37,7 +37,7 @@ export interface PopoverProps {
    * ({ toggle: Function -> Void, getRef: Function -> Ref, isShown: Bool })
    */
   children:
-    | React.ReactElement
+    | React.ReactNode
     | ((props: {
         toggle: () => void
         getRef: (ref: any) => void
@@ -93,6 +93,16 @@ export interface PopoverProps {
    * When true, bring focus inside of the Popover on open.
    */
   bringFocusInside?: boolean
+
+  /**
+   * The minimum distance from the target to the element being positioned.
+   */
+  targetOffset?: number
+
+  /**
+   * Custom styles
+   */
+  style?: React.CSSProperties
 }
 
 const Target = (props: {
@@ -184,6 +194,8 @@ export const Popover: React.FC<PopoverProps> = ({
   onClose = () => {},
   onOpenComplete = () => {},
   onCloseComplete = () => {},
+  targetOffset = 6,
+  style: componentStyle,
   bringFocusInside = false,
   ...props
 }) => {
@@ -267,6 +279,7 @@ export const Popover: React.FC<PopoverProps> = ({
           {props.children}
         </Target>
       )}
+      targetOffset={targetOffset}
       isShown={shown}
       position={position}
       animationDuration={animationDuration}
@@ -280,7 +293,7 @@ export const Popover: React.FC<PopoverProps> = ({
             popoverNode.current = ref
           }}
           data-state={state}
-          style={style}
+          style={{...style, ...componentStyle}}
           {...props.statelessProps}
         >
           {typeof props.content === 'function'

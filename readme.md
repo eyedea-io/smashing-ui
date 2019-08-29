@@ -13,7 +13,7 @@ yarn add @smashing/theme
 **Add Theme Provider**
 
 ```tsx
-import {SmashingThemeProvider} from "@smashing/theme"
+import {SmashingThemeProvider} from '@smashing/theme'
 
 const App = () => <SmashingThemeProvider>{/* ... */}</SmashingThemeProvider>
 ```
@@ -30,6 +30,7 @@ You can read more about [smashing theme provider](https://github.com/eyedea-io/s
 - **[Dialog](https://github.com/eyedea-io/smashing-ui/tree/master/packages/dialog)** - Component is used to show content on top of an overlay.
 - **[Menu](https://github.com/eyedea-io/smashing-ui/tree/master/packages/menu)** - Multiple components that help create menus.
 - **[Popover](https://github.com/eyedea-io/smashing-ui/tree/master/packages/popover)** - Component displays floating content in relation to a target.
+- **[Select](https://github.com/eyedea-io/smashing-ui/tree/master/packages/select)** - Simple select component being an overlay to a default system one.
 - **[TextInput](https://github.com/eyedea-io/smashing-ui/tree/master/packages/text-input)** - Text input component used in forms.
 - **[Tooltip](https://github.com/eyedea-io/smashing-ui/tree/master/packages/tooltip)** - Component used to describe icon buttons.
 
