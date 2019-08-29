@@ -1,6 +1,6 @@
 {
   "name": "@smashing/avatar",
-  "version": "0.2.8",
+  "version": "0.2.15",
   "description": "Component used to represent users.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -8,16 +8,16 @@
   "types": "lib/esm/index.d.ts",
   "module": "lib/esm/index.js",
   "files": [
-    "src",
-    "lib"
+    "lib/esm",
+    "lib/cjs"
   ],
   "author": "Eyedea AS",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@smashing/theme": "^0.6.1",
-    "@smashing/typography": "^0.4.15"
+    "@smashing/theme": "^0.9.2",
+    "@smashing/typography": "^0.4.22"
   },
   "devDependencies": {
     "react": "^16.8.6"

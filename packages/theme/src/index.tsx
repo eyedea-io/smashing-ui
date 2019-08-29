@@ -2,9 +2,10 @@ import * as foundation from './default-theme/foundational-styles'
 import * as constants from './default-theme/constants'
 import * as deepmerge from 'deepmerge'
 import * as React from 'react'
+import {O} from 'ts-toolbelt'
 import {themedProperty} from './utils/themed-property'
 import {useDefaults} from './utils/use-defaults'
-import {DefaultTheme, ThemeProvider} from 'styled-components'
+import {DefaultTheme, ThemeProvider, ThemeContext} from 'styled-components'
 import {
   getTextSizeForControlHeight,
   getBorderRadiusForControlHeight
@@ -17,15 +18,44 @@ export const theme: DefaultTheme = {
 
 export {constants}
 
-export const SmashingThemeProvider = ({
-  theme: userTheme = {},
+export type OptionalTheme = O.Optional<DefaultTheme, keyof DefaultTheme, 'deep'>
+export type RequiredTheme = O.Required<DefaultTheme, keyof DefaultTheme, 'deep'>
+
+/**
+ * Create a theme with TypeScript schema
+ * @example
+ * const darkTheme = createTheme(theme)
+ */
+export const createTheme = (theme: OptionalTheme = {}): OptionalTheme =>
+  deepmerge({}, theme, {clone: true})
+
+export const SmashingThemeProvider: React.FC<{
+  theme?: OptionalTheme
+}> = ({theme: userTheme = {}, children}) => {
+  return (
+    <ThemeProvider
+      theme={deepmerge<DefaultTheme>(theme, userTheme as RequiredTheme, {
+        clone: true
+      })}
+    >
+      <React.Fragment>{children}</React.Fragment>
+    </ThemeProvider>
+  )
+}
+
+export const SmashingThemeModifier = ({
+  theme: modifiedTheme,
   children
 }: {
   children: React.ReactChild
-  theme?: Partial<DefaultTheme>
+  theme: OptionalTheme
 }) => {
+  const contextTheme = React.useContext(ThemeContext)
+
   return (
-    <ThemeProvider theme={deepmerge(theme, userTheme)}>
+    <ThemeProvider
+      theme={deepmerge(contextTheme, modifiedTheme as RequiredTheme)}
+    >
       {children}
     </ThemeProvider>
   )
@@ -63,6 +93,7 @@ declare module 'styled-components' {
   export interface SmashingProgressBarChartDefaults {}
   export interface SmashingSpiderChartDefaults {}
   export interface SmashingRadialProgressDefaults {}
+  export interface SmashingSideSheetDefaults {}
   export interface SmashingDefaults
     extends SmashingButtonDefaults,
       SmashingCheckboxDefaults,
@@ -73,6 +104,7 @@ declare module 'styled-components' {
       SmashingSpiderChartDefaults,
       SmashingRadialProgressDefaults,
       SmashingProgressBarChartDefaults,
+      SmashingSideSheetDefaults,
       SmashingSpinnerDefaults,
       SmashingSelectDefaults,
       SmashingAvatarDefaults {}

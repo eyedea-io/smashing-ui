@@ -1,23 +1,23 @@
 {
-  "name": "@smashing/button",
-  "version": "0.2.25",
-  "description": "The Button component is the most common button component",
+  "name": "@smashing/side-sheet",
+  "version": "0.1.0",
+  "description": "Component used to show a panel attached to the edge of the screen.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
   "main": "lib/cjs/index.js",
   "types": "lib/esm/index.d.ts",
   "module": "lib/esm/index.js",
   "files": [
-    "lib/esm",
-    "lib/cjs"
+    "src",
+    "lib"
   ],
   "author": "Eyedea AS",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@smashing/spinner": "^0.1.9",
-    "@smashing/theme": "^0.9.2",
+    "@smashing/overlay": "^0.1.17",
+    "@smashing/theme": "^0.5.5",
     "@smashing/typography": "^0.4.22"
   },
   "devDependencies": {
@@ -31,5 +31,6 @@
     "smashing",
     "react",
     "ui"
-  ]
+  ],
+  "gitHead": "63f302d37a36b2a8bd69c7c5437c29fbcb2ec684"
 }
