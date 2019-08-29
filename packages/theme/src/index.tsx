@@ -74,6 +74,7 @@ declare module 'styled-components' {
       SmashingRadialProgressDefaults,
       SmashingProgressBarChartDefaults,
       SmashingSpinnerDefaults,
+      SmashingSelectDefaults,
       SmashingAvatarDefaults {}
   export interface DefaultTheme {
     radius: string
