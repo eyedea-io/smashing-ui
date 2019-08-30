@@ -41,7 +41,7 @@ export const getButtonStyle = (
 
       return {
         color: 'white',
-        backgroundColor: 'white',
+        backgroundColor: primary.backgroundImage.startColor,
         backgroundImage: primary.backgroundImage.base,
         fontWeight: 600,
         boxShadow: `inset 0 0 0 1px ${scales.neutral.N5A}, inset 0 -1px 1px 0 ${scales.neutral.N2A}`,

@@ -85,6 +85,7 @@ declare module 'styled-components' {
   export interface SmashingCheckboxDefaults {}
   export interface SmashingTextInputDefaults {}
   export interface SmashingAlertDefaults {}
+  export interface SmashingSelectDefaults {}
   export interface SmashingAvatarDefaults {}
   export interface SmashingSpinnerDefaults {}
   export interface SmashingBarChartDefaults {}
@@ -105,6 +106,7 @@ declare module 'styled-components' {
       SmashingProgressBarChartDefaults,
       SmashingSideSheetDefaults,
       SmashingSpinnerDefaults,
+      SmashingSelectDefaults,
       SmashingAvatarDefaults {}
   export interface DefaultTheme {
     radius: string
