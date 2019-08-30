@@ -1,3 +1,5 @@
+import styled from 'styled-components/macro'
+
 // import styled, {DefaultTheme} from 'styled-components/macro'
 // import {
 //   ButtonAppearanceType,
@@ -71,3 +73,28 @@
 //     padding-right: ${_ => Math.round(_.height)}px;
 //   `
 // }
+
+export const OptionDiv = styled.div`
+  padding: 12px 0;
+  width: 100%;
+  border-bottom: 1px solid #eee;
+`
+
+export const FilterInput = styled.input`
+  background-color: #ccc;
+  width: 100%;
+  padding: 8px;
+  border: 0;
+`
+
+export const FilterHost = styled.div``
+export const PopoverHost = styled.div``
+export const OptionHost = styled.div`
+  padding: 4px;
+`
+
+export const PopoverFooter = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 4px;
+`
