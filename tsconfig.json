@@ -12,6 +12,7 @@
     {"path": "packages/overlay"},
     {"path": "packages/popover"},
     {"path": "packages/positioner"},
+    {"path": "packages/select-menu"},
     {"path": "packages/spinner"},
     {"path": "packages/stack"},
     {"path": "packages/text-input"},

@@ -29,7 +29,7 @@ export interface PopoverProps {
   /**
    * The content of the Popover.
    */
-  content: React.ReactNode
+  content: React.ReactNode | ((props: {close: () => void}) => React.ReactNode)
 
   /**
    * The target button of the Popover.
@@ -37,7 +37,7 @@ export interface PopoverProps {
    * ({ toggle: Function -> Void, getRef: Function -> Ref, isShown: Bool })
    */
   children:
-    | React.ReactElement
+    | React.ReactNode
     | ((props: {
         toggle: () => void
         getRef: (ref: any) => void

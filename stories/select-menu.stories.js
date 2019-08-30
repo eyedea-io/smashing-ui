@@ -19,7 +19,16 @@ storiesOf('Core|Select menu', module)
     </SmashingThemeProvider>
   ))
   .add('Select menu', () => (
-    <React.Fragment>
+    <div style={{height: 700}}>
       <SelectMenu />
-    </React.Fragment>
+      <hr />
+      <SelectMenu
+        dataSource={[1, 3, 5]}
+        children={props => (
+          <span ref={props.getRef} onClick={props.toggle}>
+            {JSON.stringify(props.selectedItems)}
+          </span>
+        )}
+      />
+    </div>
   ))
