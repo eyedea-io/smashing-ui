@@ -237,7 +237,7 @@ export interface MenuItemProps {
   /**
    * The children of the component.
    */
-  children: React.ReactChild
+  children: React.ReactNode
 
   /**
    * Secondary text shown on the right.
