@@ -1,5 +1,5 @@
-import * as React from "react"
-import {constants} from "@smashing/theme"
+import * as React from 'react'
+import {constants} from '@smashing/theme'
 
 /**
  * Context used to manage the layering of z-indexes of components.

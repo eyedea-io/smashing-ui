@@ -1,21 +1,16 @@
-import styled, {css} from "styled-components"
-import {getTextColor, getFontFamily} from "../utils"
-import {getTextStyle} from "../styles/text"
+import styled, {css} from 'styled-components'
+import {getTextStyle} from '../styles/text'
+import {TextVariant, TextColor, TextIntent, TextFontFamily} from '../types'
 
 export interface TextProps {
-  variant?: 300 | 400 | 500 | 600
-  color?: "muted" | "default" | "dark"
-  intent?: "none" | "success" | "info" | "danger" | "warning"
-  fontFamily?: "ui" | "display" | "mono"
+  variant?: TextVariant
+  color?: TextColor
+  intent?: TextIntent
+  fontFamily?: TextFontFamily
 }
 
 export const Text = styled.span<TextProps>`
-  ${({variant = 400, fontFamily, color = "default", intent}) => css`
-    ${getTextStyle(variant)};
-    color: ${getTextColor(intent || color)};
-    ${fontFamily &&
-      css`
-        font-family: ${getFontFamily(fontFamily)};
-      `};
+  ${({variant = 400, fontFamily, color = 'default', intent}) => css`
+    ${getTextStyle({variant, intent, color, fontFamily})};
   `}
 `

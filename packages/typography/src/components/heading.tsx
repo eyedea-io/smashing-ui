@@ -1,21 +1,17 @@
-import styled, {css} from "styled-components"
-import {getFontFamily} from "../utils"
-import {getHeadingStyle} from "../styles/headings"
+import styled, {css} from 'styled-components'
+import {getHeadingStyle} from '../styles/headings'
+import {HeadingVariant, HeadingFontFamily} from '../types'
 
 export interface HeadingProps {
-  variant?: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
-  fontFamily?: "ui" | "display" | "mono"
+  variant?: HeadingVariant
+  fontFamily?: HeadingFontFamily
   marginTop?: number
 }
 
 export const Heading = styled.h2<HeadingProps>`
   ${({variant = 400, fontFamily, marginTop}) => css`
-    ${getHeadingStyle(variant)}
-    ${fontFamily &&
-      css`
-        font-family: ${getFontFamily(fontFamily)};
-      `};
-    ${typeof marginTop === "number" &&
+    ${getHeadingStyle({variant, fontFamily})}
+    ${typeof marginTop === 'number' &&
       css`
         margin-top: ${marginTop}px;
       `};

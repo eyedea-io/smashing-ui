@@ -1,10 +1,13 @@
-import * as React from "react"
-import Bar from "./bar"
-import Axis from "./axis"
-import {ThemeContext} from "styled-components"
-import {useDefaults} from "@smashing/theme"
-import {ProgressBarProps,ProgressBarDataItem,ProgressBarColors} from '../../types'
-
+import * as React from 'react'
+import Bar from './bar'
+import Axis from './axis'
+import {ThemeContext} from 'styled-components'
+import {useDefaults} from '@smashing/theme'
+import {
+  ProgressBarProps,
+  ProgressBarDataItem,
+  ProgressBarColors
+} from '../../types'
 
 export interface Margins {
   top: number
@@ -14,7 +17,7 @@ export interface Margins {
 
 const Chart: React.SFC<ProgressBarProps> = ({width, data, ...props}) => {
   const theme = React.useContext(ThemeContext)
-  const defaults = useDefaults("progressBarChart", props, {
+  const defaults = useDefaults('progressBarChart', props, {
     colors: theme.colors.chart.progress
   })
   const ref = React.useRef(null)
@@ -60,7 +63,7 @@ const Chart: React.SFC<ProgressBarProps> = ({width, data, ...props}) => {
     </svg>
   )
 }
-declare module "styled-components" {
+declare module 'styled-components' {
   export interface SmashingProgressBarChartDefaults
     extends Partial<{
       progressBarChart?: {

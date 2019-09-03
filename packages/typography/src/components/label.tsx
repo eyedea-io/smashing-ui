@@ -1,23 +1,18 @@
-import styled, {css} from "styled-components"
-import {getTextColor, getFontFamily} from "../utils"
-import {getTextStyle} from "../styles/text"
+import styled, {css} from 'styled-components'
+import {getTextStyle} from '../styles/text'
+import {LabelVariant, LabelFontFamily} from '../types'
 
 export interface LabelProps {
-  variant?: 300 | 400 | 500
-  fontFamily?: "ui" | "display" | "mono"
+  variant?: LabelVariant
+  fontFamily?: LabelFontFamily
   marginTop?: number
 }
 
 export const Label = styled.label<LabelProps>`
   ${({variant = 400, fontFamily, marginTop}) => css`
-    ${getTextStyle(variant)}
-    color: ${getTextColor("dark")};
+    ${getTextStyle({variant, fontFamily, color: 'intense'})}
     font-weight: 500;
-    ${fontFamily &&
-      css`
-        font-family: ${getFontFamily(fontFamily)};
-      `};
-    ${typeof marginTop === "number" &&
+    ${typeof marginTop === 'number' &&
       css`
         margin-top: ${marginTop};
       `};

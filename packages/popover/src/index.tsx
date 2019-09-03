@@ -1,19 +1,19 @@
-import * as React from "react"
-import {Positioner} from "@smashing/positioner"
-import {Tooltip} from "@smashing/tooltip"
-import {constants} from "@smashing/theme"
-import styled from "styled-components/macro"
+import * as React from 'react'
+import {Positioner} from '@smashing/positioner'
+import {Tooltip} from '@smashing/tooltip'
+import {constants} from '@smashing/theme'
+import styled from 'styled-components'
 
 const {position: Position} = constants
 export type Position =
-  | "top"
-  | "top-left"
-  | "top-right"
-  | "bottom"
-  | "bottom-left"
-  | "bottom-right"
-  | "left"
-  | "right"
+  | 'top'
+  | 'top-left'
+  | 'top-right'
+  | 'bottom'
+  | 'bottom-left'
+  | 'bottom-right'
+  | 'left'
+  | 'right'
 
 export interface PopoverProps {
   /**
@@ -37,7 +37,7 @@ export interface PopoverProps {
    * ({ toggle: Function -> Void, getRef: Function -> Ref, isShown: Bool })
    */
   children:
-    | React.ReactElement
+    | React.ReactNode
     | ((props: {
         toggle: () => void
         getRef: (ref: any) => void
@@ -93,6 +93,16 @@ export interface PopoverProps {
    * When true, bring focus inside of the Popover on open.
    */
   bringFocusInside?: boolean
+
+  /**
+   * The minimum distance from the target to the element being positioned.
+   */
+  targetOffset?: number
+
+  /**
+   * Custom styles
+   */
+  style?: React.CSSProperties
 }
 
 const Target = (props: {
@@ -122,9 +132,9 @@ const Target = (props: {
   const popoverTargetProps = {
     onClick: toggle,
     onKeyDown: handleKeyDown,
-    role: "button",
-    "aria-expanded": props.isShown,
-    "aria-haspopup": true
+    role: 'button',
+    'aria-expanded': props.isShown,
+    'aria-haspopup': true
   }
 
   /**
@@ -149,7 +159,7 @@ const Target = (props: {
   /**
    * When a function is passed, you can control the Popover manually.
    */
-  if (typeof props.children === "function") {
+  if (typeof props.children === 'function') {
     return props.children({
       toggle,
       getRef: props.innerRef,
@@ -184,6 +194,8 @@ export const Popover: React.FC<PopoverProps> = ({
   onClose = () => {},
   onOpenComplete = () => {},
   onCloseComplete = () => {},
+  targetOffset = 6,
+  style: componentStyle,
   bringFocusInside = false,
   ...props
 }) => {
@@ -230,11 +242,11 @@ export const Popover: React.FC<PopoverProps> = ({
   )
   React.useEffect(() => {
     if (isShown) {
-      document.body.addEventListener("click", onBodyClick, false)
-      document.body.addEventListener("keydown", onEsc, false)
+      document.body.addEventListener('click', onBodyClick, false)
+      document.body.addEventListener('keydown', onEsc, false)
     } else {
-      document.body.removeEventListener("click", onBodyClick, false)
-      document.body.removeEventListener("keydown", onEsc, false)
+      document.body.removeEventListener('click', onBodyClick, false)
+      document.body.removeEventListener('keydown', onEsc, false)
     }
   }, [isShown, onBodyClick, onEsc])
   const handleOpenComplete = React.useCallback(() => {
@@ -245,12 +257,12 @@ export const Popover: React.FC<PopoverProps> = ({
 
   React.useEffect(() => {
     return () => {
-      document.body.removeEventListener("click", onBodyClick, false)
-      document.body.removeEventListener("keydown", onEsc, false)
+      document.body.removeEventListener('click', onBodyClick, false)
+      document.body.removeEventListener('keydown', onEsc, false)
     }
   }, [onBodyClick, onEsc])
 
-  const shown = typeof props.isShown === "boolean" ? props.isShown : isShown
+  const shown = typeof props.isShown === 'boolean' ? props.isShown : isShown
 
   return (
     <Positioner
@@ -267,6 +279,7 @@ export const Popover: React.FC<PopoverProps> = ({
           {props.children}
         </Target>
       )}
+      targetOffset={targetOffset}
       isShown={shown}
       position={position}
       animationDuration={animationDuration}
@@ -280,10 +293,10 @@ export const Popover: React.FC<PopoverProps> = ({
             popoverNode.current = ref
           }}
           data-state={state}
-          style={style}
+          style={{...style, ...componentStyle}}
           {...props.statelessProps}
         >
-          {typeof props.content === "function"
+          {typeof props.content === 'function'
             ? props.content({close})
             : props.content}
         </S.Popup>

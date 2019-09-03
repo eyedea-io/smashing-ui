@@ -1,24 +1,24 @@
-import * as React from "react"
-import * as debounce from "debounce"
-import {Positioner} from "@smashing/positioner"
-import {constants} from "@smashing/theme"
-import {Paragraph} from "@smashing/typography"
-import styled, {css} from "styled-components/macro"
-import * as tinycolor from "tinycolor2"
+import * as React from 'react'
+import * as debounce from 'debounce'
+import {Positioner} from '@smashing/positioner'
+import {constants} from '@smashing/theme'
+import {Paragraph} from '@smashing/typography'
+import styled, {css} from 'styled-components'
+import * as tinycolor from 'tinycolor2'
 
 const {position: Position} = constants
 export type Position =
-  | "top"
-  | "top-left"
-  | "top-right"
-  | "bottom"
-  | "bottom-left"
-  | "bottom-right"
-  | "left"
-  | "right"
+  | 'top'
+  | 'top-left'
+  | 'top-right'
+  | 'bottom'
+  | 'bottom-left'
+  | 'bottom-right'
+  | 'left'
+  | 'right'
 
 export interface BoxProps {
-  appearance: "default" | "card"
+  appearance: 'default' | 'card'
 }
 
 const Box = styled.div.attrs({})<BoxProps>`
@@ -27,25 +27,25 @@ const Box = styled.div.attrs({})<BoxProps>`
   max-width: 240px;
 
   ${_ =>
-    _.appearance === "default" &&
+    _.appearance === 'default' &&
     css`
       background-color: ${tinycolor(_.theme.palette.neutral.base)
         .setAlpha(0.95)
         .toString()};
     `}
-  ${_ => _.appearance === "card" && _.theme.elevation.dropdown}
+  ${_ => _.appearance === 'card' && _.theme.elevation.dropdown}
 `
 
 interface StyledParagraphProps {
   variant: 400
-  appearance: "default" | "card"
+  appearance: 'default' | 'card'
 }
 
 const StyledParagraph = styled(Paragraph).attrs({})<StyledParagraphProps>`
   margin: 0;
 
   ${_ =>
-    _.appearance === "default" &&
+    _.appearance === 'default' &&
     css`
       color: white;
     `};
@@ -56,7 +56,7 @@ class TooltipStateless extends React.Component<{
   /**
    * The appearance of the tooltip.
    */
-  appearance: "default" | "card"
+  appearance: 'default' | 'card'
   id: string
   style: any
   onMouseEnter: React.MouseEventHandler
@@ -67,7 +67,7 @@ class TooltipStateless extends React.Component<{
     const {children, appearance, innerRef, ...props} = this.props
     let child: React.ReactNode
 
-    if (typeof children === "string") {
+    if (typeof children === 'string') {
       child = (
         <StyledParagraph variant={400} appearance={appearance}>
           {children}
@@ -91,7 +91,7 @@ export interface TooltipProps {
   /**
    * The appearance of the tooltip.
    */
-  appearance: "default" | "card"
+  appearance: 'default' | 'card'
 
   /**
    * The position the Popover is on.
@@ -136,7 +136,7 @@ export interface TooltipState {
 
 export class Tooltip extends React.PureComponent<TooltipProps, TooltipState> {
   static defaultProps = {
-    appearance: "default",
+    appearance: 'default',
     position: Position.BOTTOM,
     hideDelay: 120
   }
@@ -167,7 +167,7 @@ export class Tooltip extends React.PureComponent<TooltipProps, TooltipState> {
     const tooltipTargetProps = {
       onMouseEnter: this.show,
       onMouseLeave: this.hide,
-      "aria-describedby": this.state.id
+      'aria-describedby': this.state.id
     }
 
     /**

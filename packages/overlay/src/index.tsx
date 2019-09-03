@@ -1,43 +1,26 @@
-import * as React from "react"
-import {Transition} from "react-transition-group"
-import {Portal} from "@smashing/portal"
-import {Stack} from "@smashing/stack"
-import {constants} from "@smashing/theme"
-import styled, {keyframes} from "styled-components/macro"
-import {useCallback} from "react"
+import * as React from 'react'
+import {Transition} from 'react-transition-group'
+import {Portal} from '@smashing/portal'
+import {Stack} from '@smashing/stack'
+import {constants} from '@smashing/theme'
+import styled from 'styled-components'
+import {useCallback} from 'react'
+import {TransitionStatus} from 'react-transition-group/Transition'
 
 const {stackingOrder: StackingOrder} = constants
 
 const animationEasing = {
-  standard: `cubic-bezier(0.4, 0.0, 0.2, 1)`,
-  deceleration: `cubic-bezier(0.0, 0.0, 0.2, 1)`,
-  acceleration: `cubic-bezier(0.4, 0.0, 1, 1)`,
-  sharp: `cubic-bezier(0.4, 0.0, 0.6, 1)`,
-  spring: `cubic-bezier(0.175, 0.885, 0.320, 1.175)`
+  standard: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
+  deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',
+  acceleration: 'cubic-bezier(0.4, 0.0, 1, 1)',
+  sharp: 'cubic-bezier(0.4, 0.0, 0.6, 1)',
+  spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
 }
 
 const ANIMATION_DURATION = 240
 
-const fadeInAnimation = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`
-
-const fadeOutAnimation = keyframes`
-  from: {
-    opacity: 1;
-  }
-  to: {
-    opacity: 0;
-  }
-`
-
 const S = {
-  Background: styled.div.attrs({})<{zIndex: number}>`
+  Background: styled.div.attrs({})<{zIndex: number, state: TransitionStatus}>`
     position: fixed;
     top: 0;
     left: 0;
@@ -56,19 +39,13 @@ const S = {
       display: block;
       width: 100%;
       height: 100%;
-      content: " ";
+      content: ' ';
     }
+    transition: opacity ${ANIMATION_DURATION}ms ${_ => ['entered'].includes(_.state) ? animationEasing.deceleration : animationEasing.acceleration};
 
-    &[data-state="entering"]::before,
-    &[data-state="entered"]::before {
-      animation: ${fadeInAnimation} ${ANIMATION_DURATION}ms
-        ${animationEasing.deceleration} both;
-    }
-    &[data-state="exiting"]::before,
-    &[data-state="exited"]::before {
-      animation: ${fadeOutAnimation} ${ANIMATION_DURATION}ms
-        ${animationEasing.acceleration} both;
-    }
+    ${_ => ({
+      opacity: ['entered'].includes(_.state) ? 1 : 0
+    })}
   `
 }
 
@@ -120,13 +97,13 @@ export const Overlay: React.FC<OverlayProps> = ({
         // Element marked autofocus has higher priority than the other clowns
         const autofocusElement = containerElement.current.querySelector<
           HTMLElement
-        >("[autofocus]")
+        >('[autofocus]')
         const wrapperElement = containerElement.current.querySelector<
           HTMLElement
-        >("[tabindex]")
+        >('[tabindex]')
         const buttonElement = containerElement.current.querySelector<
           HTMLElement
-        >("button")
+        >('button')
 
         if (autofocusElement) {
           autofocusElement.focus()
@@ -191,7 +168,7 @@ export const Overlay: React.FC<OverlayProps> = ({
   }
 
   const handleEntering = (node: HTMLElement) => {
-    document.body.addEventListener("keydown", onEsc, false)
+    document.body.addEventListener('keydown', onEsc, false)
     onEntering(node)
   }
 
@@ -207,7 +184,7 @@ export const Overlay: React.FC<OverlayProps> = ({
   }
 
   const handleExiting = (node: HTMLElement) => {
-    document.body.removeEventListener("keydown", onEsc, false)
+    document.body.removeEventListener('keydown', onEsc, false)
     bringFocusBackToTarget()
     onExiting(node)
   }
@@ -231,11 +208,9 @@ export const Overlay: React.FC<OverlayProps> = ({
   React.useEffect(() => {
     return () => {
       handleBodyScroll(false)
-      document.body.removeEventListener("keydown", onEsc, false)
+      document.body.removeEventListener('keydown', onEsc, false)
     }
   }, [handleBodyScroll, onEsc])
-
-  if (exited) return null
 
   return (
     <Stack value={StackingOrder.OVERLAY}>
@@ -244,7 +219,7 @@ export const Overlay: React.FC<OverlayProps> = ({
           <Transition
             appear
             unmountOnExit
-            timeout={ANIMATION_DURATION}
+            timeout={isShown && !exiting ? 0 : ANIMATION_DURATION}
             in={isShown && !exiting}
             onExit={handleExit}
             onExiting={handleExiting}
@@ -257,11 +232,11 @@ export const Overlay: React.FC<OverlayProps> = ({
               <S.Background
                 onClick={handleBackdropClick}
                 ref={containerElement}
-                data-state={state}
+                state={state}
                 zIndex={zIndex}
                 {...containerProps}
               >
-                {typeof children === "function"
+                {typeof children === 'function'
                   ? children({
                       state,
                       close
@@ -346,7 +321,7 @@ export interface OverlayProps {
 }
 
 function safeInvoke(fn: any, ...args: any[]) {
-  if (typeof fn === "function") {
+  if (typeof fn === 'function') {
     return fn(...args)
   }
 }
@@ -361,9 +336,9 @@ function preventBodyScroll(preventScroll: boolean) {
   /** Apply or remove overflow style */
   if (preventScroll) {
     previousOverflow = document.body.style.overflow
-    document.body.style.overflow = "hidden"
+    document.body.style.overflow = 'hidden'
   } else {
-    document.body.style.overflow = previousOverflow || ""
+    document.body.style.overflow = previousOverflow || ''
   }
 
   /** Get the _new width_ of the body (this will tell us the scrollbar width) */
@@ -373,8 +348,8 @@ function preventBodyScroll(preventScroll: boolean) {
   /** If there's a diff due to scrollbars, then account for it with padding */
   if (preventScroll) {
     previousPaddingRight = document.body.style.paddingRight
-    document.body.style.paddingRight = Math.max(0, scrollBarWidth || 0) + "px"
+    document.body.style.paddingRight = Math.max(0, scrollBarWidth || 0) + 'px'
   } else {
-    document.body.style.paddingRight = previousPaddingRight || ""
+    document.body.style.paddingRight = previousPaddingRight || ''
   }
 }

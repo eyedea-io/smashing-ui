@@ -1,6 +1,6 @@
 {
   "name": "@smashing/title",
-  "version": "0.2.8",
+  "version": "0.2.11",
   "description": "Manage page title",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -8,15 +8,15 @@
   "types": "lib/esm/index.d.ts",
   "module": "lib/esm/index.js",
   "files": [
-    "src",
-    "lib"
+    "lib/esm",
+    "lib/cjs"
   ],
   "author": "Eyedea AS",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@smashing/head": "^0.1.9"
+    "@smashing/head": "^0.1.11"
   },
   "devDependencies": {
     "react": "^16.8.6"

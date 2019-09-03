@@ -1,5 +1,9 @@
-export {Text, TextProps} from "./components/text"
-export {Heading, HeadingProps} from "./components/heading"
-export {Strong, StrongProps} from "./components/strong"
-export {Paragraph, ParagraphProps} from "./components/paragraph"
-export {Label, LabelProps} from "./components/label"
+export {Text, TextProps} from './components/text'
+export {Heading, HeadingProps} from './components/heading'
+export {Strong, StrongProps} from './components/strong'
+export {Paragraph, ParagraphProps} from './components/paragraph'
+export {Label, LabelProps} from './components/label'
+export {getHeadingStyle} from './styles/headings'
+export {getParagraphStyle} from './styles/paragraph'
+export {getTextStyle} from './styles/text'
+export * from './types'

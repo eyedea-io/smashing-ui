@@ -1,6 +1,6 @@
-import * as React from "react"
+import * as React from 'react'
 
-import Arc from "./arc"
+import Arc from './arc'
 import {RadialProgressProps} from '../../types'
 // TODO : Title with dynamic size
 // const Title = styled.h1`
@@ -31,7 +31,7 @@ const ProgressChart: React.SFC<RadialProgressProps> = props => {
   )
 }
 
-declare module "styled-components" {
+declare module 'styled-components' {
   export interface SmashingRadialProgressDefaults
     extends Partial<{
       radialProgressChart?: {

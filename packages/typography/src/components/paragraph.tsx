@@ -1,22 +1,17 @@
-import styled, {css} from "styled-components"
-import {getTextColor, getFontFamily} from "../utils"
-import {getParagraphStyle} from "../styles/paragraph"
+import styled, {css} from 'styled-components'
+import {getParagraphStyle} from '../styles/paragraph'
+import {ParagraphVariant, ParagraphColor, ParagraphFontFamily} from '../types'
 
 export interface ParagraphProps {
-  variant?: 300 | 400 | 500
-  color?: "muted" | "default" | "dark"
-  fontFamily?: "ui" | "display" | "mono"
+  variant?: ParagraphVariant
+  color?: ParagraphColor
+  fontFamily?: ParagraphFontFamily
   marginTop?: number
 }
 export const Paragraph = styled.p<ParagraphProps>`
-  ${({variant = 400, fontFamily, color = "default", marginTop}) => css`
-    ${getParagraphStyle(variant)};
-    color: ${getTextColor(color)};
-    ${fontFamily &&
-      css`
-        font-family: ${getFontFamily(fontFamily)};
-      `};
-    ${typeof marginTop === "number" &&
+  ${({variant = 400, fontFamily, color = 'default', marginTop}) => css`
+    ${getParagraphStyle({variant, color, fontFamily})};
+    ${typeof marginTop === 'number' &&
       css`
         margin-top: ${marginTop}px;
       `};

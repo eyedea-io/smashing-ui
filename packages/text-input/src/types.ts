@@ -1,9 +1,9 @@
 export type TextInputAppearanceType =
-  | "default"
-  | "neutral"
-  | "minimal"
-  | "underline"
-export type TextInputType = "email" | "password" | "tel" | "hidden" | "text"
+  | 'default'
+  | 'neutral'
+  | 'minimal'
+  | 'underline'
+export type TextInputType = 'email' | 'password' | 'tel' | 'hidden' | 'text'
 export interface TextInputProps {
   id?: string
   name?: string
@@ -22,4 +22,4 @@ export interface TextInputProps {
   onChange?: React.ChangeEventHandler<HTMLInputElement>
 }
 export type StyledTextProps = TextInputProps &
-  Required<Pick<TextInputProps, "height" | "appearance">>
+  Required<Pick<TextInputProps, 'height' | 'appearance'>>
