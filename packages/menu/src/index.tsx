@@ -26,10 +26,6 @@ export const Menu: React.FC & {
       )
     )
 
-    if (menuItems.length === 0) {
-      throw new Error('The menu has no menu items')
-    }
-
     const firstItem = menuItems[0]
     const lastItem = menuItems[menuItems.length - 1]
 
@@ -37,6 +33,7 @@ export const Menu: React.FC & {
       currentItem: HTMLDivElement,
       startItem: HTMLDivElement
     ) => {
+      if (!firstItem) return
       // Determine which item is the startItem (first or last)
       const goingDown = startItem === firstItem
 
@@ -76,6 +73,7 @@ export const Menu: React.FC & {
     }
 
     menuItems.forEach(menuItem => {
+      if (!firstItem) return
       // Handle key presses for menuItem
       menuItem.addEventListener('keydown', e => {
         // Go to next/previous item if it exists
