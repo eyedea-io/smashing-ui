@@ -9,6 +9,7 @@
     {"path": "packages/css"},
     {"path": "packages/dialog"},
     {"path": "packages/head"},
+    {"path": "packages/list"},
     {"path": "packages/menu"},
     {"path": "packages/overlay"},
     {"path": "packages/popover"},

@@ -1,0 +1,33 @@
+{
+  "name": "@smashing/list",
+  "version": "0.0.0",
+  "description": "Component is used to display a list.",
+  "repository": "eyedea-io/smashing-ui",
+  "license": "MIT",
+  "main": "lib/cjs/index.js",
+  "types": "lib/esm/index.d.ts",
+  "module": "lib/esm/index.js",
+  "files": [
+    "src",
+    "lib"
+  ],
+  "author": "Eyedea AS",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@smashing/theme": "^0.5.3"
+  },
+  "devDependencies": {
+    "react": "^16.8.6"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "styled-components": "^4.2.0"
+  },
+  "keywords": [
+    "smashing",
+    "react",
+    "ui"
+  ]
+}
