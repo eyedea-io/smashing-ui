@@ -82,7 +82,7 @@ const Alert: React.FC<AlertProps> = ({children, title, ...props}) => {
       )}
       <div>
         {typeof title === 'string' ? (
-          <Title as="h4" color={'dark'}>
+          <Title as="h4" color="intense">
             {title}
           </Title>
         ) : (

@@ -1,6 +1,6 @@
 {
   "name": "@smashing/overlay",
-  "version": "0.1.8",
+  "version": "0.1.19",
   "description": "",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -8,17 +8,17 @@
   "types": "lib/esm/index.d.ts",
   "module": "lib/esm/index.js",
   "files": [
-    "src",
-    "lib"
+    "lib/esm",
+    "lib/cjs"
   ],
   "author": "Eyedea AS",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@smashing/portal": "^0.1.5",
-    "@smashing/stack": "^0.1.8",
-    "@smashing/theme": "^0.5.5",
+    "@smashing/portal": "^0.1.6",
+    "@smashing/stack": "^0.1.19",
+    "@smashing/theme": "^0.9.4",
     "react-transition-group": "^4.0.0"
   },
   "devDependencies": {

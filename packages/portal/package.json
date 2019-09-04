@@ -1,6 +1,6 @@
 {
   "name": "@smashing/portal",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Component utility to help with the ReactDOM.createPortal API.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -8,8 +8,8 @@
   "types": "lib/esm/index.d.ts",
   "module": "lib/esm/index.js",
   "files": [
-    "src",
-    "lib"
+    "lib/esm",
+    "lib/cjs"
   ],
   "author": "Eyedea AS",
   "publishConfig": {

@@ -1,33 +1,44 @@
-import * as React from "react"
+import * as React from 'react'
 
 export type ButtonIntentType =
-  | "success"
-  | "warning"
-  | "info"
-  | "danger"
-  | "none"
+  | 'success'
+  | 'warning'
+  | 'info'
+  | 'danger'
+  | 'none'
 
 export type ButtonAppearanceType =
-  | "flat"
-  | "primary"
-  | "minimal"
-  | "default"
-  | "subtle"
+  | 'flat'
+  | 'primary'
+  | 'minimal'
+  | 'default'
+  | 'subtle'
 
-export interface ButtonProps {
-  id?: string
-  name?: string
-  type?: string
-  height?: number
+export interface ButtonLikeProps {
   intent?: ButtonIntentType
   appearance?: ButtonAppearanceType
-  className?: string
-  borderRadius?: number
-  innerRef?: any
   disabled?: boolean
-  onClick?: React.MouseEventHandler<HTMLButtonElement>
   tabIndex?: number
+  className?: string
+  innerRef?: any
+  height?: number
+  id?: string
+  name?: string
+  /** Make button full width */
+  full?: boolean
+}
+
+export interface ButtonProps extends ButtonLikeProps {
+  type?: string
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
+  isLoading?: boolean
+  borderRadius?: number
 }
 
 export type StyledTextProps = ButtonProps &
-  Required<Pick<ButtonProps, "height" | "appearance" | "intent">>
+  Required<Pick<ButtonProps, 'height' | 'appearance' | 'intent'>>
+
+export type StyledSpinnerProps = {
+  marginRight: number
+  marginLeft: number
+}

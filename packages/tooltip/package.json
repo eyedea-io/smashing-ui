@@ -1,6 +1,6 @@
 {
   "name": "@smashing/tooltip",
-  "version": "0.1.13",
+  "version": "0.1.24",
   "description": "Component used to describe icon buttons.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -8,17 +8,17 @@
   "types": "lib/esm/index.d.ts",
   "module": "lib/esm/index.js",
   "files": [
-    "src",
-    "lib"
+    "lib/esm",
+    "lib/cjs"
   ],
   "author": "Eyedea AS",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@smashing/positioner": "^0.1.10",
-    "@smashing/theme": "^0.5.5",
-    "@smashing/typography": "^0.4.13",
+    "@smashing/positioner": "^0.1.21",
+    "@smashing/theme": "^0.9.4",
+    "@smashing/typography": "^0.4.24",
     "debounce": "^1.2.0",
     "tinycolor2": "^1.4.1"
   },

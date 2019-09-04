@@ -1,5 +1,6 @@
-import {getTextStyle} from "./text"
-import {DefaultTheme} from "styled-components"
+import {getTextStyle} from './text'
+import {DefaultTheme} from 'styled-components'
+import {ParagraphColor, ParagraphVariant, ParagraphFontFamily} from '../types'
 
 /**
  * Text styles for paragraphs (multi line text).
@@ -8,22 +9,28 @@ import {DefaultTheme} from "styled-components"
  * @property {Object} text.400 - Required property. Default.
  * @property {Object} text.300 - Required property.
  */
-export const getParagraphStyle = (variant: number) => (_: {
-  theme: DefaultTheme
-}) => {
+export const getParagraphStyle = ({
+  color = 'default',
+  variant = 400,
+  fontFamily
+}: {
+  color?: ParagraphColor
+  variant?: ParagraphVariant
+  fontFamily?: ParagraphFontFamily
+} = {}) => (_: {theme: DefaultTheme}) => {
   return {
     500: `
-      ${getTextStyle(500)(_)};
+      ${getTextStyle({variant: 500, color, fontFamily})(_)};
       line-height: 24px;
       margin-top: ${_.theme.spacing.md};
     `,
     400: `
-      ${getTextStyle(400)(_)};
+      ${getTextStyle({variant: 400, color, fontFamily})(_)};
       line-height: 21px;
       margin-top: ${_.theme.spacing.xs};
     `,
     300: `
-      ${getTextStyle(300)(_)};
+      ${getTextStyle({variant: 300, color, fontFamily})(_)};
       line-height: 18px;
       margin-top: ${_.theme.spacing.xs};
     `

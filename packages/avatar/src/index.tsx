@@ -53,6 +53,7 @@ const Avatar: React.FC<AvatarProps> = ({
   src,
   hashValue,
   count,
+  innerRef,
   ...props
 }) => {
   const defaults = useDefaults('avatar', props, {
@@ -93,6 +94,7 @@ const Avatar: React.FC<AvatarProps> = ({
       size={defaults.size}
       title={name}
       backgroundColor={colorProps.backgroundColor}
+      ref={innerRef}
       {...props}
     >
       {count !== undefined ? (
