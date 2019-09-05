@@ -2337,7 +2337,7 @@
   dependencies:
     "@sentry/cli" "^1.44.4"
 
-"@smashing/theme@^0.5.5":
+"@smashing/theme@^0.5.3", "@smashing/theme@^0.5.5":
   version "0.5.5"
   resolved "https://registry.yarnpkg.com/@smashing/theme/-/theme-0.5.5.tgz#19f61637411fd5a7d6df1f97181760bc7599559c"
   integrity sha512-/JYoUvaVBga+CiJtXcFbiHuc/FNxj8xK/703VjijDCWSOketOMuernZOPePFnmRW4aRdRq1Jc48sdPcco8dvvg==

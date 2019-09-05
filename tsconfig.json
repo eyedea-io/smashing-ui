@@ -5,6 +5,7 @@
     {"path": "packages/select"},
     {"path": "packages/avatar"},
     {"path": "packages/button"},
+    {"path": "packages/button-group"},
     {"path": "packages/checkbox"},
     {"path": "packages/css"},
     {"path": "packages/dialog"},
