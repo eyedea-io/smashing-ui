@@ -14,10 +14,10 @@ export type SelectMenuChildrenFn<T extends OptionBase> = <T>(props: {
 
 interface SelectMenuProps<T extends OptionBase> {
   options: T[]
-  selected: T | T[]
+  value: string | string[]
   children: React.ReactNode | SelectMenuChildrenFn<T>
-  onSelect: (option: T) => void
-  onDeselect: (option: T) => void
+  onSelect: (value: string) => void
+  onDeselect: (value: string) => void
   multiOptionSelectedItemsLabel?: (itemsSelectedLength: number) => string
   isMultiSelect: boolean
   compareBy: string
@@ -85,33 +85,33 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
   getDefaultSelectedLabel = () => {
     const {
       multiOptionSelectedItemsLabel,
-      selected,
+      value,
       placeholder,
       isMultiSelect
     } = this.props
-    if (!selected || (Array.isArray(selected) && selected.length === 0)) {
+    if (!value || (Array.isArray(value) && value.length === 0)) {
       return placeholder || isMultiSelect ? 'Select multiple...' : 'Select...'
     }
     if (!isMultiSelect) {
-      return (selected as T).label
+      return value
     }
-    if (Array.isArray(selected) && selected.length === 1) {
-      return selected[0].label
+    if (Array.isArray(value) && value.length === 1) {
+      return value[0]
     }
 
-    const optionsSelectedLength = (selected as T[]).length
+    const optionsSelectedLength = (value as string[]).length
     if (multiOptionSelectedItemsLabel) {
       return multiOptionSelectedItemsLabel(optionsSelectedLength)
     }
     return `${optionsSelectedLength} selected`
   }
   determineChildren = () => {
-    const {children, selected} = this.props
+    const {children, value} = this.props
     if (typeof children === 'function') {
       return popoverChildrenProps =>
         (children as SelectMenuChildrenFn<T>)({
           ...popoverChildrenProps,
-          selectedItems: selected || []
+          selectedItems: value || []
         })
     }
     return this.getDefaultButton()
@@ -126,27 +126,23 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
     return this.props.compareBy || 'value'
   }
   optionClicked = (option: T) => {
-    if (this.isOptionSelected(option) && this.props.isMultiSelect) {
-      this.props.onDeselect(option)
+    if (this.isOptionSelected(option.value) && this.props.isMultiSelect) {
+      this.props.onDeselect(option.value)
     } else {
-      this.props.onSelect(option)
+      this.props.onSelect(option.value)
     }
   }
-  isOptionSelected = (option: T) => {
+  isOptionSelected = (option: string) => {
     if (!this.props.isMultiSelect) {
-      return (this.props.selected as T) === option
+      return this.props.value === option
     }
-    return Boolean(
-      (this.props.selected as T[]).find(
-        s => s[this.getCompareBy()] === option[this.getCompareBy()]
-      )
-    )
+    return (this.props.value as string[]).indexOf(option) > -1
   }
   renderCustomItem = (option: T) => {
     return this.props.renderItem(
       option,
       () => this.optionClicked(option),
-      this.isOptionSelected(option),
+      this.isOptionSelected(option.value),
       this.props.options
     )
   }
@@ -176,7 +172,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
                     <SelectMenuItem
                       key={option.value}
                       option={option}
-                      isSelected={this.isOptionSelected(option)}
+                      isSelected={this.isOptionSelected(option.value)}
                       onClick={this.optionClicked}
                     />
                   )

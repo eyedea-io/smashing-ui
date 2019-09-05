@@ -31,11 +31,11 @@ storiesOf('Core|Select menu', module)
       )
 
       const [selectedOptions, changeSelectedOptions] = React.useState([
-        options[1]
+        options[1].value
       ])
 
-      const select = option => {
-        changeSelectedOptions([...selectedOptions, option])
+      const select = value => {
+        changeSelectedOptions([...selectedOptions, value])
       }
 
       const deselect = option => {
@@ -66,7 +66,7 @@ storiesOf('Core|Select menu', module)
           <br />
           <SelectMenu
             options={options}
-            selected={singleSelectedOption}
+            value={singleSelectedOption}
             onSelect={changeSingleSelectedOption}
           />
           <hr />
@@ -76,7 +76,7 @@ storiesOf('Core|Select menu', module)
           <SelectMenu
             isMultiSelect
             options={options}
-            selected={selectedOptions}
+            value={selectedOptions}
             multiOptionSelectedItemsLabel={num => `jest ${num} itemów`}
             placeholder="Wez cos wpisz"
             onSelect={select}
@@ -89,7 +89,7 @@ storiesOf('Core|Select menu', module)
           <SelectMenu
             isMultiSelect
             options={options}
-            selected={selectedOptions}
+            value={selectedOptions}
             onSelect={select}
             onDeselect={deselect}
             renderItem={(option, click, options, selected) => {
