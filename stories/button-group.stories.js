@@ -19,7 +19,6 @@ storiesOf('Core|ButtonGroup', module)
           <ButtonGroup
             onChange={v => setValue(v)}
             value={value}
-            width={400}
             options={[
               {
                 label: 'first button',
