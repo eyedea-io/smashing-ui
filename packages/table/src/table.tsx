@@ -6,6 +6,7 @@ import {TableHeaderCell} from './table-header-cell'
 import {TableRow} from './table-row'
 import {TextTableCell} from './text-table-cell'
 import {TextTableHeaderCell} from './text-table-header-cell'
+import {SearchHeader} from './select-table-header-cell'
 import styled from 'styled-components'
 
 export default class Table extends React.Component {
@@ -22,6 +23,8 @@ export default class Table extends React.Component {
   static Cell = TableCell
 
   static TextCell = TextTableCell
+
+  static SearchHeaderCell = SearchHeader
 
   render() {
     const {children, ...props} = this.props

@@ -39,7 +39,10 @@ storiesOf('Core|Table', module)
     <div style={{width: '500px', height: '200px'}}>
       <Table>
         <Table.Head>
-          <Table.TextHeaderCell>Age</Table.TextHeaderCell>
+          <Table.SearchHeaderCell
+            placeholder="Filter..."
+            icon="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Vector_search_icon.svg/945px-Vector_search_icon.svg.png"
+          />
           <Table.TextHeaderCell>Email</Table.TextHeaderCell>
         </Table.Head>
         <Table.Body>
