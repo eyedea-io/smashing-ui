@@ -1,19 +1,24 @@
 import React, {useState} from 'react'
 import {storiesOf, addDecorator} from '@storybook/react'
-import {Checkbox} from '../packages/checkbox/src'
+import {Checkbox} from '@smashing/checkbox'
 import {withA11y} from '@storybook/addon-a11y'
-import {SmashingThemeProvider} from '../packages/theme'
+import {SmashingThemeProvider} from '@smashing/theme'
 
 addDecorator(withA11y)
+
+const wrapperStyle = {
+  width: 300
+}
 
 const Wrapper = ({children}) => {
   const [isChecked, setIsChecked] = useState(false)
 
-  return <div>{children({setIsChecked, isChecked})}</div>
+  return <div style={wrapperStyle}>{children({setIsChecked, isChecked})}</div>
 }
 
 const svgStyle = {
-  marginRight: 8
+  marginRight: 8,
+  flexShrink: 0
 }
 
 const icon = (
@@ -62,7 +67,8 @@ storiesOf('Core|Checkbox', module)
     <Wrapper>
       {({isChecked, setIsChecked}) => (
         <Checkbox onChange={() => setIsChecked(!isChecked)} checked={isChecked}>
-          Stay signed in
+          By clicking “Sign up” I agree that I have read and accepted the Terms
+          and conditions.
         </Checkbox>
       )}
     </Wrapper>
@@ -74,7 +80,8 @@ storiesOf('Core|Checkbox', module)
           onChange={() => setIsChecked(!isChecked)}
           checked={!isChecked}
         >
-          Stay signed in
+          By clicking “Sign up” I agree that I have read and accepted the Terms
+          and conditions.
         </Checkbox>
       )}
     </Wrapper>
@@ -99,7 +106,8 @@ storiesOf('Core|Checkbox', module)
           checked={isChecked}
           appearance="minimal"
         >
-          Stay signed in
+          By clicking “Sign up” I agree that I have read and accepted the Terms
+          and conditions.
         </Checkbox>
       )}
     </Wrapper>
@@ -112,7 +120,8 @@ storiesOf('Core|Checkbox', module)
           appearance="minimal"
           checked={!isChecked}
         >
-          Stay signed in
+          By clicking “Sign up” I agree that I have read and accepted the Terms
+          and conditions.
         </Checkbox>
       )}
     </Wrapper>
@@ -126,7 +135,9 @@ storiesOf('Core|Checkbox', module)
           appearance="card"
         >
           {' '}
-          {icon} Stay signed in
+          {icon}
+          By clicking “Sign up” I agree that I have read and accepted the Terms
+          and conditions.
         </Checkbox>
       )}
     </Wrapper>
@@ -140,7 +151,8 @@ storiesOf('Core|Checkbox', module)
           checked={!isChecked}
         >
           {icon}
-          Stay signed in
+          By clicking “Sign up” I agree that I have read and accepted the Terms
+          and conditions.
         </Checkbox>
       )}
     </Wrapper>
@@ -154,7 +166,8 @@ storiesOf('Core|Checkbox', module)
           disabled
         >
           {icon}
-          Stay signed in
+          By clicking “Sign up” I agree that I have read and accepted the Terms
+          and conditions.
         </Checkbox>
       )}
     </Wrapper>

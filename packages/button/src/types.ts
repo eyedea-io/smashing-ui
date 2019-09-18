@@ -14,20 +14,31 @@ export type ButtonAppearanceType =
   | 'default'
   | 'subtle'
 
-export interface ButtonProps {
-  id?: string
-  name?: string
-  type?: string
-  height?: number
+export interface ButtonLikeProps {
   intent?: ButtonIntentType
   appearance?: ButtonAppearanceType
-  className?: string
-  borderRadius?: number
-  innerRef?: any
   disabled?: boolean
-  onClick?: React.MouseEventHandler<HTMLButtonElement>
   tabIndex?: number
+  className?: string
+  innerRef?: any
+  height?: number
+  id?: string
+  name?: string
+  /** Make button full width */
+  full?: boolean
+}
+
+export interface ButtonProps extends ButtonLikeProps {
+  type?: string
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
+  isLoading?: boolean
+  borderRadius?: number
 }
 
 export type StyledTextProps = ButtonProps &
   Required<Pick<ButtonProps, 'height' | 'appearance' | 'intent'>>
+
+export type StyledSpinnerProps = {
+  marginRight: number
+  marginLeft: number
+}

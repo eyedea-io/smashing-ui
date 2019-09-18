@@ -1,0 +1,38 @@
+{
+  "name": "@smashing/toaster",
+  "version": "0.1.12",
+  "description": "Component used for notifications",
+  "repository": "eyedea-io/smashing-ui",
+  "license": "MIT",
+  "author": "Eyedea AS",
+  "main": "lib/cjs/index.js",
+  "types": "lib/esm/index.d.ts",
+  "module": "lib/esm/index.js",
+  "files": [
+    "lib/esm",
+    "lib/cjs"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@smashing/alert": "^0.1.29",
+    "@smashing/theme": "^0.10.0",
+    "@smashing/typography": "^0.4.25",
+    "react-transition-group": "4.2.2"
+  },
+  "devDependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "styled-components": "^4.2.0"
+  },
+  "keywords": [
+    "smashing",
+    "react",
+    "ui"
+  ]
+}

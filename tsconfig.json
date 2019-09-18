@@ -2,16 +2,21 @@
   "files": [],
   "references": [
     {"path": "packages/alert"},
+    {"path": "packages/select"},
     {"path": "packages/avatar"},
     {"path": "packages/button"},
+    {"path": "packages/checkbox"},
     {"path": "packages/css"},
     {"path": "packages/dialog"},
     {"path": "packages/head"},
+    {"path": "packages/list"},
     {"path": "packages/menu"},
     {"path": "packages/overlay"},
     {"path": "packages/popover"},
     {"path": "packages/positioner"},
+    {"path": "packages/spinner"},
     {"path": "packages/stack"},
+    {"path": "packages/tabs"},
     {"path": "packages/text-input"},
     {"path": "packages/theme"},
     {"path": "packages/title"},
@@ -20,5 +25,7 @@
     {"path": "packages/charts"},
     {"path": "packages/checkbox"},
     {"path": "packages/table"}
+    {"path": "packages/toaster"},
+    {"path": "packages/side-sheet"},
   ]
 }
