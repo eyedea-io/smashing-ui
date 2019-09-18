@@ -18,9 +18,9 @@ export const TextTableCell: React.FC<TextTableCellProps> = ({
   return (
     <TableCell {...props}>
       <Text
-        size={300}
+        variant={300}
         flex="1"
-        {...ellipsis}
+        style={ellipsis}
         {...(isNumber ? {fontFamily: 'mono'} : {})}
         {...textProps}
       >

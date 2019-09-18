@@ -10,7 +10,7 @@ export const TextTableHeaderCell: React.FC<TextTableHeaderCellProps> = ({
 }) => {
   return (
     <TableHeaderCell {...props}>
-      <Text fontWeight={500} size={300} flex="1" {...textProps}>
+      <Text variant={300} {...textProps} style={{flex: 1, fontWeight: 500}}>
         {children}
       </Text>
     </TableHeaderCell>

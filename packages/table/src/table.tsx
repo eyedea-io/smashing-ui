@@ -6,6 +6,7 @@ import {TableHeaderCell} from './table-header-cell'
 import {TableRow} from './table-row'
 import {TextTableCell} from './text-table-cell'
 import {TextTableHeaderCell} from './text-table-header-cell'
+import styled from 'styled-components'
 
 export default class Table extends React.Component {
   static Body = TableBody
@@ -24,6 +25,12 @@ export default class Table extends React.Component {
 
   render() {
     const {children, ...props} = this.props
-    return <div {...props}>{children}</div>
+    const Box = styled.div`
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+    `
+    return <Box {...props}>{children}</Box>
   }
 }
