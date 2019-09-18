@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {Text} from '@smashing/typography'
-import {TableHeaderCell} from './tableHeaderCell'
-import {TextTableHeaderCellProps} from './types/TextTableCell'
+import {TableHeaderCell} from './table-header-cell'
+import {TextTableHeaderCellProps} from './types/text-table-cell'
 
 export const TextTableHeaderCell: React.FC<TextTableHeaderCellProps> = ({
   children,

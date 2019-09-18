@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {Text} from '@smashing/typography'
-import {TableCell} from './tableCell'
-import {TextTableCellProps} from './types/TextTableCell'
+import {TableCell} from './table-cell'
+import {TextTableCellProps} from './types/text-table-cell'
 
 const ellipsis = {
   overflow: 'hidden',

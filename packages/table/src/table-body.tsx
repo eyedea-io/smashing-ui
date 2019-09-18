@@ -5,7 +5,7 @@ export const TableBody = ({children, ...props}) => {
   const Box = styled.div`
     display: 'flex';
     flex: 1;
-    overflow-y: 'auto';
+    overflow: 'scroll';
   `
   return <Box {...props}>{children}</Box>
 }

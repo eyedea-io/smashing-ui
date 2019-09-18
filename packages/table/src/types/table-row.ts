@@ -1,4 +1,4 @@
-import {TableBoxProps} from './tableBox'
+import {TableBoxProps} from './table-box'
 
 export interface TableRowProps extends TableBoxProps {
   height?: string | number

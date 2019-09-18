@@ -1,11 +1,11 @@
 import * as React from 'react'
-import {TableBody} from './tableBody'
-import {TableCell} from './tableCell'
-import {TableHead} from './tableHead'
-import {TableHeaderCell} from './tableHeaderCell'
-import {TableRow} from './tableRow'
-import {TextTableCell} from './textTableCell'
-import {TextTableHeaderCell} from './TextTableHeaderCell'
+import {TableBody} from './table-body'
+import {TableCell} from './table-cell'
+import {TableHead} from './table-head'
+import {TableHeaderCell} from './table-header-cell'
+import {TableRow} from './table-row'
+import {TextTableCell} from './text-table-cell'
+import {TextTableHeaderCell} from './text-table-header-cell'
 
 export default class Table extends React.Component {
   static Body = TableBody

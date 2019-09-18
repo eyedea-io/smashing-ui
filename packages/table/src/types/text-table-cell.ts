@@ -1,5 +1,4 @@
-import * as React from 'react'
-import {TableCellProps} from './tableCell'
+import {TableCellProps} from './table-cell'
 
 export interface TextTableCellProps extends TableCellProps {
   /**

@@ -1,9 +1,9 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import {TableCellProps} from './types/tableCell'
+import {TableCellProps} from './types/table-cell'
 import {useDefaults} from '@smashing/theme'
-import {TableRowConsumer} from './TableRowContext'
-import {manageTableCellFocusInteraction} from './helpers/manageTableCellFocusInteraction'
+import {TableRowConsumer} from './table-row-context'
+import {manageTableCellFocusInteraction} from './helpers/manage-table-cell-focus-interaction'
 
 export const safeInvoke = (fn, ...args) => {
   if (typeof fn === 'function') {
@@ -84,7 +84,7 @@ export const TableCell: React.FC<TableCellProps> = ({
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    height: ${_ => props.height}; 
+    height: ${_ => props.height};
     overflow: hidden;
     /* ${_ => _.theme.elevation.dialog}; */
     :focus {
@@ -92,7 +92,7 @@ export const TableCell: React.FC<TableCellProps> = ({
       background-color: ${_ => _.theme.scales.blue.B2A};
       box-shadow: 'inset 0 0 0 1px  ${_ => _.theme.scales.blue.B2A}';
     }
-    
+
   `
   return (
     <TableRowConsumer>

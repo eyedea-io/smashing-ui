@@ -1,5 +1,4 @@
-import * as React from 'react'
-import {TableBoxProps} from './tableBox'
+import {TableBoxProps} from './table-box'
 
 export interface TableHeadProps extends TableBoxProps {
   height?: number | string
