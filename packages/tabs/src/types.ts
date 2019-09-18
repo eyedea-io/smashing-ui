@@ -1,11 +1,11 @@
 export type TabsAppearanceType = 'flat' | 'default'
 
 export interface TablistProps {
-  appearance: TabsAppearanceType
+  appearance?: TabsAppearanceType
 }
 
 export interface TabProps {
-  appearance: TabsAppearanceType
+  appearance?: TabsAppearanceType
   isSelected?: boolean
   onClick: React.MouseEventHandler<HTMLLIElement>
 }
