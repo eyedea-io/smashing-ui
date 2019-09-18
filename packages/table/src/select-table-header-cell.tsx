@@ -17,6 +17,8 @@ export const SearchHeader: React.FC<SearchHeaderProps> = ({
     border: none;
     background-color: transparent;
     width: 100%;
+    height: inherit;
+    box-shadow: none;
     &:focus {
       outline: none;
     }
