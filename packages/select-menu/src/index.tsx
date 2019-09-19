@@ -46,14 +46,14 @@ const SelectMenuItem: React.FC<{
   onClick: (option: any) => void
 }> = ({option, isSelected, onClick}) => {
   return (
-    <Checkbox
+    <S.Checkbox
       disabled={option.disabled}
-      appearance="minimal"
+      appearance="primary"
       checked={isSelected}
       onChange={() => onClick(option)}
     >
       <S.OptionDiv>{option.label}</S.OptionDiv>
-    </Checkbox>
+    </S.Checkbox>
   )
 }
 

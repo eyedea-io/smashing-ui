@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro'
+import {Checkbox as SmashingCheckbox} from '@smashing/checkbox'
 
 // import styled, {DefaultTheme} from 'styled-components/macro'
 // import {
@@ -97,4 +98,17 @@ export const PopoverFooter = styled.div`
   display: flex;
   justify-content: flex-end;
   padding: 4px;
+`
+
+export const Checkbox = styled(SmashingCheckbox)<{
+  checked: boolean
+  appearance: string
+}>`
+  // ${_ => _.checked && 'background: gray'};
+  & > div:nth-child(2) {
+    // opacity: 0;
+  }
+  &:hover {
+    // background: #ccc;
+  }
 `
