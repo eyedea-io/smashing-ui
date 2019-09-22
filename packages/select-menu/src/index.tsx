@@ -4,6 +4,7 @@ import styled from 'styled-components/macro'
 import {Button} from '@smashing/button'
 import {Checkbox} from '@smashing/checkbox'
 import * as S from './styles'
+import {SelectMenuAppearanceType} from './types'
 
 export type SelectMenuChildrenFn<T extends OptionBase> = <T>(props: {
   toggle: () => void
@@ -16,6 +17,9 @@ interface SelectMenuProps<T extends OptionBase> {
   options: T[]
   value: string | string[]
   children: React.ReactNode | SelectMenuChildrenFn<T>
+  appearance: SelectMenuAppearanceType
+  hasFilter: boolean
+  hasCloseButton: boolean
   onSelect: (value: string) => void
   onDeselect: (value: string) => void
   multiOptionSelectedItemsLabel?: (itemsSelectedLength: number) => string
@@ -43,16 +47,19 @@ interface SelectMenuState {
 const SelectMenuItem: React.FC<{
   option: OptionBase & any
   isSelected: boolean
+  appearance: SelectMenuAppearanceType
   onClick: (option: any) => void
-}> = ({option, isSelected, onClick}) => {
+}> = ({option, isSelected, appearance, onClick}) => {
   return (
     <S.Checkbox
       disabled={option.disabled}
-      appearance="primary"
+      appearance={appearance}
       checked={isSelected}
       onChange={() => onClick(option)}
     >
-      <S.OptionDiv>{option.label}</S.OptionDiv>
+      <S.OptionDiv appearance={appearance} onChange={() => onClick(option)}>
+        {option.label}
+      </S.OptionDiv>
     </S.Checkbox>
   )
 }
@@ -157,19 +164,24 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
         content={({close}) => {
           return (
             <S.PopoverHost>
-              <S.FilterHost>
-                <S.FilterInput
-                  value={this.state.currentFilter}
-                  onChange={this.changeFilter}
-                />
-              </S.FilterHost>
-              <S.OptionHost>
+              {this.props.hasFilter && (
+                <S.FilterHost>
+                  <S.FilterInput
+                    appearance="underline"
+                    value={this.state.currentFilter}
+                    onChange={this.changeFilter}
+                    placeholder="Filter..."
+                  />
+                </S.FilterHost>
+              )}
+              <S.OptionHost appearance={this.props.appearance}>
                 {this.getFilteredOptions().map(option => {
                   if (this.props.renderItem) {
                     return this.renderCustomItem(option)
                   }
                   return (
                     <SelectMenuItem
+                      appearance={this.props.appearance}
                       key={option.value}
                       option={option}
                       isSelected={this.isOptionSelected(option.value)}
@@ -178,9 +190,11 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
                   )
                 })}
               </S.OptionHost>
-              <S.PopoverFooter>
-                <Button onClick={close}>X</Button>
-              </S.PopoverFooter>
+              {this.props.hasCloseButton && (
+                <S.PopoverFooter>
+                  <Button onClick={close}>X</Button>
+                </S.PopoverFooter>
+              )}
             </S.PopoverHost>
           )
         }}

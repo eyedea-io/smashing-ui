@@ -44,22 +44,6 @@ storiesOf('Core|Select menu', module)
 
       return (
         <div style={{height: 700}}>
-          {/* <SelectMenu
-            options={options}
-            selected={selectedOptions}
-            onSelect={select}
-          />
-          <hr />
-          <SelectMenu
-            options={options}
-            selected={selectedOptions}
-            onSelect={select}
-            children={props => (
-              <span ref={props.getRef} onClick={props.toggle}>
-                HELO ({props.selectedItems.length})
-              </span>
-            )}
-          /> */}
           <hr />
           <h2>single select</h2>
           SELECTED: {JSON.stringify(singleSelectedOption)}
@@ -68,6 +52,8 @@ storiesOf('Core|Select menu', module)
             options={options}
             value={singleSelectedOption}
             onSelect={changeSingleSelectedOption}
+            appearance="card"
+            hasFilter="true"
           />
           <hr />
           <h2>MultiSelect</h2>
@@ -81,6 +67,7 @@ storiesOf('Core|Select menu', module)
             placeholder="Wez cos wpisz"
             onSelect={select}
             onDeselect={deselect}
+            appearance="minimal"
           />
           <hr />
           <h2>MultiSelect</h2>
@@ -92,6 +79,7 @@ storiesOf('Core|Select menu', module)
             value={selectedOptions}
             onSelect={select}
             onDeselect={deselect}
+            appearance="primary"
             renderItem={(option, click, options, selected) => {
               return (
                 <div key={option.value}>

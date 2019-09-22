@@ -10,3 +10,5 @@
 //   value: string
 //   onChange: (value: string) => void
 // }
+
+export type SelectMenuAppearanceType = 'primary' | 'minimal' | 'card'
