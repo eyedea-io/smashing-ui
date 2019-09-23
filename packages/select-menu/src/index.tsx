@@ -2,7 +2,6 @@ import * as React from 'react'
 import {Popover} from '@smashing/popover'
 import styled from 'styled-components/macro'
 import {Button} from '@smashing/button'
-import {Checkbox} from '@smashing/checkbox'
 import * as S from './styles'
 import {SelectMenuAppearanceType} from './types'
 
@@ -18,7 +17,9 @@ interface SelectMenuProps<T extends OptionBase> {
   value: string | string[]
   children: React.ReactNode | SelectMenuChildrenFn<T>
   appearance: SelectMenuAppearanceType
-  hasFilter: boolean
+  hasFilter?: boolean
+  width?: number
+  height?: number
   hasCloseButton: boolean
   onSelect: (value: string) => void
   onDeselect: (value: string) => void
@@ -161,6 +162,8 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
   render() {
     return (
       <Popover
+        minHeight={this.props.height}
+        minWidth={this.props.width}
         content={({close}) => {
           return (
             <S.PopoverHost>
@@ -203,25 +206,6 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
     )
   }
 }
-
-// const SelectMenuFC: React.FC<SelectMenuProps<{}>> = ({children, ...props}) => {
-//   const renderChildren = () => {
-//     return children || <Button>noweee</Button>
-//   }
-
-//   return (
-//     <Popover
-//       content={({close}) => {
-//         return (
-//           <div>
-//             hello<button onClick={close}>asdf</button>
-//           </div>
-//         )
-//       }}
-//       children={renderChildren()}
-//     />
-//   )
-// }
 
 const SelectMenu = styled(SelectMenuC)``
 

@@ -3,6 +3,8 @@ import {storiesOf, addDecorator} from '@storybook/react'
 import {SelectMenu} from '@smashing/select-menu'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
+import {Button} from '@smashing/button'
+import {Overlay} from '@smashing/overlay'
 
 addDecorator(withA11y)
 
@@ -49,6 +51,8 @@ storiesOf('Core|Select menu', module)
           SELECTED: {JSON.stringify(singleSelectedOption)}
           <br />
           <SelectMenu
+            width={100}
+            height={100}
             options={options}
             value={singleSelectedOption}
             onSelect={changeSingleSelectedOption}
@@ -83,7 +87,7 @@ storiesOf('Core|Select menu', module)
             renderItem={(option, click, options, selected) => {
               return (
                 <div key={option.value}>
-                  kuarcze {option.label} <button onClick={click}>a</button>
+                  <Button onClick={click}>{option.label} </Button>
                 </div>
               )
             }}
