@@ -75,8 +75,14 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
       currentFilter: ''
     }
   }
-  getDefaultButton = () => {
-    return <Button>{this.getDefaultSelectedLabel()}</Button>
+  getDefaultButton = (appearance: SelectMenuAppearanceType) => {
+    if (appearance !== 'card')
+      return <Button>{this.getDefaultSelectedLabel()}</Button>
+    return (
+      <S.SelectButton appearance="minimal">
+        {this.getDefaultSelectedLabel()}
+      </S.SelectButton>
+    )
   }
   getFilteredOptions = () => {
     if (!this.state.currentFilter.trim()) {
@@ -113,7 +119,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
     }
     return `${optionsSelectedLength} selected`
   }
-  determineChildren = () => {
+  determineChildren = (appearance: SelectMenuAppearanceType) => {
     const {children, value} = this.props
     if (typeof children === 'function') {
       return popoverChildrenProps =>
@@ -122,7 +128,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
           selectedItems: value || []
         })
     }
-    return this.getDefaultButton()
+    return this.getDefaultButton(appearance)
   }
   getValue = (option: T) => {
     return option.value
@@ -201,7 +207,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
             </S.PopoverHost>
           )
         }}
-        children={this.determineChildren()}
+        children={this.determineChildren(this.props.appearance)}
       />
     )
   }
@@ -211,13 +217,11 @@ const SelectMenu = styled(SelectMenuC)``
 
 export {SelectMenu}
 
-//declare module 'styled-components' {
-// export interface SmashingSelectDefaults
-//   extends Partial<{
-//     select?: {
-//       height?: number
-//       appearance?: ButtonAppearanceType
-//       intent?: ButtonIntentType
-//     }
-//   }> {}
-//}
+declare module 'styled-components' {
+  export interface SmashingSelectMenuDefaults
+    extends Partial<{
+      selectMenu?: {
+        appearance?: SelectMenuAppearanceType
+      }
+    }> {}
+}

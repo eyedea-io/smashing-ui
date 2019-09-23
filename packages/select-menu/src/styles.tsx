@@ -3,6 +3,7 @@ import {DefaultTheme} from 'styled-components'
 import {Checkbox as SmashingCheckbox} from '@smashing/checkbox'
 import {SelectMenuAppearanceType} from './types'
 import {TextInput} from '@smashing/text-input'
+import {Button} from '@smashing/button'
 
 export const OptionDiv = styled.div<{appearance: string}>`
   padding: 12px 0;
@@ -18,13 +19,6 @@ export const getSelectMenuItemStyle = (
   disabled = false,
   checked = false
 ) => (_: {theme: DefaultTheme}) => {
-  // const disabledAppearance = {
-  //   opacity: 0.8,
-  //   backgroundImage: 'none',
-  //   backgroundColor: `${_ => _.theme.scales.neutral.N2A}`,
-  //   color: `${_ => _.theme.scales.neutral.N7}`
-  // }
-
   switch (appearance) {
     case 'primary':
       return {}
@@ -39,26 +33,6 @@ export const getSelectMenuItemStyle = (
           justifyContent: 'center',
           padding: 0
         }
-        // '& + div': {
-        //   color: flat.color,
-        //   boxShadow: checked
-        //     ? `inset 0 0 0 1px ${colors.checkbox.minimal.color}`
-        //     : `inset 0 0 0 1px ${scales.neutral.N6}`,
-        //   backgroundColor: flat.backgroundColor.base,
-        //   fontWeight: 600
-        // },
-        // ':hover': {
-        //   backgroundColor: `${_.theme.scales.neutral.N2}`
-        // }
-        // ':focus': {
-        //   outline: 'none',
-        //   boxShadow: 'none',
-        //   backgroundColor: 'red'
-        // },
-        // ':active': {
-        //   backgroundColor: 'red',
-        //   boxShadow: 'none'
-        // }
       }
     default:
       return {}
@@ -86,4 +60,7 @@ export const Checkbox = styled(SmashingCheckbox)<{
   appearance: string
 }>`
   ${_ => getSelectMenuItemStyle(_.appearance, _.checked)}
+`
+export const SelectButton = styled(Button)`
+  ${_ => _.theme.elevation.card};
 `
