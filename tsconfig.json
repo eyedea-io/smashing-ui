@@ -24,8 +24,8 @@
     {"path": "packages/typography"},
     {"path": "packages/charts"},
     {"path": "packages/checkbox"},
-    {"path": "packages/table"}
+    {"path": "packages/table"},
     {"path": "packages/toaster"},
-    {"path": "packages/side-sheet"},
+    {"path": "packages/side-sheet"}
   ]
 }

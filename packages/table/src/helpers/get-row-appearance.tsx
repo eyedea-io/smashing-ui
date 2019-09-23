@@ -1,10 +1,7 @@
-import * as React from 'react'
 import * as tinycolor from 'tinycolor2'
 import {DefaultTheme} from 'styled-components'
-
-export type IntentType = 'success' | 'warning' | 'info' | 'danger' | 'none'
-
-export const getRowAppearance = (intent: IntentType = 'none') => (_: {
+import {TableRowIntentType} from '../types/table-row'
+export const getRowAppearance = (intent: TableRowIntentType = 'none') => (_: {
   theme: DefaultTheme
 }) => {
   const {scales, palette} = _.theme

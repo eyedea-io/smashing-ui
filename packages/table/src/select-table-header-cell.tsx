@@ -3,6 +3,7 @@ import {SearchHeaderProps} from './types/search-header'
 import {TextInput} from '@smashing/text-input'
 import {TableHeaderCell} from './table-header-cell'
 import styled from 'styled-components'
+import {HeaderCellInput} from './components/header-cell-input'
 
 export const SearchHeader: React.FC<SearchHeaderProps> = ({
   children,
@@ -13,16 +14,6 @@ export const SearchHeader: React.FC<SearchHeaderProps> = ({
   autoFocus,
   ...props
 }) => {
-  const Input = styled(TextInput)`
-    border: none;
-    background-color: transparent;
-    width: 100%;
-    height: inherit;
-    box-shadow: none;
-    &:focus {
-      outline: none;
-    }
-  `
   const Icon = styled.img`
     width: 12px;
     height: auto;
@@ -30,7 +21,7 @@ export const SearchHeader: React.FC<SearchHeaderProps> = ({
   return (
     <TableHeaderCell {...props}>
       <Icon src={icon} />
-      <Input
+      <HeaderCellInput
         appearance="underline"
         placeholder={placeholder}
         onChange={onChange}

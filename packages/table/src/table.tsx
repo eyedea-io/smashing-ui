@@ -9,7 +9,7 @@ import {TextTableHeaderCell} from './text-table-header-cell'
 import {SearchHeader} from './select-table-header-cell'
 import styled from 'styled-components'
 
-export default class Table extends React.Component {
+class TableRC extends React.Component {
   static Body = TableBody
 
   static Head = TableHead
@@ -37,3 +37,6 @@ export default class Table extends React.Component {
     return <Box {...props}>{children}</Box>
   }
 }
+const Table = styled(TableRC)``
+
+export {Table}

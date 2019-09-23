@@ -1,9 +1,9 @@
 import * as React from 'react'
-import styled from 'styled-components'
 import {TableCellProps} from './types/table-cell'
 import {useDefaults} from '@smashing/theme'
 import {TableRowConsumer} from './table-row-context'
 import {manageTableCellFocusInteraction} from './helpers/manage-table-cell-focus-interaction'
+import {TableCellBox} from './components/table-cell-box'
 
 export const safeInvoke = (fn, ...args) => {
   if (typeof fn === 'function') {
@@ -77,28 +77,11 @@ export const TableCell: React.FC<TableCellProps> = ({
     safeInvoke(props.innerRef, ref)
   }
 
-  const Box = styled.div<TableCellProps>`
-    padding: 12px;
-    box-sizing: border-box;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-    height: ${_ => props.height};
-    overflow: hidden;
-    /* ${_ => _.theme.elevation.dialog}; */
-    :focus {
-      outline: none;
-      background-color: ${_ => _.theme.scales.blue.B2A};
-      box-shadow: 'inset 0 0 0 1px  ${_ => _.theme.scales.blue.B2A}';
-    }
-
-  `
   return (
     <TableRowConsumer>
       {height => {
         return (
-          <Box
+          <TableCellBox
             innerRef={onRef}
             height={height}
             tabIndex={defaults.isSelectable ? defaults.tabIndex : undefined}
@@ -109,7 +92,7 @@ export const TableCell: React.FC<TableCellProps> = ({
           >
             {children}
             {rightView ? rightView : null}
-          </Box>
+          </TableCellBox>
         )
       }}
     </TableRowConsumer>
