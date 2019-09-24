@@ -1,6 +1,6 @@
 {
   "name": "@smashing/side-sheet",
-  "version": "0.1.0",
+  "version": "0.1.3",
   "description": "Component used to show a panel attached to the edge of the screen.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -16,9 +16,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@smashing/overlay": "^0.1.17",
+    "@smashing/overlay": "^0.1.20",
     "@smashing/theme": "^0.5.5",
-    "@smashing/typography": "^0.4.22"
+    "@smashing/typography": "^0.4.25"
   },
   "devDependencies": {
     "react": "^16.8.6"

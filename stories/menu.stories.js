@@ -1,21 +1,21 @@
-import React from "react"
-import {storiesOf, addDecorator} from "@storybook/react"
-import {TextInput} from "@smashing/text-input"
-import {Popover} from "@smashing/popover"
-import {Menu} from "@smashing/menu"
-import {Button} from "@smashing/button"
-import {withA11y} from "@storybook/addon-a11y"
-import {SmashingThemeProvider} from "@smashing/theme"
+import React from 'react'
+import {storiesOf, addDecorator} from '@storybook/react'
+import {TextInput} from '@smashing/text-input'
+import {Popover} from '@smashing/popover'
+import {Menu} from '@smashing/menu'
+import {Button} from '@smashing/button'
+import {withA11y} from '@storybook/addon-a11y'
+import {SmashingThemeProvider} from '@smashing/theme'
 
 addDecorator(withA11y)
 
 const Link = ({children, ...props}) => <div {...props}>{children}</div>
 
-storiesOf("Core|Menu", module)
+storiesOf('Core|Menu', module)
   .addDecorator(story => (
     <SmashingThemeProvider theme={{}}>{story()}</SmashingThemeProvider>
   ))
-  .add("appearance:default", () => (
+  .add('appearance:default', () => (
     <Menu>
       <Menu.Group>
         <Menu.Item as={Link}>Edit</Menu.Item>
@@ -27,7 +27,8 @@ storiesOf("Core|Menu", module)
       </Menu.Group>
     </Menu>
   ))
-  .add("with group titles", () => (
+  .add('empty', () => <Menu />)
+  .add('with group titles', () => (
     <Menu>
       <Menu.Group title="Basic">
         <Menu.Item>Edit</Menu.Item>
@@ -39,7 +40,7 @@ storiesOf("Core|Menu", module)
       </Menu.Group>
     </Menu>
   ))
-  .add("with secondary text", () => (
+  .add('with secondary text', () => (
     <Menu>
       <Menu.Group title="Basic">
         <Menu.Item>Edit</Menu.Item>
@@ -53,7 +54,7 @@ storiesOf("Core|Menu", module)
       </Menu.Group>
     </Menu>
   ))
-  .add("in dropdown", () => (
+  .add('in dropdown', () => (
     <Popover
       content={
         <Menu>
@@ -73,7 +74,7 @@ storiesOf("Core|Menu", module)
       <Button>Open menu</Button>
     </Popover>
   ))
-  .add("custom trigger", () => (
+  .add('custom trigger', () => (
     <Popover
       content={
         <Menu>

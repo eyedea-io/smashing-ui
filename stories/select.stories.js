@@ -3,7 +3,7 @@ import {storiesOf, addDecorator} from '@storybook/react'
 import {Select} from '@smashing/select'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
-import styled from 'styled-components/macro'
+import styled from 'styled-components'
 
 const SpecimenContainer = styled.div`
   margin-bottom: 16px;

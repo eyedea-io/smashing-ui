@@ -1,22 +1,22 @@
 {
-  "name": "@smashing/css",
-  "version": "0.1.20",
-  "description": "CSS utils: reset, normalize.",
+  "name": "@smashing/list",
+  "version": "0.1.0",
+  "description": "Component is used to display a list.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
   "main": "lib/cjs/index.js",
   "types": "lib/esm/index.d.ts",
   "module": "lib/esm/index.js",
   "files": [
-    "lib/esm",
-    "lib/cjs"
+    "src",
+    "lib"
   ],
   "author": "Eyedea AS",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@smashing/theme": "^0.10.0"
+    "@smashing/theme": "^0.5.3"
   },
   "devDependencies": {
     "react": "^16.8.6"
