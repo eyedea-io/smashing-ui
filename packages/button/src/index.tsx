@@ -47,7 +47,9 @@ const StyledSpinner = styled(Spinner)<StyledSpinnerProps>`
   vertical-align: middle;
 `
 
-const ButtonFCFactory = <AdditionalProps extends {}>(
+const ButtonFCFactory: <AdditionalProps extends {}>(
+  as: any
+) => React.FC<ButtonProps> = <AdditionalProps extends {}>(
   as: StyledComponentElement = 'button'
 ) => ({children, innerRef, ...props}) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -81,7 +83,7 @@ const ButtonFCFactory = <AdditionalProps extends {}>(
   )
 }
 
-const Button = styled(ButtonFCFactory('button'))``
+const Button = styled<React.FC<ButtonProps>>(ButtonFCFactory('button'))``
 const ButtonAs = <T extends {}>(as?: StyledComponentElement) =>
   styled(ButtonFCFactory<React.HTMLAttributes<T>>(as))``
 
