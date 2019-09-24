@@ -90,5 +90,5 @@ yarn add @smashing/select-menu
 
 ### Remove title and filter
 
-`hasFilter={true}`: to add the search input filter.
-`hasTitle={true}`: to add the title to the popover.
+- `hasFilter={true}`: to add the search input filter.
+- `hasTitle={true}`: to add the title to the popover.
