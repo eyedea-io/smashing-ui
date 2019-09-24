@@ -89,6 +89,7 @@ declare module 'styled-components' {
   export interface SmashingAvatarDefaults {}
   export interface SmashingSpinnerDefaults {}
   export interface SmashingBarChartDefaults {}
+  export interface SmashingListDefaults {}
   export interface SmashingPieChartDefaults {}
   export interface SmashingProgressBarChartDefaults {}
   export interface SmashingSpiderChartDefaults {}
@@ -101,6 +102,7 @@ declare module 'styled-components' {
       SmashingTextInputDefaults,
       SmashingAlertDefaults,
       SmashingBarChartDefaults,
+      SmashingListDefaults,
       SmashingPieChartDefaults,
       SmashingSpiderChartDefaults,
       SmashingRadialProgressDefaults,

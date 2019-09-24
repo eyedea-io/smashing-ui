@@ -1,9 +1,9 @@
 import {useContext} from 'react'
-import {ThemeContext} from 'styled-components/macro'
+import {ThemeContext} from 'styled-components'
 import * as deepmerge from 'deepmerge'
 import {getValue} from './get-value'
 
-const overwriteMerge = (destinationArray, sourceArray) => sourceArray
+const overwriteMerge = (_destinationArray: any, sourceArray: any) => sourceArray
 
 export function useDefaults<P>(
   component: string,

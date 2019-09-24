@@ -2,7 +2,7 @@ import * as React from 'react'
 import {useDefaults} from '@smashing/theme'
 import {SelectProps} from './types'
 import {S} from './styles'
-import styled from 'styled-components/macro'
+import styled from 'styled-components'
 import {ButtonAppearanceType, ButtonIntentType} from '@smashing/button'
 
 const SelectFC: React.FC<SelectProps> = ({children, ...props}) => {
