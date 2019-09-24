@@ -1,42 +1,94 @@
+# Side Sheet
+
 ```sh
-yarn add @smashing/select
+yarn add @smashing/select-menu
 ```
 
 #### Default appearance
 
-![](https://i.imgur.com/qyYFWJd.png)
-![](https://i.imgur.com/zWbnORu.png)
+![](https://imgur.com/MNE4ssC.png)
 
 ```jsx
-<Select
-  options={['a', 'b', 'c', 'd'].map(value => ({label: value, value}))}
-  selected="b"
-  onChange={value => {}}
+<SelectMenu
+  options={options}
+  value={singleSelectedOption}
+  onSelect={changeSingleSelectedOption}
+  hasFilter="true"
+  hasTitle="true"
+  title="Select Item"
 />
 ```
 
-#### Modyfing height
+#### Card appearance
 
-![](https://i.imgur.com/vWvvtZp.png)
-
-```jsx
-<Select options={/*...*/} height={64} />
-```
-
-#### Difference appearances and intents
-
-![](https://i.imgur.com/E8nr1oR.png)
+![](https://imgur.com/r8NTd4J.png)
 
 ```jsx
-<Select options={/*...*/} appearance="primary" intent="danger" />
-<Select options={/*...*/} appearance="primary" intent="info" />
-<Select options={/*...*/} appearance="flat" intent="warning" />
+<SelectMenu
+  options={options}
+  value={singleSelectedOption}
+  onSelect={changeSingleSelectedOption}
+  appearance="card"
+  hasFilter="true"
+/>
 ```
 
-#### Full width
+#### Minimal appearance and multiselect option
 
-![](https://i.imgur.com/SXGHtrY.png)
+![](https://imgur.com/QH7n1G6.png)
 
 ```jsx
-<Select options={/*...*/} full />
+<SelectMenu
+  isMultiSelect
+  options={options}
+  value={selectedOptions}
+  multiOptionSelectedItemsLabel={num => `Items: ${num}`}
+  onSelect={select}
+  onDeselect={deselect}
+  appearance="minimal"
+/>
 ```
+
+#### Custom select menu
+
+![](https://imgur.com/flLRrxD.png)
+
+```jsx
+<SelectMenu
+  isMultiSelect
+  options={options}
+  value={selectedOptions}
+  onSelect={select}
+  onDeselect={deselect}
+  appearance="primary"
+  renderItem={(option, click, options, selected) => {
+    return (
+      <div key={option.value}>
+        <Button onClick={click}>{option.label} </Button>
+      </div>
+    )
+  }}
+  children={props => (
+    <Button ref={props.getRef} onClick={props.toggle}>
+      Select
+    </Button>
+  )}
+/>
+```
+
+#### Change the height and width
+
+```jsx
+<SelectMenu
+  width={100}
+  height={100}
+  options={options}
+  value={singleSelectedOption}
+  onSelect={changeSingleSelectedOption}
+/>
+```
+
+### Remove title and filter
+
+`hasFilter={true}`: to add the search input filter.
+`hasTitle={true}`: to add the title to the popover.

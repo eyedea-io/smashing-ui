@@ -8,10 +8,10 @@ import {Button} from '@smashing/button'
 addDecorator(withA11y)
 
 const options = [
-  {label: 'Abc', value: 'abc'},
-  {label: 'Bca', value: 'bca'},
-  {label: 'Xyz', value: 'xyz'},
-  {label: 'Disabled', value: 'dis', disabled: true}
+  {label: 'Apple', value: 'Apple'},
+  {label: 'Apricot', value: 'Apricot'},
+  {label: 'Banana', value: 'Banana'},
+  {label: 'Cherry', value: 'Cherry', disabled: true}
 ]
 
 const Wrapper = ({children}) => {
@@ -92,7 +92,7 @@ storiesOf('Core|Select menu', module)
           isMultiSelect
           options={options}
           value={selectedOptions}
-          multiOptionSelectedItemsLabel={num => `jest ${num} itemów`}
+          multiOptionSelectedItemsLabel={num => `Items: ${num}`}
           onSelect={select}
           onDeselect={deselect}
           appearance="minimal"
@@ -118,9 +118,9 @@ storiesOf('Core|Select menu', module)
             )
           }}
           children={props => (
-            <button ref={props.getRef} onClick={props.toggle}>
-              PRZYCISK
-            </button>
+            <Button ref={props.getRef} onClick={props.toggle}>
+              Select
+            </Button>
           )}
         />
       )}

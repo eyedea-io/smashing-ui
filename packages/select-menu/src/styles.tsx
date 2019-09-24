@@ -91,3 +91,9 @@ export const CloseButton = styled(Button)`
     height: 12px;
   }
 `
+export const TextContainer = styled.div`
+  margin-top: ${_ => _.theme.spacing.xxs};
+  display: flex;
+  justify-content: center;
+  text-align: center;
+`

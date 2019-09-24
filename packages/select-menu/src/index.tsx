@@ -184,6 +184,11 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
                     />
                   )
                 })}
+                {this.getFilteredOptions().length <= 0 && (
+                  <S.TextContainer>
+                    <Strong>No items found</Strong>
+                  </S.TextContainer>
+                )}
               </S.OptionHost>
             </S.PopoverHost>
           )
