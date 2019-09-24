@@ -3,47 +3,14 @@ import {Popover} from '@smashing/popover'
 import styled from 'styled-components/macro'
 import {Button} from '@smashing/button'
 import * as S from './styles'
-import {SelectMenuAppearanceType} from './types'
-
-export type SelectMenuChildrenFn<T extends OptionBase> = <T>(props: {
-  toggle: () => void
-  getRef: (ref: any) => void
-  isShown: boolean
-  selectedItems: T | T[]
-}) => React.ReactNode
-
-interface SelectMenuProps<T extends OptionBase> {
-  options: T[]
-  value: string | string[]
-  children: React.ReactNode | SelectMenuChildrenFn<T>
-  appearance: SelectMenuAppearanceType
-  hasFilter?: boolean
-  width?: number
-  height?: number
-  hasCloseButton: boolean
-  onSelect: (value: string) => void
-  onDeselect: (value: string) => void
-  multiOptionSelectedItemsLabel?: (itemsSelectedLength: number) => string
-  isMultiSelect: boolean
-  compareBy: string
-  placeholder: string
-  renderItem: (
-    option: T,
-    click: Function,
-    selected: boolean,
-    options: T[]
-  ) => React.ReactNode
-}
-
-interface OptionBase {
-  label: string
-  value: string
-  disabled?: boolean
-}
-
-interface SelectMenuState {
-  currentFilter: string
-}
+import {
+  SelectMenuAppearanceType,
+  OptionBase,
+  SelectMenuProps,
+  SelectMenuState,
+  SelectMenuChildrenFn
+} from './types'
+import {Strong} from '@smashing/typography'
 
 const SelectMenuItem: React.FC<{
   option: OptionBase & any
@@ -173,6 +140,25 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
         content={({close}) => {
           return (
             <S.PopoverHost>
+              {this.props.hasTitle && (
+                <S.PopoverHeader>
+                  <Strong color="intense" variant={400}>
+                    {this.props.title}
+                  </Strong>
+                  <S.CloseButton
+                    appearance="minimal"
+                    height={24}
+                    onClick={close}
+                  >
+                    <svg viewBox="0 0 16 16">
+                      <path
+                        d="M9.41 8l3.29-3.29c.19-.18.3-.43.3-.71a1.003 1.003 0 0 0-1.71-.71L8 6.59l-3.29-3.3a1.003 1.003 0 0 0-1.42 1.42L6.59 8 3.3 11.29c-.19.18-.3.43-.3.71a1.003 1.003 0 0 0 1.71.71L8 9.41l3.29 3.29c.18.19.43.3.71.3a1.003 1.003 0 0 0 .71-1.71L9.41 8z"
+                        fillRule="evenodd"
+                      />
+                    </svg>
+                  </S.CloseButton>
+                </S.PopoverHeader>
+              )}
               {this.props.hasFilter && (
                 <S.FilterHost>
                   <S.FilterInput
@@ -199,11 +185,6 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
                   )
                 })}
               </S.OptionHost>
-              {this.props.hasCloseButton && (
-                <S.PopoverFooter>
-                  <Button onClick={close}>X</Button>
-                </S.PopoverFooter>
-              )}
             </S.PopoverHost>
           )
         }}

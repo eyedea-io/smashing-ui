@@ -6,7 +6,7 @@ import {TextInput} from '@smashing/text-input'
 import {Button} from '@smashing/button'
 
 export const OptionDiv = styled.div<{appearance: string}>`
-  padding: 12px 0;
+  padding: ${_ => _.theme.spacing.xxs} 0;
   width: 100%;
   border-bottom: ${_ =>
     _.appearance !== 'card'
@@ -32,6 +32,9 @@ export const getSelectMenuItemStyle = (
           display: 'flex',
           justifyContent: 'center',
           padding: 0
+        },
+        ':focus-within': {
+          boxShadow: 'none'
         }
       }
     default:
@@ -41,19 +44,24 @@ export const getSelectMenuItemStyle = (
 
 export const FilterInput = styled(TextInput)`
   width: 100%;
+  background-color: ${_ => _.theme.scales.neutral.N2};
+  border-bottom: ${_ => `1px solid ${_.theme.scales.neutral.N5}`};
+  border-top: ${_ => `1px solid ${_.theme.scales.neutral.N5}`};
+  box-shadow: none;
+  :focus {
+    outline: none;
+    box-shadow: none;
+  }
 `
 
 export const FilterHost = styled.div``
 export const PopoverHost = styled.div``
-export const OptionHost = styled.div<{appearance: string}>`
-  padding: ${_ => (_.appearance !== 'card' ? '4px' : 'none')};
-  overflow-y: auto;
-`
 
-export const PopoverFooter = styled.div`
+export const PopoverHeader = styled.div`
   display: flex;
-  justify-content: flex-end;
-  padding: 4px;
+  justify-content: space-between;
+  align-items: center;
+  padding: ${_ => _.theme.spacing.xxs};
 `
 export const Checkbox = styled(SmashingCheckbox)<{
   checked: boolean
@@ -61,6 +69,24 @@ export const Checkbox = styled(SmashingCheckbox)<{
 }>`
   ${_ => getSelectMenuItemStyle(_.appearance, _.checked)}
 `
+export const OptionHost = styled.div<{appearance: string}>`
+  padding: ${_ => (_.appearance !== 'card' ? '4px' : 'none')};
+  overflow-y: auto;
+  ${Checkbox}:last-child {
+    ${OptionDiv} {
+      border-bottom: none;
+    }
+  }
+`
 export const SelectButton = styled(Button)`
   ${_ => _.theme.elevation.card};
+`
+export const CloseButton = styled(Button)`
+  padding-left: 7px;
+  padding-right: 7px;
+  svg {
+    fill: ${_ => _.theme.scales.neutral.N7};
+    width: 12px;
+    height: 12px;
+  }
 `
