@@ -63,6 +63,7 @@ export const PopoverHeader = styled.div`
   align-items: center;
   padding: ${_ => _.theme.spacing.xxs};
 `
+// eslint-disable-next-line no-unexpected-multiline
 export const Checkbox = styled(SmashingCheckbox)<{
   checked: boolean
   appearance: string
