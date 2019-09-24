@@ -21,7 +21,7 @@ yarn add @smashing/select-menu
 
 #### Card appearance
 
-![](https://imgur.com/r8NTd4J.png)
+![](https://imgur.com/lmPXkOA.png)
 
 ```jsx
 <SelectMenu
@@ -35,7 +35,7 @@ yarn add @smashing/select-menu
 
 #### Minimal appearance and multiselect option
 
-![](https://imgur.com/QH7n1G6.png)
+![](https://imgur.com/iklqhSG.png)
 
 ```jsx
 <SelectMenu
@@ -51,7 +51,7 @@ yarn add @smashing/select-menu
 
 #### Custom select menu
 
-![](https://imgur.com/flLRrxD.png)
+![](https://imgur.com/UJlSHVp.png)
 
 ```jsx
 <SelectMenu
