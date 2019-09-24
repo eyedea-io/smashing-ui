@@ -1,5 +1,5 @@
 import {useContext} from 'react'
-import {ThemeContext} from 'styled-components/macro'
+import {ThemeContext} from 'styled-components'
 import * as deepmerge from 'deepmerge'
 import {getValue} from './get-value'
 
