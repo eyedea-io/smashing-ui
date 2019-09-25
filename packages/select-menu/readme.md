@@ -1,4 +1,4 @@
-# Side Sheet
+# Select Menu
 
 ```sh
 yarn add @smashing/select-menu

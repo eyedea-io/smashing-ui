@@ -13,9 +13,9 @@ import {
 import {Strong} from '@smashing/typography'
 
 const SelectMenuItem: React.FC<{
-  option: OptionBase & any
+  option: OptionBase
   isSelected: boolean
-  appearance: SelectMenuAppearanceType
+  appearance?: SelectMenuAppearanceType
   onClick: (option: any) => void
 }> = ({option, isSelected, appearance, onClick}) => {
   return (
@@ -42,7 +42,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
       currentFilter: ''
     }
   }
-  getDefaultButton = (appearance: SelectMenuAppearanceType) => {
+  getDefaultButton = (appearance?: SelectMenuAppearanceType) => {
     if (appearance !== 'card')
       return <Button>{this.getDefaultSelectedLabel()}</Button>
     return (
@@ -86,7 +86,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
     }
     return `${optionsSelectedLength} selected`
   }
-  determineChildren = (appearance: SelectMenuAppearanceType) => {
+  determineChildren = (appearance?: SelectMenuAppearanceType) => {
     const {children, value} = this.props
     if (typeof children === 'function') {
       return popoverChildrenProps =>

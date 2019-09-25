@@ -5,7 +5,7 @@ import {SelectMenuAppearanceType} from './types'
 import {TextInput} from '@smashing/text-input'
 import {Button} from '@smashing/button'
 
-export const OptionDiv = styled.div<{appearance: string}>`
+export const OptionDiv = styled.div<{appearance?: string}>`
   padding: ${_ => _.theme.spacing.xxs} 0;
   width: 100%;
   border-bottom: ${_ =>
@@ -15,7 +15,7 @@ export const OptionDiv = styled.div<{appearance: string}>`
 `
 
 export const getSelectMenuItemStyle = (
-  appearance: SelectMenuAppearanceType,
+  appearance?: SelectMenuAppearanceType,
   disabled = false,
   checked = false
 ) => (_: {theme: DefaultTheme}) => {
@@ -66,11 +66,11 @@ export const PopoverHeader = styled.div`
 // eslint-disable-next-line no-unexpected-multiline
 export const Checkbox = styled(SmashingCheckbox)<{
   checked: boolean
-  appearance: string
+  appearance?: string
 }>`
   ${_ => getSelectMenuItemStyle(_.appearance, _.checked)}
 `
-export const OptionHost = styled.div<{appearance: string}>`
+export const OptionHost = styled.div<{appearance?: string}>`
   padding: ${_ => (_.appearance !== 'card' ? '4px' : 'none')};
   overflow-y: auto;
   ${Checkbox}:last-child {

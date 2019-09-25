@@ -63,8 +63,8 @@ storiesOf('Core|Select menu', module)
           options={options}
           value={singleSelectedOption}
           onSelect={changeSingleSelectedOption}
-          hasFilter="true"
-          hasTitle="true"
+          hasFilter={true}
+          hasTitle={true}
           title="Select Item"
         />
       )}
@@ -80,7 +80,7 @@ storiesOf('Core|Select menu', module)
           value={singleSelectedOption}
           onSelect={changeSingleSelectedOption}
           appearance="card"
-          hasFilter="true"
+          hasFilter={true}
         />
       )}
     </Wrapper>
