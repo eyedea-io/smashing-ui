@@ -48,7 +48,7 @@ const StyledSpinner = styled(Spinner)<StyledSpinnerProps>`
 `
 
 const ButtonFCFactory: <AdditionalProps extends {}>(
-  as: any
+  as: StyledComponentElement
 ) => React.FC<ButtonProps> = <AdditionalProps extends {}>(
   as: StyledComponentElement = 'button'
 ) => ({children, innerRef, ...props}) => {
@@ -84,7 +84,7 @@ const ButtonFCFactory: <AdditionalProps extends {}>(
 }
 
 const Button = styled<React.FC<ButtonProps>>(ButtonFCFactory('button'))``
-const ButtonAs = <T extends {}>(as?: StyledComponentElement) =>
+const ButtonAs = <T extends {}>(as: StyledComponentElement) =>
   styled(ButtonFCFactory<React.HTMLAttributes<T>>(as))``
 
 export {
