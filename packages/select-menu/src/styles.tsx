@@ -45,8 +45,6 @@ export const getSelectMenuItemStyle = (
 export const FilterInput = styled(TextInput)`
   width: 100%;
   background-color: ${_ => _.theme.scales.neutral.N2};
-  border-bottom: ${_ => `1px solid ${_.theme.scales.neutral.N5}`};
-  border-top: ${_ => `1px solid ${_.theme.scales.neutral.N5}`};
   box-shadow: none;
   :focus {
     outline: none;
@@ -54,13 +52,16 @@ export const FilterInput = styled(TextInput)`
   }
 `
 
-export const FilterHost = styled.div``
+export const FilterHost = styled.div`
+  border-bottom: ${_ => `1px solid ${_.theme.scales.neutral.N5}`};
+`
 export const PopoverHost = styled.div``
 
 export const PopoverHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: ${_ => `1px solid ${_.theme.scales.neutral.N5}`};
   padding: ${_ => _.theme.spacing.xxs};
 `
 // eslint-disable-next-line no-unexpected-multiline
@@ -70,8 +71,9 @@ export const Checkbox = styled(SmashingCheckbox)<{
 }>`
   ${_ => getSelectMenuItemStyle(_.appearance, _.checked)}
 `
-export const OptionHost = styled.div<{appearance?: string}>`
+export const OptionHost = styled.div<{appearance?: string; height?: number}>`
   padding: ${_ => (_.appearance !== 'card' ? '4px' : 'none')};
+  max-height: ${_ => _.height}px;
   overflow-y: auto;
   ${Checkbox}:last-child {
     ${OptionDiv} {

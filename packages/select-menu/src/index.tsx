@@ -120,12 +120,15 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
     return (this.props.value as string[]).indexOf(option) > -1
   }
   renderCustomItem = (option: T) => {
-    return this.props.renderItem(
-      option,
-      () => this.optionClicked(option),
-      this.isOptionSelected(option.value),
-      this.props.options
-    )
+    if (this.props.renderItem) {
+      return this.props.renderItem(
+        option,
+        () => this.optionClicked(option),
+        this.isOptionSelected(option.value),
+        this.props.options
+      )
+    }
+    return <Strong> No items to display</Strong>
   }
   changeFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({
@@ -135,8 +138,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
   render() {
     return (
       <Popover
-        minHeight={this.props.height}
-        minWidth={this.props.width}
+        minWidth={this.props.minWidth}
         content={({close}) => {
           return (
             <S.PopoverHost>
@@ -169,7 +171,10 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
                   />
                 </S.FilterHost>
               )}
-              <S.OptionHost appearance={this.props.appearance}>
+              <S.OptionHost
+                appearance={this.props.appearance}
+                height={this.props.height}
+              >
                 {this.getFilteredOptions().map(option => {
                   if (this.props.renderItem) {
                     return this.renderCustomItem(option)

@@ -15,7 +15,7 @@ export interface SelectMenuProps<T extends OptionBase> {
   hasFilter?: boolean
   hasTitle?: boolean
   title?: string
-  width?: number
+  minWidth?: number
   height?: number
   hasCloseButton?: boolean
   onSelect: (value: string) => void
@@ -24,7 +24,7 @@ export interface SelectMenuProps<T extends OptionBase> {
   isMultiSelect?: boolean
   compareBy?: string
   placeholder?: string
-  renderItem: (
+  renderItem?: (
     option: T,
     click: () => void,
     selected: boolean,

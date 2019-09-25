@@ -74,7 +74,7 @@ storiesOf('Core|Select menu', module)
     <Wrapper>
       {({singleSelectedOption, changeSingleSelectedOption}) => (
         <SelectMenu
-          width={100}
+          minWidth={100}
           height={100}
           options={options}
           value={singleSelectedOption}
