@@ -25,6 +25,13 @@ interface StyledBackgroundProps {
   verticalAlign: OverlayVerticalAlign
 }
 
+const verticalAlignMap: {[k in OverlayVerticalAlign]: string} = {
+  stretch: 'stretch',
+  top: 'flex-start',
+  bottom: 'flex-end',
+  center: 'center'
+}
+
 const S = {
   Background: styled.div.attrs({})<StyledBackgroundProps>`
     position: fixed;
@@ -34,7 +41,7 @@ const S = {
     bottom: 0;
     z-index: ${_ => _.zIndex};
     display: flex;
-    align-items: ${_ => _.verticalAlign || 'flex-start'};
+    align-items: ${_ => verticalAlignMap[_.verticalAlign] || 'flex-start'};
     justify-content: center;
 
     &::before {
@@ -63,7 +70,7 @@ export const Overlay: React.FC<OverlayProps> = ({
   shouldCloseOnClick = true,
   shouldCloseOnEscapePress = true,
   preventBodyScrolling = false,
-  verticalAlign = 'flex-start',
+  verticalAlign = 'stretch',
   onExit = () => {},
   onExiting = () => {},
   onExited = () => {},
@@ -263,15 +270,7 @@ export const Overlay: React.FC<OverlayProps> = ({
   )
 }
 
-type OverlayVerticalAlign =
-  | 'baseline'
-  | 'center'
-  | 'start'
-  | 'end'
-  | 'self-start'
-  | 'self-end'
-  | 'flex-start'
-  | 'flex-end'
+type OverlayVerticalAlign = 'stretch' | 'center' | 'top' | 'bottom'
 
 export interface OverlayProps {
   /**
