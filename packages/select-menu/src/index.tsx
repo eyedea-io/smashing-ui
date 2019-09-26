@@ -2,6 +2,7 @@ import * as React from 'react'
 import {Popover} from '@smashing/popover'
 import styled from 'styled-components'
 import {Button} from '@smashing/button'
+import {Strong} from '@smashing/typography'
 import * as S from './styles'
 import {
   SelectMenuAppearanceType,
@@ -10,7 +11,6 @@ import {
   SelectMenuState,
   SelectMenuChildrenFn
 } from './types'
-import {Strong} from '@smashing/typography'
 
 const SelectMenuItem: React.FC<{
   option: OptionBase
