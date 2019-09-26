@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {Popover} from '@smashing/popover'
-import styled from 'styled-components/macro'
+import styled from 'styled-components'
 import {Button} from '@smashing/button'
 import * as S from './styles'
 import {

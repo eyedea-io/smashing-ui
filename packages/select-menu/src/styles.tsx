@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro'
+import styled from 'styled-components'
 import {DefaultTheme} from 'styled-components'
 import {Checkbox as SmashingCheckbox} from '@smashing/checkbox'
 import {SelectMenuAppearanceType} from './types'
