@@ -95,6 +95,7 @@ declare module 'styled-components' {
   export interface SmashingSpiderChartDefaults {}
   export interface SmashingRadialProgressDefaults {}
   export interface SmashingSideSheetDefaults {}
+  export interface SmashingSelecMenuDefaults {}
   export interface SmashingDefaults
     extends SmashingButtonDefaults,
       SmashingCheckboxDefaults,
@@ -109,6 +110,7 @@ declare module 'styled-components' {
       SmashingSideSheetDefaults,
       SmashingSpinnerDefaults,
       SmashingSelectDefaults,
+      SmashingSelecMenuDefaults,
       SmashingAvatarDefaults {}
   export interface DefaultTheme {
     radius: string
