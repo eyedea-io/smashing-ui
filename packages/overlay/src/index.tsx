@@ -19,8 +19,14 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 240
 
+interface StyledBackgroundProps {
+  zIndex: number
+  state: TransitionStatus
+  verticalAlign: OverlayVerticalAlign
+}
+
 const S = {
-  Background: styled.div.attrs({})<{zIndex: number, state: TransitionStatus}>`
+  Background: styled.div.attrs({})<StyledBackgroundProps>`
     position: fixed;
     top: 0;
     left: 0;
@@ -28,7 +34,7 @@ const S = {
     bottom: 0;
     z-index: ${_ => _.zIndex};
     display: flex;
-    align-items: flex-start;
+    align-items: ${_ => _.verticalAlign || 'flex-start'};
     justify-content: center;
 
     &::before {
@@ -41,7 +47,11 @@ const S = {
       height: 100%;
       content: ' ';
     }
-    transition: opacity ${ANIMATION_DURATION}ms ${_ => ['entered'].includes(_.state) ? animationEasing.deceleration : animationEasing.acceleration};
+    transition: opacity ${ANIMATION_DURATION}ms
+      ${_ =>
+        ['entered'].includes(_.state)
+          ? animationEasing.deceleration
+          : animationEasing.acceleration};
 
     ${_ => ({
       opacity: ['entered'].includes(_.state) ? 1 : 0
@@ -53,6 +63,7 @@ export const Overlay: React.FC<OverlayProps> = ({
   shouldCloseOnClick = true,
   shouldCloseOnEscapePress = true,
   preventBodyScrolling = false,
+  verticalAlign = 'flex-start',
   onExit = () => {},
   onExiting = () => {},
   onExited = () => {},
@@ -234,6 +245,7 @@ export const Overlay: React.FC<OverlayProps> = ({
                 ref={containerElement}
                 state={state}
                 zIndex={zIndex}
+                verticalAlign={verticalAlign}
                 {...containerProps}
               >
                 {typeof children === 'function'
@@ -250,6 +262,16 @@ export const Overlay: React.FC<OverlayProps> = ({
     </Stack>
   )
 }
+
+type OverlayVerticalAlign =
+  | 'baseline'
+  | 'center'
+  | 'start'
+  | 'end'
+  | 'self-start'
+  | 'self-end'
+  | 'flex-start'
+  | 'flex-end'
 
 export interface OverlayProps {
   /**
@@ -282,6 +304,11 @@ export interface OverlayProps {
    * Boolean indicating if pressing the esc key should close the overlay.
    */
   shouldCloseOnEscapePress?: boolean
+
+  /**
+   * Vertical align of the content given as a flex align-items compatible value
+   */
+  verticalAlign?: OverlayVerticalAlign
 
   /**
    * Function called when overlay is about to close.
