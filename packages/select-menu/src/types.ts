@@ -10,7 +10,7 @@ export type SelectMenuChildrenFn<T extends OptionBase> = <T>(props: {
 export interface SelectMenuProps<T extends OptionBase> {
   options: T[]
   value: string | string[]
-  children: React.ReactNode | SelectMenuChildrenFn<T>
+  children?: React.ReactNode | SelectMenuChildrenFn<T>
   appearance?: SelectMenuAppearanceType
   hasFilter?: boolean
   hasTitle?: boolean
