@@ -7,7 +7,7 @@ export interface ListProps {
    * Children are expected to be a list of Elements
    */
   children: React.ReactNode[]
-  overlapSize: number
+  overlapSize?: number
 }
 
 export const List: React.FC<ListProps> = ({children, ...props}) => {
