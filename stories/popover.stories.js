@@ -1,6 +1,6 @@
 import React from 'react'
 import {storiesOf, addDecorator} from '@storybook/react'
-import {Text} from '@smashing/typography'
+import {Text, Heading} from '@smashing/typography'
 import {Popover} from '@smashing/popover'
 import {Button} from '@smashing/button'
 import {Avatar} from '@smashing/avatar'
@@ -24,6 +24,23 @@ storiesOf('Core|Popover', module)
       }
     >
       <Button>Trigger Popover</Button>
+    </Popover>
+  ))
+  .add('With the overlay background', () => (
+    <Popover
+      position="bottom"
+      minWidth={120}
+      overlay
+      content={
+        <div>
+          <Heading>Title</Heading>
+          <Text>PopoverContent lorem ipsum lorem ipsum</Text>
+        </div>
+      }
+    >
+      <Button appearance="primary" intent="success">
+        Trigger Popover
+      </Button>
     </Popover>
   ))
   .add('avatar trigger', () => (
