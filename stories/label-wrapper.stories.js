@@ -21,7 +21,7 @@ storiesOf('Core|LabelWrapper', module)
     </SmashingThemeProvider>
   ))
   .add('label', () => (
-    <LabelWrapper labelTitle="Name">
+    <LabelWrapper labelTitle="Name" errorTitle="Error">
       <TextInput placeholder="Your name" />
     </LabelWrapper>
   ))

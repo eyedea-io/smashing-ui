@@ -1,6 +1,6 @@
 import * as React from 'react'
 // import * as some from '@smashing/theme'
-import {Wrapper, Label} from './styles'
+import {Wrapper, Label, Error} from './styles'
 
 export interface LabelWrapperProps {
   /**
@@ -8,16 +8,19 @@ export interface LabelWrapperProps {
    */
   children: React.ReactNode[]
   labelTitle: string
+  errorTitle: string
 }
 
 export const LabelWrapper: React.FC<LabelWrapperProps> = ({
   children,
-  labelTitle
+  labelTitle,
+  errorTitle
 }) => {
   return (
     <Wrapper>
       <Label>{labelTitle}</Label>
       {children}
+      {errorTitle && <Error>{errorTitle}</Error>}
     </Wrapper>
   )
 }
