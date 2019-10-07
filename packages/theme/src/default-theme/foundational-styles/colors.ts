@@ -170,6 +170,18 @@ const colors = {
       invalid: `inset 0 0 0 1px ${palette.red.base}, inset 0 1px 2px ${scales.neutral.N4A}`,
       disabled: `inset 0 0 0 1px ${scales.neutral.N4A}`
     }
+  },
+  calendar: {
+    border: {
+      default: '#1d304e',
+      muted: '#A2ADC2'
+    },
+    text: {
+      default: '#1D304E',
+      muted: '#A2ADC2'
+    },
+    selected: '#1D304E',
+    hovered: '#7887A0'
   }
 }
 

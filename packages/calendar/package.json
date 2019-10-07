@@ -1,0 +1,36 @@
+{
+  "name": "@smashing/calendar",
+  "version": "0.0.0",
+  "description": "Calendar component.",
+  "repository": "eyedea-io/smashing-ui",
+  "license": "MIT",
+  "author": "Eyedea AS",
+  "main": "lib/cjs/index.js",
+  "types": "lib/esm/index.d.ts",
+  "module": "lib/esm/index.js",
+  "files": [
+    "lib/esm",
+    "lib/cjs"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@smashing/theme": "^0.11.0",
+    "@smashing/typography": "^0.4.26",
+    "rc-calendar": "^9.15.6",
+    "react-calendar": "^2.19.2"
+  },
+  "devDependencies": {
+    "react": "^16.8.6"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "styled-components": "^4.2.0"
+  },
+  "keywords": [
+    "smashing",
+    "react",
+    "ui"
+  ]
+}
