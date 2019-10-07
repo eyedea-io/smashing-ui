@@ -1,19 +1,23 @@
 import * as React from 'react'
 // import * as some from '@smashing/theme'
-import {Label} from '@smashing/typography'
+import {Wrapper, Label} from './styles'
 
-export interface ListProps {
+export interface LabelWrapperProps {
   /**
    * Children are expected to be any smashing component
    */
   children: React.ReactNode[]
+  labelTitle: string
 }
 
-export const LabelWrapper: React.FC<ListProps> = ({children, ...props}) => {
+export const LabelWrapper: React.FC<LabelWrapperProps> = ({
+  children,
+  labelTitle
+}) => {
   return (
-    <LabelWrapper>
-      <Label></Label>
+    <Wrapper>
+      <Label>{labelTitle}</Label>
       {children}
-    </LabelWrapper>
+    </Wrapper>
   )
 }
