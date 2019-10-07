@@ -40,8 +40,9 @@ const HiddenCheckbox = styled.input.attrs({
   margin: -1px;
   overflow: hidden;
   padding: 0;
-  position: absolute;
+  position: relative;
   white-space: nowrap;
+  opacity: 0;
   width: 1px;
   ${_ => getCheckboxStyle(_.appearance, _.disabled, _.checked)};
 `

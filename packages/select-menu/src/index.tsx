@@ -17,9 +17,11 @@ const SelectMenuItem: React.FC<{
   isSelected: boolean
   appearance?: SelectMenuAppearanceType
   onClick: (option: any) => void
-}> = ({option, isSelected, appearance, onClick}) => {
+  id?: any
+}> = ({option, isSelected, appearance, id, onClick}) => {
   return (
     <S.Checkbox
+      id={id}
       disabled={option.disabled}
       appearance={appearance}
       checked={isSelected}
@@ -41,6 +43,11 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
     this.state = {
       currentFilter: ''
     }
+  }
+
+  menuListRef: any
+  componentDidMount() {
+    this.menuListRef = React.createRef()
   }
   getDefaultButton = (appearance?: SelectMenuAppearanceType) => {
     if (appearance !== 'card')
@@ -115,6 +122,10 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
   }
   isOptionSelected = (option: string) => {
     if (!this.props.isMultiSelect) {
+      let el = document.getElementById(this.props.value as any)
+      if (el) {
+        this.menuListRef.current.scrollTo(0, el.offsetTop)
+      }
       return this.props.value === option
     }
     return (this.props.value as string[]).indexOf(option) > -1
@@ -172,6 +183,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
                 </S.FilterHost>
               )}
               <S.OptionHost
+                ref={this.menuListRef}
                 appearance={this.props.appearance}
                 height={this.props.height}
               >
@@ -183,6 +195,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
                     <SelectMenuItem
                       appearance={this.props.appearance}
                       key={option.value}
+                      id={option.value}
                       option={option}
                       isSelected={this.isOptionSelected(option.value)}
                       onClick={this.optionClicked}
