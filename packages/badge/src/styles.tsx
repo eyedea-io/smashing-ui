@@ -1,15 +1,15 @@
-import {Strong, StrongProps} from "@smashing/typography"
-import styled, {css} from "styled-components/macro"
-import {Colors} from "./types"
+import {Strong, StrongProps} from '@smashing/typography'
+import styled, {css} from 'styled-components/macro'
+import {Colors} from './types'
 
 interface StyledBadgeProps extends StrongProps {
   color: any
   backgroundColor: Colors
-  appearance: "solid" | "subtle"
+  appearance: 'solid' | 'subtle'
 }
 
 const getBackgroundColor = ({appearance, backgroundColor}) =>
-  appearance === "subtle"
+  appearance === 'subtle'
     ? css`
         background: ${_ => _.theme.palette[backgroundColor].light};
       `
