@@ -50,7 +50,6 @@ const Calendar: React.FC<CalendarProps> = ({
         open={open}
         placeholder="DD/MM/YY"
         readOnly
-        onFocus={() => setOpen(true)}
         onClick={() => setOpen(!open)}
         value={getFormattedDate()}
       />
