@@ -20,6 +20,6 @@ storiesOf('Core|Calendar', module)
   ))
   .add('appearance:default', () => (
     <React.Fragment>
-      <Calendar />
+      <Calendar value={new Date()} />
     </React.Fragment>
   ))
