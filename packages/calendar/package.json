@@ -18,7 +18,6 @@
   "dependencies": {
     "@smashing/theme": "^0.11.0",
     "@smashing/typography": "^0.4.26",
-    "rc-calendar": "^9.15.6",
     "react-calendar": "^2.19.2"
   },
   "devDependencies": {
