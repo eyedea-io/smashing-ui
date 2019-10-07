@@ -6,6 +6,6 @@ export type StyledCalendarProps = CalendarProps & {
 export type CalendarProps = {
   appearance: CalendarAppearanceType
   onChange?: (date: Date) => void
-  startValue?: Date
+  value?: Date
   locale?: string
 }

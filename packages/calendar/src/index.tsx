@@ -6,32 +6,32 @@ import {CalendarProps, CalendarAppearanceType} from './types'
 import {StyledContainer, StyledInput, StyledCalendar} from './styles'
 
 const Calendar: React.FC<CalendarProps> = ({
-  onChange = () => {},
-  startValue,
+  onChange = (date: Date) => {},
+  value,
   ...props
 }) => {
   const [open, setOpen] = useState(false)
-  const [date, setDate] = useState(startValue)
   const defaults = useDefaults('calendar', props, {
     appearance: 'default' as CalendarAppearanceType
   })
 
+  const getTwoDigtNumber = variable => {
+    return variable > 9 ? variable : '0' + variable
+  }
+
   const getFormattedDate = () => {
-    if (!date) {
+    if (!value) {
       return ''
     }
-    const day = date.getDate()
-    const month = date.getMonth() + 1
-    const year = date.getFullYear()
+    const day = value.getDate()
+    const month = value.getMonth() + 1
+    const year = value.getFullYear()
 
-    return `${day > 9 ? day : '0' + day}/${
-      month > 9 ? month : '0' + month
-    }/${year}`
+    return `${getTwoDigtNumber(day)}/${getTwoDigtNumber(month)}/${year}`
   }
 
   const onDateChange = chosenDate => {
     setOpen(false)
-    setDate(chosenDate)
     onChange(chosenDate)
   }
 
@@ -57,6 +57,7 @@ const Calendar: React.FC<CalendarProps> = ({
         // TODO: prevLabel, nextLabel - add icons
         {...props}
         onChange={onDateChange}
+        value={value}
         appearance={defaults.appearance}
         prev2Label={null}
         next2Label={null}
