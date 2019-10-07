@@ -13,11 +13,10 @@ export const ListItem = styled.div<{overlapSize: number}>`
   flex: ${_ => `1 0 calc(100% - ${_.overlapSize}px)`};
   scroll-snap-align: start;
 
-  margin-left: ${_ => _.theme.spacing.xxs};
-  margin-right: ${_ => _.theme.spacing.xxs};
+  padding-left: ${_ => _.theme.spacing.sm};
 
-  &:first-of-type {
-    margin-left: ${_ => _.theme.spacing.sm};
+  &:last-of-type {
+    padding-right: ${_ => _.theme.spacing.sm};
   }
 
   > * {
