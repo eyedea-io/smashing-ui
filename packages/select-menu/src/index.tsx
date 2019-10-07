@@ -17,11 +17,12 @@ const SelectMenuItem: React.FC<{
   isSelected: boolean
   appearance?: SelectMenuAppearanceType
   onClick: (option: any) => void
+  innerRef?: any
   id?: any
-}> = ({option, isSelected, appearance, id, onClick}) => {
+}> = ({option, isSelected, appearance, innerRef, onClick}) => {
   return (
     <S.Checkbox
-      id={id}
+      innerRef={innerRef}
       disabled={option.disabled}
       appearance={appearance}
       checked={isSelected}
@@ -46,8 +47,16 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
   }
 
   menuListRef: any
+  itemsRefs: any
   componentDidMount() {
+    this.itemsRefs = []
     this.menuListRef = React.createRef()
+  }
+  scrollToSelectedItem() {
+    let el = this.itemsRefs.find(item => item.textContent === this.props.value)
+    if (el) {
+      this.menuListRef.current.scrollTo(0, el.offsetTop)
+    }
   }
   getDefaultButton = (appearance?: SelectMenuAppearanceType) => {
     if (appearance !== 'card')
@@ -122,10 +131,6 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
   }
   isOptionSelected = (option: string) => {
     if (!this.props.isMultiSelect) {
-      let el = document.getElementById(this.props.value as any)
-      if (el) {
-        this.menuListRef.current.scrollTo(0, el.offsetTop)
-      }
       return this.props.value === option
     }
     return (this.props.value as string[]).indexOf(option) > -1
@@ -150,6 +155,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
     return (
       <Popover
         minWidth={this.props.minWidth}
+        onOpenComplete={() => this.scrollToSelectedItem()}
         content={({close}) => {
           return (
             <S.PopoverHost>
@@ -187,7 +193,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
                 appearance={this.props.appearance}
                 height={this.props.height}
               >
-                {this.getFilteredOptions().map(option => {
+                {this.getFilteredOptions().map((option, index) => {
                   if (this.props.renderItem) {
                     return this.renderCustomItem(option)
                   }
@@ -195,6 +201,9 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
                     <SelectMenuItem
                       appearance={this.props.appearance}
                       key={option.value}
+                      innerRef={ref => {
+                        this.itemsRefs[index] = ref
+                      }}
                       id={option.value}
                       option={option}
                       isSelected={this.isOptionSelected(option.value)}
