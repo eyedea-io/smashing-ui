@@ -43,15 +43,14 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
     this.state = {
       currentFilter: ''
     }
-    this.menuListRef = React.createRef()
-    this.selectedOptionRef = React.createRef()
+    this.menuListRef = React.createRef<HTMLDivElement>()
   }
 
-  menuListRef: any
-  selectedOptionRef: any
+  menuListRef: React.RefObject<HTMLDivElement>
+  selectedOptionRef: HTMLDivElement | null = null
 
   scrollToSelectedItem() {
-    if (this.menuListRef) {
+    if (this.menuListRef.current && this.selectedOptionRef) {
       this.menuListRef.current.scrollTo(0, this.selectedOptionRef.offsetTop)
     }
   }
