@@ -267,7 +267,6 @@ export const Popover: React.FC<PopoverProps> = ({
       const {style} = targetRef.current
       savedTargetStyles.current = [style.zIndex, style.position]
       const currentPosition = getComputedStyle(targetRef.current).position
-      console.log(currentPosition)
       style.zIndex = MAX_Z_INDEX
       style.position =
         currentPosition !== 'static' ? style.position : 'relative'
