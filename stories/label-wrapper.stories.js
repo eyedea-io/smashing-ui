@@ -53,6 +53,11 @@ storiesOf('Core|LabelWrapper', module)
       <Button>Hulk smash!</Button>
     </LabelWrapper>
   ))
+  .add('appearance:error-on-button', () => (
+    <LabelWrapper labelTitle="Name" errorTitle="Error">
+      <Button>Hulk smash!</Button>
+    </LabelWrapper>
+  ))
   .add('appearance:on-tabs', () => (
     <LabelWrapper labelTitle="Name" errorTitle="">
       <Tablist>
