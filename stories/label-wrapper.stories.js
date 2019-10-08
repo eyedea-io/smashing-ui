@@ -62,6 +62,15 @@ storiesOf('Core|LabelWrapper', module)
       </Tablist>
     </LabelWrapper>
   ))
+  .add('appearance:error-on-tabs', () => (
+    <LabelWrapper labelTitle="Name" errorTitle="Error">
+      <Tablist>
+        <Tab isSelected>Tab 1</Tab>
+        <Tab>Tab 2</Tab>
+        <Tab>Tab 3</Tab>
+      </Tablist>
+    </LabelWrapper>
+  ))
   .add('appearance:on-pie-chart', () => (
     <LabelWrapper labelTitle="Name" errorTitle="">
       <PieChart width={300} height={300} data={pieChartData} />
