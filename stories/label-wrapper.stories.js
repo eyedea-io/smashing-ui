@@ -48,6 +48,11 @@ storiesOf('Core|LabelWrapper', module)
       <Alert title="Your account is active" />
     </LabelWrapper>
   ))
+  .add('appearance:error-on-alert', () => (
+    <LabelWrapper labelTitle="Name" errorTitle="Error">
+      <Alert title="Your account is inactive" />
+    </LabelWrapper>
+  ))
   .add('appearance:on-button', () => (
     <LabelWrapper labelTitle="Name" errorTitle="">
       <Button>Hulk smash!</Button>
