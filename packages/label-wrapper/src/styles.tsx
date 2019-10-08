@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const Wrapper = styled.div<{errorTitle: string}>`
-  display: flex;
   position: relative;
   background-color: white;
   background: white;
@@ -31,13 +30,13 @@ export const Wrapper = styled.div<{errorTitle: string}>`
     }}
 `
 export const Label = styled.span`
-  display: flex;
   position: absolute;
   top: -10px;
-  left: 12px;
+  left: 10px;
   background-color: inherit;
   background: inherit;
   padding: 0 5px;
+  z-index: 10;
 
   font-family: Nunito, sans-serif;
   font-weight: 500;
