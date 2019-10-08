@@ -18,7 +18,6 @@ const SelectMenuItem: React.FC<{
   appearance?: SelectMenuAppearanceType
   onClick: (option: any) => void
   innerRef?: any
-  id?: any
 }> = ({option, isSelected, appearance, innerRef, onClick}) => {
   return (
     <S.Checkbox
@@ -45,16 +44,15 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
       currentFilter: ''
     }
     this.menuListRef = React.createRef()
-    this.itemsRefs = []
+    this.selectedOptionRef = React.createRef()
   }
 
   menuListRef: any
-  itemsRefs: any
+  selectedOptionRef: any
 
   scrollToSelectedItem() {
-    let el = this.itemsRefs.find(item => item.textContent === this.props.value)
-    if (el && this.menuListRef) {
-      this.menuListRef.current.scrollTo(0, el.offsetTop)
+    if (this.menuListRef) {
+      this.menuListRef.current.scrollTo(0, this.selectedOptionRef.offsetTop)
     }
   }
   getDefaultButton = (appearance?: SelectMenuAppearanceType) => {
@@ -192,7 +190,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
                 appearance={this.props.appearance}
                 height={this.props.height}
               >
-                {this.getFilteredOptions().map((option, index) => {
+                {this.getFilteredOptions().map(option => {
                   if (this.props.renderItem) {
                     return this.renderCustomItem(option)
                   }
@@ -201,9 +199,10 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
                       appearance={this.props.appearance}
                       key={option.value}
                       innerRef={ref => {
-                        this.itemsRefs[index] = ref
+                        if (this.isOptionSelected(option.value)) {
+                          this.selectedOptionRef = ref
+                        }
                       }}
-                      id={option.value}
                       option={option}
                       isSelected={this.isOptionSelected(option.value)}
                       onClick={this.optionClicked}
