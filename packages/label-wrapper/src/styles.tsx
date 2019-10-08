@@ -1,31 +1,31 @@
 import styled from 'styled-components'
 
-export const Wrapper = styled.div<{errorTitle: string | boolean}>`
+export const Wrapper = styled.div<{errorTitle: string}>`
   display: flex;
   position: relative;
   background-color: white;
   background: white;
 
   ${props => _ =>
-    props.errorTitle && {
+    props.errorTitle.length > 0 && {
       '& * ': {
-        color: _.theme.colors.background.redTint,
-        borderColor: _.theme.colors.background.redTint
+        color: _.theme.colors.error.red,
+        borderColor: _.theme.colors.error.red
       },
       input: {
-        boxShadow: `inset 0 0 0 1px ${_.theme.colors.background.redTint}, inset 0 1px 2px ${_.theme.colors.background.redTint}`,
+        boxShadow: `inset 0 0 0 1px ${_.theme.colors.error.red}, inset 0 1px 2px ${_.theme.colors.error.red}`,
 
         '&:focus': {
-          boxShadow: `inset 0 0 0 1px ${_.theme.colors.background.redTint}, inset 0 1px 2px ${_.theme.colors.background.redTint}`
+          boxShadow: `inset 0 0 0 1px ${_.theme.colors.error.red}, inset 0 1px 2px ${_.theme.colors.error.red}`
         },
 
         '&::placeholder': {
-          color: `${_.theme.colors.background.redTint}`
+          color: `${_.theme.colors.error.red}`
         }
       }
     }}
 `
-export const Label = styled.span<{errorTitle: string | boolean}>`
+export const Label = styled.span<{errorTitle: string}>`
   display: flex;
   position: absolute;
   top: -10px;
@@ -42,5 +42,5 @@ export const Label = styled.span<{errorTitle: string | boolean}>`
 export const Error = styled(Label)`
   top: inherit;
   bottom: -11px;
-  color: ${_ => _.theme.colors.background.redTint};
+  color: ${_ => _.theme.colors.error.red};
 `
