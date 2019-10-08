@@ -103,6 +103,11 @@ export interface PopoverProps {
    * Custom styles
    */
   style?: React.CSSProperties
+
+  /**
+   * Function that will be called when the enter transition is started.
+   */
+  onOpenStarted?: () => void
 }
 
 const Target = (props: {
@@ -195,6 +200,7 @@ export const Popover: React.FC<PopoverProps> = ({
   onClose = () => {},
   onOpenComplete = () => {},
   onCloseComplete = () => {},
+  onOpenStarted = () => {},
   targetOffset = 6,
   style: componentStyle,
   bringFocusInside = false,
@@ -286,6 +292,7 @@ export const Popover: React.FC<PopoverProps> = ({
       animationDuration={animationDuration}
       onOpenComplete={handleOpenComplete}
       onCloseComplete={onCloseComplete}
+      onOpenStarted={onOpenStarted}
     >
       {({style, state, getRef}) => (
         <S.Popup

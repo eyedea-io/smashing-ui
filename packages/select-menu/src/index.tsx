@@ -44,17 +44,16 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
     this.state = {
       currentFilter: ''
     }
+    this.menuListRef = React.createRef()
+    this.itemsRefs = []
   }
 
   menuListRef: any
   itemsRefs: any
-  componentDidMount() {
-    this.itemsRefs = []
-    this.menuListRef = React.createRef()
-  }
+
   scrollToSelectedItem() {
     let el = this.itemsRefs.find(item => item.textContent === this.props.value)
-    if (el) {
+    if (el && this.menuListRef) {
       this.menuListRef.current.scrollTo(0, el.offsetTop)
     }
   }
@@ -155,7 +154,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
     return (
       <Popover
         minWidth={this.props.minWidth}
-        onOpenComplete={() => this.scrollToSelectedItem()}
+        onOpenStarted={() => this.scrollToSelectedItem()}
         content={({close}) => {
           return (
             <S.PopoverHost>
