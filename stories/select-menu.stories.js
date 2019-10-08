@@ -14,6 +14,18 @@ const options = [
   {label: 'Cherry', value: 'Cherry', disabled: true}
 ]
 
+const optionsScroll = [
+  {label: 'Apple', value: 'Apple'},
+  {label: 'Apricot', value: 'Apricot'},
+  {label: 'Banana', value: 'Banana'},
+  {label: 'Cherry', value: 'Cherry'},
+  {label: 'Cucumber', value: 'Cucumber'},
+  {label: 'Tomato', value: 'Tomato'},
+  {label: 'Orange', value: 'Orange'},
+  {label: 'Pepper', value: 'Pepper'},
+  {label: 'Potato', value: 'Potato'}
+]
+
 const Wrapper = ({children}) => {
   const [singleSelectedOption, changeSingleSelectedOption] = React.useState(
     null
@@ -60,7 +72,8 @@ storiesOf('Core|Select menu', module)
     <Wrapper>
       {({singleSelectedOption, changeSingleSelectedOption}) => (
         <SelectMenu
-          options={options}
+          height={100}
+          options={optionsScroll}
           value={singleSelectedOption}
           onSelect={changeSingleSelectedOption}
           hasFilter={true}
@@ -75,8 +88,8 @@ storiesOf('Core|Select menu', module)
       {({singleSelectedOption, changeSingleSelectedOption}) => (
         <SelectMenu
           minWidth={100}
-          height={100}
-          options={options}
+          height={200}
+          options={optionsScroll}
           value={singleSelectedOption}
           onSelect={changeSingleSelectedOption}
           appearance="card"

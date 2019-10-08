@@ -26,6 +26,7 @@ export interface CheckboxProps {
    * Function called when state changes.
    */
   onChange?: React.ChangeEventHandler<HTMLInputElement>
+  innerRef?: any
 }
 
 export type StyledLabelProps = CheckboxProps &

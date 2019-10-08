@@ -40,8 +40,9 @@ const HiddenCheckbox = styled.input.attrs({
   margin: -1px;
   overflow: hidden;
   padding: 0;
-  position: absolute;
+  position: relative;
   white-space: nowrap;
+  opacity: 0;
   width: 1px;
   ${_ => getCheckboxStyle(_.appearance, _.disabled, _.checked)};
 `
@@ -58,7 +59,11 @@ const CheckIcon = ({fill = 'currentColor'}) => (
   </svg>
 )
 
-const CheckboxFC: React.FC<CheckboxProps> = ({children, ...props}) => {
+const CheckboxFC: React.FC<CheckboxProps> = ({
+  children,
+  innerRef,
+  ...props
+}) => {
   const defaults = useDefaults('checkbox', props, {
     appearance: 'primary' as CheckboxAppearanceType
   })
@@ -67,7 +72,7 @@ const CheckboxFC: React.FC<CheckboxProps> = ({children, ...props}) => {
     defaults.appearance === 'primary' || defaults.appearance === 'minimal'
 
   return (
-    <Label as="label" {...defaults} {...props}>
+    <Label as="label" ref={innerRef} {...defaults} {...props}>
       <HiddenCheckbox
         checked={props.checked}
         onChange={props.onChange}

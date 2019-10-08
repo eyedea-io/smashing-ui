@@ -4,6 +4,7 @@ import {Checkbox as SmashingCheckbox} from '@smashing/checkbox'
 import {SelectMenuAppearanceType} from './types'
 import {TextInput} from '@smashing/text-input'
 import {Button} from '@smashing/button'
+import {Popover} from '@smashing/popover'
 
 export const OptionDiv = styled.div<{appearance?: string}>`
   padding: ${_ => _.theme.spacing.xxs} 0;
@@ -69,12 +70,14 @@ export const Checkbox = styled(SmashingCheckbox)<{
   checked: boolean
   appearance?: string
 }>`
-  ${_ => getSelectMenuItemStyle(_.appearance, _.checked)}
+  ${_ => getSelectMenuItemStyle(_.appearance, _.checked)};
 `
 export const OptionHost = styled.div<{appearance?: string; height?: number}>`
-  padding: ${_ => (_.appearance !== 'card' ? '4px' : 'none')};
+  padding: ${_ => (_.appearance !== 'card' ? '4px' : '0')};
   max-height: ${_ => _.height}px;
   overflow-y: auto;
+  position: relative;
+
   ${Checkbox}:last-child {
     ${OptionDiv} {
       border-bottom: none;
@@ -99,3 +102,4 @@ export const TextContainer = styled.div`
   justify-content: center;
   text-align: center;
 `
+export const StyledPopover = styled(Popover)``
