@@ -20,12 +20,17 @@ export const Wrapper = styled.div<{errorTitle: string}>`
         },
 
         '&::placeholder': {
-          color: `${_.theme.colors.error.red}`
+          color: _.theme.colors.error.red
+        }
+      },
+      svg: {
+        '& *': {
+          stroke: _.theme.colors.error.red
         }
       }
     }}
 `
-export const Label = styled.span<{errorTitle: string}>`
+export const Label = styled.span`
   display: flex;
   position: absolute;
   top: -10px;

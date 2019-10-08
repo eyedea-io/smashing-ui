@@ -18,9 +18,9 @@ export const LabelWrapper: React.FC<LabelWrapperProps> = ({
 }) => {
   return (
     <Wrapper errorTitle={errorTitle}>
-      <Label errorTitle={errorTitle}>{labelTitle}</Label>
+      <Label>{labelTitle}</Label>
       {children}
-      {errorTitle && <Error errorTitle={errorTitle}>{errorTitle}</Error>}
+      {errorTitle && <Error>{errorTitle}</Error>}
     </Wrapper>
   )
 }
