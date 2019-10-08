@@ -6,28 +6,24 @@ export const Wrapper = styled.div<{errorTitle: string | boolean}>`
   background-color: white;
   background: white;
 
-  & * {
-    color: ${props => (props.errorTitle ? '#ff4752' : 'initial')};
-    border-color: ${props => (props.errorTitle ? '#ff4752' : 'initial')};
-  }
+  ${props => _ =>
+    props.errorTitle && {
+      '& * ': {
+        color: _.theme.colors.background.redTint,
+        borderColor: _.theme.colors.background.redTint
+      },
+      input: {
+        boxShadow: `inset 0 0 0 1px ${_.theme.colors.background.redTint}, inset 0 1px 2px ${_.theme.colors.background.redTint}`,
 
-  input {
-    box-shadow: ${props =>
-      props.errorTitle
-        ? 'inset 0 0 0 1px #ff4752, inset 0 1px 2px #ff4752'
-        : 'yellow'};
+        '&:focus': {
+          boxShadow: `inset 0 0 0 1px ${_.theme.colors.background.redTint}, inset 0 1px 2px ${_.theme.colors.background.redTint}`
+        },
 
-    &:focus {
-      box-shadow: ${props =>
-        props.errorTitle
-          ? 'inset 0 0 0 1px #ff4752, inset 0 1px 2px #ff4752'
-          : 'yellow'};
-    }
-
-    &::placeholder {
-      color: ${props => (props.errorTitle ? '#ff4752' : 'initial')};
-    }
-  }
+        '&::placeholder': {
+          color: `${_.theme.colors.background.redTint}`
+        }
+      }
+    }}
 `
 export const Label = styled.span<{errorTitle: string | boolean}>`
   display: flex;
@@ -46,5 +42,5 @@ export const Label = styled.span<{errorTitle: string | boolean}>`
 export const Error = styled(Label)`
   top: inherit;
   bottom: -11px;
-  color: #ff4752;
+  color: ${_ => _.theme.colors.background.redTint};
 `
