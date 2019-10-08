@@ -15,7 +15,7 @@ const Calendar: React.FC<CalendarProps> = ({
     appearance: 'default' as CalendarAppearanceType
   })
 
-  const getTwoDigtNumber = variable => {
+  const getTwoDigitNumber = variable => {
     return variable > 9 ? variable : '0' + variable
   }
 
@@ -27,7 +27,7 @@ const Calendar: React.FC<CalendarProps> = ({
     const month = value.getMonth() + 1
     const year = value.getFullYear()
 
-    return `${getTwoDigtNumber(day)}/${getTwoDigtNumber(month)}/${year}`
+    return `${getTwoDigitNumber(day)}/${getTwoDigitNumber(month)}/${year}`
   }
 
   const onDateChange = chosenDate => {
