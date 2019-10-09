@@ -39,7 +39,7 @@ yarn add @smashing/badge
 ![](https://i.imgur.com/keUuIat.png)
 
 ```jsx
-<Pill color="red" marginLeft={8} isSolid>
-  24
+<Pill color="green" marginLeft={8} appearance="solid">
+  44
 </Pill>
 ```
