@@ -1,6 +1,6 @@
 import React from 'react'
 import {storiesOf, addDecorator} from '@storybook/react'
-import {Calendar} from '@smashing/calendar'
+import {Calendar} from '@smashing/calendar-input'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
 
