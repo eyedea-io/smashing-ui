@@ -1,9 +1,10 @@
 import * as React from 'react'
-import {useState} from 'react'
+import {useState, useRef} from 'react'
 import getUserLocale from 'get-user-locale'
 import {useDefaults} from '@smashing/theme'
 import {CalendarProps, CalendarAppearanceType} from './types'
 import {StyledContainer, StyledInput, StyledCalendar} from './styles'
+import useOutsideClick from './useOutsideClick'
 
 const Calendar: React.FC<CalendarProps> = ({
   onChange = () => {},
@@ -11,6 +12,11 @@ const Calendar: React.FC<CalendarProps> = ({
   ...props
 }) => {
   const [isOpen, setIsOpen] = useState(false)
+  const node = useRef<HTMLDivElement>(null)
+  useOutsideClick(node, () => {
+    setIsOpen(false)
+  })
+
   const defaults = useDefaults('calendar', props, {
     appearance: 'default' as CalendarAppearanceType
   })
@@ -27,7 +33,6 @@ const Calendar: React.FC<CalendarProps> = ({
   }
 
   const onDateChange = chosenDate => {
-    console.log(chosenDate)
     setIsOpen(false)
     onChange(chosenDate)
   }
@@ -41,18 +46,18 @@ const Calendar: React.FC<CalendarProps> = ({
   }
 
   return (
-    <StyledContainer>
+    <StyledContainer ref={node}>
       <StyledInput
         // TODO add appearance for input
         open={isOpen}
         readOnly
-        onClick={() => setIsOpen(!isOpen)}
+        onFocus={() => setIsOpen(true)}
         value={getFormattedDate()}
       />
       <StyledCalendar
         // TODO: prevLabel, nextLabel - add icons
         {...props}
-        onChange={onDateChange}
+        onClickDay={onDateChange}
         value={value}
         appearance={defaults.appearance}
         prev2Label={null}
