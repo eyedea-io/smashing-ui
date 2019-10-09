@@ -1,7 +1,7 @@
 {
-  "name": "@smashing/calendar",
+  "name": "@smashing/calendar-input",
   "version": "0.0.0",
-  "description": "Calendar component.",
+  "description": "Input with calendar.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
   "author": "Eyedea AS",

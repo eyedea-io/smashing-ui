@@ -6,32 +6,29 @@ import {CalendarProps, CalendarAppearanceType} from './types'
 import {StyledContainer, StyledInput, StyledCalendar} from './styles'
 
 const Calendar: React.FC<CalendarProps> = ({
-  onChange = (date: Date) => {},
+  onChange = () => {},
   value,
   ...props
 }) => {
-  const [open, setOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const defaults = useDefaults('calendar', props, {
     appearance: 'default' as CalendarAppearanceType
   })
-
-  const getTwoDigitNumber = variable => {
-    return variable > 9 ? variable : '0' + variable
-  }
 
   const getFormattedDate = () => {
     if (!value) {
       return ''
     }
-    const day = value.getDate()
-    const month = value.getMonth() + 1
-    const year = value.getFullYear()
-
-    return `${getTwoDigitNumber(day)}/${getTwoDigitNumber(month)}/${year}`
+    return value.toLocaleDateString(undefined, {
+      year: 'numeric',
+      month: '2-digit',
+      day: 'numeric'
+    })
   }
 
   const onDateChange = chosenDate => {
-    setOpen(false)
+    console.log(chosenDate)
+    setIsOpen(false)
     onChange(chosenDate)
   }
 
@@ -47,10 +44,9 @@ const Calendar: React.FC<CalendarProps> = ({
     <StyledContainer>
       <StyledInput
         // TODO add appearance for input
-        open={open}
-        placeholder="DD/MM/YY"
+        open={isOpen}
         readOnly
-        onClick={() => setOpen(!open)}
+        onClick={() => setIsOpen(!isOpen)}
         value={getFormattedDate()}
       />
       <StyledCalendar
@@ -61,8 +57,7 @@ const Calendar: React.FC<CalendarProps> = ({
         appearance={defaults.appearance}
         prev2Label={null}
         next2Label={null}
-        open={open}
-        onActiveDateChange={onDateChange}
+        open={isOpen}
         formatShortWeekday={formatShortWeekday}
       />
     </StyledContainer>

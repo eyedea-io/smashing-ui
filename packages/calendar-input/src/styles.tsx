@@ -1,17 +1,17 @@
 import styled, {DefaultTheme, css} from 'styled-components'
-import {StyledCalendarProps} from './types'
+import {StyledCalendarProps, CalendarAppearanceType} from './types'
 import ReactCalendar from 'react-calendar/dist/entry.nostyle'
 import {TextInput} from '@smashing/text-input'
 
-export type AppearanceType = 'default' | 'outline'
-
-const getCalendarStyle = (appearance?: AppearanceType, open?: boolean) => (_: {
-  theme: DefaultTheme
-}) => {
+const getCalendarStyle = (
+  appearance?: CalendarAppearanceType,
+  open?: boolean
+) => (_: {theme: DefaultTheme}) => {
   const {colors, palette} = _.theme
+  return {}
   switch (appearance) {
+    // TODO add outline style
     case 'default':
-    case 'outline':
       return css`
         border: 1px solid ${colors.calendar.border.default};
         border-bottom-left-radius: 6px;
@@ -45,7 +45,6 @@ const getCalendarStyle = (appearance?: AppearanceType, open?: boolean) => (_: {
             : {}}
       `
   }
-  return {}
 }
 
 export const StyledCalendar = styled(ReactCalendar)<StyledCalendarProps>`
