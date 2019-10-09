@@ -1,5 +1,4 @@
 import * as React from 'react'
-// import * as some from '@smashing/theme'
 import {Wrapper, Label, Error} from './styles'
 
 export interface LabelWrapperProps {
