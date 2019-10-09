@@ -25,8 +25,8 @@ storiesOf('Core|LabelWrapper', module)
     <SmashingThemeProvider
       theme={{
         colors: {
-          labelWrapper: {
-            background: 'white'
+          background: {
+            default: 'white'
           }
         }
       }}

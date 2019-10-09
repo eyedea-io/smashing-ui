@@ -7,8 +7,8 @@ export const Label = styled.span`
   position: absolute;
   top: -10px;
   left: 10px;
-  background-color: ${_ => _.theme.colors.labelWrapper.background};
-  background: ${_ => _.theme.colors.labelWrapper.background};
+  background-color: ${_ => _.theme.colors.background.default};
+  background: ${_ => _.theme.colors.background.default};
   padding: 0 5px;
   z-index: 10;
 
