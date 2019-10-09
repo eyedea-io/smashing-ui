@@ -1,10 +1,10 @@
 import {Strong, StrongProps} from '@smashing/typography'
 import styled, {css} from 'styled-components/macro'
-import {Colors} from './types'
+import {BadgeColors} from './types'
 
 interface StyledBadgeProps extends StrongProps {
   color: any
-  backgroundColor: Colors
+  backgroundColor: BadgeColors
   appearance: 'solid' | 'subtle'
 }
 
