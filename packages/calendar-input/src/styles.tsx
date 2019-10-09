@@ -1,54 +1,55 @@
-import styled, {DefaultTheme, css} from 'styled-components'
-import {StyledCalendarProps, CalendarAppearanceType} from './types'
+import styled from 'styled-components'
+import {StyledCalendarProps} from './types'
 import ReactCalendar from 'react-calendar/dist/entry.nostyle'
 import {TextInput} from '@smashing/text-input'
 
-const getCalendarStyle = (
-  appearance?: CalendarAppearanceType,
-  open?: boolean
-) => (_: {theme: DefaultTheme}) => {
-  const {colors, palette} = _.theme
-  return {}
-  switch (appearance) {
-    // TODO add outline style
-    case 'default':
-      return css`
-        border: 1px solid ${colors.calendar.border.default};
-        border-bottom-left-radius: 6px;
-        border-bottom-right-radius: 6px;
-        .react-calendar__month-view__days__day--neighboringMonth,
-        .react-calendar__month-view__weekdays {
-          color: ${colors.calendar.text.muted};
-        }
-        .react-calendar__tile.react-calendar__month-view__days__day.react-calendar__tile--active,
-        .react-calendar__tile.react-calendar__month-view__days__day.react-calendar__tile--active:focus {
-          background: ${colors.calendar.selected};
-          color: ${palette.neutral.lightest};
-          outline: 0;
-        }
+// const getCalendarStyle = (
+// appearance?: CalendarAppearanceType,
+// open?: boolean
+// ) => (_: {theme: DefaultTheme}) => {
+// const {colors, palette} = _.theme
+// return {}
+// switch (appearance) {
+//   case 'outline':
+//     return css`
+//       border: 1px solid ${colors.calendar.border.default};
+//       border-bottom-left-radius: 6px;
+//       border-bottom-right-radius: 6px;
+//       .react-calendar__month-view__days__day--neighboringMonth,
+//       .react-calendar__month-view__weekdays {
+//         color: ${colors.calendar.text.muted};
+//       }
+//       .react-calendar__tile.react-calendar__month-view__days__day.react-calendar__tile--active,
+//       .react-calendar__tile.react-calendar__month-view__days__day.react-calendar__tile--active:focus {
+//         background: ${colors.calendar.selected};
+//         color: ${palette.neutral.lightest};
+//         outline: 0;
+//       }
 
-        .react-calendar__tile.react-calendar__month-view__days__day.react-calendar__tile:hover:not(.react-calendar__tile--active),
-        .react-calendar__tile.react-calendar__month-view__days__day.react-calendar__tile:focus:not(.react-calendar__tile--active) {
-          background: ${colors.calendar.hovered};
-          color: ${palette.neutral.lightest};
-          outline: 0;
-        }
-        ${_ =>
-          open
-            ? {
-                input: {
-                  borderBottom: `1px solid ${colors.calendar.border.muted}`,
-                  borderBottomLeftRadius: 0,
-                  borderBottomRightRadius: 0
-                }
-              }
-            : {}}
-      `
-  }
-}
+//       .react-calendar__tile.react-calendar__month-view__days__day.react-calendar__tile:hover:not(.react-calendar__tile--active),
+//       .react-calendar__tile.react-calendar__month-view__days__day.react-calendar__tile:focus:not(.react-calendar__tile--active) {
+//         background: ${colors.calendar.hovered};
+//         color: ${palette.neutral.lightest};
+//         outline: 0;
+//       }
+//       ${_ =>
+//         open
+//           ? {
+//               input: {
+//                 borderBottom: `1px solid ${colors.calendar.border.muted}`,
+//                 borderBottomLeftRadius: 0,
+//                 borderBottomRightRadius: 0
+//               }
+//             }
+//           : {}}
+//     `
+// }
+// }
+
+// TODO uncomment when outline appearance will be added to text-input
+//${_ => getCalendarStyle(_.appearance)}
 
 export const StyledCalendar = styled(ReactCalendar)<StyledCalendarProps>`
-  ${_ => getCalendarStyle(_.appearance)}
   ${_ => ({
     opacity: _.open ? 1 : 0
   })};
