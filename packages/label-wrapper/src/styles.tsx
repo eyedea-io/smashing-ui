@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 export const Wrapper = styled.div<{errorTitle: string}>`
   position: relative;
-  background-color: white;
-  background: white;
+  background-color: inherit;
+  background: inherit;
 
   ${props => _ =>
     props.errorTitle.length > 0 && {
