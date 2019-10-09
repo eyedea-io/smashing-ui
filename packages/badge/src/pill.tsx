@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {useDefaults} from '@smashing/theme'
-import {Appearances, Props, Colors} from './types'
+import {BadgeAppearances, Props, BadgeColors} from './types'
 import {StyledPill} from './styles'
 
 const Pill: React.FC<Props> = ({children, ...props}) => {
@@ -28,8 +28,8 @@ declare module 'styled-components' {
   export interface SmashingPillDefaults
     extends Partial<{
       pill?: {
-        color: Colors
-        appearance: Appearances
+        color: BadgeColors
+        appearance: BadgeAppearances
       }
     }> {}
 }

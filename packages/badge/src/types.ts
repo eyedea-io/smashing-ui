@@ -1,19 +1,17 @@
-export type Appearances = 
-  | "subtle"
-  | "solid"
+export type BadgeAppearances = 'subtle' | 'solid'
 
-export type Colors =
-  | "neutral"
-  | "green"
-  | "blue"
-  | "red"
-  | "orange"
-  | "purple"
-  | "yellow"
-  | "teal"
-  | "white"
+export type BadgeColors =
+  | 'neutral'
+  | 'green'
+  | 'blue'
+  | 'red'
+  | 'orange'
+  | 'purple'
+  | 'yellow'
+  | 'teal'
+  | 'white'
 
 export interface Props {
-  color: Colors
-  appearance: "solid" | "subtle"
+  color: BadgeColors
+  appearance: 'solid' | 'subtle'
 }
