@@ -16,7 +16,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@smashing/spinner": "^0.1.13",
     "@smashing/theme": "^0.11.0",
     "@smashing/typography": "^0.4.26"
   },
