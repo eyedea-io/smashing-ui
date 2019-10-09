@@ -1,3 +1,7 @@
+export type Appearances = 
+  | "subtle"
+  | "solid"
+
 export type Colors =
   | "neutral"
   | "green"

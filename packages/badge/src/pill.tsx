@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {useDefaults} from '@smashing/theme'
-import {Props, Colors} from './types'
+import {Appearances, Props, Colors} from './types'
 import {StyledPill} from './styles'
 
 const Pill: React.FC<Props> = ({children, ...props}) => {
@@ -29,7 +29,7 @@ declare module 'styled-components' {
     extends Partial<{
       pill?: {
         color: Colors
-        appearance: 'solid' | 'subtle'
+        appearance: Appearances
       }
     }> {}
 }

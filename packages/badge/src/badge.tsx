@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {useDefaults} from '@smashing/theme'
-import {Props, Colors} from './types'
+import {Props, Colors, Appearances} from './types'
 import {StyledBadge} from './styles'
 
 const Badge: React.FC<Props> = ({children, ...props}) => {
@@ -29,7 +29,7 @@ declare module 'styled-components' {
     extends Partial<{
       badge?: {
         color: Colors
-        appearance: 'solid' | 'subtle'
+        appearance: Appearances
       }
     }> {}
 }
