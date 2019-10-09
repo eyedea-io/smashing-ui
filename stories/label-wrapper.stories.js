@@ -24,9 +24,10 @@ storiesOf('Core|LabelWrapper', module)
   .addDecorator(story => (
     <SmashingThemeProvider
       theme={{
-        defaults: {},
-        fontFamilies: {
-          display: 'arial'
+        colors: {
+          background: {
+            default: 'white'
+          }
         }
       }}
     >
