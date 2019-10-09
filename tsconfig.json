@@ -4,6 +4,7 @@
     {"path": "packages/alert"},
     {"path": "packages/select"},
     {"path": "packages/avatar"},
+    {"path": "packages/badge"},
     {"path": "packages/button"},
     {"path": "packages/checkbox"},
     {"path": "packages/css"},
