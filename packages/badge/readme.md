@@ -2,6 +2,8 @@
 yarn add @smashing/badge
 ```
 
+### Badge
+
 #### Default appearance
 
 ![](https://i.imgur.com/rg7O0Kv.png)
@@ -18,4 +20,26 @@ yarn add @smashing/badge
 <Badge color="Green" isSolid>
   Green
 </Badge>
+```
+
+### Pills
+
+#### Default appearance
+
+![](https://i.imgur.com/gIll110.png)
+
+```jsx
+<Pill color="red" marginLeft={8}>
+  24
+</Pill>
+```
+
+#### Solid appearance
+
+![](https://i.imgur.com/keUuIat.png)
+
+```jsx
+<Pill color="red" marginLeft={8} isSolid>
+  24
+</Pill>
 ```
