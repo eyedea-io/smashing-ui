@@ -18,8 +18,11 @@ storiesOf('Core|Calendar', module)
       {story()}
     </SmashingThemeProvider>
   ))
-  .add('appearance:default', () => (
-    <React.Fragment>
-      <Calendar value={new Date()} />
-    </React.Fragment>
-  ))
+  .add('appearance:default', () => {
+    const [date, setDate] = React.useState(new Date())
+    return (
+      <React.Fragment>
+        <Calendar value={date} onChange={setDate} />
+      </React.Fragment>
+    )
+  })

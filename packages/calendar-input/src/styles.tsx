@@ -18,19 +18,6 @@ import {TextInput} from '@smashing/text-input'
 //         .react-calendar__month-view__weekdays {
 //           color: ${colors.text.muted};
 //         }
-//         .react-calendar__tile.react-calendar__month-view__days__day.react-calendar__tile--active,
-//         .react-calendar__tile.react-calendar__month-view__days__day.react-calendar__tile--active:focus {
-//           background: ${colors.text.default};
-//           color: ${palette.neutral.lightest};
-//           outline: 0;
-//         }
-
-//         .react-calendar__tile.react-calendar__month-view__days__day.react-calendar__tile:hover:not(.react-calendar__tile--active),
-//         .react-calendar__tile.react-calendar__month-view__days__day.react-calendar__tile:focus:not(.react-calendar__tile--active) {
-//           background: ${colors.text.muted};
-//           color: ${palette.neutral.lightest};
-//           outline: 0;
-//         }
 //         ${_ =>
 //           open
 //             ? {
@@ -50,10 +37,8 @@ import {TextInput} from '@smashing/text-input'
 // ${_ => getCalendarStyle(_.appearance)}
 
 export const StyledCalendar = styled(ReactCalendar)<StyledCalendarProps>`
-  ${_ => ({
-    opacity: _.open ? 1 : 0
-  })};
-  transition: opacity 0.5s ease;
+  transition: max-height 0.5s ease, padding 0.5s linear;
+  overflow: hidden;
   position: absolute;
   right: 0;
   left: 0;
@@ -92,6 +77,27 @@ export const StyledCalendar = styled(ReactCalendar)<StyledCalendarProps>`
     padding: 0;
     line-height: 12px;
   }
+
+  ${_ => ({
+    ...(_.open
+      ? {
+          maxHeight: '500px'
+        }
+      : {
+          maxHeight: 0,
+          padding: '0 12px'
+        }),
+    '.react-calendar__tile.react-calendar__month-view__days__day.react-calendar__tile--active, .react-calendar__tile.react-calendar__month-view__days__day.react-calendar__tile--active:focus': {
+      background: _.theme.colors.text.default,
+      color: _.theme.palette.neutral.lightest,
+      outline: 0
+    },
+    '.react-calendar__tile.react-calendar__month-view__days__day.react-calendar__tile:hover:not(.react-calendar__tile--active), .react-calendar__tile.react-calendar__month-view__days__day.react-calendar__tile:focus:not(.react-calendar__tile--active)': {
+      background: _.theme.colors.text.muted,
+      color: _.theme.palette.neutral.lightest,
+      outline: 0
+    }
+  })}
 `
 
 export const StyledInput = styled(TextInput)<{open: boolean}>`
