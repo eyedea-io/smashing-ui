@@ -138,10 +138,6 @@ const colors = {
       topIsResult: '#47B881',
       restIsResult: '#EC4C47'
     }
-  },
-
-  error: {
-    red: '#FF4752'
   }
 }
 

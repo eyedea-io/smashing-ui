@@ -1,7 +1,7 @@
 {
-  "name": "@smashing/label-wrapper",
-  "version": "0.2.29",
-  "description": "Label wrapper is used to provide a label to a component of your choice",
+  "name": "@smashing/form-field",
+  "version": "0.0.0",
+  "description": "Component used for to add label, description, hint and error handling to input.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
   "main": "lib/cjs/index.js",
@@ -16,13 +16,18 @@
     "access": "public"
   },
   "dependencies": {
+    "@smashing/alert": "^0.1.30",
     "@smashing/theme": "^0.11.0",
     "@smashing/typography": "^0.4.26"
   },
   "devDependencies": {
+    "@smashing/form": "^0.6.0",
+    "mobx": "^5.14.0",
+    "mobx-react-lite": "^1.4.1",
     "react": "^16.8.6"
   },
   "peerDependencies": {
+    "@smashing/form": "^0.6.0",
     "react": "^16.8.6",
     "styled-components": "^4.2.0"
   },
