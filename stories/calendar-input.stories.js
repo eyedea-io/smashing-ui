@@ -23,3 +23,4 @@ storiesOf('Core|Calendar input', module)
     </SmashingThemeProvider>
   ))
   .add('appearance:default', () => <WrappedCalendar />)
+  .add('appearance:outline', () => <WrappedCalendar appearance="outline" />)

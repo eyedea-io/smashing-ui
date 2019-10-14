@@ -1,42 +1,40 @@
-import styled from 'styled-components'
-import {StyledCalendarInputProps} from './types'
+import styled, {DefaultTheme, css} from 'styled-components'
+import {StyledCalendarInputProps, CalendarInputAppearanceType} from './types'
 import ReactCalendar from 'react-calendar/dist/entry.nostyle'
 import {TextInput} from '@smashing/text-input'
 
-// const getCalendarStyle = (
-//   appearance?: CalendarAppearanceType,
-//   open?: boolean
-// ) => (_: {theme: DefaultTheme}) => {
-//   const {colors, palette} = _.theme
-//   switch (appearance) {
-//     case 'outline':
-//       return css`
-//         border: 1px solid ${colors.border.default};
-//         border-bottom-left-radius: 6px;
-//         border-bottom-right-radius: 6px;
-//         .react-calendar__month-view__days__day--neighboringMonth,
-//         .react-calendar__month-view__weekdays {
-//           color: ${colors.text.muted};
-//         }
-//         ${_ =>
-//           open
-//             ? {
-//                 input: {
-//                   borderBottom: `1px solid ${colors.border.muted}`,
-//                   borderBottomLeftRadius: 0,
-//                   borderBottomRightRadius: 0
-//                 }
-//               }
-//             : {}}
-//       `
-//   }
-//   return {}
-// }
-
-// TODO: uncomment when outline appearance will be added to text-input
-// ${_ => getCalendarStyle(_.appearance)}
+const getCalendarStyle = (
+  appearance?: CalendarInputAppearanceType,
+  open?: boolean
+) => (_: {theme: DefaultTheme}) => {
+  const {colors, palette} = _.theme
+  switch (appearance) {
+    case 'outline':
+      return css`
+        border: 1px solid ${colors.border.default};
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        .react-calendar__month-view__days__day--neighboringMonth,
+        .react-calendar__month-view__weekdays {
+          color: ${colors.text.muted};
+        }
+        ${_ =>
+          open
+            ? {
+                input: {
+                  borderBottom: `1px solid ${colors.border.muted}`,
+                  borderBottomLeftRadius: 0,
+                  borderBottomRightRadius: 0
+                }
+              }
+            : {}}
+      `
+  }
+  return {}
+}
 
 export const StyledCalendar = styled(ReactCalendar)<StyledCalendarInputProps>`
+  ${_ => getCalendarStyle(_.appearance)}
   /* TODO: Come up with well-calculated animations after final appearances are settled */
   transition: max-height 0.5s ease, padding-bottom 0.05s ease,
     padding-top 0.05s ease 0.45s;
