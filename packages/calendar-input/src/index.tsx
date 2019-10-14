@@ -2,11 +2,11 @@ import * as React from 'react'
 import {useState, useRef} from 'react'
 import getUserLocale from 'get-user-locale'
 import {useDefaults} from '@smashing/theme'
-import {CalendarProps, CalendarAppearanceType} from './types'
+import {CalendarInputProps, CalendarInputAppearanceType} from './types'
 import {StyledContainer, StyledInput, StyledCalendar} from './styles'
 import useOutsideClick from './useOutsideClick'
 
-const Calendar: React.FC<CalendarProps> = ({
+const CalendarInput: React.FC<CalendarInputProps> = ({
   onChange = () => {},
   value,
   ...props
@@ -18,7 +18,7 @@ const Calendar: React.FC<CalendarProps> = ({
   })
 
   const defaults = useDefaults('calendar', props, {
-    appearance: 'default' as CalendarAppearanceType
+    appearance: 'default' as CalendarInputAppearanceType
   })
 
   const getFormattedDate = () => {
@@ -69,7 +69,7 @@ const Calendar: React.FC<CalendarProps> = ({
   )
 }
 
-export {Calendar, CalendarProps}
+export {CalendarInput, CalendarInputProps}
 
 declare module 'styled-components' {
   export interface SmashingCalendarDefaults extends Partial<{}> {}
