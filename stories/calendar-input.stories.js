@@ -4,8 +4,12 @@ import {Calendar} from '@smashing/calendar-input'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
 
-addDecorator(withA11y)
+const WrappedCalendar = props => {
+  const [date, setDate] = React.useState(new Date())
+  return <Calendar value={date} onChange={setDate} {...props} />
+}
 
+addDecorator(withA11y)
 storiesOf('Core|Calendar', module)
   .addDecorator(story => (
     <SmashingThemeProvider
@@ -18,11 +22,4 @@ storiesOf('Core|Calendar', module)
       {story()}
     </SmashingThemeProvider>
   ))
-  .add('appearance:default', () => {
-    const [date, setDate] = React.useState(new Date())
-    return (
-      <React.Fragment>
-        <Calendar value={date} onChange={setDate} />
-      </React.Fragment>
-    )
-  })
+  .add('appearance:default', () => <WrappedCalendar />)
