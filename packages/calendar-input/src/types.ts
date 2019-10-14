@@ -1,15 +1,15 @@
-export type CalendarAppearanceType =
+export type CalendarInputAppearanceType =
   | 'default'
   | 'neutral'
   | 'minimal'
   | 'underline'
 // TODO add `outline` appearance
 
-export type StyledCalendarProps = CalendarProps & {
+export type StyledCalendarInputProps = CalendarInputProps & {
   open: boolean
 }
-export type CalendarProps = {
-  appearance: CalendarAppearanceType
+export type CalendarInputProps = {
+  appearance: CalendarInputAppearanceType
   onChange?: (date: Date) => void
   value?: Date
   locale?: string

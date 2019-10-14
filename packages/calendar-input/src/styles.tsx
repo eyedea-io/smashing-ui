@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {StyledCalendarProps} from './types'
+import {StyledCalendarInputProps} from './types'
 import ReactCalendar from 'react-calendar/dist/entry.nostyle'
 import {TextInput} from '@smashing/text-input'
 
@@ -33,11 +33,12 @@ import {TextInput} from '@smashing/text-input'
 //   return {}
 // }
 
-// TODO uncomment when outline appearance will be added to text-input
+// TODO: uncomment when outline appearance will be added to text-input
 // ${_ => getCalendarStyle(_.appearance)}
 
-export const StyledCalendar = styled(ReactCalendar)<StyledCalendarProps>`
-  transition: max-height 0.5s ease, padding 0.5s linear;
+export const StyledCalendar = styled(ReactCalendar)<StyledCalendarInputProps>`
+  transition: max-height 0.5s ease, padding-bottom 0.05s ease,
+    padding-top 0.05s ease 0.45s;
   overflow: hidden;
   position: absolute;
   right: 0;
@@ -81,9 +82,11 @@ export const StyledCalendar = styled(ReactCalendar)<StyledCalendarProps>`
   ${_ => ({
     ...(_.open
       ? {
-          maxHeight: '500px'
+          transition: 'max-height 0.5s ease, padding 0.05s linear',
+          maxHeight: '300px'
         }
       : {
+          pointerEvents: 'none',
           maxHeight: 0,
           padding: '0 12px'
         }),
