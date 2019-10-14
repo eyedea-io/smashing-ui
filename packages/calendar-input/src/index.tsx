@@ -5,10 +5,12 @@ import {useDefaults} from '@smashing/theme'
 import {CalendarInputProps, CalendarInputAppearanceType} from './types'
 import {StyledContainer, StyledInput, StyledCalendar} from './styles'
 import useOutsideClick from './useOutsideClick'
+import {TextInputAppearanceType} from '@smashing/text-input'
 
 const CalendarInput: React.FC<CalendarInputProps> = ({
   onChange = () => {},
   value,
+  inputAppearance,
   ...props
 }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -18,7 +20,8 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
   })
 
   const defaults = useDefaults('calendar', props, {
-    appearance: 'default' as CalendarInputAppearanceType
+    appearance: 'default' as CalendarInputAppearanceType,
+    inputAppearance: 'default' as TextInputAppearanceType
   })
 
   const getFormattedDate = () => {
@@ -48,7 +51,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
   return (
     <StyledContainer ref={node}>
       <StyledInput
-        // TODO add appearance for input
+        appearance={defaults.inputAppearance}
         open={isOpen}
         readOnly
         onFocus={() => setIsOpen(true)}
