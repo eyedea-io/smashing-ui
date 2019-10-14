@@ -14,7 +14,7 @@ import {TextInput} from '@smashing/text-input'
 const App = () => {
   const {Form} = useForm({
     initialValues: {
-      email: '
+      email: ''
     }
   })
 
