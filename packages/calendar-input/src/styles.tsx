@@ -37,6 +37,7 @@ import {TextInput} from '@smashing/text-input'
 // ${_ => getCalendarStyle(_.appearance)}
 
 export const StyledCalendar = styled(ReactCalendar)<StyledCalendarInputProps>`
+  /* TODO: Come up with well-calculated animations after final appearances are settled */
   transition: max-height 0.5s ease, padding-bottom 0.05s ease,
     padding-top 0.05s ease 0.45s;
   overflow: hidden;
