@@ -7,7 +7,7 @@ const getCalendarStyle = (
   appearance?: CalendarInputAppearanceType,
   open?: boolean
 ) => (_: {theme: DefaultTheme}) => {
-  const {colors, palette} = _.theme
+  const {colors} = _.theme
   switch (appearance) {
     case 'outline':
       return css`
