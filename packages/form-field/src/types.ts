@@ -1,4 +1,5 @@
 import {FieldProps} from '@smashing/form'
+import {LabelVariant} from '@smashing/typography'
 
 export type FormFieldLabelAppearance = 'block' | 'overlay' | 'inline'
 export type FormFieldAlertAppearance = 'block' | 'overlay'
@@ -15,6 +16,10 @@ export type FormFieldProps = FieldProps & {
    * The appearance of the label.
    */
   labelAppearance?: FormFieldLabelAppearance
+  /**
+   * Variant of the label.
+   */
+  labelVariant?: LabelVariant
   /**
    * Width of label column. Only for labelAppearance='inline
    */

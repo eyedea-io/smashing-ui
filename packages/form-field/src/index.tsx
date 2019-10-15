@@ -8,6 +8,7 @@ import {
   FormFieldLabelAppearance,
   FormFieldAlertAppearance
 } from './types'
+import {LabelVariant} from '@smashing/typography'
 
 const INVALID_CONTEXT_MESSAGE = `[@smashing/form-field] FormField can be used only in @smashing/form context:
 const {Form} = useForm({/* Your form config */})
@@ -32,11 +33,13 @@ export const FormField: React.FC<FormFieldProps> = ({
 }) => {
   const {Field, ErrorMessage} = useFormContext()
   const {
+    labelVariant,
     labelColumnWidth,
     labelAppearance,
     alertAppearance,
     ...inputProps
   } = useDefaults('formField', props, {
+    labelVariant: 400 as LabelVariant,
     labelColumnWidth: '100px',
     labelAppearance: 'block' as FormFieldLabelAppearance,
     alertAppearance: 'block' as FormFieldAlertAppearance
@@ -54,6 +57,7 @@ export const FormField: React.FC<FormFieldProps> = ({
       className={className}
     >
       <styled.Label
+        variant={labelVariant}
         appearance={labelAppearance}
         hasDescription={Boolean(description)}
         htmlFor={htmlFor || name}
@@ -100,6 +104,7 @@ declare module 'styled-components' {
   export interface SmashingFormFieldDefaults
     extends Partial<{
       formField: {
+        labelVariant: LabelVariant
         labelColumnWidth: FormFieldLabelAppearance
         labelAppearance: FormFieldLabelAppearance
         alertAppearance: FormFieldAlertAppearance

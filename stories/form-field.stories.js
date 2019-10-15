@@ -160,6 +160,47 @@ storiesOf('Core|FormField', module)
       />
     </FormWithError>
   ))
+  .add('labelVariant: 300', () => (
+    <BasicForm>
+      <FormField
+        labelVariant={300}
+        alertAppearance="overlay"
+        labelAppearance="overlay"
+        label="Email"
+        placeholder="Type your email..."
+        name="email"
+        hint="I'm a hint. You need me."
+        description="Lorem ipsum dolor sit amt"
+        component={TextInput}
+      />
+    </BasicForm>
+  ))
+  .add('labelVariant: 400', () => (
+    <BasicForm>
+      <FormField
+        labelVariant={400}
+        alertAppearance="overlay"
+        labelAppearance="overlay"
+        label="Email"
+        placeholder="Type your email..."
+        name="email"
+        hint="I'm a hint. You need me."
+        description="Lorem ipsum dolor sit amt"
+        component={TextInput}
+      />
+    </BasicForm>
+  ))
+  .add('labelVariant: 500', () => (
+    <BasicForm>
+      <FormField
+        labelVariant={500}
+        label="Email"
+        placeholder="Type your email..."
+        name="email"
+        component={TextInput}
+      />
+    </BasicForm>
+  ))
   .add('labelAppearance: inline', () => (
     <FormWithError>
       <section style={{'--label-column-width': '200px'}}>
