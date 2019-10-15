@@ -45,3 +45,18 @@ storiesOf('Core|Textarea', module)
       <Textarea placeholder="Textarea placeholder..." grammarly />
     </React.Fragment>
   ))
+  .add('variant:300', () => (
+    <React.Fragment>
+      <Textarea placeholder="Textarea placeholder..." variant={300} />
+    </React.Fragment>
+  ))
+  .add('variant:400', () => (
+    <React.Fragment>
+      <Textarea placeholder="Textarea placeholder..." variant={400} />
+    </React.Fragment>
+  ))
+  .add('variant:500', () => (
+    <React.Fragment>
+      <Textarea placeholder="Textarea placeholder..." variant={500} />
+    </React.Fragment>
+  ))

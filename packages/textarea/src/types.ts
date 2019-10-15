@@ -1,5 +1,8 @@
 import {TextInputAppearanceType} from '@smashing/text-input'
+import {TextVariant} from '@smashing/typography'
+
 export type TextareaAppearance = TextInputAppearanceType
+export type TextareaVariant = TextVariant
 
 export interface TextareaProps extends React.TextareaHTMLAttributes<{}> {
   /**
@@ -21,4 +24,9 @@ export interface TextareaProps extends React.TextareaHTMLAttributes<{}> {
    * Allow the Grammarly browser extension to attach to the backing textarea.
    */
   grammarly?: boolean
+
+  /**
+   * Control Textarea font size.
+   */
+  variant?: TextareaVariant
 }
