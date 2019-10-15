@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.build.json",
+  "compilerOptions": {
+    "outDir": "lib/esm",
+    "rootDir": "src"
+  },
+  "references": [
+    {"path": "../theme"},
+    {"path": "../typography"},
+    {"path": "../alert"}
+  ]
+}

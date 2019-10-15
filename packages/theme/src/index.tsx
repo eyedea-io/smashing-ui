@@ -86,6 +86,7 @@ declare module 'styled-components' {
   export interface SmashingTextInputDefaults {}
   export interface SmashingAlertDefaults {}
   export interface SmashingSelectDefaults {}
+  export interface SmashingFormFieldDefaults {}
   export interface SmashingAvatarDefaults {}
   export interface SmashingSpinnerDefaults {}
   export interface SmashingBarChartDefaults {}
@@ -95,7 +96,7 @@ declare module 'styled-components' {
   export interface SmashingSpiderChartDefaults {}
   export interface SmashingRadialProgressDefaults {}
   export interface SmashingSideSheetDefaults {}
-  export interface SmashingSelecMenuDefaults {}
+  export interface SmashingSelectMenuDefaults {}
   export interface SmashingDefaults
     extends SmashingButtonDefaults,
       SmashingCheckboxDefaults,
@@ -106,11 +107,12 @@ declare module 'styled-components' {
       SmashingPieChartDefaults,
       SmashingSpiderChartDefaults,
       SmashingRadialProgressDefaults,
+      SmashingFormFieldDefaults,
       SmashingProgressBarChartDefaults,
       SmashingSideSheetDefaults,
       SmashingSpinnerDefaults,
       SmashingSelectDefaults,
-      SmashingSelecMenuDefaults,
+      SmashingSelectMenuDefaults,
       SmashingAvatarDefaults {}
   export interface DefaultTheme {
     radius: string
