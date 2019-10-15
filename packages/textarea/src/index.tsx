@@ -1,51 +1,35 @@
 import * as React from 'react'
-import {useDefaults} from '@smashing/theme'
-import {Text} from '@smashing/typography'
-import {TextAreaProps} from './types'
-import styled from 'styled-components/macro'
+import {useDefaults, useTheme} from '@smashing/theme'
+import {TextareaProps, TextareaAppearance} from './types'
+import * as S from './styled'
 
-const StyledTextArea = styled(Text)<TextAreaProps>`
-  border-radius: 3px;
-  padding: 5px;
-  width: ${_ => _.width};
-`
-
-const Textarea: React.FC<TextAreaProps> = ({children, ...props}) => {
-  const {color, appearance, ...defaults} = useDefaults<TextAreaProps>(
-    'textarea',
-    props,
-    {
-      disabled: false,
-      isInvalid: false,
-      required: false
-    }
-  )
+const Textarea: React.FC<TextareaProps> = ({color, ...props}) => {
+  const theme = useTheme()
+  const defaults = useDefaults('textarea', props, {
+    appearance: 'default' as TextareaAppearance,
+    borderRadius: theme.radius,
+    grammarly: false
+  })
 
   return (
-    <StyledTextArea
+    <S.Textarea
       as="textarea"
-      className={defaults.className}
-      variant={400}
-      width={defaults.width}
-      height={defaults.height}
-      required={defaults.required}
-      disabled={defaults.disabled}
-      placeholder={defaults.placeholder}
-      aria-invalid={defaults.isInvalid}
-      styles={defaults.styles}
-      {...(defaults.disabled ? {color: 'muted'} : {})}
+      borderRadius={defaults.borderRadius}
+      appearance={defaults.appearance}
+      color={props.disabled ? 'muted' : undefined}
+      aria-invalid={props.invalid}
+      data-gramm_editor={defaults.grammarly}
       {...props}
-    >
-      {children}
-    </StyledTextArea>
+    />
   )
 }
 
-export {Textarea, TextAreaProps}
+export {Textarea, TextareaProps}
+export const TextareaComponents = S
 
 declare module 'styled-components' {
   export interface SmashingTextareaDefaults
     extends Partial<{
-      textarea?: TextAreaProps
+      textarea: Pick<TextareaProps, 'appearance' | 'grammarly'>
     }> {}
 }

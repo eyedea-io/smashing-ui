@@ -7,5 +7,5 @@ yarn add @smashing/textarea
 ![](https://i.imgur.com/rg7O0Kv.png)
 
 ```jsx
-<Textarea name="textarea-1" placeholder="Textarea placeholder..." />
+<Textarea name="comment" placeholder="Textarea placeholder..." />
 ```

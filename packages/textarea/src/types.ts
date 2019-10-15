@@ -1,56 +1,24 @@
-import {TextProps} from '@smashing/typography'
+import {TextInputAppearanceType} from '@smashing/text-input'
+export type TextareaAppearance = TextInputAppearanceType
 
-export interface TextAreaProps extends TextProps {
+export interface TextareaProps extends React.TextareaHTMLAttributes<{}> {
   /**
-   * Makes the textarea element required.
+   * The appearance of the Textarea.
    */
-  required?: boolean
-
-  /**
-   * Makes the textarea element disabled.
-   */
-  disabled?: boolean
+  appearance?: TextareaAppearance
 
   /**
-   * Sets visual styling of _only_ the text area to be "invalid".
-   * Note that this does not effect any `validationMessage`.
+   * Border radius of Textarea.
    */
-  isInvalid?: boolean
+  borderRadius?: string | number
 
   /**
-   * Use the native spell check functionality of the browser.
+   * Sets visual styling of the text area to be "invalid".
    */
-  spellCheck?: boolean
+  invalid?: boolean
 
   /**
-   * The placeholder text when there is no value present.
+   * Allow the Grammarly browser extension to attach to the backing textarea.
    */
-  placeholder?: string
-
-  /**
-   * The appearance of the TextInput.
-   */
-  appearance?: string
-
-  /**
-   * The width of the TextInput.
-   */
-  width?: string | number
-
-  /**
-   * The height of the TextInput.
-   */
-  height?: string | number
-
-  /**
-   * Class name passed to the button.
-   * Only use if you know what you are doing.
-   */
-  className?: string
-
-  /**
-   * Component styles
-   * Only use if you know what you are doing.
-   */
-  styles?: React.CSSProperties
+  grammarly?: boolean
 }

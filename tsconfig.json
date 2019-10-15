@@ -20,6 +20,7 @@
     {"path": "packages/spinner"},
     {"path": "packages/stack"},
     {"path": "packages/tabs"},
+    {"path": "packages/textarea"},
     {"path": "packages/text-input"},
     {"path": "packages/theme"},
     {"path": "packages/title"},

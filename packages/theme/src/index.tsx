@@ -61,7 +61,10 @@ export const SmashingThemeModifier = ({
   )
 }
 
+const useTheme = () => React.useContext(ThemeContext)
+
 export {
+  useTheme,
   themedProperty,
   useDefaults,
   getTextSizeForControlHeight,
