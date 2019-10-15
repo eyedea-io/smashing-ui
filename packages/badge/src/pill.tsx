@@ -1,18 +1,18 @@
-import * as React from "react"
-import {useDefaults} from "@smashing/theme"
-import {Props, Colors} from "./types"
-import {StyledPill} from "./styles"
+import * as React from 'react'
+import {useDefaults} from '@smashing/theme'
+import {Props, Colors} from './types'
+import {StyledPill} from './styles'
 
 const Pill: React.FC<Props> = ({children, ...props}) => {
-  const {color, appearance, ...defaults} = useDefaults<Props>("badge", props, {
-    color: "neutral",
-    appearance: "subtle"
+  const {color, appearance, ...defaults} = useDefaults<Props>('badge', props, {
+    color: 'neutral',
+    appearance: 'subtle'
   })
 
   return (
     <StyledPill
       variant={300}
-      color={appearance === "subtle" ? color : "white"}
+      color={appearance === 'subtle' ? color : 'white'}
       backgroundColor={color}
       appearance={appearance}
       style={{...defaults}}
@@ -24,12 +24,12 @@ const Pill: React.FC<Props> = ({children, ...props}) => {
 
 export {Pill, Props}
 
-declare module "styled-components" {
+declare module 'styled-components' {
   export interface SmashingPillDefaults
     extends Partial<{
       pill?: {
         color: Colors
-        appearance: "solid" | "subtle"
+        appearance: 'solid' | 'subtle'
       }
     }> {}
 }

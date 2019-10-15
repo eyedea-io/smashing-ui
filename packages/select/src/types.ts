@@ -6,7 +6,8 @@ export type Option = {
 }
 
 export interface SelectProps extends ButtonLikeProps {
-  options: Option[]
-  value: string
+  options?: Option[]
+  value?: string
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
+  defaultValue?: string
 }

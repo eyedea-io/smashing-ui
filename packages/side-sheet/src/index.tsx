@@ -54,7 +54,7 @@ const S = {
     ${_ => ({
       width: ['left', 'right'] ? `${_.width}px` : undefined,
       ..._.theme.elevation.dialog,
-      ...getContentSize(_.position),
+      ...getContentSize(_.position)
     })}
     overflow: auto;
   `,

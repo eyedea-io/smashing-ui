@@ -66,8 +66,10 @@ export const S = {
       content: '\u25BC';
     }
   `,
-  SelectButtonComponent: styled(ButtonAs<HTMLSelectElement>('select'))`
+  SelectButtonComponent: styled<React.FC<SelectProps>>(
+    ButtonAs<HTMLSelectElement>('select')
+  )`
     -webkit-appearance: button;
-    padding-right: ${_ => Math.round(_.height)}px;
+    padding-right: ${_ => Math.round(_.height || 0)}px;
   `
 }
