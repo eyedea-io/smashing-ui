@@ -2,23 +2,13 @@ import * as React from 'react'
 import * as styled from './styles'
 import {useDefaults} from '@smashing/theme'
 import {useFormContext} from '@smashing/form'
+import {LabelVariant} from '@smashing/typography'
 import '@smashing/theme'
 import {
   FormFieldProps,
   FormFieldLabelAppearance,
   FormFieldAlertAppearance
 } from './types'
-import {LabelVariant} from '@smashing/typography'
-
-const INVALID_CONTEXT_MESSAGE = `[@smashing/form-field] FormField can be used only in @smashing/form context:
-const {Form} = useForm({/* Your form config */})
-
-return (
-  <Form>
-    <FormField component={Input} name="email" />
-  </Form>
-)
-`
 
 export const FormField: React.FC<FormFieldProps> = ({
   component,
@@ -44,11 +34,8 @@ export const FormField: React.FC<FormFieldProps> = ({
     labelAppearance: 'block' as FormFieldLabelAppearance,
     alertAppearance: 'block' as FormFieldAlertAppearance
   })
-
-  if (!ErrorMessage || !Field) {
-    console.error(INVALID_CONTEXT_MESSAGE)
-    return null
-  }
+  const ErrorComponent = ErrorMessage || styled.ErrorWrapper
+  const FieldComponent = Field || component || styled.DefaultInput
 
   return (
     <styled.FormField
@@ -72,13 +59,13 @@ export const FormField: React.FC<FormFieldProps> = ({
           {description && typeof description !== 'string' && description}
         </React.Fragment>
       )}
-      <Field
+      <FieldComponent
         name={name}
         component={component}
         id={id || name}
         {...inputProps}
       />
-      <ErrorMessage
+      <ErrorComponent
         name={name}
         component={({children}) => (
           <styled.Alert

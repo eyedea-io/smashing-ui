@@ -66,6 +66,9 @@ interface FormFieldProps {
   labelAppearance: FormFieldLabelAppearance
 }
 
+export const ErrorWrapper = styled.div``
+export const DefaultInput = styled.input``
+
 export const FormField = styled.div<FormFieldProps>`
   position: relative;
   display: grid;

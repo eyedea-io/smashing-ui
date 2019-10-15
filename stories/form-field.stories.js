@@ -255,3 +255,13 @@ storiesOf('Core|FormField', module)
       </section>
     </FormWithError>
   ))
+  .add('uncontrolled', () => (
+    <div style={{padding: 16}}>
+      <FormField
+        placeholder="Type your email..."
+        component={TextInput}
+        label="Email"
+        name="email"
+      />
+    </div>
+  ))
