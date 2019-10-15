@@ -2,7 +2,7 @@ import * as React from 'react'
 import {useDefaults} from '@smashing/theme'
 import {SelectProps} from './types'
 import {S} from './styles'
-import styled from 'styled-components/macro'
+import styled from 'styled-components'
 import {ButtonAppearanceType, ButtonIntentType} from '@smashing/button'
 
 const SelectFC: React.FC<SelectProps> = ({children, ...props}) => {
@@ -15,6 +15,8 @@ const SelectFC: React.FC<SelectProps> = ({children, ...props}) => {
 
   const {onChange, ...propsSansChange} = props
 
+  const options = defaults.options || []
+
   return (
     <S.SelectWrapper {...propsSansChange}>
       <S.SelectButtonComponent
@@ -26,7 +28,7 @@ const SelectFC: React.FC<SelectProps> = ({children, ...props}) => {
         full={props.full}
         disabled={props.disabled}
       >
-        {defaults.options.map(o => (
+        {options.map(o => (
           <option key={o.value} value={o.value}>
             {o.label}
           </option>

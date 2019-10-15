@@ -28,6 +28,7 @@ You can read more about [smashing theme provider](https://github.com/eyedea-io/s
 - **[Avatar](https://github.com/eyedea-io/smashing-ui/tree/master/packages/avatar)** - Component used to represent users.
 - **[Button](https://github.com/eyedea-io/smashing-ui/tree/master/packages/button)** - Common button component
 - **[Dialog](https://github.com/eyedea-io/smashing-ui/tree/master/packages/dialog)** - Component is used to show content on top of an overlay.
+- **[FormField](https://github.com/eyedea-io/smashing-ui/tree/master/packages/form-field)** - Component used for to add label, description, hint and error handling to input.
 - **[Menu](https://github.com/eyedea-io/smashing-ui/tree/master/packages/menu)** - Multiple components that help create menus.
 - **[Popover](https://github.com/eyedea-io/smashing-ui/tree/master/packages/popover)** - Component displays floating content in relation to a target.
 - **[Select](https://github.com/eyedea-io/smashing-ui/tree/master/packages/select)** - Simple select component being an overlay to a default system one.
@@ -47,3 +48,9 @@ You can read more about [smashing theme provider](https://github.com/eyedea-io/s
 - **[Head](https://github.com/eyedea-io/smashing-ui/tree/master/packages/head)** - Manage page `<head>` tag content.
 - **[Title](https://github.com/eyedea-io/smashing-ui/tree/master/packages/title)** - Manage page `<title>` tag content.
 - **[css](https://github.com/eyedea-io/smashing-ui/tree/master/packages/css)** - Global css styles - normalize.css and reset.
+
+## Development
+
+1. Install packages `yarn`
+2. Run `yarn build`
+3. Run `yarn watch` for hot reload and open a new terminal window in the same folder and run `yarn storybook`

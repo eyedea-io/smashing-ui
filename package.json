@@ -4,7 +4,6 @@
     "packages/*"
   ],
   "scripts": {
-    "prerelease": "yarn build",
     "precanary": "yarn build",
     "prebuild": "rm -rf ./packages/*/lib",
     "build": "yarn build:esm && yarn build:cjs && yarn module:esm",

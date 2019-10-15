@@ -16,6 +16,7 @@ storiesOf('Core|Popover', module)
   .add('appearance:default', () => (
     <Popover
       position="right"
+      minWidth={120}
       content={
         <div>
           <Text>PopoverContent</Text>
