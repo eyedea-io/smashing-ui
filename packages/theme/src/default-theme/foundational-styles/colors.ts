@@ -137,6 +137,15 @@ const colors = {
       topIsResult: '#47B881',
       restIsResult: '#EC4C47'
     }
+  },
+
+  input: {
+    boxShadow: {
+      default: `inset 0 0 0 1px ${scales.neutral.N5A}, inset 0 1px 2px ${scales.neutral.N4A}`,
+      active: `inset 0 0 2px ${scales.neutral.N4A}, inset 0 0 0 1px ${scales.blue.B7}, 0 0 0 3px ${scales.blue.B4A}`,
+      invalid: `inset 0 0 0 1px ${palette.red.base}, inset 0 1px 2px ${scales.neutral.N4A}`,
+      disabled: `inset 0 0 0 1px ${scales.neutral.N4A}`
+    }
   }
 }
 
