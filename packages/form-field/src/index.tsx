@@ -31,14 +31,16 @@ export const FormField: React.FC<FormFieldProps> = ({
   ...props
 }) => {
   const {Field, ErrorMessage} = useFormContext()
-  const {labelAppearance, alertAppearance, ...inputProps} = useDefaults(
-    'formField',
-    props,
-    {
-      labelAppearance: 'block' as FormFieldLabelAppearance,
-      alertAppearance: 'block' as FormFieldAlertAppearance
-    }
-  )
+  const {
+    labelColumnWidth,
+    labelAppearance,
+    alertAppearance,
+    ...inputProps
+  } = useDefaults('formField', props, {
+    labelColumnWidth: '100px',
+    labelAppearance: 'block' as FormFieldLabelAppearance,
+    alertAppearance: 'block' as FormFieldAlertAppearance
+  })
 
   if (!ErrorMessage || !Field) {
     console.error(INVALID_CONTEXT_MESSAGE)
@@ -46,7 +48,11 @@ export const FormField: React.FC<FormFieldProps> = ({
   }
 
   return (
-    <styled.FormField labelAppearance={labelAppearance} className={className}>
+    <styled.FormField
+      labelAppearance={labelAppearance}
+      labelColumnWidth={labelColumnWidth}
+      className={className}
+    >
       <styled.Label
         appearance={labelAppearance}
         hasDescription={Boolean(description)}
@@ -94,6 +100,7 @@ declare module 'styled-components' {
   export interface SmashingFormFieldDefaults
     extends Partial<{
       formField: {
+        labelColumnWidth: FormFieldLabelAppearance
         labelAppearance: FormFieldLabelAppearance
         alertAppearance: FormFieldAlertAppearance
       }

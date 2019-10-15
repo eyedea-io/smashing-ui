@@ -86,3 +86,18 @@ const App = () => {
   />
 </Form>
 ```
+
+#### Inline label
+
+```tsx
+<Form>
+  <section style={{'--label-column-width': 200}}>
+    <FormField name="firstName" labelAppearance="inline" label="firstName" />
+    <FormField name="lastName" labelAppearance="inline" label="lastName" />
+  </section>
+  <section style={{'--label-column-width': 150}}>
+    <FormField name="firstName" labelAppearance="inline" label="firstName" />
+    <FormField name="lastName" labelAppearance="inline" label="lastName" />
+  </section>
+</Form>
+```

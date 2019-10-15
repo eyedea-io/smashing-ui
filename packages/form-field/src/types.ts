@@ -12,13 +12,17 @@ export type FormFieldProps = FieldProps & {
    */
   labelFor?: string
   /**
-   * The appearance of the alert.
-   */
-  alertAppearance?: FormFieldAlertAppearance
-  /**
    * The appearance of the label.
    */
   labelAppearance?: FormFieldLabelAppearance
+  /**
+   * Width of label column. Only for labelAppearance='inline
+   */
+  labelColumnWidth?: string
+  /**
+   * The appearance of the alert.
+   */
+  alertAppearance?: FormFieldAlertAppearance
   /**
    * An optional description of the field under the label, above the input element.
    * Doesn't work with labelAppearance='overlay'

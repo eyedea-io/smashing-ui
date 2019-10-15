@@ -23,13 +23,11 @@ export const Label = styled(PureLabel)<LabelProps>`
       margin-bottom: ${_.hasDescription ? 0 : _.theme.spacing.xxxs};
     `}
 
-  ${_ => _.appearance === 'inline' && css``}
-
   ${_ =>
     _.appearance === 'overlay' &&
     css`
       position: absolute;
-      top: -14px;
+      transform: translateY(-50%);
       left: ${_ => _.theme.spacing.xxs};
       background-color: ${_ => _.theme.colors.background.default};
       background: ${_ => _.theme.colors.background.default};
@@ -52,9 +50,8 @@ export const Alert = styled(PureAlert)<AlertProps>`
       margin-bottom: -18px;
       top: -18px;
       margin-left: ${_ => _.theme.spacing.xxs};
-      background-color: ${_ => _.theme.colors.background.default};
       background: ${_ => _.theme.colors.background.default};
-      padding: 0 5px;
+      padding: 0 4px;
       z-index: 1;
       justify-self: flex-start;
     `}
@@ -65,16 +62,25 @@ export const Alert = styled(PureAlert)<AlertProps>`
 `
 
 interface FormFieldProps {
+  labelColumnWidth: string
   labelAppearance: FormFieldLabelAppearance
 }
 
 export const FormField = styled.div<FormFieldProps>`
   position: relative;
   display: grid;
+
   ${_ =>
     _.labelAppearance === 'inline' &&
     css`
-      grid-template-columns: 100px 1fr;
+      grid-template-columns:
+        var(
+          --label-column-width,
+          ${`${_.labelColumnWidth}${
+            typeof _.labelColumnWidth === 'number' ? 'px' : ''
+          }`}
+        )
+        1fr;
 
       ${Label} {
         grid-row-start: 1;

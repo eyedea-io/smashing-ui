@@ -162,15 +162,55 @@ storiesOf('Core|FormField', module)
   ))
   .add('labelAppearance: inline', () => (
     <FormWithError>
-      <FormField
-        alertAppearance="overlay"
-        labelAppearance="inline"
-        label="Email or username"
-        placeholder="Type your email..."
-        name="email"
-        hint="I'm a hint. You need me."
-        description="Lorem ipsum dolor sit amt"
-        component={TextInput}
+      <section style={{'--label-column-width': '200px'}}>
+        <FormField
+          alertAppearance="overlay"
+          labelAppearance="inline"
+          label="Email or username"
+          placeholder="Type your email..."
+          name="email"
+          hint="I'm a hint. You need me."
+          description="Lorem ipsum dolor sit amt"
+          component={TextInput}
+        />
+        <FormField
+          alertAppearance="overlay"
+          labelAppearance="inline"
+          label="First name"
+          placeholder="Type your fist name..."
+          name="firstName"
+          description="Lorem ipsum dolor sit amt"
+          component={TextInput}
+        />
+      </section>
+      <hr
+        style={{
+          border: 'none',
+          borderTop: '1px solid #e5e5e5',
+          margin: '16px 0'
+        }}
       />
+      <section style={{'--label-column-width': '150px'}}>
+        <FormField
+          alertAppearance="overlay"
+          labelAppearance="inline"
+          label="Email or username"
+          placeholder="Type your email..."
+          name="email"
+          hint="I'm a hint. You need me."
+          description="Lorem ipsum dolor sit amt"
+          component={TextInput}
+        />
+        <FormField
+          alertAppearance="overlay"
+          labelAppearance="inline"
+          label="First name"
+          labelColumnWidth={300}
+          placeholder="Type your fist name..."
+          name="firstName"
+          description="Lorem ipsum dolor sit amt"
+          component={TextInput}
+        />
+      </section>
     </FormWithError>
   ))
