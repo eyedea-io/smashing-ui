@@ -29,7 +29,7 @@ export interface PopoverProps {
   /**
    * The content of the Popover.
    */
-  content: React.ReactNode
+  content: React.ReactNode | ((props: {close: () => void}) => React.ReactNode)
 
   /**
    * The target button of the Popover.
@@ -37,7 +37,7 @@ export interface PopoverProps {
    * ({ toggle: Function -> Void, getRef: Function -> Ref, isShown: Bool })
    */
   children:
-    | React.ReactElement
+    | React.ReactNode
     | ((props: {
         toggle: () => void
         getRef: (ref: any) => void
@@ -93,6 +93,21 @@ export interface PopoverProps {
    * When true, bring focus inside of the Popover on open.
    */
   bringFocusInside?: boolean
+
+  /**
+   * The minimum distance from the target to the element being positioned.
+   */
+  targetOffset?: number
+
+  /**
+   * Custom styles
+   */
+  style?: React.CSSProperties
+
+  /**
+   * Function that will be called when the enter transition is started.
+   */
+  onOpenStarted?: () => void
 }
 
 const Target = (props: {
@@ -167,11 +182,12 @@ const Target = (props: {
 }
 
 const S = {
-  Popup: styled.div`
+  Popup: styled.div<PopoverProps>`
     ${_ => _.theme.elevation.dropdown};
     border-radius: ${_ => _.theme.radius};
     overflow: hidden;
-    min-width: 200px;
+    min-width: ${_ => _.minWidth}px;
+    min-height: ${_ => _.minHeight}px;
   `
 }
 
@@ -184,6 +200,9 @@ export const Popover: React.FC<PopoverProps> = ({
   onClose = () => {},
   onOpenComplete = () => {},
   onCloseComplete = () => {},
+  onOpenStarted = () => {},
+  targetOffset = 6,
+  style: componentStyle,
   bringFocusInside = false,
   ...props
 }) => {
@@ -230,10 +249,10 @@ export const Popover: React.FC<PopoverProps> = ({
   )
   React.useEffect(() => {
     if (isShown) {
-      document.body.addEventListener('click', onBodyClick, false)
+      document.body.addEventListener('mousedown', onBodyClick, false)
       document.body.addEventListener('keydown', onEsc, false)
     } else {
-      document.body.removeEventListener('click', onBodyClick, false)
+      document.body.removeEventListener('mousedown', onBodyClick, false)
       document.body.removeEventListener('keydown', onEsc, false)
     }
   }, [isShown, onBodyClick, onEsc])
@@ -245,7 +264,7 @@ export const Popover: React.FC<PopoverProps> = ({
 
   React.useEffect(() => {
     return () => {
-      document.body.removeEventListener('click', onBodyClick, false)
+      document.body.removeEventListener('mousedown', onBodyClick, false)
       document.body.removeEventListener('keydown', onEsc, false)
     }
   }, [onBodyClick, onEsc])
@@ -267,11 +286,13 @@ export const Popover: React.FC<PopoverProps> = ({
           {props.children}
         </Target>
       )}
+      targetOffset={targetOffset}
       isShown={shown}
       position={position}
       animationDuration={animationDuration}
       onOpenComplete={handleOpenComplete}
       onCloseComplete={onCloseComplete}
+      onOpenStarted={onOpenStarted}
     >
       {({style, state, getRef}) => (
         <S.Popup
@@ -279,8 +300,10 @@ export const Popover: React.FC<PopoverProps> = ({
             getRef(ref)
             popoverNode.current = ref
           }}
+          minHeight={minHeight}
+          minWidth={minWidth}
           data-state={state}
-          style={style}
+          style={{...style, ...componentStyle}}
           {...props.statelessProps}
         >
           {typeof props.content === 'function'

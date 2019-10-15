@@ -62,7 +62,14 @@ const Icon = styled.div`
   }
 `
 
-const Alert: React.FC<AlertProps> = ({children, title, ...props}) => {
+const Description = styled(Text)``
+
+const Alert: React.FC<AlertProps> = ({
+  children,
+  title,
+  className,
+  ...props
+}) => {
   const defaults = useDefaults('alert', props, {
     hasTrim: true,
     hasIcon: true,
@@ -76,23 +83,30 @@ const Alert: React.FC<AlertProps> = ({children, title, ...props}) => {
       appearance={defaults.appearance}
       intent={defaults.intent}
       hasTrim={defaults.hasTrim}
+      className={className}
     >
       {defaults.hasIcon && (
         <Icon>{getAlertIconForIntent(defaults.intent)({theme})}</Icon>
       )}
       <div>
         {typeof title === 'string' ? (
-          <Title as="h4" color={'dark'}>
+          <Title as="h4" color="intense">
             {title}
           </Title>
         ) : (
           title
         )}
-        {typeof children === 'string' ? <Text>{children}</Text> : children}
+        {typeof children === 'string' ? (
+          <Description>{children}</Description>
+        ) : (
+          children
+        )}
       </div>
     </Box>
   )
 }
+
+export const StyledAlert = {Box, Title, Icon, Description}
 
 export {Alert, AlertProps, AlertAppearanceType}
 

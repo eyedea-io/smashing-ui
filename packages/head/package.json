@@ -1,6 +1,6 @@
 {
   "name": "@smashing/head",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Manage page head",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -8,8 +8,8 @@
   "types": "lib/esm/index.d.ts",
   "module": "lib/esm/index.js",
   "files": [
-    "src",
-    "lib"
+    "lib/esm",
+    "lib/cjs"
   ],
   "author": "Eyedea AS",
   "publishConfig": {

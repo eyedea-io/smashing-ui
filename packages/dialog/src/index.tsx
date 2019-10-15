@@ -53,12 +53,12 @@ const S = {
     display: flex;
     flex-direction: column;
 
-    &[data-state="entering"],
-    &[data-state="entered"] {
+    &[data-state='entering'],
+    &[data-state='entered'] {
       animation: ${openAnimation} ${ANIMATION_DURATION}ms
         ${animationEasing.deceleration} both;
     }
-    &[data-state="exiting"] {
+    &[data-state='exiting'] {
       animation: ${closeAnimation} ${ANIMATION_DURATION}ms
         ${animationEasing.acceleration} both;
     }

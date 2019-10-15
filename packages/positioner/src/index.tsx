@@ -119,6 +119,11 @@ interface PositionerProps {
    * Function that will be called when the enter transition is complete.
    */
   onOpenComplete: () => void
+
+  /**
+   * Function that will be called when the enter transition is started.
+   */
+  onOpenStarted: () => void
 }
 
 export interface PositionerState {
@@ -140,7 +145,8 @@ export class Positioner extends React.PureComponent<
     animationDuration: 160,
     innerRef: () => {},
     onOpenComplete: () => {},
-    onCloseComplete: () => {}
+    onCloseComplete: () => {},
+    onOpenStarted: () => {}
   }
   state = initialState()
   latestAnimationFrame?: number
@@ -265,7 +271,10 @@ export class Positioner extends React.PureComponent<
               mountOnEnter
               timeout={animationDuration}
               onEnter={this.handleEnter}
-              onEntered={this.props.onOpenComplete}
+              onEntering={() => this.props.onOpenStarted()}
+              onEntered={() => {
+                this.props.onOpenComplete()
+              }}
               onExit={this.handleExit}
               onExited={this.handleExited}
               unmountOnExit
