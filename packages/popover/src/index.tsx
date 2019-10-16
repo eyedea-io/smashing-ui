@@ -113,6 +113,11 @@ export interface PopoverProps {
   overlay?: boolean
 
   /**
+   * When true and overlay is enabled, Popover's target element will be above overlay
+   */
+  elevate?: boolean
+
+  /**
    * Function that will be called when the enter transition is started.
    */
   onOpenStarted?: () => void
@@ -224,6 +229,7 @@ export const Popover: React.FC<PopoverProps> = ({
   style: componentStyle,
   bringFocusInside = false,
   overlay = false,
+  elevate = false,
   ...props
 }) => {
   const [isShown, setIsShown] = React.useState(false)
@@ -291,7 +297,9 @@ export const Popover: React.FC<PopoverProps> = ({
       document.body.addEventListener('mousedown', onBodyClick, false)
       document.body.addEventListener('keydown', onEsc, false)
 
-      elevateTarget()
+      if (elevate) {
+        elevateTarget()
+      }
     } else {
       document.body.removeEventListener('mousedown', onBodyClick, false)
       document.body.removeEventListener('keydown', onEsc, false)

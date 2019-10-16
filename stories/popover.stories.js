@@ -27,21 +27,44 @@ storiesOf('Core|Popover', module)
     </Popover>
   ))
   .add('With the overlay background', () => (
-    <Popover
-      position="bottom"
-      minWidth={120}
-      overlay
-      content={
-        <div>
-          <Heading>Title</Heading>
-          <Text>PopoverContent lorem ipsum lorem ipsum</Text>
-        </div>
-      }
-    >
-      <Button appearance="primary" intent="success">
-        Trigger Popover
-      </Button>
-    </Popover>
+    <>
+      <p>
+        <Popover
+          position="bottom"
+          minWidth={120}
+          overlay
+          elevate
+          content={
+            <div>
+              <Heading>Title</Heading>
+              <Text>PopoverContent lorem ipsum lorem ipsum</Text>
+            </div>
+          }
+        >
+          <Button appearance="primary" intent="success">
+            Trigger Popover (elevate button)
+          </Button>
+        </Popover>
+      </p>
+
+      <p>
+        <Popover
+          position="bottom"
+          minWidth={120}
+          overlay
+          content={
+            <div>
+              <Heading>Title</Heading>
+              <Text>PopoverContent lorem ipsum lorem ipsum</Text>
+            </div>
+          }
+        >
+          <Button appearance="primary" intent="success">
+            Trigger Popover (do not elevate button)
+          </Button>
+        </Popover>
+      </p>
+    </>
   ))
   .add('avatar trigger', () => (
     <Popover
