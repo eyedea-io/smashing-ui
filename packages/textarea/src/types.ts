@@ -29,4 +29,11 @@ export interface TextareaProps extends React.TextareaHTMLAttributes<{}> {
    * Control Textarea font size.
    */
   variant?: TextareaVariant
+
+  /**
+   * Make textarea full width.
+   */
+  full?: boolean
+
+  width?: number | string
 }

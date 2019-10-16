@@ -11,6 +11,7 @@ const TextInput = React.forwardRef<any, TextInputProps>(
   ({children, ...props}, ref: any) => {
     const defaults = useDefaults('textInput', props, {
       height: 32,
+      full: false,
       appearance: 'default' as TextInputAppearanceType
     })
 
@@ -35,9 +36,6 @@ export {getTextInputStyle} from './styles'
 declare module 'styled-components' {
   export interface SmashingTextInputDefaults
     extends Partial<{
-      textInput?: {
-        height?: number
-        appearance?: TextInputAppearanceType
-      }
+      textInput: Pick<TextInputProps, 'height' | 'appearance' | 'full'>
     }> {}
 }

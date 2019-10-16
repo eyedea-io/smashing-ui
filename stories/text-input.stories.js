@@ -10,7 +10,9 @@ storiesOf('Core|TextInput', module)
   .addDecorator(story => (
     <SmashingThemeProvider
       theme={{
-        defaults: {},
+        defaults: {
+          textInput: {}
+        },
         fontFamilies: {
           display: 'arial'
         }
@@ -136,6 +138,13 @@ storiesOf('Core|TextInput', module)
     <React.Fragment>
       <div>
         <TextInput placeholder="Your name" invalid appearance="underline" />
+      </div>
+    </React.Fragment>
+  ))
+  .add('full', () => (
+    <React.Fragment>
+      <div>
+        <TextInput placeholder="Your name" full />
       </div>
     </React.Fragment>
   ))

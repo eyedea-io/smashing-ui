@@ -9,11 +9,13 @@ const Textarea: React.FC<TextareaProps> = ({color, ...props}) => {
     appearance: 'default' as TextareaAppearance,
     borderRadius: theme.radius,
     grammarly: false,
-    variant: 300 as TextareaVariant
+    variant: 300 as TextareaVariant,
+    full: false
   })
 
   return (
     <S.Textarea
+      {...props}
       as="textarea"
       borderRadius={defaults.borderRadius}
       appearance={defaults.appearance}
@@ -21,7 +23,7 @@ const Textarea: React.FC<TextareaProps> = ({color, ...props}) => {
       color={props.disabled ? 'muted' : undefined}
       aria-invalid={props.invalid}
       data-gramm_editor={defaults.grammarly}
-      {...props}
+      full={defaults.full}
     />
   )
 }
@@ -32,6 +34,9 @@ export const TextareaComponents = S
 declare module 'styled-components' {
   export interface SmashingTextareaDefaults
     extends Partial<{
-      textarea: Pick<TextareaProps, 'appearance' | 'grammarly' | 'variant'>
+      textarea: Pick<
+        TextareaProps,
+        'appearance' | 'grammarly' | 'variant' | 'full'
+      >
     }> {}
 }

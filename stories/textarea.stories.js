@@ -8,7 +8,13 @@ addDecorator(withA11y)
 
 storiesOf('Core|Textarea', module)
   .addDecorator(story => (
-    <SmashingThemeProvider theme={{}}>{story()}</SmashingThemeProvider>
+    <SmashingThemeProvider
+      theme={{
+        defaults: {}
+      }}
+    >
+      {story()}
+    </SmashingThemeProvider>
   ))
   .add('appearance:default', () => (
     <React.Fragment>
@@ -58,5 +64,10 @@ storiesOf('Core|Textarea', module)
   .add('variant:500', () => (
     <React.Fragment>
       <Textarea placeholder="Textarea placeholder..." variant={500} />
+    </React.Fragment>
+  ))
+  .add('full', () => (
+    <React.Fragment>
+      <Textarea placeholder="Textarea placeholder..." full />
     </React.Fragment>
   ))

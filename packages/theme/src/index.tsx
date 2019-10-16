@@ -63,12 +63,16 @@ export const SmashingThemeModifier = ({
 
 const useTheme = () => React.useContext(ThemeContext)
 
+const getValueWithUnit = (value: string | number) =>
+  typeof value === 'number' ? `${value}px` : value
+
 export {
   useTheme,
   themedProperty,
   useDefaults,
   getTextSizeForControlHeight,
-  getBorderRadiusForControlHeight
+  getBorderRadiusForControlHeight,
+  getValueWithUnit
 }
 
 // Helper that allows interface to extend type
@@ -87,6 +91,7 @@ declare module 'styled-components' {
   export interface SmashingButtonDefaults {}
   export interface SmashingCheckboxDefaults {}
   export interface SmashingTextInputDefaults {}
+  export interface SmashingTextareaDefaults {}
   export interface SmashingAlertDefaults {}
   export interface SmashingSelectDefaults {}
   export interface SmashingFormFieldDefaults {}
@@ -104,6 +109,7 @@ declare module 'styled-components' {
     extends SmashingButtonDefaults,
       SmashingCheckboxDefaults,
       SmashingTextInputDefaults,
+      SmashingTextareaDefaults,
       SmashingAlertDefaults,
       SmashingBarChartDefaults,
       SmashingListDefaults,
