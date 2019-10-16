@@ -4,6 +4,7 @@ import fills from './fills'
 
 const colors = {
   background: {
+    default: 'white',
     white: 'white',
     tint1: scales.neutral.N1,
     tint2: scales.neutral.N2,
