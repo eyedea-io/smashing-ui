@@ -64,7 +64,7 @@ storiesOf('Core|Select', module)
       </SpecimenContainer>
     </React.Fragment>
   ))
-  .add('Primary appearance', () => (
+  .add('appearance:primary', () => (
     <React.Fragment>
       <SpecimenContainer>
         <Select
@@ -103,7 +103,7 @@ storiesOf('Core|Select', module)
       </SpecimenContainer>
     </React.Fragment>
   ))
-  .add('Flat appearance', () => (
+  .add('appearance:flat', () => (
     <React.Fragment>
       <SpecimenContainer>
         <Select options={optionsWithLabels} appearance="flat" intent="none" />
@@ -130,7 +130,7 @@ storiesOf('Core|Select', module)
       </SpecimenContainer>
     </React.Fragment>
   ))
-  .add('Minimal appearance', () => (
+  .add('appearance:minimal', () => (
     <React.Fragment>
       <SpecimenContainer>
         <Select
@@ -169,7 +169,7 @@ storiesOf('Core|Select', module)
       </SpecimenContainer>
     </React.Fragment>
   ))
-  .add('Subtle appearance', () => (
+  .add('appearance:subtle', () => (
     <React.Fragment>
       <SpecimenContainer>
         <Select options={optionsWithLabels} appearance="subtle" intent="none" />
@@ -195,6 +195,48 @@ storiesOf('Core|Select', module)
         <Select
           options={optionsWithLabels}
           appearance="subtle"
+          intent="warning"
+        />
+      </SpecimenContainer>
+    </React.Fragment>
+  ))
+  .add('appearance:outline', () => (
+    <React.Fragment>
+      <SpecimenContainer>
+        <Select
+          onChange={console.log}
+          placeholder="Placeholder"
+          options={optionsWithLabels}
+          appearance="outline"
+          intent="none"
+        />
+      </SpecimenContainer>
+      <SpecimenContainer>
+        <Select
+          onChange={console.log}
+          options={optionsWithLabels}
+          appearance="outline"
+          intent="danger"
+        />
+      </SpecimenContainer>
+      <SpecimenContainer>
+        <Select
+          options={optionsWithLabels}
+          appearance="outline"
+          intent="info"
+        />
+      </SpecimenContainer>
+      <SpecimenContainer>
+        <Select
+          options={optionsWithLabels}
+          appearance="outline"
+          intent="success"
+        />
+      </SpecimenContainer>
+      <SpecimenContainer>
+        <Select
+          options={optionsWithLabels}
+          appearance="outline"
           intent="warning"
         />
       </SpecimenContainer>

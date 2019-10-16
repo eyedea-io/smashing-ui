@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@smashing/button": "^0.2.29",
+    "@smashing/text-input": "^0.1.28",
     "@smashing/theme": "^0.5.3",
     "@smashing/typography": "^0.4.26"
   },

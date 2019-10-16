@@ -1,17 +1,12 @@
 import * as tinycolor from 'tinycolor2'
 import {DefaultTheme} from 'styled-components'
 import {getLinearGradientWithStates} from './helpers'
+import {ButtonAppearanceType} from './types'
 
 export type IntentType = 'success' | 'warning' | 'info' | 'danger' | 'none'
-export type AppearanceType =
-  | 'flat'
-  | 'primary'
-  | 'minimal'
-  | 'default'
-  | 'subtle'
 
 export const getButtonStyle = (
-  appearance?: AppearanceType,
+  appearance?: ButtonAppearanceType,
   intent: IntentType = 'none'
 ) => (_: {theme: DefaultTheme}) => {
   const {scales, colors} = _.theme

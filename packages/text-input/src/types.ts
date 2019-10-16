@@ -20,6 +20,7 @@ export interface TextInputProps {
   defaultValue?: any
   value?: any
   disabled?: boolean
+  readonly?: boolean
   onChange?: React.ChangeEventHandler<HTMLInputElement>
   suffix?: string
 }

@@ -16,7 +16,6 @@ export type ButtonAppearanceType =
 
 export interface ButtonLikeProps {
   intent?: ButtonIntentType
-  appearance?: ButtonAppearanceType
   disabled?: boolean
   tabIndex?: number
   className?: string
@@ -29,6 +28,7 @@ export interface ButtonLikeProps {
 }
 
 export interface ButtonProps extends ButtonLikeProps {
+  appearance?: ButtonAppearanceType
   type?: string
   onClick?: React.MouseEventHandler<HTMLButtonElement>
   isLoading?: boolean
