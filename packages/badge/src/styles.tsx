@@ -1,5 +1,5 @@
 import {Strong, StrongProps} from '@smashing/typography'
-import styled, {css} from 'styled-components/macro'
+import styled, {css} from 'styled-components'
 import {BadgeColors} from './types'
 
 interface StyledBadgeProps extends StrongProps {
