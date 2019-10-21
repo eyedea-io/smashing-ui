@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {Popover} from '@smashing/popover'
+import {Popover, PopoverProps} from '@smashing/popover'
 import styled from 'styled-components'
 import {Button} from '@smashing/button'
 import {Strong} from '@smashing/typography'
@@ -148,6 +148,17 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
     })
   }
   render() {
+    // extract allowed props than can be passed to the popover component
+
+    const {
+      content,
+      onOpenStarted,
+      minWidth,
+      children,
+      isShown,
+      ...popoverProps
+    }: Partial<PopoverProps> = this.props.popoverProps || {}
+
     return (
       <Popover
         minWidth={this.props.minWidth}
@@ -218,6 +229,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
           )
         }}
         children={this.determineChildren(this.props.appearance)}
+        {...popoverProps}
       />
     )
   }
