@@ -8,15 +8,16 @@ export interface ListProps {
    */
   children: React.ReactNode[]
   overlapSize?: number
+  className?: string
 }
 
-export const List: React.FC<ListProps> = ({children, ...props}) => {
+export const List: React.FC<ListProps> = ({children, className, ...props}) => {
   const {overlapSize} = useDefaults('list', props, {
     overlapSize: 50
   })
 
   return (
-    <ListContainer>
+    <ListContainer className={className}>
       {children.map((child, key) => (
         <ListItem key={key} overlapSize={overlapSize}>
           {child}
