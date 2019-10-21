@@ -1,6 +1,6 @@
 {
   "name": "@smashing/badge",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Component used to count notification",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@smashing/theme": "^0.5.3",
-    "@smashing/typography": "^0.4.11"
+    "@smashing/typography": "^0.4.27"
   },
   "devDependencies": {
     "react": "^16.8.6"

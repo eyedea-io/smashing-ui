@@ -1,6 +1,6 @@
 {
   "name": "@smashing/toaster",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "Component used for notifications",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -16,9 +16,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@smashing/alert": "^0.1.30",
-    "@smashing/theme": "^0.11.0",
-    "@smashing/typography": "^0.4.26",
+    "@smashing/alert": "^0.2.0",
+    "@smashing/theme": "^0.12.0",
+    "@smashing/typography": "^0.4.27",
     "react-transition-group": "4.2.2"
   },
   "devDependencies": {
