@@ -68,7 +68,7 @@ storiesOf('Core|Select menu', module)
       {story()}
     </SmashingThemeProvider>
   ))
-  .add('default single select', () => (
+  .add('Default single select', () => (
     <Wrapper>
       {({singleSelectedOption, changeSingleSelectedOption}) => (
         <SelectMenu
@@ -83,7 +83,25 @@ storiesOf('Core|Select menu', module)
       )}
     </Wrapper>
   ))
-  .add('appearance : card', () => (
+  .add('With popover props', () => (
+    <Wrapper>
+      {({singleSelectedOption, changeSingleSelectedOption}) => (
+        <SelectMenu
+          height={100}
+          options={optionsScroll}
+          value={singleSelectedOption}
+          onSelect={changeSingleSelectedOption}
+          hasFilter={true}
+          hasTitle={true}
+          title="Select Item"
+          popoverProps={{
+            overlay: true
+          }}
+        />
+      )}
+    </Wrapper>
+  ))
+  .add('Appearance: card', () => (
     <Wrapper>
       {({singleSelectedOption, changeSingleSelectedOption}) => (
         <SelectMenu
@@ -98,7 +116,7 @@ storiesOf('Core|Select menu', module)
       )}
     </Wrapper>
   ))
-  .add('appearance : minimal, multi select', () => (
+  .add('Appearance: minimal, multi select', () => (
     <Wrapper>
       {({select, deselect, selectedOptions}) => (
         <SelectMenu
@@ -113,7 +131,7 @@ storiesOf('Core|Select menu', module)
       )}
     </Wrapper>
   ))
-  .add('custom select', () => (
+  .add('Custom list item body', () => (
     <Wrapper>
       {({select, deselect, selectedOptions}) => (
         <SelectMenu

@@ -10,7 +10,8 @@ import {
   getAnimationOut,
   getTransform,
   getIconPosition,
-  getContentSize
+  getContentSize,
+  getWidthType
 } from './helpers'
 import {constants, useDefaults} from '@smashing/theme'
 
@@ -40,7 +41,10 @@ const S = {
     display: flex;
     flex-direction: column;
     transform: ${_ => getTransform(_.position)};
-    ${_ => getBoxPosition(_.position)};
+    ${_ => ({
+      width: getWidthType(_.width),
+      ...getBoxPosition(_.position)
+    })};
     &[data-state='entered'] {
       animation: ${_ => getAnimationIn(_.position)} ${ANIMATION_DURATION}ms
         ${animationEasing.deceleration} both;
@@ -52,7 +56,6 @@ const S = {
   `,
   Content: styled.div.attrs({})<BoxProps>`
     ${_ => ({
-      width: ['left', 'right'] ? `${_.width}px` : undefined,
       ..._.theme.elevation.dialog,
       ...getContentSize(_.position)
     })}
@@ -180,7 +183,7 @@ declare module 'styled-components' {
   export interface SmashingSideSheetDefaults
     extends Partial<{
       sideSheet?: {
-        width?: number
+        width?: number | string
         onCloseComplete?: () => void
         onOpenComplete?: () => void
         onBeforeClose?: () => boolean

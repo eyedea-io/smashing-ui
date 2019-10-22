@@ -10,7 +10,9 @@ storiesOf('Core|TextInput', module)
   .addDecorator(story => (
     <SmashingThemeProvider
       theme={{
-        defaults: {},
+        defaults: {
+          textInput: {}
+        },
         fontFamilies: {
           display: 'arial'
         }
@@ -47,6 +49,7 @@ storiesOf('Core|TextInput', module)
       </div>
     </React.Fragment>
   ))
+<<<<<<< HEAD
   .add('appearance:outline', () => (
     <React.Fragment>
       <div>
@@ -54,6 +57,8 @@ storiesOf('Core|TextInput', module)
       </div>
     </React.Fragment>
   ))
+=======
+>>>>>>> origin
   .add('appearance:default:disabled', () => (
     <React.Fragment>
       <div>
@@ -97,6 +102,7 @@ storiesOf('Core|TextInput', module)
       </div>
     </React.Fragment>
   ))
+<<<<<<< HEAD
   .add('appearance:outline:disabled', () => (
     <React.Fragment>
       <div>
@@ -111,6 +117,8 @@ storiesOf('Core|TextInput', module)
       </div>
     </React.Fragment>
   ))
+=======
+>>>>>>> origin
   .add('borderRadius:30', () => (
     <React.Fragment>
       <div>
@@ -129,6 +137,41 @@ storiesOf('Core|TextInput', module)
     <React.Fragment>
       <div>
         <TextInput placeholder="Your name" height={undefined} />
+      </div>
+    </React.Fragment>
+  ))
+  .add('appearance:default:invalid', () => (
+    <React.Fragment>
+      <div>
+        <TextInput placeholder="Your name" invalid />
+      </div>
+    </React.Fragment>
+  ))
+  .add('appearance:minimal:invalid', () => (
+    <React.Fragment>
+      <div>
+        <TextInput placeholder="Your name" invalid appearance="minimal" />
+      </div>
+    </React.Fragment>
+  ))
+  .add('appearance:neutral:invalid', () => (
+    <React.Fragment>
+      <div>
+        <TextInput placeholder="Your name" invalid appearance="neutral" />
+      </div>
+    </React.Fragment>
+  ))
+  .add('appearance:underline:invalid', () => (
+    <React.Fragment>
+      <div>
+        <TextInput placeholder="Your name" invalid appearance="underline" />
+      </div>
+    </React.Fragment>
+  ))
+  .add('full', () => (
+    <React.Fragment>
+      <div>
+        <TextInput placeholder="Your name" full />
       </div>
     </React.Fragment>
   ))

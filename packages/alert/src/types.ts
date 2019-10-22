@@ -7,4 +7,5 @@ export type AlertProps = {
   children?: React.ReactNode
   hasTrim?: boolean
   hasIcon?: boolean
+  className?: string
 }
