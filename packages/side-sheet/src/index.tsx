@@ -42,7 +42,7 @@ const S = {
     flex-direction: column;
     transform: ${_ => getTransform(_.position)};
     ${_ => ({
-      width: ['left', 'right'] ? getWidthType(_.width) : undefined,
+      width: getWidthType(_.width),
       ...getBoxPosition(_.position)
     })};
     &[data-state='entered'] {
