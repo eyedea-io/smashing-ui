@@ -1,15 +1,35 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {storiesOf, addDecorator} from '@storybook/react'
 import {TextInput} from '@smashing/text-input'
 import {Popover} from '@smashing/popover'
 import {Menu} from '@smashing/menu'
 import {Button} from '@smashing/button'
+import {SideSheet} from '@smashing/side-sheet'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
 
 addDecorator(withA11y)
 
 const Link = ({children, ...props}) => <div {...props}>{children}</div>
+
+const Wrapper = ({children}) => {
+  const [isShown, setIsShown] = useState(false)
+  const [selected, setSelected] = useState(null)
+
+  return (
+    <div>
+      {children({setIsShown, isShown, selected, setSelected})}
+      <Button onClick={() => setIsShown(true)}>Show Side Sheet</Button>
+    </div>
+  )
+}
+
+const options = [
+  {label: 'Apple', value: 'Apple'},
+  {label: 'Apricot', value: 'Apricot'},
+  {label: 'Banana', value: 'Banana'},
+  {label: 'Cherry', value: 'Cherry', disabled: true}
+]
 
 storiesOf('Core|Menu', module)
   .addDecorator(story => (
@@ -64,7 +84,13 @@ storiesOf('Core|Menu', module)
           </Menu.Group>
           <Menu.Divider />
           <Menu.Group title="Other">
-            <Menu.Item secondaryText="CTRL+Del" intent="danger">
+            <Menu.Item
+              onSelect={() => {
+                console.log('selected')
+              }}
+              secondaryText="CTRL+Del"
+              intent="danger"
+            >
               Delete
             </Menu.Item>
           </Menu.Group>
@@ -97,4 +123,35 @@ storiesOf('Core|Menu', module)
         </TextInput>
       )}
     </Popover>
+  ))
+  .add('in Side Sheet', () => (
+    <Wrapper>
+      {({setIsShown, isShown, selected, setSelected}) => (
+        <SideSheet
+          isShown={isShown}
+          onCloseComplete={() => setIsShown(false)}
+          isClosingButtonVisible={true}
+          shouldFocusFirstElement={false}
+          containerProps={{
+            display: 'flex',
+            flex: '1',
+            flexDirection: 'column'
+          }}
+        >
+          <Menu>
+            <Menu.Group title="Basic">
+              {options.map(option => (
+                <Menu.Item
+                  isSelected={selected === option.value ? true : false}
+                  onSelect={() => setSelected(option.value)}
+                  key={option.value}
+                >
+                  {option.label}
+                </Menu.Item>
+              ))}
+            </Menu.Group>
+          </Menu>
+        </SideSheet>
+      )}
+    </Wrapper>
   ))

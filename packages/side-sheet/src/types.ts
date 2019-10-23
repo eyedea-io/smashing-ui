@@ -64,5 +64,10 @@ export interface SideSheetProps {
   /**
    * Boolean indicating if closing button is visible.
    */
-  isClosingButtonVisible? : boolean
+
+  isClosingButtonVisible?: boolean
+  /**
+   * Boolean indicating if first element should be focused.
+   */
+  shouldFocusFirstElement?: boolean
 }
