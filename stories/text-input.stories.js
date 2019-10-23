@@ -49,7 +49,6 @@ storiesOf('Core|TextInput', module)
       </div>
     </React.Fragment>
   ))
-<<<<<<< HEAD
   .add('appearance:outline', () => (
     <React.Fragment>
       <div>
@@ -57,8 +56,6 @@ storiesOf('Core|TextInput', module)
       </div>
     </React.Fragment>
   ))
-=======
->>>>>>> origin
   .add('appearance:default:disabled', () => (
     <React.Fragment>
       <div>
@@ -102,7 +99,6 @@ storiesOf('Core|TextInput', module)
       </div>
     </React.Fragment>
   ))
-<<<<<<< HEAD
   .add('appearance:outline:disabled', () => (
     <React.Fragment>
       <div>
@@ -117,8 +113,6 @@ storiesOf('Core|TextInput', module)
       </div>
     </React.Fragment>
   ))
-=======
->>>>>>> origin
   .add('borderRadius:30', () => (
     <React.Fragment>
       <div>

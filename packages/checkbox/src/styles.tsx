@@ -141,6 +141,77 @@ export const getCheckboxStyle = (
           boxShadow: 'none'
         }
       }
+
+    case 'outline':
+      const color = disabled
+        ? _.theme.colors.border.muted
+        : checked
+        ? _.theme.colors.border.active
+        : _.theme.colors.border.default
+      return {
+        '& + div': {
+          '& + span': {
+            color
+          },
+          color: color,
+          border: `1px solid ${color}`,
+          backgroundColor: 'transparent',
+          borderRadius: '6px'
+        }
+      }
+
+    case 'switcher':
+      const indicatorSpace = disabled ? -1 : 1
+      const backgroundColor = checked
+        ? _.theme.palette.green.base
+        : _.theme.colors.text.muted
+      return {
+        '& + div': {
+          '+ span': {
+            color: disabled
+              ? _.theme.colors.border.muted
+              : checked
+              ? _.theme.colors.border.active
+              : _.theme.colors.border.default
+          },
+          position: 'relative' as 'relative',
+          cursor: 'pointer',
+          width: '40px',
+          height: '24px',
+          background: disabled ? 'transparent' : backgroundColor,
+          border: disabled
+            ? `1px solid ${_.theme.colors.border.muted}`
+            : `1px solid ${backgroundColor}`,
+          display: 'block',
+          borderRadius: '100px',
+          svg: {
+            display: 'none'
+          },
+          ':active:after': {
+            width: '22px'
+          },
+          ':after': {
+            content: '""',
+            position: 'absolute' as 'absolute',
+            top: `${indicatorSpace}px`,
+            left: checked
+              ? `calc(100% - ${indicatorSpace}px)`
+              : `${indicatorSpace}px`,
+            width: `${22 - indicatorSpace * 2}px`,
+            height: `${22 - indicatorSpace * 2}px`,
+            background: disabled
+              ? 'transparent'
+              : _.theme.colors.background.default,
+            borderRadius: '100px',
+            transition: '0.4s',
+            transform: `translateX(${checked ? -100 : 0}%);`,
+            border: disabled
+              ? `1px solid ${_.theme.colors.border.muted}`
+              : `1px solid ${_.theme.colors.background.default}`
+          }
+        }
+      }
+
     default:
       return {}
   }

@@ -36,6 +36,11 @@ storiesOf('Core|Textarea', module)
       <Textarea placeholder="Textarea placeholder..." appearance="neutral" />
     </React.Fragment>
   ))
+  .add('appearance:outline', () => (
+    <React.Fragment>
+      <Textarea placeholder="Textarea placeholder..." appearance="outline" />
+    </React.Fragment>
+  ))
   .add('disabled', () => (
     <React.Fragment>
       <Textarea placeholder="Textarea placeholder..." disabled />

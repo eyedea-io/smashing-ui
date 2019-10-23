@@ -1,6 +1,11 @@
 import {PopoverProps} from '@smashing/popover'
 
-export type SelectMenuAppearanceType = 'primary' | 'minimal' | 'card'
+export type SelectMenuAppearanceType =
+  | 'primary'
+  | 'minimal'
+  | 'card'
+  | 'outline'
+  | 'switcher'
 
 export type SelectMenuChildrenFn<T extends OptionBase> = <T>(props: {
   toggle: () => void

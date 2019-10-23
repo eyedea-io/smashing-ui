@@ -68,8 +68,12 @@ const CheckboxFC: React.FC<CheckboxProps> = ({
     appearance: 'primary' as CheckboxAppearanceType
   })
 
-  const isCommonCheckbox =
-    defaults.appearance === 'primary' || defaults.appearance === 'minimal'
+  const isCommonCheckbox = [
+    'primary',
+    'minimal',
+    'outline',
+    'switcher'
+  ].includes(defaults.appearance)
 
   return (
     <Label as="label" ref={innerRef} {...defaults} {...props}>

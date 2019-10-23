@@ -7,16 +7,8 @@ import {
   useDefaults
 } from '@smashing/theme'
 
-type StyledComponentElement =
-  | keyof JSX.IntrinsicElements
-  | React.ComponentType<any>
-
-const TextInputFCFactory: <AdditionalProps extends {}>(
-  as: StyledComponentElement
-) => React.FC<TextInputProps> = <AdditionalProps extends {}>(
-  as: StyledComponentElement = 'input'
-) =>
-  React.forwardRef<any, TextInputProps>(({children, ...props}, ref: any) => {
+const TextInput = React.forwardRef<any, TextInputProps>(
+  ({children, ...props}, ref: any) => {
     const defaults = useDefaults('textInput', props, {
       height: 32,
       full: false,
@@ -36,16 +28,11 @@ const TextInputFCFactory: <AdditionalProps extends {}>(
         />
       </S.StyledTextContainer>
     )
-  })
-
-const TextInput = styled<React.FC<TextInputProps>>(
-  TextInputFCFactory('input')
-)``
-const TextInputAs = <T extends {}>(as: StyledComponentElement) =>
-  styled(TextInputFCFactory<React.HTMLAttributes<T>>(as))``
+  }
+)
 
 export const TextInputComponents = S
-export {TextInput, TextInputProps, TextInputAppearanceType, TextInputAs}
+export {TextInput, TextInputProps, TextInputAppearanceType}
 export {getTextInputStyle} from './styles'
 
 declare module 'styled-components' {

@@ -12,6 +12,7 @@ export type TextInputProps = React.InputHTMLAttributes<{}> & {
   borderRadius?: number
   type?: TextInputType
   suffix?: string
+  readonly?: boolean
   /**
    * Sets visual styling of the text area to be "invalid".
    */

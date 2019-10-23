@@ -172,3 +172,80 @@ storiesOf('Core|Checkbox', module)
       )}
     </Wrapper>
   ))
+  .add('appearance:outline default', () => (
+    <Wrapper>
+      {({isChecked, setIsChecked}) => (
+        <Checkbox
+          appearance="outline"
+          onChange={() => setIsChecked(!isChecked)}
+          checked={isChecked}
+        >
+          By clicking “Sign up” I agree that I have read and accepted the Terms
+          and conditions.
+        </Checkbox>
+      )}
+    </Wrapper>
+  ))
+  .add('appearance:outline checked', () => (
+    <Wrapper>
+      {({isChecked, setIsChecked}) => (
+        <Checkbox
+          appearance="outline"
+          onChange={() => setIsChecked(!isChecked)}
+          checked={!isChecked}
+        >
+          By clicking “Sign up” I agree that I have read and accepted the Terms
+          and conditions.
+        </Checkbox>
+      )}
+    </Wrapper>
+  ))
+  .add('appearance:outline checked disabled', () => (
+    <Wrapper>
+      {({isChecked, setIsChecked}) => (
+        <Checkbox
+          disabled
+          appearance="outline"
+          onChange={() => setIsChecked(!isChecked)}
+          checked={!isChecked}
+        >
+          By clicking “Sign up” I agree that I have read and accepted the Terms
+          and conditions.
+        </Checkbox>
+      )}
+    </Wrapper>
+  ))
+  .add('appearance:switcher default', () => (
+    <Wrapper>
+      {({isChecked, setIsChecked}) => (
+        <Checkbox
+          appearance="switcher"
+          onChange={() => setIsChecked(!isChecked)}
+          checked={isChecked}
+        >
+          By clicking “Sign up” I agree that I have read and accepted the Terms
+          and conditions.
+        </Checkbox>
+      )}
+    </Wrapper>
+  ))
+  .add('appearance:switcher checked', () => (
+    <Wrapper>
+      {({isChecked, setIsChecked}) => (
+        <Checkbox
+          appearance="switcher"
+          onChange={() => setIsChecked(!isChecked)}
+          checked={!isChecked}
+        >
+          By clicking “Sign up” I agree that I have read and accepted the Terms
+          and conditions.
+        </Checkbox>
+      )}
+    </Wrapper>
+  ))
+  .add('appearance:switcher checked disabled', () => (
+    <Checkbox disabled appearance="switcher">
+      By clicking “Sign up” I agree that I have read and accepted the Terms and
+      conditions.
+    </Checkbox>
+  ))

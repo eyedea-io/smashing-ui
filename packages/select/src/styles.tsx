@@ -1,6 +1,6 @@
 import styled, {DefaultTheme} from 'styled-components'
 import {ButtonIntentType, ButtonAs} from '@smashing/button'
-import {TextInputProps, TextInputAs} from '@smashing/text-input'
+import {TextInputProps, TextInput} from '@smashing/text-input'
 import {SelectProps, SelectAppearanceType} from './types'
 
 type StyledSelectProps = Pick<SelectProps, 'appearance' | 'intent' | 'full'>
@@ -100,7 +100,7 @@ export const S = {
     padding-right: ${_ => Math.round(_.height || 0)}px;
   `,
   SelectButtonComponent: styled<React.FC<TextInputProps & {isOpen: boolean}>>(
-    TextInputAs<HTMLButtonElement>('button')
+    TextInput
   )`
     cursor: pointer;
     ${_ =>

@@ -1,4 +1,9 @@
-export type CheckboxAppearanceType = 'primary' | 'minimal' | 'card'
+export type CheckboxAppearanceType =
+  | 'primary'
+  | 'minimal'
+  | 'card'
+  | 'outline'
+  | 'switcher'
 
 export interface CheckboxProps {
   /**
@@ -11,7 +16,7 @@ export interface CheckboxProps {
   name?: string
   /**
    * Appearance of the checkbox.
-   * Can be "primary", "minimal" or "card".
+   * Can be "primary", "minimal" or "card", "outline" or "switcher"
    */
   appearance?: CheckboxAppearanceType
   /**

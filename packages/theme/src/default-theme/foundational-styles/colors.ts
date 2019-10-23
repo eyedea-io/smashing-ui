@@ -21,6 +21,7 @@ const colors = {
 
   border: {
     default: scales.neutral.N4,
+    active: scales.neutral.N5,
     danger: palette.red.dark,
     muted: scales.neutral.N3
   },
@@ -119,7 +120,8 @@ const colors = {
         backgroundColor: '#116AB8',
         boxShadow: `inset 0px 2px 4px ${scales.neutral.N6A}`
       }
-    }
+    },
+    outline: fills.minimal.blue
   },
 
   overlay: {
