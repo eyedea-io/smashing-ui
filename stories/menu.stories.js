@@ -131,7 +131,7 @@ storiesOf('Core|Menu', module)
           isShown={isShown}
           onCloseComplete={() => setIsShown(false)}
           isClosingButtonVisible={true}
-          shouldFocusFirstElement={false}
+          autofocus={false}
           containerProps={{
             display: 'flex',
             flex: '1',

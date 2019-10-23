@@ -57,7 +57,7 @@ export const Overlay: React.FC<OverlayProps> = ({
   shouldCloseOnClick = true,
   shouldCloseOnEscapePress = true,
   preventBodyScrolling = false,
-  shouldFocusFirstElement = true,
+  autofocus = true,
   onExit = () => {},
   onExiting = () => {},
   onExited = () => {},
@@ -112,7 +112,7 @@ export const Overlay: React.FC<OverlayProps> = ({
 
         if (autofocusElement) {
           autofocusElement.focus()
-        } else if (wrapperElement && shouldFocusFirstElement) {
+        } else if (wrapperElement && autofocus) {
           wrapperElement.focus()
         } else if (buttonElement) {
           buttonElement.focus()
@@ -290,7 +290,7 @@ export interface OverlayProps {
   /**
    * Boolean indicating if first element should be focused.
    */
-  shouldFocusFirstElement?: boolean
+  autofocus?: boolean
 
   /**
    * Function called when overlay is about to close.

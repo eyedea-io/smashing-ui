@@ -90,7 +90,7 @@ storiesOf('Core|Side Sheet', module)
           isShown={isShown}
           onCloseComplete={() => setIsShown(false)}
           isClosingButtonVisible={false}
-          shouldFocusFirstElement={false}
+          autofocus={false}
           position="left"
         >
           <div tabIndex={0}>Hello</div>

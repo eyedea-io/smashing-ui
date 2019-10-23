@@ -69,5 +69,5 @@ export interface SideSheetProps {
   /**
    * Boolean indicating if first element should be focused.
    */
-  shouldFocusFirstElement?: boolean
+  autofocus?: boolean
 }
