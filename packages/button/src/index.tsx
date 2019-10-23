@@ -61,6 +61,8 @@ const ButtonFCFactory: <AdditionalProps extends {}>(
     full: false
   })
 
+  const IconComponent = props.icon
+
   return (
     <StyledText
       as={as}
@@ -79,6 +81,7 @@ const ButtonFCFactory: <AdditionalProps extends {}>(
         />
       )}
       {children}
+      {IconComponent ? <IconComponent variant="light" /> : null}
     </StyledText>
   )
 }
@@ -104,6 +107,7 @@ declare module 'styled-components' {
         appearance?: ButtonAppearanceType
         intent?: ButtonIntentType
         isLoading?: boolean
+        icon?: React.Component
       }
     }> {}
 }

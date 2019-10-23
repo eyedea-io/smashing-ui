@@ -3,6 +3,7 @@ import {storiesOf, addDecorator} from '@storybook/react'
 import {Button} from '@smashing/button'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
+import {ArrowDown} from '@eyedea/flow-icons'
 
 addDecorator(withA11y)
 
@@ -24,7 +25,7 @@ storiesOf('Core|Button', module)
         <Button disabled>Hulk smash!</Button>
       </p>
       <p>
-        <Button>Hulk smash!</Button>
+        <Button icon={ArrowDown}>Hulk smash!</Button>
       </p>
       <p>
         <Button intent="info">Hulk smash!</Button>
