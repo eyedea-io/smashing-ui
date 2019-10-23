@@ -2347,22 +2347,6 @@
     dot-prop "^5.1.0"
     react-fast-compare "^2.0.4"
 
-"@smashing/text-input@^0.1.28":
-  version "0.1.28"
-  resolved "https://registry.yarnpkg.com/@smashing/text-input/-/text-input-0.1.28.tgz#a97939e2c630c76204d6425b6263818717cc74a3"
-  integrity sha512-jLy4oBZCmWiMszhMmCBfKlXLe0+lTvyCN50I4QllC0D60KEYK2bO6t/XUfoECngxFM4J589b5YSMhf8K8+usDQ==
-  dependencies:
-    "@smashing/theme" "^0.11.0"
-    "@smashing/typography" "^0.4.26"
-
-"@smashing/theme@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@smashing/theme/-/theme-0.11.0.tgz#0cbc7bf06340fa1b35ead4c3972685cfd08bbc74"
-  integrity sha512-iKp5wRA/YUjqllzVf+rl3HBo2APs6k62bbEb/VNxSFb9zqPFvSfpYWhR5zWtBJM8jkmUWycjJ8QdwSn8onqKsQ==
-  dependencies:
-    deepmerge "^3.2.0"
-    tinycolor2 "^1.4.1"
-
 "@smashing/theme@^0.5.3", "@smashing/theme@^0.5.5":
   version "0.5.5"
   resolved "https://registry.yarnpkg.com/@smashing/theme/-/theme-0.5.5.tgz#19f61637411fd5a7d6df1f97181760bc7599559c"

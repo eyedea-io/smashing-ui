@@ -101,7 +101,7 @@ export const S = {
   `,
   SelectButtonComponent: styled<React.FC<TextInputProps & {isOpen: boolean}>>(
     TextInput
-  )`
+  ).attrs({readonly: true})`
     cursor: pointer;
     ${_ =>
       _.isOpen
