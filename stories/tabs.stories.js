@@ -10,19 +10,31 @@ storiesOf('Core|Tabs', module)
   .addDecorator(story => (
     <SmashingThemeProvider theme={{}}>{story()}</SmashingThemeProvider>
   ))
-  .add('default', () => (
+  .add('appearance:default', () => (
     <Tablist>
       <Tab isSelected>Tab 1</Tab>
       <Tab>Tab 2</Tab>
       <Tab>Tab 3</Tab>
     </Tablist>
   ))
-  .add('flat', () => (
+  .add('appearance:flat', () => (
     <Tablist appearance="flat">
       <Tab isSelected appearance="flat">
         Tab 1
       </Tab>
       <Tab>Tab 2</Tab>
       <Tab>Tab 3</Tab>
+    </Tablist>
+  ))
+  .add('appearance:outline', () => (
+    <Tablist appearance="outline">
+      <Tab isSelected appearance="outline">
+        Tab 1
+      </Tab>
+      <Tab appearance="outline">Tab 2</Tab>
+      <Tab appearance="outline">Tab 3</Tab>
+      <Tab appearance="outline">Tab 2</Tab>
+      <Tab appearance="outline">Tab 3</Tab>
+      <Tab appearance="outline">Tab 2</Tab>
     </Tablist>
   ))

@@ -1,6 +1,6 @@
-export type TabsAppearanceType = 'flat' | 'default'
+export type TabsAppearanceType = 'flat' | 'default' | 'outline'
 
-export interface TablistProps {
+export interface TabListProps {
   appearance?: TabsAppearanceType
 }
 
