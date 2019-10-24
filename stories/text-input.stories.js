@@ -113,6 +113,13 @@ storiesOf('Core|TextInput', module)
       </div>
     </React.Fragment>
   ))
+  .add('appearance:outline:no input version', () => (
+    <React.Fragment>
+      <div>
+        <TextInput appearance="underline" readOnly value="test" />
+      </div>
+    </React.Fragment>
+  ))
   .add('borderRadius:30', () => (
     <React.Fragment>
       <div>

@@ -31,35 +31,6 @@ const getSelectTextStyle = (
   }
 }
 
-const getOptionElementStyle = (appearance?: SelectAppearanceType) => (_: {
-  theme: DefaultTheme
-}) => {
-  switch (appearance) {
-    case 'outline':
-      return {
-        borderTop: `1px solid ${_.theme.colors.border.muted}`
-      }
-    case 'default':
-    default:
-      return {}
-  }
-}
-
-const getOptionListStyle = (appearance?: SelectAppearanceType) => (_: {
-  theme: DefaultTheme
-}) => {
-  switch (appearance) {
-    case 'outline':
-      return {
-        borderBottomLeftRadius: '6px',
-        borderBottomRightRadius: '6px'
-      }
-    case 'default':
-    default:
-      return {}
-  }
-}
-
 export const S = {
   SelectWrapper: styled.div<StyledSelectProps>`
     position: relative;
@@ -93,15 +64,16 @@ export const S = {
       content: '\u25BC';
     }
   `,
-  SelectButtonAsSelectComponent: styled<React.FC<SelectProps>>(
+  ButtonAsSelectComponent: styled<React.FC<SelectProps>>(
     ButtonAs<HTMLSelectElement>('select')
   )`
     -webkit-appearance: button;
     padding-right: ${_ => Math.round(_.height || 0)}px;
   `,
-  SelectButtonComponent: styled<React.FC<TextInputProps & {isOpen: boolean}>>(
-    TextInput
-  ).attrs({readonly: true})`
+
+  InputAsSelectButtonComponent: styled<
+    React.FC<TextInputProps & {isOpen: boolean}>
+  >(TextInput).attrs({readonly: true})`
     cursor: pointer;
     ${_ =>
       _.isOpen
@@ -118,7 +90,8 @@ export const S = {
     isOpen: boolean
     appearance?: SelectAppearanceType
   }>`
-    ${_ => getOptionListStyle(_.appearance)}
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
     position: absolute;
     top: 100%;
     margin: 0;
@@ -149,7 +122,7 @@ export const S = {
     })}
   `,
   CustomOption: styled.li<SelectProps>`
-    ${_ => getOptionElementStyle(_.appearance)}
+    border-top: ${_ => `1px solid ${_.theme.colors.border.muted}`};
     cursor: pointer;
     padding: 13px 16px;
     &:hover {

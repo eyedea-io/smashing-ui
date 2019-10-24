@@ -5,6 +5,10 @@ import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
 import styled from 'styled-components'
 
+const SelectWithState = ({children}) => {
+  const [value, setValue] = React.useState()
+  return children({value, setValue})
+}
 const SpecimenContainer = styled.div`
   margin-bottom: 16px;
 `
@@ -16,6 +20,7 @@ const optionsWithLabels = [
   {value: 'cde', label: 'Longer Option'},
   {value: 'def', label: 'DEF Option'}
 ]
+const intentKinds = ['none', 'danger', 'info', 'success', 'warning']
 
 storiesOf('Core|Select', module)
   .addDecorator(story => (
@@ -66,182 +71,78 @@ storiesOf('Core|Select', module)
   ))
   .add('appearance:primary', () => (
     <React.Fragment>
-      <SpecimenContainer>
-        <Select
-          options={optionsWithLabels}
-          appearance="primary"
-          intent="none"
-        />
-      </SpecimenContainer>
-      <SpecimenContainer>
-        <Select
-          options={optionsWithLabels}
-          appearance="primary"
-          intent="danger"
-        />
-      </SpecimenContainer>
-      <SpecimenContainer>
-        <Select
-          options={optionsWithLabels}
-          appearance="primary"
-          intent="info"
-        />
-      </SpecimenContainer>
-      <SpecimenContainer>
-        <Select
-          options={optionsWithLabels}
-          appearance="primary"
-          intent="success"
-        />
-      </SpecimenContainer>
-      <SpecimenContainer>
-        <Select
-          options={optionsWithLabels}
-          appearance="primary"
-          intent="warning"
-        />
-      </SpecimenContainer>
+      {intentKinds.map(intent => (
+        <SpecimenContainer key={intent}>
+          <Select
+            options={optionsWithLabels}
+            appearance="primary"
+            intent={intent}
+          />
+        </SpecimenContainer>
+      ))}
     </React.Fragment>
   ))
   .add('appearance:flat', () => (
     <React.Fragment>
-      <SpecimenContainer>
-        <Select options={optionsWithLabels} appearance="flat" intent="none" />
-      </SpecimenContainer>
-      <SpecimenContainer>
-        <Select options={optionsWithLabels} appearance="flat" intent="danger" />
-      </SpecimenContainer>
-      <SpecimenContainer>
-        <Select options={optionsWithLabels} appearance="flat" intent="info" />
-      </SpecimenContainer>
-      <SpecimenContainer>
-        <Select
-          options={optionsWithLabels}
-          appearance="flat"
-          intent="success"
-        />
-      </SpecimenContainer>
-      <SpecimenContainer>
-        <Select
-          options={optionsWithLabels}
-          appearance="flat"
-          intent="warning"
-        />
-      </SpecimenContainer>
+      {intentKinds.map(intent => (
+        <SpecimenContainer key={intent}>
+          <Select
+            options={optionsWithLabels}
+            appearance="flat"
+            intent={intent}
+          />
+        </SpecimenContainer>
+      ))}
     </React.Fragment>
   ))
   .add('appearance:minimal', () => (
     <React.Fragment>
-      <SpecimenContainer>
-        <Select
-          options={optionsWithLabels}
-          appearance="minimal"
-          intent="none"
-        />
-      </SpecimenContainer>
-      <SpecimenContainer>
-        <Select
-          options={optionsWithLabels}
-          appearance="minimal"
-          intent="danger"
-        />
-      </SpecimenContainer>
-      <SpecimenContainer>
-        <Select
-          options={optionsWithLabels}
-          appearance="minimal"
-          intent="info"
-        />
-      </SpecimenContainer>
-      <SpecimenContainer>
-        <Select
-          options={optionsWithLabels}
-          appearance="minimal"
-          intent="success"
-        />
-      </SpecimenContainer>
-      <SpecimenContainer>
-        <Select
-          options={optionsWithLabels}
-          appearance="minimal"
-          intent="warning"
-        />
-      </SpecimenContainer>
+      {intentKinds.map(intent => (
+        <SpecimenContainer key={intent}>
+          <Select
+            options={optionsWithLabels}
+            appearance="minimal"
+            intent={intent}
+          />
+        </SpecimenContainer>
+      ))}
     </React.Fragment>
   ))
   .add('appearance:subtle', () => (
     <React.Fragment>
-      <SpecimenContainer>
-        <Select options={optionsWithLabels} appearance="subtle" intent="none" />
-      </SpecimenContainer>
-      <SpecimenContainer>
-        <Select
-          options={optionsWithLabels}
-          appearance="subtle"
-          intent="danger"
-        />
-      </SpecimenContainer>
-      <SpecimenContainer>
-        <Select options={optionsWithLabels} appearance="subtle" intent="info" />
-      </SpecimenContainer>
-      <SpecimenContainer>
-        <Select
-          options={optionsWithLabels}
-          appearance="subtle"
-          intent="success"
-        />
-      </SpecimenContainer>
-      <SpecimenContainer>
-        <Select
-          options={optionsWithLabels}
-          appearance="subtle"
-          intent="warning"
-        />
-      </SpecimenContainer>
+      {intentKinds.map(intent => (
+        <SpecimenContainer key={intent}>
+          <Select
+            options={optionsWithLabels}
+            appearance="subtle"
+            intent={intent}
+          />
+        </SpecimenContainer>
+      ))}
     </React.Fragment>
   ))
-  .add('appearance:outline', () => (
-    <React.Fragment>
-      <SpecimenContainer>
-        <Select
-          onChange={console.log}
-          placeholder="Placeholder"
-          options={optionsWithLabels}
-          appearance="outline"
-          intent="none"
-        />
-      </SpecimenContainer>
-      <SpecimenContainer>
-        <Select
-          onChange={console.log}
-          options={optionsWithLabels}
-          appearance="outline"
-          intent="danger"
-        />
-      </SpecimenContainer>
-      <SpecimenContainer>
-        <Select
-          options={optionsWithLabels}
-          appearance="outline"
-          intent="info"
-        />
-      </SpecimenContainer>
-      <SpecimenContainer>
-        <Select
-          options={optionsWithLabels}
-          appearance="outline"
-          intent="success"
-        />
-      </SpecimenContainer>
-      <SpecimenContainer>
-        <Select
-          options={optionsWithLabels}
-          appearance="outline"
-          intent="warning"
-        />
-      </SpecimenContainer>
-    </React.Fragment>
-  ))
+  .add('appearance:outline', () => {
+    return (
+      <React.Fragment>
+        {intentKinds.map(intent => (
+          <SpecimenContainer key={intent}>
+            <SelectWithState>
+              {({value, setValue}) => (
+                <Select
+                  onChange={setValue}
+                  value={value}
+                  placeholder="Placeholder"
+                  options={optionsWithLabels}
+                  appearance="outline"
+                  intent={intent}
+                />
+              )}
+            </SelectWithState>
+          </SpecimenContainer>
+        ))}
+      </React.Fragment>
+    )
+  })
   .add('Full', () => (
     <React.Fragment>
       <Select full options={optionsWithLabels} />

@@ -67,6 +67,11 @@ export const MoreButton = styled.button<{isOpen: boolean}>`
   }
 `
 
+export const MoreButtonContainer = styled.li<{isOpen?: boolean}>`
+  ${_ => _.isOpen && {border: 'none'}}
+  width: 50px;
+`
+
 const getTabListStyle = (
   appearance?: TabsAppearanceType,
   isOpen?: boolean

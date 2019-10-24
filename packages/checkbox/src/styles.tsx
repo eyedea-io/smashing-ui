@@ -1,8 +1,52 @@
 import * as tinycolor from 'tinycolor2'
-import {DefaultTheme} from 'styled-components'
+import styled, {DefaultTheme} from 'styled-components'
+import {Text} from '@smashing/typography'
 import {getLinearGradientWithStates} from './helpers'
-import {CheckboxAppearanceType} from './types'
+import {CheckboxAppearanceType, StyledLabelProps} from './types'
 
+export const S = {
+  Label: styled(Text)<StyledLabelProps>`
+    display: flex;
+    align-items: center;
+    margin: 0;
+    cursor: ${_ => (_.disabled ? 'not-allowed' : 'pointer')};
+    ${_ => getLabelStyle(_.appearance, _.disabled, _.checked)};
+  `,
+
+  CustomCheckbox: styled.div.attrs({})<StyledLabelProps>`
+    width: 16px;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    margin-right: 8px;
+    align-items: center;
+    border-radius: 4px;
+    transition: all 150ms;
+    flex-shrink: 0;
+
+    svg {
+      display: flex;
+      height: 8px;
+      visibility: ${_ => (_.checked ? 'visible' : 'hidden')};
+    }
+  `,
+
+  HiddenCheckbox: styled.input.attrs({
+    type: 'checkbox'
+  })<{appearance: CheckboxAppearanceType}>`
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    white-space: nowrap;
+    opacity: 0;
+    width: 1px;
+    ${_ => getCheckboxStyle(_.appearance, _.disabled, _.checked)};
+  `
+}
 export const getLabelStyle = (
   appearance: CheckboxAppearanceType,
   disabled = false,
@@ -143,18 +187,16 @@ export const getCheckboxStyle = (
       }
 
     case 'outline':
-      const color = disabled
+      const borderColor = disabled
         ? _.theme.colors.border.muted
         : checked
         ? _.theme.colors.border.active
         : _.theme.colors.border.default
+
       return {
         '& + div': {
-          '& + span': {
-            color
-          },
-          color: color,
-          border: `1px solid ${color}`,
+          color: borderColor,
+          border: `1px solid ${borderColor}`,
           backgroundColor: 'transparent',
           borderRadius: '6px'
         }
@@ -167,13 +209,6 @@ export const getCheckboxStyle = (
         : _.theme.colors.text.muted
       return {
         '& + div': {
-          '+ span': {
-            color: disabled
-              ? _.theme.colors.border.muted
-              : checked
-              ? _.theme.colors.border.active
-              : _.theme.colors.border.default
-          },
           position: 'relative' as 'relative',
           cursor: 'pointer',
           width: '40px',

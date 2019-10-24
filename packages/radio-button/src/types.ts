@@ -10,5 +10,6 @@ export interface RadioButtonProps {
   onChange?: React.ChangeEventHandler<HTMLInputElement>
 }
 
-export type StyledLabelProps = RadioButtonProps &
-  Required<Pick<RadioButtonProps, 'appearance'>>
+export type StyledLabelProps = RadioButtonProps & {htmlFor?: string} & Required<
+    Pick<RadioButtonProps, 'appearance'>
+  >
