@@ -11,7 +11,7 @@ const RadioButtonFC: React.FC<RadioButtonProps> = ({children, ...props}) => {
   })
 
   return (
-    <S.Label as="label" htmlFor={props.name} {...defaults} {...props}>
+    <S.Label as="label" {...defaults} {...props}>
       <S.HiddenRadioButton
         checked={props.checked}
         onChange={props.onChange}

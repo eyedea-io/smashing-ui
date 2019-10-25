@@ -21,6 +21,7 @@ const ArrowIcon = () => (
     />
   </svg>
 )
+
 export const Tablist: React.FC<TabListProps> = ({children, ...props}) => {
   const defaults = useDefaults('tablist', props, {
     appearance: 'default' as TabsAppearanceType

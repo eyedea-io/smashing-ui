@@ -11,8 +11,7 @@ const CustomSelect: React.FC<SelectProps> = ({children, ...props}) => {
     setIsOpen(false)
   })
 
-  const {onChange, ...propsSansChange} = props
-
+  const {onChange, value, ...propsSansChange} = props
   const options = props.options || []
 
   return (
@@ -22,7 +21,8 @@ const CustomSelect: React.FC<SelectProps> = ({children, ...props}) => {
       {...propsSansChange}
     >
       <S.InputAsSelectButtonComponent
-        readonly
+        readOnly
+        defaultValue={value}
         placeholder={props.placeholder}
         isOpen={isOpen}
         appearance={props.appearance as any}
@@ -30,7 +30,7 @@ const CustomSelect: React.FC<SelectProps> = ({children, ...props}) => {
       >
         {props.value}
       </S.InputAsSelectButtonComponent>
-      <S.CustomOptionsList appearance={props.appearance} isOpen={isOpen}>
+      <S.CustomOptionsList isOpen={isOpen}>
         {options.map(o => (
           <S.CustomOption
             onClick={e => onChange && onChange(o.value)}

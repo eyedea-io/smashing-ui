@@ -123,24 +123,17 @@ storiesOf('Core|Select', module)
   ))
   .add('appearance:outline', () => {
     return (
-      <React.Fragment>
-        {intentKinds.map(intent => (
-          <SpecimenContainer key={intent}>
-            <SelectWithState>
-              {({value, setValue}) => (
-                <Select
-                  onChange={setValue}
-                  value={value}
-                  placeholder="Placeholder"
-                  options={optionsWithLabels}
-                  appearance="outline"
-                  intent={intent}
-                />
-              )}
-            </SelectWithState>
-          </SpecimenContainer>
-        ))}
-      </React.Fragment>
+      <SelectWithState>
+        {({value, setValue}) => (
+          <Select
+            onChange={setValue}
+            value={value}
+            placeholder="Placeholder"
+            options={optionsWithLabels}
+            appearance="outline"
+          />
+        )}
+      </SelectWithState>
     )
   })
   .add('Full', () => (

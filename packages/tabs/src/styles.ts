@@ -12,22 +12,39 @@ export const TabList = styled.ul<
   margin: 0;
   padding: 0;
   max-width: 100%;
-  li:first-child {
-    border-top-left-radius: inherit;
-    border-bottom-left-radius: inherit;
-  }
-  li:last-child {
-    border-top-right-radius: inherit;
-    border-bottom-right-radius: inherit;
-  }
   ${_ => getTabListStyle(_.appearance, _.isOpen)}
-  ${_ =>
-    !_.isOpen &&
-    _.visibleItemsCount && {
-      [`> li:nth-child(n + ${_.visibleItemsCount}):not(:nth-last-child(1))`]: {
+  ${_ => {
+    const elemLiStyle = {}
+    if (!_.isOpen && _.visibleItemsCount) {
+      elemLiStyle[
+        `> li:nth-child(n + ${_.visibleItemsCount}):not(:nth-last-child(1))`
+      ] = {
         display: 'none'
       }
-    }},
+    }
+
+    if (_.isOpen) {
+      elemLiStyle['li:first-child'] = {
+        borderTopLeftRadius: 'inherit',
+        borderTopRightRadius: 'inherit'
+      }
+      elemLiStyle['li:last-child'] = {
+        borderBottomLeftRadius: 'inherit',
+        borderBottomRightRadius: 'inherit'
+      }
+    } else {
+      elemLiStyle['li:first-child'] = {
+        borderTopLeftRadius: 'inherit',
+        borderBottomLeftRadius: 'inherit'
+      }
+      elemLiStyle['li:last-child'] = {
+        borderTopRightRadius: 'inherit',
+        borderBottomRightRadius: 'inherit'
+      }
+    }
+
+    return elemLiStyle
+  }}
 `
 
 export const Tab = styled.li<TabProps>`

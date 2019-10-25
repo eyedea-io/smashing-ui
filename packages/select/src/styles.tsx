@@ -73,7 +73,7 @@ export const S = {
 
   InputAsSelectButtonComponent: styled<
     React.FC<TextInputProps & {isOpen: boolean}>
-  >(TextInput).attrs({readonly: true})`
+  >(TextInput)`
     cursor: pointer;
     ${_ =>
       _.isOpen
@@ -86,10 +86,7 @@ export const S = {
             transition: 'border-radius 0.5s ease 0.3s'
           }}
   `,
-  CustomOptionsList: styled.ul<{
-    isOpen: boolean
-    appearance?: SelectAppearanceType
-  }>`
+  CustomOptionsList: styled.ul<{isOpen: boolean}>`
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
     position: absolute;
