@@ -34,6 +34,8 @@ const getSelectTextStyle = (
 export const S = {
   SelectWrapper: styled.div<StyledSelectProps>`
     position: relative;
+    width: fit-content;
+    height: fit-content;
 
     ${_ =>
       _.full
@@ -97,7 +99,7 @@ export const S = {
     right: 0;
     transition: max-height 0.5s ease-out;
     padding: 0;
-    z-index: 1;
+    z-index: 10;
     ${_ => ({
       backgroundColor: _.theme.colors.background.white,
       border: `1px solid ${_.theme.colors.border.default}`,

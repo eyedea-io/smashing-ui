@@ -38,3 +38,15 @@ storiesOf('Core|Tabs', module)
       <Tab appearance="outline">Tab 2</Tab>
     </Tablist>
   ))
+  .add('appearance:outline disabled', () => (
+    <Tablist appearance="outline" disabled>
+      <Tab isSelected appearance="outline">
+        Tab 1
+      </Tab>
+      <Tab appearance="outline">Tab 2</Tab>
+      <Tab appearance="outline">Tab 3</Tab>
+      <Tab appearance="outline">Tab 2</Tab>
+      <Tab appearance="outline">Tab 3</Tab>
+      <Tab appearance="outline">Tab 2</Tab>
+    </Tablist>
+  ))

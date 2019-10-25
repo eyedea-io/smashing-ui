@@ -35,6 +35,8 @@ export const Input = styled(Text)<InputProps>`
 export const StyledTextContainer = styled.div<InputProps>`
   position: relative;
   display: inline-block;
+  width: fit-content;
+  height: fit-content;
   ${_ => {
     const height =
       typeof _.height === 'string' ? parseInt(_.height, 10) : _.height

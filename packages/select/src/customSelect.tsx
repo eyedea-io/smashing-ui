@@ -17,7 +17,7 @@ const CustomSelect: React.FC<SelectProps> = ({children, ...props}) => {
   return (
     <S.SelectWrapper
       ref={node}
-      onClick={() => setIsOpen(!isOpen)}
+      onClick={() => !props.disabled && setIsOpen(!isOpen)}
       {...propsSansChange}
     >
       <S.InputAsSelectButtonComponent

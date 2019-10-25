@@ -12,7 +12,7 @@ export const TabList = styled.ul<
   margin: 0;
   padding: 0;
   max-width: 100%;
-  ${_ => getTabListStyle(_.appearance, _.isOpen)}
+  ${_ => getTabListStyle(_.appearance, _.isOpen, _.disabled)}
   ${_ => {
     const elemLiStyle = {}
     if (!_.isOpen && _.visibleItemsCount) {
@@ -91,14 +91,23 @@ export const MoreButtonContainer = styled.li<{isOpen?: boolean}>`
 
 const getTabListStyle = (
   appearance?: TabsAppearanceType,
-  isOpen?: boolean
+  isOpen?: boolean,
+  disabled?: boolean
 ) => (_: {theme: DefaultTheme}) => {
   switch (appearance) {
     case 'flat':
       return {}
     case 'outline':
       return {
-        border: `1px solid ${_.theme.colors.border.default}`,
+        border: `1px solid ${
+          disabled ? _.theme.colors.border.muted : _.theme.colors.border.default
+        }`,
+        ...(disabled && {
+          li: {
+            cursor: disabled ? 'not-allowed' : 'pointer',
+            color: _.theme.colors.text.muted
+          }
+        }),
         color: _.theme.colors.text.default,
         borderRadius: '6px',
         justifyContent: 'space-between',

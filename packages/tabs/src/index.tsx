@@ -66,7 +66,7 @@ export const Tablist: React.FC<TabListProps> = ({children, ...props}) => {
           <S.MoreButtonContainer isOpen={isOpen}>
             <S.MoreButton
               isOpen={isOpen}
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={() => !props.disabled && setIsOpen(!isOpen)}
               ref={moreButtonNode}
             >
               <ArrowIcon />
