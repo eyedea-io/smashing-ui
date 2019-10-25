@@ -6,7 +6,8 @@ import {getButtonStyle} from './styles'
 import {
   useDefaults,
   getTextSizeForControlHeight,
-  getBorderRadiusForControlHeight
+  getBorderRadiusForControlHeight,
+  useTheme
 } from '@smashing/theme'
 import {
   ButtonIntentType,
@@ -21,7 +22,42 @@ type StyledComponentElement =
   | keyof JSX.IntrinsicElements
   | React.ComponentType<any>
 
-const StyledText = styled(Text)<StyledTextProps>`
+interface ButtonIconAttachmentProps {
+  iconPosition?: string
+}
+
+function getIconAttachmentStyle(height: number, iconPosition?: string) {
+  return {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent:
+      iconPosition === 'center'
+        ? 'center'
+        : iconPosition === 'left'
+        ? 'space-between'
+        : 'space-between',
+    'flex-direction': iconPosition === 'left' ? 'row-reverse' : 'row',
+
+    '.svg-wrapper': {
+      display: 'flex',
+      alignItems: 'center',
+      marginLeft:
+        iconPosition === 'center'
+          ? 0
+          : iconPosition === 'left'
+          ? -Math.round(height / 8)
+          : Math.round(height / 4),
+      marginRight:
+        iconPosition === 'center'
+          ? 0
+          : iconPosition === 'left'
+          ? Math.round(height / 4)
+          : -Math.round(height / 8)
+    }
+  }
+}
+
+const StyledText = styled(Text)<StyledTextProps & ButtonIconAttachmentProps>`
   border: none;
   cursor: pointer;
   border-radius: ${_ => _.borderRadius}px;
@@ -38,6 +74,7 @@ const StyledText = styled(Text)<StyledTextProps>`
           display: 'inline-flex'
         }}
   ${_ => getButtonStyle(_.appearance, _.intent)};
+  ${_ => getIconAttachmentStyle(_.height, _.iconPosition)};
 `
 const StyledSpinner = styled(Spinner)<StyledSpinnerProps>`
   opacity: 0.6;
@@ -51,39 +88,65 @@ const ButtonFCFactory: <AdditionalProps extends {}>(
   as: StyledComponentElement
 ) => React.FC<ButtonProps> = <AdditionalProps extends {}>(
   as: StyledComponentElement = 'button'
-) => ({children, innerRef, ...props}) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const defaults = useDefaults('button', props, {
-    height: 32,
-    appearance: 'default' as ButtonAppearanceType,
-    intent: 'none' as ButtonIntentType,
-    isLoading: false,
-    full: false
-  })
+) => {
+  const ButtonFC = ({children, innerRef, ...props}) => {
+    const defaults = useDefaults('button', props, {
+      height: 32,
+      appearance: 'default' as ButtonAppearanceType,
+      intent: 'none' as ButtonIntentType,
+      isLoading: false,
+      full: false
+    })
 
-  const IconComponent = props.icon
+    const theme = useTheme()
 
-  return (
-    <StyledText
-      as={as}
-      borderRadius={getBorderRadiusForControlHeight(defaults.height)}
-      variant={getTextSizeForControlHeight(defaults.height)}
-      ref={innerRef}
-      {...defaults}
-      {...props}
-      disabled={props.disabled || props.isLoading}
-    >
-      {defaults.isLoading && (
-        <StyledSpinner
-          marginLeft={-Math.round(defaults.height / 8)}
-          marginRight={Math.round(defaults.height / 4)}
-          size={Math.round(defaults.height / 2)}
-        />
-      )}
-      {children}
-      {IconComponent ? <IconComponent variant="light" /> : null}
-    </StyledText>
-  )
+    const IconComponent = props.icon
+
+    return (
+      <StyledText
+        as={as}
+        borderRadius={getBorderRadiusForControlHeight(defaults.height)}
+        variant={getTextSizeForControlHeight(defaults.height)}
+        ref={innerRef}
+        {...defaults}
+        {...props}
+        disabled={props.disabled || props.isLoading}
+      >
+        {children}
+        {defaults.isLoading && (
+          <StyledSpinner
+            marginLeft={
+              props.iconPosition === 'center'
+                ? 0
+                : props.iconPosition === 'left'
+                ? -Math.round(defaults.height / 8)
+                : Math.round(defaults.height / 4)
+            }
+            marginRight={
+              props.iconPosition === 'center'
+                ? 0
+                : props.iconPosition === 'left'
+                ? Math.round(defaults.height / 4)
+                : -Math.round(defaults.height / 8)
+            }
+            size={Math.round(defaults.height / 2)}
+          />
+        )}
+        {IconComponent && !defaults.isLoading && (
+          <div className="svg-wrapper">
+            <IconComponent
+              className="ssvg"
+              size={defaults.height / 2}
+              variant="light"
+              color={theme.colors.text[props.intent || 'none']}
+            />
+          </div>
+        )}
+      </StyledText>
+    )
+  }
+
+  return ButtonFC as React.FC<ButtonProps>
 }
 
 const Button = styled<React.FC<ButtonProps>>(ButtonFCFactory('button'))``
@@ -108,6 +171,7 @@ declare module 'styled-components' {
         intent?: ButtonIntentType
         isLoading?: boolean
         icon?: React.Component
+        iconPosition?: 'left' | 'center'
       }
     }> {}
 }

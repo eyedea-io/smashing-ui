@@ -3,7 +3,7 @@ import {storiesOf, addDecorator} from '@storybook/react'
 import {Button} from '@smashing/button'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
-import {ArrowDown} from '@eyedea/flow-icons'
+import {ArrowDown, Save, ArrowRight, Add} from '@eyedea/flow-icons'
 
 addDecorator(withA11y)
 
@@ -25,7 +25,7 @@ storiesOf('Core|Button', module)
         <Button disabled>Hulk smash!</Button>
       </p>
       <p>
-        <Button icon={ArrowDown}>Hulk smash!</Button>
+        <Button>Hulk smash!</Button>
       </p>
       <p>
         <Button intent="info">Hulk smash!</Button>
@@ -38,6 +38,41 @@ storiesOf('Core|Button', module)
       </p>
       <p>
         <Button intent="danger">Hulk smash!</Button>
+      </p>
+    </React.Fragment>
+  ))
+  .add('appearance:default-with-icon', () => (
+    <React.Fragment>
+      <p>
+        <Button icon={Add} iconPosition="center" intent="info"></Button>
+      </p>
+      <p>
+        <Button icon={ArrowDown} iconPosition="left" disabled>
+          Hulk smash!
+        </Button>
+      </p>
+      <p>
+        <Button icon={ArrowDown}>Hulk smash!</Button>
+      </p>
+      <p>
+        <Button icon={Save} intent="info">
+          Hulk smash!
+        </Button>
+      </p>
+      <p>
+        <Button icon={ArrowRight} intent="success">
+          Hulk smash!
+        </Button>
+      </p>
+      <p>
+        <Button icon={ArrowRight} intent="warning">
+          Hulk smash!
+        </Button>
+      </p>
+      <p>
+        <Button icon={ArrowRight} intent="danger">
+          Hulk smash!
+        </Button>
       </p>
     </React.Fragment>
   ))
