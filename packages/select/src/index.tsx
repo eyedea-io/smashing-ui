@@ -16,6 +16,7 @@ const SelectFC: React.FC<SelectProps> = ({children, ...props}) => {
   const defaults = useDefaults<SelectProps>('select', props, {
     options: [],
     value: '',
+    onChange: () => undefined,
     height: 32
   })
 
