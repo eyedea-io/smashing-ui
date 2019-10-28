@@ -99,6 +99,26 @@ export const getButtonStyle = (
         },
         ':disabled': disabled
       }
+    case 'outline':
+      return {
+        backgroundColor: 'transparent',
+        borderRadius: '6px',
+        border: `2px solid ${colors.border.default}`,
+        color: colors.text.default,
+        ':active': {
+          border: `2px solid ${colors.border.active}`,
+          color: colors.text.intense
+        },
+        ':hover': {
+          border: `2px solid ${colors.border.active}`,
+          color: colors.text.intense
+        },
+        ':disabled': {
+          cursor: 'default',
+          border: `2px solid ${colors.border.muted}`,
+          color: colors.text.muted
+        }
+      }
     case 'default':
     default:
       return {

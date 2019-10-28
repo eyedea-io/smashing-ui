@@ -194,6 +194,18 @@ storiesOf('Core|Button', module)
       </p>
     </React.Fragment>
   ))
+  .add('appearance:outline', () => (
+    <React.Fragment>
+      <p>
+        <Button appearance="outline" disabled>
+          Hulk smash!
+        </Button>
+      </p>
+      <p>
+        <Button appearance="outline">Hulk smash!</Button>
+      </p>
+    </React.Fragment>
+  ))
   .add('loading', () => <Button isLoading>Hulk smash!</Button>)
   .add('full', () => (
     <Button isLoading full>

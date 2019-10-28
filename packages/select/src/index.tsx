@@ -2,15 +2,9 @@ import * as React from 'react'
 import {useDefaults} from '@smashing/theme'
 import styled from 'styled-components'
 import {ButtonIntentType, ButtonAppearanceType} from '@smashing/button'
-import {TextInputAppearanceType} from '@smashing/text-input'
 import {SelectProps} from './types'
 import {S} from './styles'
 import CustomSelect from './customSelect'
-
-type appearancesWithCustomList = Exclude<
-  TextInputAppearanceType | undefined,
-  ButtonAppearanceType
->
 
 const SelectFC: React.FC<SelectProps> = ({children, ...props}) => {
   const defaults = useDefaults<SelectProps>('select', props, {
@@ -23,9 +17,7 @@ const SelectFC: React.FC<SelectProps> = ({children, ...props}) => {
   const {onChange, ...propsSansChange} = props
 
   const options = defaults.options || []
-  const appearancesWithCustomOptionsList: (appearancesWithCustomList)[] = [
-    'outline'
-  ]
+  const appearancesWithCustomOptionsList: ButtonAppearanceType[] = ['outline']
 
   const selectButtonProps = {
     intent: props.intent,
@@ -39,7 +31,7 @@ const SelectFC: React.FC<SelectProps> = ({children, ...props}) => {
 
   if (
     appearancesWithCustomOptionsList.includes(
-      props.appearance as appearancesWithCustomList
+      props.appearance as ButtonAppearanceType
     )
   ) {
     return <CustomSelect {...selectButtonProps} {...propsSansChange} />

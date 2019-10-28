@@ -13,6 +13,7 @@ export type ButtonAppearanceType =
   | 'minimal'
   | 'default'
   | 'subtle'
+  | 'outline'
 
 export interface ButtonLikeProps {
   intent?: ButtonIntentType
