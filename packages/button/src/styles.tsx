@@ -1,7 +1,7 @@
 import * as tinycolor from 'tinycolor2'
-import {DefaultTheme} from 'styled-components'
+import styled, {DefaultTheme} from 'styled-components'
 import {getLinearGradientWithStates} from './helpers'
-import {ButtonIconPosition} from './index'
+import {ButtonIconPosition} from './types'
 
 export type IntentType = 'success' | 'warning' | 'info' | 'danger' | 'none'
 
@@ -11,6 +11,8 @@ export type AppearanceType =
   | 'minimal'
   | 'default'
   | 'subtle'
+
+export const SvgWrapper = styled.div``
 
 export const getButtonStyle = (
   appearance?: AppearanceType,
@@ -136,10 +138,7 @@ export const getButtonStyle = (
   }
 }
 
-export function getIconAttachmentStyle(
-  height: number,
-  iconPosition?: ButtonIconPosition
-) {
+export function getIconAttachmentStyle(iconPosition?: ButtonIconPosition) {
   return {
     alignItems: 'center',
     justifyContent:
@@ -148,23 +147,6 @@ export function getIconAttachmentStyle(
         : iconPosition === 'left'
         ? 'space-between'
         : 'space-between',
-    'flex-direction': iconPosition === 'left' ? 'row-reverse' : 'row',
-
-    '.svg-wrapper': {
-      display: 'flex',
-      alignItems: 'center',
-      marginLeft:
-        iconPosition === 'center'
-          ? 0
-          : iconPosition === 'left'
-          ? -Math.round(height / 8)
-          : Math.round(height / 4),
-      marginRight:
-        iconPosition === 'center'
-          ? 0
-          : iconPosition === 'left'
-          ? Math.round(height / 4)
-          : -Math.round(height / 8)
-    }
+    'flex-direction': iconPosition === 'left' ? 'row-reverse' : 'row'
   }
 }

@@ -14,6 +14,8 @@ export type ButtonAppearanceType =
   | 'default'
   | 'subtle'
 
+export type ButtonIconPosition = 'left' | 'center' | 'right'
+
 export interface ButtonLikeProps {
   intent?: ButtonIntentType
   appearance?: ButtonAppearanceType

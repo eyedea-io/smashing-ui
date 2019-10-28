@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import {Text} from '@smashing/typography'
 import {Spinner} from '@smashing/spinner'
-import {getButtonStyle, getIconAttachmentStyle} from './styles'
+import {getButtonStyle, getIconAttachmentStyle, SvgWrapper} from './styles'
 import {
   useDefaults,
   getTextSizeForControlHeight,
@@ -14,6 +14,7 @@ import {
   ButtonAppearanceType,
   ButtonProps,
   ButtonLikeProps,
+  ButtonIconPosition,
   StyledTextProps,
   StyledSpinnerProps
 } from './types'
@@ -21,8 +22,6 @@ import {
 type StyledComponentElement =
   | keyof JSX.IntrinsicElements
   | React.ComponentType<any>
-
-export type ButtonIconPosition = 'left' | 'center' | 'right'
 
 interface ButtonIconAttachmentProps {
   iconPosition?: ButtonIconPosition
@@ -46,8 +45,23 @@ const StyledText = styled(Text)<StyledTextProps & ButtonIconAttachmentProps>`
           display: 'inline-flex'
         }}
   ${_ => getButtonStyle(_.appearance, _.intent)};
-  ${_ =>
-    _.icon ? getIconAttachmentStyle(_.height, _.iconPosition, _.full) : {}};
+  ${_ => (_.icon ? getIconAttachmentStyle(_.iconPosition) : {})};
+  ${SvgWrapper} {
+    display: flex;
+    align-items: center;
+    margin-left: ${_ =>
+      _.iconPosition === 'center'
+        ? 0
+        : _.iconPosition === 'left'
+        ? `${-Math.round(_.height / 8)}px`
+        : `${Math.round(_.height / 4)}px`};
+    margin-right: ${_ =>
+      _.iconPosition === 'center'
+        ? 0
+        : _.iconPosition === 'left'
+        ? `${Math.round(_.height / 4)}px`
+        : `${-Math.round(_.height / 8)}px`};
+  }
 `
 const StyledSpinner = styled(Spinner)<StyledSpinnerProps>`
   opacity: 0.6;
@@ -105,12 +119,12 @@ const ButtonFCFactory: <AdditionalProps extends {}>(
           />
         )}
         {IconComponent && !defaults.isLoading && (
-          <div className="svg-wrapper">
+          <SvgWrapper>
             <IconComponent
               size={defaults.height / 2}
               color={theme.colors.text[props.intent || 'none']}
             />
-          </div>
+          </SvgWrapper>
         )}
       </StyledText>
     )
