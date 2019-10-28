@@ -23,10 +23,13 @@ type StyledComponentElement =
   | React.ComponentType<any>
 
 interface ButtonIconAttachmentProps {
-  iconPosition?: string
+  iconPosition?: 'left' | 'center'
 }
 
-function getIconAttachmentStyle(height: number, iconPosition?: string) {
+function getIconAttachmentStyle(
+  height: number,
+  iconPosition?: 'left' | 'center'
+) {
   return {
     display: 'flex',
     alignItems: 'center',
@@ -135,9 +138,7 @@ const ButtonFCFactory: <AdditionalProps extends {}>(
         {IconComponent && !defaults.isLoading && (
           <div className="svg-wrapper">
             <IconComponent
-              className="ssvg"
               size={defaults.height / 2}
-              variant="light"
               color={theme.colors.text[props.intent || 'none']}
             />
           </div>
