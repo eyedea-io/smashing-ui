@@ -122,7 +122,11 @@ const ButtonFCFactory: <AdditionalProps extends {}>(
           <SvgWrapper>
             <IconComponent
               size={defaults.height / 2}
-              color={theme.colors.text[props.intent || 'none']}
+              color={
+                props.appearance === 'primary'
+                  ? 'white'
+                  : theme.colors.text[props.intent || 'none']
+              }
             />
           </SvgWrapper>
         )}
