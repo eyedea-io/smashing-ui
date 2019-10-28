@@ -82,10 +82,10 @@ export const S = {
         ? {
             borderBottomLeftRadius: 0,
             borderBottomRightRadius: 0,
-            transition: 'border-radius 0.5s ease'
+            transition: 'border-radius 0.25s ease'
           }
         : {
-            transition: 'border-radius 0.5s ease 0.3s'
+            transition: 'border-radius 0.25s ease 0.3s'
           }}
   `,
   CustomOptionsList: styled.ul<{isOpen: boolean}>`
@@ -97,7 +97,7 @@ export const S = {
     list-style: none;
     left: 0;
     right: 0;
-    transition: max-height 0.5s ease-out;
+    transition: max-height 0.25s ease-out;
     padding: 0;
     z-index: 10;
     ${_ => ({
@@ -113,7 +113,7 @@ export const S = {
             }
           }
         : {
-            transition: 'max-height 0.5s ease-out, border-width 0s ease 0.5s',
+            transition: 'max-height 0.25s ease-out, border-width 0s ease 0.25s',
             borderWidth: 0,
             overflow: 'hidden',
             maxHeight: 0

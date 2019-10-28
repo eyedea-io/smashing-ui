@@ -70,12 +70,11 @@ export const MoreButton = styled.button<{isOpen: boolean}>`
   border: none;
   background: transparent;
   cursor: pointer;
-  padding: 15px;
   position: absolute;
-  width: 50px;
-  padding: 20px;
-  right: 0;
+  width: inherit;
+  height: 52px;
   top: 0;
+  right: 0;
   svg {
     transform: ${_ => (_.isOpen ? 'rotateX(180deg)' : '')};
   }
