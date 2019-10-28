@@ -78,6 +78,11 @@ storiesOf('Core|Button', module)
           Hulk smash!
         </Button>
       </p>
+      <p>
+        <Button icon={ArrowRightRegular} full>
+          Hulk smash!
+        </Button>
+      </p>
     </React.Fragment>
   ))
   .add('appearance:primary', () => (

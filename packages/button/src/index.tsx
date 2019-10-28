@@ -39,13 +39,15 @@ const StyledText = styled(Text)<StyledTextProps & ButtonIconAttachmentProps>`
   ${_ =>
     _.full
       ? {
-          width: '100%'
+          width: '100%',
+          display: _.icon ? 'flex' : 'inline-flex'
         }
       : {
           display: 'inline-flex'
         }}
   ${_ => getButtonStyle(_.appearance, _.intent)};
-  ${_ => getIconAttachmentStyle(_.height, _.iconPosition)};
+  ${_ =>
+    _.icon ? getIconAttachmentStyle(_.height, _.iconPosition, _.full) : {}};
 `
 const StyledSpinner = styled(Spinner)<StyledSpinnerProps>`
   opacity: 0.6;
