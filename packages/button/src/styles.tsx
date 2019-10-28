@@ -141,6 +141,7 @@ export function getIconAttachmentStyle(
   iconPosition?: ButtonIconPosition
 ) {
   return {
+    display: 'flex',
     alignItems: 'center',
     justifyContent:
       iconPosition === 'center'

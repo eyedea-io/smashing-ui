@@ -42,7 +42,7 @@ const StyledText = styled(Text)<StyledTextProps & ButtonIconAttachmentProps>`
           width: '100%'
         }
       : {
-          display: 'flex'
+          display: 'inline-flex'
         }}
   ${_ => getButtonStyle(_.appearance, _.intent)};
   ${_ => getIconAttachmentStyle(_.height, _.iconPosition)};
