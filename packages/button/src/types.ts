@@ -40,6 +40,8 @@ export type StyledTextProps = ButtonProps &
   Required<Pick<ButtonProps, 'height' | 'appearance' | 'intent'>>
 
 export type StyledSpinnerProps = {
-  marginRight: number
-  marginLeft: number
+  marginRight?: number
+  marginLeft?: number
+  iconPosition?: 'left' | 'center'
+  height: number
 }

@@ -82,8 +82,18 @@ const StyledText = styled(Text)<StyledTextProps & ButtonIconAttachmentProps>`
 const StyledSpinner = styled(Spinner)<StyledSpinnerProps>`
   opacity: 0.6;
   color: ${_ => _.theme.scales.neutral.N7A};
-  margin-right: ${_ => _.marginRight}px;
-  margin-left: ${_ => _.marginLeft}px;
+  margin-right: ${_ =>
+    _.iconPosition === 'center'
+      ? 0
+      : _.iconPosition === 'left'
+      ? Math.round(_.height / 4)
+      : -Math.round(_.height / 8)}px;
+  margin-left: ${_ =>
+    _.iconPosition === 'center'
+      ? 0
+      : _.iconPosition === 'left'
+      ? -Math.round(_.height / 8)
+      : Math.round(_.height / 4)}px;
   vertical-align: middle;
 `
 
@@ -118,20 +128,8 @@ const ButtonFCFactory: <AdditionalProps extends {}>(
         {children}
         {defaults.isLoading && (
           <StyledSpinner
-            marginLeft={
-              props.iconPosition === 'center'
-                ? 0
-                : props.iconPosition === 'left'
-                ? -Math.round(defaults.height / 8)
-                : Math.round(defaults.height / 4)
-            }
-            marginRight={
-              props.iconPosition === 'center'
-                ? 0
-                : props.iconPosition === 'left'
-                ? Math.round(defaults.height / 4)
-                : -Math.round(defaults.height / 8)
-            }
+            iconPosition={props.iconPosition}
+            height={defaults.height}
             size={Math.round(defaults.height / 2)}
           />
         )}
