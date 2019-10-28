@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import {Text} from '@smashing/typography'
 import {Spinner} from '@smashing/spinner'
-import {getButtonStyle} from './styles'
+import {getButtonStyle, getIconAttachmentStyle} from './styles'
 import {
   useDefaults,
   getTextSizeForControlHeight,
@@ -22,42 +22,10 @@ type StyledComponentElement =
   | keyof JSX.IntrinsicElements
   | React.ComponentType<any>
 
+export type ButtonIconPosition = 'left' | 'center' | 'right'
+
 interface ButtonIconAttachmentProps {
-  iconPosition?: 'left' | 'center'
-}
-
-function getIconAttachmentStyle(
-  height: number,
-  iconPosition?: 'left' | 'center'
-) {
-  return {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent:
-      iconPosition === 'center'
-        ? 'center'
-        : iconPosition === 'left'
-        ? 'space-between'
-        : 'space-between',
-    'flex-direction': iconPosition === 'left' ? 'row-reverse' : 'row',
-
-    '.svg-wrapper': {
-      display: 'flex',
-      alignItems: 'center',
-      marginLeft:
-        iconPosition === 'center'
-          ? 0
-          : iconPosition === 'left'
-          ? -Math.round(height / 8)
-          : Math.round(height / 4),
-      marginRight:
-        iconPosition === 'center'
-          ? 0
-          : iconPosition === 'left'
-          ? Math.round(height / 4)
-          : -Math.round(height / 8)
-    }
-  }
+  iconPosition?: ButtonIconPosition
 }
 
 const StyledText = styled(Text)<StyledTextProps & ButtonIconAttachmentProps>`
@@ -108,7 +76,8 @@ const ButtonFCFactory: <AdditionalProps extends {}>(
       appearance: 'default' as ButtonAppearanceType,
       intent: 'none' as ButtonIntentType,
       isLoading: false,
-      full: false
+      full: false,
+      iconPosition: 'right' as ButtonIconPosition
     })
 
     const theme = useTheme()
@@ -170,7 +139,7 @@ declare module 'styled-components' {
         intent?: ButtonIntentType
         isLoading?: boolean
         icon?: React.Component
-        iconPosition?: 'left' | 'center'
+        iconPosition?: ButtonIconPosition
       }
     }> {}
 }

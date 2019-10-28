@@ -1,8 +1,10 @@
 import * as tinycolor from 'tinycolor2'
 import {DefaultTheme} from 'styled-components'
 import {getLinearGradientWithStates} from './helpers'
+import {ButtonIconPosition} from './index'
 
 export type IntentType = 'success' | 'warning' | 'info' | 'danger' | 'none'
+
 export type AppearanceType =
   | 'flat'
   | 'primary'
@@ -131,5 +133,39 @@ export const getButtonStyle = (
         },
         ':disabled': disabled
       }
+  }
+}
+
+export function getIconAttachmentStyle(
+  height: number,
+  iconPosition?: ButtonIconPosition
+) {
+  return {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent:
+      iconPosition === 'center'
+        ? 'center'
+        : iconPosition === 'left'
+        ? 'space-between'
+        : 'space-between',
+    'flex-direction': iconPosition === 'left' ? 'row-reverse' : 'row',
+
+    '.svg-wrapper': {
+      display: 'flex',
+      alignItems: 'center',
+      marginLeft:
+        iconPosition === 'center'
+          ? 0
+          : iconPosition === 'left'
+          ? -Math.round(height / 8)
+          : Math.round(height / 4),
+      marginRight:
+        iconPosition === 'center'
+          ? 0
+          : iconPosition === 'left'
+          ? Math.round(height / 4)
+          : -Math.round(height / 8)
+    }
   }
 }
