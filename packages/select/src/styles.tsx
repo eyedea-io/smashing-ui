@@ -125,12 +125,14 @@ export const S = {
           })
     })}
   `,
-  CustomOption: styled.li<SelectProps>`
+  CustomOption: styled.li<SelectProps & {checked?: boolean}>`
     border-top: ${_ => `1px solid ${_.theme.colors.border.muted}`};
     cursor: pointer;
     padding: 13px 16px;
     &:hover {
       background-color: ${_ => _.theme.colors.background.blueTint};
     }
+    background-color: ${_ =>
+      _.checked ? _.theme.colors.background.blueTint : 'inherit'};
   `
 }
