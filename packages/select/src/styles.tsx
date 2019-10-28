@@ -3,7 +3,10 @@ import {ButtonIntentType, ButtonAs} from '@smashing/button'
 import {TextInputProps, TextInput} from '@smashing/text-input'
 import {SelectProps, SelectAppearanceType} from './types'
 
-type StyledSelectProps = Pick<SelectProps, 'appearance' | 'intent' | 'full'>
+type StyledSelectProps = Pick<
+  SelectProps,
+  'appearance' | 'intent' | 'full' | 'height'
+>
 
 const getSelectTextStyle = (
   appearance?: SelectAppearanceType,
@@ -34,19 +37,21 @@ const getSelectTextStyle = (
 export const S = {
   SelectWrapper: styled.div<StyledSelectProps>`
     position: relative;
-    width: fit-content;
-    height: fit-content;
 
-    ${_ =>
-      _.full
+    ${_ => {
+      const height =
+        typeof _.height === 'string' ? parseInt(_.height, 10) : _.height
+      return _.full
         ? {
             display: 'inline-block',
-            width: '100%'
+            width: '100%',
+            height
           }
         : {
-            display: 'inline-flex'
-          }}
-
+            display: 'inline-flex',
+            height
+          }
+    }}
     &::before,
     &::after {
       position: absolute;
