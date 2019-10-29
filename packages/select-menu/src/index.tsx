@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {Popover, PopoverProps} from '@smashing/popover'
+import {PopoverProps} from '@smashing/popover'
 import styled from 'styled-components'
 import {Button} from '@smashing/button'
 import {Strong} from '@smashing/typography'
@@ -44,9 +44,24 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
       currentFilter: ''
     }
     this.menuListRef = React.createRef<HTMLDivElement>()
+    this.inputRef = React.createRef<HTMLInputElement>()
+  }
+
+  componentDidMount() {
+    console.log(this.props.children)
+
+    console.log(this.inputRef)
+    console.log(this.inputRef.current && this.inputRef.current.clientWidth)
+
+    this.setState({
+      width:
+        (this.inputRef.current && this.inputRef.current.clientWidth) ||
+        undefined
+    })
   }
 
   menuListRef: React.RefObject<HTMLDivElement>
+  inputRef: React.RefObject<HTMLDivElement>
   selectedOptionRef: HTMLDivElement | null = null
 
   scrollToSelectedItem() {
@@ -55,13 +70,26 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
     }
   }
   getDefaultButton = (appearance?: SelectMenuAppearanceType) => {
-    if (appearance !== 'card')
-      return <Button>{this.getDefaultSelectedLabel()}</Button>
-    return (
-      <S.SelectButton appearance="minimal">
-        {this.getDefaultSelectedLabel()}
-      </S.SelectButton>
-    )
+    if (appearance === 'card') {
+      return (
+        <S.SelectButton appearance="minimal">
+          {this.getDefaultSelectedLabel()}
+        </S.SelectButton>
+      )
+    }
+    if (appearance === 'outline') {
+      console.log(this.props.children)
+      return (
+        // TODO: add arrow icon
+        <S.InputAsSelectButtonComponent
+          readOnly
+          innerRef={this.inputRef}
+          appearance="outline"
+          value={this.getDefaultSelectedLabel()}
+        />
+      )
+    }
+    return <Button>{this.getDefaultSelectedLabel()}</Button>
   }
   getFilteredOptions = () => {
     if (!this.state.currentFilter.trim()) {
@@ -160,9 +188,13 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
     }: Partial<PopoverProps> = this.props.popoverProps || {}
 
     return (
-      <Popover
-        minWidth={this.props.minWidth}
+      <S.Popover
+        appearance={this.props.appearance}
+        minWidth={this.state.width}
         onOpenStarted={() => this.scrollToSelectedItem()}
+        transitionType={
+          this.props.appearance === 'outline' ? 'expand' : 'scale'
+        }
         content={({close}) => {
           return (
             <S.PopoverHost>
@@ -215,7 +247,10 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
                       }}
                       option={option}
                       isSelected={this.isOptionSelected(option.value)}
-                      onClick={this.optionClicked}
+                      onClick={e => {
+                        this.optionClicked(e)
+                        if (!this.props.isMultiSelect) close()
+                      }}
                     />
                   )
                 })}

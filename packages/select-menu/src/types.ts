@@ -7,12 +7,14 @@ export type SelectMenuAppearanceType =
   | 'outline'
   | 'switcher'
 
-export type SelectMenuChildrenFn<T extends OptionBase> = <T>(props: {
+export type SelectButtonProps = {
   toggle: () => void
   getRef: (ref: any) => void
   isShown: boolean
-  selectedItems: T | T[]
-}) => React.ReactNode
+}
+export type SelectMenuChildrenFn<T extends OptionBase> = <T>(
+  props: SelectButtonProps & {selectedItems: T | T[]}
+) => React.ReactNode
 
 export interface SelectMenuProps<T extends OptionBase> {
   options: T[]
@@ -53,4 +55,5 @@ export interface OptionBase {
 
 export interface SelectMenuState {
   currentFilter: string
+  width?: number
 }

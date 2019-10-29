@@ -1,10 +1,9 @@
-import styled from 'styled-components'
-import {DefaultTheme} from 'styled-components'
+import styled, {DefaultTheme} from 'styled-components'
 import {Checkbox as SmashingCheckbox} from '@smashing/checkbox'
 import {SelectMenuAppearanceType} from './types'
 import {TextInput} from '@smashing/text-input'
 import {Button} from '@smashing/button'
-import {Popover} from '@smashing/popover'
+import {Popover as PopoverElement} from '@smashing/popover'
 
 export const OptionDiv = styled.div<{appearance?: string}>`
   padding: ${_ => _.theme.spacing.xxs} 0;
@@ -15,33 +14,11 @@ export const OptionDiv = styled.div<{appearance?: string}>`
       : 'none'};
 `
 
-export const getSelectMenuItemStyle = (
-  appearance?: SelectMenuAppearanceType,
-  disabled = false,
-  checked = false
-) => (_: {theme: DefaultTheme}) => {
-  switch (appearance) {
-    case 'primary':
-      return {}
-    case 'card':
-      return {
-        boxShadow: 'none',
-        padding: '8px',
-        borderRadius: 0,
-        outline: 'none',
-        '& div': {
-          display: 'flex',
-          justifyContent: 'center',
-          padding: 0
-        },
-        ':focus-within': {
-          boxShadow: 'none'
-        }
-      }
-    default:
-      return {}
-  }
-}
+export const Popover = styled(PopoverElement)<{
+  appearance?: SelectMenuAppearanceType
+}>`
+  ${_ => getPopoverStyle(_.appearance)}
+`
 
 export const FilterInput = styled(TextInput)`
   width: 100%;
@@ -72,8 +49,12 @@ export const Checkbox = styled(SmashingCheckbox)<{
 }>`
   ${_ => getSelectMenuItemStyle(_.appearance, _.checked)};
 `
-export const OptionHost = styled.div<{appearance?: string; height?: number}>`
-  padding: ${_ => (_.appearance !== 'card' ? '4px' : '0')};
+export const OptionHost = styled.div<{
+  appearance?: SelectMenuAppearanceType
+  height?: number
+}>`
+  padding: ${_ =>
+    _.appearance !== 'card' && _.appearance !== 'outline' ? '4px' : '0'};
   max-height: ${_ => _.height}px;
   overflow-y: auto;
   position: relative;
@@ -102,4 +83,77 @@ export const TextContainer = styled.div`
   justify-content: center;
   text-align: center;
 `
-export const StyledPopover = styled(Popover)``
+export const InputAsSelectButtonComponent = styled(TextInput)`
+  cursor: pointer;
+  &[aria-expanded='true'] {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    transition: border-radius 0.2s ease;
+  }
+  &[aria-expanded='false'] {
+    transition: border-radius 0.2s ease 0.2s;
+  }
+`
+
+export const getSelectMenuItemStyle = (
+  appearance?: SelectMenuAppearanceType,
+  disabled = false,
+  checked = false
+) => _ => {
+  switch (appearance) {
+    case 'primary':
+      return {}
+    case 'card':
+      return {
+        boxShadow: 'none',
+        padding: '8px',
+        borderRadius: 0,
+        outline: 'none',
+        '& div': {
+          display: 'flex',
+          justifyContent: 'center',
+          padding: 0
+        },
+        ':focus-within': {
+          boxShadow: 'none'
+        }
+      }
+    case 'outline':
+      return {
+        'div:first-of-type': {
+          display: 'none'
+        },
+        [OptionDiv]: {
+          borderTop: `1px solid ${_.theme.colors.border.muted}`,
+          borderBottom: 'none',
+          cursor: 'pointer',
+          padding: '13px 16px',
+          '&:hover': {
+            backgroundColor: _.theme.colors.background.blueTint
+          },
+          ...(checked && {
+            backgroundColor: _.theme.colors.background.blueTint
+          })
+        }
+      }
+    default:
+      return {}
+  }
+}
+
+export const getPopoverStyle = (appearance?: SelectMenuAppearanceType) => _ => {
+  switch (appearance) {
+    case 'outline':
+      return {
+        borderRadius: 0,
+        borderBottomLeftRadius: '6px',
+        borderBottomRightRadius: '6px',
+        boxShadow: 'none',
+        border: `1px solid ${_.theme.colors.border.default}`,
+        backgroundColor: _.theme.colors.background.white
+      }
+
+    default:
+      return {}
+  }
+}

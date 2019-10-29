@@ -32,7 +32,10 @@ export const Input = styled(Text)<InputProps>`
   ${_ => getTextInputStyle(_.appearance)};
 `
 
-export const StyledTextContainer = styled.div<InputProps>`
+export const StyledTextContainer = styled.div<{
+  height: number | string
+  suffix?: string
+}>`
   position: relative;
   display: inline-block;
   width: fit-content;

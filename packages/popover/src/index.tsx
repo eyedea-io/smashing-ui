@@ -121,6 +121,15 @@ export interface PopoverProps {
    * Function that will be called when the enter transition is started.
    */
   onOpenStarted?: () => void
+
+  /**
+   * Class name provided to the popup wrapper
+   */
+  className?: string
+  /**
+   * Type of open/close animation
+   */
+  transitionType?: 'scale' | 'expand'
 }
 
 const Target = (props: {
@@ -230,6 +239,7 @@ export const Popover: React.FC<PopoverProps> = ({
   bringFocusInside = false,
   overlay = false,
   elevate = false,
+  transitionType,
   ...props
 }) => {
   const [isShown, setIsShown] = React.useState(false)
@@ -321,7 +331,6 @@ export const Popover: React.FC<PopoverProps> = ({
   }, [onBodyClick, onEsc])
 
   const shown = typeof props.isShown === 'boolean' ? props.isShown : isShown
-
   return (
     <>
       <Positioner
@@ -345,6 +354,7 @@ export const Popover: React.FC<PopoverProps> = ({
         onOpenComplete={handleOpenComplete}
         onCloseComplete={onCloseComplete}
         onOpenStarted={onOpenStarted}
+        transitionType={transitionType}
       >
         {({style, state, getRef}) => (
           <S.Popup
@@ -356,6 +366,7 @@ export const Popover: React.FC<PopoverProps> = ({
             minWidth={minWidth}
             data-state={state}
             style={{...style, ...componentStyle}}
+            className={props.className}
             {...props.statelessProps}
           >
             {typeof props.content === 'function'

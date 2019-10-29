@@ -1,15 +1,15 @@
 import styled, {DefaultTheme} from 'styled-components'
-import {ButtonIntentType, ButtonAs} from '@smashing/button'
-import {TextInputProps, TextInput} from '@smashing/text-input'
-import {SelectProps, SelectAppearanceType} from './types'
+import {
+  ButtonIntentType,
+  ButtonAs,
+  ButtonAppearanceType
+} from '@smashing/button'
+import {SelectProps} from './types'
 
-type StyledSelectProps = Pick<
-  SelectProps,
-  'appearance' | 'intent' | 'full' | 'height'
->
+type StyledSelectProps = Pick<SelectProps, 'appearance' | 'intent' | 'full'>
 
 const getSelectTextStyle = (
-  appearance?: SelectAppearanceType,
+  appearance?: ButtonAppearanceType,
   intent: ButtonIntentType = 'none'
 ) => (_: {theme: DefaultTheme}) => {
   const {colors} = _.theme
@@ -39,17 +39,13 @@ export const S = {
     position: relative;
 
     ${_ => {
-      const height =
-        typeof _.height === 'string' ? parseInt(_.height, 10) : _.height
       return _.full
         ? {
             display: 'inline-block',
-            width: '100%',
-            height
+            width: '100%'
           }
         : {
-            display: 'inline-flex',
-            height
+            display: 'inline-flex'
           }
     }}
     &::before,
@@ -62,7 +58,6 @@ export const S = {
       ${_ => getSelectTextStyle(_.appearance, _.intent)};
     }
 
-    /* TODO: add icon to outline selects according to design */
     &::before {
       content: '\u25B2';
       transform: translate(0, -100%);
@@ -71,68 +66,10 @@ export const S = {
       content: '\u25BC';
     }
   `,
-  ButtonAsSelectComponent: styled<React.FC<SelectProps>>(
+  SelectButtonComponent: styled<React.FC<SelectProps>>(
     ButtonAs<HTMLSelectElement>('select')
   )`
     -webkit-appearance: button;
     padding-right: ${_ => Math.round(_.height || 0)}px;
-  `,
-
-  InputAsSelectButtonComponent: styled<
-    React.FC<TextInputProps & {isOpen: boolean}>
-  >(TextInput)`
-    cursor: pointer;
-    ${_ =>
-      _.isOpen
-        ? {
-            borderBottomLeftRadius: 0,
-            borderBottomRightRadius: 0,
-            transition: 'border-radius 0.25s ease'
-          }
-        : {
-            transition: 'border-radius 0.25s ease 0.3s'
-          }}
-  `,
-  CustomOptionsList: styled.ul<{isOpen: boolean}>`
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
-    position: absolute;
-    top: 100%;
-    margin: 0;
-    list-style: none;
-    left: 0;
-    right: 0;
-    transition: max-height 0.25s ease-out;
-    padding: 0;
-    z-index: 10;
-    ${_ => ({
-      backgroundColor: _.theme.colors.background.white,
-      border: `1px solid ${_.theme.colors.border.default}`,
-      ...(_.isOpen
-        ? {
-            overflow: 'auto',
-            maxHeight: '200px',
-            input: {
-              borderBottomLeftRadius: 0,
-              borderBottomRightRadius: 0
-            }
-          }
-        : {
-            transition: 'max-height 0.25s ease-out, border-width 0s ease 0.25s',
-            borderWidth: 0,
-            overflow: 'hidden',
-            maxHeight: 0
-          })
-    })}
-  `,
-  CustomOption: styled.li<SelectProps & {checked?: boolean}>`
-    border-top: ${_ => `1px solid ${_.theme.colors.border.muted}`};
-    cursor: pointer;
-    padding: 13px 16px;
-    &:hover {
-      background-color: ${_ => _.theme.colors.background.blueTint};
-    }
-    background-color: ${_ =>
-      _.checked ? _.theme.colors.background.blueTint : 'inherit'};
   `
 }

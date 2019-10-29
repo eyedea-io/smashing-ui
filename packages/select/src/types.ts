@@ -1,9 +1,7 @@
 import {ButtonLikeProps, ButtonAppearanceType} from '@smashing/button'
 import {TextInputAppearanceType} from '@smashing/text-input'
 
-export type SelectAppearanceType =
-  | ButtonAppearanceType
-  | TextInputAppearanceType
+export type SelectAppearanceType = ButtonAppearanceType
 
 export type Option = {
   label: string

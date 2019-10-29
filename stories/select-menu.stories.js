@@ -131,6 +131,19 @@ storiesOf('Core|Select menu', module)
       )}
     </Wrapper>
   ))
+  .add('Appearance: outline', () => (
+    <Wrapper>
+      {({singleSelectedOption, changeSingleSelectedOption}) => (
+        <SelectMenu
+          minWidth={146}
+          options={options}
+          value={singleSelectedOption}
+          onSelect={changeSingleSelectedOption}
+          appearance="outline"
+        />
+      )}
+    </Wrapper>
+  ))
   .add('Custom list item body', () => (
     <Wrapper>
       {({select, deselect, selectedOptions}) => (
