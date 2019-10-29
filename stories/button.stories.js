@@ -292,7 +292,12 @@ storiesOf('Core|Button', module)
     </Button>
   ))
   .add('borderRadius:30-with-icon', () => (
-    <Button icon={ArrowRightRegular} appearance="flat" intent="success" borderRadius={30}>
+    <Button
+      icon={ArrowRightRegular}
+      appearance="flat"
+      intent="success"
+      borderRadius={30}
+    >
       Hulk smash!
     </Button>
   ))
@@ -424,7 +429,9 @@ storiesOf('Core|Button', module)
         </Button>
       </p>
       <p>
-        <Button full icon={ArrowRightRegular}>Hulk smash!</Button>
+        <Button full icon={ArrowRightRegular}>
+          Hulk smash!
+        </Button>
       </p>
       <p>
         <Button full icon={ArrowRightRegular} intent="info">
@@ -447,7 +454,9 @@ storiesOf('Core|Button', module)
         </Button>
       </p>
       <p>
-        <Button full icon={ArrowRightRegular}>Hulk smash!</Button>
+        <Button full icon={ArrowRightRegular}>
+          Hulk smash!
+        </Button>
       </p>
     </React.Fragment>
   ))

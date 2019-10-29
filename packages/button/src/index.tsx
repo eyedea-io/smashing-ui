@@ -2,12 +2,17 @@ import * as React from 'react'
 import styled from 'styled-components'
 import {Text} from '@smashing/typography'
 import {Spinner} from '@smashing/spinner'
-import {getButtonStyle, getIconAttachmentStyle, SvgWrapper} from './styles'
+import {
+  getButtonStyle,
+  getButtonTextColor,
+  getIconAttachmentStyle,
+  SvgWrapper
+} from './styles'
 import {
   useDefaults,
+  useTheme,
   getTextSizeForControlHeight,
-  getBorderRadiusForControlHeight,
-  useTheme
+  getBorderRadiusForControlHeight
 } from '@smashing/theme'
 import {
   ButtonIntentType,
@@ -124,13 +129,11 @@ const ButtonFCFactory: <AdditionalProps extends {}>(
           <SvgWrapper>
             <IconComponent
               size={defaults.height / 2}
-              color={
+              color={getButtonTextColor(
+                props.intent,
+                props.appearance,
                 props.disabled
-                  ? theme.scales.neutral.N6
-                  : props.appearance === 'primary'
-                  ? 'white'
-                  : theme.colors.text[props.intent || 'none']
-              }
+              )({theme})}
             />
           </SvgWrapper>
         )}
