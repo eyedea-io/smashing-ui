@@ -123,7 +123,9 @@ const ButtonFCFactory: <AdditionalProps extends {}>(
             <IconComponent
               size={defaults.height / 2}
               color={
-                props.appearance === 'primary'
+                props.disabled
+                  ? theme.scales.neutral.N6
+                  : props.appearance === 'primary'
                   ? 'white'
                   : theme.colors.text[props.intent || 'none']
               }
