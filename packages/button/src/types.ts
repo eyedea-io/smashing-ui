@@ -36,6 +36,7 @@ export interface ButtonProps extends ButtonLikeProps {
   isLoading?: boolean
   borderRadius?: number
   icon?: any
+  iconPosition?: ButtonIconPosition
 }
 
 export type StyledTextProps = ButtonProps &
