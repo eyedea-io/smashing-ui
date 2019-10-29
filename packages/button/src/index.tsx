@@ -34,6 +34,8 @@ const StyledText = styled(Text)<StyledTextProps & ButtonIconAttachmentProps>`
   height: ${_ => _.height}px;
   padding-left: ${_ => Math.round(_.height / 2)}px;
   padding-right: ${_ => Math.round(_.height / 2)}px;
+  margin-left: 0;
+  margin-right: 0;
   vertical-align: middle;
   ${_ =>
     _.full
