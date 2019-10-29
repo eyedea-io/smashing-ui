@@ -166,7 +166,7 @@ declare module 'styled-components' {
         appearance?: ButtonAppearanceType
         intent?: ButtonIntentType
         isLoading?: boolean
-        icon?: React.Component
+        icon?: React.ComponentType
         iconPosition?: ButtonIconPosition
       }
     }> {}

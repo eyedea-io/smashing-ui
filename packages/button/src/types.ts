@@ -35,7 +35,7 @@ export interface ButtonProps extends ButtonLikeProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>
   isLoading?: boolean
   borderRadius?: number
-  icon?: React.Component
+  icon?: React.ComponentType
   iconPosition?: ButtonIconPosition
 }
 
