@@ -42,6 +42,7 @@ const StyledText = styled(Text)<StyledTextProps & ButtonIconAttachmentProps>`
   margin-left: 0;
   margin-right: 0;
   vertical-align: middle;
+  align-items: center;
   ${_ =>
     _.full
       ? {

@@ -166,7 +166,6 @@ export const getButtonStyle = (
 
 export function getIconAttachmentStyle(iconPosition?: ButtonIconPosition) {
   return {
-    alignItems: 'center',
     justifyContent:
       iconPosition === 'center'
         ? 'center'
