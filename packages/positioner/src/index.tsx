@@ -26,7 +26,7 @@ const initialState = () => ({
   top: null,
   left: null,
   transformOrigin: null,
-  style: getTransition()
+  style: getTransition().exited
 })
 
 interface WrapperProps {

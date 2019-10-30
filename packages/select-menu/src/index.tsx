@@ -46,15 +46,15 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
     this.menuListRef = React.createRef<HTMLDivElement>()
   }
 
+  menuListRef: React.RefObject<HTMLDivElement>
+  inputRef: HTMLDivElement | null = null
+  selectedOptionRef: HTMLDivElement | null = null
+
   componentDidMount() {
     this.setState({
       width: (this.inputRef && this.inputRef.clientWidth) || undefined
     })
   }
-
-  menuListRef: React.RefObject<HTMLDivElement>
-  inputRef: HTMLDivElement | null = null
-  selectedOptionRef: HTMLDivElement | null = null
 
   scrollToSelectedItem() {
     if (this.menuListRef.current && this.selectedOptionRef) {

@@ -129,21 +129,6 @@ storiesOf('Core|Select', module)
       ))}
     </React.Fragment>
   ))
-  .add('appearance:outline', () => {
-    return (
-      <SelectWithState>
-        {({value, setValue}) => (
-          <Select
-            onChange={setValue}
-            value={value}
-            placeholder="Placeholder"
-            options={optionsWithLabels}
-            appearance="outline"
-          />
-        )}
-      </SelectWithState>
-    )
-  })
   .add('Full', () => (
     <React.Fragment>
       <Select full options={optionsWithLabels} />
