@@ -1,4 +1,4 @@
-import styled, {DefaultTheme} from 'styled-components'
+import styled from 'styled-components'
 import {Checkbox as SmashingCheckbox} from '@smashing/checkbox'
 import {SelectMenuAppearanceType} from './types'
 import {TextInput} from '@smashing/text-input'
@@ -42,13 +42,14 @@ export const PopoverHeader = styled.div`
   border-bottom: ${_ => `1px solid ${_.theme.scales.neutral.N5}`};
   padding: ${_ => _.theme.spacing.xxs};
 `
-// eslint-disable-next-line no-unexpected-multiline
+
 export const Checkbox = styled(SmashingCheckbox)<{
   checked: boolean
   appearance?: string
 }>`
   ${_ => getSelectMenuItemStyle(_.appearance, _.checked)};
 `
+
 export const OptionHost = styled.div<{
   appearance?: SelectMenuAppearanceType
   height?: number
