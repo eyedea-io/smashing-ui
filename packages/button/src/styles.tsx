@@ -104,7 +104,7 @@ export const getButtonStyle = (
         backgroundColor: 'transparent',
         borderRadius: '6px',
         border: `2px solid ${colors.border.default}`,
-        color: colors.text.default,
+        color: colors.text[intent],
         ':active': {
           border: `2px solid ${colors.border.active}`,
           color: colors.text.intense
