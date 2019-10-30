@@ -46,8 +46,7 @@ const StyledText = styled(Text)<StyledTextProps & ButtonIconAttachmentProps>`
   ${_ =>
     _.full
       ? {
-          width: '100%',
-          display: _.icon ? 'flex' : 'inline-flex'
+          display: 'flex'
         }
       : {
           display: 'inline-flex'
