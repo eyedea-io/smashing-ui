@@ -44,24 +44,16 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
       currentFilter: ''
     }
     this.menuListRef = React.createRef<HTMLDivElement>()
-    this.inputRef = React.createRef<HTMLInputElement>()
   }
 
   componentDidMount() {
-    console.log(this.props.children)
-
-    console.log(this.inputRef)
-    console.log(this.inputRef.current && this.inputRef.current.clientWidth)
-
     this.setState({
-      width:
-        (this.inputRef.current && this.inputRef.current.clientWidth) ||
-        undefined
+      width: (this.inputRef && this.inputRef.clientWidth) || undefined
     })
   }
 
   menuListRef: React.RefObject<HTMLDivElement>
-  inputRef: React.RefObject<HTMLDivElement>
+  inputRef: HTMLDivElement | null = null
   selectedOptionRef: HTMLDivElement | null = null
 
   scrollToSelectedItem() {
@@ -69,7 +61,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
       this.menuListRef.current.scrollTo(0, this.selectedOptionRef.offsetTop)
     }
   }
-  getDefaultButton = (appearance?: SelectMenuAppearanceType) => {
+  getSelectButton = (appearance?: SelectMenuAppearanceType) => {
     if (appearance === 'card') {
       return (
         <S.SelectButton appearance="minimal">
@@ -78,19 +70,33 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
       )
     }
     if (appearance === 'outline') {
-      console.log(this.props.children)
-      return (
-        // TODO: add arrow icon
-        <S.InputAsSelectButtonComponent
-          readOnly
-          innerRef={this.inputRef}
-          appearance="outline"
-          value={this.getDefaultSelectedLabel()}
-        />
-      )
+      return this.getOutlineButton
     }
     return <Button>{this.getDefaultSelectedLabel()}</Button>
   }
+
+  getOutlineButton = (props: {
+    toggle: () => void
+    getRef: (ref: any) => void
+    isShown: boolean
+  }) => (
+    <S.InputAsSelectButtonComponent
+      readOnly
+      onClick={props.toggle}
+      innerRef={ref => {
+        // Ref for internal use, i.e. calculating menu width
+        this.inputRef = ref
+
+        // Ref that is being passed to the popover mechanism
+        props.getRef(ref)
+      }}
+      appearance="outline"
+      value={this.getDefaultSelectedLabel()}
+      aria-expanded={props.isShown}
+      aria-haspopup={true}
+    />
+  )
+
   getFilteredOptions = () => {
     if (!this.state.currentFilter.trim()) {
       return this.props.options
@@ -135,7 +141,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
           selectedItems: value || []
         })
     }
-    return this.getDefaultButton(appearance)
+    return this.getSelectButton(appearance)
   }
   getValue = (option: T) => {
     return option.value
@@ -192,6 +198,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
         appearance={this.props.appearance}
         minWidth={this.state.width}
         onOpenStarted={() => this.scrollToSelectedItem()}
+        targetOffset={this.props.appearance === 'outline' ? 0 : undefined}
         transitionType={
           this.props.appearance === 'outline' ? 'expand' : 'scale'
         }
