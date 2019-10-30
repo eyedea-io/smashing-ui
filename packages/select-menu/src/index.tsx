@@ -92,6 +92,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
       }}
       appearance="outline"
       value={this.getDefaultSelectedLabel()}
+      height={47}
       aria-expanded={props.isShown}
       aria-haspopup={true}
     />

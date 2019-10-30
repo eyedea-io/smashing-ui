@@ -17,6 +17,7 @@ export const OptionDiv = styled.div<{appearance?: string}>`
 export const Popover = styled(PopoverElement)<{
   appearance?: SelectMenuAppearanceType
 }>`
+  box-sizing: border-box;
   ${_ => getPopoverStyle(_.appearance)}
 `
 
@@ -94,6 +95,12 @@ export const InputAsSelectButtonComponent = styled(TextInput)`
   &[aria-expanded='false'] {
     transition: border-radius 0.2s ease 0.2s;
   }
+  ${_ =>
+    _.appearance === 'outline' && {
+      input: {
+        fontSize: '14px'
+      }
+    }}
 `
 
 export const getSelectMenuItemStyle = (
