@@ -18,15 +18,7 @@ const optionsWithLabels = [
   {value: 'abc', label: 'ABC Option'},
   {value: 'bca', label: 'BCA Option'},
   {value: 'cde', label: 'Longer Option'},
-  {value: 'def', label: 'DEF Option'},
-  {value: 'abc1', label: 'ABC Option 1'},
-  {value: 'bca1', label: 'BCA Option 1'},
-  {value: 'cde1', label: 'Longer Option 1'},
-  {value: 'def1', label: 'DEF Option 1'},
-  {value: 'abc2', label: 'ABC Option 2'},
-  {value: 'bca2', label: 'BCA Option 2'},
-  {value: 'cde2', label: 'Longer Option 2'},
-  {value: 'def2', label: 'DEF Option 2'}
+  {value: 'def', label: 'DEF Option'}
 ]
 const intentKinds = ['none', 'danger', 'info', 'success', 'warning']
 

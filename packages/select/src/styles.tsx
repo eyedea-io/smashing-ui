@@ -38,16 +38,15 @@ export const S = {
   SelectWrapper: styled.div<StyledSelectProps>`
     position: relative;
 
-    ${_ => {
-      return _.full
+    ${_ =>
+      _.full
         ? {
             display: 'inline-block',
             width: '100%'
           }
         : {
             display: 'inline-flex'
-          }
-    }}
+          }}
     &::before,
     &::after {
       position: absolute;
