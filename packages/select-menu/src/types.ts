@@ -41,6 +41,11 @@ export interface SelectMenuProps<T extends OptionBase> {
   ) => React.ReactNode
 
   /**
+   * If set to true, will filter out currently selected item from the list
+   */
+  hideSelectedItem?: boolean
+
+  /**
    * Props that will be passed to the internal Popover component. Please note that
    * vital control props (isShown, children etc.) will have no effect when placed here.
    */

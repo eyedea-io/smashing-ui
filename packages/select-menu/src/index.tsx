@@ -28,7 +28,13 @@ const SelectMenuItem: React.FC<{
       onChange={() => onClick(option)}
     >
       <S.OptionDiv appearance={appearance} onChange={() => onClick(option)}>
-        {option.label}
+        {appearance === 'outline' ? (
+          <Strong color={option.disabled ? 'muted' : 'intense'}>
+            {option.label}
+          </Strong>
+        ) : (
+          option.label
+        )}
       </S.OptionDiv>
     </S.Checkbox>
   )
@@ -38,7 +44,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
   SelectMenuProps<T>,
   SelectMenuState
 > {
-  constructor(props) {
+  constructor(props: SelectMenuProps<T>) {
     super(props)
     this.state = {
       currentFilter: ''
@@ -92,18 +98,23 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
       }}
       appearance="outline"
       value={this.getDefaultSelectedLabel()}
-      height={47}
+      height={48}
       aria-expanded={props.isShown}
       aria-haspopup={true}
     />
   )
 
   getFilteredOptions = () => {
+    const options =
+      this.props.hideSelectedItem && this.props.value
+        ? this.props.options.filter(o => o.value !== this.props.value)
+        : this.props.options
+
     if (!this.state.currentFilter.trim()) {
-      return this.props.options
+      return options
     }
 
-    return this.props.options.filter(
+    return options.filter(
       o =>
         `${o.label} ${o.value}`
           .toLowerCase()

@@ -48,7 +48,7 @@ export const Checkbox = styled(SmashingCheckbox)<{
   checked: boolean
   appearance?: string
 }>`
-  ${_ => getSelectMenuItemStyle(_.appearance, _.checked)};
+  ${_ => getSelectMenuItemStyle(_.appearance, _.disabled, _.checked)};
 `
 
 export const OptionHost = styled.div<{
@@ -87,20 +87,26 @@ export const TextContainer = styled.div`
 `
 export const InputAsSelectButtonComponent = styled(TextInput)`
   cursor: pointer;
+  height: ${_ => _.theme.spacing.xxl};
+
+  input {
+    font-size: 14px;
+    box-shadow: none;
+    font-weight: 600;
+    border: 1px solid ${_ => _.theme.colors.border.default};
+  }
+
   &[aria-expanded='true'] {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     transition: border-radius 0.2s ease;
+    input {
+      border-bottom: 1px solid ${_ => _.theme.colors.border.muted};
+    }
   }
   &[aria-expanded='false'] {
     transition: border-radius 0.2s ease 0.2s;
   }
-  ${_ =>
-    _.appearance === 'outline' && {
-      input: {
-        fontSize: '14px'
-      }
-    }}
 `
 
 export const getSelectMenuItemStyle = (
@@ -134,7 +140,6 @@ export const getSelectMenuItemStyle = (
         [OptionDiv]: {
           borderTop: `1px solid ${_.theme.colors.border.muted}`,
           borderBottom: 'none',
-          cursor: 'pointer',
           padding: '13px 16px',
           '&:hover': {
             backgroundColor: _.theme.colors.background.blueTint
@@ -142,6 +147,11 @@ export const getSelectMenuItemStyle = (
           ...(checked && {
             backgroundColor: _.theme.colors.background.blueTint
           })
+        },
+        '&:first-of-type': {
+          [OptionDiv]: {
+            borderTop: '0'
+          }
         }
       }
     default:
@@ -158,7 +168,8 @@ export const getPopoverStyle = (appearance?: SelectMenuAppearanceType) => _ => {
         borderBottomRightRadius: '6px',
         boxShadow: 'none',
         border: `1px solid ${_.theme.colors.border.default}`,
-        backgroundColor: _.theme.colors.background.white
+        borderTop: '0',
+        backgroundColor: _.theme.colors.background.default
       }
 
     default:
