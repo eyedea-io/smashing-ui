@@ -64,6 +64,7 @@ export const OptionHost = styled.div<{
   ${Checkbox}:last-child {
     ${OptionDiv} {
       border-bottom: none;
+      border-top: none;
     }
   }
 `
