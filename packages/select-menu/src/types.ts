@@ -50,6 +50,11 @@ export interface SelectMenuProps<T extends OptionBase> {
    * vital control props (isShown, children etc.) will have no effect when placed here.
    */
   popoverProps?: Partial<PopoverProps>
+
+  /**
+   * Used to set component's visual style for indicating errors
+   */
+  invalid?: boolean
 }
 
 export interface OptionBase {
