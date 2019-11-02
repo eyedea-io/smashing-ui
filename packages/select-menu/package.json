@@ -1,6 +1,6 @@
 {
   "name": "@smashing/select-menu",
-  "version": "0.2.0",
+  "version": "0.1.4-alpha.28+af15d0f",
   "description": "Component used to select options",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -33,5 +33,6 @@
     "smashing",
     "react",
     "ui"
-  ]
+  ],
+  "gitHead": "af15d0f826c14ac65b9e0d49da4e7c0e2443e795"
 }

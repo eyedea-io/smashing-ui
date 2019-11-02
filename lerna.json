@@ -2,6 +2,12 @@
   "npmClient": "yarn",
   "useWorkspaces": true,
   "version": "independent",
+  "command": {
+    "publish": {
+      "npmClient": "npm",
+      "noGitReset": true
+    }
+  },
   "changelog": {
     "cacheDir": ".changelog",
     "repo": "eyedea-io/smashing-ui",
