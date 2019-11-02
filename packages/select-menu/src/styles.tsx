@@ -16,9 +16,10 @@ export const OptionDiv = styled.div<{appearance?: string}>`
 
 export const Popover = styled(PopoverElement)<{
   appearance?: SelectMenuAppearanceType
+  invalid?: boolean
 }>`
   box-sizing: border-box;
-  ${_ => getPopoverStyle(_.appearance)}
+  ${_ => getPopoverStyle(_.appearance, _.invalid)}
 `
 
 export const FilterInput = styled(TextInput)`
@@ -85,7 +86,9 @@ export const TextContainer = styled.div`
   justify-content: center;
   text-align: center;
 `
-export const InputAsSelectButtonComponent = styled(TextInput)`
+export const InputAsSelectButtonComponent = styled(TextInput)<{
+  invalid?: boolean
+}>`
   cursor: pointer;
   height: ${_ => _.theme.spacing.xxl};
 
@@ -93,7 +96,11 @@ export const InputAsSelectButtonComponent = styled(TextInput)`
     font-size: 14px;
     box-shadow: none;
     font-weight: 600;
-    border: 1px solid ${_ => _.theme.colors.border.default};
+    border: 1px solid
+      ${_ =>
+        _.invalid
+          ? _.theme.colors.border.danger
+          : _.theme.colors.border.default};
   }
 
   &[aria-expanded='true'] {
@@ -159,7 +166,10 @@ export const getSelectMenuItemStyle = (
   }
 }
 
-export const getPopoverStyle = (appearance?: SelectMenuAppearanceType) => _ => {
+export const getPopoverStyle = (
+  appearance?: SelectMenuAppearanceType,
+  invalid?: boolean
+) => _ => {
   switch (appearance) {
     case 'outline':
       return {
@@ -167,7 +177,9 @@ export const getPopoverStyle = (appearance?: SelectMenuAppearanceType) => _ => {
         borderBottomLeftRadius: '6px',
         borderBottomRightRadius: '6px',
         boxShadow: 'none',
-        border: `1px solid ${_.theme.colors.border.default}`,
+        border: `1px solid ${
+          invalid ? _.theme.colors.border.danger : _.theme.colors.border.default
+        }`,
         borderTop: '0',
         backgroundColor: _.theme.colors.background.default
       }

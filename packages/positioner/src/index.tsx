@@ -22,13 +22,6 @@ const animationEasing = {
   spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
 }
 
-const initialState = () => ({
-  top: null,
-  left: null,
-  transformOrigin: null,
-  style: getTransition().exited
-})
-
 interface WrapperProps {
   initialScale: number
   animationDuration: number
@@ -142,10 +135,21 @@ export class Positioner extends React.PureComponent<
     onCloseComplete: () => {},
     onOpenStarted: () => {}
   }
-  state = initialState()
   latestAnimationFrame?: number
   targetRef = React.createRef<HTMLElement>().current
   positionerRef = React.createRef<HTMLElement>().current
+
+  constructor(props: PositionerProps) {
+    super(props)
+    this.state = this.resetState()
+  }
+
+  resetState = () => ({
+    top: null,
+    left: null,
+    transformOrigin: null,
+    style: getTransition(this.props.transitionType).exited
+  })
 
   componentWillUnmount() {
     if (this.latestAnimationFrame) {
@@ -183,7 +187,7 @@ export class Positioner extends React.PureComponent<
   }
 
   handleExited = () => {
-    this.setState(initialState, this.props.onCloseComplete)
+    this.setState(this.resetState(), this.props.onCloseComplete)
   }
 
   update = (prevHeight = 0, prevWidth = 0) => {
