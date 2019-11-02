@@ -130,6 +130,11 @@ export interface PopoverProps {
    * Type of open/close animation
    */
   transitionType?: 'scale' | 'expand'
+
+  /**
+   * If set to true, popover width will match target size
+   */
+  matchTargetWidth?: boolean
 }
 
 const Target = (props: {
@@ -243,6 +248,7 @@ export const Popover: React.FC<PopoverProps> = ({
   ...props
 }) => {
   const [isShown, setIsShown] = React.useState(false)
+  const [targetWidth, setTargetWidth] = React.useState(0)
   const savedTargetStyles = React.useRef<(string | null)[]>([null, null])
   let targetRef = React.useRef<HTMLSpanElement | null>(null)
   let popoverNode = React.useRef<HTMLDivElement | null>(null)
@@ -323,6 +329,16 @@ export const Popover: React.FC<PopoverProps> = ({
     onOpenComplete()
   }, [onOpenComplete])
 
+  const setTargetRef = React.useCallback(
+    (ref: HTMLElement | null) => {
+      targetRef.current = ref
+      if (props.matchTargetWidth && ref && targetWidth !== ref.clientWidth) {
+        setTargetWidth(ref.clientWidth)
+      }
+    },
+    [targetWidth]
+  )
+
   React.useEffect(() => {
     return () => {
       document.body.removeEventListener('mousedown', onBodyClick, false)
@@ -341,7 +357,7 @@ export const Popover: React.FC<PopoverProps> = ({
             isShown={isShown}
             innerRef={ref => {
               getRef(ref)
-              targetRef.current = ref
+              setTargetRef(ref)
             }}
           >
             {props.children}
@@ -363,7 +379,7 @@ export const Popover: React.FC<PopoverProps> = ({
               popoverNode.current = ref
             }}
             minHeight={minHeight}
-            minWidth={minWidth}
+            minWidth={props.matchTargetWidth ? targetWidth : minWidth}
             data-state={state}
             style={{...style, ...componentStyle}}
             className={props.className}
