@@ -1,6 +1,6 @@
 {
   "name": "@smashing/select-menu",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Component used to select options",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@smashing/button": "^0.2.31",
-    "@smashing/popover": "^0.3.1",
+    "@smashing/popover": "^0.3.2",
     "@smashing/text-input": "^0.2.1",
     "@smashing/theme": "^0.5.3",
     "@smashing/typography": "^0.4.28"
