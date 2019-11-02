@@ -87,7 +87,7 @@ export const TextContainer = styled.div`
   text-align: center;
 `
 export const InputAsSelectButtonComponent = styled(TextInput)<{
-  invalid?: boolean
+  inputInvalid?: boolean
 }>`
   cursor: pointer;
   height: ${_ => _.theme.spacing.xxl};
@@ -98,7 +98,7 @@ export const InputAsSelectButtonComponent = styled(TextInput)<{
     font-weight: 600;
     border: 1px solid
       ${_ =>
-        _.invalid
+        _.inputInvalid
           ? _.theme.colors.border.danger
           : _.theme.colors.border.default};
   }

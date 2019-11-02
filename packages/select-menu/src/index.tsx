@@ -81,7 +81,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
   }) => (
     <S.InputAsSelectButtonComponent
       readOnly
-      invalid={this.props.invalid}
+      inputInvalid={this.props.invalid}
       onClick={props.toggle}
       innerRef={props.getRef}
       appearance="outline"
