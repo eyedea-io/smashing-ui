@@ -53,14 +53,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
   }
 
   menuListRef: React.RefObject<HTMLDivElement>
-  inputRef: HTMLDivElement | null = null
   selectedOptionRef: HTMLDivElement | null = null
-
-  componentDidMount() {
-    this.setState({
-      width: (this.inputRef && this.inputRef.clientWidth) || undefined
-    })
-  }
 
   scrollToSelectedItem() {
     if (this.menuListRef.current && this.selectedOptionRef) {
@@ -89,13 +82,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
     <S.InputAsSelectButtonComponent
       readOnly
       onClick={props.toggle}
-      innerRef={ref => {
-        // Ref for internal use, i.e. calculating menu width
-        this.inputRef = ref
-
-        // Ref that is being passed to the popover mechanism
-        props.getRef(ref)
-      }}
+      innerRef={props.getRef}
       appearance="outline"
       value={this.getDefaultSelectedLabel()}
       height={48}

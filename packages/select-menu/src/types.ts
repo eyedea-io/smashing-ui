@@ -60,5 +60,4 @@ export interface OptionBase {
 
 export interface SelectMenuState {
   currentFilter: string
-  width?: number
 }
