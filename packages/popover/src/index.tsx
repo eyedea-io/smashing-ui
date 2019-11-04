@@ -209,12 +209,13 @@ const Target = (props: {
 }
 
 const S = {
-  Popup: styled.div<PopoverProps>`
+  Popup: styled.div<PopoverProps & {popupWidth?: number}>`
     ${_ => _.theme.elevation.dropdown};
     border-radius: ${_ => _.theme.radius};
     overflow: hidden;
     min-width: ${_ => _.minWidth}px;
     min-height: ${_ => _.minHeight}px;
+    ${_ => _.popupWidth && `width: ${_.popupWidth}px;`}
   `,
   Overlay: styled.div<{isShown: boolean}>`
     position: fixed;
@@ -379,7 +380,8 @@ export const Popover: React.FC<PopoverProps> = ({
               popoverNode.current = ref
             }}
             minHeight={minHeight}
-            minWidth={props.matchTargetWidth ? targetWidth : minWidth}
+            popupWidth={props.matchTargetWidth ? targetWidth : 0}
+            minWidth={props.matchTargetWidth ? undefined : minWidth}
             data-state={state}
             style={{...style, ...componentStyle}}
             className={props.className}

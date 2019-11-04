@@ -197,7 +197,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
       <S.Popover
         invalid={this.props.invalid}
         appearance={this.props.appearance}
-        matchTargetWidth
+        matchTargetWidth={this.props.appearance === 'outline'}
         onOpenStarted={() => this.scrollToSelectedItem()}
         targetOffset={this.props.appearance === 'outline' ? 0 : undefined}
         transitionType={
