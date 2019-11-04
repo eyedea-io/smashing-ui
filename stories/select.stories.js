@@ -26,47 +26,9 @@ storiesOf('Core|Select', module)
   .addDecorator(story => (
     <SmashingThemeProvider theme={{}}>{story()}</SmashingThemeProvider>
   ))
-  .add('Simple usage', () => (
+  .add('appearance:default', () => (
     <React.Fragment>
       <Select options={optionsWithLabels} />
-    </React.Fragment>
-  ))
-  .add('With value', () => {
-    const INITIAL_STATE = optionsWithLabels[1].value
-
-    const ComponentWithState = () => {
-      const [selected, setSelected] = React.useState(INITIAL_STATE)
-      return (
-        <Select
-          options={optionsWithLabels}
-          value={selected}
-          onChange={event => setSelected(event.target.value)}
-        />
-      )
-    }
-
-    return <ComponentWithState />
-  })
-  .add('Height', () => (
-    <React.Fragment>
-      <SpecimenContainer>
-        <Select options={optionsWithLabels} />
-      </SpecimenContainer>
-      <SpecimenContainer>
-        <Select options={optionsWithLabels} height={34} />
-      </SpecimenContainer>
-      <SpecimenContainer>
-        <Select options={optionsWithLabels} height={48} />
-      </SpecimenContainer>
-      <SpecimenContainer>
-        <Select options={optionsWithLabels} height={64} />
-      </SpecimenContainer>
-      <SpecimenContainer>
-        <Select options={optionsWithLabels} height={96} />
-      </SpecimenContainer>
-      <SpecimenContainer>
-        <Select options={optionsWithLabels} height={128} />
-      </SpecimenContainer>
     </React.Fragment>
   ))
   .add('appearance:primary', () => (
@@ -121,13 +83,51 @@ storiesOf('Core|Select', module)
       ))}
     </React.Fragment>
   ))
-  .add('Full', () => (
+  .add('height', () => (
+    <React.Fragment>
+      <SpecimenContainer>
+        <Select options={optionsWithLabels} height={24} />
+      </SpecimenContainer>
+      <SpecimenContainer>
+        <Select options={optionsWithLabels} />
+      </SpecimenContainer>
+      <SpecimenContainer>
+        <Select options={optionsWithLabels} height={48} />
+      </SpecimenContainer>
+      <SpecimenContainer>
+        <Select options={optionsWithLabels} height={64} />
+      </SpecimenContainer>
+      <SpecimenContainer>
+        <Select options={optionsWithLabels} height={96} />
+      </SpecimenContainer>
+      <SpecimenContainer>
+        <Select options={optionsWithLabels} height={128} />
+      </SpecimenContainer>
+    </React.Fragment>
+  ))
+  .add('full', () => (
     <React.Fragment>
       <Select full options={optionsWithLabels} />
     </React.Fragment>
   ))
-  .add('Disabled', () => (
+  .add('disabled', () => (
     <React.Fragment>
       <Select disabled options={optionsWithLabels} />
     </React.Fragment>
   ))
+  .add('with value', () => {
+    const INITIAL_STATE = optionsWithLabels[1].value
+
+    const ComponentWithState = () => {
+      const [selected, setSelected] = React.useState(INITIAL_STATE)
+      return (
+        <Select
+          options={optionsWithLabels}
+          value={selected}
+          onChange={event => setSelected(event.target.value)}
+        />
+      )
+    }
+
+    return <ComponentWithState />
+  })
