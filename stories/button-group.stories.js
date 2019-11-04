@@ -8,7 +8,15 @@ addDecorator(withA11y)
 
 storiesOf('Core|ButtonGroup', module)
   .addDecorator(story => (
-    <SmashingThemeProvider theme={{}}>{story()}</SmashingThemeProvider>
+    <SmashingThemeProvider
+      theme={{
+        defaults: {
+          button: {}
+        }
+      }}
+    >
+      {story()}
+    </SmashingThemeProvider>
   ))
   .add('appearance:default', () => {
     const [value, setValue] = React.useState(1)
