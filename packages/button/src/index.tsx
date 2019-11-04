@@ -1,13 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import {Text} from '@smashing/typography'
-import {Spinner} from '@smashing/spinner'
-import {
-  getButtonStyle,
-  getButtonTextColor,
-  getIconAttachmentStyle,
-  SvgWrapper
-} from './styles'
+import {Text as PureText} from '@smashing/typography'
+import {Spinner as PureSpinner} from '@smashing/spinner'
+import {getButtonStyle, getButtonTextColor} from './styles'
 import {
   useDefaults,
   useTheme,
@@ -19,20 +14,41 @@ import {
   ButtonAppearanceType,
   ButtonProps,
   ButtonLikeProps,
-  ButtonIconPosition,
   StyledTextProps,
   StyledSpinnerProps
 } from './types'
+
+import {} from '.'
 
 type StyledComponentElement =
   | keyof JSX.IntrinsicElements
   | React.ComponentType<any>
 
-interface ButtonIconAttachmentProps {
-  iconPosition?: ButtonIconPosition
+interface IconWrapperProps {
+  height: number
+  iconPosition: 'before' | 'after' | 'center'
 }
 
-const StyledText = styled(Text)<StyledTextProps & ButtonIconAttachmentProps>`
+const IconWrapper = styled.div<IconWrapperProps>`
+  display: flex;
+  align-items: center;
+  ${_ => ({
+    order: _.iconPosition === 'before' ? -1 : undefined
+  })}
+  margin-left: ${_ =>
+    ({
+      center: 0,
+      before: `${-Math.round(_.height / 8)}px`,
+      after: `${Math.round(_.height / 4)}px`
+    }[_.iconPosition])};
+  margin-right: ${_ =>
+    ({
+      center: 0,
+      before: `${Math.round(_.height / 4)}px`,
+      after: `${-Math.round(_.height / 8)}px`
+    }[_.iconPosition])};
+`
+const Container = styled(PureText)<StyledTextProps>`
   border: none;
   cursor: pointer;
   border-radius: ${_ => _.borderRadius}px;
@@ -43,49 +59,16 @@ const StyledText = styled(Text)<StyledTextProps & ButtonIconAttachmentProps>`
   margin-right: 0;
   vertical-align: middle;
   align-items: center;
-  ${_ =>
-    _.full
-      ? {
-          display: 'flex'
-        }
-      : {
-          display: 'inline-flex'
-        }}
   ${_ => getButtonStyle(_.appearance, _.intent)};
-  ${_ => (_.icon ? getIconAttachmentStyle(_.iconPosition) : {})};
-  ${SvgWrapper} {
-    display: flex;
-    align-items: center;
-    margin-left: ${_ =>
-      _.iconPosition === 'center'
-        ? 0
-        : _.iconPosition === 'left'
-        ? `${-Math.round(_.height / 8)}px`
-        : `${Math.round(_.height / 4)}px`};
-    margin-right: ${_ =>
-      _.iconPosition === 'center'
-        ? 0
-        : _.iconPosition === 'left'
-        ? `${Math.round(_.height / 4)}px`
-        : `${-Math.round(_.height / 8)}px`};
-  }
+  ${_ => ({
+    width: _.full ? '100%' : undefined,
+    justifyContent: _.full ? 'center' : undefined,
+    display: _.full ? 'flex' : 'inline-flex'
+  })}
 `
-const StyledSpinner = styled(Spinner)<StyledSpinnerProps>`
+const Spinner = styled(PureSpinner)<StyledSpinnerProps>`
   opacity: 0.6;
   color: ${_ => _.theme.scales.neutral.N7A};
-  margin-right: ${_ =>
-    _.iconPosition === 'center'
-      ? 0
-      : _.iconPosition === 'left'
-      ? Math.round(_.height / 4)
-      : -Math.round(_.height / 8)}px;
-  margin-left: ${_ =>
-    _.iconPosition === 'center'
-      ? 0
-      : _.iconPosition === 'left'
-      ? -Math.round(_.height / 8)
-      : Math.round(_.height / 4)}px;
-  vertical-align: middle;
 `
 
 const ButtonFCFactory: <AdditionalProps extends {}>(
@@ -93,22 +76,32 @@ const ButtonFCFactory: <AdditionalProps extends {}>(
 ) => React.FC<ButtonProps> = <AdditionalProps extends {}>(
   as: StyledComponentElement = 'button'
 ) => {
-  const ButtonFC = ({children, innerRef, ...props}) => {
+  const ButtonFC = ({
+    children,
+    innerRef,
+    iconAfter: IconAfter,
+    iconBefore: IconBefore,
+    ...props
+  }) => {
     const defaults = useDefaults('button', props, {
       height: 32,
       appearance: 'default' as ButtonAppearanceType,
       intent: 'none' as ButtonIntentType,
       isLoading: false,
-      full: false,
-      iconPosition: 'right' as ButtonIconPosition
+      full: false
     })
-
     const theme = useTheme()
-
-    const IconComponent = props.icon
+    const loaderIconPosition =
+      children === undefined ? 'center' : IconBefore ? 'before' : 'after'
+    const iconProps = {
+      size: Math.round(defaults.height / 2),
+      color: getButtonTextColor(props.intent, props.appearance, props.disabled)(
+        {theme}
+      )
+    }
 
     return (
-      <StyledText
+      <Container
         as={as}
         borderRadius={getBorderRadiusForControlHeight(defaults.height)}
         variant={getTextSizeForControlHeight(defaults.height)}
@@ -117,27 +110,36 @@ const ButtonFCFactory: <AdditionalProps extends {}>(
         {...props}
         disabled={props.disabled || props.isLoading}
       >
-        {children}
-        {defaults.isLoading && (
-          <StyledSpinner
-            iconPosition={props.iconPosition}
+        {IconBefore && (
+          <IconWrapper
+            iconPosition={children ? 'before' : 'center'}
             height={defaults.height}
-            size={Math.round(defaults.height / 2)}
-          />
+          >
+            <IconBefore {...iconProps} />
+          </IconWrapper>
         )}
-        {IconComponent && !defaults.isLoading && (
-          <SvgWrapper>
-            <IconComponent
-              size={defaults.height / 2}
-              color={getButtonTextColor(
-                props.intent,
-                props.appearance,
-                props.disabled
-              )({theme})}
-            />
-          </SvgWrapper>
+
+        {children}
+
+        {/* TODO: Handle loader position */}
+        {defaults.isLoading && (
+          <IconWrapper
+            iconPosition={loaderIconPosition}
+            height={defaults.height}
+          >
+            <Spinner height={defaults.height} size={iconProps.size} />
+          </IconWrapper>
         )}
-      </StyledText>
+
+        {IconAfter && !defaults.isLoading && (
+          <IconWrapper
+            iconPosition={children ? 'after' : 'center'}
+            height={defaults.height}
+          >
+            <IconAfter {...iconProps} />
+          </IconWrapper>
+        )}
+      </Container>
     )
   }
 
@@ -147,6 +149,7 @@ const ButtonFCFactory: <AdditionalProps extends {}>(
 const Button = styled<React.FC<ButtonProps>>(ButtonFCFactory('button'))``
 const ButtonAs = <T extends {}>(as: StyledComponentElement) =>
   styled(ButtonFCFactory<React.HTMLAttributes<T>>(as))``
+const StyledButton = {Spinner, Container, IconWrapper}
 
 export {
   Button,
@@ -154,7 +157,8 @@ export {
   ButtonProps,
   ButtonAppearanceType,
   ButtonIntentType,
-  ButtonLikeProps
+  ButtonLikeProps,
+  StyledButton
 }
 
 declare module 'styled-components' {
@@ -165,8 +169,6 @@ declare module 'styled-components' {
         appearance?: ButtonAppearanceType
         intent?: ButtonIntentType
         isLoading?: boolean
-        icon?: React.ComponentType
-        iconPosition?: ButtonIconPosition
       }
     }> {}
 }
