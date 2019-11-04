@@ -62,20 +62,19 @@ export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
     case 'outline':
       return {
         backgroundColor: 'transparent',
-        borderRadius: '6px',
-        boxShadow: colors.input.boxShadow.default,
+        boxShadow: colors.input.outline.boxShadow.default,
         ':focus': {
           outline: 'none',
-          boxShadow: colors.input.boxShadow.active
+          boxShadow: colors.input.outline.boxShadow.active
         },
         ':invalid, &[aria-invalid]': {
-          boxShadow: colors.input.boxShadow.invalid
+          boxShadow: colors.input.outline.boxShadow.invalid
         },
         '::placeholder': {
           color: colors.text.muted
         },
         ':disabled': {
-          boxShadow: colors.input.boxShadow.disabled
+          boxShadow: colors.input.outline.boxShadow.disabled
         }
       }
     case 'default':
