@@ -14,8 +14,6 @@ export type ButtonAppearanceType =
   | 'default'
   | 'subtle'
 
-export type ButtonIconPosition = 'left' | 'center' | 'right'
-
 export interface ButtonLikeProps {
   intent?: ButtonIntentType
   appearance?: ButtonAppearanceType
@@ -35,8 +33,8 @@ export interface ButtonProps extends ButtonLikeProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>
   isLoading?: boolean
   borderRadius?: number
-  icon?: React.ComponentType
-  iconPosition?: ButtonIconPosition
+  iconAfter?: React.ElementType
+  iconBefore?: React.ElementType
 }
 
 export type StyledTextProps = ButtonProps &
@@ -45,6 +43,5 @@ export type StyledTextProps = ButtonProps &
 export type StyledSpinnerProps = {
   marginRight?: number
   marginLeft?: number
-  iconPosition?: 'left' | 'center'
   height: number
 }

@@ -44,42 +44,38 @@ storiesOf('Core|Button', module)
   .add('appearance:default-with-icon', () => (
     <React.Fragment>
       <p>
-        <Button
-          icon={ArrowRightRegular}
-          iconPosition="center"
-          intent="info"
-        ></Button>
+        <Button iconAfter={ArrowRightRegular} intent="info"></Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} iconPosition="left" disabled>
+        <Button iconBefore={ArrowRightRegular} disabled>
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular}>Hulk smash!</Button>
+        <Button iconAfter={ArrowRightRegular}>Hulk smash!</Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} intent="info">
+        <Button iconAfter={ArrowRightRegular} intent="info">
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} intent="success">
+        <Button iconAfter={ArrowRightRegular} intent="success">
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} intent="warning">
+        <Button iconAfter={ArrowRightRegular} intent="warning">
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={CalendarRegular} intent="danger">
+        <Button iconAfter={CalendarRegular} intent="danger">
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular}>Hulk smash!</Button>
+        <Button iconAfter={ArrowRightRegular}>Hulk smash!</Button>
       </p>
     </React.Fragment>
   ))
@@ -118,32 +114,48 @@ storiesOf('Core|Button', module)
   .add('appearance:primary-with-icon', () => (
     <React.Fragment>
       <p>
-        <Button icon={ArrowRightRegular} appearance="primary" disabled>
+        <Button iconAfter={ArrowRightRegular} appearance="primary" disabled>
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} appearance="primary">
+        <Button iconAfter={ArrowRightRegular} appearance="primary">
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} appearance="primary" intent="info">
+        <Button
+          iconAfter={ArrowRightRegular}
+          appearance="primary"
+          intent="info"
+        >
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} appearance="primary" intent="success">
+        <Button
+          iconAfter={ArrowRightRegular}
+          appearance="primary"
+          intent="success"
+        >
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} appearance="primary" intent="warning">
+        <Button
+          iconAfter={ArrowRightRegular}
+          appearance="primary"
+          intent="warning"
+        >
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} appearance="primary" intent="danger">
+        <Button
+          iconAfter={ArrowRightRegular}
+          appearance="primary"
+          intent="danger"
+        >
           Hulk smash!
         </Button>
       </p>
@@ -184,32 +196,48 @@ storiesOf('Core|Button', module)
   .add('appearance:minimal-with-icon', () => (
     <React.Fragment>
       <p>
-        <Button icon={ArrowRightRegular} appearance="minimal" disabled>
+        <Button iconAfter={ArrowRightRegular} appearance="minimal" disabled>
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} appearance="minimal">
+        <Button iconAfter={ArrowRightRegular} appearance="minimal">
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} appearance="minimal" intent="info">
+        <Button
+          iconAfter={ArrowRightRegular}
+          appearance="minimal"
+          intent="info"
+        >
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} appearance="minimal" intent="success">
+        <Button
+          iconAfter={ArrowRightRegular}
+          appearance="minimal"
+          intent="success"
+        >
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} appearance="minimal" intent="warning">
+        <Button
+          iconAfter={ArrowRightRegular}
+          appearance="minimal"
+          intent="warning"
+        >
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} appearance="minimal" intent="danger">
+        <Button
+          iconAfter={ArrowRightRegular}
+          appearance="minimal"
+          intent="danger"
+        >
           Hulk smash!
         </Button>
       </p>
@@ -255,32 +283,40 @@ storiesOf('Core|Button', module)
   .add('appearance:flat-with-icon', () => (
     <React.Fragment>
       <p>
-        <Button icon={ArrowRightRegular} appearance="flat" disabled>
+        <Button iconAfter={ArrowRightRegular} appearance="flat" disabled>
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} appearance="flat">
+        <Button iconAfter={ArrowRightRegular} appearance="flat">
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} appearance="flat" intent="info">
+        <Button iconAfter={ArrowRightRegular} appearance="flat" intent="info">
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} appearance="flat" intent="success">
+        <Button
+          iconAfter={ArrowRightRegular}
+          appearance="flat"
+          intent="success"
+        >
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} appearance="flat" intent="warning">
+        <Button
+          iconAfter={ArrowRightRegular}
+          appearance="flat"
+          intent="warning"
+        >
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} appearance="flat" intent="danger">
+        <Button iconAfter={ArrowRightRegular} appearance="flat" intent="danger">
           Hulk smash!
         </Button>
       </p>
@@ -293,7 +329,7 @@ storiesOf('Core|Button', module)
   ))
   .add('borderRadius:30-with-icon', () => (
     <Button
-      icon={ArrowRightRegular}
+      iconAfter={ArrowRightRegular}
       appearance="flat"
       intent="success"
       borderRadius={30}
@@ -336,32 +372,44 @@ storiesOf('Core|Button', module)
   .add('appearance:subtle-with-icon', () => (
     <React.Fragment>
       <p>
-        <Button icon={ArrowRightRegular} appearance="subtle" disabled>
+        <Button iconAfter={ArrowRightRegular} appearance="subtle" disabled>
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} appearance="subtle">
+        <Button iconAfter={ArrowRightRegular} appearance="subtle">
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} appearance="subtle" intent="info">
+        <Button iconAfter={ArrowRightRegular} appearance="subtle" intent="info">
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} appearance="subtle" intent="success">
+        <Button
+          iconAfter={ArrowRightRegular}
+          appearance="subtle"
+          intent="success"
+        >
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} appearance="subtle" intent="warning">
+        <Button
+          iconAfter={ArrowRightRegular}
+          appearance="subtle"
+          intent="warning"
+        >
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} appearance="subtle" intent="danger">
+        <Button
+          iconAfter={ArrowRightRegular}
+          appearance="subtle"
+          intent="danger"
+        >
           Hulk smash!
         </Button>
       </p>
@@ -386,75 +434,76 @@ storiesOf('Core|Button', module)
   .add('height-with-icon', () => (
     <React.Fragment>
       <p>
-        <Button icon={ArrowRightRegular} height={24}>
+        <Button iconAfter={ArrowRightRegular} height={24}>
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} height={32}>
+        <Button iconAfter={ArrowRightRegular} height={32}>
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} height={40}>
+        <Button iconAfter={ArrowRightRegular} height={40}>
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button icon={ArrowRightRegular} height={48}>
+        <Button iconAfter={ArrowRightRegular} height={48}>
           Hulk smash!
         </Button>
       </p>
     </React.Fragment>
   ))
-  .add('loading', () => <Button isLoading>Hulk smash!</Button>)
-  .add('full', () => (
-    <Button isLoading full>
-      Hulk smash!
-    </Button>
-  ))
-  .add('full-with-icon', () => (
+  .add('loading', () => (
     <React.Fragment>
       <p>
-        <Button
-          full
-          icon={ArrowRightRegular}
-          iconPosition="center"
-          intent="info"
-        ></Button>
+        <Button isLoading>Hello</Button>
       </p>
+    </React.Fragment>
+  ))
+  .add('full', () => (
+    <React.Fragment>
       <p>
-        <Button full icon={ArrowRightRegular} iconPosition="left" disabled>
+        <Button full intent="info">
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button full icon={ArrowRightRegular}>
+        <Button full iconBefore={ArrowRightRegular} intent="info"></Button>
+      </p>
+      <p>
+        <Button full iconBefore={ArrowRightRegular} disabled>
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button full icon={ArrowRightRegular} intent="info">
+        <Button full iconAfter={ArrowRightRegular}>
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button full icon={ArrowRightRegular} intent="success">
+        <Button full iconAfter={ArrowRightRegular} intent="info">
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button full icon={ArrowRightRegular} intent="warning">
+        <Button full iconAfter={ArrowRightRegular} intent="success">
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button full icon={CalendarRegular} intent="danger">
+        <Button full iconAfter={ArrowRightRegular} intent="warning">
           Hulk smash!
         </Button>
       </p>
       <p>
-        <Button full icon={ArrowRightRegular}>
+        <Button full iconAfter={CalendarRegular} intent="danger">
+          Hulk smash!
+        </Button>
+      </p>
+      <p>
+        <Button full iconAfter={ArrowRightRegular}>
           Hulk smash!
         </Button>
       </p>

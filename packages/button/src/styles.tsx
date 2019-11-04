@@ -1,22 +1,11 @@
 import * as tinycolor from 'tinycolor2'
-import styled, {DefaultTheme} from 'styled-components'
+import {DefaultTheme} from 'styled-components'
 import {getLinearGradientWithStates} from './helpers'
-import {ButtonIconPosition} from './types'
-
-export type IntentType = 'success' | 'warning' | 'info' | 'danger' | 'none'
-
-export type AppearanceType =
-  | 'flat'
-  | 'primary'
-  | 'minimal'
-  | 'default'
-  | 'subtle'
-
-export const SvgWrapper = styled.div``
+import {ButtonIntentType, ButtonAppearanceType} from './types'
 
 export const getButtonTextColor = (
-  intent: IntentType = 'none',
-  appearance?: AppearanceType,
+  intent: ButtonIntentType = 'none',
+  appearance?: ButtonAppearanceType,
   disabled?: boolean
 ) => (_: {theme: DefaultTheme}) => {
   const {scales, colors} = _.theme
@@ -39,8 +28,8 @@ export const getButtonTextColor = (
 }
 
 export const getButtonStyle = (
-  appearance?: AppearanceType,
-  intent: IntentType = 'none'
+  appearance?: ButtonAppearanceType,
+  intent: ButtonIntentType = 'none'
 ) => (_: {theme: DefaultTheme}) => {
   const {scales, colors} = _.theme
   const disabled = {
@@ -161,17 +150,5 @@ export const getButtonStyle = (
         },
         ':disabled': disabled
       }
-  }
-}
-
-export function getIconAttachmentStyle(iconPosition?: ButtonIconPosition) {
-  return {
-    justifyContent:
-      iconPosition === 'center'
-        ? 'center'
-        : iconPosition === 'left'
-        ? 'space-between'
-        : 'space-between',
-    'flex-direction': iconPosition === 'left' ? 'row-reverse' : 'row'
   }
 }
