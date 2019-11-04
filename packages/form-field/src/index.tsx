@@ -34,7 +34,7 @@ export const FormField: React.FC<FormFieldProps> = ({
     labelAppearance: 'block' as FormFieldLabelAppearance,
     alertAppearance: 'block' as FormFieldAlertAppearance
   })
-  const ErrorComponent = ErrorMessage || styled.ErrorWrapper
+  const ErrorComponent = ErrorMessage || (() => null)
   const FieldComponent = Field || component || styled.DefaultInput
 
   return (
