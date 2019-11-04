@@ -1,6 +1,6 @@
 {
   "name": "@smashing/theme",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "Theme configuration for smashing components",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",

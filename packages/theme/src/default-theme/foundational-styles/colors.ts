@@ -21,6 +21,7 @@ const colors = {
 
   border: {
     default: scales.neutral.N4,
+    danger: palette.red.dark,
     muted: scales.neutral.N3
   },
 
