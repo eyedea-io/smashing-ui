@@ -108,6 +108,7 @@ const SideSheetFC: React.FC<SideSheetProps> = ({
     onBeforeClose: () => true,
     shouldCloseOnOverlayClick: true,
     shouldCloseOnEscapePress: true,
+    autofocus: true,
     position: Position.LEFT,
     isShown: false,
     preventBodyScrolling: false,
@@ -126,6 +127,7 @@ const SideSheetFC: React.FC<SideSheetProps> = ({
   return (
     <Overlay
       isShown={defaults.isShown}
+      autofocus={defaults.autofocus}
       shouldCloseOnClick={defaults.shouldCloseOnOverlayClick}
       shouldCloseOnEscapePress={defaults.shouldCloseOnEscapePress}
       onBeforeClose={defaults.onBeforeClose}

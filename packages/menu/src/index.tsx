@@ -15,17 +15,14 @@ export const Menu: React.FC & {
   Group: React.FC<MenuGroupProps>
 } = ({children, ...props}) => {
   const menuRef = React.useRef<HTMLDivElement | null>(null)
-
   React.useEffect(() => {
     if (menuRef.current === null) return
-
     // Get the menu item buttons
     const menuItems = Array.from(
       menuRef.current.querySelectorAll<HTMLDivElement>(
         '[role="menuitemradio"], [role="menuitem"]'
       )
     )
-
     const firstItem = menuItems[0]
     const lastItem = menuItems[menuItems.length - 1]
 
@@ -110,7 +107,7 @@ export const Menu: React.FC & {
 }
 
 const S = {
-  Item: styled.div`
+  Item: styled.div<{isSelected: boolean}>`
     height: 32px;
     display: flex;
     align-items: center;
@@ -118,6 +115,9 @@ const S = {
     &[data-isselectable='true'] {
       cursor: pointer;
     }
+
+    background-color: ${_ =>
+      _.isSelected ? _.theme.scales.blue.B2A : 'transparent'};
 
     &:hover {
       background-color: ${_ => _.theme.scales.neutral.N1A};
@@ -159,6 +159,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
   intent = 'none',
   appearance = 'default',
   onSelect = () => {},
+  isSelected = false,
   children,
   secondaryText,
   ...props
@@ -187,6 +188,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
       role="menuitem"
       onClick={handleClick}
       onKeyPress={handleKeyPress}
+      isSelected={isSelected}
       tabIndex={0}
       data-isselectable="true"
       {...props}
@@ -236,6 +238,11 @@ export interface MenuItemProps {
    * The children of the component.
    */
   children: React.ReactNode
+
+  /**
+   * Boolean indicating if item in menu is selected.
+   */
+  isSelected: boolean
 
   /**
    * Secondary text shown on the right.
