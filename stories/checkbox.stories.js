@@ -215,11 +215,11 @@ storiesOf('Core|Checkbox', module)
       )}
     </Wrapper>
   ))
-  .add('appearance:switcher default', () => (
+  .add('appearance:toggle default', () => (
     <Wrapper>
       {({isChecked, setIsChecked}) => (
         <Checkbox
-          appearance="switcher"
+          appearance="toggle"
           onChange={() => setIsChecked(!isChecked)}
           checked={isChecked}
         >
@@ -229,11 +229,11 @@ storiesOf('Core|Checkbox', module)
       )}
     </Wrapper>
   ))
-  .add('appearance:switcher checked', () => (
+  .add('appearance:toggle checked', () => (
     <Wrapper>
       {({isChecked, setIsChecked}) => (
         <Checkbox
-          appearance="switcher"
+          appearance="toggle"
           onChange={() => setIsChecked(!isChecked)}
           checked={!isChecked}
         >
@@ -243,9 +243,13 @@ storiesOf('Core|Checkbox', module)
       )}
     </Wrapper>
   ))
-  .add('appearance:switcher checked disabled', () => (
-    <Checkbox disabled appearance="switcher">
-      By clicking “Sign up” I agree that I have read and accepted the Terms and
-      conditions.
-    </Checkbox>
+  .add('appearance:toggle checked disabled', () => (
+    <Wrapper>
+      {() => (
+        <Checkbox disabled appearance="toggle">
+          By clicking “Sign up” I agree that I have read and accepted the Terms
+          and conditions.
+        </Checkbox>
+      )}
+    </Wrapper>
   ))

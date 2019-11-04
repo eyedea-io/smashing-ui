@@ -5,7 +5,7 @@ export type SelectMenuAppearanceType =
   | 'minimal'
   | 'card'
   | 'outline'
-  | 'switcher'
+  | 'toggle'
 
 export type SelectButtonProps = {
   toggle: () => void
