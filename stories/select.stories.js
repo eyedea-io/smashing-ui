@@ -20,7 +20,7 @@ const optionsWithLabels = [
   {value: 'cde', label: 'Longer Option'},
   {value: 'def', label: 'DEF Option'}
 ]
-const intentKinds = ['none', 'danger', 'info', 'success', 'warning']
+const intents = ['none', 'danger', 'info', 'success', 'warning']
 
 storiesOf('Core|Select', module)
   .addDecorator(story => (
@@ -33,7 +33,7 @@ storiesOf('Core|Select', module)
   ))
   .add('appearance:primary', () => (
     <React.Fragment>
-      {intentKinds.map(intent => (
+      {intents.map(intent => (
         <SpecimenContainer key={intent}>
           <Select
             options={optionsWithLabels}
@@ -46,7 +46,7 @@ storiesOf('Core|Select', module)
   ))
   .add('appearance:flat', () => (
     <React.Fragment>
-      {intentKinds.map(intent => (
+      {intents.map(intent => (
         <SpecimenContainer key={intent}>
           <Select
             options={optionsWithLabels}
@@ -59,7 +59,7 @@ storiesOf('Core|Select', module)
   ))
   .add('appearance:minimal', () => (
     <React.Fragment>
-      {intentKinds.map(intent => (
+      {intents.map(intent => (
         <SpecimenContainer key={intent}>
           <Select
             options={optionsWithLabels}
@@ -72,11 +72,24 @@ storiesOf('Core|Select', module)
   ))
   .add('appearance:subtle', () => (
     <React.Fragment>
-      {intentKinds.map(intent => (
+      {intents.map(intent => (
         <SpecimenContainer key={intent}>
           <Select
             options={optionsWithLabels}
             appearance="subtle"
+            intent={intent}
+          />
+        </SpecimenContainer>
+      ))}
+    </React.Fragment>
+  ))
+  .add('appearance:outline', () => (
+    <React.Fragment>
+      {intents.map(intent => (
+        <SpecimenContainer key={intent}>
+          <Select
+            options={optionsWithLabels}
+            appearance="outline"
             intent={intent}
           />
         </SpecimenContainer>
