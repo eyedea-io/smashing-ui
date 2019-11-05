@@ -3,6 +3,7 @@ import {PopoverProps} from '@smashing/popover'
 import styled from 'styled-components'
 import {Button} from '@smashing/button'
 import {Strong} from '@smashing/typography'
+import {Menu} from '@smashing/menu'
 import * as S from './styles'
 import {
   SelectMenuAppearanceType,
@@ -11,34 +12,6 @@ import {
   SelectMenuState,
   SelectMenuChildrenFn
 } from './types'
-
-const SelectMenuItem: React.FC<{
-  option: OptionBase
-  isSelected: boolean
-  appearance?: SelectMenuAppearanceType
-  onClick: (option: any) => void
-  innerRef?: any
-}> = ({option, isSelected, appearance, innerRef, onClick}) => {
-  return (
-    <S.Checkbox
-      innerRef={innerRef}
-      disabled={option.disabled}
-      appearance={appearance}
-      checked={isSelected}
-      onChange={() => onClick(option)}
-    >
-      <S.OptionDiv appearance={appearance} onChange={() => onClick(option)}>
-        {appearance === 'outline' ? (
-          <Strong color={option.disabled ? 'muted' : 'intense'}>
-            {option.label}
-          </Strong>
-        ) : (
-          option.label
-        )}
-      </S.OptionDiv>
-    </S.Checkbox>
-  )
-}
 
 class SelectMenuC<T extends OptionBase> extends React.Component<
   SelectMenuProps<T>,
@@ -56,41 +29,34 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
   selectedOptionRef: HTMLDivElement | null = null
 
   scrollToSelectedItem() {
-    if (this.menuListRef.current && this.selectedOptionRef) {
-      this.menuListRef.current.scrollTo(0, this.selectedOptionRef.offsetTop)
+    if (this.menuListRef.current) {
+      const selectedOption = this.menuListRef.current.querySelector<
+        HTMLDivElement
+      >('[aria-checked="true"]')
+
+      if (selectedOption !== null) {
+        this.menuListRef.current.scrollTo(0, selectedOption.offsetTop)
+      }
     }
-  }
-  getSelectButton = (appearance?: SelectMenuAppearanceType) => {
-    if (appearance === 'card') {
-      return (
-        <S.SelectButton appearance="minimal">
-          {this.getDefaultSelectedLabel()}
-        </S.SelectButton>
-      )
-    }
-    if (appearance === 'outline') {
-      return this.getOutlineButton
-    }
-    return <Button>{this.getDefaultSelectedLabel()}</Button>
   }
 
-  getOutlineButton = (props: {
-    toggle: () => void
-    getRef: (ref: any) => void
-    isShown: boolean
-  }) => (
-    <S.InputAsSelectButtonComponent
-      readOnly
-      inputInvalid={this.props.invalid}
-      onClick={props.toggle}
-      innerRef={props.getRef}
-      appearance="outline"
-      value={this.getDefaultSelectedLabel()}
-      height={48}
-      aria-expanded={props.isShown}
-      aria-haspopup={true}
-    />
-  )
+  // FIXME: Remove
+  // getOutlineButton = (props: {
+  //   toggle: () => void
+  //   getRef: (ref: any) => void
+  //   isShown: boolean
+  // }) => (
+  //   <S.InputAsSelectButtonComponent
+  //     readOnly
+  //     inputInvalid={this.props.invalid}
+  //     onClick={props.toggle}
+  //     innerRef={props.getRef}
+  //     // appearance="outline"
+  //     value={this.getDefaultSelectedLabel()}
+  //     aria-expanded={props.isShown}
+  //     aria-haspopup={true}
+  //   />
+  // )
 
   getFilteredOptions = () => {
     const options =
@@ -132,8 +98,8 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
     }
     return `${optionsSelectedLength} selected`
   }
-  determineChildren = (appearance?: SelectMenuAppearanceType) => {
-    const {children, value} = this.props
+  determineChildren = () => {
+    const {children, value, appearance, height, className} = this.props
     if (typeof children === 'function') {
       return popoverChildrenProps =>
         (children as SelectMenuChildrenFn<T>)({
@@ -141,41 +107,55 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
           selectedItems: value || []
         })
     }
-    return this.getSelectButton(appearance)
+    return (
+      <Button
+        className={className}
+        appearance={appearance}
+        {...(height ? {height} : {})}
+      >
+        {this.getDefaultSelectedLabel()}
+      </Button>
+    )
   }
-  getValue = (option: T) => {
-    return option.value
-  }
-  getLabel = (option: T) => {
-    return option.label
-  }
-  getCompareBy = () => {
-    return this.props.compareBy || 'value'
-  }
-  optionClicked = (option: T) => {
-    if (this.isOptionSelected(option.value) && this.props.isMultiSelect) {
-      this.props.onDeselect(option.value)
-    } else {
-      this.props.onSelect(option.value)
-    }
-  }
-  isOptionSelected = (option: string) => {
-    if (!this.props.isMultiSelect) {
-      return this.props.value === option
-    }
-    return (this.props.value as string[]).indexOf(option) > -1
-  }
-  renderCustomItem = (option: T) => {
-    if (this.props.renderItem) {
-      return this.props.renderItem(
-        option,
-        () => this.optionClicked(option),
-        this.isOptionSelected(option.value),
-        this.props.options
-      )
-    }
-    return <Strong> No items to display</Strong>
-  }
+  // FIXME: Remove if unused
+  // getValue = (option: T) => {
+  //   return option.value
+  // }
+  // FIXME: Remove if unused
+  // getLabel = (option: T) => {
+  //   return option.label
+  // }
+  // FIXME: Remove if unused
+  // getCompareBy = () => {
+  //   return this.props.compareBy || 'value'
+  // }
+  // FIXME: Remove if unused
+  // optionClicked = (option: T) => {
+  //   if (this.isOptionSelected(option.value) && this.props.isMultiSelect) {
+  //     this.props.onDeselect(option.value)
+  //   } else {
+  //     this.props.onSelect(option.value)
+  //   }
+  // }
+  // FIXME: Remove if unused
+  // isOptionSelected = (option: string) => {
+  //   if (!this.props.isMultiSelect) {
+  //     return this.props.value === option
+  //   }
+  //   return (this.props.value as string[]).indexOf(option) > -1
+  // }
+  // FIXME: Remove if unused
+  // renderCustomItem = (option: T) => {
+  //   if (this.props.renderItem) {
+  //     return this.props.renderItem(
+  //       option,
+  //       () => this.optionClicked(option),
+  //       this.isOptionSelected(option.value),
+  //       this.props.options
+  //     )
+  //   }
+  //   return <Strong> No items to display</Strong>
+  // }
   changeFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({
       currentFilter: e.target.value
@@ -183,7 +163,6 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
   }
   render() {
     // extract allowed props than can be passed to the popover component
-
     const {
       content,
       onOpenStarted,
@@ -196,21 +175,23 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
     return (
       <S.Popover
         invalid={this.props.invalid}
-        appearance={this.props.appearance}
-        matchTargetWidth={this.props.appearance === 'outline'}
+        // FIXME: Handel appearance
+        // appearance={this.props.appearance}
+        // FIXME: Handle appearance
+        // matchTargetWidth={this.props.appearance === 'outline'}
         onOpenStarted={() => this.scrollToSelectedItem()}
-        targetOffset={this.props.appearance === 'outline' ? 0 : undefined}
-        transitionType={
-          this.props.appearance === 'outline' ? 'expand' : 'scale'
-        }
+        // FIXME: Handle appearance
+        // targetOffset={this.props.appearance === 'outline' ? 0 : undefined}
+        // FIXME: Handle appearance
+        // transitionType={
+        //   this.props.appearance === 'outline' ? 'expand' : 'scale'
+        // }
         content={({close}) => {
           return (
-            <S.PopoverHost>
+            <React.Fragment>
               {this.props.hasTitle && (
                 <S.PopoverHeader>
-                  <Strong color="intense" variant={400}>
-                    {this.props.title}
-                  </Strong>
+                  <S.Title variant={300}>{this.props.title}</S.Title>
                   <S.CloseButton
                     appearance="minimal"
                     height={24}
@@ -237,41 +218,34 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
               )}
               <S.OptionHost
                 ref={this.menuListRef}
-                appearance={this.props.appearance}
-                height={this.props.height}
+                // FIXME: Handle appearance
+                // appearance={this.props.appearance}
+                // TODO: Handle popover height
+                // height={this.props.height}
               >
-                {this.getFilteredOptions().map(option => {
-                  if (this.props.renderItem) {
-                    return this.renderCustomItem(option)
-                  }
-                  return (
-                    <SelectMenuItem
-                      appearance={this.props.appearance}
-                      key={option.value}
-                      innerRef={ref => {
-                        if (this.isOptionSelected(option.value)) {
-                          this.selectedOptionRef = ref
-                        }
+                {this.getFilteredOptions().length > 0 ? (
+                  <Menu>
+                    <Menu.OptionsGroup
+                      options={this.getFilteredOptions()}
+                      value={this.props.value}
+                      onSelect={option => {
+                        safeInvoke(this.props.onSelect, option.value)
                       }}
-                      option={option}
-                      isSelected={this.isOptionSelected(option.value)}
-                      onClick={e => {
-                        this.optionClicked(e)
-                        if (!this.props.isMultiSelect) close()
+                      onDeselect={option => {
+                        safeInvoke(this.props.onDeselect, option.value)
                       }}
                     />
-                  )
-                })}
-                {this.getFilteredOptions().length <= 0 && (
-                  <S.TextContainer>
-                    <Strong>No items found</Strong>
-                  </S.TextContainer>
+                  </Menu>
+                ) : (
+                  <S.EmptyView>
+                    <Strong variant={300}>No items found</Strong>
+                  </S.EmptyView>
                 )}
               </S.OptionHost>
-            </S.PopoverHost>
+            </React.Fragment>
           )
         }}
-        children={this.determineChildren(this.props.appearance)}
+        children={this.determineChildren()}
         {...popoverProps}
       />
     )
@@ -281,6 +255,12 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
 const SelectMenu = styled(SelectMenuC)``
 
 export {SelectMenu}
+
+function safeInvoke(fn, ...args) {
+  if (typeof fn === 'function') {
+    return fn(...args)
+  }
+}
 
 declare module 'styled-components' {
   export interface SmashingSelectMenuDefaults

@@ -122,7 +122,7 @@ const S = {
     }
 
     &[data-isselectable='false'] {
-      cursor: not-allowed;
+      cursor: default;
     }
 
     &:not([data-isselectable='false']):hover {
@@ -260,6 +260,8 @@ const MenuOptionsGroup: React.FC<MenuOptionsGroupProps> = ({
   title,
   children,
   onChange,
+  onSelect,
+  onDeselect,
   options = [],
   value,
   ...props
@@ -281,12 +283,19 @@ const MenuOptionsGroup: React.FC<MenuOptionsGroupProps> = ({
             if (option.disabled) return
             if (Array.isArray(value)) {
               if (value.includes(option.value)) {
-                onChange(value.filter(item => item !== option.value))
+                safeInvoke(onDeselect, option)
+                safeInvoke(
+                  onChange,
+                  value.filter(item => item !== option.value)
+                )
               } else {
-                onChange(value.concat(option.value))
+                safeInvoke(onSelect, option)
+                safeInvoke(onChange, value.concat(option.value))
               }
             } else {
-              onChange(option.value)
+              const newValue = value === option.value ? undefined : option.value
+              safeInvoke(newValue === undefined ? onDeselect : onSelect, option)
+              safeInvoke(onChange, newValue)
             }
           }}
         >
@@ -314,11 +323,9 @@ export interface MenuGroupProps {
   children: React.ReactNode
 }
 
-export type MenuOptionValue = string | number
-
 export interface MenuOption {
   label: string
-  value: MenuOptionValue
+  value: string
   disabled?: boolean
 }
 
@@ -336,12 +343,22 @@ export interface MenuOptionsGroupProps {
   /**
    * Function called when selection changes.
    */
-  onChange: (selected: MenuOptionValue | MenuOptionValue[]) => void
+  onChange?: (selected: string | string[]) => void
+
+  /**
+   * Function called when element is selected.
+   */
+  onSelect?: (selected: MenuOption) => void
+
+  /**
+   * Function called when element is deselected.
+   */
+  onDeselect?: (selected: MenuOption) => void
 
   /**
    * The current value of the option group.
    */
-  value: MenuOptionValue | MenuOptionValue[]
+  value: string | string[]
 }
 
 export interface MenuItemProps {

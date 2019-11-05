@@ -1,4 +1,5 @@
 import {PopoverProps} from '@smashing/popover'
+import {ButtonAppearanceType} from '@smashing/button'
 
 export type SelectMenuAppearanceType =
   | 'primary'
@@ -20,11 +21,17 @@ export interface SelectMenuProps<T extends OptionBase> {
   options: T[]
   value: string | string[]
   children?: React.ReactNode | SelectMenuChildrenFn<T>
-  appearance?: SelectMenuAppearanceType
+  /**
+   * Select button appearance
+   */
+  appearance?: ButtonAppearanceType
   hasFilter?: boolean
   hasTitle?: boolean
   title?: string
   minWidth?: number
+  /**
+   * Select button height
+   */
   height?: number
   hasCloseButton?: boolean
   onSelect: (value: string) => void
@@ -39,6 +46,11 @@ export interface SelectMenuProps<T extends OptionBase> {
     selected: boolean,
     options: T[]
   ) => React.ReactNode
+
+  /**
+   * Class name passed to select button
+   */
+  className?: string
 
   /**
    * If set to true, will filter out currently selected item from the list

@@ -54,7 +54,7 @@ const Wrapper = ({children}) => {
     changeSelectedOptions(selectedOptions.filter(o => o !== option))
   }
   return (
-    <div>
+    <div data-wrapper style={{marginBottom: 16}}>
       {children({
         singleSelectedOption,
         changeSingleSelectedOption,
@@ -79,75 +79,58 @@ storiesOf('Core|Select menu', module)
       {story()}
     </SmashingThemeProvider>
   ))
-  .add('Default single select', () => (
+  .add('appearance: default', () => (
     <Wrapper>
       {({singleSelectedOption, changeSingleSelectedOption}) => (
         <SelectMenu
-          height={100}
           options={optionsScroll}
           value={singleSelectedOption}
           onSelect={changeSingleSelectedOption}
-          hasFilter={true}
-          hasTitle={true}
-          title="Select Item"
         />
       )}
     </Wrapper>
   ))
-  .add('With popover props', () => (
+  .add('appearance: primary', () => (
     <Wrapper>
       {({singleSelectedOption, changeSingleSelectedOption}) => (
         <SelectMenu
-          height={100}
           options={optionsScroll}
           value={singleSelectedOption}
           onSelect={changeSingleSelectedOption}
-          hasFilter={true}
-          hasTitle={true}
-          title="Select Item"
-          popoverProps={{
-            overlay: true
-          }}
+          appearance="primary"
         />
       )}
     </Wrapper>
   ))
-  .add('Appearance: card', () => (
+  .add('appearance: subtle', () => (
     <Wrapper>
       {({singleSelectedOption, changeSingleSelectedOption}) => (
         <SelectMenu
-          minWidth={100}
-          height={200}
           options={optionsScroll}
           value={singleSelectedOption}
           onSelect={changeSingleSelectedOption}
-          appearance="card"
-          hasFilter={true}
+          appearance="subtle"
         />
       )}
     </Wrapper>
   ))
-  .add('Appearance: minimal, multi select', () => (
+  .add('appearance: minimal', () => (
     <Wrapper>
-      {({select, deselect, selectedOptions}) => (
+      {({singleSelectedOption, changeSingleSelectedOption}) => (
         <SelectMenu
-          isMultiSelect
-          options={options}
-          value={selectedOptions}
-          multiOptionSelectedItemsLabel={num => `Items: ${num}`}
-          onSelect={select}
-          onDeselect={deselect}
+          options={optionsScroll}
+          value={singleSelectedOption}
+          onSelect={changeSingleSelectedOption}
           appearance="minimal"
         />
       )}
     </Wrapper>
   ))
-  .add('Appearance: outline', () => (
+  .add('appearance: outline', () => (
     <Wrapper>
       {({singleSelectedOption, changeSingleSelectedOption}) => (
         <SelectMenu
-          minWidth={146}
-          options={options}
+          options={optionsScroll}
           value={singleSelectedOption}
           onSelect={changeSingleSelectedOption}
           appearance="outline"
@@ -155,7 +138,64 @@ storiesOf('Core|Select menu', module)
       )}
     </Wrapper>
   ))
-  .add('Custom list item body', () => (
+  .add('with title', () => (
+    <Wrapper>
+      {({singleSelectedOption, changeSingleSelectedOption}) => (
+        <SelectMenu
+          options={optionsScroll}
+          value={singleSelectedOption}
+          onSelect={changeSingleSelectedOption}
+          hasTitle={true}
+          title="Select Item"
+        />
+      )}
+    </Wrapper>
+  ))
+  .add('with filter', () => (
+    <Wrapper>
+      {({singleSelectedOption, changeSingleSelectedOption}) => (
+        <SelectMenu
+          options={optionsScroll}
+          value={singleSelectedOption}
+          onSelect={changeSingleSelectedOption}
+          hasFilter={true}
+        />
+      )}
+    </Wrapper>
+  ))
+  .add('with popover props', () => (
+    <Wrapper>
+      {({singleSelectedOption, changeSingleSelectedOption}) => (
+        <SelectMenu
+          options={optionsScroll}
+          value={singleSelectedOption}
+          onSelect={changeSingleSelectedOption}
+          popoverProps={{
+            overlay: true,
+            elevate: true,
+            minWidth: 400
+          }}
+        />
+      )}
+    </Wrapper>
+  ))
+  // FIXME: remove if unused
+  // .add('Appearance: card', () => (
+  //   <Wrapper>
+  //     {({singleSelectedOption, changeSingleSelectedOption}) => (
+  //       <SelectMenu
+  //         minWidth={100}
+  //         height={200}
+  //         options={optionsScroll}
+  //         value={singleSelectedOption}
+  //         onSelect={changeSingleSelectedOption}
+  //         appearance="card"
+  //         hasFilter={true}
+  //       />
+  //     )}
+  //   </Wrapper>
+  // ))
+  .add('multi select', () => (
     <Wrapper>
       {({select, deselect, selectedOptions}) => (
         <SelectMenu
@@ -164,90 +204,177 @@ storiesOf('Core|Select menu', module)
           value={selectedOptions}
           onSelect={select}
           onDeselect={deselect}
-          appearance="primary"
-          renderItem={(option, click, options, selected) => {
-            return (
-              <div key={option.value}>
-                <Button onClick={click}>{option.label} </Button>
-              </div>
-            )
-          }}
-          children={props => (
-            <Button ref={props.getRef} onClick={props.toggle}>
-              Select
-            </Button>
-          )}
+          multiOptionSelectedItemsLabel={num => `Fruits: ${num}`}
         />
       )}
     </Wrapper>
   ))
-  .add('Usage in form while being heavily styled', () => {
-    const CustomFormField = styled(FormField)`
-      ${Label} {
-        left: ${_ => _.theme.spacing.xs};
-        font-size: 12px;
-        font-weight: 600;
-      }
-      ${StyledAlert.Box} {
-        margin-left: ${_ => _.theme.spacing.xs};
-      }
-    `
+  .add('button height', () => (
+    <div>
+      <Wrapper>
+        {({select, deselect, selectedOptions}) => (
+          <SelectMenu
+            isMultiSelect
+            options={options}
+            height={24}
+            value={selectedOptions}
+            onSelect={select}
+            onDeselect={deselect}
+            multiOptionSelectedItemsLabel={num => `Fruits: ${num}`}
+          />
+        )}
+      </Wrapper>
+      <Wrapper>
+        {({select, deselect, selectedOptions}) => (
+          <SelectMenu
+            isMultiSelect
+            options={options}
+            value={selectedOptions}
+            onSelect={select}
+            onDeselect={deselect}
+            multiOptionSelectedItemsLabel={num => `Fruits: ${num}`}
+          />
+        )}
+      </Wrapper>
+      <Wrapper>
+        {({select, deselect, selectedOptions}) => (
+          <SelectMenu
+            isMultiSelect
+            options={options}
+            height={40}
+            value={selectedOptions}
+            onSelect={select}
+            onDeselect={deselect}
+            multiOptionSelectedItemsLabel={num => `Fruits: ${num}`}
+          />
+        )}
+      </Wrapper>
+    </div>
+  ))
+  .add('popover height', () => (
+    <div>
+      <Wrapper>
+        {({select, deselect, selectedOptions}) => (
+          <SelectMenu
+            isMultiSelect
+            options={optionsScroll}
+            value={selectedOptions}
+            onSelect={select}
+            onDeselect={deselect}
+            popoverProps={{
+              height: 250
+            }}
+            multiOptionSelectedItemsLabel={num => `Fruits: ${num}`}
+          />
+        )}
+      </Wrapper>
+    </div>
+  ))
+// .add('appearance: outline', () => (
+//   <Wrapper>
+//     {({singleSelectedOption, changeSingleSelectedOption}) => (
+//       <SelectMenu
+//         options={options}
+//         value={singleSelectedOption}
+//         onSelect={changeSingleSelectedOption}
+//         // appearance="outline"
+//       />
+//     )}
+//   </Wrapper>
+// ))
+// .add('Custom list item body', () => (
+//   <Wrapper>
+//     {({select, deselect, selectedOptions}) => (
+//       <SelectMenu
+//         isMultiSelect
+//         options={options}
+//         value={selectedOptions}
+//         onSelect={select}
+//         onDeselect={deselect}
+//         appearance="primary"
+//         renderItem={(option, click, options, selected) => {
+//           return (
+//             <div key={option.value}>
+//               <Button onClick={click}>{option.label} </Button>
+//             </div>
+//           )
+//         }}
+//         children={props => (
+//           <Button ref={props.getRef} onClick={props.toggle}>
+//             Select
+//           </Button>
+//         )}
+//       />
+//     )}
+//   </Wrapper>
+// ))
+// .add('Usage in form while being heavily styled', () => {
+//   const CustomFormField = styled(FormField)`
+//     ${Label} {
+//       left: ${_ => _.theme.spacing.xs};
+//       font-size: 12px;
+//       font-weight: 600;
+//     }
+//     ${StyledAlert.Box} {
+//       margin-left: ${_ => _.theme.spacing.xs};
+//     }
+//   `
 
-    const StoryComponent = () => {
-      const {Form, form} = useForm({
-        initialValues: {
-          fruit: 'Cherry'
-        },
-        validateOnChange: true
-      })
+//   const StoryComponent = () => {
+//     const {Form, form} = useForm({
+//       initialValues: {
+//         fruit: 'Cherry'
+//       },
+//       validateOnChange: true
+//     })
 
-      useFont()
+//     useFont()
 
-      const checkErrors = useCallback(value => {
-        form.errors['fruit'] = value === 'Banana' ? 'It\'s an error!' : undefined
-      })
+//     const checkErrors = useCallback(value => {
+//       form.errors['fruit'] = value === 'Banana' ? 'It\'s an error!' : undefined
+//     })
 
-      return (
-        <SmashingThemeProvider
-          theme={{
-            fontFamilies: {ui: 'Nunito'},
-            colors: {
-              text: {default: '#1D304E', intense: '#1D304E'},
-              border: {default: '#1D304E', muted: '#A2ADC2'},
-              background: {default: '#F1F1F2', blueTint: '#E8EDF7'}
-            }
-          }}
-        >
-          <style>{'body {background-color: #F1F1F2}'}</style>
-          <Form>
-            <Wrapper>
-              {({singleSelectedOption, changeSingleSelectedOption}) => (
-                <CustomFormField
-                  labelAppearance="overlay"
-                  alertAppearance="overlay"
-                  label="Label"
-                  name="fruit"
-                  component={({value, onChange}) => (
-                    <SelectMenu
-                      height={200}
-                      minWidth={146}
-                      hideSelectedItem
-                      options={options}
-                      appearance="outline"
-                      onSelect={value => {
-                        checkErrors(value)
-                        onChange(value)
-                      }}
-                      value={value}
-                    />
-                  )}
-                />
-              )}
-            </Wrapper>
-          </Form>
-        </SmashingThemeProvider>
-      )
-    }
+//     return (
+//       <SmashingThemeProvider
+//         theme={{
+//           fontFamilies: {ui: 'Nunito'},
+//           colors: {
+//             text: {default: '#1D304E', intense: '#1D304E'},
+//             border: {default: '#1D304E', muted: '#A2ADC2'},
+//             background: {default: '#F1F1F2', blueTint: '#E8EDF7'}
+//           }
+//         }}
+//       >
+//         <style>{'body {background-color: #F1F1F2}'}</style>
+//         <Form>
+//           <Wrapper>
+//             {({singleSelectedOption, changeSingleSelectedOption}) => (
+//               <CustomFormField
+//                 labelAppearance="overlay"
+//                 alertAppearance="overlay"
+//                 label="Label"
+//                 name="fruit"
+//                 component={({value, onChange}) => (
+//                   <SelectMenu
+//                     height={200}
+//                     minWidth={146}
+//                     hideSelectedItem
+//                     options={options}
+//                     appearance="outline"
+//                     onSelect={value => {
+//                       checkErrors(value)
+//                       onChange(value)
+//                     }}
+//                     value={value}
+//                   />
+//                 )}
+//               />
+//             )}
+//           </Wrapper>
+//         </Form>
+//       </SmashingThemeProvider>
+//     )
+//   }
 
-    return <StoryComponent />
-  })
+//   return <StoryComponent />
+// })
