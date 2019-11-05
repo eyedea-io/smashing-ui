@@ -104,6 +104,17 @@ const colors = {
       warning: fills.minimal.orange,
       danger: fills.minimal.red,
       info: fills.minimal.blue
+    },
+    outline: {
+      borderWidth: 1,
+      borderColor: {
+        default: scales.neutral.N5A,
+        hover: scales.neutral.N6A,
+        focus: scales.neutral.N7A,
+        active: scales.neutral.N7A,
+        invalid: palette.red.base,
+        disabled: scales.neutral.N2A
+      }
     }
   },
 
