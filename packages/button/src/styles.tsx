@@ -151,6 +151,7 @@ export const getButtonStyle = (
         },
         '&[aria-expanded="true"]': {
           backgroundImage: 'none',
+          color: colors.text.intense,
           backgroundColor: scales.blue.B3A
         },
         ':disabled': disabled
