@@ -6,7 +6,7 @@ export type TextInputAppearanceType =
 
 export type TextInputType = 'email' | 'password' | 'tel' | 'hidden' | 'text'
 
-export type TextInputProps = React.InputHTMLAttributes<{}> & {
+export type TextInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   appearance?: TextInputAppearanceType
   borderRadius?: number
   type?: TextInputType
