@@ -11,7 +11,6 @@ type InputProps = TextInputProps &
 export const StyledTextContainer = styled.div<
   {
     height: number | string
-    suffix?: string
   } & InputProps
 >`
   display: grid;
@@ -19,7 +18,12 @@ export const StyledTextContainer = styled.div<
   position: relative;
 `
 
-export const Input = styled(Text)<InputProps>`
+export const Input = styled(Text)<
+  InputProps & {
+    prefix?: any
+    suffix?: any
+  }
+>`
   border: none;
   border-radius: ${_ => _.borderRadius}px;
   box-sizing: border-box;
@@ -34,31 +38,34 @@ export const Input = styled(Text)<InputProps>`
       ? '100%'
       : undefined
 
+    const calcPadding = affix =>
+      affix ? `${height * 1.5}px` : `${Math.round(height / 3.2)}px`
+
     return {
       width,
       height: `${height}px`,
-      paddingLeft: `${Math.round(height / 3.2)}px`,
-      paddingRight: `${Math.round(height / 3.2)}px`
+      paddingLeft: calcPadding(_.prefix),
+      paddingRight: calcPadding(_.suffix)
     }
   }}
   ${_ => getTextInputStyle(_.appearance)};
 `
 
-export const Affix = styled.span<
-  {
-    height: number | string
-    suffix?: string
-    invalid?: boolean
-  } & InputProps
->`
+export const Affix = styled.span<{
+  height: number | string
+  invalid?: boolean
+  disabled?: boolean
+}>`
   position: absolute;
   top: 0;
   box-sizing: border-box;
   padding: 0 calc(${_ => _.height}px / 2);
-
   height: ${_ =>
     typeof _.height === 'string' ? parseInt(_.height, 10) : _.height}px;
+  line-height: ${_ =>
+    typeof _.height === 'string' ? parseInt(_.height, 10) : _.height}px;
   ${_ => getTextInputAffixStyle(_)};
+
   svg {
     width: calc(${_ => _.height}px / 2);
   }
@@ -71,7 +78,6 @@ export const InputSuffix = styled(Affix)`
 `
 
 export const CalendarRegular = function(_a) {
-  console.log(_a)
   var _b = _a.color,
     color = _b === void 0 ? 'black' : _b,
     _c = _a.size,

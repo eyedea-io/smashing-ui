@@ -7,10 +7,74 @@ import {
   useDefaults
 } from '@smashing/theme'
 
-const TextInput: React.FC<TextInputProps> = ({
+interface AffixProps {
+  prefix?: {
+    icon?: any
+    text?: string
+  }
+  suffix?: string | any
+}
+
+const Prefix = ({
+  height,
+  invalid,
+  disabled,
+  icon: Icon,
+  children
+}: {
+  icon?: any
+  height: number | string
+  invalid?: boolean
+  disabled?: boolean
+  children?: string
+}) => {
+  if (children) {
+    return (
+      <S.InputPrefix invalid={invalid} disabled={disabled} height={height}>
+        {children}
+      </S.InputPrefix>
+    )
+  }
+
+  return (
+    <S.InputPrefix invalid={invalid} disabled={disabled} height={height}>
+      {Icon ? <Icon /> : <S.CalendarRegular />}
+    </S.InputPrefix>
+  )
+}
+const Suffix = ({
+  height,
+  invalid,
+  disabled,
+  icon: Icon,
+  children
+}: {
+  icon?: any
+  height: number | string
+  invalid?: boolean
+  disabled?: boolean
+  children?: string
+}) => {
+  if (children) {
+    return (
+      <S.InputSuffix invalid={invalid} disabled={disabled} height={height}>
+        {children}
+      </S.InputSuffix>
+    )
+  }
+
+  return (
+    <S.InputSuffix invalid={invalid} disabled={disabled} height={height}>
+      {Icon ? <Icon /> : <S.CalendarRegular />}
+    </S.InputSuffix>
+  )
+}
+
+const TextInput: React.FC<TextInputProps & AffixProps> = ({
   children,
   innerRef,
-  iconAfter: IconAfter,
+  prefix,
+  suffix,
   ...props
 }) => {
   const defaults = useDefaults('textInput', props, {
@@ -25,29 +89,36 @@ const TextInput: React.FC<TextInputProps> = ({
       borderRadius={getBorderRadiusForControlHeight(defaults.height)}
       {...defaults}
     >
-      <S.InputPrefix
-        invalid={props.invalid}
-        disabled={props.disabled}
-        {...defaults}
-      >
-        {IconAfter ? <IconAfter /> : <S.CalendarRegular />}
-      </S.InputPrefix>
+      {prefix && (
+        <Prefix
+          icon={prefix.icon}
+          invalid={props.invalid}
+          disabled={props.disabled}
+          height={defaults.height}
+        >
+          {prefix.text}
+        </Prefix>
+      )}
       <S.Input
         as="input"
         variant={getTextSizeForControlHeight(defaults.height)}
         borderRadius={getBorderRadiusForControlHeight(defaults.height)}
         color={props.disabled ? 'muted' : undefined}
         aria-invalid={props.invalid}
+        prefix={prefix ? true : false}
+        suffix={suffix ? true : false}
         {...defaults}
       />
-      <S.InputSuffix
-        {...defaults}
-        invalid={props.invalid}
-        disabled={props.disabled}
-      >
-        {IconAfter ? <IconAfter /> : <S.CalendarRegular />}
-      </S.InputSuffix>
-      ``
+      {suffix && (
+        <Suffix
+          icon={suffix.icon}
+          invalid={props.invalid}
+          disabled={props.disabled}
+          height={defaults.height}
+        >
+          {suffix.text}
+        </Suffix>
+      )}
     </S.StyledTextContainer>
   )
 }
