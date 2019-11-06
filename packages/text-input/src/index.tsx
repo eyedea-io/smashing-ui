@@ -10,6 +10,7 @@ import {
 const TextInput: React.FC<TextInputProps> = ({
   children,
   innerRef,
+  iconAfter: IconAfter,
   ...props
 }) => {
   const defaults = useDefaults('textInput', props, {
@@ -19,7 +20,18 @@ const TextInput: React.FC<TextInputProps> = ({
   })
 
   return (
-    <S.StyledTextContainer ref={innerRef} {...defaults}>
+    <S.StyledTextContainer
+      ref={innerRef}
+      borderRadius={getBorderRadiusForControlHeight(defaults.height)}
+      {...defaults}
+    >
+      <S.InputPrefix
+        invalid={props.invalid}
+        disabled={props.disabled}
+        {...defaults}
+      >
+        {IconAfter ? <IconAfter /> : <S.CalendarRegular />}
+      </S.InputPrefix>
       <S.Input
         as="input"
         variant={getTextSizeForControlHeight(defaults.height)}
@@ -28,6 +40,14 @@ const TextInput: React.FC<TextInputProps> = ({
         aria-invalid={props.invalid}
         {...defaults}
       />
+      <S.InputSuffix
+        {...defaults}
+        invalid={props.invalid}
+        disabled={props.disabled}
+      >
+        {IconAfter ? <IconAfter /> : <S.CalendarRegular />}
+      </S.InputSuffix>
+      ``
     </S.StyledTextContainer>
   )
 }

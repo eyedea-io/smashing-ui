@@ -86,6 +86,9 @@ export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
         '&:invalid, &[aria-invalid]': {
           boxShadow: colors.input.boxShadow.invalid
         },
+        '&:invalid svg, &[aria-invalid] svg': {
+          fill: colors.icon.danger
+        },
         ':focus': {
           outline: 'none',
           boxShadow: colors.input.boxShadow.active
@@ -98,5 +101,38 @@ export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
           backgroundColor: scales.neutral.N2
         }
       }
+  }
+}
+export const getTextInputAffixStyle = (_: {
+  theme: DefaultTheme
+  invalid?: boolean
+  disabled?: boolean
+}) => {
+  const {colors} = _.theme
+  const {invalid, disabled} = _
+
+  if (invalid) {
+    return {
+      color: colors.text.danger,
+      svg: {
+        fill: colors.text.danger
+      }
+    }
+  }
+
+  if (disabled) {
+    return {
+      color: colors.text.muted,
+      svg: {
+        fill: colors.text.muted
+      }
+    }
+  }
+
+  return {
+    color: colors.text.muted,
+    svg: {
+      fill: colors.text.default
+    }
   }
 }
