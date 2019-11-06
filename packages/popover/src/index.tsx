@@ -314,8 +314,8 @@ export const Popover: React.FC<PopoverProps> = ({
     if (targetRef.current) {
       const {style} = targetRef.current
       const [savedZIndex, savedPosition] = savedTargetStyles.current
-      style.zIndex = savedZIndex
-      style.position = savedPosition
+      if (savedZIndex !== null) style.zIndex = savedZIndex
+      if (savedPosition !== null) style.position = savedPosition
     }
   }
   React.useEffect(() => {

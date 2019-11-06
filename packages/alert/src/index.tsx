@@ -41,7 +41,7 @@ const Box = styled.div.attrs({})<BoxProps>`
         position: absolute;
         top: 0;
         left: 0;
-        background-color: ${getTrimColorByIntent(_.intent)};
+        background-color: ${getTrimColorByIntent(_)};
       }
     `}
 `
