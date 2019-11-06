@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import {Checkbox as SmashingCheckbox} from '@smashing/checkbox'
 import {SelectMenuAppearanceType} from './types'
 import {TextInput} from '@smashing/text-input'
 import {Button} from '@smashing/button'
