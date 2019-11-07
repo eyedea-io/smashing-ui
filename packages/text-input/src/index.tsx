@@ -7,14 +7,6 @@ import {
   useDefaults
 } from '@smashing/theme'
 
-interface AffixProps {
-  prefix?: {
-    icon?: any
-    text?: string
-  }
-  suffix?: string | any
-}
-
 const Prefix = ({
   height,
   invalid,
@@ -47,30 +39,29 @@ const Suffix = ({
   invalid,
   disabled,
   icon: Icon,
+  onClick,
   children
 }: {
   icon?: any
   height: number | string
   invalid?: boolean
   disabled?: boolean
+  onClick?: any
   children?: string
 }) => {
-  if (children) {
-    return (
-      <S.InputSuffix invalid={invalid} disabled={disabled} height={height}>
-        {children}
-      </S.InputSuffix>
-    )
-  }
-
   return (
-    <S.InputSuffix invalid={invalid} disabled={disabled} height={height}>
-      {Icon ? <Icon /> : <S.CalendarRegular />}
+    <S.InputSuffix
+      invalid={invalid}
+      disabled={disabled}
+      height={height}
+      onClick={() => onClick}
+    >
+      {children ? children : Icon ? <Icon /> : <S.CalendarRegular />}
     </S.InputSuffix>
   )
 }
 
-const TextInput: React.FC<TextInputProps & AffixProps> = ({
+const TextInput: React.FC<TextInputProps> = ({
   children,
   innerRef,
   prefix,
@@ -105,16 +96,18 @@ const TextInput: React.FC<TextInputProps & AffixProps> = ({
         borderRadius={getBorderRadiusForControlHeight(defaults.height)}
         color={props.disabled ? 'muted' : undefined}
         aria-invalid={props.invalid}
-        prefix={prefix ? true : false}
-        suffix={suffix ? true : false}
+        prefix={prefix}
+        suffix={suffix}
         {...defaults}
       />
       {suffix && (
         <Suffix
           icon={suffix.icon}
+          onClick={suffix.onClick}
           invalid={props.invalid}
           disabled={props.disabled}
           height={defaults.height}
+          // active={false}
         >
           {suffix.text}
         </Suffix>

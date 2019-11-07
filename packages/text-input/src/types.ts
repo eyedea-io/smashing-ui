@@ -11,7 +11,8 @@ export type TextInputProps = React.InputHTMLAttributes<{}> & {
   appearance?: TextInputAppearanceType
   borderRadius?: number
   type?: TextInputType
-  suffix?: string
+  suffix?: TextInputAffixProps
+  prefix?: TextInputAffixProps
   innerRef?: any
   /**
    * Sets visual styling of the text area to be "invalid".
@@ -21,4 +22,10 @@ export type TextInputProps = React.InputHTMLAttributes<{}> & {
    * Make input full width.
    */
   full?: boolean
+}
+
+export interface TextInputAffixProps {
+  icon?: any
+  text?: string
+  onClick?: any
 }
