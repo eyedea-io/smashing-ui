@@ -25,7 +25,18 @@ export type TextInputProps = React.InputHTMLAttributes<{}> & {
 }
 
 export interface TextInputAffixProps {
-  icon?: any
-  text?: string
+  icon: any
+  activeIcon?: any
   onClick?: any
+}
+
+export interface AffixProps {
+  activeIcon?: any
+  disabled?: boolean
+  height: number | string
+  icon: any
+  inputRef: any
+  invalid?: boolean
+  onClick?: any
+  affix?: 'prefix' | 'suffix'
 }
