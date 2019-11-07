@@ -3,6 +3,7 @@ import {storiesOf, addDecorator} from '@storybook/react'
 import {TextInput} from '@smashing/text-input'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
+import {MagnifyingGlass, PasswordIcon, ArrowRightRegular} from './common/icon'
 
 addDecorator(withA11y)
 
@@ -20,6 +21,33 @@ storiesOf('Core|TextInput', module)
     >
       {story()}
     </SmashingThemeProvider>
+  ))
+  .add('with affixes', () => (
+    <React.Fragment>
+      <TextInput
+        placeholder="Show and hide password"
+        type="password"
+        suffix={PasswordIcon}
+      />
+      <br />
+      <TextInput
+        placeholder="Focus on icon click..."
+        type="text"
+        prefix={MagnifyingGlass}
+      />
+      <br />
+      <TextInput
+        disabled
+        placeholder="Disabled"
+        suffix={() => <ArrowRightRegular />}
+      />
+      <br />
+      <TextInput
+        invalid
+        defaultValue="Invalid..."
+        suffix={() => <ArrowRightRegular />}
+      />
+    </React.Fragment>
   ))
   .add('appearance:default', () => (
     <React.Fragment>

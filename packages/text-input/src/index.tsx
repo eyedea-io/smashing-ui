@@ -8,35 +8,33 @@ import {
 } from '@smashing/theme'
 
 const Affix: React.FC<AffixProps> = ({
-  activeIcon: ActiveIcon,
   disabled,
   height,
-  icon: Icon,
+  component: IconComponent,
   inputRef,
   invalid,
-  onClick,
   affix
 }) => {
   const [active, setActive] = React.useState(false)
 
-  return affix === 'prefix' ? (
-    <S.InputPrefix
-      invalid={invalid}
-      disabled={disabled}
-      height={height}
-      onClick={props => onClick(inputRef, setActive, active, props)}
-    >
-      {!active ? <Icon /> : ActiveIcon ? <ActiveIcon /> : <Icon />}
-    </S.InputPrefix>
-  ) : (
-    <S.InputSuffix
-      invalid={invalid}
-      disabled={disabled}
-      height={height}
-      onClick={props => onClick(inputRef, setActive, active, props)}
-    >
-      {!active ? <Icon /> : ActiveIcon ? <ActiveIcon /> : <Icon />}
-    </S.InputSuffix>
+  return (
+    <React.Fragment>
+      {affix === 'prefix' ? (
+        <S.InputPrefix invalid={invalid} disabled={disabled} height={height}>
+          <IconComponent
+            inputRef={inputRef}
+            toggleActive={() => setActive(!active)}
+          />
+        </S.InputPrefix>
+      ) : (
+        <S.InputSuffix invalid={invalid} disabled={disabled} height={height}>
+          <IconComponent
+            inputRef={inputRef}
+            toggleActive={() => setActive(!active)}
+          />
+        </S.InputSuffix>
+      )}
+    </React.Fragment>
   )
 }
 
@@ -61,9 +59,13 @@ const TextInput: React.FC<TextInputProps> = ({
       {...defaults}
     >
       {prefix && (
-        <Affix affix="prefix" inputRef={inputRef} {...defaults} {...prefix} />
+        <Affix
+          affix="prefix"
+          inputRef={inputRef}
+          component={prefix}
+          {...defaults}
+        />
       )}
-
       <S.Input
         as="input"
         variant={getTextSizeForControlHeight(defaults.height)}
@@ -75,7 +77,7 @@ const TextInput: React.FC<TextInputProps> = ({
         suffix={suffix}
         {...defaults}
       />
-      {suffix && <Affix inputRef={inputRef} {...defaults} {...suffix} />}
+      {suffix && <Affix inputRef={inputRef} component={suffix} {...defaults} />}
     </S.StyledTextContainer>
   )
 }

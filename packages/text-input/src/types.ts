@@ -11,8 +11,8 @@ export type TextInputProps = React.InputHTMLAttributes<{}> & {
   appearance?: TextInputAppearanceType
   borderRadius?: number
   type?: TextInputType
-  suffix?: TextInputAffixProps
-  prefix?: TextInputAffixProps
+  suffix?: React.FC
+  prefix?: React.FC
   innerRef?: any
   /**
    * Sets visual styling of the text area to be "invalid".
@@ -23,20 +23,18 @@ export type TextInputProps = React.InputHTMLAttributes<{}> & {
    */
   full?: boolean
 }
-
-export interface TextInputAffixProps {
-  icon: any
-  activeIcon?: any
-  onClick?: any
-}
-
 export interface AffixProps {
-  activeIcon?: any
+  component: React.FC<AffixIconProps>
   disabled?: boolean
   height: number | string
-  icon: any
-  inputRef: any
+  inputRef: React.RefObject<HTMLInputElement>
   invalid?: boolean
-  onClick?: any
   affix?: 'prefix' | 'suffix'
+}
+
+export interface AffixIconProps {
+  inputRef?: React.RefObject<HTMLInputElement>
+  active?: boolean
+  toggleActive?: any
+  // setActive?: React.SetStateAction<{active: boolean}>
 }
