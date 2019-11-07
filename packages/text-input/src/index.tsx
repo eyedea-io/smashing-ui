@@ -7,33 +7,6 @@ import {
   useDefaults
 } from '@smashing/theme'
 
-const Prefix = ({
-  height,
-  invalid,
-  disabled,
-  icon: Icon,
-  children
-}: {
-  icon?: any
-  height: number | string
-  invalid?: boolean
-  disabled?: boolean
-  children?: string
-}) => {
-  if (children) {
-    return (
-      <S.InputPrefix invalid={invalid} disabled={disabled} height={height}>
-        {children}
-      </S.InputPrefix>
-    )
-  }
-
-  return (
-    <S.InputPrefix invalid={invalid} disabled={disabled} height={height}>
-      {Icon ? <Icon /> : <S.CalendarRegular />}
-    </S.InputPrefix>
-  )
-}
 const Affix: React.FC<AffixProps> = ({
   activeIcon: ActiveIcon,
   disabled,
