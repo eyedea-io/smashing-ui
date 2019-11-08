@@ -27,7 +27,7 @@ export interface TextInputProps extends React.InputHTMLAttributes<{}> {
 }
 
 export interface AffixProps {
-  component: React.FC<AffixIconProps> | string
+  component: React.FC<AffixIconComponentProps> | string
   disabled?: boolean
   height: number | string
   inputRef: React.RefObject<HTMLInputElement>
@@ -35,9 +35,6 @@ export interface AffixProps {
   affix?: 'before' | 'after'
 }
 
-export interface AffixIconProps {
+export interface AffixIconComponentProps {
   inputRef?: React.RefObject<HTMLInputElement>
-  active?: boolean
-  toggleActive?: any
-  // setActive?: React.SetStateAction<{active: boolean}>
 }

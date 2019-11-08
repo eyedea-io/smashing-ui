@@ -14,31 +14,28 @@ const Affix: React.FC<AffixProps> = ({
   height,
   inputRef,
   invalid
-}) => {
-  console.log(typeof IconComponent)
-  return (
-    <React.Fragment>
-      {affix === 'before' ? (
-        <S.InputBefore invalid={invalid} disabled={disabled} height={height}>
+}) => (
+  <React.Fragment>
+    {affix === 'before' ? (
+      <S.InputBefore invalid={invalid} disabled={disabled} height={height}>
+        <IconComponent inputRef={inputRef} />
+      </S.InputBefore>
+    ) : (
+      <S.InputAfter
+        invalid={invalid}
+        disabled={disabled}
+        height={height}
+        string={typeof IconComponent === 'string'}
+      >
+        {typeof IconComponent === 'string' ? (
+          IconComponent
+        ) : (
           <IconComponent inputRef={inputRef} />
-        </S.InputBefore>
-      ) : (
-        <S.InputAfter
-          invalid={invalid}
-          disabled={disabled}
-          height={height}
-          string={typeof IconComponent === 'string'}
-        >
-          {typeof IconComponent === 'string' ? (
-            IconComponent
-          ) : (
-            <IconComponent inputRef={inputRef} />
-          )}
-        </S.InputAfter>
-      )}
-    </React.Fragment>
-  )
-}
+        )}
+      </S.InputAfter>
+    )}
+  </React.Fragment>
+)
 
 const TextInput: React.FC<TextInputProps> = ({
   children,
