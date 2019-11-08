@@ -22,33 +22,6 @@ storiesOf('Core|TextInput', module)
       {story()}
     </SmashingThemeProvider>
   ))
-  .add('with affixes', () => (
-    <React.Fragment>
-      <TextInput
-        placeholder="Show and hide password"
-        type="password"
-        suffix={PasswordIcon}
-      />
-      <br />
-      <TextInput
-        placeholder="Focus on icon click..."
-        type="text"
-        prefix={MagnifyingGlass}
-      />
-      <br />
-      <TextInput
-        disabled
-        placeholder="Disabled"
-        suffix={() => <ArrowRightRegular />}
-      />
-      <br />
-      <TextInput
-        invalid
-        defaultValue="Invalid..."
-        suffix={() => <ArrowRightRegular />}
-      />
-    </React.Fragment>
-  ))
   .add('appearance:default', () => (
     <React.Fragment>
       <div>
@@ -202,5 +175,35 @@ storiesOf('Core|TextInput', module)
       <div>
         <TextInput placeholder="Your name" full />
       </div>
+    </React.Fragment>
+  ))
+  .add('with affixes', () => (
+    <React.Fragment>
+      <TextInput
+        placeholder="Show and hide password"
+        type="password"
+        after={PasswordIcon}
+      />
+      <br />
+      <TextInput
+        placeholder="Focus on icon click..."
+        type="text"
+        before={MagnifyingGlass}
+        height={48}
+      />
+      <br />
+      <TextInput placeholder="Text suffix..." type="text" after={'km/h'} />
+      <br />
+      <TextInput
+        placeholder="Invalid text suffix..."
+        type="text"
+        after={'km/h'}
+        invalid
+        height={48}
+      />
+      <br />
+      <TextInput disabled placeholder="Disabled" after={ArrowRightRegular} />
+      <br />
+      <TextInput invalid defaultValue="Invalid..." after={ArrowRightRegular} />
     </React.Fragment>
   ))
