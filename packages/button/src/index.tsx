@@ -5,6 +5,7 @@ import {Spinner} from '@smashing/spinner'
 import {getButtonStyle} from './styles'
 import {
   useDefaults,
+  getValueWithUnit,
   getTextSizeForControlHeight,
   getBorderRadiusForControlHeight
 } from '@smashing/theme'
@@ -29,14 +30,10 @@ const StyledText = styled(Text)<StyledTextProps>`
   padding-left: ${_ => Math.round(_.height / 2)}px;
   padding-right: ${_ => Math.round(_.height / 2)}px;
   vertical-align: middle;
-  ${_ =>
-    _.full
-      ? {
-          width: '100%'
-        }
-      : {
-          display: 'inline-flex'
-        }}
+  ${_ => ({
+    width: _.width ? getValueWithUnit(_.width) : _.full ? '100%' : undefined,
+    display: _.full ? undefined : 'inline-flex'
+  })}
   ${_ => getButtonStyle(_.appearance, _.intent)};
 `
 const StyledSpinner = styled(Spinner)<StyledSpinnerProps>`
@@ -69,6 +66,7 @@ const ButtonFCFactory: <AdditionalProps extends {}>(
       ref={innerRef}
       {...defaults}
       {...props}
+      aria-invalid={props.invalid}
       disabled={props.disabled || props.isLoading}
     >
       {defaults.isLoading && (

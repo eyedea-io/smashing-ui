@@ -22,10 +22,12 @@ export interface ButtonLikeProps {
   className?: string
   innerRef?: any
   height?: number
+  width?: number
   id?: string
   name?: string
   /** Make button full width */
   full?: boolean
+  invalid?: boolean
 }
 
 export interface ButtonProps extends ButtonLikeProps {

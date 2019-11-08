@@ -1,7 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import {Text, Heading} from '@smashing/typography'
+import * as S from './styles'
 import '@smashing/theme'
+import {getTextSizeForControlHeight, useDefaults} from '@smashing/theme'
 
 const KeyCodes = {
   ArrowUp: 38,
@@ -111,75 +112,11 @@ export const Menu: React.FC & {
   )
 }
 
-const S = {
-  Item: styled.div`
-    height: 32px;
-    display: flex;
-    align-items: center;
-
-    &[data-isselectable='true'] {
-      cursor: pointer;
-    }
-
-    &[data-isselectable='false'] {
-      cursor: default;
-    }
-
-    &:not([data-isselectable='false']):hover {
-      background-color: ${_ => _.theme.scales.neutral.N1A};
-    }
-
-    &:focus {
-      outline: none;
-    }
-
-    &:not([data-isselectable='false']):focus {
-      background-color: ${_ => _.theme.scales.blue.B1A};
-    }
-
-    &:not([data-isselectable='false']):active {
-      background-color: ${_ => _.theme.scales.blue.B2A};
-    }
-  `,
-  Text: styled(Text)`
-    flex: 1;
-    margin-left: ${_ => _.theme.spacing.sm};
-    margin-right: ${_ => _.theme.spacing.sm};
-  `,
-  SecondaryText: styled(Text)`
-    margin-right: ${_ => _.theme.spacing.sm};
-  `,
-  Group: styled.div`
-    padding-top: ${_ => _.theme.spacing.xxs};
-    padding-bottom: ${_ => _.theme.spacing.xxs};
-  `,
-  GroupHeading: styled(Heading)`
-    margin-top: ${_ => _.theme.spacing.xxs};
-    margin-bottom: ${_ => _.theme.spacing.xxs};
-    margin-left: ${_ => _.theme.spacing.sm};
-    margin-right: ${_ => _.theme.spacing.sm};
-  `,
-  Divider: styled.div`
-    border-bottom: 1px solid ${_ => _.theme.colors.border.default};
-  `,
-  CheckIcon: styled.svg`
-    margin-left: ${_ => _.theme.spacing.sm};
-    fill: ${_ => _.theme.colors.icon.selected};
-
-    [data-isselectable='false'] & {
-      fill: ${_ => _.theme.colors.icon.disabled};
-    }
-  `,
-  CheckIconPlaceholder: styled.div`
-    margin-left: ${_ => _.theme.spacing.sm};
-    width: 16px;
-  `
-}
-
 const MenuItem: React.FC<MenuItemProps> = ({
   intent = 'none',
   appearance = 'default',
   role = 'menuitem',
+  tabIndex = 0,
   onSelect = () => {},
   children,
   secondaryText,
@@ -188,6 +125,11 @@ const MenuItem: React.FC<MenuItemProps> = ({
   disabled,
   ...props
 }) => {
+  const defaults = useDefaults('menu', props, {
+    height: 32
+  })
+  const height = Math.max(defaults.height, 32)
+
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     safeInvoke(onSelect, event)
     safeInvoke((props as any).onClick, event)
@@ -211,19 +153,20 @@ const MenuItem: React.FC<MenuItemProps> = ({
 
   return (
     <S.Item
+      {...props}
       role={role}
       onClick={handleClick}
       onKeyPress={handleKeyPress}
-      tabIndex={0}
+      height={height}
+      tabIndex={tabIndex}
       data-isselectable={!disabled}
       aria-checked={isCheckable ? isSelected : undefined}
-      {...props}
     >
       {isSelectable &&
         (isSelected ? (
           <S.CheckIcon
-            width={16}
-            height={16}
+            width={12}
+            height={12}
             aria-hidden="true"
             viewBox="0 0 16 16"
           >
@@ -236,6 +179,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
           <S.CheckIconPlaceholder />
         ))}
       <S.Text
+        variant={getTextSizeForControlHeight(height)}
         {...{
           [disabled ? 'color' : 'intent']: disabled ? 'muted' : intent
         }}
@@ -264,6 +208,7 @@ const MenuOptionsGroup: React.FC<MenuOptionsGroupProps> = ({
   onDeselect,
   options = [],
   value,
+  itemHeight,
   ...props
 }) => (
   <S.Group {...props}>
@@ -278,6 +223,8 @@ const MenuOptionsGroup: React.FC<MenuOptionsGroupProps> = ({
           isSelectable
           role={Array.isArray(value) ? 'menuitemcheckbox' : 'menuitemradio'}
           isSelected={isSelected}
+          tabIndex={-1}
+          height={itemHeight}
           disabled={option.disabled}
           onSelect={() => {
             if (option.disabled) return
@@ -310,6 +257,15 @@ Menu.Group = styled(MenuGroup)``
 Menu.OptionsGroup = styled(MenuOptionsGroup)``
 Menu.Item = MenuItem
 Menu.Divider = styled(S.Divider)``
+
+declare module 'styled-components' {
+  export interface SmashingMenuDefaults
+    extends Partial<{
+      menuItem: Pick<MenuItemProps, 'height'>
+    }> {}
+}
+
+export const MenuElements = S
 
 export interface MenuGroupProps {
   /**
@@ -359,6 +315,11 @@ export interface MenuOptionsGroupProps {
    * The current value of the option group.
    */
   value: string | string[]
+
+  /**
+   * Height of single menu item
+   */
+  itemHeight?: number
 }
 
 export interface MenuItemProps {
@@ -413,9 +374,16 @@ export interface MenuItemProps {
   disabled?: boolean
 
   /**
+   * Item height
+   */
+  height?: number
+
+  /**
    * ARIA role
    */
   role?: string
+
+  tabIndex?: number
 
   [key: string]: any
 }

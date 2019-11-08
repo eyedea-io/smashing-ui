@@ -1,12 +1,8 @@
 import {PopoverProps} from '@smashing/popover'
 import {ButtonAppearanceType} from '@smashing/button'
 
-export type SelectMenuAppearanceType =
-  | 'primary'
-  | 'minimal'
-  | 'card'
-  | 'outline'
-  | 'toggle'
+export type SelectMenuAppearanceType = ButtonAppearanceType
+export type SelectMenuPopoverAppearanceType = 'card' | 'accordion'
 
 export type SelectButtonProps = {
   toggle: () => void
@@ -25,27 +21,42 @@ export interface SelectMenuProps<T extends OptionBase> {
    * Select button appearance
    */
   appearance?: ButtonAppearanceType
+  /**
+   * Display filter input in popover
+   * @default false
+   */
   hasFilter?: boolean
+  /**
+   * Display close button in popover
+   * @default true
+   */
+  hasCloseButton?: boolean
+  /**
+   * Display title in popover
+   * @default false
+   */
   hasTitle?: boolean
+  /**
+   * Title content displayed in popover
+   */
   title?: string
-  minWidth?: number
   /**
    * Select button height
    */
   height?: number
-  hasCloseButton?: boolean
+  onChange: (value: string | string[]) => void
   onSelect: (value: string) => void
   onDeselect: (value: string) => void
   multiOptionSelectedItemsLabel?: (itemsSelectedLength: number) => string
   isMultiSelect?: boolean
-  compareBy?: string
+  // compareBy?: string
   placeholder?: string
-  renderItem?: (
-    option: T,
-    click: () => void,
-    selected: boolean,
-    options: T[]
-  ) => React.ReactNode
+  // renderItem?: (
+  //   option: T,
+  //   click: () => void,
+  //   selected: boolean,
+  //   options: T[]
+  // ) => React.ReactNode
 
   /**
    * Class name passed to select button
@@ -64,9 +75,20 @@ export interface SelectMenuProps<T extends OptionBase> {
   popoverProps?: Partial<PopoverProps>
 
   /**
+   * Popover appearance
+   */
+  popoverAppearance?: SelectMenuPopoverAppearanceType
+
+  /**
    * Used to set component's visual style for indicating errors
    */
   invalid?: boolean
+
+  /**
+   * Select button width
+   */
+  width?: number
+  // minWidth?: number
 }
 
 export interface OptionBase {

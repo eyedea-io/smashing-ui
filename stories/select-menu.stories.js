@@ -1,13 +1,7 @@
-import React, {useCallback, useEffect} from 'react'
+import React from 'react'
 import {storiesOf} from '@storybook/react'
 import {SelectMenu} from '@smashing/select-menu'
 import {SmashingThemeProvider} from '@smashing/theme'
-import {Button} from '@smashing/button'
-import {FormField} from '@smashing/form-field'
-import styled from 'styled-components'
-import {Label} from '@smashing/typography'
-import {useForm} from '@smashing/form'
-import {StyledAlert} from '@smashing/alert'
 
 const options = [
   {label: 'Apple', value: 'Apple'},
@@ -18,33 +12,22 @@ const options = [
 
 const optionsScroll = [
   {label: 'Apple', value: 'Apple'},
-  {label: 'Apricot', value: 'Apricot'},
+  {label: 'Apricot', value: 'Apricot', disabled: true},
   {label: 'Banana', value: 'Banana'},
   {label: 'Cherry', value: 'Cherry'},
-  {label: 'Cucumber', value: 'Cucumber', disabled: true},
+  {label: 'Cucumber', value: 'Cucumber'},
   {label: 'Tomato', value: 'Tomato'},
   {label: 'Orange', value: 'Orange'},
   {label: 'Pepper', value: 'Pepper'},
   {label: 'Potato', value: 'Potato'}
 ]
 
-const useFont = () => {
-  useEffect(() => {
-    const fontStyle = document.createElement('style')
-    fontStyle.innerHTML =
-      '@import url(\'https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&display=swap\');'
-    document.head.appendChild(fontStyle)
-  }, [])
-}
-
 const Wrapper = ({children}) => {
   const [singleSelectedOption, changeSingleSelectedOption] = React.useState(
     null
   )
 
-  const [selectedOptions, changeSelectedOptions] = React.useState([
-    options[1].value
-  ])
+  const [selectedOptions, changeSelectedOptions] = React.useState([])
 
   const select = value => {
     changeSelectedOptions([...selectedOptions, value])
@@ -53,8 +36,14 @@ const Wrapper = ({children}) => {
   const deselect = option => {
     changeSelectedOptions(selectedOptions.filter(o => o !== option))
   }
+
   return (
     <div data-wrapper style={{marginBottom: 16}}>
+      <style>
+        {
+          'body {height: 100vh; margin: 0; padding: 8px; box-sizing: border-box}'
+        }
+      </style>
       {children({
         singleSelectedOption,
         changeSingleSelectedOption,
@@ -67,18 +56,20 @@ const Wrapper = ({children}) => {
   )
 }
 
+const Decorator = story => (
+  <SmashingThemeProvider
+    theme={{
+      defaults: {
+        button: {}
+      }
+    }}
+  >
+    {story()}
+  </SmashingThemeProvider>
+)
+
 storiesOf('Core|Select menu', module)
-  .addDecorator(story => (
-    <SmashingThemeProvider
-      theme={{
-        defaults: {
-          button: {}
-        }
-      }}
-    >
-      {story()}
-    </SmashingThemeProvider>
-  ))
+  .addDecorator(Decorator)
   .add('appearance: default', () => (
     <Wrapper>
       {({singleSelectedOption, changeSingleSelectedOption}) => (
@@ -110,11 +101,26 @@ storiesOf('Core|Select menu', module)
           value={singleSelectedOption}
           onSelect={changeSingleSelectedOption}
           appearance="subtle"
+          popoverProps={{
+            position: 'bottom-left'
+          }}
         />
       )}
     </Wrapper>
   ))
   .add('appearance: minimal', () => (
+    <Wrapper>
+      {({singleSelectedOption, changeSingleSelectedOption}) => (
+        <SelectMenu
+          options={optionsScroll}
+          value={singleSelectedOption}
+          onSelect={changeSingleSelectedOption}
+          appearance="minimal"
+        />
+      )}
+    </Wrapper>
+  ))
+  .add('appearance: flat', () => (
     <Wrapper>
       {({singleSelectedOption, changeSingleSelectedOption}) => (
         <SelectMenu
@@ -134,6 +140,30 @@ storiesOf('Core|Select menu', module)
           value={singleSelectedOption}
           onSelect={changeSingleSelectedOption}
           appearance="outline"
+        />
+      )}
+    </Wrapper>
+  ))
+  .add('placeholder', () => (
+    <Wrapper>
+      {({singleSelectedOption, changeSingleSelectedOption}) => (
+        <SelectMenu
+          options={optionsScroll}
+          value={singleSelectedOption}
+          onSelect={changeSingleSelectedOption}
+          placeholder="Select fruit..."
+        />
+      )}
+    </Wrapper>
+  ))
+  .add('width', () => (
+    <Wrapper>
+      {({singleSelectedOption, changeSingleSelectedOption}) => (
+        <SelectMenu
+          options={optionsScroll}
+          value={singleSelectedOption}
+          onSelect={changeSingleSelectedOption}
+          width={150}
         />
       )}
     </Wrapper>
@@ -179,32 +209,14 @@ storiesOf('Core|Select menu', module)
       )}
     </Wrapper>
   ))
-  // FIXME: remove if unused
-  // .add('Appearance: card', () => (
-  //   <Wrapper>
-  //     {({singleSelectedOption, changeSingleSelectedOption}) => (
-  //       <SelectMenu
-  //         minWidth={100}
-  //         height={200}
-  //         options={optionsScroll}
-  //         value={singleSelectedOption}
-  //         onSelect={changeSingleSelectedOption}
-  //         appearance="card"
-  //         hasFilter={true}
-  //       />
-  //     )}
-  //   </Wrapper>
-  // ))
   .add('multi select', () => (
     <Wrapper>
-      {({select, deselect, selectedOptions}) => (
+      {({changeSelectedOptions, selectedOptions}) => (
         <SelectMenu
           isMultiSelect
           options={options}
           value={selectedOptions}
-          onSelect={select}
-          onDeselect={deselect}
-          multiOptionSelectedItemsLabel={num => `Fruits: ${num}`}
+          onChange={changeSelectedOptions}
         />
       )}
     </Wrapper>
@@ -270,18 +282,164 @@ storiesOf('Core|Select menu', module)
       </Wrapper>
     </div>
   ))
-// .add('appearance: outline', () => (
-//   <Wrapper>
-//     {({singleSelectedOption, changeSingleSelectedOption}) => (
-//       <SelectMenu
-//         options={options}
-//         value={singleSelectedOption}
-//         onSelect={changeSingleSelectedOption}
-//         // appearance="outline"
-//       />
-//     )}
-//   </Wrapper>
-// ))
+storiesOf('Core|Select menu/popoverAppearance: accordion', module)
+  .addDecorator(Decorator)
+  .add('appearance: default', () => (
+    <Wrapper>
+      {({singleSelectedOption, changeSingleSelectedOption}) => (
+        <SelectMenu
+          options={optionsScroll}
+          value={singleSelectedOption}
+          onSelect={changeSingleSelectedOption}
+          popoverAppearance="accordion"
+          width={150}
+        />
+      )}
+    </Wrapper>
+  ))
+  .add('appearance: primary', () => (
+    <Wrapper>
+      {({singleSelectedOption, changeSingleSelectedOption}) => (
+        <SelectMenu
+          options={optionsScroll}
+          value={singleSelectedOption}
+          onSelect={changeSingleSelectedOption}
+          appearance="primary"
+          popoverAppearance="accordion"
+          width={150}
+        />
+      )}
+    </Wrapper>
+  ))
+  .add('appearance: subtle', () => (
+    <Wrapper>
+      {({singleSelectedOption, changeSingleSelectedOption}) => (
+        <SelectMenu
+          options={optionsScroll}
+          value={singleSelectedOption}
+          onSelect={changeSingleSelectedOption}
+          appearance="subtle"
+          popoverAppearance="accordion"
+          width={150}
+        />
+      )}
+    </Wrapper>
+  ))
+  .add('appearance: minimal', () => (
+    <Wrapper>
+      {({singleSelectedOption, changeSingleSelectedOption}) => (
+        <SelectMenu
+          options={optionsScroll}
+          value={singleSelectedOption}
+          onSelect={changeSingleSelectedOption}
+          appearance="minimal"
+          popoverAppearance="accordion"
+          width={150}
+        />
+      )}
+    </Wrapper>
+  ))
+  .add('appearance: flat', () => (
+    <Wrapper>
+      {({singleSelectedOption, changeSingleSelectedOption}) => (
+        <SelectMenu
+          options={optionsScroll}
+          value={singleSelectedOption}
+          onSelect={changeSingleSelectedOption}
+          appearance="flat"
+          popoverAppearance="accordion"
+          width={150}
+        />
+      )}
+    </Wrapper>
+  ))
+  .add('appearance: outline', () => (
+    <Wrapper>
+      {({singleSelectedOption, changeSingleSelectedOption}) => (
+        <SelectMenu
+          options={optionsScroll}
+          value={singleSelectedOption}
+          onSelect={changeSingleSelectedOption}
+          appearance="outline"
+          popoverAppearance="accordion"
+          width={150}
+        />
+      )}
+    </Wrapper>
+  ))
+  .add('height', () => (
+    <>
+      <Wrapper>
+        {({singleSelectedOption, changeSingleSelectedOption}) => (
+          <SelectMenu
+            options={optionsScroll}
+            value={singleSelectedOption}
+            onSelect={changeSingleSelectedOption}
+            appearance="outline"
+            popoverAppearance="accordion"
+            height={24}
+            width={150}
+          />
+        )}
+      </Wrapper>
+      <Wrapper>
+        {({singleSelectedOption, changeSingleSelectedOption}) => (
+          <SelectMenu
+            options={optionsScroll}
+            value={singleSelectedOption}
+            onSelect={changeSingleSelectedOption}
+            appearance="outline"
+            popoverAppearance="accordion"
+            height={32}
+            width={150}
+          />
+        )}
+      </Wrapper>
+      <Wrapper>
+        {({singleSelectedOption, changeSingleSelectedOption}) => (
+          <SelectMenu
+            options={optionsScroll}
+            value={singleSelectedOption}
+            onSelect={changeSingleSelectedOption}
+            appearance="outline"
+            popoverAppearance="accordion"
+            height={40}
+            width={150}
+          />
+        )}
+      </Wrapper>
+      <Wrapper>
+        {({singleSelectedOption, changeSingleSelectedOption}) => (
+          <SelectMenu
+            options={optionsScroll}
+            value={singleSelectedOption}
+            onSelect={changeSingleSelectedOption}
+            appearance="outline"
+            popoverAppearance="accordion"
+            height={48}
+            width={150}
+          />
+        )}
+      </Wrapper>
+    </>
+  ))
+  .add('popover height', () => (
+    <Wrapper>
+      {({singleSelectedOption, changeSingleSelectedOption}) => (
+        <SelectMenu
+          options={optionsScroll}
+          value={singleSelectedOption}
+          onSelect={changeSingleSelectedOption}
+          appearance="outline"
+          popoverAppearance="accordion"
+          popoverProps={{
+            height: 150
+          }}
+          width={150}
+        />
+      )}
+    </Wrapper>
+  ))
 // .add('Custom list item body', () => (
 //   <Wrapper>
 //     {({select, deselect, selectedOptions}) => (

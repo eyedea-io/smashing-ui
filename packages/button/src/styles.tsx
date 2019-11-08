@@ -122,6 +122,10 @@ export const getButtonStyle = (
         '&[aria-expanded="true"]': {
           backgroundColor: scales.blue.B3A
         },
+        '&[aria-invalid="true"]': {
+          color: colors.text.danger,
+          boxShadow: boxShadow('invalid')
+        },
         ':disabled': {
           cursor: 'default',
           boxShadow: boxShadow('disabled'),
