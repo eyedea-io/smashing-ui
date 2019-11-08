@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import {TextInputProps} from './types'
 import {getTextInputStyle, getTextInputAffixStyle} from './styles'
-import {Text, TextProps} from '@smashing/typography'
+import {Text} from '@smashing/typography'
 import {getValueWithUnit} from '@smashing/theme'
 
 type InputProps = TextInputProps &
