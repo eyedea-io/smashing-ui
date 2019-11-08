@@ -8,31 +8,33 @@ import {
 } from '@smashing/theme'
 
 const Affix: React.FC<AffixProps> = ({
+  affix,
+  component: IconComponent,
   disabled,
   height,
-  component: IconComponent,
   inputRef,
-  invalid,
-  affix
+  invalid
 }) => {
-  const [active, setActive] = React.useState(false)
-
+  console.log(typeof IconComponent)
   return (
     <React.Fragment>
-      {affix === 'prefix' ? (
-        <S.InputPrefix invalid={invalid} disabled={disabled} height={height}>
-          <IconComponent
-            inputRef={inputRef}
-            toggleActive={() => setActive(!active)}
-          />
-        </S.InputPrefix>
+      {affix === 'before' ? (
+        <S.InputBefore invalid={invalid} disabled={disabled} height={height}>
+          <IconComponent inputRef={inputRef} />
+        </S.InputBefore>
       ) : (
-        <S.InputSuffix invalid={invalid} disabled={disabled} height={height}>
-          <IconComponent
-            inputRef={inputRef}
-            toggleActive={() => setActive(!active)}
-          />
-        </S.InputSuffix>
+        <S.InputAfter
+          invalid={invalid}
+          disabled={disabled}
+          height={height}
+          string={typeof IconComponent === 'string'}
+        >
+          {typeof IconComponent === 'string' ? (
+            IconComponent
+          ) : (
+            <IconComponent inputRef={inputRef} />
+          )}
+        </S.InputAfter>
       )}
     </React.Fragment>
   )
@@ -41,8 +43,8 @@ const Affix: React.FC<AffixProps> = ({
 const TextInput: React.FC<TextInputProps> = ({
   children,
   innerRef,
-  prefix,
-  suffix,
+  before,
+  after,
   ...props
 }) => {
   const defaults = useDefaults('textInput', props, {
@@ -58,11 +60,11 @@ const TextInput: React.FC<TextInputProps> = ({
       borderRadius={getBorderRadiusForControlHeight(defaults.height)}
       {...defaults}
     >
-      {prefix && (
+      {before && (
         <Affix
-          affix="prefix"
+          affix="before"
           inputRef={inputRef}
-          component={prefix}
+          component={before}
           {...defaults}
         />
       )}
@@ -73,11 +75,11 @@ const TextInput: React.FC<TextInputProps> = ({
         color={props.disabled ? 'muted' : undefined}
         aria-invalid={props.invalid}
         ref={inputRef}
-        prefix={prefix}
-        suffix={suffix}
+        before={before}
+        after={after}
         {...defaults}
       />
-      {suffix && <Affix inputRef={inputRef} component={suffix} {...defaults} />}
+      {after && <Affix inputRef={inputRef} component={after} {...defaults} />}
     </S.StyledTextContainer>
   )
 }

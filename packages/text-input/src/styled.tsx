@@ -1,9 +1,8 @@
 import styled from 'styled-components'
 import {TextInputProps} from './types'
 import {getTextInputStyle, getTextInputAffixStyle} from './styles'
-import {Text} from '@smashing/typography'
+import {Text, TextProps} from '@smashing/typography'
 import {getValueWithUnit} from '@smashing/theme'
-import * as React from 'react'
 
 type InputProps = TextInputProps &
   Required<Pick<TextInputProps, 'height' | 'appearance' | 'full'>>
@@ -33,24 +32,25 @@ export const Input = styled(Text)<InputProps>`
       ? '100%'
       : undefined
 
+    const padding = parseInt(_.theme.spacing.sm.slice(0, -2))
     const calcPadding = affix =>
-      affix ? `${height * 1.5}px` : `${Math.round(height / 3.2)}px`
+      affix ? `${padding * 2 + height / 2}px ` : `${Math.round(height / 3.2)}px`
 
     return {
       width,
       height: `${height}px`,
-      paddingLeft: calcPadding(_.prefix),
-      paddingRight: calcPadding(_.suffix)
+      paddingLeft: calcPadding(_.before),
+      paddingRight: calcPadding(_.after)
     }
   }}
   ${_ => getTextInputStyle(_.appearance)};
 `
 
-export const Affix = styled.span<{
+export const Affix = styled(Text)<{
   height: number | string
   invalid?: boolean
   disabled?: boolean
-  onClick?: any
+  string?: boolean
 }>`
   position: absolute;
   top: 0;
@@ -59,18 +59,18 @@ export const Affix = styled.span<{
     typeof _.height === 'string' ? parseInt(_.height, 10) : _.height}px;
   line-height: ${_ =>
     typeof _.height === 'string' ? parseInt(_.height, 10) : _.height}px;
-  ${_ => _.onClick && 'cursor: pointer;'}
+  ${_ => _.string && `padding: 0 calc(${_.theme.spacing.sm});`}
   ${_ => getTextInputAffixStyle(_)};
 
   svg {
     width: calc(${_ => _.height}px / 2);
     height: ${_ => _.height}px;
-    padding: 0 calc(${_ => _.height}px / 2);
+    padding: 0 calc(${_ => _.theme.spacing.sm});
   }
 `
-export const InputPrefix = styled(Affix)`
+export const InputBefore = styled(Affix)`
   left: 0;
 `
-export const InputSuffix = styled(Affix)`
+export const InputAfter = styled(Affix)`
   right: 0;
 `

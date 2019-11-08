@@ -1,3 +1,5 @@
+type ProtoExntends<T, U> = U & Omit<T, keyof U>
+
 export type TextInputAppearanceType =
   | 'default'
   | 'neutral'
@@ -7,14 +9,12 @@ export type TextInputAppearanceType =
 
 export type TextInputType = 'email' | 'password' | 'tel' | 'hidden' | 'text'
 
-export type TextInputProps = React.InputHTMLAttributes<{}> & {
+export interface TextInputProps extends React.InputHTMLAttributes<{}> {
   appearance?: TextInputAppearanceType
   borderRadius?: number
   type?: TextInputType
-  suffix?: React.FC
-  prefix?: React.FC
   innerRef?: any
-  /**
+  /**q
    * Sets visual styling of the text area to be "invalid".
    */
   invalid?: boolean
@@ -22,14 +22,17 @@ export type TextInputProps = React.InputHTMLAttributes<{}> & {
    * Make input full width.
    */
   full?: boolean
+  before?: React.FC
+  after?: React.FC | string
 }
+
 export interface AffixProps {
-  component: React.FC<AffixIconProps>
+  component: React.FC<AffixIconProps> | string
   disabled?: boolean
   height: number | string
   inputRef: React.RefObject<HTMLInputElement>
   invalid?: boolean
-  affix?: 'prefix' | 'suffix'
+  affix?: 'before' | 'after'
 }
 
 export interface AffixIconProps {
