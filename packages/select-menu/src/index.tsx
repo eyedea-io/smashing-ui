@@ -1,7 +1,8 @@
 import * as React from 'react'
-import {Popover} from '@smashing/popover'
-import styled from 'styled-components/macro'
+import {Popover, PopoverProps} from '@smashing/popover'
+import styled from 'styled-components'
 import {Button} from '@smashing/button'
+import {Strong} from '@smashing/typography'
 import * as S from './styles'
 import {
   SelectMenuAppearanceType,
@@ -10,16 +11,17 @@ import {
   SelectMenuState,
   SelectMenuChildrenFn
 } from './types'
-import {Strong} from '@smashing/typography'
 
 const SelectMenuItem: React.FC<{
   option: OptionBase
   isSelected: boolean
   appearance?: SelectMenuAppearanceType
   onClick: (option: any) => void
-}> = ({option, isSelected, appearance, onClick}) => {
+  innerRef?: any
+}> = ({option, isSelected, appearance, innerRef, onClick}) => {
   return (
     <S.Checkbox
+      innerRef={innerRef}
       disabled={option.disabled}
       appearance={appearance}
       checked={isSelected}
@@ -40,6 +42,16 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
     super(props)
     this.state = {
       currentFilter: ''
+    }
+    this.menuListRef = React.createRef<HTMLDivElement>()
+  }
+
+  menuListRef: React.RefObject<HTMLDivElement>
+  selectedOptionRef: HTMLDivElement | null = null
+
+  scrollToSelectedItem() {
+    if (this.menuListRef.current && this.selectedOptionRef) {
+      this.menuListRef.current.scrollTo(0, this.selectedOptionRef.offsetTop)
     }
   }
   getDefaultButton = (appearance?: SelectMenuAppearanceType) => {
@@ -136,9 +148,21 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
     })
   }
   render() {
+    // extract allowed props than can be passed to the popover component
+
+    const {
+      content,
+      onOpenStarted,
+      minWidth,
+      children,
+      isShown,
+      ...popoverProps
+    }: Partial<PopoverProps> = this.props.popoverProps || {}
+
     return (
       <Popover
         minWidth={this.props.minWidth}
+        onOpenStarted={() => this.scrollToSelectedItem()}
         content={({close}) => {
           return (
             <S.PopoverHost>
@@ -172,6 +196,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
                 </S.FilterHost>
               )}
               <S.OptionHost
+                ref={this.menuListRef}
                 appearance={this.props.appearance}
                 height={this.props.height}
               >
@@ -183,6 +208,11 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
                     <SelectMenuItem
                       appearance={this.props.appearance}
                       key={option.value}
+                      innerRef={ref => {
+                        if (this.isOptionSelected(option.value)) {
+                          this.selectedOptionRef = ref
+                        }
+                      }}
                       option={option}
                       isSelected={this.isOptionSelected(option.value)}
                       onClick={this.optionClicked}
@@ -199,6 +229,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
           )
         }}
         children={this.determineChildren(this.props.appearance)}
+        {...popoverProps}
       />
     )
   }

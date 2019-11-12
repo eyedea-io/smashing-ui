@@ -1,0 +1,34 @@
+{
+  "name": "@smashing/badge",
+  "version": "0.1.0",
+  "description": "Component used to count notification",
+  "repository": "eyedea-io/smashing-ui",
+  "license": "MIT",
+  "author": "Eyedea AS",
+  "main": "lib/cjs/index.js",
+  "types": "lib/esm/index.d.ts",
+  "module": "lib/esm/index.js",
+  "files": [
+    "lib/esm",
+    "lib/cjs"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@smashing/theme": "^0.5.3",
+    "@smashing/typography": "^0.4.27"
+  },
+  "devDependencies": {
+    "react": "^16.8.6"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "styled-components": "^4.2.0"
+  },
+  "keywords": [
+    "smashing",
+    "react",
+    "ui"
+  ]
+}

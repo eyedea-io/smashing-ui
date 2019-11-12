@@ -183,3 +183,7 @@ export const getIconPosition = (position?: string) => {
       }
   }
 }
+
+export const getWidthType = (width: number | string | undefined) => {
+  return typeof width === 'number' ? `${width}px` : `${width}`
+}

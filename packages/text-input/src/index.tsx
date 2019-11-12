@@ -1,51 +1,41 @@
 import * as React from 'react'
-import styled from 'styled-components'
-import {Text} from '@smashing/typography'
+import {TextInputAppearanceType, TextInputProps} from './types'
+import * as S from './styled'
 import {
   getTextSizeForControlHeight,
   getBorderRadiusForControlHeight,
   useDefaults
 } from '@smashing/theme'
-import {TextInputAppearanceType, TextInputProps, StyledTextProps} from './types'
-import {getTextInputStyle} from './styles'
 
-const StyledText = styled(Text)<StyledTextProps>`
-  border: none;
-  border-radius: ${_ => _.borderRadius}px;
-  width: ${_ => (typeof _.width === 'number' ? `${_.width}px` : _.width)};
-  height: ${_ => _.height}px;
-  padding-left: ${_ => Math.round(_.height / 3.2)}px;
-  padding-right: ${_ => Math.round(_.height / 3.2)}px;
-  ${_ => getTextInputStyle(_.appearance)}
-`
 const TextInput = React.forwardRef<any, TextInputProps>(
   ({children, ...props}, ref: any) => {
     const defaults = useDefaults('textInput', props, {
       height: 32,
+      full: false,
       appearance: 'default' as TextInputAppearanceType
     })
 
     return (
-      <StyledText
+      <S.Input
         as="input"
         ref={ref}
         variant={getTextSizeForControlHeight(defaults.height)}
         borderRadius={getBorderRadiusForControlHeight(defaults.height)}
         color={props.disabled ? 'muted' : undefined}
+        aria-invalid={props.invalid}
         {...defaults}
       />
     )
   }
 )
 
+export const TextInputComponents = S
 export {TextInput, TextInputProps, TextInputAppearanceType}
+export {getTextInputStyle} from './styles'
 
 declare module 'styled-components' {
   export interface SmashingTextInputDefaults
     extends Partial<{
-      textInput?: {
-        height?: number
-        appearance?: TextInputAppearanceType
-      }
+      textInput: Pick<TextInputProps, 'height' | 'appearance' | 'full'>
     }> {}
 }

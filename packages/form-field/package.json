@@ -1,0 +1,39 @@
+{
+  "name": "@smashing/form-field",
+  "version": "0.1.0",
+  "description": "Component used for to add label, description, hint and error handling to input.",
+  "repository": "eyedea-io/smashing-ui",
+  "license": "MIT",
+  "main": "lib/cjs/index.js",
+  "types": "lib/esm/index.d.ts",
+  "module": "lib/esm/index.js",
+  "files": [
+    "lib/esm",
+    "lib/cjs"
+  ],
+  "author": "Eyedea AS",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@smashing/alert": "^0.2.0",
+    "@smashing/theme": "^0.12.0",
+    "@smashing/typography": "^0.4.27"
+  },
+  "devDependencies": {
+    "@smashing/form": "^0.6.0",
+    "mobx": "^5.14.0",
+    "mobx-react-lite": "^1.4.1",
+    "react": "^16.8.6"
+  },
+  "peerDependencies": {
+    "@smashing/form": "^0.6.0",
+    "react": "^16.8.6",
+    "styled-components": "^4.2.0"
+  },
+  "keywords": [
+    "smashing",
+    "react",
+    "ui"
+  ]
+}

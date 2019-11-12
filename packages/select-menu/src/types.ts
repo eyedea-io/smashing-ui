@@ -1,3 +1,5 @@
+import {PopoverProps} from '@smashing/popover'
+
 export type SelectMenuAppearanceType = 'primary' | 'minimal' | 'card'
 
 export type SelectMenuChildrenFn<T extends OptionBase> = <T>(props: {
@@ -10,7 +12,7 @@ export type SelectMenuChildrenFn<T extends OptionBase> = <T>(props: {
 export interface SelectMenuProps<T extends OptionBase> {
   options: T[]
   value: string | string[]
-  children: React.ReactNode | SelectMenuChildrenFn<T>
+  children?: React.ReactNode | SelectMenuChildrenFn<T>
   appearance?: SelectMenuAppearanceType
   hasFilter?: boolean
   hasTitle?: boolean
@@ -30,6 +32,12 @@ export interface SelectMenuProps<T extends OptionBase> {
     selected: boolean,
     options: T[]
   ) => React.ReactNode
+
+  /**
+   * Props that will be passed to the internal Popover component. Please note that
+   * vital control props (isShown, children etc.) will have no effect when placed here.
+   */
+  popoverProps?: Partial<PopoverProps>
 }
 
 export interface OptionBase {

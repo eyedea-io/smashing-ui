@@ -1,6 +1,6 @@
 {
   "name": "@smashing/css",
-  "version": "0.1.21",
+  "version": "0.1.22",
   "description": "CSS utils: reset, normalize.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -16,7 +16,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@smashing/theme": "^0.11.0"
+    "@smashing/theme": "^0.12.0"
   },
   "devDependencies": {
     "react": "^16.8.6"

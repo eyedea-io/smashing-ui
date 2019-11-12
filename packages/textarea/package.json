@@ -1,0 +1,35 @@
+{
+  "name": "@smashing/textarea",
+  "version": "0.1.0",
+  "description": "Multi line text input component used in forms.",
+  "repository": "eyedea-io/smashing-ui",
+  "license": "MIT",
+  "author": "Eyedea AS",
+  "main": "lib/cjs/index.js",
+  "types": "lib/esm/index.d.ts",
+  "module": "lib/esm/index.js",
+  "files": [
+    "src",
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@smashing/text-input": "^0.2.0",
+    "@smashing/theme": "^0.12.0",
+    "@smashing/typography": "^0.4.27"
+  },
+  "devDependencies": {
+    "react": "^16.8.6"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "styled-components": "^4.2.0"
+  },
+  "keywords": [
+    "smashing",
+    "react",
+    "ui"
+  ]
+}

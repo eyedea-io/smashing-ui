@@ -14,6 +14,18 @@ const options = [
   {label: 'Cherry', value: 'Cherry', disabled: true}
 ]
 
+const optionsScroll = [
+  {label: 'Apple', value: 'Apple'},
+  {label: 'Apricot', value: 'Apricot'},
+  {label: 'Banana', value: 'Banana'},
+  {label: 'Cherry', value: 'Cherry'},
+  {label: 'Cucumber', value: 'Cucumber'},
+  {label: 'Tomato', value: 'Tomato'},
+  {label: 'Orange', value: 'Orange'},
+  {label: 'Pepper', value: 'Pepper'},
+  {label: 'Potato', value: 'Potato'}
+]
+
 const Wrapper = ({children}) => {
   const [singleSelectedOption, changeSingleSelectedOption] = React.useState(
     null
@@ -56,11 +68,12 @@ storiesOf('Core|Select menu', module)
       {story()}
     </SmashingThemeProvider>
   ))
-  .add('default single select', () => (
+  .add('Default single select', () => (
     <Wrapper>
       {({singleSelectedOption, changeSingleSelectedOption}) => (
         <SelectMenu
-          options={options}
+          height={100}
+          options={optionsScroll}
           value={singleSelectedOption}
           onSelect={changeSingleSelectedOption}
           hasFilter={true}
@@ -70,13 +83,31 @@ storiesOf('Core|Select menu', module)
       )}
     </Wrapper>
   ))
-  .add('appearance : card', () => (
+  .add('With popover props', () => (
+    <Wrapper>
+      {({singleSelectedOption, changeSingleSelectedOption}) => (
+        <SelectMenu
+          height={100}
+          options={optionsScroll}
+          value={singleSelectedOption}
+          onSelect={changeSingleSelectedOption}
+          hasFilter={true}
+          hasTitle={true}
+          title="Select Item"
+          popoverProps={{
+            overlay: true
+          }}
+        />
+      )}
+    </Wrapper>
+  ))
+  .add('Appearance: card', () => (
     <Wrapper>
       {({singleSelectedOption, changeSingleSelectedOption}) => (
         <SelectMenu
           minWidth={100}
-          height={100}
-          options={options}
+          height={200}
+          options={optionsScroll}
           value={singleSelectedOption}
           onSelect={changeSingleSelectedOption}
           appearance="card"
@@ -85,7 +116,7 @@ storiesOf('Core|Select menu', module)
       )}
     </Wrapper>
   ))
-  .add('appearance : minimal, multi select', () => (
+  .add('Appearance: minimal, multi select', () => (
     <Wrapper>
       {({select, deselect, selectedOptions}) => (
         <SelectMenu
@@ -100,7 +131,7 @@ storiesOf('Core|Select menu', module)
       )}
     </Wrapper>
   ))
-  .add('custom select', () => (
+  .add('Custom list item body', () => (
     <Wrapper>
       {({select, deselect, selectedOptions}) => (
         <SelectMenu

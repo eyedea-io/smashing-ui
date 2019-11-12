@@ -71,6 +71,7 @@ export const Overlay: React.FC<OverlayProps> = ({
   shouldCloseOnEscapePress = true,
   preventBodyScrolling = false,
   verticalAlign = 'stretch',
+  autofocus = true,
   onExit = () => {},
   onExiting = () => {},
   onExited = () => {},
@@ -125,7 +126,7 @@ export const Overlay: React.FC<OverlayProps> = ({
 
         if (autofocusElement) {
           autofocusElement.focus()
-        } else if (wrapperElement) {
+        } else if (wrapperElement && autofocus) {
           wrapperElement.focus()
         } else if (buttonElement) {
           buttonElement.focus()
@@ -303,6 +304,10 @@ export interface OverlayProps {
    * Boolean indicating if pressing the esc key should close the overlay.
    */
   shouldCloseOnEscapePress?: boolean
+  /**
+   * Boolean indicating if first element should be focused.
+   */
+  autofocus?: boolean
 
   /**
    * Vertical align of the content given as a flex align-items compatible value
