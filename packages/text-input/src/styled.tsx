@@ -48,6 +48,7 @@ export const TextInput = styled(Text)<InputProps>`
 
 export const TextInputAffix = styled(Text)<{
   height: number | string
+  isClickable?: boolean
   isBefore?: boolean
   invalid?: boolean
   disabled?: boolean
@@ -69,5 +70,6 @@ export const TextInputAffix = styled(Text)<{
     width: calc(${_ => _.height}px / 2);
     height: ${_ => _.height}px;
     padding: 0 ${_ => _.theme.spacing.sm};
+    ${({isClickable}) => isClickable && 'cursor: pointer;'}
   }
 `

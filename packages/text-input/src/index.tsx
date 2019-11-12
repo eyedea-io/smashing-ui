@@ -94,6 +94,7 @@ const TextInputAffix: React.FC<TextInputAffixProps> = ({
   }
 
   const componentIsString = typeof IconComponent === 'string'
+  const componentIsClickable = onClickBefore || onClickAfter ? true : false
 
   return (
     <S.TextInputAffix
@@ -104,6 +105,7 @@ const TextInputAffix: React.FC<TextInputAffixProps> = ({
           : onClickAfter && onClickAfter(inputRef, e)
       }
       isString={componentIsString}
+      isClickable={componentIsClickable}
     >
       {componentIsString ? IconComponent : <IconComponent color={color} />}
     </S.TextInputAffix>
