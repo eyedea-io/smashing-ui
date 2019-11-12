@@ -320,6 +320,11 @@ export interface MenuOptionsGroupProps {
    * Height of single menu item
    */
   itemHeight?: number
+
+  /**
+   * Separate items with a border
+   */
+  separated?: boolean
 }
 
 export interface MenuItemProps {

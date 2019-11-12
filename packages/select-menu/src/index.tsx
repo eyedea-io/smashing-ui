@@ -181,6 +181,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
                       options={this.getFilteredOptions()}
                       value={this.props.value}
                       itemHeight={this.props.height}
+                      separated={this.props.popoverAppearance === 'accordion'} // TODO: Appearance should be taken from defaults
                       onChange={value => {
                         safeInvoke(this.props.onChange, value)
                       }}

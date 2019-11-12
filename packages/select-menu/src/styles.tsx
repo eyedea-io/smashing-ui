@@ -47,11 +47,6 @@ export const Popover = styled(PopoverElement)<PopoverProps>`
         box-shadow: ${`inset 0 0 0 1px ${borderColor}`};
         padding: 0 1px;
         background-color: ${_.theme.colors.background.default};
-        ${MenuElements.Item} + ${MenuElements.Item} {
-          box-shadow: 0 -1px 0 0 ${
-            _.theme.colors.button.outline.borderColor.disabled
-          };
-        }
       `
     )
   }}

@@ -51,13 +51,19 @@ export const Text = styled(PureText)`
 export const SecondaryText = styled(Text)`
   margin-right: ${_ => _.theme.spacing.sm};
 `
-export const Group = styled.div`
+interface GroupProps {
+  separated?: boolean
+}
+export const Group = styled.div<GroupProps>`
   padding-top: ${_ => _.theme.spacing.xxs};
   padding-bottom: ${_ => _.theme.spacing.xxs};
 
   ${Item} + ${Item} {
-    box-shadow: 0 -1px 0 0 ${_ => _.theme.colors.border.default};
-    /* border-top: 1px solid ${_ => _.theme.colors.border.default}; */
+    ${_ => ({
+      boxShadow: _.separated
+        ? `0 -1px 0 0 ${_.theme.colors.border.default}`
+        : undefined
+    })}
   }
 `
 export const GroupHeading = styled(PureHeading)`
