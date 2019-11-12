@@ -7,7 +7,7 @@ import {getValueWithUnit} from '@smashing/theme'
 type InputProps = TextInputProps &
   Required<Pick<TextInputProps, 'height' | 'appearance' | 'full'>>
 
-export const StyledTextInputContainer = styled.div<
+export const TextInputContainer = styled.div<
   {
     height: number | string
   } & InputProps
@@ -46,7 +46,7 @@ export const TextInput = styled(Text)<InputProps>`
   ${_ => getTextInputStyle(_.appearance)};
 `
 
-export const Affix = styled(Text)<{
+export const TextInputAffix = styled(Text)<{
   height: number | string
   invalid?: boolean
   disabled?: boolean
@@ -68,9 +68,9 @@ export const Affix = styled(Text)<{
     padding: 0 ${_ => _.theme.spacing.sm};
   }
 `
-export const InputBefore = styled(Affix)`
+export const TextInputAffixBefore = styled(TextInputAffix)`
   left: 0;
 `
-export const InputAfter = styled(Affix)`
+export const TextInputAffixAfter = styled(TextInputAffix)`
   right: 0;
 `

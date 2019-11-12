@@ -28,7 +28,7 @@ export interface TextInputProps extends React.InputHTMLAttributes<{}> {
   affixAfter?: React.FC | string
 }
 
-export interface AffixProps {
+export interface TextInputAffixProps {
   component: React.FC<{color: string}> | string
   disabled?: boolean
   height: number | string

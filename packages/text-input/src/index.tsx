@@ -1,5 +1,9 @@
 import * as React from 'react'
-import {TextInputAppearanceType, TextInputProps, AffixProps} from './types'
+import {
+  TextInputAppearanceType,
+  TextInputProps,
+  TextInputAffixProps
+} from './types'
 import * as S from './styled'
 import {
   getTextSizeForControlHeight,
@@ -25,13 +29,13 @@ const TextInput: React.FC<TextInputProps> = ({
   const inputRef = React.useRef<HTMLInputElement>(null)
 
   return (
-    <S.StyledTextInputContainer
+    <S.TextInputContainer
       ref={innerRef}
       borderRadius={getBorderRadiusForControlHeight(defaults.height)}
       {...defaults}
     >
       {affixBefore && (
-        <Affix
+        <TextInputAffix
           affix="affixBefore"
           inputRef={inputRef}
           component={affixBefore}
@@ -51,18 +55,18 @@ const TextInput: React.FC<TextInputProps> = ({
         {...defaults}
       />
       {affixAfter && (
-        <Affix
+        <TextInputAffix
           inputRef={inputRef}
           component={affixAfter}
           onClickAfter={onClickAfter}
           {...defaults}
         />
       )}
-    </S.StyledTextInputContainer>
+    </S.TextInputContainer>
   )
 }
 
-const Affix: React.FC<AffixProps> = ({
+const TextInputAffix: React.FC<TextInputAffixProps> = ({
   affix,
   component: IconComponent,
   disabled,
@@ -88,7 +92,7 @@ const Affix: React.FC<AffixProps> = ({
   return (
     <React.Fragment>
       {affix === 'affixBefore' ? (
-        <S.InputBefore
+        <S.TextInputAffixBefore
           {...cssProps}
           onClick={props => onClickBefore && onClickBefore(inputRef, props)}
           isString={typeof IconComponent === 'string'}
@@ -98,9 +102,9 @@ const Affix: React.FC<AffixProps> = ({
           ) : (
             <IconComponent color={getColor()} />
           )}
-        </S.InputBefore>
+        </S.TextInputAffixBefore>
       ) : (
-        <S.InputAfter
+        <S.TextInputAffixAfter
           {...cssProps}
           onClick={props => onClickAfter && onClickAfter(inputRef, props)}
           isString={typeof IconComponent === 'string'}
@@ -110,7 +114,7 @@ const Affix: React.FC<AffixProps> = ({
           ) : (
             <IconComponent color={getColor()} />
           )}
-        </S.InputAfter>
+        </S.TextInputAffixAfter>
       )}
     </React.Fragment>
   )
