@@ -25,7 +25,7 @@ const TextInput: React.FC<TextInputProps> = ({
   const inputRef = React.useRef<HTMLInputElement>(null)
 
   return (
-    <S.StyledTextContainer
+    <S.StyledTextInputContainer
       ref={innerRef}
       borderRadius={getBorderRadiusForControlHeight(defaults.height)}
       {...defaults}
@@ -39,7 +39,7 @@ const TextInput: React.FC<TextInputProps> = ({
           {...defaults}
         />
       )}
-      <S.Input
+      <S.TextInput
         as="input"
         variant={getTextSizeForControlHeight(defaults.height)}
         borderRadius={getBorderRadiusForControlHeight(defaults.height)}
@@ -58,7 +58,7 @@ const TextInput: React.FC<TextInputProps> = ({
           {...defaults}
         />
       )}
-    </S.StyledTextContainer>
+    </S.StyledTextInputContainer>
   )
 }
 

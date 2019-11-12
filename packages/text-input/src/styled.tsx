@@ -7,7 +7,7 @@ import {getValueWithUnit} from '@smashing/theme'
 type InputProps = TextInputProps &
   Required<Pick<TextInputProps, 'height' | 'appearance' | 'full'>>
 
-export const StyledTextContainer = styled.div<
+export const StyledTextInputContainer = styled.div<
   {
     height: number | string
   } & InputProps
@@ -17,7 +17,7 @@ export const StyledTextContainer = styled.div<
   position: relative;
 `
 
-export const Input = styled(Text)<InputProps>`
+export const TextInput = styled(Text)<InputProps>`
   border: none;
   border-radius: ${_ => _.borderRadius}px;
   box-sizing: border-box;
