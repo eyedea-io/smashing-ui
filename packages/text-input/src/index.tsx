@@ -36,7 +36,7 @@ const TextInput: React.FC<TextInputProps> = ({
     >
       {affixBefore && (
         <TextInputAffix
-          affix="affixBefore"
+          isBefore
           inputRef={inputRef}
           component={affixBefore}
           onClickBefore={onClickBefore}
@@ -67,7 +67,7 @@ const TextInput: React.FC<TextInputProps> = ({
 }
 
 const TextInputAffix: React.FC<TextInputAffixProps> = ({
-  affix,
+  isBefore,
   component: IconComponent,
   disabled,
   height,
@@ -86,37 +86,27 @@ const TextInputAffix: React.FC<TextInputAffixProps> = ({
   const cssProps = {
     disabled,
     height,
-    invalid
+    invalid,
+    isBefore,
+    variant: getTextSizeForControlHeight(
+      typeof height === 'string' ? parseInt(height) : height
+    )
   }
 
+  const componentIsString = typeof IconComponent === 'string'
+
   return (
-    <React.Fragment>
-      {affix === 'affixBefore' ? (
-        <S.TextInputAffixBefore
-          {...cssProps}
-          onClick={e => onClickBefore && onClickBefore(inputRef, e)}
-          isString={typeof IconComponent === 'string'}
-        >
-          {typeof IconComponent === 'string' ? (
-            IconComponent
-          ) : (
-            <IconComponent color={color} />
-          )}
-        </S.TextInputAffixBefore>
-      ) : (
-        <S.TextInputAffixAfter
-          {...cssProps}
-          onClick={e => onClickAfter && onClickAfter(inputRef, e)}
-          isString={typeof IconComponent === 'string'}
-        >
-          {typeof IconComponent === 'string' ? (
-            IconComponent
-          ) : (
-            <IconComponent color={color} />
-          )}
-        </S.TextInputAffixAfter>
-      )}
-    </React.Fragment>
+    <S.TextInputAffix
+      {...cssProps}
+      onClick={e =>
+        isBefore
+          ? onClickBefore && onClickBefore(inputRef, e)
+          : onClickAfter && onClickAfter(inputRef, e)
+      }
+      isString={componentIsString}
+    >
+      {componentIsString ? IconComponent : <IconComponent color={color} />}
+    </S.TextInputAffix>
   )
 }
 

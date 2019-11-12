@@ -203,6 +203,7 @@ storiesOf('Core|TextInput', module)
           type="text"
           onClickBefore={focus}
           affixBefore={SearchRegular}
+          affixAfter="min"
           height={48}
         />
         <br />

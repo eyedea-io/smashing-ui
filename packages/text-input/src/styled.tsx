@@ -48,12 +48,15 @@ export const TextInput = styled(Text)<InputProps>`
 
 export const TextInputAffix = styled(Text)<{
   height: number | string
+  isBefore?: boolean
   invalid?: boolean
   disabled?: boolean
   isString?: boolean
+  variant?: any
 }>`
   position: absolute;
   top: 0;
+  ${({isBefore}) => (isBefore ? 'left: 0;' : 'right: 0;')}
   box-sizing: border-box;
   height: ${_ =>
     typeof _.height === 'string' ? parseInt(_.height, 10) : _.height}px;
@@ -67,10 +70,4 @@ export const TextInputAffix = styled(Text)<{
     height: ${_ => _.height}px;
     padding: 0 ${_ => _.theme.spacing.sm};
   }
-`
-export const TextInputAffixBefore = styled(TextInputAffix)`
-  left: 0;
-`
-export const TextInputAffixAfter = styled(TextInputAffix)`
-  right: 0;
 `
