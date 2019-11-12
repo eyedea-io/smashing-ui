@@ -103,14 +103,3 @@ export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
       }
   }
 }
-export const getTextInputAffixStyle = (_: {
-  theme: DefaultTheme
-  invalid?: boolean
-}) => {
-  const {colors} = _.theme
-  const {invalid} = _
-
-  return {
-    color: invalid ? colors.text.danger : colors.text.muted
-  }
-}

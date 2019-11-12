@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import {TextInputProps} from './types'
-import {getTextInputStyle, getTextInputAffixStyle} from './styles'
+import {getTextInputStyle} from './styles'
 import {Text} from '@smashing/typography'
 import {getValueWithUnit} from '@smashing/theme'
 
@@ -47,24 +47,21 @@ export const TextInput = styled(Text)<InputProps>`
 `
 
 export const TextInputAffix = styled(Text)<{
-  height: number | string
-  isClickable?: boolean
+  height: number
   isBefore?: boolean
-  invalid?: boolean
-  disabled?: boolean
+  isClickable?: boolean
   isString?: boolean
-  variant?: any
+  invalid?: boolean
 }>`
   position: absolute;
   top: 0;
-  ${({isBefore}) => (isBefore ? 'left: 0;' : 'right: 0;')}
   box-sizing: border-box;
-  height: ${_ =>
-    typeof _.height === 'string' ? parseInt(_.height, 10) : _.height}px;
-  line-height: ${_ =>
-    typeof _.height === 'string' ? parseInt(_.height, 10) : _.height}px;
+  height: ${_ => _.height}px;
+  line-height: ${_ => _.height}px;
+  color: ${_ =>
+    _.invalid ? _.theme.colors.text.danger : _.theme.colors.text.muted};
+  ${_ => (_.isBefore ? 'left: 0;' : 'right: 0;')}
   ${_ => _.isString && `padding: 0 ${_.theme.spacing.sm};`}
-  ${_ => getTextInputAffixStyle(_)};
 
   svg {
     width: calc(${_ => _.height}px / 2);

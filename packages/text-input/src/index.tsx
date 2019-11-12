@@ -68,7 +68,7 @@ const TextInput: React.FC<TextInputProps> = ({
 
 const TextInputAffix: React.FC<TextInputAffixProps> = ({
   isBefore,
-  component: IconComponent,
+  component: Component,
   disabled,
   height,
   inputRef,
@@ -76,24 +76,20 @@ const TextInputAffix: React.FC<TextInputAffixProps> = ({
   onClickBefore,
   onClickAfter
 }) => {
-  const {colors} = useTheme()
-  const color = invalid
-    ? colors.text.danger
-    : disabled
-    ? colors.text.muted
-    : colors.text.default
+  const {text} = useTheme().colors
+  const color = invalid ? text.danger : disabled ? text.muted : text.default
 
   const cssProps = {
     disabled,
-    height,
+    height: typeof height === 'string' ? parseInt(height) : height,
     invalid,
     isBefore,
-    variant: getTextSizeForControlHeight(
-      typeof height === 'string' ? parseInt(height) : height
-    )
+    get variant() {
+      return getTextSizeForControlHeight(this.height)
+    }
   }
 
-  const componentIsString = typeof IconComponent === 'string'
+  const componentIsString = typeof Component === 'string'
   const componentIsClickable = onClickBefore || onClickAfter ? true : false
 
   return (
@@ -107,7 +103,7 @@ const TextInputAffix: React.FC<TextInputAffixProps> = ({
       isString={componentIsString}
       isClickable={componentIsClickable}
     >
-      {componentIsString ? IconComponent : <IconComponent color={color} />}
+      {componentIsString ? Component : <Component color={color} />}
     </S.TextInputAffix>
   )
 }
