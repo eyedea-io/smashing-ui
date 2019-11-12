@@ -7,6 +7,8 @@ import styled from 'styled-components'
 import {useCallback} from 'react'
 import {TransitionStatus} from 'react-transition-group/Transition'
 
+export type OverlayVerticalAlign = 'stretch' | 'center' | 'top' | 'bottom'
+
 const {stackingOrder: StackingOrder} = constants
 
 const animationEasing = {
@@ -270,8 +272,6 @@ export const Overlay: React.FC<OverlayProps> = ({
     </Stack>
   )
 }
-
-type OverlayVerticalAlign = 'stretch' | 'center' | 'top' | 'bottom'
 
 export interface OverlayProps {
   /**
