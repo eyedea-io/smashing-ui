@@ -77,17 +77,17 @@ const TextInputAffix: React.FC<TextInputAffixProps> = ({
   onClickAfter
 }) => {
   const {colors} = useTheme()
+  const color = invalid
+    ? colors.text.danger
+    : disabled
+    ? colors.text.muted
+    : colors.text.default
+
   const cssProps = {
     disabled,
     height,
     invalid
   }
-  const getColor = () =>
-    invalid
-      ? colors.text.danger
-      : disabled
-      ? colors.text.muted
-      : colors.text.default
 
   return (
     <React.Fragment>
@@ -100,7 +100,7 @@ const TextInputAffix: React.FC<TextInputAffixProps> = ({
           {typeof IconComponent === 'string' ? (
             IconComponent
           ) : (
-            <IconComponent color={getColor()} />
+            <IconComponent color={color} />
           )}
         </S.TextInputAffixBefore>
       ) : (
@@ -112,7 +112,7 @@ const TextInputAffix: React.FC<TextInputAffixProps> = ({
           {typeof IconComponent === 'string' ? (
             IconComponent
           ) : (
-            <IconComponent color={getColor()} />
+            <IconComponent color={color} />
           )}
         </S.TextInputAffixAfter>
       )}
