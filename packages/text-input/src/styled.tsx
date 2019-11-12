@@ -39,8 +39,8 @@ export const Input = styled(Text)<InputProps>`
     return {
       width,
       height: `${height}px`,
-      paddingLeft: calcPadding(_.before),
-      paddingRight: calcPadding(_.after)
+      paddingLeft: calcPadding(_.affixBefore),
+      paddingRight: calcPadding(_.affixAfter)
     }
   }}
   ${_ => getTextInputStyle(_.appearance)};
@@ -50,7 +50,7 @@ export const Affix = styled(Text)<{
   height: number | string
   invalid?: boolean
   disabled?: boolean
-  string?: boolean
+  isString?: boolean
 }>`
   position: absolute;
   top: 0;
@@ -59,7 +59,7 @@ export const Affix = styled(Text)<{
     typeof _.height === 'string' ? parseInt(_.height, 10) : _.height}px;
   line-height: ${_ =>
     typeof _.height === 'string' ? parseInt(_.height, 10) : _.height}px;
-  ${_ => _.string && `padding: 0 calc(${_.theme.spacing.sm});`}
+  ${_ => _.isString && `padding: 0 calc(${_.theme.spacing.sm});`}
   ${_ => getTextInputAffixStyle(_)};
 
   svg {

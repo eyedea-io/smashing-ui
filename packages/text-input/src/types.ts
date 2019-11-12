@@ -14,7 +14,7 @@ export interface TextInputProps extends React.InputHTMLAttributes<{}> {
   borderRadius?: number
   type?: TextInputType
   innerRef?: any
-  /**q
+  /**
    * Sets visual styling of the text area to be "invalid".
    */
   invalid?: boolean
@@ -22,8 +22,8 @@ export interface TextInputProps extends React.InputHTMLAttributes<{}> {
    * Make input full width.
    */
   full?: boolean
-  before?: React.FC
-  after?: React.FC | string
+  affixBefore?: React.FC
+  affixAfter?: React.FC | string
 }
 
 export interface AffixProps {
@@ -32,7 +32,7 @@ export interface AffixProps {
   height: number | string
   inputRef: React.RefObject<HTMLInputElement>
   invalid?: boolean
-  affix?: 'before' | 'after'
+  affix?: 'affixBefore' | 'affixAfter'
 }
 
 export interface AffixIconComponentProps {

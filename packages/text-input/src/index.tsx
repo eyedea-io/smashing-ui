@@ -16,7 +16,7 @@ const Affix: React.FC<AffixProps> = ({
   invalid
 }) => (
   <React.Fragment>
-    {affix === 'before' ? (
+    {affix === 'affixBefore' ? (
       <S.InputBefore invalid={invalid} disabled={disabled} height={height}>
         <IconComponent inputRef={inputRef} />
       </S.InputBefore>
@@ -25,7 +25,7 @@ const Affix: React.FC<AffixProps> = ({
         invalid={invalid}
         disabled={disabled}
         height={height}
-        string={typeof IconComponent === 'string'}
+        isString={typeof IconComponent === 'string'}
       >
         {typeof IconComponent === 'string' ? (
           IconComponent
@@ -40,8 +40,8 @@ const Affix: React.FC<AffixProps> = ({
 const TextInput: React.FC<TextInputProps> = ({
   children,
   innerRef,
-  before,
-  after,
+  affixBefore,
+  affixAfter,
   ...props
 }) => {
   const defaults = useDefaults('textInput', props, {
@@ -57,11 +57,11 @@ const TextInput: React.FC<TextInputProps> = ({
       borderRadius={getBorderRadiusForControlHeight(defaults.height)}
       {...defaults}
     >
-      {before && (
+      {affixBefore && (
         <Affix
-          affix="before"
+          affix="affixBefore"
           inputRef={inputRef}
-          component={before}
+          component={affixBefore}
           {...defaults}
         />
       )}
@@ -72,11 +72,13 @@ const TextInput: React.FC<TextInputProps> = ({
         color={props.disabled ? 'muted' : undefined}
         aria-invalid={props.invalid}
         ref={inputRef}
-        before={before}
-        after={after}
+        affixBefore={affixBefore}
+        affixAfter={affixAfter}
         {...defaults}
       />
-      {after && <Affix inputRef={inputRef} component={after} {...defaults} />}
+      {affixAfter && (
+        <Affix inputRef={inputRef} component={affixAfter} {...defaults} />
+      )}
     </S.StyledTextContainer>
   )
 }
