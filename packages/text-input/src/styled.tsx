@@ -32,7 +32,7 @@ export const Input = styled(Text)<InputProps>`
       ? '100%'
       : undefined
 
-    const padding = parseInt(_.theme.spacing.sm.slice(0, -2))
+    const padding = parseInt(_.theme.spacing.sm.slice(0, -2)) | 16
     const calcPadding = affix =>
       affix ? `${padding * 2 + height / 2}px ` : `${Math.round(height / 3.2)}px`
 
@@ -59,13 +59,13 @@ export const Affix = styled(Text)<{
     typeof _.height === 'string' ? parseInt(_.height, 10) : _.height}px;
   line-height: ${_ =>
     typeof _.height === 'string' ? parseInt(_.height, 10) : _.height}px;
-  ${_ => _.isString && `padding: 0 calc(${_.theme.spacing.sm});`}
+  ${_ => _.isString && `padding: 0 ${_.theme.spacing.sm};`}
   ${_ => getTextInputAffixStyle(_)};
 
   svg {
     width: calc(${_ => _.height}px / 2);
     height: ${_ => _.height}px;
-    padding: 0 calc(${_ => _.theme.spacing.sm});
+    padding: 0 ${_ => _.theme.spacing.sm};
   }
 `
 export const InputBefore = styled(Affix)`
