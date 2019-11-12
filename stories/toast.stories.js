@@ -9,7 +9,7 @@ addDecorator(withA11y)
 
 const description = 'Hello World!!'
 
-storiesOf('Core|Toaster', module)
+storiesOf('Feedback Indicators|Toaster', module)
   .addDecorator(story => (
     <SmashingThemeProvider
       theme={{

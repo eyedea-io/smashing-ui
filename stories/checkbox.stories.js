@@ -51,7 +51,7 @@ const icon = (
   </svg>
 )
 
-storiesOf('Core|Checkbox', module)
+storiesOf('Form|Checkbox', module)
   .addDecorator(story => (
     <SmashingThemeProvider
       theme={{

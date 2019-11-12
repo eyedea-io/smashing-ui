@@ -6,7 +6,7 @@ import {SmashingThemeProvider, theme} from '@smashing/theme'
 
 addDecorator(withA11y)
 
-storiesOf('Core|Spinner', module)
+storiesOf('Feedback Indicators|Spinner', module)
   .addDecorator(story => (
     <SmashingThemeProvider>{story()}</SmashingThemeProvider>
   ))

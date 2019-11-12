@@ -16,7 +16,7 @@ const State = ({defaultValue, children}) => {
   return children({value, setValue})
 }
 
-storiesOf('Core|Menu', module)
+storiesOf('Selects & Dropdown Menus|Menu', module)
   .addDecorator(story => (
     <SmashingThemeProvider theme={{}}>{story()}</SmashingThemeProvider>
   ))

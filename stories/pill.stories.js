@@ -6,7 +6,7 @@ import {SmashingThemeProvider} from '@smashing/theme'
 
 addDecorator(withA11y)
 
-storiesOf('Core|Pill', module)
+storiesOf('Atomic Elements|Pill', module)
   .addDecorator(story => (
     <SmashingThemeProvider
       theme={{

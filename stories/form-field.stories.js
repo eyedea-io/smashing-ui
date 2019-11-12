@@ -6,8 +6,7 @@ import {TextInput} from '@smashing/text-input'
 import {Select} from '@smashing/select'
 import {Textarea} from '@smashing/textarea'
 import {Checkbox} from '@smashing/checkbox'
-import {RadioButton} from '@smashing/radio-button'
-import {Tabs} from '@smashing/tabs'
+import {Radio} from '@smashing/radio'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
 
@@ -67,7 +66,7 @@ const Decorator = story => (
   </SmashingThemeProvider>
 )
 
-storiesOf('Core|FormField', module)
+storiesOf('Form|FormField', module)
   .addDecorator(Decorator)
   .add('default', () => (
     <BasicForm>
@@ -280,7 +279,7 @@ storiesOf('Core|FormField', module)
     </div>
   ))
 
-storiesOf('Core|FormField/appearance:outline', module)
+storiesOf('Form|FormField/appearance:outline', module)
   .addDecorator(Decorator)
   .add('input / no placeholder', () => (
     <div style={{display: 'grid', gridAutoRows: '50px'}}>
@@ -495,13 +494,13 @@ storiesOf('Core|FormField/appearance:outline', module)
       </FormField>
     </div>
   ))
-  .add('radio button', () => (
+  .add('radio', () => (
     <div style={{display: 'grid', gridAutoRows: '50px'}}>
       <FormField
         appearance="outline"
         alertAppearance="overlay"
         name="checkbox"
-        component={RadioButton}
+        component={Radio}
       >
         Content
       </FormField>
@@ -510,7 +509,7 @@ storiesOf('Core|FormField/appearance:outline', module)
         alertAppearance="overlay"
         name="checkbox"
         checked
-        component={RadioButton}
+        component={Radio}
       >
         Content
       </FormField>
@@ -519,7 +518,7 @@ storiesOf('Core|FormField/appearance:outline', module)
         alertAppearance="overlay"
         name="checkbox"
         disabled
-        component={RadioButton}
+        component={Radio}
       >
         Content
       </FormField>
@@ -528,7 +527,7 @@ storiesOf('Core|FormField/appearance:outline', module)
         alertAppearance="overlay"
         name="checkbox"
         disabled
-        component={RadioButton}
+        component={Radio}
       >
         Content
       </FormField>

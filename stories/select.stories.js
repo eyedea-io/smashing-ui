@@ -22,7 +22,7 @@ const optionsWithLabels = [
 ]
 const intents = ['none', 'danger', 'info', 'success', 'warning']
 
-storiesOf('Core|Select', module)
+storiesOf('Selects & Dropdown Menus|Select', module)
   .addDecorator(story => (
     <SmashingThemeProvider theme={{}}>{story()}</SmashingThemeProvider>
   ))

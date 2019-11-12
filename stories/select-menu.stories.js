@@ -68,7 +68,7 @@ const Decorator = story => (
   </SmashingThemeProvider>
 )
 
-storiesOf('Core|Select menu', module)
+storiesOf('Selects & Dropdown Menus|Select menu', module)
   .addDecorator(Decorator)
   .add('appearance: default', () => (
     <Wrapper>
@@ -282,7 +282,10 @@ storiesOf('Core|Select menu', module)
       </Wrapper>
     </div>
   ))
-storiesOf('Core|Select menu/popoverAppearance: accordion', module)
+storiesOf(
+  'Selects & Dropdown Menus|Select menu/popoverAppearance: accordion',
+  module
+)
   .addDecorator(Decorator)
   .add('appearance: default', () => (
     <Wrapper>

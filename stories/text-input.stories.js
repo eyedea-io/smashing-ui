@@ -6,7 +6,7 @@ import {SmashingThemeProvider} from '@smashing/theme'
 
 addDecorator(withA11y)
 
-storiesOf('Core|TextInput', module)
+storiesOf('Form|TextInput', module)
   .addDecorator(story => (
     <SmashingThemeProvider
       theme={{
