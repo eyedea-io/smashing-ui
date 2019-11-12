@@ -4,10 +4,10 @@ import {TextInput} from '@smashing/text-input'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
 import {
-  MagnifyingGlass,
+  SearchRegular,
   ArrowRightRegular,
-  EyeOpened,
-  EyeClosed
+  EyeOpenRegular,
+  EyeClosedRegular
 } from './common/icon'
 
 addDecorator(withA11y)
@@ -199,41 +199,33 @@ storiesOf('Core|TextInput', module)
           placeholder="Show and hide password"
           type="password"
           onClickAfter={toggleType}
-          affixAfter={active ? EyeOpened : EyeClosed}
+          affixAfter={active ? EyeOpenRegular : EyeClosedRegular}
         />
         <br />
         <TextInput
           placeholder="Focus on icon click..."
           type="text"
           onClickBefore={({current}) => current.focus()}
-          affixBefore={MagnifyingGlass}
+          affixBefore={SearchRegular}
           height={48}
         />
         <br />
-        <TextInput
-          placeholder="Text suffix..."
-          type="text"
-          affixAfter={'km/h'}
-        />
+        <TextInput placeholder="Text suffix..." type="text" affixAfter="km/h" />
         <br />
         <TextInput
           placeholder="Invalid text suffix..."
           type="text"
-          affixAfter={'km/h'}
+          affixAfter="h"
           invalid
           height={48}
         />
         <br />
-        <TextInput
-          disabled
-          placeholder="Disabled"
-          affixAfter={ArrowRightRegular}
-        />
+        <TextInput disabled placeholder="Disabled" affixAfter={SearchRegular} />
         <br />
         <TextInput
           invalid
           defaultValue="Invalid..."
-          affixAfter={ArrowRightRegular}
+          affixAfter={SearchRegular}
         />
       </React.Fragment>
     )
