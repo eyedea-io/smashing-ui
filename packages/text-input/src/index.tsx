@@ -29,11 +29,7 @@ const TextInput: React.FC<TextInputProps> = ({
   const inputRef = React.useRef<HTMLInputElement>(null)
 
   return (
-    <S.TextInputContainer
-      ref={innerRef}
-      borderRadius={getBorderRadiusForControlHeight(defaults.height)}
-      {...defaults}
-    >
+    <S.TextInputContainer ref={innerRef} {...defaults}>
       {affixBefore && (
         <TextInputAffix
           isBefore
