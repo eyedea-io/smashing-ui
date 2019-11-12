@@ -3,12 +3,7 @@ import {storiesOf, addDecorator} from '@storybook/react'
 import {TextInput} from '@smashing/text-input'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
-import {
-  SearchRegular,
-  ArrowRightRegular,
-  EyeOpenRegular,
-  EyeClosedRegular
-} from './common/icon'
+import {SearchRegular, EyeOpenRegular, EyeClosedRegular} from './common/icon'
 
 addDecorator(withA11y)
 
@@ -192,6 +187,7 @@ storiesOf('Core|TextInput', module)
       current.type = 'text'
       setActive(true)
     }
+    const focus = ({current}) => current.focus()
 
     return (
       <React.Fragment>
@@ -205,7 +201,7 @@ storiesOf('Core|TextInput', module)
         <TextInput
           placeholder="Focus on icon click..."
           type="text"
-          onClickBefore={({current}) => current.focus()}
+          onClickBefore={focus}
           affixBefore={SearchRegular}
           height={48}
         />

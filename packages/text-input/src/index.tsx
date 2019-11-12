@@ -94,7 +94,7 @@ const TextInputAffix: React.FC<TextInputAffixProps> = ({
       {affix === 'affixBefore' ? (
         <S.TextInputAffixBefore
           {...cssProps}
-          onClick={props => onClickBefore && onClickBefore(inputRef, props)}
+          onClick={e => onClickBefore && onClickBefore(inputRef, e)}
           isString={typeof IconComponent === 'string'}
         >
           {typeof IconComponent === 'string' ? (
@@ -106,7 +106,7 @@ const TextInputAffix: React.FC<TextInputAffixProps> = ({
       ) : (
         <S.TextInputAffixAfter
           {...cssProps}
-          onClick={props => onClickAfter && onClickAfter(inputRef, props)}
+          onClick={e => onClickAfter && onClickAfter(inputRef, e)}
           isString={typeof IconComponent === 'string'}
         >
           {typeof IconComponent === 'string' ? (

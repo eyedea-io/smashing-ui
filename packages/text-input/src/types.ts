@@ -14,8 +14,14 @@ export interface TextInputProps extends React.InputHTMLAttributes<{}> {
   borderRadius?: number
   type?: TextInputType
   innerRef?: any
-  onClickBefore?: any
-  onClickAfter?: any
+  onClickBefore?: (
+    inputRef?: React.RefObject<HTMLInputElement>,
+    event?: React.MouseEvent<HTMLSpanElement, MouseEvent>
+  ) => void
+  onClickAfter?: (
+    inputRef?: React.RefObject<HTMLInputElement>,
+    event?: React.MouseEvent<HTMLSpanElement, MouseEvent>
+  ) => void
   /**
    * Sets visual styling of the text area to be "invalid".
    */
@@ -24,7 +30,7 @@ export interface TextInputProps extends React.InputHTMLAttributes<{}> {
    * Make input full width.
    */
   full?: boolean
-  affixBefore?: React.FC
+  affixBefore?: React.FC | string
   affixAfter?: React.FC | string
 }
 
@@ -36,8 +42,11 @@ export interface TextInputAffixProps {
   invalid?: boolean
   onClickBefore?: (
     inputRef: React.RefObject<HTMLInputElement>,
-    props: any
-  ) => {}
-  onClickAfter?: (inputRef: React.RefObject<HTMLInputElement>, props: any) => {}
+    event?: React.MouseEvent<HTMLSpanElement, MouseEvent>
+  ) => void
+  onClickAfter?: (
+    inputRef: React.RefObject<HTMLInputElement>,
+    event?: React.MouseEvent<HTMLSpanElement, MouseEvent>
+  ) => void
   affix?: 'affixBefore' | 'affixAfter'
 }
