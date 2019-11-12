@@ -14,6 +14,8 @@ export interface TextInputProps extends React.InputHTMLAttributes<{}> {
   borderRadius?: number
   type?: TextInputType
   innerRef?: any
+  onClickBefore?: any
+  onClickAfter?: any
   /**
    * Sets visual styling of the text area to be "invalid".
    */
@@ -32,6 +34,11 @@ export interface AffixProps {
   height: number | string
   inputRef: React.RefObject<HTMLInputElement>
   invalid?: boolean
+  onClickBefore?: (
+    inputRef: React.RefObject<HTMLInputElement>,
+    props: any
+  ) => {}
+  onClickAfter?: (inputRef: React.RefObject<HTMLInputElement>, props: any) => {}
   affix?: 'affixBefore' | 'affixAfter'
 }
 

@@ -1,9 +1,14 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {storiesOf, addDecorator} from '@storybook/react'
 import {TextInput} from '@smashing/text-input'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
-import {MagnifyingGlass, PasswordIcon, ArrowRightRegular} from './common/icon'
+import {
+  MagnifyingGlass,
+  ArrowRightRegular,
+  EyeOpened,
+  EyeClosed
+} from './common/icon'
 
 addDecorator(withA11y)
 
@@ -177,33 +182,59 @@ storiesOf('Core|TextInput', module)
       </div>
     </React.Fragment>
   ))
-  .add('with affixes', () => (
-    <React.Fragment>
-      <TextInput
-        placeholder="Show and hide password"
-        type="password"
-        after={PasswordIcon}
-      />
-      <br />
-      <TextInput
-        placeholder="Focus on icon click..."
-        type="text"
-        before={MagnifyingGlass}
-        height={48}
-      />
-      <br />
-      <TextInput placeholder="Text suffix..." type="text" after={'km/h'} />
-      <br />
-      <TextInput
-        placeholder="Invalid text suffix..."
-        type="text"
-        after={'km/h'}
-        invalid
-        height={48}
-      />
-      <br />
-      <TextInput disabled placeholder="Disabled" after={ArrowRightRegular} />
-      <br />
-      <TextInput invalid defaultValue="Invalid..." after={ArrowRightRegular} />
-    </React.Fragment>
-  ))
+  .add('with affixes', () => {
+    const [active, setActive] = useState(false)
+    const toggleType = ({current}) => {
+      if (current.type === 'text') {
+        current.type = 'password'
+        return setActive(false)
+      }
+      current.type = 'text'
+      setActive(true)
+    }
+
+    return (
+      <React.Fragment>
+        <TextInput
+          placeholder="Show and hide password"
+          type="password"
+          onClickAfter={toggleType}
+          affixAfter={active ? EyeOpened : EyeClosed}
+        />
+        <br />
+        <TextInput
+          placeholder="Focus on icon click..."
+          type="text"
+          onClickBefore={({current}) => current.focus()}
+          affixBefore={MagnifyingGlass}
+          height={48}
+        />
+        <br />
+        <TextInput
+          placeholder="Text suffix..."
+          type="text"
+          affixAfter={'km/h'}
+        />
+        <br />
+        <TextInput
+          placeholder="Invalid text suffix..."
+          type="text"
+          affixAfter={'km/h'}
+          invalid
+          height={48}
+        />
+        <br />
+        <TextInput
+          disabled
+          placeholder="Disabled"
+          affixAfter={ArrowRightRegular}
+        />
+        <br />
+        <TextInput
+          invalid
+          defaultValue="Invalid..."
+          affixAfter={ArrowRightRegular}
+        />
+      </React.Fragment>
+    )
+  })

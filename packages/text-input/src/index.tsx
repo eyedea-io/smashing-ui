@@ -13,25 +13,29 @@ const Affix: React.FC<AffixProps> = ({
   disabled,
   height,
   inputRef,
-  invalid
+  invalid,
+  onClickBefore,
+  onClickAfter
 }) => (
   <React.Fragment>
     {affix === 'affixBefore' ? (
-      <S.InputBefore invalid={invalid} disabled={disabled} height={height}>
-        <IconComponent inputRef={inputRef} />
+      <S.InputBefore
+        invalid={invalid}
+        disabled={disabled}
+        height={height}
+        onClick={props => onClickBefore && onClickBefore(inputRef, props)}
+      >
+        <IconComponent />
       </S.InputBefore>
     ) : (
       <S.InputAfter
         invalid={invalid}
         disabled={disabled}
         height={height}
+        onClick={props => onClickAfter && onClickAfter(inputRef, props)}
         isString={typeof IconComponent === 'string'}
       >
-        {typeof IconComponent === 'string' ? (
-          IconComponent
-        ) : (
-          <IconComponent inputRef={inputRef} />
-        )}
+        {typeof IconComponent === 'string' ? IconComponent : <IconComponent />}
       </S.InputAfter>
     )}
   </React.Fragment>
@@ -42,6 +46,8 @@ const TextInput: React.FC<TextInputProps> = ({
   innerRef,
   affixBefore,
   affixAfter,
+  onClickBefore,
+  onClickAfter,
   ...props
 }) => {
   const defaults = useDefaults('textInput', props, {
@@ -62,6 +68,7 @@ const TextInput: React.FC<TextInputProps> = ({
           affix="affixBefore"
           inputRef={inputRef}
           component={affixBefore}
+          onClickBefore={onClickBefore}
           {...defaults}
         />
       )}
@@ -77,7 +84,12 @@ const TextInput: React.FC<TextInputProps> = ({
         {...defaults}
       />
       {affixAfter && (
-        <Affix inputRef={inputRef} component={affixAfter} {...defaults} />
+        <Affix
+          inputRef={inputRef}
+          component={affixAfter}
+          onClickAfter={onClickAfter}
+          {...defaults}
+        />
       )}
     </S.StyledTextContainer>
   )

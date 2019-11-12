@@ -1,5 +1,4 @@
-import React, {useState} from 'react'
-
+import React from 'react'
 export var ArrowRightRegular = function(_a) {
   var _c = _a.size,
     size = _c === void 0 ? 32 : _c
@@ -30,25 +29,6 @@ export var ArrowRightRegular = function(_a) {
       d:
         'M8.29289 11.7071C7.90237 11.3166 7.90237 10.6834 8.29289 10.2929L11.2929 7.29289C11.6834 6.90237 12.3166 6.90237 12.7071 7.29289C13.0976 7.68342 13.0976 8.31658 12.7071 8.70711L9.70711 11.7071C9.31658 12.0976 8.68342 12.0976 8.29289 11.7071Z'
     })
-  )
-}
-
-export const PasswordIcon = ({inputRef}) => {
-  const [active, setActive] = useState(false)
-
-  const togglePassword = () => {
-    if (inputRef.current.type === 'text') {
-      inputRef.current.type = 'password'
-    } else {
-      inputRef.current.type = 'text'
-    }
-    setActive(!active)
-  }
-
-  return (
-    <div onClick={togglePassword}>
-      {!active ? <EyeClosed /> : <EyeOpened />}
-    </div>
   )
 }
 
@@ -104,11 +84,9 @@ export const EyeOpened = () => (
     />
   </svg>
 )
-export const MagnifyingGlass = ({inputRef}) => {
-  const onClickFocus = () => inputRef.current.focus()
+export const MagnifyingGlass = () => {
   return (
     <svg
-      onClick={onClickFocus}
       width="17"
       height="17"
       viewBox="0 0 17 17"
