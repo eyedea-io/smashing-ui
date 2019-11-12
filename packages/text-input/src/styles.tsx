@@ -113,26 +113,17 @@ export const getTextInputAffixStyle = (_: {
 
   if (invalid) {
     return {
-      color: colors.text.danger,
-      svg: {
-        fill: colors.text.danger
-      }
+      color: colors.text.danger
     }
   }
 
   if (disabled) {
     return {
-      color: colors.text.muted,
-      svg: {
-        fill: colors.text.muted
-      }
+      color: colors.text.muted
     }
   }
 
   return {
-    color: colors.text.muted,
-    svg: {
-      fill: colors.text.default
-    }
+    color: colors.text.muted
   }
 }

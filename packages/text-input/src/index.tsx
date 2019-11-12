@@ -4,42 +4,9 @@ import * as S from './styled'
 import {
   getTextSizeForControlHeight,
   getBorderRadiusForControlHeight,
-  useDefaults
+  useDefaults,
+  useTheme
 } from '@smashing/theme'
-
-const Affix: React.FC<AffixProps> = ({
-  affix,
-  component: IconComponent,
-  disabled,
-  height,
-  inputRef,
-  invalid,
-  onClickBefore,
-  onClickAfter
-}) => (
-  <React.Fragment>
-    {affix === 'affixBefore' ? (
-      <S.InputBefore
-        invalid={invalid}
-        disabled={disabled}
-        height={height}
-        onClick={props => onClickBefore && onClickBefore(inputRef, props)}
-      >
-        <IconComponent />
-      </S.InputBefore>
-    ) : (
-      <S.InputAfter
-        invalid={invalid}
-        disabled={disabled}
-        height={height}
-        onClick={props => onClickAfter && onClickAfter(inputRef, props)}
-        isString={typeof IconComponent === 'string'}
-      >
-        {typeof IconComponent === 'string' ? IconComponent : <IconComponent />}
-      </S.InputAfter>
-    )}
-  </React.Fragment>
-)
 
 const TextInput: React.FC<TextInputProps> = ({
   children,
@@ -92,6 +59,60 @@ const TextInput: React.FC<TextInputProps> = ({
         />
       )}
     </S.StyledTextContainer>
+  )
+}
+
+const Affix: React.FC<AffixProps> = ({
+  affix,
+  component: IconComponent,
+  disabled,
+  height,
+  inputRef,
+  invalid,
+  onClickBefore,
+  onClickAfter
+}) => {
+  const {colors} = useTheme()
+  const cssProps = {
+    disabled,
+    height,
+    invalid
+  }
+  const getColor = () =>
+    invalid
+      ? colors.text.danger
+      : disabled
+      ? colors.text.muted
+      : colors.text.default
+
+  return (
+    <React.Fragment>
+      {affix === 'affixBefore' ? (
+        <S.InputBefore
+          {...cssProps}
+          onClick={props => onClickBefore && onClickBefore(inputRef, props)}
+          isString={typeof IconComponent === 'string'}
+        >
+          {typeof IconComponent === 'string' ? (
+            IconComponent
+          ) : (
+            <IconComponent color={getColor()} />
+          )}
+        </S.InputBefore>
+      ) : (
+        <S.InputAfter
+          {...cssProps}
+          onClick={props => onClickAfter && onClickAfter(inputRef, props)}
+          isString={typeof IconComponent === 'string'}
+        >
+          {typeof IconComponent === 'string' ? (
+            IconComponent
+          ) : (
+            <IconComponent color={getColor()} />
+          )}
+        </S.InputAfter>
+      )}
+    </React.Fragment>
   )
 }
 
