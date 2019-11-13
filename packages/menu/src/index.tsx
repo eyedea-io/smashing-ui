@@ -158,7 +158,6 @@ const MenuItem: React.FC<MenuItemProps> = ({
       tabIndex={tabIndex}
       data-isselectable={!disabled}
       aria-checked={isCheckable ? isSelected : undefined}
-      {...props}
     >
       {isSelectable &&
         (isSelected ? (
