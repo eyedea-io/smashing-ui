@@ -36,12 +36,15 @@ export interface ButtonProps extends ButtonLikeProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>
   isLoading?: boolean
   borderRadius?: number
+  iconAfter?: React.ElementType
+  iconBefore?: React.ElementType
 }
 
 export type StyledTextProps = ButtonProps &
   Required<Pick<ButtonProps, 'height' | 'appearance' | 'intent'>>
 
 export type StyledSpinnerProps = {
-  marginRight: number
-  marginLeft: number
+  marginRight?: number
+  marginLeft?: number
+  height: number
 }

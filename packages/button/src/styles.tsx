@@ -1,13 +1,35 @@
 import * as tinycolor from 'tinycolor2'
 import {DefaultTheme} from 'styled-components'
 import {getLinearGradientWithStates} from './helpers'
-import {ButtonAppearanceType} from './types'
+import {ButtonIntentType, ButtonAppearanceType} from './types'
 
-export type IntentType = 'success' | 'warning' | 'info' | 'danger' | 'none'
+export const getButtonTextColor = (
+  intent: ButtonIntentType = 'none',
+  appearance?: ButtonAppearanceType,
+  disabled?: boolean
+) => (_: {theme: DefaultTheme}) => {
+  const {scales, colors} = _.theme
+  if (disabled) {
+    return scales.neutral.N7
+  }
+  switch (appearance) {
+    case 'primary':
+      return 'white'
+    case 'flat':
+    case 'minimal':
+    case 'subtle':
+      const theme =
+        colors.button[appearance][intent] || colors.button[appearance].info
+      return theme.color
+    case 'default':
+    default:
+      return colors.text[intent]
+  }
+}
 
 export const getButtonStyle = (
   appearance?: ButtonAppearanceType,
-  intent: IntentType = 'none'
+  intent: ButtonIntentType = 'none'
 ) => (_: {theme: DefaultTheme}) => {
   const {scales, colors} = _.theme
   const disabled = {
@@ -15,8 +37,10 @@ export const getButtonStyle = (
     backgroundImage: 'none',
     backgroundColor: scales.neutral.N2A,
     boxShadow: 'none',
-    color: scales.neutral.N7A
+    color: getButtonTextColor(intent, appearance, true)({theme: _.theme})
   }
+
+  const textColor = getButtonTextColor(intent, appearance)({theme: _.theme})
 
   switch (appearance) {
     case 'primary':
@@ -35,7 +59,7 @@ export const getButtonStyle = (
       }
 
       return {
-        color: 'white',
+        color: textColor,
         backgroundColor: primary.backgroundImage.startColor,
         backgroundImage: primary.backgroundImage.base,
         fontWeight: 600,
@@ -60,7 +84,7 @@ export const getButtonStyle = (
         colors.button[appearance][intent] || colors.button[appearance].info
       const backgroundIsTransparent = theme.backgroundColor === 'transparent'
       const flat = {
-        color: theme.color,
+        color: textColor,
         backgroundColor: {
           base: theme.backgroundColor,
           hover: backgroundIsTransparent
@@ -135,7 +159,7 @@ export const getButtonStyle = (
     case 'default':
     default:
       return {
-        color: colors.text[intent],
+        color: textColor,
         backgroundColor: 'white',
         fontWeight: 600,
         backgroundImage: 'linear-gradient(to bottom, #FFFFFF, #F4F5F7)',
