@@ -63,6 +63,11 @@ export interface PopoverProps {
   minHeight?: number | string
 
   /**
+   * The height of the Popover card.
+   */
+  height?: number | string
+
+  /**
    * Properties passed through to the Popover card.
    */
   statelessProps?: any
@@ -215,6 +220,9 @@ const S = {
     overflow: hidden;
     min-width: ${_ => _.minWidth}px;
     min-height: ${_ => _.minHeight}px;
+    ${_ => ({
+      height: _.height
+    })}
     ${_ => _.popupWidth && `width: ${_.popupWidth}px;`}
   `,
   Overlay: styled.div<{isShown: boolean}>`
@@ -234,6 +242,7 @@ export const Popover: React.FC<PopoverProps> = ({
   position = Position.BOTTOM as Position,
   minWidth = 200,
   minHeight = 40,
+  height,
   animationDuration = 300,
   onOpen = () => {},
   onClose = () => {},
@@ -305,8 +314,8 @@ export const Popover: React.FC<PopoverProps> = ({
     if (targetRef.current) {
       const {style} = targetRef.current
       const [savedZIndex, savedPosition] = savedTargetStyles.current
-      style.zIndex = savedZIndex
-      style.position = savedPosition
+      if (savedZIndex !== null) style.zIndex = savedZIndex
+      if (savedPosition !== null) style.position = savedPosition
     }
   }
   React.useEffect(() => {
@@ -383,6 +392,7 @@ export const Popover: React.FC<PopoverProps> = ({
             popupWidth={props.matchTargetWidth ? targetWidth : 0}
             minWidth={props.matchTargetWidth ? undefined : minWidth}
             data-state={state}
+            height={height}
             style={{...style, ...componentStyle}}
             className={props.className}
             {...props.statelessProps}

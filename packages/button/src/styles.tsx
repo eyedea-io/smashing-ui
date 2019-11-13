@@ -1,13 +1,35 @@
 import * as tinycolor from 'tinycolor2'
 import {DefaultTheme} from 'styled-components'
 import {getLinearGradientWithStates} from './helpers'
-import {ButtonAppearanceType} from './types'
+import {ButtonIntentType, ButtonAppearanceType} from './types'
 
-export type IntentType = 'success' | 'warning' | 'info' | 'danger' | 'none'
+export const getButtonTextColor = (
+  intent: ButtonIntentType = 'none',
+  appearance?: ButtonAppearanceType,
+  disabled?: boolean
+) => (_: {theme: DefaultTheme}) => {
+  const {scales, colors} = _.theme
+  if (disabled) {
+    return scales.neutral.N7
+  }
+  switch (appearance) {
+    case 'primary':
+      return 'white'
+    case 'flat':
+    case 'minimal':
+    case 'subtle':
+      const theme =
+        colors.button[appearance][intent] || colors.button[appearance].info
+      return theme.color
+    case 'default':
+    default:
+      return colors.text[intent]
+  }
+}
 
 export const getButtonStyle = (
   appearance?: ButtonAppearanceType,
-  intent: IntentType = 'none'
+  intent: ButtonIntentType = 'none'
 ) => (_: {theme: DefaultTheme}) => {
   const {scales, colors} = _.theme
   const disabled = {
@@ -15,8 +37,10 @@ export const getButtonStyle = (
     backgroundImage: 'none',
     backgroundColor: scales.neutral.N2A,
     boxShadow: 'none',
-    color: scales.neutral.N7A
+    color: getButtonTextColor(intent, appearance, true)({theme: _.theme})
   }
+
+  const textColor = getButtonTextColor(intent, appearance)({theme: _.theme})
 
   switch (appearance) {
     case 'primary':
@@ -35,7 +59,7 @@ export const getButtonStyle = (
       }
 
       return {
-        color: 'white',
+        color: textColor,
         backgroundColor: primary.backgroundImage.startColor,
         backgroundImage: primary.backgroundImage.base,
         fontWeight: 600,
@@ -60,7 +84,7 @@ export const getButtonStyle = (
         colors.button[appearance][intent] || colors.button[appearance].info
       const backgroundIsTransparent = theme.backgroundColor === 'transparent'
       const flat = {
-        color: theme.color,
+        color: textColor,
         backgroundColor: {
           base: theme.backgroundColor,
           hover: backgroundIsTransparent
@@ -100,29 +124,42 @@ export const getButtonStyle = (
         ':disabled': disabled
       }
     case 'outline':
+      const {outline} = _.theme.colors.button
+      const boxShadow = (state: keyof typeof outline.borderColor) =>
+        `inset 0 0 0 ${outline.borderWidth}px ${outline.borderColor[state]}`
+
       return {
         backgroundColor: 'transparent',
-        borderRadius: '6px',
-        border: `2px solid ${colors.border.default}`,
-        color: colors.text[intent],
-        ':active': {
-          border: `2px solid ${colors.border.active}`,
-          color: colors.text.intense
-        },
+        fontWeight: 600,
+        backgroundImage: 'none',
+        boxShadow: boxShadow('default'),
         ':hover': {
-          border: `2px solid ${colors.border.active}`,
-          color: colors.text.intense
+          boxShadow: boxShadow('hover')
+        },
+        ':focus': {
+          outline: 'none',
+          boxShadow: boxShadow('focus')
+        },
+        ':active': {
+          boxShadow: boxShadow('active')
+        },
+        '&[aria-expanded="true"]': {
+          backgroundColor: scales.blue.B3A
+        },
+        '&[aria-invalid="true"]': {
+          color: colors.text.danger,
+          boxShadow: boxShadow('invalid')
         },
         ':disabled': {
           cursor: 'default',
-          border: `2px solid ${colors.border.muted}`,
+          boxShadow: boxShadow('disabled'),
           color: colors.text.muted
         }
       }
     case 'default':
     default:
       return {
-        color: colors.text[intent],
+        color: textColor,
         backgroundColor: 'white',
         fontWeight: 600,
         backgroundImage: 'linear-gradient(to bottom, #FFFFFF, #F4F5F7)',
@@ -142,6 +179,7 @@ export const getButtonStyle = (
         },
         '&[aria-expanded="true"]': {
           backgroundImage: 'none',
+          color: colors.text.intense,
           backgroundColor: scales.blue.B3A
         },
         ':disabled': disabled

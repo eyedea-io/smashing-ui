@@ -20,7 +20,7 @@ const animationEasing = {
 const ANIMATION_DURATION = 240
 
 const S = {
-  Background: styled.div.attrs({})<{zIndex: number, state: TransitionStatus}>`
+  Background: styled.div.attrs({})<{zIndex: number; state: TransitionStatus}>`
     position: fixed;
     top: 0;
     left: 0;
@@ -41,7 +41,11 @@ const S = {
       height: 100%;
       content: ' ';
     }
-    transition: opacity ${ANIMATION_DURATION}ms ${_ => ['entered'].includes(_.state) ? animationEasing.deceleration : animationEasing.acceleration};
+    transition: opacity ${ANIMATION_DURATION}ms
+      ${_ =>
+        ['entered'].includes(_.state)
+          ? animationEasing.deceleration
+          : animationEasing.acceleration};
 
     ${_ => ({
       opacity: ['entered'].includes(_.state) ? 1 : 0
@@ -53,6 +57,7 @@ export const Overlay: React.FC<OverlayProps> = ({
   shouldCloseOnClick = true,
   shouldCloseOnEscapePress = true,
   preventBodyScrolling = false,
+  autofocus = true,
   onExit = () => {},
   onExiting = () => {},
   onExited = () => {},
@@ -107,7 +112,7 @@ export const Overlay: React.FC<OverlayProps> = ({
 
         if (autofocusElement) {
           autofocusElement.focus()
-        } else if (wrapperElement) {
+        } else if (wrapperElement && autofocus) {
           wrapperElement.focus()
         } else if (buttonElement) {
           buttonElement.focus()
@@ -282,6 +287,10 @@ export interface OverlayProps {
    * Boolean indicating if pressing the esc key should close the overlay.
    */
   shouldCloseOnEscapePress?: boolean
+  /**
+   * Boolean indicating if first element should be focused.
+   */
+  autofocus?: boolean
 
   /**
    * Function called when overlay is about to close.

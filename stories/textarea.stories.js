@@ -6,7 +6,7 @@ import {SmashingThemeProvider} from '@smashing/theme'
 
 addDecorator(withA11y)
 
-storiesOf('Core|Textarea', module)
+storiesOf('Form|Textarea', module)
   .addDecorator(story => (
     <SmashingThemeProvider
       theme={{

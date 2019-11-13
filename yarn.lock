@@ -2347,14 +2347,6 @@
     dot-prop "^5.1.0"
     react-fast-compare "^2.0.4"
 
-"@smashing/theme@^0.5.3", "@smashing/theme@^0.5.5":
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/@smashing/theme/-/theme-0.5.5.tgz#19f61637411fd5a7d6df1f97181760bc7599559c"
-  integrity sha512-/JYoUvaVBga+CiJtXcFbiHuc/FNxj8xK/703VjijDCWSOketOMuernZOPePFnmRW4aRdRq1Jc48sdPcco8dvvg==
-  dependencies:
-    deepmerge "^3.2.0"
-    tinycolor2 "^1.4.1"
-
 "@storybook/addon-a11y@5.2.0-beta.37":
   version "5.2.0-beta.37"
   resolved "https://registry.yarnpkg.com/@storybook/addon-a11y/-/addon-a11y-5.2.0-beta.37.tgz#88bfe911c9d02b1b637ec28e9223e82f77c1a1c3"
@@ -17057,10 +17049,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@3.5.3:
-  version "3.5.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.3.tgz#c830f657f93f1ea846819e929092f5fe5983e977"
-  integrity sha512-ACzBtm/PhXBDId6a6sDJfroT2pOWt/oOnk4/dElG5G33ZL776N3Y6/6bKZJBFpd+b05F3Ct9qDjMeJmRWtE2/g==
+typescript@3.7.2:
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.2.tgz#27e489b95fa5909445e9fef5ee48d81697ad18fb"
+  integrity sha512-ml7V7JfiN2Xwvcer+XAf2csGO1bPBdRbFCkYBczNZggrBZ9c7G3riSUeJmqEU5uOtXNPMhE3n+R4FA/3YOAWOQ==
 
 typescript@^3.2.1:
   version "3.6.2"

@@ -140,6 +140,7 @@ export var EyeOpenRegular = function(_a) {
     })
   )
 }
+
 export var EyeClosedRegular = function(_a) {
   var _b = _a.color,
     color = _b === void 0 ? 'black' : _b,
@@ -191,6 +192,7 @@ export var EyeClosedRegular = function(_a) {
     })
   )
 }
+
 export var SearchRegular = function(_a) {
   var _b = _a.color,
     color = _b === void 0 ? 'black' : _b,
@@ -219,3 +221,4 @@ export var SearchRegular = function(_a) {
     })
   )
 }
+

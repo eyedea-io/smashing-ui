@@ -7,7 +7,7 @@ import {SearchRegular, EyeOpenRegular, EyeClosedRegular} from './common/icon'
 
 addDecorator(withA11y)
 
-storiesOf('Core|TextInput', module)
+storiesOf('Form|TextInput', module)
   .addDecorator(story => (
     <SmashingThemeProvider
       theme={{

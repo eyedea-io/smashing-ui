@@ -18,7 +18,7 @@ const styleBlue = {
   padding: '10px'
 }
 
-storiesOf('Core|List', module)
+storiesOf('Atomic Elements|List', module)
   .addDecorator(story => (
     <SmashingThemeProvider theme={{}}>{story()}</SmashingThemeProvider>
   ))

@@ -16,7 +16,7 @@
     {"path": "packages/overlay"},
     {"path": "packages/popover"},
     {"path": "packages/positioner"},
-    {"path": "packages/radio-button"},
+    {"path": "packages/radio"},
     {"path": "packages/select-menu"},
     {"path": "packages/select"},
     {"path": "packages/side-sheet"},

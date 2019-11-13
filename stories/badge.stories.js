@@ -6,7 +6,7 @@ import {SmashingThemeProvider} from '@smashing/theme'
 
 addDecorator(withA11y)
 
-storiesOf('Core|Badge', module)
+storiesOf('Atomic Elements|Badge', module)
   .addDecorator(story => (
     <SmashingThemeProvider
       theme={{
