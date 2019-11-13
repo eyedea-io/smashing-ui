@@ -1,16 +1,12 @@
 import * as React from 'react'
-import {
-  TextInputAppearanceType,
-  TextInputProps,
-  TextInputAffixProps
-} from './types'
+import {TextInputAppearanceType, TextInputProps} from './types'
 import * as S from './styled'
 import {
   getTextSizeForControlHeight,
   getBorderRadiusForControlHeight,
-  useDefaults,
-  useTheme
+  useDefaults
 } from '@smashing/theme'
+import {TextInputAffix} from './components/affix'
 
 const TextInput: React.FC<TextInputProps> = ({
   children,
@@ -59,48 +55,6 @@ const TextInput: React.FC<TextInputProps> = ({
         />
       )}
     </S.TextInputContainer>
-  )
-}
-
-const TextInputAffix: React.FC<TextInputAffixProps> = ({
-  isBefore,
-  component: Component,
-  disabled,
-  height,
-  inputRef,
-  invalid,
-  onClickBefore,
-  onClickAfter
-}) => {
-  const {text} = useTheme().colors
-  const color = invalid ? text.danger : disabled ? text.muted : text.default
-
-  const cssProps = {
-    disabled,
-    height: typeof height === 'string' ? parseInt(height) : height,
-    invalid,
-    isBefore,
-    get variant() {
-      return getTextSizeForControlHeight(this.height)
-    }
-  }
-
-  const componentIsString = typeof Component === 'string'
-  const componentIsClickable = onClickBefore || onClickAfter ? true : false
-
-  return (
-    <S.TextInputAffix
-      {...cssProps}
-      onClick={e =>
-        isBefore
-          ? onClickBefore && onClickBefore(inputRef, e)
-          : onClickAfter && onClickAfter(inputRef, e)
-      }
-      isString={componentIsString}
-      isClickable={componentIsClickable}
-    >
-      {componentIsString ? Component : <Component color={color} />}
-    </S.TextInputAffix>
   )
 }
 

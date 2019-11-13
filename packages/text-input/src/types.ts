@@ -1,5 +1,3 @@
-type ProtoExntends<T, U> = U & Omit<T, keyof U>
-
 export type TextInputAppearanceType =
   | 'default'
   | 'neutral'
