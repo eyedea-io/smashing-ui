@@ -68,6 +68,6 @@ export const TextInputAffix = styled(Text)<{
     width: calc(${_ => _.height}px / 2);
     height: ${_ => _.height}px;
     padding: 0 ${_ => _.theme.spacing.sm};
-    ${({isClickable}) => isClickable && 'cursor: pointer;'}
+    ${_ => _.isClickable && 'cursor: pointer;'}
   }
 `
