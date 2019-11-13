@@ -109,58 +109,6 @@ export const Menu: React.FC & {
   )
 }
 
-<<<<<<< HEAD
-=======
-const S = {
-  Item: styled.div<{isSelected: boolean}>`
-    height: 32px;
-    display: flex;
-    align-items: center;
-
-    &[data-isselectable='true'] {
-      cursor: pointer;
-    }
-
-    background-color: ${_ =>
-      _.isSelected ? _.theme.scales.blue.B2A : 'transparent'};
-
-    &:hover {
-      background-color: ${_ => _.theme.scales.neutral.N1A};
-    }
-
-    &:focus {
-      background-color: ${_ => _.theme.scales.blue.B1A};
-      outline: none;
-    }
-
-    &:active {
-      background-color: ${_ => _.theme.scales.blue.B2A};
-    }
-  `,
-  Text: styled(Text)`
-    flex: 1;
-    margin-left: ${_ => _.theme.spacing.sm};
-    margin-right: ${_ => _.theme.spacing.sm};
-  `,
-  SecondaryText: styled(Text)`
-    margin-right: ${_ => _.theme.spacing.sm};
-  `,
-  Group: styled.div`
-    padding-top: ${_ => _.theme.spacing.xxs};
-    padding-bottom: ${_ => _.theme.spacing.xxs};
-  `,
-  GroupHeading: styled(Heading)`
-    margin-top: ${_ => _.theme.spacing.xxs};
-    margin-bottom: ${_ => _.theme.spacing.xxs};
-    margin-left: ${_ => _.theme.spacing.sm};
-    margin-right: ${_ => _.theme.spacing.sm};
-  `,
-  Divider: styled.div`
-    border-bottom: 1px solid ${_ => _.theme.colors.border.default};
-  `
-}
-
->>>>>>> origin
 const MenuItem: React.FC<MenuItemProps> = ({
   intent = 'none',
   appearance = 'default',
@@ -171,7 +119,6 @@ const MenuItem: React.FC<MenuItemProps> = ({
   children,
   secondaryText,
   isSelectable,
-  isSelected,
   disabled,
   ...props
 }) => {
@@ -211,7 +158,6 @@ const MenuItem: React.FC<MenuItemProps> = ({
       tabIndex={tabIndex}
       data-isselectable={!disabled}
       aria-checked={isCheckable ? isSelected : undefined}
-      isSelected={isSelected}
       {...props}
     >
       {isSelectable &&
@@ -393,11 +339,6 @@ export interface MenuItemProps {
    * The children of the component.
    */
   children: React.ReactNode
-
-  /**
-   * Boolean indicating if item in menu is selected.
-   */
-  isSelected: boolean
 
   /**
    * Secondary text shown on the right.
