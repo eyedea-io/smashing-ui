@@ -39,7 +39,27 @@ export const CustomRadio = styled.div<CustomRadioProps>`
     width: ${_ => Math.min(_.controlSize / 3, 24)}px;
     height: ${_ => Math.min(_.controlSize / 3, 24)}px;
   }
+  ${_ => getCustomRadioStyle(_.appearance, _.controlSize)}
 `
+
+const getCustomRadioStyle = (
+  appearance: RadioAppearanceType,
+  controlSize: number
+) => (_: {theme: DefaultTheme}) => {
+  switch (appearance) {
+    case 'outline':
+      return {
+        ':&after': {
+          width: `${Math.min(controlSize / 2, 24)}px`,
+          height: `${Math.min(controlSize / 2, 24)}px`
+        }
+      }
+    case 'default':
+    default:
+      return {}
+  }
+}
+
 export const OriginalRadio = styled.input<OriginalRadioProps>`
   border: 0;
   clip: rect(0 0 0 0);
@@ -67,6 +87,7 @@ export const getRadioStyle = (
         '&:checked + div:after': {
           backgroundColor: 'currentColor'
         }
+        // '&:after':
       }
     case 'default':
     default:
