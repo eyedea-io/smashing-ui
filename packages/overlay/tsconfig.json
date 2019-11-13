@@ -5,8 +5,8 @@
     "rootDir": "src"
   },
   "references": [
-    { "path": "../theme" },
-    { "path": "../stack" },
-    { "path": "../portal" }
+    {"path": "../theme"},
+    {"path": "../stack"},
+    {"path": "../portal"}
   ]
 }

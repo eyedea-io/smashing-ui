@@ -10,8 +10,13 @@ import {SmashingThemeProvider} from '@smashing/theme'
 addDecorator(withA11y)
 
 const Link = ({children, ...props}) => <div {...props}>{children}</div>
+const State = ({defaultValue, children}) => {
+  const [value, setValue] = React.useState(defaultValue)
 
-storiesOf('Core|Menu', module)
+  return children({value, setValue})
+}
+
+storiesOf('Selects & Dropdown Menus|Menu', module)
   .addDecorator(story => (
     <SmashingThemeProvider theme={{}}>{story()}</SmashingThemeProvider>
   ))
@@ -38,6 +43,43 @@ storiesOf('Core|Menu', module)
       <Menu.Group title="Other">
         <Menu.Item intent="danger">Delete</Menu.Item>
       </Menu.Group>
+    </Menu>
+  ))
+  .add('options group', () => (
+    <Menu>
+      <State defaultValue="asc">
+        {({value, setValue}) => (
+          <Menu.OptionsGroup
+            title="Sort"
+            value={value}
+            onChange={selected => {
+              setValue(selected)
+            }}
+            options={[
+              {label: 'Ascending', value: 'asc'},
+              {label: 'Descending', value: 'desc'}
+            ]}
+          />
+        )}
+      </State>
+      <State defaultValue={['id', 'name']}>
+        {({value, setValue}) => (
+          <Menu.OptionsGroup
+            title="Visible columns"
+            value={value}
+            isMultiSelect
+            onChange={selected => {
+              setValue(selected)
+            }}
+            options={[
+              {label: 'ID', value: 'id'},
+              {label: 'Name', value: 'name', disabled: true},
+              {label: 'Created at', value: 'created_at'},
+              {label: 'Updated at', value: 'updated_at'}
+            ]}
+          />
+        )}
+      </State>
     </Menu>
   ))
   .add('with secondary text', () => (

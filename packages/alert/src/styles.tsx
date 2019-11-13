@@ -46,10 +46,14 @@ export const getAlertIconForIntent = (intent?: AlertIntentType) => (_: {
   }
 }
 
-export const getTrimColorByIntent = (intent?: AlertIntentType) => (_: {
+export const getTrimColorByIntent = ({
+  intent,
+  theme
+}: {
+  intent?: AlertIntentType
   theme: DefaultTheme
 }) => {
-  const {colors} = _.theme
+  const {colors} = theme
 
   switch (intent) {
     case 'success':

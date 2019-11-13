@@ -6,8 +6,7 @@ import {TextInput} from '@smashing/text-input'
 import {Select} from '@smashing/select'
 import {Textarea} from '@smashing/textarea'
 import {Checkbox} from '@smashing/checkbox'
-import {RadioButton} from '@smashing/radio-button'
-import {Tabs} from '@smashing/tabs'
+import {Radio} from '@smashing/radio'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
 
@@ -53,20 +52,22 @@ const FormWithError = ({children}) => {
   )
 }
 
-storiesOf('Core|FormField', module)
-  .addDecorator(story => (
-    <SmashingThemeProvider
-      theme={{
-        colors: {
-          background: {
-            default: 'white'
-          }
+const Decorator = story => (
+  <SmashingThemeProvider
+    theme={{
+      colors: {
+        background: {
+          default: 'white'
         }
-      }}
-    >
-      {story()}
-    </SmashingThemeProvider>
-  ))
+      }
+    }}
+  >
+    {story()}
+  </SmashingThemeProvider>
+)
+
+storiesOf('Form|FormField', module)
+  .addDecorator(Decorator)
   .add('default', () => (
     <BasicForm>
       <FormField
@@ -277,7 +278,10 @@ storiesOf('Core|FormField', module)
       />
     </div>
   ))
-  .add('appearance:outline input / no placeholder', () => (
+
+storiesOf('Form|FormField/appearance:outline', module)
+  .addDecorator(Decorator)
+  .add('input / no placeholder', () => (
     <div style={{display: 'grid', gridAutoRows: '50px'}}>
       <FormField
         appearance="outline"
@@ -298,7 +302,7 @@ storiesOf('Core|FormField', module)
       />
     </div>
   ))
-  .add('appearance:outline input / placeholder', () => (
+  .add('input / placeholder', () => (
     <div style={{display: 'grid', gridAutoRows: '50px'}}>
       <FormField
         appearance="outline"
@@ -322,7 +326,7 @@ storiesOf('Core|FormField', module)
     </div>
   ))
 
-  .add('appearance:outline input / placeholder / no label', () => (
+  .add('input / placeholder / no label', () => (
     <div style={{display: 'grid', gridAutoRows: '50px'}}>
       <FormField
         appearance="outline"
@@ -343,7 +347,7 @@ storiesOf('Core|FormField', module)
       />
     </div>
   ))
-  .add('appearance:outline input / with suffix', () => (
+  .add('input / with suffix', () => (
     <div style={{display: 'grid', gridAutoRows: '50px'}}>
       <FormField
         appearance="outline"
@@ -366,7 +370,7 @@ storiesOf('Core|FormField', module)
       />
     </div>
   ))
-  .add('appearance:outline select', () => (
+  .add('select', () => (
     <div style={{display: 'grid', gridAutoRows: '50px'}}>
       <FormField
         appearance="outline"
@@ -388,7 +392,7 @@ storiesOf('Core|FormField', module)
       />
     </div>
   ))
-  .add('appearance:outline textarea', () => (
+  .add('textarea', () => (
     <div style={{display: 'grid', gridAutoRows: '50px', gridRowGap: '10px'}}>
       <FormField
         appearance="outline"
@@ -410,7 +414,7 @@ storiesOf('Core|FormField', module)
       />
     </div>
   ))
-  .add('appearance:outline checkbox', () => (
+  .add('checkbox', () => (
     <div style={{display: 'grid', gridAutoRows: '50px'}}>
       <FormField
         appearance="outline"
@@ -450,10 +454,10 @@ storiesOf('Core|FormField', module)
       </FormField>
     </div>
   ))
-  .add('appearance:outline switcher', () => (
+  .add('toggle', () => (
     <div style={{display: 'grid', gridAutoRows: '50px'}}>
       <FormField
-        appearance="switcher"
+        appearance="toggle"
         alertAppearance="overlay"
         name="checkbox"
         component={Checkbox}
@@ -461,7 +465,7 @@ storiesOf('Core|FormField', module)
         Content
       </FormField>
       <FormField
-        appearance="switcher"
+        appearance="toggle"
         alertAppearance="overlay"
         name="checkbox"
         checked
@@ -470,7 +474,7 @@ storiesOf('Core|FormField', module)
         Content
       </FormField>
       <FormField
-        appearance="switcher"
+        appearance="toggle"
         alertAppearance="overlay"
         name="checkbox"
         disabled
@@ -479,7 +483,7 @@ storiesOf('Core|FormField', module)
         Content
       </FormField>
       <FormField
-        appearance="switcher"
+        appearance="toggle"
         alertAppearance="overlay"
         name="checkbox"
         disabled
@@ -490,13 +494,13 @@ storiesOf('Core|FormField', module)
       </FormField>
     </div>
   ))
-  .add('appearance:outline radio button', () => (
+  .add('radio', () => (
     <div style={{display: 'grid', gridAutoRows: '50px'}}>
       <FormField
         appearance="outline"
         alertAppearance="overlay"
         name="checkbox"
-        component={RadioButton}
+        component={Radio}
       >
         Content
       </FormField>
@@ -505,7 +509,7 @@ storiesOf('Core|FormField', module)
         alertAppearance="overlay"
         name="checkbox"
         checked
-        component={RadioButton}
+        component={Radio}
       >
         Content
       </FormField>
@@ -514,7 +518,7 @@ storiesOf('Core|FormField', module)
         alertAppearance="overlay"
         name="checkbox"
         disabled
-        component={RadioButton}
+        component={Radio}
       >
         Content
       </FormField>
@@ -523,13 +527,13 @@ storiesOf('Core|FormField', module)
         alertAppearance="overlay"
         name="checkbox"
         disabled
-        component={RadioButton}
+        component={Radio}
       >
         Content
       </FormField>
     </div>
   ))
-  .add('appearance:outline no input', () => (
+  .add('no input', () => (
     <div style={{display: 'grid', gridAutoRows: '100px'}}>
       <FormField
         appearance="underline"

@@ -6,7 +6,7 @@ import {SmashingThemeProvider} from '@smashing/theme'
 
 addDecorator(withA11y)
 
-storiesOf('Core|Button', module)
+storiesOf('Atomic Elements|Button', module)
   .addDecorator(story => (
     <SmashingThemeProvider
       theme={{
@@ -141,6 +141,43 @@ storiesOf('Core|Button', module)
       </p>
     </React.Fragment>
   ))
+  .add('appearance:outline', () => (
+    <React.Fragment>
+      <p>
+        <Button appearance="outline" disabled>
+          Disabled
+        </Button>
+      </p>
+      <p>
+        <Button appearance="outline">Default</Button>
+      </p>
+      <p>
+        <Button appearance="outline" intent="info">
+          Info
+        </Button>
+      </p>
+      <p>
+        <Button appearance="outline" intent="success">
+          Success
+        </Button>
+      </p>
+      <p>
+        <Button appearance="outline" intent="warning">
+          Warning
+        </Button>
+      </p>
+      <p>
+        <Button appearance="outline" intent="danger">
+          Danger
+        </Button>
+      </p>
+      <p>
+        <Button appearance="outline" intent="success" borderRadius={30}>
+          Radius: 30
+        </Button>
+      </p>
+    </React.Fragment>
+  ))
   .add('borderRadius:30', () => (
     <Button appearance="flat" intent="success" borderRadius={30}>
       Hulk smash!
@@ -191,18 +228,6 @@ storiesOf('Core|Button', module)
       </p>
       <p>
         <Button height={48}>Hulk smash!</Button>
-      </p>
-    </React.Fragment>
-  ))
-  .add('appearance:outline', () => (
-    <React.Fragment>
-      <p>
-        <Button appearance="outline" disabled>
-          Hulk smash!
-        </Button>
-      </p>
-      <p>
-        <Button appearance="outline">Hulk smash!</Button>
       </p>
     </React.Fragment>
   ))

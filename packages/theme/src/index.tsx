@@ -18,7 +18,15 @@ export const theme: DefaultTheme = {
 
 export {constants}
 
-export type OptionalTheme = O.Optional<DefaultTheme, keyof DefaultTheme, 'deep'>
+type DeepPartial<T> = {
+  [P in keyof T]?: T[P] extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T[P] extends ReadonlyArray<infer U>
+    ? ReadonlyArray<DeepPartial<U>>
+    : DeepPartial<T[P]>
+}
+
+export type OptionalTheme = DeepPartial<DefaultTheme>
 export type RequiredTheme = O.Required<DefaultTheme, keyof DefaultTheme, 'deep'>
 
 /**
@@ -66,7 +74,17 @@ const useTheme = () => React.useContext(ThemeContext)
 const getValueWithUnit = (value: string | number) =>
   typeof value === 'number' ? `${value}px` : value
 
+/**
+ * Call function if it's defined
+ */
+const safeInvoke = (fn, ...args) => {
+  if (typeof fn === 'function') {
+    return fn(...args)
+  }
+}
+
 export {
+  safeInvoke,
   useTheme,
   themedProperty,
   useDefaults,
@@ -104,6 +122,7 @@ declare module 'styled-components' {
   export interface SmashingSpiderChartDefaults {}
   export interface SmashingRadialProgressDefaults {}
   export interface SmashingSideSheetDefaults {}
+  export interface SmashingMenuDefaults {}
   export interface SmashingSelectMenuDefaults {}
   export interface SmashingDefaults
     extends SmashingButtonDefaults,
@@ -121,6 +140,7 @@ declare module 'styled-components' {
       SmashingSideSheetDefaults,
       SmashingSpinnerDefaults,
       SmashingSelectDefaults,
+      SmashingMenuDefaults,
       SmashingSelectMenuDefaults,
       SmashingAvatarDefaults {}
   export interface DefaultTheme {

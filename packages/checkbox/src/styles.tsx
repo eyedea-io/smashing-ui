@@ -202,7 +202,7 @@ export const getCheckboxStyle = (
         }
       }
 
-    case 'switcher':
+    case 'toggle':
       const indicatorSpace = disabled ? -1 : 1
       const backgroundColor = checked
         ? _.theme.palette.green.base

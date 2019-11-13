@@ -1,23 +1,23 @@
-import React from "react"
-import {storiesOf, addDecorator} from "@storybook/react"
-import {Button} from "@smashing/button"
-import {Text, Paragraph} from "@smashing/typography"
-import {Tooltip} from "@smashing/tooltip"
-import {withA11y} from "@storybook/addon-a11y"
-import {SmashingThemeProvider} from "@smashing/theme"
+import React from 'react'
+import {storiesOf, addDecorator} from '@storybook/react'
+import {Button} from '@smashing/button'
+import {Text, Paragraph} from '@smashing/typography'
+import {Tooltip} from '@smashing/tooltip'
+import {withA11y} from '@storybook/addon-a11y'
+import {SmashingThemeProvider} from '@smashing/theme'
 
 addDecorator(withA11y)
 
-storiesOf("Core|Tooltip", module)
+storiesOf('Overlays|Tooltip', module)
   .addDecorator(story => (
     <SmashingThemeProvider theme={{}}>{story()}</SmashingThemeProvider>
   ))
-  .add("appearance:default", () => (
+  .add('appearance:default', () => (
     <Tooltip content="Edit title">
       <Button>Hello</Button>
     </Tooltip>
   ))
-  .add("appearance:card", () => (
+  .add('appearance:card', () => (
     <Tooltip
       content={
         <div style={{margin: 30}}>
@@ -29,7 +29,7 @@ storiesOf("Core|Tooltip", module)
       <Button>Hello</Button>
     </Tooltip>
   ))
-  .add("position:right", () => (
+  .add('position:right', () => (
     <Tooltip position="right" content="Hello world">
       <Button>Hello</Button>
     </Tooltip>

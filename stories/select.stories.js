@@ -20,40 +20,89 @@ const optionsWithLabels = [
   {value: 'cde', label: 'Longer Option'},
   {value: 'def', label: 'DEF Option'}
 ]
-const intentKinds = ['none', 'danger', 'info', 'success', 'warning']
+const intents = ['none', 'danger', 'info', 'success', 'warning']
 
-storiesOf('Core|Select', module)
+storiesOf('Selects & Dropdown Menus|Select', module)
   .addDecorator(story => (
     <SmashingThemeProvider theme={{}}>{story()}</SmashingThemeProvider>
   ))
-  .add('Simple usage', () => (
+  .add('appearance:default', () => (
     <React.Fragment>
       <Select options={optionsWithLabels} />
     </React.Fragment>
   ))
-  .add('With value', () => {
-    const INITIAL_STATE = optionsWithLabels[1].value
-
-    const ComponentWithState = () => {
-      const [selected, setSelected] = React.useState(INITIAL_STATE)
-      return (
-        <Select
-          options={optionsWithLabels}
-          value={selected}
-          onChange={event => setSelected(event.target.value)}
-        />
-      )
-    }
-
-    return <ComponentWithState />
-  })
-  .add('Height', () => (
+  .add('appearance:primary', () => (
+    <React.Fragment>
+      {intents.map(intent => (
+        <SpecimenContainer key={intent}>
+          <Select
+            options={optionsWithLabels}
+            appearance="primary"
+            intent={intent}
+          />
+        </SpecimenContainer>
+      ))}
+    </React.Fragment>
+  ))
+  .add('appearance:flat', () => (
+    <React.Fragment>
+      {intents.map(intent => (
+        <SpecimenContainer key={intent}>
+          <Select
+            options={optionsWithLabels}
+            appearance="flat"
+            intent={intent}
+          />
+        </SpecimenContainer>
+      ))}
+    </React.Fragment>
+  ))
+  .add('appearance:minimal', () => (
+    <React.Fragment>
+      {intents.map(intent => (
+        <SpecimenContainer key={intent}>
+          <Select
+            options={optionsWithLabels}
+            appearance="minimal"
+            intent={intent}
+          />
+        </SpecimenContainer>
+      ))}
+    </React.Fragment>
+  ))
+  .add('appearance:subtle', () => (
+    <React.Fragment>
+      {intents.map(intent => (
+        <SpecimenContainer key={intent}>
+          <Select
+            options={optionsWithLabels}
+            appearance="subtle"
+            intent={intent}
+          />
+        </SpecimenContainer>
+      ))}
+    </React.Fragment>
+  ))
+  .add('appearance:outline', () => (
+    <React.Fragment>
+      {intents.map(intent => (
+        <SpecimenContainer key={intent}>
+          <Select
+            options={optionsWithLabels}
+            appearance="outline"
+            intent={intent}
+          />
+        </SpecimenContainer>
+      ))}
+    </React.Fragment>
+  ))
+  .add('height', () => (
     <React.Fragment>
       <SpecimenContainer>
-        <Select options={optionsWithLabels} />
+        <Select options={optionsWithLabels} height={24} />
       </SpecimenContainer>
       <SpecimenContainer>
-        <Select options={optionsWithLabels} height={34} />
+        <Select options={optionsWithLabels} />
       </SpecimenContainer>
       <SpecimenContainer>
         <Select options={optionsWithLabels} height={48} />
@@ -69,65 +118,29 @@ storiesOf('Core|Select', module)
       </SpecimenContainer>
     </React.Fragment>
   ))
-  .add('appearance:primary', () => (
-    <React.Fragment>
-      {intentKinds.map(intent => (
-        <SpecimenContainer key={intent}>
-          <Select
-            options={optionsWithLabels}
-            appearance="primary"
-            intent={intent}
-          />
-        </SpecimenContainer>
-      ))}
-    </React.Fragment>
-  ))
-  .add('appearance:flat', () => (
-    <React.Fragment>
-      {intentKinds.map(intent => (
-        <SpecimenContainer key={intent}>
-          <Select
-            options={optionsWithLabels}
-            appearance="flat"
-            intent={intent}
-          />
-        </SpecimenContainer>
-      ))}
-    </React.Fragment>
-  ))
-  .add('appearance:minimal', () => (
-    <React.Fragment>
-      {intentKinds.map(intent => (
-        <SpecimenContainer key={intent}>
-          <Select
-            options={optionsWithLabels}
-            appearance="minimal"
-            intent={intent}
-          />
-        </SpecimenContainer>
-      ))}
-    </React.Fragment>
-  ))
-  .add('appearance:subtle', () => (
-    <React.Fragment>
-      {intentKinds.map(intent => (
-        <SpecimenContainer key={intent}>
-          <Select
-            options={optionsWithLabels}
-            appearance="subtle"
-            intent={intent}
-          />
-        </SpecimenContainer>
-      ))}
-    </React.Fragment>
-  ))
-  .add('Full', () => (
+  .add('full', () => (
     <React.Fragment>
       <Select full options={optionsWithLabels} />
     </React.Fragment>
   ))
-  .add('Disabled', () => (
+  .add('disabled', () => (
     <React.Fragment>
       <Select disabled options={optionsWithLabels} />
     </React.Fragment>
   ))
+  .add('with value', () => {
+    const INITIAL_STATE = optionsWithLabels[1].value
+
+    const ComponentWithState = () => {
+      const [selected, setSelected] = React.useState(INITIAL_STATE)
+      return (
+        <Select
+          options={optionsWithLabels}
+          value={selected}
+          onChange={event => setSelected(event.target.value)}
+        />
+      )
+    }
+
+    return <ComponentWithState />
+  })

@@ -5,8 +5,8 @@
     "rootDir": "src"
   },
   "references": [
-    { "path": "../theme" },
-    { "path": "../positioner" },
-    { "path": "../tooltip" }
+    {"path": "../theme"},
+    {"path": "../positioner"},
+    {"path": "../tooltip"}
   ]
 }
