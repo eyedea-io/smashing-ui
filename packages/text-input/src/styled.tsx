@@ -12,9 +12,10 @@ export const TextInputContainer = styled.div<
     height: number | string
   } & InputProps
 >`
-  display: grid;
-  border-radius: ${_ => _.borderRadius}px;
   position: relative;
+  ${_ => ({
+    width: _.width ? getValueWithUnit(_.width) : _.full ? '100%' : 'fit-content'
+  })}
 `
 
 export const TextInput = styled(Text)<InputProps>`
@@ -23,14 +24,14 @@ export const TextInput = styled(Text)<InputProps>`
   box-sizing: border-box;
   ${_ => _.invalid && `color: ${_.theme.colors.text.danger};`}
   ${_ => {
-    const height =
-      typeof _.height === 'string' ? parseInt(_.height, 10) : _.height
-
-    let width = _.width
+    const width = _.width
       ? getValueWithUnit(_.width)
       : _.full
       ? '100%'
       : undefined
+
+    const height =
+      typeof _.height === 'string' ? parseInt(_.height, 10) : _.height
 
     const padding = parseInt(_.theme.spacing.sm.slice(0, -2)) | 16
     const calcPadding = affix =>

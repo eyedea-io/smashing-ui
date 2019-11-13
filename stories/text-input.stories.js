@@ -107,13 +107,6 @@ storiesOf('Core|TextInput', module)
       </div>
     </React.Fragment>
   ))
-  .add('appearance:outline:with suffix', () => (
-    <React.Fragment>
-      <div>
-        <TextInput appearance="outline" suffix="km/h" />
-      </div>
-    </React.Fragment>
-  ))
   .add('appearance:outline:no input version', () => (
     <React.Fragment>
       <div>
@@ -196,6 +189,7 @@ storiesOf('Core|TextInput', module)
           type="password"
           onClickAfter={toggleType}
           affixAfter={active ? EyeOpenRegular : EyeClosedRegular}
+          full
         />
         <br />
         <TextInput
@@ -222,6 +216,7 @@ storiesOf('Core|TextInput', module)
         <TextInput
           invalid
           defaultValue="Invalid..."
+          width={400}
           affixAfter={SearchRegular}
         />
       </React.Fragment>
