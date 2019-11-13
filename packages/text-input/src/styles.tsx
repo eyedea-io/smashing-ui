@@ -4,7 +4,7 @@ import {TextInputAppearanceType} from './types'
 export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
   theme: DefaultTheme
 }) => {
-  const {scales, palette} = _.theme
+  const {scales, palette, colors} = _.theme
 
   switch (appearance) {
     case 'underline':
@@ -59,23 +59,41 @@ export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
           backgroundColor: scales.neutral.N2
         }
       }
+    case 'outline':
+      return {
+        backgroundColor: 'transparent',
+        boxShadow: colors.input.outline.boxShadow.default,
+        ':focus': {
+          outline: 'none',
+          boxShadow: colors.input.outline.boxShadow.active
+        },
+        ':invalid, &[aria-invalid]': {
+          boxShadow: colors.input.outline.boxShadow.invalid
+        },
+        '::placeholder': {
+          color: colors.text.muted
+        },
+        ':disabled': {
+          boxShadow: colors.input.outline.boxShadow.disabled
+        }
+      }
     case 'default':
     default:
       return {
         backgroundColor: 'white',
-        boxShadow: `inset 0 0 0 1px ${scales.neutral.N5A}, inset 0 1px 2px ${scales.neutral.N4A}`,
+        boxShadow: colors.input.boxShadow.default,
         '&:invalid, &[aria-invalid]': {
-          boxShadow: `inset 0 0 0 1px ${palette.red.base}, inset 0 1px 2px ${scales.neutral.N4A}`
+          boxShadow: colors.input.boxShadow.invalid
         },
         ':focus': {
           outline: 'none',
-          boxShadow: `inset 0 0 2px ${scales.neutral.N4A}, inset 0 0 0 1px ${scales.blue.B7}, 0 0 0 3px ${scales.blue.B4A}`
+          boxShadow: colors.input.boxShadow.active
         },
         '::placeholder': {
           color: scales.neutral.N6A
         },
         ':disabled': {
-          boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}`,
+          boxShadow: colors.input.boxShadow.disabled,
           backgroundColor: scales.neutral.N2
         }
       }

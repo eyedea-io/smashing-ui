@@ -1,5 +1,5 @@
 import {Strong, StrongProps} from '@smashing/typography'
-import styled, {css} from 'styled-components'
+import styled from 'styled-components'
 import {BadgeColors} from './types'
 
 interface StyledBadgeProps extends StrongProps {
@@ -8,23 +8,24 @@ interface StyledBadgeProps extends StrongProps {
   appearance: 'solid' | 'subtle'
 }
 
-const getBackgroundColor = ({appearance, backgroundColor}) =>
-  appearance === 'subtle'
-    ? css`
-        background: ${_ => _.theme.palette[backgroundColor].light};
-      `
-    : css`
-        background: ${_ => _.theme.palette[backgroundColor].base};
-      `
-
 export const StyledBadge = styled(Strong)<StyledBadgeProps>`
   padding: 2px 6px;
   border-radius: 2px;
-  ${getBackgroundColor};
+  ${_ => ({
+    background: {
+      subtle: _.theme.palette[_.backgroundColor].light,
+      solid: _.theme.palette[_.backgroundColor].base
+    }[_.appearance]
+  })}
 `
 
 export const StyledPill = styled(Strong)<StyledBadgeProps>`
   padding: 2px 6px;
   border-radius: 45px;
-  ${getBackgroundColor};
+  ${_ => ({
+    background: {
+      subtle: _.theme.palette[_.backgroundColor].light,
+      solid: _.theme.palette[_.backgroundColor].base
+    }[_.appearance]
+  })}
 `

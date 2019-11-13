@@ -123,6 +123,39 @@ export const getButtonStyle = (
         },
         ':disabled': disabled
       }
+    case 'outline':
+      const {outline} = _.theme.colors.button
+      const boxShadow = (state: keyof typeof outline.borderColor) =>
+        `inset 0 0 0 ${outline.borderWidth}px ${outline.borderColor[state]}`
+
+      return {
+        backgroundColor: 'transparent',
+        fontWeight: 600,
+        backgroundImage: 'none',
+        boxShadow: boxShadow('default'),
+        ':hover': {
+          boxShadow: boxShadow('hover')
+        },
+        ':focus': {
+          outline: 'none',
+          boxShadow: boxShadow('focus')
+        },
+        ':active': {
+          boxShadow: boxShadow('active')
+        },
+        '&[aria-expanded="true"]': {
+          backgroundColor: scales.blue.B3A
+        },
+        '&[aria-invalid="true"]': {
+          color: colors.text.danger,
+          boxShadow: boxShadow('invalid')
+        },
+        ':disabled': {
+          cursor: 'default',
+          boxShadow: boxShadow('disabled'),
+          color: colors.text.muted
+        }
+      }
     case 'default':
     default:
       return {
@@ -146,6 +179,7 @@ export const getButtonStyle = (
         },
         '&[aria-expanded="true"]': {
           backgroundImage: 'none',
+          color: colors.text.intense,
           backgroundColor: scales.blue.B3A
         },
         ':disabled': disabled

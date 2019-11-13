@@ -8,6 +8,7 @@
     {"path": "../theme"},
     {"path": "../typography"},
     {"path": "../button"},
+    {"path": "../menu"},
     {"path": "../popover"},
     {"path": "../text-input"}
   ]

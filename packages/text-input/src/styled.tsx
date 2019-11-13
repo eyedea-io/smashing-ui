@@ -31,3 +31,29 @@ export const Input = styled(Text)<InputProps>`
   }}
   ${_ => getTextInputStyle(_.appearance)};
 `
+
+export const StyledTextContainer = styled.div<{
+  height: number | string
+  suffix?: string
+}>`
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+  height: fit-content;
+  ${_ => {
+    const height =
+      typeof _.height === 'string' ? parseInt(_.height, 10) : _.height
+    return (
+      _.suffix && {
+        '&:after': {
+          content: `'${_.suffix}'`,
+          position: 'absolute',
+          right: `${Math.round(height / 3.2)}px`,
+          top: '50%',
+          transform: 'translate(0,-50%)',
+          color: _.theme.colors.text.muted
+        }
+      }
+    )
+  }}
+`

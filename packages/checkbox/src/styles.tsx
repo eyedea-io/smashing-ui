@@ -1,8 +1,52 @@
 import * as tinycolor from 'tinycolor2'
-import {DefaultTheme} from 'styled-components'
+import styled, {DefaultTheme} from 'styled-components'
+import {Text} from '@smashing/typography'
 import {getLinearGradientWithStates} from './helpers'
-import {CheckboxAppearanceType} from './types'
+import {CheckboxAppearanceType, StyledLabelProps} from './types'
 
+export const S = {
+  Label: styled(Text)<StyledLabelProps>`
+    display: flex;
+    align-items: center;
+    margin: 0;
+    cursor: ${_ => (_.disabled ? 'not-allowed' : 'pointer')};
+    ${_ => getLabelStyle(_.appearance, _.disabled, _.checked)};
+  `,
+
+  CustomCheckbox: styled.div.attrs({})<StyledLabelProps>`
+    width: 16px;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    margin-right: 8px;
+    align-items: center;
+    border-radius: 4px;
+    transition: all 150ms;
+    flex-shrink: 0;
+
+    svg {
+      display: flex;
+      height: 8px;
+      visibility: ${_ => (_.checked ? 'visible' : 'hidden')};
+    }
+  `,
+
+  HiddenCheckbox: styled.input.attrs({
+    type: 'checkbox'
+  })<{appearance: CheckboxAppearanceType}>`
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    white-space: nowrap;
+    opacity: 0;
+    width: 1px;
+    ${_ => getCheckboxStyle(_.appearance, _.disabled, _.checked)};
+  `
+}
 export const getLabelStyle = (
   appearance: CheckboxAppearanceType,
   disabled = false,
@@ -141,6 +185,68 @@ export const getCheckboxStyle = (
           boxShadow: 'none'
         }
       }
+
+    case 'outline':
+      const borderColor = disabled
+        ? _.theme.colors.border.muted
+        : checked
+        ? _.theme.colors.border.active
+        : _.theme.colors.border.default
+
+      return {
+        '& + div': {
+          color: borderColor,
+          border: `1px solid ${borderColor}`,
+          backgroundColor: 'transparent',
+          borderRadius: '6px'
+        }
+      }
+
+    case 'toggle':
+      const indicatorSpace = disabled ? -1 : 1
+      const backgroundColor = checked
+        ? _.theme.palette.green.base
+        : _.theme.colors.text.muted
+      return {
+        '& + div': {
+          position: 'relative' as 'relative',
+          cursor: 'pointer',
+          width: '40px',
+          height: '24px',
+          background: disabled ? 'transparent' : backgroundColor,
+          border: disabled
+            ? `1px solid ${_.theme.colors.border.muted}`
+            : `1px solid ${backgroundColor}`,
+          display: 'block',
+          borderRadius: '100px',
+          svg: {
+            display: 'none'
+          },
+          ':active:after': {
+            width: '22px'
+          },
+          ':after': {
+            content: '""',
+            position: 'absolute' as 'absolute',
+            top: `${indicatorSpace}px`,
+            left: checked
+              ? `calc(100% - ${indicatorSpace}px)`
+              : `${indicatorSpace}px`,
+            width: `${22 - indicatorSpace * 2}px`,
+            height: `${22 - indicatorSpace * 2}px`,
+            background: disabled
+              ? 'transparent'
+              : _.theme.colors.background.default,
+            borderRadius: '100px',
+            transition: '0.4s',
+            transform: `translateX(${checked ? -100 : 0}%);`,
+            border: disabled
+              ? `1px solid ${_.theme.colors.border.muted}`
+              : `1px solid ${_.theme.colors.background.default}`
+          }
+        }
+      }
+
     default:
       return {}
   }

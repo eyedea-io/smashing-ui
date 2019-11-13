@@ -7,27 +7,30 @@ import {
   useDefaults
 } from '@smashing/theme'
 
-const TextInput = React.forwardRef<any, TextInputProps>(
-  ({children, ...props}, ref: any) => {
-    const defaults = useDefaults('textInput', props, {
-      height: 32,
-      full: false,
-      appearance: 'default' as TextInputAppearanceType
-    })
+const TextInput: React.FC<TextInputProps> = ({
+  children,
+  innerRef,
+  ...props
+}) => {
+  const defaults = useDefaults('textInput', props, {
+    height: 32,
+    full: false,
+    appearance: 'default' as TextInputAppearanceType
+  })
 
-    return (
+  return (
+    <S.StyledTextContainer ref={innerRef} {...defaults}>
       <S.Input
         as="input"
-        ref={ref}
         variant={getTextSizeForControlHeight(defaults.height)}
         borderRadius={getBorderRadiusForControlHeight(defaults.height)}
         color={props.disabled ? 'muted' : undefined}
         aria-invalid={props.invalid}
         {...defaults}
       />
-    )
-  }
-)
+    </S.StyledTextContainer>
+  )
+}
 
 export const TextInputComponents = S
 export {TextInput, TextInputProps, TextInputAppearanceType}

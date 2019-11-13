@@ -20,7 +20,7 @@ const Wrapper = ({children}) => {
   )
 }
 
-storiesOf('Core|Side Sheet', module)
+storiesOf('Overlays|Side Sheet', module)
   .addDecorator(story => (
     <SmashingThemeProvider theme={{}}>{story()}</SmashingThemeProvider>
   ))

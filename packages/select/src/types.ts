@@ -1,4 +1,7 @@
-import {ButtonLikeProps} from '@smashing/button'
+import {ButtonLikeProps, ButtonAppearanceType} from '@smashing/button'
+import {TextInputAppearanceType} from '@smashing/text-input'
+
+export type SelectAppearanceType = ButtonAppearanceType
 
 export type Option = {
   label: string
@@ -6,8 +9,10 @@ export type Option = {
 }
 
 export interface SelectProps extends ButtonLikeProps {
+  appearance?: SelectAppearanceType
   options?: Option[]
   value?: string
-  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
+  onChange?: (event: React.ChangeEvent<HTMLSelectElement> | string) => void
   defaultValue?: string
+  placeholder?: string
 }

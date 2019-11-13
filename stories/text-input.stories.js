@@ -6,7 +6,7 @@ import {SmashingThemeProvider} from '@smashing/theme'
 
 addDecorator(withA11y)
 
-storiesOf('Core|TextInput', module)
+storiesOf('Form|TextInput', module)
   .addDecorator(story => (
     <SmashingThemeProvider
       theme={{
@@ -46,6 +46,13 @@ storiesOf('Core|TextInput', module)
     <React.Fragment>
       <div>
         <TextInput appearance="minimal" placeholder="Your name" />
+      </div>
+    </React.Fragment>
+  ))
+  .add('appearance:outline', () => (
+    <React.Fragment>
+      <div>
+        <TextInput appearance="outline" placeholder="Your name" />
       </div>
     </React.Fragment>
   ))
@@ -89,6 +96,27 @@ storiesOf('Core|TextInput', module)
           value="Your name"
           disabled
         />
+      </div>
+    </React.Fragment>
+  ))
+  .add('appearance:outline:disabled', () => (
+    <React.Fragment>
+      <div>
+        <TextInput appearance="outline" value="Test value" disabled />
+      </div>
+    </React.Fragment>
+  ))
+  .add('appearance:outline:with suffix', () => (
+    <React.Fragment>
+      <div>
+        <TextInput appearance="outline" suffix="km/h" />
+      </div>
+    </React.Fragment>
+  ))
+  .add('appearance:outline:no input version', () => (
+    <React.Fragment>
+      <div>
+        <TextInput appearance="underline" readOnly value="test" />
       </div>
     </React.Fragment>
   ))

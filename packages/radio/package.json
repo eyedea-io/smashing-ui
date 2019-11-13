@@ -1,22 +1,23 @@
 {
-  "name": "@smashing/list",
-  "version": "0.1.2",
-  "description": "Component is used to display a list.",
+  "name": "@smashing/radio",
+  "version": "0.0.0",
+  "description": "Simple radio button component",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
   "main": "lib/cjs/index.js",
   "types": "lib/esm/index.d.ts",
   "module": "lib/esm/index.js",
   "files": [
-    "src",
-    "lib"
+    "lib/esm",
+    "lib/cjs"
   ],
   "author": "Eyedea AS",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@smashing/theme": "^0.12.0"
+    "@smashing/theme": "^0.12.0",
+    "@smashing/typography": "^0.4.27"
   },
   "devDependencies": {
     "react": "^16.8.6"
