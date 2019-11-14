@@ -31,7 +31,7 @@ export const getButtonStyle = (
   appearance?: ButtonAppearanceType,
   intent: ButtonIntentType = 'none'
 ) => (_: {theme: DefaultTheme}) => {
-  const {scales, colors} = _.theme
+  const {scales, colors, radius} = _.theme
   const disabled = {
     opacity: 0.8,
     backgroundImage: 'none',
@@ -132,6 +132,7 @@ export const getButtonStyle = (
         backgroundColor: 'transparent',
         fontWeight: 600,
         backgroundImage: 'none',
+        borderRadius: radius,
         boxShadow: boxShadow('default'),
         ':hover': {
           boxShadow: boxShadow('hover')
@@ -142,9 +143,6 @@ export const getButtonStyle = (
         },
         ':active': {
           boxShadow: boxShadow('active')
-        },
-        '&[aria-expanded="true"]': {
-          backgroundColor: scales.blue.B3A
         },
         '&[aria-invalid="true"]': {
           color: colors.text.danger,

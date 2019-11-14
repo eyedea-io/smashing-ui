@@ -1,10 +1,11 @@
 import {DefaultTheme} from 'styled-components'
 import {TextInputAppearanceType} from './types'
+import {theme} from '@smashing/theme'
 
 export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
   theme: DefaultTheme
 }) => {
-  const {scales, palette, colors} = _.theme
+  const {scales, palette, colors, radius} = _.theme
 
   switch (appearance) {
     case 'underline':
@@ -61,6 +62,7 @@ export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
       }
     case 'outline':
       return {
+        borderRadius: radius,
         backgroundColor: 'transparent',
         boxShadow: colors.input.outline.boxShadow.default,
         ':focus': {

@@ -28,13 +28,17 @@ export const Popover = styled(PopoverElement)<PopoverProps>`
   }
 
   ${_ => {
-    let borderColor = _.theme.colors.border[_.invalid ? 'invalid' : 'active']
+    let border = `inset 0 0 0 1px ${
+      _.theme.colors.border[_.invalid ? 'invalid' : 'active']
+    }`
 
     if (_.buttonAppearance === 'outline') {
-      borderColor =
-        _.theme.colors.button.outline.borderColor[
-          _.invalid ? 'invalid' : 'active'
-        ]
+      const {borderWidth, borderColor} = _.theme.colors.button.outline
+      border = `inset ${borderWidth}px -${borderWidth}px 0 0 ${
+        borderColor[_.invalid ? 'invalid' : 'active']
+      }, inset -${borderWidth}px -${borderWidth}px 0 0 ${
+        borderColor[_.invalid ? 'invalid' : 'active']
+      }`
     }
 
     return (
@@ -44,7 +48,7 @@ export const Popover = styled(PopoverElement)<PopoverProps>`
         border-radius: 0px;
         border-bottom-left-radius: ${_.theme.radius};
         border-bottom-right-radius: ${_.theme.radius};
-        box-shadow: ${`inset 0 0 0 1px ${borderColor}`};
+        box-shadow: ${border};
         padding: 0 1px;
         background-color: ${_.theme.colors.background.default};
       `
@@ -54,7 +58,9 @@ export const Popover = styled(PopoverElement)<PopoverProps>`
 export const Title = styled(Heading)`
   margin: 0;
 `
-export const Button = styled(PureButton)<ButtonProps>`
+export const Button = styled(PureButton)<ButtonProps & {isEmpty?: boolean}>`
+  color: ${_ =>
+    _.isEmpty ? _.theme.colors.text.muted : _.theme.colors.text.default};
   &[aria-expanded='true'] {
     ${_ =>
       _.popoverAppearance === 'accordion' && {

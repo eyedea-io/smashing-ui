@@ -45,26 +45,54 @@ export const Item = styled.div<ItemProps>`
 `
 export const Text = styled(PureText)`
   flex: 1;
-  margin-left: ${_ => _.theme.spacing.sm};
-  margin-right: ${_ => _.theme.spacing.sm};
+  margin-left: ${_ => _.theme.spacing.xxs};
+  margin-right: ${_ => _.theme.spacing.xxs};
+  padding-left: ${_ => _.theme.spacing.xxs};
+  padding-right: ${_ => _.theme.spacing.xxs};
 `
 export const SecondaryText = styled(Text)`
   margin-right: ${_ => _.theme.spacing.sm};
 `
 interface GroupProps {
   separated?: boolean
+  invalid?: boolean
 }
 export const Group = styled.div<GroupProps>`
   padding-top: ${_ => _.theme.spacing.xxs};
   padding-bottom: ${_ => _.theme.spacing.xxs};
 
-  ${Item} + ${Item} {
-    ${_ => ({
-      boxShadow: _.separated
-        ? `0 -1px 0 0 ${_.theme.colors.border.default}`
-        : undefined
-    })}
-  }
+  ${_ =>
+    _.separated && {
+      '&:hover': {
+        [`${Item}:not([data-isselectable=\'false\'])`]: {
+          [Text]: {
+            color: _.invalid
+              ? _.theme.colors.text.danger
+              : _.theme.colors.text.muted,
+            '&:hover': {
+              color: _.invalid
+                ? _.theme.colors.text.danger
+                : _.theme.colors.text.default,
+              boxShadow: 'inset 0 -2px 0 0 currentColor'
+            }
+          }
+        }
+      },
+      [Text]: {
+        height: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        color: _.invalid ? _.theme.colors.text.danger : 'unset'
+      },
+      [Item]: {
+        boxShadow: `inset 0 1px 0 0 ${
+          _.invalid ? _.theme.colors.border.danger : _.theme.colors.border.muted
+        }`,
+        '&:not([data-isselectable=\'false\']):hover': {
+          backgroundColor: 'unset'
+        }
+      }
+    }}
 `
 export const GroupHeading = styled(PureHeading)`
   margin-top: ${_ => _.theme.spacing.xxs};
