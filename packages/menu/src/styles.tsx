@@ -5,6 +5,13 @@ interface ItemProps {
   height: number
 }
 
+export const Text = styled(PureText)`
+  flex: 1;
+  margin-left: ${_ => _.theme.spacing.xxs};
+  margin-right: ${_ => _.theme.spacing.xxs};
+  padding-left: ${_ => _.theme.spacing.xxs};
+  padding-right: ${_ => _.theme.spacing.xxs};
+`
 export const Item = styled.div<ItemProps>`
   height: ${_ => _.height}px;
   display: flex;
@@ -16,6 +23,9 @@ export const Item = styled.div<ItemProps>`
 
   &[data-isselectable='false'] {
     cursor: default;
+    ${Text} {
+      color: ${_ => _.theme.colors.text.muted};
+    }
   }
 
   &:not([data-isselectable='false']):hover {
@@ -42,13 +52,6 @@ export const Item = styled.div<ItemProps>`
   &[aria-checked='true'][data-isselectable='true'] ${PureText} {
     color: ${_ => _.theme.colors.text.intense};
   }
-`
-export const Text = styled(PureText)`
-  flex: 1;
-  margin-left: ${_ => _.theme.spacing.xxs};
-  margin-right: ${_ => _.theme.spacing.xxs};
-  padding-left: ${_ => _.theme.spacing.xxs};
-  padding-right: ${_ => _.theme.spacing.xxs};
 `
 export const SecondaryText = styled(Text)`
   margin-right: ${_ => _.theme.spacing.sm};
@@ -82,7 +85,9 @@ export const Group = styled.div<GroupProps>`
         height: '100%',
         display: 'flex',
         alignItems: 'center',
-        color: _.invalid ? _.theme.colors.text.danger : 'unset'
+        color: _.invalid
+          ? _.theme.colors.text.danger
+          : _.theme.colors.text.intense
       },
       [Item]: {
         boxShadow: `inset 0 1px 0 0 ${
