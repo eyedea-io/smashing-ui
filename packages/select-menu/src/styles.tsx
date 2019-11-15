@@ -59,8 +59,6 @@ export const Title = styled(Heading)`
   margin: 0;
 `
 export const Button = styled(PureButton)<ButtonProps & {isEmpty?: boolean}>`
-  color: ${_ =>
-    _.isEmpty ? _.theme.colors.text.muted : _.theme.colors.text.default};
   &[aria-expanded='true'] {
     ${_ =>
       _.popoverAppearance === 'accordion' && {
