@@ -55,11 +55,13 @@ export const Tablist: React.FC<TabListProps> = ({
 
   const appearanceWithMoreButton = props.appearance === 'outline'
   const handleClick = (e: React.MouseEvent) => {
-    if (closeOnSelect && moreButtonNode.current !== e.target) {
-      setIsOpen(false)
+    if (closeOnSelect) {
+      const moreButton = moreButtonNode.current
+      if (!moreButton || !moreButton.contains(e.target as Node)) {
+        setIsOpen(false)
+      }
     }
   }
-
   return (
     <div style={{visibility: tabsNumber ? 'visible' : 'hidden'}}>
       <S.TabList

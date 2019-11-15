@@ -127,10 +127,17 @@ const getTabListStyle = (
           }
         }
       }
+
+      let borderColor = _.theme.colors.border.default
+      if (disabled) {
+        borderColor = _.theme.colors.border.muted
+      }
+      if (isOpen) {
+        borderColor = _.theme.colors.border.active
+      }
+
       return {
-        border: `1px solid ${
-          disabled ? _.theme.colors.border.muted : _.theme.colors.border.default
-        }`,
+        border: `1px solid ${borderColor}`,
         ...(disabled ? disabledStyle : notDisabledStyle),
         strong: {
           color: _.theme.colors.text.default

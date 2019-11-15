@@ -27,7 +27,7 @@ storiesOf('Atomic Elements|Tabs', module)
     </Tablist>
   ))
   .add('appearance:outline', () => (
-    <Tablist appearance="outline">
+    <Tablist closeOnSelect appearance="outline">
       <Tab isSelected appearance="outline">
         Tab 1
       </Tab>
