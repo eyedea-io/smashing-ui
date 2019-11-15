@@ -22,7 +22,11 @@ const ArrowIcon = () => (
   </svg>
 )
 
-export const Tablist: React.FC<TabListProps> = ({children, ...props}) => {
+export const Tablist: React.FC<TabListProps> = ({
+  children,
+  closeOnSelect,
+  ...props
+}) => {
   const defaults = useDefaults('tablist', props, {
     appearance: 'default' as TabsAppearanceType
   })
@@ -50,10 +54,16 @@ export const Tablist: React.FC<TabListProps> = ({children, ...props}) => {
   }, [listNode])
 
   const appearanceWithMoreButton = props.appearance === 'outline'
+  const handleClick = (e: React.MouseEvent) => {
+    if (closeOnSelect && moreButtonNode.current !== e.target) {
+      setIsOpen(false)
+    }
+  }
 
   return (
     <div style={{visibility: tabsNumber ? 'visible' : 'hidden'}}>
       <S.TabList
+        onClick={handleClick}
         isOpen={isOpen}
         visibleItemsCount={tabsNumber}
         ref={listNode}
