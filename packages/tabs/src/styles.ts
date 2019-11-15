@@ -12,7 +12,7 @@ export const TabList = styled.ul<
   margin: 0;
   padding: 0;
   max-width: 100%;
-  ${_ => getTabListStyle(_.appearance, _.isOpen, _.disabled)}
+  ${_ => getTabListStyle(_.appearance, _.isOpen, _.disabled, _.invalid)}
   ${_ => {
     const elemLiStyle = {}
     if (!_.isOpen && _.visibleItemsCount) {
@@ -53,7 +53,10 @@ export const Tab = styled.li<TabProps>`
   cursor: pointer;
 
   strong {
-    color: ${_ => !_.isSelected && _.theme.colors.text.muted};
+    color: ${_ =>
+      _.invalid
+        ? _.theme.colors.text.danger
+        : !_.isSelected && _.theme.colors.text.muted};
   }
 
   svg path {
@@ -61,9 +64,10 @@ export const Tab = styled.li<TabProps>`
   }
 
   &:hover > * {
-    color: ${_ => _.theme.colors.text.selected};
+    color: ${_ =>
+      _.invalid ? _.theme.colors.text.danger : _.theme.colors.text.selected};
   }
-  ${_ => getTabStyle(_.appearance, _.isSelected)}
+  ${_ => getTabStyle(_.appearance, _.isSelected, _.invalid)}
 `
 
 export const MoreButton = styled.button<{isOpen: boolean}>`
@@ -83,7 +87,10 @@ export const MoreButton = styled.button<{isOpen: boolean}>`
   }
 `
 
-export const MoreButtonContainer = styled.li<{isOpen?: boolean}>`
+export const MoreButtonContainer = styled.li<{
+  isOpen?: boolean
+  invalid?: boolean
+}>`
   ${_ => _.isOpen && {border: 'none'}}
   width: 50px;
 `
@@ -91,7 +98,8 @@ export const MoreButtonContainer = styled.li<{isOpen?: boolean}>`
 const getTabListStyle = (
   appearance?: TabsAppearanceType,
   isOpen?: boolean,
-  disabled?: boolean
+  disabled?: boolean,
+  invalid?: boolean
 ) => (_: {theme: DefaultTheme}) => {
   switch (appearance) {
     case 'flat':
@@ -117,12 +125,17 @@ const getTabListStyle = (
 
       const notDisabledStyle = {
         '&:hover': {
+          borderColor: invalid
+            ? _.theme.colors.border.danger
+            : _.theme.colors.border.active,
           [`${Tab}:not(:hover)`]: {
             '&:after': {
               content: 'none'
             },
             strong: {
-              color: _.theme.colors.text.muted
+              color: invalid
+                ? _.theme.colors.text.danger
+                : _.theme.colors.text.muted
             }
           }
         }
@@ -131,9 +144,11 @@ const getTabListStyle = (
       let borderColor = _.theme.colors.border.default
       if (disabled) {
         borderColor = _.theme.colors.border.muted
-      }
-      if (isOpen) {
+      } else if (isOpen) {
         borderColor = _.theme.colors.border.active
+      }
+      if (invalid) {
+        borderColor = _.theme.colors.border.danger
       }
 
       return {
@@ -147,11 +162,19 @@ const getTabListStyle = (
         'li:not(:last-child)': {
           borderRight: isOpen
             ? 'none'
-            : `1px solid ${_.theme.colors.border.muted}`
+            : `1px solid ${
+                invalid
+                  ? _.theme.colors.border.danger
+                  : _.theme.colors.border.muted
+              }`
         },
         'li:not(:nth-last-child(-n + 2))': {
           borderBottom: isOpen
-            ? `1px solid ${_.theme.colors.border.default}`
+            ? `1px solid ${
+                invalid
+                  ? _.theme.colors.border.danger
+                  : _.theme.colors.border.default
+              }`
             : 'none'
         }
       }
@@ -165,7 +188,8 @@ const getTabListStyle = (
 
 const getTabStyle = (
   appearance?: TabsAppearanceType,
-  isSelected?: boolean
+  isSelected?: boolean,
+  invalid?: boolean
 ) => (_: {theme: DefaultTheme}) => {
   switch (appearance) {
     case 'flat':
@@ -184,11 +208,13 @@ const getTabStyle = (
           right: _.theme.spacing.xxs,
           bottom: 0,
           height: '2px',
-          backgroundColor: _.theme.colors.text.intense
+          backgroundColor: invalid
+            ? _.theme.colors.text.danger
+            : _.theme.colors.text.intense
         },
         '&:hover': {
           strong: {
-            color: _.theme.colors.text.intense
+            color: !invalid ? _.theme.colors.text.intense : undefined
           },
           '&:after': {
             content: '""'

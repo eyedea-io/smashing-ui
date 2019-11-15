@@ -27,15 +27,25 @@ storiesOf('Atomic Elements|Tabs', module)
     </Tablist>
   ))
   .add('appearance:outline', () => (
-    <Tablist closeOnSelect appearance="outline">
-      <Tab isSelected appearance="outline">
+    <Tablist invalid closeOnSelect appearance="outline">
+      <Tab invalid isSelected appearance="outline">
         Tab 1
       </Tab>
-      <Tab appearance="outline">Tab 2</Tab>
-      <Tab appearance="outline">Tab 3</Tab>
-      <Tab appearance="outline">Tab 2</Tab>
-      <Tab appearance="outline">Tab 3</Tab>
-      <Tab appearance="outline">Tab 2</Tab>
+      <Tab invalid appearance="outline">
+        Tab 2
+      </Tab>
+      <Tab invalid appearance="outline">
+        Tab 3
+      </Tab>
+      <Tab invalid appearance="outline">
+        Tab 2
+      </Tab>
+      <Tab invalid appearance="outline">
+        Tab 3
+      </Tab>
+      <Tab invalid appearance="outline">
+        Tab 2
+      </Tab>
     </Tablist>
   ))
   .add('appearance:outline disabled', () => (

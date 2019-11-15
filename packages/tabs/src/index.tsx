@@ -25,6 +25,7 @@ const ArrowIcon = () => (
 export const Tablist: React.FC<TabListProps> = ({
   children,
   closeOnSelect,
+  invalid,
   ...props
 }) => {
   const defaults = useDefaults('tablist', props, {
@@ -68,6 +69,7 @@ export const Tablist: React.FC<TabListProps> = ({
         onClick={handleClick}
         isOpen={isOpen}
         visibleItemsCount={tabsNumber}
+        invalid={invalid}
         ref={listNode}
         {...props}
         {...defaults}
@@ -75,7 +77,7 @@ export const Tablist: React.FC<TabListProps> = ({
       >
         {children}
         {(haveMoreButton || tabsNumber) && appearanceWithMoreButton && (
-          <S.MoreButtonContainer isOpen={isOpen}>
+          <S.MoreButtonContainer invalid={invalid} isOpen={isOpen}>
             <S.MoreButton
               isOpen={isOpen}
               onClick={() => !props.disabled && setIsOpen(!isOpen)}
@@ -90,13 +92,13 @@ export const Tablist: React.FC<TabListProps> = ({
   )
 }
 
-export const Tab: React.FC<TabProps> = ({children, ...props}) => {
+export const Tab: React.FC<TabProps> = ({invalid, children, ...props}) => {
   const defaults = useDefaults('tab', props, {
     appearance: 'default' as TabsAppearanceType,
     isSelected: false
   })
   return (
-    <S.Tab {...props} {...defaults} role="tabpanel">
+    <S.Tab invalid={invalid} {...props} {...defaults} role="tabpanel">
       <Strong>{children}</Strong>
     </S.Tab>
   )
