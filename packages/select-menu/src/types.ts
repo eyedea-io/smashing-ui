@@ -99,6 +99,7 @@ export interface SelectMenuProps<T extends OptionBase> {
    * Hide options on select
    */
   closeOnSelect?: boolean
+  disabled?: boolean
 }
 
 export interface OptionBase {

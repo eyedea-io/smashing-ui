@@ -130,7 +130,6 @@ export const getButtonStyle = (
 
       return {
         backgroundColor: 'transparent',
-        fontWeight: 600,
         backgroundImage: 'none',
         borderRadius: radius,
         boxShadow: boxShadow('default'),
