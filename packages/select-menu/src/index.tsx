@@ -104,7 +104,6 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
         invalid={invalid}
         disabled={this.props.disabled}
         popoverAppearance={this.props.popoverAppearance}
-        data-isempty={!value}
         {...(height ? {height} : {})}
       >
         {this.getDefaultSelectedLabel()}
