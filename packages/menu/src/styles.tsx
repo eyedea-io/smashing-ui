@@ -69,7 +69,7 @@ export const Group = styled.div<GroupProps>`
       '&:hover': {
         [`${Item}:not([data-isselectable='false'])`]: {
           [Text]: {
-            transition: 'color 0.5s ease',
+            transition: 'color 0.25s ease',
             color: _.invalid
               ? _.theme.colors.text.danger
               : _.theme.colors.text.muted,
