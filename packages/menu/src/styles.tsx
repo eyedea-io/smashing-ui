@@ -67,7 +67,7 @@ export const Group = styled.div<GroupProps>`
   ${_ =>
     _.separated && {
       '&:hover': {
-        [`${Item}:not([data-isselectable=\'false\'])`]: {
+        [`${Item}:not([data-isselectable='false'])`]: {
           [Text]: {
             color: _.invalid
               ? _.theme.colors.text.danger

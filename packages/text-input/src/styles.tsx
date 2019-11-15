@@ -1,6 +1,5 @@
 import {DefaultTheme} from 'styled-components'
 import {TextInputAppearanceType} from './types'
-import {theme} from '@smashing/theme'
 
 export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
   theme: DefaultTheme
