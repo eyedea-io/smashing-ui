@@ -72,7 +72,7 @@ export const Group = styled.div<GroupProps>`
           [Text]: {
             color: _.invalid
               ? _.theme.colors.text.danger
-              : _.theme.colors.text.muted,
+              : _.theme.colors.text.inactive,
             '&:hover': {
               color: _.invalid
                 ? _.theme.colors.text.danger
