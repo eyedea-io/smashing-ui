@@ -7,9 +7,10 @@ import {getValueWithUnit} from '@smashing/theme'
 type InputProps = TextareaProps &
   Required<Pick<TextareaProps, 'borderRadius' | 'appearance' | 'full'>>
 
-const getTextareaStyle = (appearance: TextareaAppearance) => (_: {
-  theme: DefaultTheme
-}) => {
+const getTextareaStyle = (
+  appearance: TextareaAppearance,
+  invalid?: boolean
+) => (_: {theme: DefaultTheme}) => {
   switch (appearance) {
     case 'outline':
       return {
@@ -25,7 +26,11 @@ const getTextareaStyle = (appearance: TextareaAppearance) => (_: {
         },
 
         '::-webkit-scrollbar-thumb': {
-          boxShadow: `inset 0 0 10px 10px ${_.theme.colors.border.active}`,
+          boxShadow: `inset 0 0 10px 10px ${
+            invalid
+              ? _.theme.colors.border.danger
+              : _.theme.colors.border.active
+          }`,
           border: 'solid 9px transparent'
         }
       }
@@ -46,5 +51,5 @@ export const Textarea = styled(Text)<InputProps>`
   })}
 
   ${_ => getTextInputStyle(_.appearance)};
-  ${_ => getTextareaStyle(_.appearance)};
+  ${_ => getTextareaStyle(_.appearance, _.invalid)};
 `
