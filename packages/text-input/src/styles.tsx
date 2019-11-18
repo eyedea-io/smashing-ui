@@ -12,7 +12,7 @@ export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
         backgroundColor: 'white',
         borderRadius: 0,
         boxShadow: `inset 0 -2px 0 0 ${scales.neutral.N4A}`,
-        '&:invalid, &[aria-invalid]': {
+        '&:invalid, &[aria-invalid="true"]': {
           boxShadow: `inset 0 -2px 0 0 ${palette.red.base}`
         },
         ':focus': {
@@ -43,7 +43,7 @@ export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
     case 'neutral':
       return {
         backgroundColor: scales.neutral.N2A,
-        '&:invalid, &[aria-invalid]': {
+        '&:invalid, &[aria-invalid="true"]': {
           boxShadow: `inset 0 0 0 1px ${palette.red.base}`
         },
         '::placeholder': {
@@ -67,7 +67,7 @@ export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
           outline: 'none',
           boxShadow: colors.input.outline.boxShadow.active
         },
-        ':invalid, &[aria-invalid]': {
+        ':invalid, &[aria-invalid="true"]': {
           boxShadow: colors.input.outline.boxShadow.invalid
         },
         '::placeholder': {
@@ -82,7 +82,7 @@ export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
       return {
         backgroundColor: 'white',
         boxShadow: colors.input.boxShadow.default,
-        '&:invalid, &[aria-invalid]': {
+        '&:invalid, &[aria-invalid="true"]': {
           boxShadow: colors.input.boxShadow.invalid
         },
         ':focus': {
