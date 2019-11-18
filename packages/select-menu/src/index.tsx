@@ -190,7 +190,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
                       }}
                       onSelect={option => {
                         safeInvoke(this.props.onSelect, option.value)
-                        if (this.props.closeOnSelect) {
+                        if (!this.props.isSelectable) {
                           close()
                         }
                       }}
@@ -218,7 +218,8 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
 
 ;(SelectMenuC as any).defaultProps = {
   popoverAppearance: 'card',
-  hasCloseButton: true
+  hasCloseButton: true,
+  isSelectable: true
 }
 
 const SelectMenu = styled(SelectMenuC)``

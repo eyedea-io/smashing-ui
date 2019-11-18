@@ -366,7 +366,6 @@ storiesOf(
           appearance="outline"
           popoverAppearance="accordion"
           isSelectable={false}
-          closeOnSelect
           hideSelectedItem
           width={150}
         />
@@ -384,7 +383,6 @@ storiesOf(
             appearance="outline"
             popoverAppearance="accordion"
             isSelectable={false}
-            closeOnSelect
             hideSelectedItem
             height={24}
             width={150}
@@ -400,7 +398,6 @@ storiesOf(
             appearance="outline"
             popoverAppearance="accordion"
             isSelectable={false}
-            closeOnSelect
             hideSelectedItem
             height={32}
             width={150}
@@ -416,7 +413,6 @@ storiesOf(
             appearance="outline"
             popoverAppearance="accordion"
             isSelectable={false}
-            closeOnSelect
             hideSelectedItem
             height={40}
             width={150}
@@ -432,7 +428,6 @@ storiesOf(
             appearance="outline"
             popoverAppearance="accordion"
             isSelectable={false}
-            closeOnSelect
             hideSelectedItem
             height={48}
             width={150}
@@ -451,7 +446,6 @@ storiesOf(
           appearance="outline"
           popoverAppearance="accordion"
           isSelectable={false}
-          closeOnSelect
           hideSelectedItem
           popoverProps={{
             height: 150

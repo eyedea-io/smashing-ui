@@ -92,13 +92,11 @@ export interface SelectMenuProps<T extends OptionBase> {
 
   /**
    * Are items selectable
+   * (true: items are select with checkboxes,
+   * false: menu close when item is selected)
    */
   isSelectable?: boolean
 
-  /**
-   * Hide options on select
-   */
-  closeOnSelect?: boolean
   disabled?: boolean
 }
 
