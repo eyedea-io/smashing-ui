@@ -24,7 +24,6 @@ const ArrowIcon = () => (
 
 export const Tablist: React.FC<TabListProps> = ({
   children,
-  closeOnSelect,
   invalid,
   ...props
 }) => {
@@ -54,15 +53,13 @@ export const Tablist: React.FC<TabListProps> = ({
     }
   }, [listNode])
 
-  const appearanceWithMoreButton = props.appearance === 'outline'
   const handleClick = (e: React.MouseEvent) => {
-    if (closeOnSelect) {
-      const moreButton = moreButtonNode.current
-      if (!moreButton || !moreButton.contains(e.target as Node)) {
-        setIsOpen(false)
-      }
+    const moreButton = moreButtonNode.current
+    if (!moreButton || !moreButton.contains(e.target as Node)) {
+      setIsOpen(false)
     }
   }
+
   return (
     <div style={{visibility: tabsNumber ? 'visible' : 'hidden'}}>
       <S.TabList
@@ -76,17 +73,19 @@ export const Tablist: React.FC<TabListProps> = ({
         role="tablist"
       >
         {children}
-        {(haveMoreButton || tabsNumber) && appearanceWithMoreButton && (
-          <S.MoreButtonContainer invalid={invalid} isOpen={isOpen}>
-            <S.MoreButton
-              isOpen={isOpen}
-              onClick={() => !props.disabled && setIsOpen(!isOpen)}
-              ref={moreButtonNode}
-            >
-              <ArrowIcon />
-            </S.MoreButton>
-          </S.MoreButtonContainer>
-        )}
+        {haveMoreButton &&
+          listNode.current &&
+          tabsNumber < listNode.current.children.length && (
+            <S.MoreButtonContainer invalid={invalid} isOpen={isOpen}>
+              <S.MoreButton
+                isOpen={isOpen}
+                onClick={() => !props.disabled && setIsOpen(!isOpen)}
+                ref={moreButtonNode}
+              >
+                <ArrowIcon />
+              </S.MoreButton>
+            </S.MoreButtonContainer>
+          )}
       </S.TabList>
     </div>
   )

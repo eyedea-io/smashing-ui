@@ -155,6 +155,7 @@ const getTabListStyle = (
         border: `1px solid ${borderColor}`,
         ...(disabled ? disabledStyle : notDisabledStyle),
         strong: {
+          transition: 'color 0.25s ease',
           color: _.theme.colors.text.default
         },
         borderRadius: _.theme.radius,
