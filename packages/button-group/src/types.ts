@@ -1,4 +1,3 @@
-import {ButtonProps} from '@smashing/button'
 export type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>
 
 export type Layout = 'equal' | 'full' | 'default'
