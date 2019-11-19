@@ -7,13 +7,13 @@ export const ButtonGroupWrapper = styled.div<ButtonGroupWrapperProps>`
   display: ${_ => {
     switch (_.layout) {
       case 'equal':
-        return 'inline-grid;'
+        return 'inline-grid'
       case 'full':
-        return 'grid;'
+        return 'grid'
       default:
-        return 'block;'
+        return 'block'
     }
-  }}
+  }};
   grid-template-columns: ${_ => '1fr '.repeat(_.childrenAmount)};
   border-radius: ${_ => _.theme.radius};
 `
