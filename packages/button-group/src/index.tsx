@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import {Button} from '@smashing/button'
 
-export interface Options {
+export interface Option {
   label: string
   value: any
   onChange: any
@@ -11,7 +11,7 @@ export interface Options {
 
 export interface ButtonGroupProps {
   onChange: any
-  options: Options[]
+  options: Option[]
   value: any
 }
 
@@ -23,10 +23,10 @@ const StyledButton = styled(Button)<{checked?: boolean}>`
       backgroundImage: 'none'
     }}
   &:first-child {
-    border-radius: 3px 0 0 3px;
+    border-radius: ${_ => `${_.theme.radius} 0 0 ${_.theme.radius}`};
   }
   &:last-child {
-    border-radius: 0 3px 3px 0;
+    border-radius: ${_ => `0 ${_.theme.radius} ${_.theme.radius} 0`};
   }
   &:focus {
     z-index: 1;
@@ -54,7 +54,7 @@ const ButtonGroupFC: React.FC<ButtonGroupProps> = ({
   </div>
 )
 
-const ButtonGroupRadio: React.FC<Options> = ({
+const ButtonGroupRadio: React.FC<Option> = ({
   onChange,
   label,
   value,
