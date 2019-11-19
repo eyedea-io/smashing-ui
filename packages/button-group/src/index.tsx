@@ -1,19 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import {Button} from '@smashing/button'
-
-export interface Option {
-  label: string
-  value: any
-  onChange: any
-  checked: boolean
-}
-
-export interface ButtonGroupProps {
-  onChange: any
-  options: Option[]
-  value: any
-}
+import {ButtonGroupProps, Option} from './types'
 
 const StyledButton = styled(Button)<{checked?: boolean}>`
   border-radius: 0;
