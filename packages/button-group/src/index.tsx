@@ -5,31 +5,31 @@ import {
   ButtonAppearanceType,
   ButtonIntentType
 } from '@smashing/button'
-import {ButtonGroupProps, Option} from './types'
+import {ExtendedButtonGroupProps, ButtonGroupOptionProps} from './types'
 import {useDefaults} from '@smashing/theme'
 import {StyledButton, ButtonGroupWrapper} from './styles'
 
-const ButtonGroupFC: React.FC<ButtonGroupProps & ButtonProps> = props => {
-  const {options, onChange, value, full} = props
+const ButtonGroupFC: React.FC<ExtendedButtonGroupProps> = props => {
+  const {options, onChange, value, layout} = props
 
   return (
-    <ButtonGroupWrapper childrenAmount={options.length} full={full}>
-      {options.map((o, i) => (
+    <ButtonGroupWrapper childrenAmount={options.length} layout={layout}>
+      {options.map(option => (
         <ButtonGroupRadio
           {...props}
-          key={`${o.label}-${i}`}
+          key={option.label}
           onChange={onChange}
-          label={o.label}
-          value={o.value}
-          checked={value === o.value}
+          checked={value === option.value}
+          {...option}
         />
       ))}
     </ButtonGroupWrapper>
   )
 }
 
-const ButtonGroupRadio: React.FC<Option & ButtonProps> = props => {
-  const {onChange, label, value, checked} = props
+const ButtonGroupRadio: React.FC<ButtonGroupOptionProps &
+  ButtonProps> = props => {
+  const {onChange, value, checked, label} = props
   const defaults = useDefaults('button', props, {
     height: 32,
     appearance: 'default' as ButtonAppearanceType,

@@ -36,7 +36,7 @@ storiesOf('Atomic Elements|Buttons Group', module)
       {story()}
     </SmashingThemeProvider>
   ))
-  .add('default', () => {
+  .add('layout: default', () => {
     const [value, setValue] = React.useState(1)
 
     return (
@@ -78,14 +78,14 @@ storiesOf('Atomic Elements|Buttons Group', module)
       </React.Fragment>
     )
   })
-  .add('full width', () => {
+  .add('layout: equal width', () => {
     const [value, setValue] = React.useState(1)
 
     return (
       <React.Fragment>
         <p>Default</p>
         <ButtonGroup
-          full
+          layout="equal"
           onChange={v => setValue(v)}
           value={value}
           options={options.slice(0, 2)}
@@ -93,7 +93,7 @@ storiesOf('Atomic Elements|Buttons Group', module)
         <p>Flat</p>
         <ButtonGroup
           appearance="flat"
-          full
+          layout="equal"
           onChange={v => setValue(v)}
           value={value}
           options={options.slice(0, 3)}
@@ -101,7 +101,7 @@ storiesOf('Atomic Elements|Buttons Group', module)
         <p>Primary</p>
         <ButtonGroup
           appearance="primary"
-          full
+          layout="equal"
           onChange={v => setValue(v)}
           value={value}
           options={options}
@@ -109,7 +109,7 @@ storiesOf('Atomic Elements|Buttons Group', module)
         <p>Minimal</p>
         <ButtonGroup
           appearance="minimal"
-          full
+          layout="equal"
           onChange={v => setValue(v)}
           value={value}
           options={options}
@@ -117,7 +117,54 @@ storiesOf('Atomic Elements|Buttons Group', module)
         <p>Subtle</p>
         <ButtonGroup
           appearance="subtle"
-          full
+          layout="equal"
+          onChange={v => setValue(v)}
+          value={value}
+          options={options}
+        />
+      </React.Fragment>
+    )
+  })
+  .add('layout: full width', () => {
+    const [value, setValue] = React.useState(1)
+
+    return (
+      <React.Fragment>
+        <p>Default</p>
+        <ButtonGroup
+          layout="full"
+          onChange={v => setValue(v)}
+          value={value}
+          options={options.slice(0, 2)}
+        />
+        <p>Flat</p>
+        <ButtonGroup
+          appearance="flat"
+          layout="full"
+          onChange={v => setValue(v)}
+          value={value}
+          options={options.slice(0, 3)}
+        />
+        <p>Primary</p>
+        <ButtonGroup
+          appearance="primary"
+          layout="full"
+          onChange={v => setValue(v)}
+          value={value}
+          options={options}
+        />
+        <p>Minimal</p>
+        <ButtonGroup
+          appearance="minimal"
+          layout="full"
+          onChange={v => setValue(v)}
+          value={value}
+          options={options}
+        />
+        <p>Subtle</p>
+        <ButtonGroup
+          appearance="subtle"
+          layout="full"
           onChange={v => setValue(v)}
           value={value}
           options={options}
