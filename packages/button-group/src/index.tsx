@@ -7,24 +7,24 @@ import {
 } from '@smashing/button'
 import {ButtonGroupProps, Option} from './types'
 import {useDefaults} from '@smashing/theme'
-import {StyledButton} from './styles'
+import {StyledButton, ButtonGroupWrapper} from './styles'
 
 const ButtonGroupFC: React.FC<ButtonGroupProps & ButtonProps> = props => {
-  const {options, onChange, value} = props
+  const {options, onChange, value, full} = props
 
   return (
-    <div>
+    <ButtonGroupWrapper childrenAmount={options.length} full={full}>
       {options.map((o, i) => (
         <ButtonGroupRadio
           {...props}
-          key={i}
+          key={`${o.label}-${i}`}
           onChange={onChange}
           label={o.label}
           value={o.value}
           checked={value === o.value}
         />
       ))}
-    </div>
+    </ButtonGroupWrapper>
   )
 }
 
@@ -40,10 +40,9 @@ const ButtonGroupRadio: React.FC<Option & ButtonProps> = props => {
 
   return (
     <StyledButton
+      {...defaults}
       onClick={e => onChange(value, e)}
       checked={checked}
-      appearance="outline"
-      {...defaults}
     >
       <input type="radio" hidden value={value} />
       {label}

@@ -2,6 +2,14 @@ import {Button} from '@smashing/button'
 import styled from 'styled-components'
 import {getButtonStyle} from '@smashing/button/lib/esm/styles'
 
+export const ButtonGroupWrapper = styled.div<{
+  childrenAmount: number
+  full?: boolean
+}>`
+  display: ${_ => (_.full ? 'grid' : 'grid-inline')};
+  grid-template-columns: ${_ => '1fr '.repeat(_.childrenAmount)};
+`
+
 export const StyledButton = styled(Button)<{checked?: boolean}>`
   border-radius: 0;
   ${_ => {
