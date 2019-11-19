@@ -1,15 +1,11 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import {
-  ButtonProps,
-  ButtonAppearanceType,
-  ButtonIntentType
-} from '@smashing/button'
-import {ExtendedButtonGroupProps, ButtonGroupOptionProps} from './types'
+import {ButtonAppearanceType, ButtonIntentType} from '@smashing/button'
+import {ButtonGroupProps, ButtonGroupRadioProps} from './types'
 import {useDefaults} from '@smashing/theme'
 import {StyledButton, ButtonGroupWrapper} from './styles'
 
-const ButtonGroupFC: React.FC<ExtendedButtonGroupProps> = props => {
+const ButtonGroupFC: React.FC<ButtonGroupProps> = props => {
   const {options, onChange, value, layout} = props
 
   return (
@@ -27,9 +23,8 @@ const ButtonGroupFC: React.FC<ExtendedButtonGroupProps> = props => {
   )
 }
 
-const ButtonGroupRadio: React.FC<ButtonGroupOptionProps &
-  ButtonProps> = props => {
-  const {onChange, value, checked, label} = props
+const ButtonGroupRadio: React.FC<ButtonGroupRadioProps> = props => {
+  const {onChange, value, checked, label, center} = props
   const defaults = useDefaults('button', props, {
     height: 32,
     appearance: 'default' as ButtonAppearanceType,
@@ -43,6 +38,7 @@ const ButtonGroupRadio: React.FC<ButtonGroupOptionProps &
       {...defaults}
       onClick={e => onChange(value, e)}
       checked={checked}
+      center={center}
     >
       <input type="radio" hidden value={value} />
       {label}

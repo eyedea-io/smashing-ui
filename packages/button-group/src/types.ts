@@ -1,21 +1,20 @@
 import {ButtonProps} from '@smashing/button'
-export interface ButtonGroupOptionProps {
-  label: string
-  value: any
-  onChange: any
-  checked: boolean
-}
+export type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>
 
+export type Layout = 'equal' | 'full' | 'default'
 export interface ButtonGroupWrapperProps {
   childrenAmount: number
-  layout?: 'equal' | 'full'
+  layout?: Layout
 }
 export interface ButtonGroupProps {
+  options: ButtonGroupRadioProps[]
   onChange: any
-  options: ButtonGroupOptionProps[]
   value: any
+  center?: boolean
+  layout?: Layout
 }
 
-export type ExtendedButtonGroupProps = ButtonGroupProps &
-  ButtonProps &
-  ButtonGroupWrapperProps
+export type ButtonGroupRadioProps = PartialBy<
+  ButtonGroupProps,
+  'options' | 'value'
+> & {label: string; checked: boolean}

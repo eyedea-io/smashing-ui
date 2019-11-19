@@ -18,12 +18,16 @@ export const ButtonGroupWrapper = styled.div<ButtonGroupWrapperProps>`
   border-radius: ${_ => _.theme.radius};
 `
 
-export const StyledButton = styled(Button)<{checked?: boolean}>`
+export const StyledButton = styled(Button)<{
+  checked: boolean
+  center?: boolean
+}>`
   border-radius: 0;
   ${_ => {
     const activeStyle = getButtonStyle(_.appearance)(_)[':active']
     return _.checked ? activeStyle : {}
   }}
+  ${_ => _.center && 'justify-content: center;'}
   &:first-of-type {
     border-radius: ${_ => `${_.theme.radius} 0 0 ${_.theme.radius}`};
   }

@@ -109,6 +109,7 @@ storiesOf('Atomic Elements|Buttons Group', module)
         <p>Minimal</p>
         <ButtonGroup
           appearance="minimal"
+          center
           layout="equal"
           onChange={v => setValue(v)}
           value={value}
@@ -117,6 +118,7 @@ storiesOf('Atomic Elements|Buttons Group', module)
         <p>Subtle</p>
         <ButtonGroup
           appearance="subtle"
+          center
           layout="equal"
           onChange={v => setValue(v)}
           value={value}
@@ -156,6 +158,7 @@ storiesOf('Atomic Elements|Buttons Group', module)
         <p>Minimal</p>
         <ButtonGroup
           appearance="minimal"
+          center
           layout="full"
           onChange={v => setValue(v)}
           value={value}
@@ -164,6 +167,7 @@ storiesOf('Atomic Elements|Buttons Group', module)
         <p>Subtle</p>
         <ButtonGroup
           appearance="subtle"
+          center
           layout="full"
           onChange={v => setValue(v)}
           value={value}
