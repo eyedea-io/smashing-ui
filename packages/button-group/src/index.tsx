@@ -1,56 +1,51 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import {Button} from '@smashing/button'
+import {
+  ButtonProps,
+  ButtonAppearanceType,
+  ButtonIntentType
+} from '@smashing/button'
 import {ButtonGroupProps, Option} from './types'
+import {useDefaults} from '@smashing/theme'
+import {StyledButton} from './styles'
 
-const StyledButton = styled(Button)<{checked?: boolean}>`
-  border-radius: 0;
-  ${_ =>
-    _.checked && {
-      backgroundColor: _.theme.scales.blue.B3A,
-      backgroundImage: 'none'
-    }}
-  &:first-child {
-    border-radius: ${_ => `${_.theme.radius} 0 0 ${_.theme.radius}`};
-  }
-  &:last-child {
-    border-radius: ${_ => `0 ${_.theme.radius} ${_.theme.radius} 0`};
-  }
-  &:focus {
-    z-index: 1;
-    position: relative;
-  }
-`
+const ButtonGroupFC: React.FC<ButtonGroupProps & ButtonProps> = props => {
+  const {options, onChange, value} = props
 
-const ButtonGroupFC: React.FC<ButtonGroupProps> = ({
-  options,
-  onChange,
-  value
-}) => (
-  <div>
-    {options.map((o, i) => {
-      return (
+  return (
+    <div>
+      {options.map((o, i) => (
         <ButtonGroupRadio
+          {...props}
           key={i}
           onChange={onChange}
           label={o.label}
           value={o.value}
           checked={value === o.value}
         />
-      )
-    })}
-  </div>
-)
+      ))}
+    </div>
+  )
+}
 
-const ButtonGroupRadio: React.FC<Option> = ({
-  onChange,
-  label,
-  value,
-  checked
-}) => {
+const ButtonGroupRadio: React.FC<Option & ButtonProps> = props => {
+  const {onChange, label, value, checked} = props
+  const defaults = useDefaults('button', props, {
+    height: 32,
+    appearance: 'default' as ButtonAppearanceType,
+    intent: 'none' as ButtonIntentType,
+    isLoading: false,
+    full: false
+  })
+
   return (
-    <StyledButton onClick={e => onChange(value)} checked={checked}>
-      <input type="radio" hidden checked={checked} value={value} />
+    <StyledButton
+      onClick={e => onChange(value, e)}
+      checked={checked}
+      appearance="outline"
+      {...defaults}
+    >
+      <input type="radio" hidden value={value} />
       {label}
     </StyledButton>
   )
