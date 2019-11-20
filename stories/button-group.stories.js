@@ -4,6 +4,7 @@ import {ButtonGroup} from '@smashing/button-group'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
 import {CalendarRegular} from './common/icon'
+import {Heading} from '@smashing/typography'
 
 const options = [
   {
@@ -44,20 +45,20 @@ storiesOf('Atomic Elements|Buttons Group', module)
 
     return (
       <React.Fragment>
-        <p>Default</p>
+        <Heading variant={100}>Default</Heading>
         <ButtonGroup
           onChange={v => setValue(v)}
           value={value}
           options={options.slice(0, 2)}
         />
-        <p>Flat</p>
+        <Heading variant={100}>Flat</Heading>
         <ButtonGroup
           appearance="flat"
           onChange={v => setValue(v)}
           value={value}
           options={options.slice(0, 3)}
         />
-        <p>Primary</p>
+        <Heading variant={100}>Primary</Heading>
         <ButtonGroup
           appearance="primary"
           textAlign="right"
@@ -65,14 +66,14 @@ storiesOf('Atomic Elements|Buttons Group', module)
           value={value}
           options={options.slice(0, 3)}
         />
-        <p>Minimal</p>
+        <Heading variant={100}>Minimal</Heading>
         <ButtonGroup
           appearance="minimal"
           onChange={v => setValue(v)}
           value={value}
           options={options.slice(0, 3)}
         />
-        <p>Subtle</p>
+        <Heading variant={100}>Subtle</Heading>
         <ButtonGroup
           appearance="subtle"
           onChange={v => setValue(v)}
@@ -87,14 +88,14 @@ storiesOf('Atomic Elements|Buttons Group', module)
 
     return (
       <React.Fragment>
-        <p>Default</p>
+        <Heading variant={100}>Default</Heading>
         <ButtonGroup
           layout="equal"
           onChange={v => setValue(v)}
           value={value}
           options={options.slice(0, 2)}
         />
-        <p>Flat</p>
+        <Heading variant={100}>Flat</Heading>
         <ButtonGroup
           appearance="flat"
           layout="equal"
@@ -102,7 +103,7 @@ storiesOf('Atomic Elements|Buttons Group', module)
           value={value}
           options={options.slice(0, 3)}
         />
-        <p>Primary</p>
+        <Heading variant={100}>Primary</Heading>
         <ButtonGroup
           appearance="primary"
           textAlign="right"
@@ -111,7 +112,7 @@ storiesOf('Atomic Elements|Buttons Group', module)
           value={value}
           options={options.slice(0, 3)}
         />
-        <p>Minimal</p>
+        <Heading variant={100}>Minimal</Heading>
         <ButtonGroup
           appearance="minimal"
           textAlign="center"
@@ -120,7 +121,7 @@ storiesOf('Atomic Elements|Buttons Group', module)
           value={value}
           options={options.slice(0, 3)}
         />
-        <p>Subtle</p>
+        <Heading variant={100}>Subtle</Heading>
         <ButtonGroup
           appearance="subtle"
           textAlign="center"
@@ -137,14 +138,14 @@ storiesOf('Atomic Elements|Buttons Group', module)
 
     return (
       <React.Fragment>
-        <p>Default</p>
+        <Heading variant={100}>Default</Heading>
         <ButtonGroup
           layout="full"
           onChange={v => setValue(v)}
           value={value}
           options={options.slice(0, 2)}
         />
-        <p>Flat</p>
+        <Heading variant={100}>Flat</Heading>
         <ButtonGroup
           appearance="flat"
           layout="full"
@@ -152,7 +153,7 @@ storiesOf('Atomic Elements|Buttons Group', module)
           value={value}
           options={options.slice(0, 3)}
         />
-        <p>Primary</p>
+        <Heading variant={100}>Primary</Heading>
         <ButtonGroup
           appearance="primary"
           textAlign="right"
@@ -161,7 +162,7 @@ storiesOf('Atomic Elements|Buttons Group', module)
           value={value}
           options={options.slice(0, 3)}
         />
-        <p>Minimal</p>
+        <Heading variant={100}>Minimal</Heading>
         <ButtonGroup
           appearance="minimal"
           textAlign="center"
@@ -170,7 +171,7 @@ storiesOf('Atomic Elements|Buttons Group', module)
           value={value}
           options={options.slice(0, 3)}
         />
-        <p>Subtle</p>
+        <Heading variant={100}>Subtle</Heading>
         <ButtonGroup
           appearance="subtle"
           textAlign="center"
