@@ -2,22 +2,7 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import ToastManager from './toast-manager'
 import {SmashingThemeProvider} from '@smashing/theme'
-import {ToastModel} from './toast'
-
-export interface ToastSettings {
-  /**
-   * There are cases when only one toast with the same content can be shown at a time. By setting this property to unique ID, all previous toasts with the same ID will close before showing a new one.
-   */
-  id?: string
-  /**
-   * Time for how long toast is displayed. Property is in seconds - not milliseconds
-   * @default 5
-   */
-  duration?: number
-  /** Additional description displayed under title */
-  description?: string
-  hasCloseButton?: boolean
-}
+import {ToastModel, ToastSettings} from './types'
 
 const isBrowser =
   typeof window !== 'undefined' && typeof window.document !== 'undefined'
