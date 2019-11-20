@@ -4,7 +4,7 @@ import {TextInputAppearanceType} from './types'
 export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
   theme: DefaultTheme
 }) => {
-  const {scales, palette, colors} = _.theme
+  const {scales, palette, colors, radius} = _.theme
 
   switch (appearance) {
     case 'underline':
@@ -61,6 +61,7 @@ export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
       }
     case 'outline':
       return {
+        borderRadius: radius,
         backgroundColor: 'transparent',
         boxShadow: colors.input.outline.boxShadow.default,
         ':focus': {
