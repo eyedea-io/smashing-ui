@@ -16,8 +16,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@smashing/button": "^0.2.25",
-    "@smashing/theme": "^0.9.2"
+    "@smashing/button": "^0.3.0",
+    "@smashing/theme": "^0.13.0"
   },
   "devDependencies": {
     "react": "^16.8.6"
