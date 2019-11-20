@@ -28,7 +28,7 @@ const options = [
 ]
 addDecorator(withA11y)
 
-storiesOf('Atomic Elements|Buttons Group', module)
+storiesOf('Form|Buttons Group', module)
   .addDecorator(story => (
     <SmashingThemeProvider
       theme={{
