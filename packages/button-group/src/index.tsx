@@ -41,7 +41,6 @@ const ButtonGroupRadio: React.FC<ButtonGroupRadioProps &
 
   return (
     <StyledButton {...defaults} {...props} onClick={e => onChange(value, e)}>
-      <input type="radio" hidden value={value} />
       {label}
     </StyledButton>
   )
