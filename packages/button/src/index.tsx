@@ -164,7 +164,8 @@ export {
   ButtonAppearanceType,
   ButtonIntentType,
   ButtonLikeProps,
-  StyledButton
+  StyledButton,
+  getButtonStyle
 }
 
 declare module 'styled-components' {
