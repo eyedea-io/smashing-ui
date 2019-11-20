@@ -13,7 +13,8 @@ const options = [
   },
   {
     label: 'is simply dummy',
-    value: 2
+    value: 2,
+    iconAfter: CalendarRegular
   },
   {
     label: 'text of the printing',
@@ -69,7 +70,7 @@ storiesOf('Atomic Elements|Buttons Group', module)
           appearance="minimal"
           onChange={v => setValue(v)}
           value={value}
-          options={options}
+          options={options.slice(0, 3)}
         />
         <p>Subtle</p>
         <ButtonGroup
@@ -117,7 +118,7 @@ storiesOf('Atomic Elements|Buttons Group', module)
           layout="equal"
           onChange={v => setValue(v)}
           value={value}
-          options={options}
+          options={options.slice(0, 3)}
         />
         <p>Subtle</p>
         <ButtonGroup
@@ -167,7 +168,7 @@ storiesOf('Atomic Elements|Buttons Group', module)
           layout="full"
           onChange={v => setValue(v)}
           value={value}
-          options={options}
+          options={options.slice(0, 3)}
         />
         <p>Subtle</p>
         <ButtonGroup

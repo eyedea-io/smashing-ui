@@ -1,6 +1,5 @@
-import {Button} from '@smashing/button'
+import {Button, getButtonStyle} from '@smashing/button'
 import styled from 'styled-components'
-import {getButtonStyle} from '@smashing/button/lib/esm/styles'
 import {ButtonGroupWrapperProps, StyledButtonProps} from './types'
 
 export const ButtonGroupWrapper = styled.div<ButtonGroupWrapperProps>`
@@ -20,10 +19,6 @@ export const ButtonGroupWrapper = styled.div<ButtonGroupWrapperProps>`
 
 export const StyledButton = styled(Button)<StyledButtonProps>`
   border-radius: 0;
-  ${_ => {
-    const activeStyle = getButtonStyle(_.appearance)(_)[':active']
-    return _.checked ? activeStyle : {}
-  }}
   justify-content: ${_ => {
     switch (_.textAlign) {
       case 'center':
@@ -34,6 +29,10 @@ export const StyledButton = styled(Button)<StyledButtonProps>`
         return 'flex-start'
     }
   }};
+  ${_ => {
+    const activeStyle = getButtonStyle(_.appearance)(_)[':active']
+    return _.checked ? activeStyle : {}
+  }}
   &:first-of-type {
     border-radius: ${_ => `${_.theme.radius} 0 0 ${_.theme.radius}`};
   }
