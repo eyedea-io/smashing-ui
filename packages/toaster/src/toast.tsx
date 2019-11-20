@@ -3,7 +3,13 @@ import {Transition} from 'react-transition-group'
 import {useDefaults} from '@smashing/theme'
 import {Alert} from '@smashing/alert'
 import {ToastProps} from './types'
-import {ANIMATION_DURATION, ToastCloseButton, WrapperAnimated} from './styles'
+import {
+  ANIMATION_DURATION,
+  WrapperAnimated,
+  ToastWrapper,
+  ToastCloseIcon,
+  ToastCloseIconWrapper
+} from './styles'
 
 export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
   const [isShown, setIsShown] = React.useState(true)
@@ -15,7 +21,7 @@ export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
     duration: 1000,
     onRemove: () => undefined,
     title: '',
-    hasCloseButton: false,
+    hasCloseButton: true,
     isShown: true,
     appearance: 'card'
   })
@@ -91,9 +97,11 @@ export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
             marginBottom: isShown ? 0 : -height
           }}
         >
-          <div ref={onRef} style={{padding: 8, position: 'relative'}}>
+          <ToastWrapper ref={onRef}>
             {defaults.hasCloseButton && (
-              <ToastCloseButton onClick={close}>X</ToastCloseButton>
+              <ToastCloseIconWrapper onClick={close}>
+                <ToastCloseIcon />
+              </ToastCloseIconWrapper>
             )}
             <Alert
               appearance={defaults.appearance}
@@ -102,7 +110,7 @@ export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
             >
               {children}
             </Alert>
-          </div>
+          </ToastWrapper>
         </WrapperAnimated>
       )}
     </Transition>
