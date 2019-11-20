@@ -22,7 +22,6 @@
     "react-custom-scrollbars": "4.2.1"
   },
   "devDependencies": {
-    "@types/simplebar": "^2.4.2",
     "react": "^16.8.6"
   },
   "peerDependencies": {
