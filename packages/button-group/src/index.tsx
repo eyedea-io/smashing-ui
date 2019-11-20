@@ -10,7 +10,7 @@ import {useDefaults} from '@smashing/theme'
 import {StyledButton, ButtonGroupWrapper} from './styles'
 
 const ButtonGroupFC: React.FC<ButtonGroupProps & ButtonProps> = props => {
-  const {options, onChange, value, appearance, layout, center} = props
+  const {options, onChange, value, appearance, layout, textAlign} = props
 
   return (
     <ButtonGroupWrapper childrenAmount={options.length} layout={layout}>
@@ -20,7 +20,7 @@ const ButtonGroupFC: React.FC<ButtonGroupProps & ButtonProps> = props => {
           onChange={onChange}
           appearance={appearance}
           checked={value === option.value}
-          center={center}
+          textAlign={textAlign}
           {...option}
         />
       ))}
@@ -30,7 +30,7 @@ const ButtonGroupFC: React.FC<ButtonGroupProps & ButtonProps> = props => {
 
 const ButtonGroupRadio: React.FC<ButtonGroupRadioProps &
   ButtonProps> = props => {
-  const {onChange, value, checked, label} = props
+  const {onChange, value, label} = props
   const defaults = useDefaults('button', props, {
     height: 32,
     appearance: 'default' as ButtonAppearanceType,
@@ -40,12 +40,7 @@ const ButtonGroupRadio: React.FC<ButtonGroupRadioProps &
   })
 
   return (
-    <StyledButton
-      {...defaults}
-      {...props}
-      onClick={e => onChange(value, e)}
-      checked={checked}
-    >
+    <StyledButton {...defaults} {...props} onClick={e => onChange(value, e)}>
       <input type="radio" hidden value={value} />
       {label}
     </StyledButton>

@@ -3,11 +3,13 @@ import {storiesOf, addDecorator} from '@storybook/react'
 import {ButtonGroup} from '@smashing/button-group'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
+import {CalendarRegular} from './common/icon'
 
 const options = [
   {
     label: 'Lorem Ipsum',
-    value: 1
+    value: 1,
+    iconBefore: CalendarRegular
   },
   {
     label: 'is simply dummy',
@@ -57,9 +59,10 @@ storiesOf('Atomic Elements|Buttons Group', module)
         <p>Primary</p>
         <ButtonGroup
           appearance="primary"
+          textAlign="right"
           onChange={v => setValue(v)}
           value={value}
-          options={options}
+          options={options.slice(0, 3)}
         />
         <p>Minimal</p>
         <ButtonGroup
@@ -101,15 +104,16 @@ storiesOf('Atomic Elements|Buttons Group', module)
         <p>Primary</p>
         <ButtonGroup
           appearance="primary"
+          textAlign="right"
           layout="equal"
           onChange={v => setValue(v)}
           value={value}
-          options={options}
+          options={options.slice(0, 3)}
         />
         <p>Minimal</p>
         <ButtonGroup
           appearance="minimal"
-          center
+          textAlign="center"
           layout="equal"
           onChange={v => setValue(v)}
           value={value}
@@ -118,7 +122,7 @@ storiesOf('Atomic Elements|Buttons Group', module)
         <p>Subtle</p>
         <ButtonGroup
           appearance="subtle"
-          center
+          textAlign="center"
           layout="equal"
           onChange={v => setValue(v)}
           value={value}
@@ -150,15 +154,16 @@ storiesOf('Atomic Elements|Buttons Group', module)
         <p>Primary</p>
         <ButtonGroup
           appearance="primary"
+          textAlign="right"
           layout="full"
           onChange={v => setValue(v)}
           value={value}
-          options={options}
+          options={options.slice(0, 3)}
         />
         <p>Minimal</p>
         <ButtonGroup
           appearance="minimal"
-          center
+          textAlign="center"
           layout="full"
           onChange={v => setValue(v)}
           value={value}
@@ -167,7 +172,7 @@ storiesOf('Atomic Elements|Buttons Group', module)
         <p>Subtle</p>
         <ButtonGroup
           appearance="subtle"
-          center
+          textAlign="center"
           layout="full"
           onChange={v => setValue(v)}
           value={value}

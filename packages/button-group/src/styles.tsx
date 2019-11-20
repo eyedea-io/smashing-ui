@@ -1,9 +1,11 @@
 import {Button} from '@smashing/button'
 import styled from 'styled-components'
 import {getButtonStyle} from '@smashing/button/lib/esm/styles'
-import {ButtonGroupWrapperProps} from './types'
+import {ButtonGroupWrapperProps, StyledButtonProps} from './types'
 
 export const ButtonGroupWrapper = styled.div<ButtonGroupWrapperProps>`
+  grid-template-columns: ${_ => '1fr '.repeat(_.childrenAmount)};
+  border-radius: ${_ => _.theme.radius};
   display: ${_ => {
     switch (_.layout) {
       case 'equal':
@@ -14,20 +16,24 @@ export const ButtonGroupWrapper = styled.div<ButtonGroupWrapperProps>`
         return 'block'
     }
   }};
-  grid-template-columns: ${_ => '1fr '.repeat(_.childrenAmount)};
-  border-radius: ${_ => _.theme.radius};
 `
 
-export const StyledButton = styled(Button)<{
-  checked: boolean
-  center?: boolean
-}>`
+export const StyledButton = styled(Button)<StyledButtonProps>`
   border-radius: 0;
   ${_ => {
     const activeStyle = getButtonStyle(_.appearance)(_)[':active']
     return _.checked ? activeStyle : {}
   }}
-  ${_ => _.center && 'justify-content: center;'}
+  justify-content: ${_ => {
+    switch (_.textAlign) {
+      case 'center':
+        return 'center'
+      case 'right':
+        return 'flex-end'
+      default:
+        return 'flex-start'
+    }
+  }};
   &:first-of-type {
     border-radius: ${_ => `${_.theme.radius} 0 0 ${_.theme.radius}`};
   }
