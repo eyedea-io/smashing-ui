@@ -1,55 +1,74 @@
-import styled, {DefaultTheme} from 'styled-components'
+import * as React from 'react'
+import styled from 'styled-components'
+import {Scrollbars} from 'react-custom-scrollbars'
 import {getTextInputStyle} from '@smashing/text-input'
-import {TextareaProps, TextareaAppearance} from './types'
+import {TextareaProps} from './types'
 import {Text} from '@smashing/typography'
 import {getValueWithUnit} from '@smashing/theme'
 
 type InputProps = TextareaProps &
   Required<Pick<TextareaProps, 'borderRadius' | 'appearance' | 'full'>>
 
-const getTextareaStyle = (
-  appearance: TextareaAppearance,
-  invalid?: boolean
-) => (_: {theme: DefaultTheme}) => {
-  switch (appearance) {
-    case 'outline':
-      return {
-        resize: 'none' as 'none',
-        '::-webkit-scrollbar': {
-          /* border-width + expected scrollbar width */
-          width: '20px'
-        },
-
-        '::-webkit-scrollbar-track': {
-          boxShadow: `inset 0 0 10px 10px ${_.theme.colors.border.muted}`,
-          border: 'solid 9px transparent'
-        },
-
-        '::-webkit-scrollbar-thumb': {
-          boxShadow: `inset 0 0 10px 10px ${
-            invalid
-              ? _.theme.colors.border.danger
-              : _.theme.colors.border.active
-          }`,
-          border: 'solid 9px transparent'
-        }
-      }
-    default:
-      return {}
-  }
-}
-
-export const Textarea = styled(Text)<InputProps>`
+export const TextareaContainer = styled.div<InputProps>`
   border: none;
   border-radius: ${_ => getValueWithUnit(_.borderRadius)};
-  padding: 8px 10px;
+  padding: ${_ => (_.appearance === 'outline' ? '8px 10px' : 0)};
   box-sizing: border-box;
-  min-height: 40px;
-  resize: vertical;
+  width: fit-content;
+  margin-bottom: 0;
+  display: block;
   ${_ => ({
-    width: _.width ? getValueWithUnit(_.width) : _.full ? '100%' : undefined
+    width: _.width ? getValueWithUnit(_.width) : _.full ? '100%' : undefined,
+    color: _.theme.colors.border.active,
+    '&[aria-invalid="true"]': {
+      color: _.theme.colors.border.danger
+    }
   })}
-
   ${_ => getTextInputStyle(_.appearance)};
-  ${_ => getTextareaStyle(_.appearance, _.invalid)};
+`
+
+export const Textarea = styled(Text)`
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  outline: none;
+  padding: 0;
+  resize: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`
+
+export const ScrollbarContainer = styled(Scrollbars).attrs(
+  ({withscroll, appearance}) =>
+    appearance === 'outline' && {
+      renderTrackVertical: props => (
+        <VerticalScrollTrack
+          {...props}
+          style={{...props.style, width: withscroll ? 2 : 0}}
+        />
+      ),
+      renderThumbVertical: props => (
+        <VerticalScrollThumb {...props} style={{...props.style, width: 2}} />
+      )
+    }
+)<{isScrollVisible?: boolean}>`
+  box-sizing: border-box;
+  width: fit-content;
+  padding: ${_ => (_.appearance === 'outline' ? 0 : '8px 10px')};
+`
+
+export const VerticalScrollTrack = styled.div`
+  background-color: ${_ => _.theme.colors.border.muted};
+  top: -3px;
+  bottom: -3px;
+  right: 0px;
+  border-radius: 10px;
+`
+
+export const VerticalScrollThumb = styled.div`
+  background-color: currentColor;
+  border-radius: inherit;
 `

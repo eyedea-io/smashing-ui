@@ -65,6 +65,7 @@ export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
         backgroundColor: 'transparent',
         boxShadow: colors.input.outline.boxShadow.default,
         ':focus': {
+          color: colors.text.intense,
           outline: 'none',
           boxShadow: colors.input.outline.boxShadow.active
         },
