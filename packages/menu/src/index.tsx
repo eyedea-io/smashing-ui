@@ -206,6 +206,7 @@ const MenuOptionsGroup: React.FC<MenuOptionsGroupProps> = ({
   options = [],
   value,
   itemHeight,
+  itemIsSelectable = true,
   ...props
 }) => (
   <S.Group {...props}>
@@ -217,7 +218,7 @@ const MenuOptionsGroup: React.FC<MenuOptionsGroupProps> = ({
       return (
         <MenuItem
           key={option.value}
-          isSelectable
+          isSelectable={itemIsSelectable}
           role={Array.isArray(value) ? 'menuitemcheckbox' : 'menuitemradio'}
           isSelected={isSelected}
           tabIndex={-1}
@@ -322,6 +323,12 @@ export interface MenuOptionsGroupProps {
    * Separate items with a border
    */
   separated?: boolean
+
+  /**
+   * Items ara selectable
+   */
+  itemIsSelectable?: boolean
+  invalid?: boolean
 }
 
 export interface MenuItemProps {

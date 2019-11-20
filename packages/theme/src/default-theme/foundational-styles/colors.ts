@@ -29,6 +29,7 @@ const colors = {
   text: {
     muted: scales.neutral.N6,
     default: scales.neutral.N8,
+    inactive: scales.neutral.N7,
     intense: scales.neutral.N10,
     selected: palette.blue.base,
 

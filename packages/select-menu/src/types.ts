@@ -89,6 +89,15 @@ export interface SelectMenuProps<T extends OptionBase> {
    */
   width?: number
   // minWidth?: number
+
+  /**
+   * Are items selectable
+   * (true: items are select with checkboxes,
+   * false: menu close when item is selected)
+   */
+  isSelectable?: boolean
+
+  disabled?: boolean
 }
 
 export interface OptionBase {

@@ -102,6 +102,7 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
         appearance={appearance}
         width={width}
         invalid={invalid}
+        disabled={this.props.disabled}
         popoverAppearance={this.props.popoverAppearance}
         {...(height ? {height} : {})}
       >
@@ -181,12 +182,17 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
                       options={this.getFilteredOptions()}
                       value={this.props.value}
                       itemHeight={this.props.height}
+                      itemIsSelectable={this.props.isSelectable}
                       separated={this.props.popoverAppearance === 'accordion'} // TODO: Appearance should be taken from defaults
+                      invalid={this.props.invalid}
                       onChange={value => {
                         safeInvoke(this.props.onChange, value)
                       }}
                       onSelect={option => {
                         safeInvoke(this.props.onSelect, option.value)
+                        if (!this.props.isSelectable) {
+                          close()
+                        }
                       }}
                       onDeselect={option => {
                         safeInvoke(this.props.onDeselect, option.value)
@@ -212,7 +218,8 @@ class SelectMenuC<T extends OptionBase> extends React.Component<
 
 ;(SelectMenuC as any).defaultProps = {
   popoverAppearance: 'card',
-  hasCloseButton: true
+  hasCloseButton: true,
+  isSelectable: true
 }
 
 const SelectMenu = styled(SelectMenuC)``
