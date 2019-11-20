@@ -16,6 +16,7 @@ export interface ToastSettings {
   duration?: number
   /** Additional description displayed under title */
   description?: string
+  hasCloseButton?: boolean
 }
 
 const isBrowser =

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import {Transition} from 'react-transition-group'
 import {TransitionStatus} from 'react-transition-group/Transition'
 import {useDefaults} from '@smashing/theme'
-import {Alert} from '@smashing/alert'
+import {Alert, AlertAppearanceType} from '@smashing/alert'
 
 export interface ToastModel {
   id: string | number
@@ -35,6 +35,16 @@ const WrapperAnimated = styled.div<{state: TransitionStatus}>`
     transform: _.state === 'entering' ? 'translateY(-120%)' : 'translateY(0%)',
     opacity: _.state === 'entered' ? 1 : 0
   })}
+`
+const ToastCloseButton = styled.span`
+  top: 0;
+  right: 0;
+  position: absolute;
+  pointer-events: all;
+  cursor: pointer;
+  background: yellow;
+  z-index: 31;
+  padding: 10px;
 `
 
 interface Props {
@@ -72,6 +82,7 @@ interface Props {
    * When false, will close the Toast and call onRemove when finished.
    */
   isShown?: boolean
+  apperance?: AlertAppearanceType
 }
 
 export const Toast: React.FC<Props> = ({children, ...props}) => {
@@ -85,7 +96,8 @@ export const Toast: React.FC<Props> = ({children, ...props}) => {
     onRemove: () => undefined,
     title: '',
     hasCloseButton: false,
-    isShown: true
+    isShown: true,
+    appearance: 'card'
   })
 
   const clearCloseTimer = React.useCallback(() => {
@@ -139,7 +151,7 @@ export const Toast: React.FC<Props> = ({children, ...props}) => {
 
     setHeight(refHeight)
   }, [])
-
+  console.dir({defaults})
   return (
     <Transition
       in={isShown}
@@ -159,9 +171,12 @@ export const Toast: React.FC<Props> = ({children, ...props}) => {
             marginBottom: isShown ? 0 : -height
           }}
         >
-          <div ref={onRef} style={{padding: 8}}>
+          <div ref={onRef} style={{padding: 8, position: 'relative'}}>
+            {defaults.hasCloseButton && (
+              <ToastCloseButton onClick={close}>X</ToastCloseButton>
+            )}
             <Alert
-              appearance="card"
+              appearance={defaults.appearance}
               intent={defaults.intent}
               title={defaults.title}
             >

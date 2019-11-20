@@ -26,7 +26,11 @@ storiesOf('Feedback Indicators|Toaster', module)
   ))
   .add('appearance:default', () => (
     <React.Fragment>
-      <Button onClick={() => toaster.success('Successful alert!')}>
+      <Button
+        onClick={() =>
+          toaster.success('Successful alert!', {hasCloseButton: true})
+        }
+      >
         Success
       </Button>
       <Button onClick={() => toaster.notify('Notify alert!')}>Notify</Button>
