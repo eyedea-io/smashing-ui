@@ -22,7 +22,11 @@ const ArrowIcon = () => (
   </svg>
 )
 
-export const Tablist: React.FC<TabListProps> = ({children, ...props}) => {
+export const Tablist: React.FC<TabListProps> = ({
+  children,
+  invalid,
+  ...props
+}) => {
   const defaults = useDefaults('tablist', props, {
     appearance: 'default' as TabsAppearanceType
   })
@@ -49,42 +53,51 @@ export const Tablist: React.FC<TabListProps> = ({children, ...props}) => {
     }
   }, [listNode])
 
-  const appearanceWithMoreButton = props.appearance === 'outline'
+  const handleClick = (e: React.MouseEvent) => {
+    const moreButton = moreButtonNode.current
+    if (!moreButton || !moreButton.contains(e.target as Node)) {
+      setIsOpen(false)
+    }
+  }
 
   return (
     <div style={{visibility: tabsNumber ? 'visible' : 'hidden'}}>
       <S.TabList
+        onClick={handleClick}
         isOpen={isOpen}
         visibleItemsCount={tabsNumber}
+        invalid={invalid}
         ref={listNode}
         {...props}
         {...defaults}
         role="tablist"
       >
         {children}
-        {(haveMoreButton || tabsNumber) && appearanceWithMoreButton && (
-          <S.MoreButtonContainer isOpen={isOpen}>
-            <S.MoreButton
-              isOpen={isOpen}
-              onClick={() => !props.disabled && setIsOpen(!isOpen)}
-              ref={moreButtonNode}
-            >
-              <ArrowIcon />
-            </S.MoreButton>
-          </S.MoreButtonContainer>
-        )}
+        {haveMoreButton &&
+          listNode.current &&
+          tabsNumber < listNode.current.children.length && (
+            <S.MoreButtonContainer invalid={invalid} isOpen={isOpen}>
+              <S.MoreButton
+                isOpen={isOpen}
+                onClick={() => !props.disabled && setIsOpen(!isOpen)}
+                ref={moreButtonNode}
+              >
+                <ArrowIcon />
+              </S.MoreButton>
+            </S.MoreButtonContainer>
+          )}
       </S.TabList>
     </div>
   )
 }
 
-export const Tab: React.FC<TabProps> = ({children, ...props}) => {
+export const Tab: React.FC<TabProps> = ({invalid, children, ...props}) => {
   const defaults = useDefaults('tab', props, {
     appearance: 'default' as TabsAppearanceType,
     isSelected: false
   })
   return (
-    <S.Tab {...props} {...defaults} role="tabpanel">
+    <S.Tab invalid={invalid} {...props} {...defaults} role="tabpanel">
       <Strong>{children}</Strong>
     </S.Tab>
   )
