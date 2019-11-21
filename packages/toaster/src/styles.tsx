@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import {TransitionStatus} from 'react-transition-group/Transition'
 import * as React from 'react'
+import {Alert} from '@smashing/alert'
 
 export const ANIMATION_DURATION = 200
 
@@ -33,11 +34,14 @@ export const WrapperAnimated = styled.div<{state: TransitionStatus}>`
     opacity: _.state === 'entered' ? 1 : 0
   })}
 `
+export const StyledAlert = styled(Alert)``
 
-export const ToastWrapper = styled.div`
+export const ToastWrapper = styled.div<{hasCloseButton?: boolean}>`
   box-sizing: border-box;
   position: relative;
-  width: 100%;
+  ${StyledAlert} {
+    ${_ => _.hasCloseButton && {paddingRight: _.theme.spacing.xl}}
+  }
 `
 
 export const CloseIcon: React.FC = props => (

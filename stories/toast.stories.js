@@ -28,7 +28,7 @@ storiesOf('Feedback Indicators|Toaster', module)
     <React.Fragment>
       <Button
         onClick={() =>
-          toaster.success('Successful alert!', {hasCloseButton: true})
+          toaster.success('Successful alert!', {hasCloseButton: false})
         }
       >
         Success

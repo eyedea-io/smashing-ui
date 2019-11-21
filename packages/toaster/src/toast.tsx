@@ -1,14 +1,14 @@
 import * as React from 'react'
 import {Transition} from 'react-transition-group'
 import {useDefaults} from '@smashing/theme'
-import {Alert} from '@smashing/alert'
 import {ToastProps} from './types'
 import {
   ANIMATION_DURATION,
   WrapperAnimated,
   ToastWrapper,
   ToastCloseIcon,
-  ToastCloseIconWrapper
+  ToastCloseIconWrapper,
+  StyledAlert
 } from './styles'
 
 export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
@@ -97,19 +97,19 @@ export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
             marginBottom: isShown ? 0 : -height
           }}
         >
-          <ToastWrapper ref={onRef}>
+          <ToastWrapper ref={onRef} {...defaults}>
             {defaults.hasCloseButton && (
               <ToastCloseIconWrapper onClick={close}>
                 <ToastCloseIcon />
               </ToastCloseIconWrapper>
             )}
-            <Alert
+            <StyledAlert
               appearance={defaults.appearance}
               intent={defaults.intent}
               title={defaults.title}
             >
               {children}
-            </Alert>
+            </StyledAlert>
           </ToastWrapper>
         </WrapperAnimated>
       )}
