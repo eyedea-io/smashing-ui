@@ -95,7 +95,7 @@ export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
             marginBottom: isShown ? 0 : -height
           }}
         >
-          <ToastWrapper ref={onRef} {...defaults}>
+          <ToastWrapper ref={onRef} hasCloseButton={defaults.hasCloseButton}>
             {defaults.hasCloseButton && (
               <ToastCloseIconWrapper onClick={close}>
                 <ToastCloseIcon />
