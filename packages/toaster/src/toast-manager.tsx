@@ -39,7 +39,7 @@ const ToastManager: React.FC<ToastManagerProps> = props => {
         title,
         description: settings.description,
         hasCloseButton: settings.hasCloseButton,
-        duration: settings.duration || 0,
+        duration: settings.duration,
         close: () => closeToast(id),
         intent: settings.intent,
         isShown: true

@@ -18,7 +18,7 @@ export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
   const defaults = useDefaults<any>('toast', props, {
     intent: 'success',
     zIndex: 10,
-    duration: 1000,
+    duration: 5,
     onRemove: () => undefined,
     title: '',
     hasCloseButton: true,
@@ -39,13 +39,11 @@ export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
   }, [])
 
   const startCloseTimer = React.useCallback(() => {
-    if (props.duration) {
-      setCloseTimer(
-        setTimeout(() => {
-          close()
-        }, props.duration * 1000)
-      )
-    }
+    setCloseTimer(
+      setTimeout(() => {
+        close()
+      }, defaults.duration * 1000)
+    )
   }, [])
 
   const handleMouseEnter = () => {
