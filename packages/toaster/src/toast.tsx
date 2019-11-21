@@ -7,10 +7,9 @@ import {
   ToastWrapper,
   ToastCloseIcon,
   ToastCloseIconWrapper,
-  ToastAlert
+  ToastAlert,
+  ANIMATION_DURATION
 } from './styles'
-
-export const ANIMATION_DURATION = 200
 
 export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
   const [isShown, setIsShown] = React.useState(true)

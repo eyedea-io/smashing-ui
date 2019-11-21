@@ -2,7 +2,8 @@ import styled from 'styled-components'
 import {TransitionStatus} from 'react-transition-group/Transition'
 import * as React from 'react'
 import {Alert} from '@smashing/alert'
-import {ANIMATION_DURATION} from './toast'
+
+export const ANIMATION_DURATION = 200
 
 const animationEasing = {
   acceleration: 'cubic-bezier(0.4, 0.0, 1, 1)',
