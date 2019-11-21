@@ -25,7 +25,6 @@ const ToastManager: React.FC<ToastManagerProps> = props => {
     },
     [toasts]
   )
-
   const removeToast = React.useCallback(id => {
     setToasts(toasts => toasts.filter(toast => toast.id !== id))
   }, [])
@@ -39,7 +38,7 @@ const ToastManager: React.FC<ToastManagerProps> = props => {
         id,
         title,
         description: settings.description,
-        hasCloseButton: settings.hasCloseButton || false,
+        hasCloseButton: settings.hasCloseButton,
         duration: settings.duration || 0,
         close: () => closeToast(id),
         intent: settings.intent,

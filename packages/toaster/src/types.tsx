@@ -4,7 +4,7 @@ export interface ToastModel {
   id: string | number
   title: string
   description?: string
-  hasCloseButton: boolean
+  hasCloseButton?: boolean
   duration: number
   close: () => void
   intent: 'success' | 'warning' | 'danger' | 'info'
