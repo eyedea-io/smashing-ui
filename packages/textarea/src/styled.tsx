@@ -42,13 +42,10 @@ export const Textarea = styled(Text)`
 `
 
 export const ScrollbarContainer = styled(Scrollbars).attrs(
-  ({withscroll, appearance}) =>
+  ({appearance}) =>
     appearance === 'outline' && {
       renderTrackVertical: props => (
-        <VerticalScrollTrack
-          {...props}
-          style={{...props.style, width: withscroll ? 2 : 0}}
-        />
+        <VerticalScrollTrack {...props} style={{...props.style, width: 2}} />
       ),
       renderThumbVertical: props => (
         <VerticalScrollThumb {...props} style={{...props.style, width: 2}} />

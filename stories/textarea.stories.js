@@ -76,3 +76,13 @@ storiesOf('Form|Textarea', module)
       <Textarea placeholder="Textarea placeholder..." full />
     </React.Fragment>
   ))
+  .add('default scrollbar', () => (
+    <React.Fragment>
+      <Textarea value="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam architecto suscipit id, enim facilis unde aliquam soluta veniam velit itaque incidunt in facere. Ullam vero voluptates, nostrum possimus quibusdam eius." placeholder="Textarea placeholder..." />
+    </React.Fragment>
+  ))
+  .add('outline scrollbar', () => (
+    <React.Fragment>
+      <Textarea appearance="outline" value="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam architecto suscipit id, enim facilis unde aliquam soluta veniam velit itaque incidunt in facere. Ullam vero voluptates, nostrum possimus quibusdam eius." placeholder="Textarea placeholder..." />
+    </React.Fragment>
+  ))

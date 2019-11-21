@@ -8,7 +8,6 @@ import * as S from './styled'
 const Textarea: React.FC<TextareaProps> = ({color, ...props}) => {
   const theme = useTheme()
   const scrollContainer = React.useRef<Scrollbars>(null)
-  const [isScrollVisible, setIsScrollVisible] = React.useState(false)
   const defaults = useDefaults('textarea', props, {
     appearance: 'default' as TextareaAppearance,
     borderRadius: theme.radius,
@@ -17,17 +16,15 @@ const Textarea: React.FC<TextareaProps> = ({color, ...props}) => {
     full: false
   })
 
-  const checkScroll = () => {
+  const focus = () => {
     if (scrollContainer.current) {
-      setIsScrollVisible(
-        scrollContainer.current.getScrollHeight() >
-          scrollContainer.current.getClientHeight()
-      )
+      scrollContainer.current.view.focus()
     }
   }
 
   return (
     <S.TextareaContainer
+      onClick={focus}
       width={props.width}
       borderRadius={defaults.borderRadius}
       appearance={defaults.appearance}
@@ -35,20 +32,15 @@ const Textarea: React.FC<TextareaProps> = ({color, ...props}) => {
       full={defaults.full}
     >
       <S.ScrollbarContainer
+        hideTracksWhenNotNeeded
         ref={scrollContainer}
-        withscroll={isScrollVisible ? 1 : 0}
         appearance={defaults.appearance}
         renderView={scrollbarProps => (
           <S.Textarea
             {...scrollbarProps}
             {...props}
-            onChange={e => {
-              checkScroll()
-              if (props.onChange) {
-                props.onChange(e)
-              }
-            }}
-            style={{...scrollbarProps, marginBottom: 0}}
+            onChange={props.onChange}
+            style={{marginBottom: 0}}
             data-gramm_editor={defaults.grammarly}
             as="textarea"
             color={props.disabled ? 'muted' : undefined}
