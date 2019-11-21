@@ -3,13 +3,14 @@ import {Transition} from 'react-transition-group'
 import {useDefaults} from '@smashing/theme'
 import {ToastProps} from './types'
 import {
-  ANIMATION_DURATION,
-  WrapperAnimated,
+  ToastWrapperAnimated,
   ToastWrapper,
   ToastCloseIcon,
   ToastCloseIconWrapper,
   StyledAlert
 } from './styles'
+
+export const ANIMATION_DURATION = 200
 
 export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
   const [isShown, setIsShown] = React.useState(true)
@@ -85,7 +86,7 @@ export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
       onExited={defaults.onRemove}
     >
       {state => (
-        <WrapperAnimated
+        <ToastWrapperAnimated
           state={state}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
@@ -109,7 +110,7 @@ export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
               {children}
             </StyledAlert>
           </ToastWrapper>
-        </WrapperAnimated>
+        </ToastWrapperAnimated>
       )}
     </Transition>
   )
