@@ -7,7 +7,7 @@ import {
   ToastWrapper,
   ToastCloseIcon,
   ToastCloseIconWrapper,
-  StyledAlert
+  ToastAlert
 } from './styles'
 
 export const ANIMATION_DURATION = 200
@@ -102,13 +102,13 @@ export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
                 <ToastCloseIcon />
               </ToastCloseIconWrapper>
             )}
-            <StyledAlert
+            <ToastAlert
               appearance={defaults.appearance}
               intent={defaults.intent}
               title={defaults.title}
             >
               {children}
-            </StyledAlert>
+            </ToastAlert>
           </ToastWrapper>
         </ToastWrapperAnimated>
       )}

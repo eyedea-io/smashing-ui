@@ -34,12 +34,12 @@ export const ToastsWrapper = styled.span`
   position: fixed;
 `
 
-export const StyledAlert = styled(Alert)``
+export const ToastAlert = styled(Alert)``
 
 export const ToastWrapper = styled.div<{hasCloseButton?: boolean}>`
   box-sizing: border-box;
   position: relative;
-  ${StyledAlert} {
+  ${ToastAlert} {
     ${_ => _.hasCloseButton && {paddingRight: _.theme.spacing.xl}}
   }
 `
