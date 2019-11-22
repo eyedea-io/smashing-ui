@@ -2,14 +2,7 @@ import * as React from 'react'
 import {Transition} from 'react-transition-group'
 import {useDefaults} from '@smashing/theme'
 import {ToastProps} from './types'
-import {
-  ToastWrapperAnimated,
-  ToastWrapper,
-  ToastCloseIcon,
-  ToastCloseIconWrapper,
-  ToastAlert,
-  ANIMATION_DURATION
-} from './styles'
+import * as S from './styles'
 
 export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
   const [isShown, setIsShown] = React.useState(true)
@@ -81,11 +74,11 @@ export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
       in={isShown}
       unmountOnExit
       appear
-      timeout={ANIMATION_DURATION}
+      timeout={S.ANIMATION_DURATION}
       onExited={defaults.onRemove}
     >
       {state => (
-        <ToastWrapperAnimated
+        <S.ToastWrapperAnimated
           state={state}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
@@ -95,21 +88,21 @@ export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
             marginBottom: isShown ? 0 : -height
           }}
         >
-          <ToastWrapper ref={onRef} hasCloseButton={defaults.hasCloseButton}>
+          <S.ToastWrapper ref={onRef} hasCloseButton={defaults.hasCloseButton}>
             {defaults.hasCloseButton && (
-              <ToastCloseIconWrapper onClick={close}>
-                <ToastCloseIcon />
-              </ToastCloseIconWrapper>
+              <S.ToastCloseIconWrapper onClick={close}>
+                <S.ToastCloseIcon />
+              </S.ToastCloseIconWrapper>
             )}
-            <ToastAlert
+            <S.ToastAlert
               appearance={defaults.appearance}
               intent={defaults.intent}
               title={defaults.title}
             >
               {children}
-            </ToastAlert>
-          </ToastWrapper>
-        </ToastWrapperAnimated>
+            </S.ToastAlert>
+          </S.ToastWrapper>
+        </S.ToastWrapperAnimated>
       )}
     </Transition>
   )
