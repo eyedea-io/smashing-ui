@@ -16,7 +16,7 @@ export const ToastWrapperAnimated = styled.div<{state: TransitionStatus}>`
   display: flex;
   flex-direction: column;
   height: 0;
-  padding-bottom: ${_ => _.theme.spacing.xxs};
+  margin-bottom: ${_ => _.theme.spacing.xxs};
   transition: all ${ANIMATION_DURATION}ms ${animationEasing.deceleration};
   ${_ => ({
     transform: _.state === 'entering' ? 'translateY(-120%)' : 'translateY(0%)',

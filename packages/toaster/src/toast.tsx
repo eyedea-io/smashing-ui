@@ -91,8 +91,7 @@ export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
           onMouseLeave={handleMouseLeave}
           style={{
             height,
-            zIndex: defaults.zIndex,
-            marginBottom: isShown ? 0 : -height
+            zIndex: defaults.zIndex
           }}
         >
           <ToastWrapper ref={onRef} hasCloseButton={defaults.hasCloseButton}>
