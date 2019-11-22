@@ -36,6 +36,11 @@ export const TextInputComponents = S
 export {TextInput, TextInputProps, TextInputAppearanceType}
 export {getTextInputStyle} from './styles'
 
+export const TextInputElements = {
+  Container: S.StyledTextContainer,
+  Input: S.Input
+}
+
 declare module 'styled-components' {
   export interface SmashingTextInputDefaults
     extends Partial<{
