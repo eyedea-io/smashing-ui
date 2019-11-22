@@ -17,8 +17,8 @@ export interface ToastSettings {
    */
   id?: string
   /**
-   * Time for how long toast is displayed. Property is in seconds - not milliseconds
-   * @default 5
+   * Time for how long toast is displayed. Property is in milliseconds
+   * @default 5000
    */
   duration?: number
   /** Additional description displayed under title */

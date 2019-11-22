@@ -18,7 +18,7 @@ export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
   const defaults = useDefaults<any>('toast', props, {
     intent: 'success',
     zIndex: 10,
-    duration: 5,
+    duration: 5000,
     onRemove: () => undefined,
     title: '',
     hasCloseButton: true,
@@ -42,7 +42,7 @@ export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
     setCloseTimer(
       setTimeout(() => {
         close()
-      }, defaults.duration * 1000)
+      }, defaults.duration)
     )
   }, [])
 
