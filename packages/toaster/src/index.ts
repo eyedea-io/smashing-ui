@@ -1,8 +1,5 @@
 import Toaster from './toaster'
-
-export const toaster = new Toaster()
-export {Toast} from './toast'
-export {
+import {
   ToastsWrapper,
   ToastWrapperAnimated,
   ToastWrapper,
@@ -10,3 +7,14 @@ export {
   ToastCloseIcon,
   ToastAlert
 } from './styles'
+
+export {Toast} from './toast'
+export const toaster = new Toaster()
+export const ToastElements = {
+  ToastsWrapper,
+  ToastWrapperAnimated,
+  ToastWrapper,
+  ToastCloseIconWrapper,
+  ToastCloseIcon,
+  ToastAlert
+}
