@@ -35,10 +35,11 @@ const TextInput: React.FC<TextInputProps> = ({
 export const TextInputComponents = S
 export {TextInput, TextInputProps, TextInputAppearanceType}
 export {getTextInputStyle} from './styles'
-export {
-  StyledTextContainer as TextInputContainer,
-  Input as TextInputElement
-} from './styled'
+
+export const TextInputElements = {
+  Container: S.StyledTextContainer,
+  Input: S.Input
+}
 
 declare module 'styled-components' {
   export interface SmashingTextInputDefaults
