@@ -14,7 +14,8 @@ storiesOf('Feedback Indicators|Alert', module)
         defaults: {
           alert: {
             hasTrim: true,
-            hasIcon: true
+            hasIcon: true,
+            hasCloseIcon: true
           }
         }
       }}

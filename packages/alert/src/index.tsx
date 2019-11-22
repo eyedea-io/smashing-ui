@@ -3,12 +3,20 @@ import styled, {ThemeContext, css} from 'styled-components'
 import {useDefaults} from '@smashing/theme'
 import {AlertIntentType, AlertAppearanceType, AlertProps} from './types'
 import {Text, Strong} from '@smashing/typography'
-import {getAlertIconForIntent, getTrimColorByIntent} from './styles'
+import {
+  getAlertIconForIntent,
+  getTrimColorByIntent,
+  CloseIconSvg
+} from './styles'
 
 interface BoxProps {
-  hasTrim: boolean
-  intent: AlertIntentType
+  hasTrim?: boolean
+  intent?: AlertIntentType
   appearance: AlertAppearanceType
+}
+interface BoxInnerProps {
+  appearance: AlertAppearanceType
+  hasCloseIcon: boolean
 }
 
 const Box = styled.div.attrs({})<BoxProps>`
@@ -32,7 +40,6 @@ const Box = styled.div.attrs({})<BoxProps>`
     ['card', 'default'].includes(_.appearance) &&
     css`
       background-color: #fff;
-      padding: 12px 16px;
 
       ::before {
         content: ${_.hasTrim ? '""' : 'none'};
@@ -43,6 +50,14 @@ const Box = styled.div.attrs({})<BoxProps>`
         left: 0;
         background-color: ${getTrimColorByIntent(_)};
       }
+    `}
+`
+const BoxInner = styled.div<BoxInnerProps>`
+  display: flex;
+  ${_ =>
+    ['card', 'default'].includes(_.appearance) &&
+    css`
+      padding: ${_.hasCloseIcon ? '12px 0 12px 16px' : '12px 16px'};
     `}
 `
 
@@ -61,6 +76,21 @@ const Icon = styled.div`
     height: 14px;
   }
 `
+const CloseIcon = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  padding: 0 ${_ => _.theme.spacing.xs};
+  svg {
+    color: ${_ => _.theme.colors.text.muted};
+  }
+  &:hover {
+    cursor: pointer;
+    svg {
+      color: ${_ => _.theme.colors.text.default};
+    }
+  }
+`
 
 const Description = styled(Text)``
 
@@ -73,6 +103,7 @@ const Alert: React.FC<AlertProps> = ({
   const defaults = useDefaults('alert', props, {
     hasTrim: true,
     hasIcon: true,
+    hasCloseIcon: false,
     intent: 'info' as AlertIntentType,
     appearance: 'default' as AlertAppearanceType
   })
@@ -85,23 +116,33 @@ const Alert: React.FC<AlertProps> = ({
       hasTrim={defaults.hasTrim}
       className={className}
     >
-      {defaults.hasIcon && (
-        <Icon>{getAlertIconForIntent(defaults.intent)({theme})}</Icon>
+      <BoxInner
+        appearance={defaults.appearance}
+        hasCloseIcon={defaults.hasCloseIcon}
+      >
+        {defaults.hasIcon && (
+          <Icon>{getAlertIconForIntent(defaults.intent)({theme})}</Icon>
+        )}
+        <div>
+          {typeof title === 'string' ? (
+            <Title as="h4" color="intense">
+              {title}
+            </Title>
+          ) : (
+            title
+          )}
+          {typeof children === 'string' ? (
+            <Description>{children}</Description>
+          ) : (
+            children
+          )}
+        </div>
+      </BoxInner>
+      {defaults.hasCloseIcon && (
+        <CloseIcon>
+          <CloseIconSvg />
+        </CloseIcon>
       )}
-      <div>
-        {typeof title === 'string' ? (
-          <Title as="h4" color="intense">
-            {title}
-          </Title>
-        ) : (
-          title
-        )}
-        {typeof children === 'string' ? (
-          <Description>{children}</Description>
-        ) : (
-          children
-        )}
-      </div>
     </Box>
   )
 }
@@ -118,6 +159,7 @@ declare module 'styled-components' {
         appearance?: AlertAppearanceType
         hasTrim: boolean
         hasIcon: boolean
+        hasCloseIcon: boolean
       }
     }> {}
 }
