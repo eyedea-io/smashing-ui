@@ -12,7 +12,7 @@ type InputProps = TextareaProps &
 export const TextareaContainer = styled.div<InputProps>`
   border: none;
   border-radius: ${_ => getValueWithUnit(_.borderRadius)};
-  padding: ${_ => (_.appearance === 'outline' ? '8px 10px' : 0)};
+  padding: ${_ => (_.scrollbarAppearance === 'outline' ? '8px 10px' : 0)};
   box-sizing: border-box;
   width: fit-content;
   margin-bottom: 0;
@@ -42,8 +42,8 @@ export const Textarea = styled(Text)`
 `
 
 export const ScrollbarContainer = styled(Scrollbars).attrs(
-  ({appearance}) =>
-    appearance === 'outline' && {
+  ({scrollbarAppearance}) =>
+    scrollbarAppearance === 'outline' && {
       renderTrackVertical: props => (
         <VerticalScrollTrack {...props} style={{...props.style, width: 2}} />
       ),
@@ -54,7 +54,7 @@ export const ScrollbarContainer = styled(Scrollbars).attrs(
 )<{isScrollVisible?: boolean}>`
   box-sizing: border-box;
   width: fit-content;
-  padding: ${_ => (_.appearance === 'outline' ? 0 : '8px 10px')};
+  padding: ${_ => (_.scrollbarAppearance === 'outline' ? 0 : '8px 10px')};
 `
 
 export const VerticalScrollTrack = styled.div`

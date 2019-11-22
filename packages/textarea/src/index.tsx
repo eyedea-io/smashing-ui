@@ -2,7 +2,12 @@ import * as React from 'react'
 import {useDefaults, useTheme} from '@smashing/theme'
 import {Scrollbars} from 'react-custom-scrollbars'
 
-import {TextareaProps, TextareaAppearance, TextareaVariant} from './types'
+import {
+  TextareaProps,
+  TextareaAppearance,
+  TextareaVariant,
+  ScrollbarAppearance
+} from './types'
 import * as S from './styled'
 
 const Textarea: React.FC<TextareaProps> = ({color, ...props}) => {
@@ -10,6 +15,7 @@ const Textarea: React.FC<TextareaProps> = ({color, ...props}) => {
   const scrollContainer = React.useRef<Scrollbars>(null)
   const defaults = useDefaults('textarea', props, {
     appearance: 'default' as TextareaAppearance,
+    scrollbarAppearance: 'default' as ScrollbarAppearance,
     borderRadius: theme.radius,
     grammarly: false,
     variant: 300 as TextareaVariant,
@@ -30,9 +36,11 @@ const Textarea: React.FC<TextareaProps> = ({color, ...props}) => {
       appearance={defaults.appearance}
       aria-invalid={props.invalid}
       full={defaults.full}
+      scrollbarAppearance={defaults.scrollbarAppearance}
     >
       <S.ScrollbarContainer
         hideTracksWhenNotNeeded
+        scrollbarAppearance={defaults.scrollbarAppearance}
         ref={scrollContainer}
         appearance={defaults.appearance}
         renderView={scrollbarProps => (

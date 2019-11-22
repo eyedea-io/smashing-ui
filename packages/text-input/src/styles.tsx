@@ -64,8 +64,7 @@ export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
         borderRadius: radius,
         backgroundColor: 'transparent',
         boxShadow: colors.input.outline.boxShadow.default,
-        ':focus': {
-          color: colors.text.intense,
+        ':focus, :focus-within': {
           outline: 'none',
           boxShadow: colors.input.outline.boxShadow.active
         },

@@ -2,6 +2,7 @@ import {TextInputAppearanceType} from '@smashing/text-input'
 import {TextVariant} from '@smashing/typography'
 
 export type TextareaAppearance = TextInputAppearanceType
+export type ScrollbarAppearance = 'default' | 'outline'
 export type TextareaVariant = TextVariant
 
 export interface TextareaProps extends React.TextareaHTMLAttributes<{}> {
@@ -9,6 +10,11 @@ export interface TextareaProps extends React.TextareaHTMLAttributes<{}> {
    * The appearance of the Textarea.
    */
   appearance?: TextareaAppearance
+
+  /**
+   * The appearance of the textarea scrollbar
+   */
+  scrollbarAppearance?: ScrollbarAppearance
 
   /**
    * Border radius of Textarea.
