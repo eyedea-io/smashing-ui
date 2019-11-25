@@ -21,9 +21,9 @@ export type FormFieldProps = FieldProps & {
    */
   labelVariant?: LabelVariant
   /**
-   * If set to `true`, label wouldn't be rendered
+   * If set to `false`, label wouldn't be rendered. Default set to true
    */
-  withoutLabel?: boolean
+  hasLabel?: boolean
   /**
    * Width of label column. Only for labelAppearance='inline
    */

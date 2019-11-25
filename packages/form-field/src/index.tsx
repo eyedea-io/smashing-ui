@@ -27,14 +27,14 @@ export const FormField: React.FC<FormFieldProps> = ({
     labelColumnWidth,
     labelAppearance,
     alertAppearance,
-    withoutLabel,
+    hasLabel,
     ...inputProps
   } = useDefaults('formField', props, {
     labelVariant: 400 as LabelVariant,
     labelColumnWidth: '100px',
     labelAppearance: 'block' as FormFieldLabelAppearance,
     alertAppearance: 'block' as FormFieldAlertAppearance,
-    withoutLabel: false
+    hasLabel: true
   })
   const ErrorComponent = ErrorMessage || (() => null)
   const FieldComponent = Field || component || styled.DefaultInput
@@ -44,7 +44,7 @@ export const FormField: React.FC<FormFieldProps> = ({
       labelColumnWidth={labelColumnWidth}
       className={className}
     >
-      {!withoutLabel && (
+      {hasLabel && (
         <styled.Label
           variant={labelVariant}
           appearance={labelAppearance}
