@@ -3,15 +3,11 @@ import styled, {ThemeContext, css} from 'styled-components'
 import {useDefaults} from '@smashing/theme'
 import {AlertIntentType, AlertAppearanceType, AlertProps} from './types'
 import {Text, Strong} from '@smashing/typography'
-import {
-  getAlertIconForIntent,
-  getTrimColorByIntent,
-  CloseIconSvg
-} from './styles'
-
+import {getAlertIconForIntent, getTrimColorByIntent} from './styles'
+import {CloseIcon} from './close-icon'
 interface BoxProps {
-  hasTrim?: boolean
-  intent?: AlertIntentType
+  hasTrim: boolean
+  intent: AlertIntentType
   appearance: AlertAppearanceType
 }
 
@@ -79,22 +75,6 @@ const Icon = styled.div`
     height: 14px;
   }
 `
-const CloseIconWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  margin-left: auto;
-  padding: 0 ${_ => _.theme.spacing.xs};
-  pointer-events: all;
-  svg {
-    color: ${_ => _.theme.colors.text.muted};
-  }
-  &:hover {
-    cursor: pointer;
-    svg {
-      color: ${_ => _.theme.colors.text.default};
-    }
-  }
-`
 
 const Description = styled(Text)``
 
@@ -139,11 +119,7 @@ const Alert: React.FC<AlertProps> = ({
           )}
         </div>
       </BoxInner>
-      {onClickClose && (
-        <CloseIconWrapper onClick={onClickClose}>
-          <CloseIconSvg />
-        </CloseIconWrapper>
-      )}
+      <CloseIcon onClickClose={onClickClose} />
     </Box>
   )
 }
@@ -153,8 +129,7 @@ export const StyledAlert = {
   Title,
   Icon,
   Description,
-  CloseIconWrapper,
-  CloseIconSvg
+  CloseIcon
 }
 
 export {Alert, AlertProps, AlertAppearanceType}
