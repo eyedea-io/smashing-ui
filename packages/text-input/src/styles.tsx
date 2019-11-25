@@ -86,6 +86,9 @@ export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
         '&:invalid, &[aria-invalid="true"]': {
           boxShadow: colors.input.boxShadow.invalid
         },
+        '&:invalid svg, &[aria-invalid] svg': {
+          fill: colors.icon.danger
+        },
         ':focus': {
           outline: 'none',
           boxShadow: colors.input.boxShadow.active

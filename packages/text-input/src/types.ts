@@ -7,11 +7,10 @@ export type TextInputAppearanceType =
 
 export type TextInputType = 'email' | 'password' | 'tel' | 'hidden' | 'text'
 
-export type TextInputProps = React.InputHTMLAttributes<{}> & {
+export interface TextInputProps extends React.InputHTMLAttributes<{}> {
   appearance?: TextInputAppearanceType
   borderRadius?: number
   type?: TextInputType
-  suffix?: string
   innerRef?: any
   /**
    * Sets visual styling of the text area to be "invalid".
@@ -21,4 +20,34 @@ export type TextInputProps = React.InputHTMLAttributes<{}> & {
    * Make input full width.
    */
   full?: boolean
+  /**
+   * Affixes props
+   */
+  affixBefore?: React.FC | string
+  affixAfter?: React.FC | string
+  onClickBefore?: (
+    inputRef?: React.RefObject<HTMLInputElement>,
+    event?: React.MouseEvent<HTMLSpanElement, MouseEvent>
+  ) => void
+  onClickAfter?: (
+    inputRef?: React.RefObject<HTMLInputElement>,
+    event?: React.MouseEvent<HTMLSpanElement, MouseEvent>
+  ) => void
+}
+
+export interface TextInputAffixProps {
+  isBefore?: boolean
+  component: React.FC<{color: string}> | string
+  disabled?: boolean
+  height: number | string
+  inputRef: React.RefObject<HTMLInputElement>
+  invalid?: boolean
+  onClickBefore?: (
+    inputRef: React.RefObject<HTMLInputElement>,
+    event?: React.MouseEvent<HTMLSpanElement, MouseEvent>
+  ) => void
+  onClickAfter?: (
+    inputRef: React.RefObject<HTMLInputElement>,
+    event?: React.MouseEvent<HTMLSpanElement, MouseEvent>
+  ) => void
 }

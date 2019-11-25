@@ -6,10 +6,15 @@ import {
   getBorderRadiusForControlHeight,
   useDefaults
 } from '@smashing/theme'
+import {TextInputAffix} from './components/affix'
 
 const TextInput: React.FC<TextInputProps> = ({
   children,
   innerRef,
+  affixBefore,
+  affixAfter,
+  onClickBefore,
+  onClickAfter,
   ...props
 }) => {
   const defaults = useDefaults('textInput', props, {
@@ -17,18 +22,39 @@ const TextInput: React.FC<TextInputProps> = ({
     full: false,
     appearance: 'default' as TextInputAppearanceType
   })
+  const inputRef = React.useRef<HTMLInputElement>(null)
 
   return (
-    <S.StyledTextContainer ref={innerRef} {...defaults}>
-      <S.Input
+    <S.TextInputContainer ref={innerRef} {...defaults}>
+      {affixBefore && (
+        <TextInputAffix
+          isBefore
+          inputRef={inputRef}
+          component={affixBefore}
+          onClickBefore={onClickBefore}
+          {...defaults}
+        />
+      )}
+      <S.TextInput
         as="input"
         variant={getTextSizeForControlHeight(defaults.height)}
         borderRadius={getBorderRadiusForControlHeight(defaults.height)}
         color={props.disabled ? 'muted' : undefined}
         aria-invalid={props.invalid}
+        ref={inputRef}
+        affixBefore={affixBefore}
+        affixAfter={affixAfter}
         {...defaults}
       />
-    </S.StyledTextContainer>
+      {affixAfter && (
+        <TextInputAffix
+          inputRef={inputRef}
+          component={affixAfter}
+          onClickAfter={onClickAfter}
+          {...defaults}
+        />
+      )}
+    </S.TextInputContainer>
   )
 }
 
