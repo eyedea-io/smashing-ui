@@ -3,8 +3,6 @@ import {
   ToastsWrapper,
   ToastWrapperAnimated,
   ToastWrapper,
-  ToastCloseIconWrapper,
-  ToastCloseIcon,
   ToastAlert
 } from './styles'
 
@@ -14,7 +12,5 @@ export const ToastElements = {
   ToastsWrapper,
   ToastWrapperAnimated,
   ToastWrapper,
-  ToastCloseIconWrapper,
-  ToastCloseIcon,
   ToastAlert
 }

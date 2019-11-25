@@ -26,14 +26,7 @@ storiesOf('Feedback Indicators|Toaster', module)
   ))
   .add('appearance:default', () => (
     <React.Fragment>
-      <Button
-        onClick={() =>
-          toaster.success('Successful alert!', {
-            hasCloseButton: false,
-            duration: 3000
-          })
-        }
-      >
+      <Button onClick={() => toaster.success('Successful alert!')}>
         Success
       </Button>
       <Button onClick={() => toaster.notify('Notify alert!')}>Notify</Button>
@@ -89,6 +82,19 @@ storiesOf('Feedback Indicators|Toaster', module)
   .add('unique toast', () => (
     <React.Fragment>
       <Button onClick={() => toaster.success('Successful alert!', {id: 'a'})}>
+        Success
+      </Button>
+    </React.Fragment>
+  ))
+  .add('without close icon', () => (
+    <React.Fragment>
+      <Button
+        onClick={() =>
+          toaster.success('Successful alert!', {
+            hasCloseButton: false
+          })
+        }
+      >
         Success
       </Button>
     </React.Fragment>

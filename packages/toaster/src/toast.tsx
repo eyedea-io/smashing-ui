@@ -89,15 +89,11 @@ export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
           }}
         >
           <S.ToastWrapper ref={onRef} hasCloseButton={defaults.hasCloseButton}>
-            {defaults.hasCloseButton && (
-              <S.ToastCloseIconWrapper onClick={close}>
-                <S.ToastCloseIcon />
-              </S.ToastCloseIconWrapper>
-            )}
             <S.ToastAlert
               appearance={defaults.appearance}
               intent={defaults.intent}
               title={defaults.title}
+              onClickClose={defaults.hasCloseButton && close}
             >
               {children}
             </S.ToastAlert>
