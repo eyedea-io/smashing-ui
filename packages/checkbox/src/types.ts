@@ -30,6 +30,7 @@ export interface CheckboxProps {
   /**
    * Function called when state changes.
    */
+  invalid?: boolean
   onChange?: React.ChangeEventHandler<HTMLInputElement>
   innerRef?: any
 }

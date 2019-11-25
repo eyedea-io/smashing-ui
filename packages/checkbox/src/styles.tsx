@@ -2,7 +2,7 @@ import * as tinycolor from 'tinycolor2'
 import styled, {DefaultTheme} from 'styled-components'
 import {Text} from '@smashing/typography'
 import {getLinearGradientWithStates} from './helpers'
-import {CheckboxAppearanceType, StyledLabelProps} from './types'
+import {CheckboxAppearanceType, StyledLabelProps, CheckboxProps} from './types'
 
 export const S = {
   Label: styled(Text)<StyledLabelProps>`
@@ -13,7 +13,7 @@ export const S = {
     ${_ => getLabelStyle(_.appearance, _.disabled, _.checked)};
   `,
 
-  CustomCheckbox: styled.div.attrs({})<StyledLabelProps>`
+  CustomCheckbox: styled.div<StyledLabelProps>`
     width: 16px;
     height: 16px;
     display: flex;
@@ -33,7 +33,7 @@ export const S = {
 
   HiddenCheckbox: styled.input.attrs({
     type: 'checkbox'
-  })<{appearance: CheckboxAppearanceType}>`
+  })<CheckboxProps>`
     border: 0;
     clip: rect(0 0 0 0);
     height: 1px;
@@ -44,7 +44,7 @@ export const S = {
     white-space: nowrap;
     opacity: 0;
     width: 1px;
-    ${_ => getCheckboxStyle(_.appearance, _.disabled, _.checked)};
+    ${_ => getCheckboxStyle(_.appearance, _.disabled, _.checked, _.invalid)};
   `
 }
 export const getLabelStyle = (
@@ -88,9 +88,10 @@ export const getLabelStyle = (
 }
 
 export const getCheckboxStyle = (
-  appearance: CheckboxAppearanceType,
+  appearance?: CheckboxAppearanceType,
   disabled = false,
-  checked = false
+  checked = false,
+  invalid = false
 ) => (_: {theme: DefaultTheme}) => {
   const {scales, colors} = _.theme
   const disabledAppearance = {
@@ -189,6 +190,8 @@ export const getCheckboxStyle = (
     case 'outline':
       const borderColor = disabled
         ? _.theme.colors.border.muted
+        : invalid
+        ? _.theme.colors.border.danger
         : checked
         ? _.theme.colors.border.active
         : _.theme.colors.border.default
@@ -203,19 +206,21 @@ export const getCheckboxStyle = (
       }
 
     case 'toggle':
-      const indicatorSpace = disabled ? -1 : 1
+      const indicatorSpace = disabled || invalid ? -1 : 1
       const backgroundColor = checked
         ? _.theme.palette.green.base
         : _.theme.colors.text.muted
       return {
         '& + div': {
           position: 'relative' as 'relative',
-          cursor: 'pointer',
+          cursor: disabled ? 'not-allowed' : 'pointer',
           width: '40px',
           height: '24px',
-          background: disabled ? 'transparent' : backgroundColor,
+          background: disabled || invalid ? 'transparent' : backgroundColor,
           border: disabled
             ? `1px solid ${_.theme.colors.border.muted}`
+            : invalid
+            ? `1px solid ${_.theme.colors.border.danger}`
             : `1px solid ${backgroundColor}`,
           display: 'block',
           borderRadius: '100px',
@@ -242,6 +247,8 @@ export const getCheckboxStyle = (
             transform: `translateX(${checked ? -100 : 0}%);`,
             border: disabled
               ? `1px solid ${_.theme.colors.border.muted}`
+              : invalid
+              ? `1px solid ${_.theme.colors.border.danger}`
               : `1px solid ${_.theme.colors.background.default}`
           }
         }

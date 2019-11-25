@@ -42,6 +42,7 @@ const CheckboxFC: React.FC<CheckboxProps> = ({
         <S.CustomCheckbox
           appearance={defaults.appearance}
           checked={props.checked}
+          aria-invalid={props.invalid}
           {...props}
         >
           <CheckIcon />
@@ -53,6 +54,7 @@ const CheckboxFC: React.FC<CheckboxProps> = ({
           color={
             props.disabled ? 'muted' : props.checked ? 'intense' : 'default'
           }
+          intent={props.invalid ? 'danger' : undefined}
         >
           {children}
         </Text>
