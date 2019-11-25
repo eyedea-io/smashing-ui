@@ -21,7 +21,7 @@ export type FormFieldProps = FieldProps & {
    */
   labelVariant?: LabelVariant
   /**
-   * Label shouldn't be render
+   * If set to `true`, label wouldn't be rendered
    */
   withoutLabel?: boolean
   /**
