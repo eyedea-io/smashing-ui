@@ -63,8 +63,8 @@ export {TextInput, TextInputProps, TextInputAppearanceType}
 export {getTextInputStyle} from './styles'
 
 export const TextInputElements = {
-  Container: S.StyledTextContainer,
-  Input: S.Input
+  Container: S.TextInputContainer,
+  Input: S.TextInput
 }
 
 declare module 'styled-components' {
