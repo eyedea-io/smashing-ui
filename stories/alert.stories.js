@@ -14,8 +14,7 @@ storiesOf('Feedback Indicators|Alert', module)
         defaults: {
           alert: {
             hasTrim: true,
-            hasIcon: true,
-            hasCloseIcon: true
+            hasIcon: true
           }
         }
       }}
@@ -160,6 +159,18 @@ storiesOf('Feedback Indicators|Alert', module)
   .add('no icon', () => (
     <React.Fragment>
       <Alert title="Your account is active" hasIcon={false}>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, sapiente
+        dolorem corporis.
+      </Alert>
+    </React.Fragment>
+  ))
+  .add('with close icon', () => (
+    <React.Fragment>
+      <Alert
+        title="Your account is active"
+        hasIcon={false}
+        onClickClose={() => alert('Need close function')}
+      >
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, sapiente
         dolorem corporis.
       </Alert>

@@ -14,10 +14,6 @@ interface BoxProps {
   intent?: AlertIntentType
   appearance: AlertAppearanceType
 }
-interface BoxInnerProps {
-  appearance: AlertAppearanceType
-  hasCloseIcon: boolean
-}
 
 const Box = styled.div.attrs({})<BoxProps>`
   display: flex;
@@ -52,12 +48,19 @@ const Box = styled.div.attrs({})<BoxProps>`
       }
     `}
 `
+
+interface BoxInnerProps {
+  appearance: AlertAppearanceType
+  hasIcon: boolean
+  onClickClose?: () => void
+}
+
 const BoxInner = styled.div<BoxInnerProps>`
   display: flex;
   ${_ =>
     ['card', 'default'].includes(_.appearance) &&
     css`
-      padding: ${_.hasCloseIcon ? '12px 0 12px 16px' : '12px 16px'};
+      padding: ${_.onClickClose ? '12px 0 12px 16px' : '12px 16px'};
     `}
 `
 
@@ -76,11 +79,12 @@ const Icon = styled.div`
     height: 14px;
   }
 `
-const CloseIcon = styled.div`
+const CloseIconWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-left: auto;
   padding: 0 ${_ => _.theme.spacing.xs};
+  pointer-events: all;
   svg {
     color: ${_ => _.theme.colors.text.muted};
   }
@@ -98,12 +102,12 @@ const Alert: React.FC<AlertProps> = ({
   children,
   title,
   className,
+  onClickClose,
   ...props
 }) => {
   const defaults = useDefaults('alert', props, {
     hasTrim: true,
     hasIcon: true,
-    hasCloseIcon: false,
     intent: 'info' as AlertIntentType,
     appearance: 'default' as AlertAppearanceType
   })
@@ -116,10 +120,7 @@ const Alert: React.FC<AlertProps> = ({
       hasTrim={defaults.hasTrim}
       className={className}
     >
-      <BoxInner
-        appearance={defaults.appearance}
-        hasCloseIcon={defaults.hasCloseIcon}
-      >
+      <BoxInner appearance={defaults.appearance} hasIcon={defaults.hasIcon}>
         {defaults.hasIcon && (
           <Icon>{getAlertIconForIntent(defaults.intent)({theme})}</Icon>
         )}
@@ -138,16 +139,23 @@ const Alert: React.FC<AlertProps> = ({
           )}
         </div>
       </BoxInner>
-      {defaults.hasCloseIcon && (
-        <CloseIcon>
+      {onClickClose && (
+        <CloseIconWrapper onClick={onClickClose}>
           <CloseIconSvg />
-        </CloseIcon>
+        </CloseIconWrapper>
       )}
     </Box>
   )
 }
 
-export const StyledAlert = {Box, Title, Icon, Description}
+export const StyledAlert = {
+  Box,
+  Title,
+  Icon,
+  Description,
+  CloseIconWrapper,
+  CloseIconSvg
+}
 
 export {Alert, AlertProps, AlertAppearanceType}
 
@@ -159,7 +167,6 @@ declare module 'styled-components' {
         appearance?: AlertAppearanceType
         hasTrim: boolean
         hasIcon: boolean
-        hasCloseIcon: boolean
       }
     }> {}
 }
