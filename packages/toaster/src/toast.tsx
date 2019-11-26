@@ -85,7 +85,7 @@ export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
           style={{
             height,
             zIndex: defaults.zIndex,
-            marginBottom: isShown ? 0 : -height
+            marginBottom: isShown ? '10px' : -height
           }}
         >
           <S.ToastWrapper ref={onRef} hasCloseButton={defaults.hasCloseButton}>
