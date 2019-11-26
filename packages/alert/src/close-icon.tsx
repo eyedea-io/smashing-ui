@@ -6,6 +6,7 @@ const CloseIconWrapper = styled.div`
   align-items: center;
   margin-left: auto;
   pointer-events: all;
+  box-sizing: content-box;
   svg {
     color: ${_ => _.theme.colors.text.muted};
     padding: 0 ${_ => _.theme.spacing.xs};
