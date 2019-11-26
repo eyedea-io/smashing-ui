@@ -12,7 +12,7 @@ export const TabList = styled.ul<
   margin: 0;
   padding: 0;
   max-width: 100%;
-  ${_ => getTabListStyle(_.appearance, _.isOpen, _.disabled)}
+  ${_ => getTabListStyle(_.appearance, _.isOpen, _.disabled, _.invalid)}
   ${_ => {
     const elemLiStyle = {}
     if (!_.isOpen && _.visibleItemsCount) {
@@ -53,7 +53,10 @@ export const Tab = styled.li<TabProps>`
   cursor: pointer;
 
   strong {
-    color: ${_ => !_.isSelected && _.theme.colors.text.muted};
+    color: ${_ =>
+      _.invalid
+        ? _.theme.colors.text.danger
+        : !_.isSelected && _.theme.colors.text.muted};
   }
 
   svg path {
@@ -61,9 +64,10 @@ export const Tab = styled.li<TabProps>`
   }
 
   &:hover > * {
-    color: ${_ => _.theme.colors.text.selected};
+    color: ${_ =>
+      _.invalid ? _.theme.colors.text.danger : _.theme.colors.text.selected};
   }
-  ${_ => getTabStyle(_.appearance, _.isSelected)}
+  ${_ => getTabStyle(_.appearance, _.isSelected, _.invalid)}
 `
 
 export const MoreButton = styled.button<{isOpen: boolean}>`
@@ -72,7 +76,7 @@ export const MoreButton = styled.button<{isOpen: boolean}>`
   cursor: pointer;
   position: absolute;
   width: inherit;
-  height: 52px;
+  height: 45px;
   top: 0;
   right: 0;
   svg {
@@ -83,7 +87,10 @@ export const MoreButton = styled.button<{isOpen: boolean}>`
   }
 `
 
-export const MoreButtonContainer = styled.li<{isOpen?: boolean}>`
+export const MoreButtonContainer = styled.li<{
+  isOpen?: boolean
+  invalid?: boolean
+}>`
   ${_ => _.isOpen && {border: 'none'}}
   width: 50px;
 `
@@ -91,31 +98,84 @@ export const MoreButtonContainer = styled.li<{isOpen?: boolean}>`
 const getTabListStyle = (
   appearance?: TabsAppearanceType,
   isOpen?: boolean,
-  disabled?: boolean
+  disabled?: boolean,
+  invalid?: boolean
 ) => (_: {theme: DefaultTheme}) => {
   switch (appearance) {
     case 'flat':
       return {}
     case 'outline':
-      return {
-        border: `1px solid ${
-          disabled ? _.theme.colors.border.muted : _.theme.colors.border.default
-        }`,
-        ...(disabled && {
-          li: {
-            cursor: disabled ? 'not-allowed' : 'pointer',
+      const disabledStyle = {
+        [Tab]: {
+          cursor: disabled ? 'not-allowed' : 'pointer',
+          '&:hover strong, strong': {
             color: _.theme.colors.text.muted
+          },
+          '&:hover:after': {
+            content: 'none'
+          },
+          '&:after': {
+            backgroundColor: _.theme.colors.text.muted
           }
-        }),
-        color: _.theme.colors.text.default,
-        borderRadius: '6px',
+        },
+        [MoreButton]: {
+          cursor: 'not-allowed'
+        }
+      }
+
+      const notDisabledStyle = {
+        '&:hover': {
+          borderColor: invalid
+            ? _.theme.colors.border.danger
+            : _.theme.colors.border.active,
+          [`${Tab}:not(:hover)`]: {
+            '&:after': {
+              content: 'none'
+            },
+            strong: {
+              color: invalid
+                ? _.theme.colors.text.danger
+                : _.theme.colors.text.muted
+            }
+          }
+        }
+      }
+
+      let borderColor = _.theme.colors.border.default
+      if (disabled) {
+        borderColor = _.theme.colors.border.muted
+      } else if (isOpen) {
+        borderColor = _.theme.colors.border.active
+      }
+      if (invalid) {
+        borderColor = _.theme.colors.border.danger
+      }
+
+      return {
+        border: `1px solid ${borderColor}`,
+        ...(disabled ? disabledStyle : notDisabledStyle),
+        strong: {
+          transition: 'color 0.25s ease',
+          color: _.theme.colors.text.default
+        },
+        borderRadius: _.theme.radius,
         justifyContent: 'space-between',
         'li:not(:last-child)': {
           borderRight: isOpen
             ? 'none'
-            : `1px solid ${_.theme.colors.border.default}`,
+            : `1px solid ${
+                invalid
+                  ? _.theme.colors.border.danger
+                  : _.theme.colors.border.muted
+              }`
+        },
+        'li:not(:nth-last-child(-n + 2))': {
           borderBottom: isOpen
-            ? `1px solid ${_.theme.colors.border.default}`
+            ? `1px solid ${
+                invalid
+                  ? _.theme.colors.border.danger
+                  : _.theme.colors.border.default
+              }`
             : 'none'
         }
       }
@@ -129,19 +189,37 @@ const getTabListStyle = (
 
 const getTabStyle = (
   appearance?: TabsAppearanceType,
-  isSelected?: boolean
+  isSelected?: boolean,
+  invalid?: boolean
 ) => (_: {theme: DefaultTheme}) => {
   switch (appearance) {
     case 'flat':
       return {}
     case 'outline':
       return {
+        padding: _.theme.spacing.xs,
         whiteSpace: 'nowrap' as 'nowrap',
         flex: 1,
         textAlign: 'center' as 'center',
-        background: isSelected ? _.theme.colors.text.selected : 'transparent',
-        ':hover': {
-          background: _.theme.colors.background.blueTint
+        position: 'relative' as 'relative',
+        '&:after': {
+          content: isSelected ? '""' : 'none',
+          position: 'absolute' as 'absolute',
+          left: _.theme.spacing.xxs,
+          right: _.theme.spacing.xxs,
+          bottom: 0,
+          height: '2px',
+          backgroundColor: invalid
+            ? _.theme.colors.text.danger
+            : _.theme.colors.text.intense
+        },
+        '&:hover': {
+          strong: {
+            color: !invalid ? _.theme.colors.text.intense : undefined
+          },
+          '&:after': {
+            content: '""'
+          }
         }
       }
     case 'default':

@@ -7,53 +7,67 @@ import {getValueWithUnit} from '@smashing/theme'
 type InputProps = TextInputProps &
   Required<Pick<TextInputProps, 'height' | 'appearance' | 'full'>>
 
-export const Input = styled(Text)<InputProps>`
+export const TextInputContainer = styled.div<
+  {
+    height: number | string
+  } & InputProps
+>`
+  position: relative;
+  ${_ => ({
+    width: _.width ? getValueWithUnit(_.width) : _.full ? '100%' : 'fit-content'
+  })}
+`
+
+export const TextInput = styled(Text)<InputProps>`
   border: none;
   border-radius: ${_ => _.borderRadius}px;
   box-sizing: border-box;
-
+  ${_ => _.invalid && `color: ${_.theme.colors.text.danger};`}
   ${_ => {
-    const height =
-      typeof _.height === 'string' ? parseInt(_.height, 10) : _.height
-
-    let width = _.width
+    const width = _.width
       ? getValueWithUnit(_.width)
       : _.full
       ? '100%'
       : undefined
 
+    const height =
+      typeof _.height === 'string' ? parseInt(_.height, 10) : _.height
+
+    const padding = parseInt(_.theme.spacing.sm.slice(0, -2)) | 16
+    const calcPadding = affix =>
+      affix ? `${padding * 2 + height / 2}px ` : `${Math.round(height / 3.2)}px`
+
     return {
       width,
       height: `${height}px`,
-      paddingLeft: `${Math.round(height / 3.2)}px`,
-      paddingRight: `${Math.round(height / 3.2)}px`
+      paddingLeft: calcPadding(_.affixBefore),
+      paddingRight: calcPadding(_.affixAfter)
     }
   }}
   ${_ => getTextInputStyle(_.appearance)};
 `
 
-export const StyledTextContainer = styled.div<{
-  height: number | string
-  suffix?: string
+export const TextInputAffix = styled(Text)<{
+  height: number
+  isBefore?: boolean
+  isClickable?: boolean
+  isString?: boolean
+  invalid?: boolean
 }>`
-  position: relative;
-  display: inline-block;
-  width: fit-content;
-  height: fit-content;
-  ${_ => {
-    const height =
-      typeof _.height === 'string' ? parseInt(_.height, 10) : _.height
-    return (
-      _.suffix && {
-        '&:after': {
-          content: `'${_.suffix}'`,
-          position: 'absolute',
-          right: `${Math.round(height / 3.2)}px`,
-          top: '50%',
-          transform: 'translate(0,-50%)',
-          color: _.theme.colors.text.muted
-        }
-      }
-    )
-  }}
+  position: absolute;
+  top: 0;
+  box-sizing: border-box;
+  height: ${_ => _.height}px;
+  line-height: ${_ => _.height}px;
+  color: ${_ =>
+    _.invalid ? _.theme.colors.text.danger : _.theme.colors.text.muted};
+  ${_ => (_.isBefore ? 'left: 0;' : 'right: 0;')}
+  ${_ => _.isString && `padding: 0 ${_.theme.spacing.sm};`}
+
+  svg {
+    width: calc(${_ => _.height}px / 2);
+    height: ${_ => _.height}px;
+    padding: 0 ${_ => _.theme.spacing.sm};
+    ${_ => _.isClickable && 'cursor: pointer;'}
+  }
 `

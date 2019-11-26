@@ -215,6 +215,21 @@ storiesOf('Form|Checkbox', module)
       )}
     </Wrapper>
   ))
+  .add('appearance:outline invalid', () => (
+    <Wrapper>
+      {({isChecked, setIsChecked}) => (
+        <Checkbox
+          invalid
+          appearance="outline"
+          onChange={() => setIsChecked(!isChecked)}
+          checked={!isChecked}
+        >
+          By clicking “Sign up” I agree that I have read and accepted the Terms
+          and conditions.
+        </Checkbox>
+      )}
+    </Wrapper>
+  ))
   .add('appearance:toggle default', () => (
     <Wrapper>
       {({isChecked, setIsChecked}) => (
@@ -247,6 +262,16 @@ storiesOf('Form|Checkbox', module)
     <Wrapper>
       {() => (
         <Checkbox disabled appearance="toggle">
+          By clicking “Sign up” I agree that I have read and accepted the Terms
+          and conditions.
+        </Checkbox>
+      )}
+    </Wrapper>
+  ))
+  .add('appearance:toggle invalid', () => (
+    <Wrapper>
+      {() => (
+        <Checkbox invalid appearance="toggle">
           By clicking “Sign up” I agree that I have read and accepted the Terms
           and conditions.
         </Checkbox>
