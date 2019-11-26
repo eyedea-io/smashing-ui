@@ -122,6 +122,9 @@ declare module 'styled-components' {
   export interface SmashingSpiderChartDefaults {}
   export interface SmashingRadialProgressDefaults {}
   export interface SmashingSideSheetDefaults {}
+  export interface SmashingTableRowDefaults {}
+  export interface SmashingTableHeadDefaults {}
+  export interface SmashingTableCellDefaults {}
   export interface SmashingMenuDefaults {}
   export interface SmashingSelectMenuDefaults {}
   export interface SmashingDefaults
@@ -140,6 +143,9 @@ declare module 'styled-components' {
       SmashingSideSheetDefaults,
       SmashingSpinnerDefaults,
       SmashingSelectDefaults,
+      SmashingTableRowDefaults,
+      SmashingTableHeadDefaults,
+      SmashingTableCellDefaults,
       SmashingMenuDefaults,
       SmashingSelectMenuDefaults,
       SmashingAvatarDefaults {}
