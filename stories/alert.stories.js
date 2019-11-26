@@ -169,7 +169,7 @@ storiesOf('Feedback Indicators|Alert', module)
       <Alert
         title="Your account is active"
         hasIcon={false}
-        onClickClose={() => alert('Need close function')}
+        closeOnClick={() => alert('Need close function')}
       >
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, sapiente
         dolorem corporis.

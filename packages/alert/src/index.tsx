@@ -49,7 +49,7 @@ const Box = styled.div.attrs({})<BoxProps>`
 interface BoxInnerProps {
   appearance: AlertAppearanceType
   hasIcon: boolean
-  onClickClose?: () => void
+  closeOnClick?: () => void
 }
 
 const BoxInner = styled.div<BoxInnerProps>`
@@ -59,7 +59,7 @@ const BoxInner = styled.div<BoxInnerProps>`
     css`
       padding: 12px 16px;
     `}
-  ${_ => _.onClickClose && 'padding-right: 0;'}
+  ${_ => _.closeOnClick && 'padding-right: 0;'}
 `
 
 const Title = styled(Strong)`
@@ -84,7 +84,7 @@ const Alert: React.FC<AlertProps> = ({
   children,
   title,
   className,
-  onClickClose,
+  closeOnClick,
   ...props
 }) => {
   const defaults = useDefaults('alert', props, {
@@ -105,7 +105,7 @@ const Alert: React.FC<AlertProps> = ({
       <BoxInner
         appearance={defaults.appearance}
         hasIcon={defaults.hasIcon}
-        onClickClose={onClickClose}
+        closeOnClick={closeOnClick}
       >
         {defaults.hasIcon && (
           <Icon>{getAlertIconForIntent(defaults.intent)({theme})}</Icon>
@@ -125,7 +125,7 @@ const Alert: React.FC<AlertProps> = ({
           )}
         </div>
       </BoxInner>
-      <CloseIcon onClickClose={onClickClose} />
+      <CloseIcon closeOnClick={closeOnClick} />
     </Box>
   )
 }
