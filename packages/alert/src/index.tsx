@@ -5,6 +5,7 @@ import {AlertIntentType, AlertAppearanceType, AlertProps} from './types'
 import {Text, Strong} from '@smashing/typography'
 import {getAlertIconForIntent, getTrimColorByIntent} from './styles'
 import {CloseIcon} from './close-icon'
+
 interface BoxProps {
   hasTrim: boolean
   intent: AlertIntentType
@@ -56,8 +57,9 @@ const BoxInner = styled.div<BoxInnerProps>`
   ${_ =>
     ['card', 'default'].includes(_.appearance) &&
     css`
-      padding: ${_.onClickClose ? '12px 0 12px 16px' : '12px 16px'};
+      padding: 12px 16px;
     `}
+  ${_ => _.onClickClose && 'padding-right: 0;'}
 `
 
 const Title = styled(Strong)`
@@ -100,7 +102,11 @@ const Alert: React.FC<AlertProps> = ({
       hasTrim={defaults.hasTrim}
       className={className}
     >
-      <BoxInner appearance={defaults.appearance} hasIcon={defaults.hasIcon}>
+      <BoxInner
+        appearance={defaults.appearance}
+        hasIcon={defaults.hasIcon}
+        onClickClose={onClickClose}
+      >
         {defaults.hasIcon && (
           <Icon>{getAlertIconForIntent(defaults.intent)({theme})}</Icon>
         )}
@@ -126,6 +132,7 @@ const Alert: React.FC<AlertProps> = ({
 
 export const StyledAlert = {
   Box,
+  BoxInner,
   Title,
   Icon,
   Description,
