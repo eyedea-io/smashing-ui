@@ -18,7 +18,15 @@ export const theme: DefaultTheme = {
 
 export {constants}
 
-export type OptionalTheme = O.Optional<DefaultTheme, keyof DefaultTheme, 'deep'>
+type DeepPartial<T> = {
+  [P in keyof T]?: T[P] extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T[P] extends ReadonlyArray<infer U>
+    ? ReadonlyArray<DeepPartial<U>>
+    : DeepPartial<T[P]>
+}
+
+export type OptionalTheme = DeepPartial<DefaultTheme>
 export type RequiredTheme = O.Required<DefaultTheme, keyof DefaultTheme, 'deep'>
 
 /**
@@ -61,11 +69,28 @@ export const SmashingThemeModifier = ({
   )
 }
 
+const useTheme = () => React.useContext(ThemeContext)
+
+const getValueWithUnit = (value: string | number) =>
+  typeof value === 'number' ? `${value}px` : value
+
+/**
+ * Call function if it's defined
+ */
+const safeInvoke = (fn, ...args) => {
+  if (typeof fn === 'function') {
+    return fn(...args)
+  }
+}
+
 export {
+  safeInvoke,
+  useTheme,
   themedProperty,
   useDefaults,
   getTextSizeForControlHeight,
-  getBorderRadiusForControlHeight
+  getBorderRadiusForControlHeight,
+  getValueWithUnit
 }
 
 // Helper that allows interface to extend type
@@ -84,8 +109,10 @@ declare module 'styled-components' {
   export interface SmashingButtonDefaults {}
   export interface SmashingCheckboxDefaults {}
   export interface SmashingTextInputDefaults {}
+  export interface SmashingTextareaDefaults {}
   export interface SmashingAlertDefaults {}
   export interface SmashingSelectDefaults {}
+  export interface SmashingFormFieldDefaults {}
   export interface SmashingAvatarDefaults {}
   export interface SmashingSpinnerDefaults {}
   export interface SmashingBarChartDefaults {}
@@ -98,16 +125,20 @@ declare module 'styled-components' {
   export interface SmashingTableRowDefaults {}
   export interface SmashingTableHeadDefaults {}
   export interface SmashingTableCellDefaults {}
+  export interface SmashingMenuDefaults {}
+  export interface SmashingSelectMenuDefaults {}
   export interface SmashingDefaults
     extends SmashingButtonDefaults,
       SmashingCheckboxDefaults,
       SmashingTextInputDefaults,
+      SmashingTextareaDefaults,
       SmashingAlertDefaults,
       SmashingBarChartDefaults,
       SmashingListDefaults,
       SmashingPieChartDefaults,
       SmashingSpiderChartDefaults,
       SmashingRadialProgressDefaults,
+      SmashingFormFieldDefaults,
       SmashingProgressBarChartDefaults,
       SmashingSideSheetDefaults,
       SmashingSpinnerDefaults,
@@ -115,6 +146,8 @@ declare module 'styled-components' {
       SmashingTableRowDefaults,
       SmashingTableHeadDefaults,
       SmashingTableCellDefaults,
+      SmashingMenuDefaults,
+      SmashingSelectMenuDefaults,
       SmashingAvatarDefaults {}
   export interface DefaultTheme {
     radius: string

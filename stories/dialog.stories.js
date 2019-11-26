@@ -18,7 +18,7 @@ const Wrapper = ({children}) => {
   )
 }
 
-storiesOf('Core|Dialog', module)
+storiesOf('Overlays|Dialog', module)
   .addDecorator(story => (
     <SmashingThemeProvider theme={{}}>{story()}</SmashingThemeProvider>
   ))

@@ -1,27 +1,46 @@
 import * as tinycolor from 'tinycolor2'
 import {DefaultTheme} from 'styled-components'
 import {getLinearGradientWithStates} from './helpers'
+import {ButtonIntentType, ButtonAppearanceType} from './types'
 
-export type IntentType = 'success' | 'warning' | 'info' | 'danger' | 'none'
-export type AppearanceType =
-  | 'flat'
-  | 'primary'
-  | 'minimal'
-  | 'default'
-  | 'subtle'
-
-export const getButtonStyle = (
-  appearance?: AppearanceType,
-  intent: IntentType = 'none'
+export const getButtonTextColor = (
+  intent: ButtonIntentType = 'none',
+  appearance?: ButtonAppearanceType,
+  disabled?: boolean
 ) => (_: {theme: DefaultTheme}) => {
   const {scales, colors} = _.theme
+  if (disabled) {
+    return scales.neutral.N7
+  }
+  switch (appearance) {
+    case 'primary':
+      return 'white'
+    case 'flat':
+    case 'minimal':
+    case 'subtle':
+      const theme =
+        colors.button[appearance][intent] || colors.button[appearance].info
+      return theme.color
+    case 'default':
+    default:
+      return colors.text[intent]
+  }
+}
+
+export const getButtonStyle = (
+  appearance?: ButtonAppearanceType,
+  intent: ButtonIntentType = 'none'
+) => (_: {theme: DefaultTheme}) => {
+  const {scales, colors, radius} = _.theme
   const disabled = {
     opacity: 0.8,
     backgroundImage: 'none',
     backgroundColor: scales.neutral.N2A,
     boxShadow: 'none',
-    color: scales.neutral.N7A
+    color: getButtonTextColor(intent, appearance, true)({theme: _.theme})
   }
+
+  const textColor = getButtonTextColor(intent, appearance)({theme: _.theme})
 
   switch (appearance) {
     case 'primary':
@@ -40,7 +59,7 @@ export const getButtonStyle = (
       }
 
       return {
-        color: 'white',
+        color: textColor,
         backgroundColor: primary.backgroundImage.startColor,
         backgroundImage: primary.backgroundImage.base,
         fontWeight: 600,
@@ -65,7 +84,7 @@ export const getButtonStyle = (
         colors.button[appearance][intent] || colors.button[appearance].info
       const backgroundIsTransparent = theme.backgroundColor === 'transparent'
       const flat = {
-        color: theme.color,
+        color: textColor,
         backgroundColor: {
           base: theme.backgroundColor,
           hover: backgroundIsTransparent
@@ -104,10 +123,40 @@ export const getButtonStyle = (
         },
         ':disabled': disabled
       }
+    case 'outline':
+      const {outline} = _.theme.colors.button
+      const boxShadow = (state: keyof typeof outline.borderColor) =>
+        `inset 0 0 0 ${outline.borderWidth}px ${outline.borderColor[state]}`
+
+      return {
+        backgroundColor: 'transparent',
+        backgroundImage: 'none',
+        borderRadius: radius,
+        boxShadow: boxShadow('default'),
+        ':hover': {
+          boxShadow: boxShadow('hover')
+        },
+        ':focus': {
+          outline: 'none',
+          boxShadow: boxShadow('focus')
+        },
+        ':active': {
+          boxShadow: boxShadow('active')
+        },
+        '&[aria-invalid="true"]': {
+          color: colors.text.danger,
+          boxShadow: boxShadow('invalid')
+        },
+        ':disabled': {
+          cursor: 'default',
+          boxShadow: boxShadow('disabled'),
+          color: colors.text.muted
+        }
+      }
     case 'default':
     default:
       return {
-        color: colors.text[intent],
+        color: textColor,
         backgroundColor: 'white',
         fontWeight: 600,
         backgroundImage: 'linear-gradient(to bottom, #FFFFFF, #F4F5F7)',
@@ -127,6 +176,7 @@ export const getButtonStyle = (
         },
         '&[aria-expanded="true"]': {
           backgroundImage: 'none',
+          color: colors.text.intense,
           backgroundColor: scales.blue.B3A
         },
         ':disabled': disabled

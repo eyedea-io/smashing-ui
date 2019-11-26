@@ -4,6 +4,7 @@ import fills from './fills'
 
 const colors = {
   background: {
+    default: 'white',
     white: 'white',
     tint1: scales.neutral.N1,
     tint2: scales.neutral.N2,
@@ -20,12 +21,15 @@ const colors = {
 
   border: {
     default: scales.neutral.N4,
+    active: scales.neutral.N5,
+    danger: palette.red.dark,
     muted: scales.neutral.N3
   },
 
   text: {
     muted: scales.neutral.N6,
     default: scales.neutral.N8,
+    inactive: scales.neutral.N7,
     intense: scales.neutral.N10,
     selected: palette.blue.base,
 
@@ -101,6 +105,17 @@ const colors = {
       warning: fills.minimal.orange,
       danger: fills.minimal.red,
       info: fills.minimal.blue
+    },
+    outline: {
+      borderWidth: 1,
+      borderColor: {
+        default: scales.neutral.N5A,
+        hover: scales.neutral.N6A,
+        focus: scales.neutral.N7A,
+        active: scales.neutral.N7A,
+        invalid: palette.red.base,
+        disabled: scales.neutral.N2A
+      }
     }
   },
 
@@ -117,7 +132,8 @@ const colors = {
         backgroundColor: '#116AB8',
         boxShadow: `inset 0px 2px 4px ${scales.neutral.N6A}`
       }
-    }
+    },
+    outline: fills.minimal.blue
   },
 
   overlay: {
@@ -136,6 +152,23 @@ const colors = {
       greyLabels: '#C5C5DB',
       topIsResult: '#47B881',
       restIsResult: '#EC4C47'
+    }
+  },
+
+  input: {
+    outline: {
+      boxShadow: {
+        default: `inset 0 0 0 1px ${scales.neutral.N5A}}`,
+        active: `inset 0 0 0 1px ${scales.neutral.N7A}`,
+        invalid: `inset 0 0 0 1px ${palette.red.base}`,
+        disabled: `inset 0 0 0 1px ${scales.neutral.N2A}`
+      }
+    },
+    boxShadow: {
+      default: `inset 0 0 0 1px ${scales.neutral.N5A}, inset 0 1px 2px ${scales.neutral.N4A}`,
+      active: `inset 0 0 2px ${scales.neutral.N4A}, inset 0 0 0 1px ${scales.blue.B7}, 0 0 0 3px ${scales.blue.B4A}`,
+      invalid: `inset 0 0 0 1px ${palette.red.base}, inset 0 1px 2px ${scales.neutral.N4A}`,
+      disabled: `inset 0 0 0 1px ${scales.neutral.N4A}`
     }
   }
 }

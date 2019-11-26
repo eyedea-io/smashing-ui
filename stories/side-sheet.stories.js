@@ -4,21 +4,23 @@ import {Button} from '@smashing/button'
 import {SideSheet} from '@smashing/side-sheet'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
+import {Menu} from '@smashing/menu'
 
 addDecorator(withA11y)
 
 const Wrapper = ({children}) => {
   const [isShown, setIsShown] = useState(false)
+  const [selected, setSelected] = useState(null)
 
   return (
     <div>
-      {children({setIsShown, isShown})}
+      {children({setIsShown, isShown, selected, setSelected})}
       <Button onClick={() => setIsShown(true)}>Show Side Sheet</Button>
     </div>
   )
 }
 
-storiesOf('Core|Side Sheet', module)
+storiesOf('Overlays|Side Sheet', module)
   .addDecorator(story => (
     <SmashingThemeProvider theme={{}}>{story()}</SmashingThemeProvider>
   ))
@@ -67,17 +69,19 @@ storiesOf('Core|Side Sheet', module)
     </Wrapper>
   ))
   .add('position:left', () => (
-    <Wrapper>
-      {({setIsShown, isShown}) => (
-        <SideSheet
-          isShown={isShown}
-          onCloseComplete={() => setIsShown(false)}
-          position="bottom"
-        >
-          Hello World!
-        </SideSheet>
-      )}
-    </Wrapper>
+    <>
+      <Wrapper>
+        {({setIsShown, isShown}) => (
+          <SideSheet
+            isShown={isShown}
+            onCloseComplete={() => setIsShown(false)}
+            position="bottom"
+          >
+            Hello World!
+          </SideSheet>
+        )}
+      </Wrapper>
+    </>
   ))
   .add('hide closing button', () => (
     <Wrapper>
@@ -86,14 +90,10 @@ storiesOf('Core|Side Sheet', module)
           isShown={isShown}
           onCloseComplete={() => setIsShown(false)}
           isClosingButtonVisible={false}
-          containerProps={{
-            display: 'flex',
-            flex: '1',
-            flexDirection: 'column'
-          }}
+          autofocus={false}
+          position="left"
         >
-          {' '}
-          Hello World!
+          <div tabIndex={0}>Hello</div>
         </SideSheet>
       )}
     </Wrapper>

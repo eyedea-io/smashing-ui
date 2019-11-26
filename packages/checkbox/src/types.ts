@@ -1,4 +1,9 @@
-export type CheckboxAppearanceType = 'primary' | 'minimal' | 'card'
+export type CheckboxAppearanceType =
+  | 'primary'
+  | 'minimal'
+  | 'card'
+  | 'outline'
+  | 'toggle'
 
 export interface CheckboxProps {
   /**
@@ -11,7 +16,7 @@ export interface CheckboxProps {
   name?: string
   /**
    * Appearance of the checkbox.
-   * Can be "primary", "minimal" or "card".
+   * Can be "primary", "minimal", "card", "outline" or "toggle"
    */
   appearance?: CheckboxAppearanceType
   /**
@@ -25,7 +30,9 @@ export interface CheckboxProps {
   /**
    * Function called when state changes.
    */
+  invalid?: boolean
   onChange?: React.ChangeEventHandler<HTMLInputElement>
+  innerRef?: any
 }
 
 export type StyledLabelProps = CheckboxProps &

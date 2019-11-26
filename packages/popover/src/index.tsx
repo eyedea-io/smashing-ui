@@ -2,7 +2,10 @@ import * as React from 'react'
 import {Positioner} from '@smashing/positioner'
 import {Tooltip} from '@smashing/tooltip'
 import {constants} from '@smashing/theme'
+import {Portal} from '@smashing/portal'
 import styled from 'styled-components'
+
+const MAX_Z_INDEX = '2147483638'
 
 const {position: Position} = constants
 export type Position =
@@ -29,7 +32,7 @@ export interface PopoverProps {
   /**
    * The content of the Popover.
    */
-  content: React.ReactNode
+  content: React.ReactNode | ((props: {close: () => void}) => React.ReactNode)
 
   /**
    * The target button of the Popover.
@@ -58,6 +61,11 @@ export interface PopoverProps {
    * The min height of the Popover card.
    */
   minHeight?: number | string
+
+  /**
+   * The height of the Popover card.
+   */
+  height?: number | string
 
   /**
    * Properties passed through to the Popover card.
@@ -103,6 +111,35 @@ export interface PopoverProps {
    * Custom styles
    */
   style?: React.CSSProperties
+
+  /**
+   * When true, the Popover will render tinted overlay background under the target and popover wrapper
+   */
+  overlay?: boolean
+
+  /**
+   * When true and overlay is enabled, Popover's target element will be above overlay
+   */
+  elevate?: boolean
+
+  /**
+   * Function that will be called when the enter transition is started.
+   */
+  onOpenStarted?: () => void
+
+  /**
+   * Class name provided to the popup wrapper
+   */
+  className?: string
+  /**
+   * Type of open/close animation
+   */
+  transitionType?: 'scale' | 'expand'
+
+  /**
+   * If set to true, popover width will match target size
+   */
+  matchTargetWidth?: boolean
 }
 
 const Target = (props: {
@@ -177,11 +214,27 @@ const Target = (props: {
 }
 
 const S = {
-  Popup: styled.div`
+  Popup: styled.div<PopoverProps & {popupWidth?: number}>`
     ${_ => _.theme.elevation.dropdown};
     border-radius: ${_ => _.theme.radius};
     overflow: hidden;
-    min-width: 200px;
+    min-width: ${_ => _.minWidth}px;
+    min-height: ${_ => _.minHeight}px;
+    ${_ => ({
+      height: _.height
+    })}
+    ${_ => _.popupWidth && `width: ${_.popupWidth}px;`}
+  `,
+  Overlay: styled.div<{isShown: boolean}>`
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: ${_ => _.theme.colors.overlay.default};
+    pointer-events: none;
+    transition: opacity 0.12s linear;
+    opacity: ${_ => (_.isShown ? '1' : '0')};
   `
 }
 
@@ -189,17 +242,24 @@ export const Popover: React.FC<PopoverProps> = ({
   position = Position.BOTTOM as Position,
   minWidth = 200,
   minHeight = 40,
+  height,
   animationDuration = 300,
   onOpen = () => {},
   onClose = () => {},
   onOpenComplete = () => {},
   onCloseComplete = () => {},
+  onOpenStarted = () => {},
   targetOffset = 6,
   style: componentStyle,
   bringFocusInside = false,
+  overlay = false,
+  elevate = false,
+  transitionType,
   ...props
 }) => {
   const [isShown, setIsShown] = React.useState(false)
+  const [targetWidth, setTargetWidth] = React.useState(0)
+  const savedTargetStyles = React.useRef<(string | null)[]>([null, null])
   let targetRef = React.useRef<HTMLSpanElement | null>(null)
   let popoverNode = React.useRef<HTMLDivElement | null>(null)
   const open = React.useCallback(() => {
@@ -240,13 +300,37 @@ export const Popover: React.FC<PopoverProps> = ({
     },
     [close]
   )
+  const elevateTarget = () => {
+    if (targetRef.current) {
+      const {style} = targetRef.current
+      savedTargetStyles.current = [style.zIndex, style.position]
+      const currentPosition = getComputedStyle(targetRef.current).position
+      style.zIndex = MAX_Z_INDEX
+      style.position =
+        currentPosition !== 'static' ? style.position : 'relative'
+    }
+  }
+  const restoreElevatedTarget = () => {
+    if (targetRef.current) {
+      const {style} = targetRef.current
+      const [savedZIndex, savedPosition] = savedTargetStyles.current
+      if (savedZIndex !== null) style.zIndex = savedZIndex
+      if (savedPosition !== null) style.position = savedPosition
+    }
+  }
   React.useEffect(() => {
     if (isShown) {
-      document.body.addEventListener('click', onBodyClick, false)
+      document.body.addEventListener('mousedown', onBodyClick, false)
       document.body.addEventListener('keydown', onEsc, false)
+
+      if (elevate) {
+        elevateTarget()
+      }
     } else {
-      document.body.removeEventListener('click', onBodyClick, false)
+      document.body.removeEventListener('mousedown', onBodyClick, false)
       document.body.removeEventListener('keydown', onEsc, false)
+
+      restoreElevatedTarget()
     }
   }, [isShown, onBodyClick, onEsc])
   const handleOpenComplete = React.useCallback(() => {
@@ -255,52 +339,75 @@ export const Popover: React.FC<PopoverProps> = ({
     onOpenComplete()
   }, [onOpenComplete])
 
+  const setTargetRef = React.useCallback(
+    (ref: HTMLElement | null) => {
+      targetRef.current = ref
+      if (props.matchTargetWidth && ref && targetWidth !== ref.clientWidth) {
+        setTargetWidth(ref.clientWidth)
+      }
+    },
+    [targetWidth]
+  )
+
   React.useEffect(() => {
     return () => {
-      document.body.removeEventListener('click', onBodyClick, false)
+      document.body.removeEventListener('mousedown', onBodyClick, false)
       document.body.removeEventListener('keydown', onEsc, false)
     }
   }, [onBodyClick, onEsc])
 
   const shown = typeof props.isShown === 'boolean' ? props.isShown : isShown
-
   return (
-    <Positioner
-      target={({getRef}) => (
-        <Target
-          close={close}
-          open={open}
-          isShown={isShown}
-          innerRef={ref => {
-            getRef(ref)
-            targetRef.current = ref
-          }}
-        >
-          {props.children}
-        </Target>
+    <>
+      <Positioner
+        target={({getRef}) => (
+          <Target
+            close={close}
+            open={open}
+            isShown={isShown}
+            innerRef={ref => {
+              getRef(ref)
+              setTargetRef(ref)
+            }}
+          >
+            {props.children}
+          </Target>
+        )}
+        targetOffset={targetOffset}
+        isShown={shown}
+        position={position}
+        animationDuration={animationDuration}
+        onOpenComplete={handleOpenComplete}
+        onCloseComplete={onCloseComplete}
+        onOpenStarted={onOpenStarted}
+        transitionType={transitionType}
+      >
+        {({style, state, getRef}) => (
+          <S.Popup
+            ref={ref => {
+              getRef(ref)
+              popoverNode.current = ref
+            }}
+            minHeight={minHeight}
+            popupWidth={props.matchTargetWidth ? targetWidth : 0}
+            minWidth={props.matchTargetWidth ? undefined : minWidth}
+            data-state={state}
+            height={height}
+            style={{...style, ...componentStyle}}
+            className={props.className}
+            {...props.statelessProps}
+          >
+            {typeof props.content === 'function'
+              ? props.content({close})
+              : props.content}
+          </S.Popup>
+        )}
+      </Positioner>
+      {overlay && (
+        <Portal>
+          <S.Overlay isShown={isShown} />
+        </Portal>
       )}
-      targetOffset={targetOffset}
-      isShown={shown}
-      position={position}
-      animationDuration={animationDuration}
-      onOpenComplete={handleOpenComplete}
-      onCloseComplete={onCloseComplete}
-    >
-      {({style, state, getRef}) => (
-        <S.Popup
-          ref={ref => {
-            getRef(ref)
-            popoverNode.current = ref
-          }}
-          data-state={state}
-          style={{...style, ...componentStyle}}
-          {...props.statelessProps}
-        >
-          {typeof props.content === 'function'
-            ? props.content({close})
-            : props.content}
-        </S.Popup>
-      )}
-    </Positioner>
+    </>
   )
 }

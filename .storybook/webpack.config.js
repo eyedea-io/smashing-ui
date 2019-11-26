@@ -1,6 +1,10 @@
 const path = require('path')
 const resolve = dir => path.resolve(__dirname, dir)
 
+/**
+ * @param {Object} options
+ * @param {import('webpack/declarations/WebpackOptions').WebpackOptions} options.config
+ */
 module.exports = function({config}) {
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
@@ -16,13 +20,13 @@ module.exports = function({config}) {
     ]
   })
 
-  config.resolve.extensions.push('.ts', '.tsx')
+  // config.resolve.extensions.push('.ts', '.tsx')
 
-  config.module.rules.push({
-    test: /\.stories\.jsx?$/,
-    loaders: [require.resolve('@storybook/addon-storysource/loader')],
-    enforce: 'pre'
-  })
+  // config.module.rules.push({
+  //   test: /\.stories\.jsx?$/,
+  //   loaders: [require.resolve('@storybook/addon-storysource/loader')],
+  //   enforce: 'pre'
+  // })
 
   config.resolve = Object.assign(config.resolve, {
     alias: {

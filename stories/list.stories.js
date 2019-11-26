@@ -18,14 +18,16 @@ const styleBlue = {
   padding: '10px'
 }
 
-storiesOf('Core|List', module)
+storiesOf('Atomic Elements|List', module)
   .addDecorator(story => (
     <SmashingThemeProvider theme={{}}>{story()}</SmashingThemeProvider>
   ))
-  .add('default', () => <List>
-    <div style={styleRed}>Element</div>
-    <div style={styleBlue}>Element2</div>
-    <div style={styleRed}>Element3</div>
-    <div style={styleBlue}>Element4</div>
-    <div style={styleRed}>Element5</div>
-  </List>)
+  .add('default', () => (
+    <List>
+      <div style={styleRed}>Element</div>
+      <div style={styleBlue}>Element2</div>
+      <div style={styleRed}>Element3</div>
+      <div style={styleBlue}>Element4</div>
+      <div style={styleRed}>Element5</div>
+    </List>
+  ))

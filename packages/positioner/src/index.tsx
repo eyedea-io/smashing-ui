@@ -4,6 +4,7 @@ import {Portal} from '@smashing/portal'
 import {Stack} from '@smashing/stack'
 import {constants} from '@smashing/theme'
 import getPosition from './get-position'
+import {getTransition, transitionType} from './get-transition'
 import styled from 'styled-components'
 
 const {position: Position, stackingOrder: StackingOrder} = constants
@@ -20,24 +21,6 @@ export type Position =
 const animationEasing = {
   spring: 'cubic-bezier(0.175, 0.885, 0.320, 1.175)'
 }
-
-const transitionStyles = {
-  entering: {
-    opacity: 1,
-    visibility: 'visible',
-    transform: 'scale(1)'
-  },
-  entered: {opacity: 1, visibility: 'visible', transform: 'scale(1)'},
-  exiting: {opacity: 0, transform: 'scale(1)'},
-  exited: {opacity: 0, visibility: 'hidden', transform: 'scale(.8)'}
-}
-
-const initialState = () => ({
-  top: null,
-  left: null,
-  transformOrigin: null,
-  style: transitionStyles.exited
-})
 
 interface WrapperProps {
   initialScale: number
@@ -119,6 +102,15 @@ interface PositionerProps {
    * Function that will be called when the enter transition is complete.
    */
   onOpenComplete: () => void
+
+  /**
+   * Function that will be called when the enter transition is started.
+   */
+  onOpenStarted: () => void
+  /**
+   * Type of animation
+   */
+  transitionType?: transitionType
 }
 
 export interface PositionerState {
@@ -140,12 +132,24 @@ export class Positioner extends React.PureComponent<
     animationDuration: 160,
     innerRef: () => {},
     onOpenComplete: () => {},
-    onCloseComplete: () => {}
+    onCloseComplete: () => {},
+    onOpenStarted: () => {}
   }
-  state = initialState()
   latestAnimationFrame?: number
   targetRef = React.createRef<HTMLElement>().current
   positionerRef = React.createRef<HTMLElement>().current
+
+  constructor(props: PositionerProps) {
+    super(props)
+    this.state = this.resetState()
+  }
+
+  resetState = () => ({
+    top: null,
+    left: null,
+    transformOrigin: null,
+    style: getTransition(this.props.transitionType).exited
+  })
 
   componentWillUnmount() {
     if (this.latestAnimationFrame) {
@@ -165,25 +169,25 @@ export class Positioner extends React.PureComponent<
     this.update()
     setTimeout(() => {
       this.setState({
-        style: transitionStyles.entering
+        style: getTransition(this.props.transitionType).entering
       })
     }, 10)
   }
 
   handleEntered = () => {
     this.setState({
-      style: transitionStyles.entered
+      style: getTransition(this.props.transitionType).entered
     })
   }
 
   handleExit = () => {
     this.setState({
-      style: transitionStyles.exiting
+      style: getTransition(this.props.transitionType).exiting
     })
   }
 
   handleExited = () => {
-    this.setState(initialState, this.props.onCloseComplete)
+    this.setState(this.resetState(), this.props.onCloseComplete)
   }
 
   update = (prevHeight = 0, prevWidth = 0) => {
@@ -265,7 +269,10 @@ export class Positioner extends React.PureComponent<
               mountOnEnter
               timeout={animationDuration}
               onEnter={this.handleEnter}
-              onEntered={this.props.onOpenComplete}
+              onEntering={() => this.props.onOpenStarted()}
+              onEntered={() => {
+                this.props.onOpenComplete()
+              }}
               onExit={this.handleExit}
               onExited={this.handleExited}
               unmountOnExit
@@ -279,12 +286,12 @@ export class Positioner extends React.PureComponent<
                     {children({
                       state,
                       style: {
+                        transformOrigin,
                         ...this.state.style,
                         top,
                         left,
                         state,
-                        zIndex,
-                        transformOrigin
+                        zIndex
                       },
                       getRef: this.getPositionerRef,
                       animationDuration

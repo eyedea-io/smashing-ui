@@ -1,51 +1,75 @@
 import * as React from 'react'
-import styled from 'styled-components'
-import {Text} from '@smashing/typography'
+import {TextInputAppearanceType, TextInputProps} from './types'
+import * as S from './styled'
 import {
   getTextSizeForControlHeight,
   getBorderRadiusForControlHeight,
   useDefaults
 } from '@smashing/theme'
-import {TextInputAppearanceType, TextInputProps, StyledTextProps} from './types'
-import {getTextInputStyle} from './styles'
+import {TextInputAffix} from './components/affix'
 
-const StyledText = styled(Text)<StyledTextProps>`
-  border: none;
-  border-radius: ${_ => _.borderRadius}px;
-  width: ${_ => (typeof _.width === 'number' ? `${_.width}px` : _.width)};
-  height: ${_ => _.height}px;
-  padding-left: ${_ => Math.round(_.height / 3.2)}px;
-  padding-right: ${_ => Math.round(_.height / 3.2)}px;
-  ${_ => getTextInputStyle(_.appearance)}
-`
-const TextInput = React.forwardRef<any, TextInputProps>(
-  ({children, ...props}, ref: any) => {
-    const defaults = useDefaults('textInput', props, {
-      height: 32,
-      appearance: 'default' as TextInputAppearanceType
-    })
+const TextInput: React.FC<TextInputProps> = ({
+  children,
+  innerRef,
+  affixBefore,
+  affixAfter,
+  onClickBefore,
+  onClickAfter,
+  ...props
+}) => {
+  const defaults = useDefaults('textInput', props, {
+    height: 32,
+    full: false,
+    appearance: 'default' as TextInputAppearanceType
+  })
+  const inputRef = React.useRef<HTMLInputElement>(null)
 
-    return (
-      <StyledText
+  return (
+    <S.TextInputContainer ref={innerRef} {...defaults}>
+      {affixBefore && (
+        <TextInputAffix
+          isBefore
+          inputRef={inputRef}
+          component={affixBefore}
+          onClickBefore={onClickBefore}
+          {...defaults}
+        />
+      )}
+      <S.TextInput
         as="input"
-        ref={ref}
         variant={getTextSizeForControlHeight(defaults.height)}
         borderRadius={getBorderRadiusForControlHeight(defaults.height)}
         color={props.disabled ? 'muted' : undefined}
+        aria-invalid={props.invalid}
+        ref={inputRef}
+        affixBefore={affixBefore}
+        affixAfter={affixAfter}
         {...defaults}
       />
-    )
-  }
-)
+      {affixAfter && (
+        <TextInputAffix
+          inputRef={inputRef}
+          component={affixAfter}
+          onClickAfter={onClickAfter}
+          {...defaults}
+        />
+      )}
+    </S.TextInputContainer>
+  )
+}
 
+export const TextInputComponents = S
 export {TextInput, TextInputProps, TextInputAppearanceType}
+export {getTextInputStyle} from './styles'
+
+export const TextInputElements = {
+  Container: S.TextInputContainer,
+  Input: S.TextInput
+}
 
 declare module 'styled-components' {
   export interface SmashingTextInputDefaults
     extends Partial<{
-      textInput?: {
-        height?: number
-        appearance?: TextInputAppearanceType
-      }
+      textInput: Pick<TextInputProps, 'height' | 'appearance' | 'full'>
     }> {}
 }
