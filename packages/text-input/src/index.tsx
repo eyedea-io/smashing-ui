@@ -6,32 +6,66 @@ import {
   getBorderRadiusForControlHeight,
   useDefaults
 } from '@smashing/theme'
+import {TextInputAffix} from './components/affix'
 
-const TextInput = React.forwardRef<any, TextInputProps>(
-  ({children, ...props}, ref: any) => {
-    const defaults = useDefaults('textInput', props, {
-      height: 32,
-      full: false,
-      appearance: 'default' as TextInputAppearanceType
-    })
+const TextInput: React.FC<TextInputProps> = ({
+  children,
+  innerRef,
+  affixBefore,
+  affixAfter,
+  onClickBefore,
+  onClickAfter,
+  ...props
+}) => {
+  const defaults = useDefaults('textInput', props, {
+    height: 32,
+    full: false,
+    appearance: 'default' as TextInputAppearanceType
+  })
+  const inputRef = React.useRef<HTMLInputElement>(null)
 
-    return (
-      <S.Input
+  return (
+    <S.TextInputContainer ref={innerRef} {...defaults}>
+      {affixBefore && (
+        <TextInputAffix
+          isBefore
+          inputRef={inputRef}
+          component={affixBefore}
+          onClickBefore={onClickBefore}
+          {...defaults}
+        />
+      )}
+      <S.TextInput
         as="input"
-        ref={ref}
         variant={getTextSizeForControlHeight(defaults.height)}
         borderRadius={getBorderRadiusForControlHeight(defaults.height)}
         color={props.disabled ? 'muted' : undefined}
         aria-invalid={props.invalid}
+        ref={inputRef}
+        affixBefore={affixBefore}
+        affixAfter={affixAfter}
         {...defaults}
       />
-    )
-  }
-)
+      {affixAfter && (
+        <TextInputAffix
+          inputRef={inputRef}
+          component={affixAfter}
+          onClickAfter={onClickAfter}
+          {...defaults}
+        />
+      )}
+    </S.TextInputContainer>
+  )
+}
 
 export const TextInputComponents = S
 export {TextInput, TextInputProps, TextInputAppearanceType}
 export {getTextInputStyle} from './styles'
+
+export const TextInputElements = {
+  Container: S.TextInputContainer,
+  Input: S.TextInput
+}
 
 declare module 'styled-components' {
   export interface SmashingTextInputDefaults

@@ -28,9 +28,9 @@ export const Label = styled(PureLabel)<LabelProps>`
     css`
       position: absolute;
       transform: translateY(-50%);
-      left: ${_ => _.theme.spacing.xxs};
-      background-color: ${_ => _.theme.colors.background.default};
-      background: ${_ => _.theme.colors.background.default};
+      left: ${_.theme.spacing.xxs};
+      background-color: ${_.theme.colors.background.default};
+      background: ${_.theme.colors.background.default};
       padding: 0 5px;
       z-index: 1;
     `}
@@ -49,8 +49,8 @@ export const Alert = styled(PureAlert)<AlertProps>`
       position: relative;
       margin-bottom: -18px;
       top: -18px;
-      margin-left: ${_ => _.theme.spacing.xxs};
-      background: ${_ => _.theme.colors.background.default};
+      margin-left: ${_.theme.spacing.xxs};
+      background: ${_.theme.colors.background.default};
       padding: 0 4px;
       z-index: 1;
       justify-self: flex-start;

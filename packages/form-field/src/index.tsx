@@ -27,30 +27,33 @@ export const FormField: React.FC<FormFieldProps> = ({
     labelColumnWidth,
     labelAppearance,
     alertAppearance,
+    hasLabel,
     ...inputProps
   } = useDefaults('formField', props, {
     labelVariant: 400 as LabelVariant,
     labelColumnWidth: '100px',
     labelAppearance: 'block' as FormFieldLabelAppearance,
-    alertAppearance: 'block' as FormFieldAlertAppearance
+    alertAppearance: 'block' as FormFieldAlertAppearance,
+    hasLabel: true
   })
-  const ErrorComponent = ErrorMessage || styled.ErrorWrapper
+  const ErrorComponent = ErrorMessage || (() => null)
   const FieldComponent = Field || component || styled.DefaultInput
-
   return (
     <styled.FormField
       labelAppearance={labelAppearance}
       labelColumnWidth={labelColumnWidth}
       className={className}
     >
-      <styled.Label
-        variant={labelVariant}
-        appearance={labelAppearance}
-        hasDescription={Boolean(description)}
-        htmlFor={htmlFor || name}
-      >
-        {label}
-      </styled.Label>
+      {hasLabel && (
+        <styled.Label
+          variant={labelVariant}
+          appearance={labelAppearance}
+          hasDescription={Boolean(description)}
+          htmlFor={htmlFor || name}
+        >
+          {label}
+        </styled.Label>
+      )}
       {labelAppearance === 'block' && (
         <React.Fragment>
           {description && typeof description === 'string' && (

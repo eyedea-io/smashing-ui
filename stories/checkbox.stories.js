@@ -51,7 +51,7 @@ const icon = (
   </svg>
 )
 
-storiesOf('Core|Checkbox', module)
+storiesOf('Form|Checkbox', module)
   .addDecorator(story => (
     <SmashingThemeProvider
       theme={{
@@ -166,6 +166,112 @@ storiesOf('Core|Checkbox', module)
           disabled
         >
           {icon}
+          By clicking “Sign up” I agree that I have read and accepted the Terms
+          and conditions.
+        </Checkbox>
+      )}
+    </Wrapper>
+  ))
+  .add('appearance:outline default', () => (
+    <Wrapper>
+      {({isChecked, setIsChecked}) => (
+        <Checkbox
+          appearance="outline"
+          onChange={() => setIsChecked(!isChecked)}
+          checked={isChecked}
+        >
+          By clicking “Sign up” I agree that I have read and accepted the Terms
+          and conditions.
+        </Checkbox>
+      )}
+    </Wrapper>
+  ))
+  .add('appearance:outline checked', () => (
+    <Wrapper>
+      {({isChecked, setIsChecked}) => (
+        <Checkbox
+          appearance="outline"
+          onChange={() => setIsChecked(!isChecked)}
+          checked={!isChecked}
+        >
+          By clicking “Sign up” I agree that I have read and accepted the Terms
+          and conditions.
+        </Checkbox>
+      )}
+    </Wrapper>
+  ))
+  .add('appearance:outline checked disabled', () => (
+    <Wrapper>
+      {({isChecked, setIsChecked}) => (
+        <Checkbox
+          disabled
+          appearance="outline"
+          onChange={() => setIsChecked(!isChecked)}
+          checked={!isChecked}
+        >
+          By clicking “Sign up” I agree that I have read and accepted the Terms
+          and conditions.
+        </Checkbox>
+      )}
+    </Wrapper>
+  ))
+  .add('appearance:outline invalid', () => (
+    <Wrapper>
+      {({isChecked, setIsChecked}) => (
+        <Checkbox
+          invalid
+          appearance="outline"
+          onChange={() => setIsChecked(!isChecked)}
+          checked={!isChecked}
+        >
+          By clicking “Sign up” I agree that I have read and accepted the Terms
+          and conditions.
+        </Checkbox>
+      )}
+    </Wrapper>
+  ))
+  .add('appearance:toggle default', () => (
+    <Wrapper>
+      {({isChecked, setIsChecked}) => (
+        <Checkbox
+          appearance="toggle"
+          onChange={() => setIsChecked(!isChecked)}
+          checked={isChecked}
+        >
+          By clicking “Sign up” I agree that I have read and accepted the Terms
+          and conditions.
+        </Checkbox>
+      )}
+    </Wrapper>
+  ))
+  .add('appearance:toggle checked', () => (
+    <Wrapper>
+      {({isChecked, setIsChecked}) => (
+        <Checkbox
+          appearance="toggle"
+          onChange={() => setIsChecked(!isChecked)}
+          checked={!isChecked}
+        >
+          By clicking “Sign up” I agree that I have read and accepted the Terms
+          and conditions.
+        </Checkbox>
+      )}
+    </Wrapper>
+  ))
+  .add('appearance:toggle checked disabled', () => (
+    <Wrapper>
+      {() => (
+        <Checkbox disabled appearance="toggle">
+          By clicking “Sign up” I agree that I have read and accepted the Terms
+          and conditions.
+        </Checkbox>
+      )}
+    </Wrapper>
+  ))
+  .add('appearance:toggle invalid', () => (
+    <Wrapper>
+      {() => (
+        <Checkbox invalid appearance="toggle">
           By clicking “Sign up” I agree that I have read and accepted the Terms
           and conditions.
         </Checkbox>

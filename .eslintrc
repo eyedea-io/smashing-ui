@@ -2,5 +2,13 @@
   "extends": "smashing-app",
   "rules": {
     "no-restricted-imports": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*styled.tsx", "*styles.tsx"],
+      "rules": {
+        "no-unexpected-multiline": "off"
+      }
+    }
+  ]
 }

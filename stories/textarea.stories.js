@@ -6,7 +6,7 @@ import {SmashingThemeProvider} from '@smashing/theme'
 
 addDecorator(withA11y)
 
-storiesOf('Core|Textarea', module)
+storiesOf('Form|Textarea', module)
   .addDecorator(story => (
     <SmashingThemeProvider
       theme={{
@@ -34,6 +34,11 @@ storiesOf('Core|Textarea', module)
   .add('appearance:neutral', () => (
     <React.Fragment>
       <Textarea placeholder="Textarea placeholder..." appearance="neutral" />
+    </React.Fragment>
+  ))
+  .add('appearance:outline', () => (
+    <React.Fragment>
+      <Textarea placeholder="Textarea placeholder..." appearance="outline" />
     </React.Fragment>
   ))
   .add('disabled', () => (

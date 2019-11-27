@@ -1,12 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {storiesOf, addDecorator} from '@storybook/react'
 import {TextInput} from '@smashing/text-input'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
+import {SearchRegular, EyeOpenRegular, EyeClosedRegular} from './common/icon'
 
 addDecorator(withA11y)
 
-storiesOf('Core|TextInput', module)
+storiesOf('Form|TextInput', module)
   .addDecorator(story => (
     <SmashingThemeProvider
       theme={{
@@ -46,6 +47,13 @@ storiesOf('Core|TextInput', module)
     <React.Fragment>
       <div>
         <TextInput appearance="minimal" placeholder="Your name" />
+      </div>
+    </React.Fragment>
+  ))
+  .add('appearance:outline', () => (
+    <React.Fragment>
+      <div>
+        <TextInput appearance="outline" placeholder="Your name" />
       </div>
     </React.Fragment>
   ))
@@ -89,6 +97,20 @@ storiesOf('Core|TextInput', module)
           value="Your name"
           disabled
         />
+      </div>
+    </React.Fragment>
+  ))
+  .add('appearance:outline:disabled', () => (
+    <React.Fragment>
+      <div>
+        <TextInput appearance="outline" value="Test value" disabled />
+      </div>
+    </React.Fragment>
+  ))
+  .add('appearance:outline:no input version', () => (
+    <React.Fragment>
+      <div>
+        <TextInput appearance="underline" readOnly value="test" />
       </div>
     </React.Fragment>
   ))
@@ -148,3 +170,55 @@ storiesOf('Core|TextInput', module)
       </div>
     </React.Fragment>
   ))
+  .add('with affixes', () => {
+    const [active, setActive] = useState(false)
+    const toggleType = ({current}) => {
+      if (current.type === 'text') {
+        current.type = 'password'
+        return setActive(false)
+      }
+      current.type = 'text'
+      setActive(true)
+    }
+    const focus = ({current}) => current.focus()
+
+    return (
+      <React.Fragment>
+        <TextInput
+          placeholder="Show and hide password"
+          type="password"
+          onClickAfter={toggleType}
+          affixAfter={active ? EyeOpenRegular : EyeClosedRegular}
+          full
+        />
+        <br />
+        <TextInput
+          placeholder="Focus on icon click..."
+          type="text"
+          onClickBefore={focus}
+          affixBefore={SearchRegular}
+          affixAfter="min"
+          height={48}
+        />
+        <br />
+        <TextInput placeholder="Text suffix..." type="text" affixAfter="km/h" />
+        <br />
+        <TextInput
+          placeholder="Invalid text suffix..."
+          type="text"
+          affixAfter="h"
+          invalid
+          height={48}
+        />
+        <br />
+        <TextInput disabled placeholder="Disabled" affixAfter={SearchRegular} />
+        <br />
+        <TextInput
+          invalid
+          defaultValue="Invalid..."
+          width={400}
+          affixAfter={SearchRegular}
+        />
+      </React.Fragment>
+    )
+  })

@@ -63,6 +63,11 @@ export interface PopoverProps {
   minHeight?: number | string
 
   /**
+   * The height of the Popover card.
+   */
+  height?: number | string
+
+  /**
    * Properties passed through to the Popover card.
    */
   statelessProps?: any
@@ -121,6 +126,20 @@ export interface PopoverProps {
    * Function that will be called when the enter transition is started.
    */
   onOpenStarted?: () => void
+
+  /**
+   * Class name provided to the popup wrapper
+   */
+  className?: string
+  /**
+   * Type of open/close animation
+   */
+  transitionType?: 'scale' | 'expand'
+
+  /**
+   * If set to true, popover width will match target size
+   */
+  matchTargetWidth?: boolean
 }
 
 const Target = (props: {
@@ -195,12 +214,16 @@ const Target = (props: {
 }
 
 const S = {
-  Popup: styled.div<PopoverProps>`
+  Popup: styled.div<PopoverProps & {popupWidth?: number}>`
     ${_ => _.theme.elevation.dropdown};
     border-radius: ${_ => _.theme.radius};
     overflow: hidden;
     min-width: ${_ => _.minWidth}px;
     min-height: ${_ => _.minHeight}px;
+    ${_ => ({
+      height: _.height
+    })}
+    ${_ => _.popupWidth && `width: ${_.popupWidth}px;`}
   `,
   Overlay: styled.div<{isShown: boolean}>`
     position: fixed;
@@ -219,6 +242,7 @@ export const Popover: React.FC<PopoverProps> = ({
   position = Position.BOTTOM as Position,
   minWidth = 200,
   minHeight = 40,
+  height,
   animationDuration = 300,
   onOpen = () => {},
   onClose = () => {},
@@ -230,9 +254,11 @@ export const Popover: React.FC<PopoverProps> = ({
   bringFocusInside = false,
   overlay = false,
   elevate = false,
+  transitionType,
   ...props
 }) => {
   const [isShown, setIsShown] = React.useState(false)
+  const [targetWidth, setTargetWidth] = React.useState(0)
   const savedTargetStyles = React.useRef<(string | null)[]>([null, null])
   let targetRef = React.useRef<HTMLSpanElement | null>(null)
   let popoverNode = React.useRef<HTMLDivElement | null>(null)
@@ -288,8 +314,8 @@ export const Popover: React.FC<PopoverProps> = ({
     if (targetRef.current) {
       const {style} = targetRef.current
       const [savedZIndex, savedPosition] = savedTargetStyles.current
-      style.zIndex = savedZIndex
-      style.position = savedPosition
+      if (savedZIndex !== null) style.zIndex = savedZIndex
+      if (savedPosition !== null) style.position = savedPosition
     }
   }
   React.useEffect(() => {
@@ -313,6 +339,16 @@ export const Popover: React.FC<PopoverProps> = ({
     onOpenComplete()
   }, [onOpenComplete])
 
+  const setTargetRef = React.useCallback(
+    (ref: HTMLElement | null) => {
+      targetRef.current = ref
+      if (props.matchTargetWidth && ref && targetWidth !== ref.clientWidth) {
+        setTargetWidth(ref.clientWidth)
+      }
+    },
+    [targetWidth]
+  )
+
   React.useEffect(() => {
     return () => {
       document.body.removeEventListener('mousedown', onBodyClick, false)
@@ -321,7 +357,6 @@ export const Popover: React.FC<PopoverProps> = ({
   }, [onBodyClick, onEsc])
 
   const shown = typeof props.isShown === 'boolean' ? props.isShown : isShown
-
   return (
     <>
       <Positioner
@@ -332,7 +367,7 @@ export const Popover: React.FC<PopoverProps> = ({
             isShown={isShown}
             innerRef={ref => {
               getRef(ref)
-              targetRef.current = ref
+              setTargetRef(ref)
             }}
           >
             {props.children}
@@ -345,6 +380,7 @@ export const Popover: React.FC<PopoverProps> = ({
         onOpenComplete={handleOpenComplete}
         onCloseComplete={onCloseComplete}
         onOpenStarted={onOpenStarted}
+        transitionType={transitionType}
       >
         {({style, state, getRef}) => (
           <S.Popup
@@ -353,9 +389,12 @@ export const Popover: React.FC<PopoverProps> = ({
               popoverNode.current = ref
             }}
             minHeight={minHeight}
-            minWidth={minWidth}
+            popupWidth={props.matchTargetWidth ? targetWidth : 0}
+            minWidth={props.matchTargetWidth ? undefined : minWidth}
             data-state={state}
+            height={height}
             style={{...style, ...componentStyle}}
+            className={props.className}
             {...props.statelessProps}
           >
             {typeof props.content === 'function'

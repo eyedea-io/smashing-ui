@@ -1,105 +1,122 @@
-import styled from 'styled-components'
-import {DefaultTheme} from 'styled-components'
-import {Checkbox as SmashingCheckbox} from '@smashing/checkbox'
-import {SelectMenuAppearanceType} from './types'
+import styled, {css} from 'styled-components'
+import {
+  SelectMenuAppearanceType,
+  SelectMenuPopoverAppearanceType
+} from './types'
 import {TextInput} from '@smashing/text-input'
-import {Button} from '@smashing/button'
-import {Popover} from '@smashing/popover'
+import {MenuElements} from '@smashing/menu'
+import {Button as PureButton} from '@smashing/button'
+import {Popover as PopoverElement} from '@smashing/popover'
+import {Heading} from '@smashing/typography'
 
-export const OptionDiv = styled.div<{appearance?: string}>`
-  padding: ${_ => _.theme.spacing.xxs} 0;
-  width: 100%;
-  border-bottom: ${_ =>
-    _.appearance !== 'card'
-      ? `1px solid ${_.theme.scales.neutral.N5}`
-      : 'none'};
-`
-
-export const getSelectMenuItemStyle = (
-  appearance?: SelectMenuAppearanceType,
-  disabled = false,
-  checked = false
-) => (_: {theme: DefaultTheme}) => {
-  switch (appearance) {
-    case 'primary':
-      return {}
-    case 'card':
-      return {
-        boxShadow: 'none',
-        padding: '8px',
-        borderRadius: 0,
-        outline: 'none',
-        '& div': {
-          display: 'flex',
-          justifyContent: 'center',
-          padding: 0
-        },
-        ':focus-within': {
-          boxShadow: 'none'
-        }
-      }
-    default:
-      return {}
-  }
+interface PopoverProps {
+  buttonAppearance?: SelectMenuAppearanceType
+  appearance?: SelectMenuPopoverAppearanceType
+  invalid?: boolean
+}
+interface ButtonProps {
+  popoverAppearance?: SelectMenuPopoverAppearanceType
+}
+interface MenuContainerProps {
+  appearance?: SelectMenuAppearanceType
+  height?: number
 }
 
+export const Popover = styled(PopoverElement)<PopoverProps>`
+  ${MenuElements.Group} {
+    padding: 0;
+  }
+
+  ${_ => {
+    let border = `inset 0 0 0 1px ${
+      _.theme.colors.border[_.invalid ? 'invalid' : 'active']
+    }`
+
+    if (_.buttonAppearance === 'outline') {
+      const {borderWidth, borderColor} = _.theme.colors.button.outline
+      border = `inset ${borderWidth}px -${borderWidth}px 0 0 ${
+        borderColor[_.invalid ? 'invalid' : 'active']
+      }, inset -${borderWidth}px -${borderWidth}px 0 0 ${
+        borderColor[_.invalid ? 'invalid' : 'active']
+      }`
+    }
+
+    return (
+      _.appearance === 'accordion' &&
+      css`
+        box-sizing: border-box;
+        border-radius: 0px;
+        border-bottom-left-radius: ${_.theme.radius};
+        border-bottom-right-radius: ${_.theme.radius};
+        box-shadow: ${border};
+        padding: 0 1px;
+        background-color: ${_.theme.colors.background.default};
+      `
+    )
+  }}
+`
+export const Title = styled(Heading)`
+  margin: 0;
+`
+export const Button = styled(PureButton)<ButtonProps & {isEmpty?: boolean}>`
+  &[aria-expanded='true'] {
+    ${_ =>
+      _.popoverAppearance === 'accordion' && {
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0
+      }}
+  }
+`
 export const FilterInput = styled(TextInput)`
-  width: 100%;
-  background-color: ${_ => _.theme.scales.neutral.N2};
   box-shadow: none;
-  :focus {
+  background-color: ${_ => _.theme.colors.background.tint1};
+  border-bottom: 1px solid ${_ => `${_.theme.colors.border.default}`};
+  width: 100%;
+
+  &::placeholder {
+    color: ${_ => _.theme.colors.text.muted};
+  }
+
+  &:focus {
     outline: none;
     box-shadow: none;
   }
 `
-
-export const FilterHost = styled.div`
-  border-bottom: ${_ => `1px solid ${_.theme.scales.neutral.N5}`};
-`
-export const PopoverHost = styled.div``
-
 export const PopoverHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: ${_ => `1px solid ${_.theme.scales.neutral.N5}`};
-  padding: ${_ => _.theme.spacing.xxs};
+  border-bottom: ${_ => `1px solid ${_.theme.colors.border.default}`};
+  padding-right: ${_ => _.theme.spacing.xxs};
+  padding-left: ${_ => _.theme.spacing.sm};
+  min-height: 40px;
+  box-sizing: border-box;
 `
-// eslint-disable-next-line no-unexpected-multiline
-export const Checkbox = styled(SmashingCheckbox)<{
-  checked: boolean
-  appearance?: string
-}>`
-  ${_ => getSelectMenuItemStyle(_.appearance, _.checked)};
-`
-export const OptionHost = styled.div<{appearance?: string; height?: number}>`
-  padding: ${_ => (_.appearance !== 'card' ? '4px' : '0')};
-  max-height: ${_ => _.height}px;
+export const MenuContainer = styled.div<MenuContainerProps>`
   overflow-y: auto;
+  height: 100%;
   position: relative;
 
-  ${Checkbox}:last-child {
-    ${OptionDiv} {
-      border-bottom: none;
-    }
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
   }
 `
-export const SelectButton = styled(Button)`
-  ${_ => _.theme.elevation.card};
-`
-export const CloseButton = styled(Button)`
-  padding-left: 7px;
-  padding-right: 7px;
+export const CloseButton = styled(PureButton)`
+  padding-left: 6px;
+  padding-right: 6px;
   svg {
-    fill: ${_ => _.theme.scales.neutral.N7};
+    fill: ${_ => _.theme.colors.icon.default};
     width: 12px;
     height: 12px;
   }
 `
-export const TextContainer = styled.div`
-  margin-top: ${_ => _.theme.spacing.xxs};
+export const EmptyView = styled.div`
+  margin: ${_ => _.theme.spacing.xs} 0;
   display: flex;
   justify-content: center;
   text-align: center;
 `
-export const StyledPopover = styled(Popover)``

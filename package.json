@@ -45,8 +45,8 @@
     "@storybook/addon-viewport": "5.2.0-beta.37",
     "@storybook/addons": "5.2.0-beta.37",
     "@storybook/react": "5.2.0-beta.37",
-    "@types/react": "16.9.2",
-    "@types/react-dom": "16.9.0",
+    "@types/react": "16.9.11",
+    "@types/react-dom": "16.9.4",
     "@types/storybook__react": "4.0.2",
     "@types/styled-components": "4.1.18",
     "babel-loader": "8.0.6",
@@ -55,14 +55,14 @@
     "lerna": "3.16.4",
     "lerna-changelog": "0.8.2",
     "prop-types": "15.7.2",
-    "react": "16.9.0",
+    "react": "16.12.0",
     "react-docgen-typescript-loader": "3.1.1",
-    "react-dom": "16.9.0",
+    "react-dom": "16.12.0",
     "replace": "^1.1.1",
     "smashing-scripts": "^0.5.1",
-    "styled-components": "4.2.0",
+    "styled-components": "4.4.1",
     "ts-toolbelt": "^3.8.42",
-    "typescript": "3.5.3",
-    "webpack": "4.39.2"
+    "typescript": "3.7.2",
+    "webpack": "4.41.2"
   }
 }

@@ -5,6 +5,7 @@ import {Spinner as PureSpinner} from '@smashing/spinner'
 import {getButtonStyle, getButtonTextColor} from './styles'
 import {
   useDefaults,
+  getValueWithUnit,
   useTheme,
   getTextSizeForControlHeight,
   getBorderRadiusForControlHeight
@@ -58,6 +59,10 @@ const Container = styled(PureText)<StyledTextProps>`
   margin-left: 0;
   margin-right: 0;
   vertical-align: middle;
+  ${_ => ({
+    width: _.width ? getValueWithUnit(_.width) : _.full ? '100%' : undefined,
+    display: _.full ? undefined : 'inline-flex'
+  })}
   align-items: center;
   ${_ => getButtonStyle(_.appearance, _.intent)};
   ${_ => ({
@@ -108,6 +113,7 @@ const ButtonFCFactory: <AdditionalProps extends {}>(
         ref={innerRef}
         {...defaults}
         {...props}
+        aria-invalid={props.invalid}
         disabled={props.disabled || props.isLoading}
       >
         {IconBefore && (

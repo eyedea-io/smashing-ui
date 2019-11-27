@@ -3,10 +3,21 @@ import {storiesOf, addDecorator} from '@storybook/react'
 import {FormField} from '@smashing/form-field'
 import {useForm} from '@smashing/form'
 import {TextInput} from '@smashing/text-input'
+import {Select} from '@smashing/select'
+import {Textarea} from '@smashing/textarea'
+import {Checkbox} from '@smashing/checkbox'
+import {Radio} from '@smashing/radio'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
 
 addDecorator(withA11y)
+
+const optionsWithLabels = [
+  {value: 'abc', label: 'ABC Option'},
+  {value: 'bca', label: 'BCA Option'},
+  {value: 'cde', label: 'Longer Option'},
+  {value: 'def', label: 'DEF Option'}
+]
 
 const BasicForm = ({children}) => {
   const {Form} = useForm({
@@ -41,20 +52,22 @@ const FormWithError = ({children}) => {
   )
 }
 
-storiesOf('Core|FormField', module)
-  .addDecorator(story => (
-    <SmashingThemeProvider
-      theme={{
-        colors: {
-          background: {
-            default: 'white'
-          }
+const Decorator = story => (
+  <SmashingThemeProvider
+    theme={{
+      colors: {
+        background: {
+          default: 'white'
         }
-      }}
-    >
-      {story()}
-    </SmashingThemeProvider>
-  ))
+      }
+    }}
+  >
+    {story()}
+  </SmashingThemeProvider>
+)
+
+storiesOf('Form|FormField', module)
+  .addDecorator(Decorator)
   .add('default', () => (
     <BasicForm>
       <FormField
@@ -262,6 +275,284 @@ storiesOf('Core|FormField', module)
         component={TextInput}
         label="Email"
         name="email"
+      />
+    </div>
+  ))
+
+storiesOf('Form|FormField/appearance:outline', module)
+  .addDecorator(Decorator)
+  .add('input / no placeholder', () => (
+    <div style={{display: 'grid', gridAutoRows: '50px'}}>
+      <FormField
+        appearance="outline"
+        labelAppearance="overlay"
+        alertAppearance="overlay"
+        label="Email"
+        name="email"
+        component={TextInput}
+      />
+      <FormField
+        appearance="outline"
+        labelAppearance="overlay"
+        alertAppearance="overlay"
+        label="Email"
+        name="email"
+        disabled
+        component={TextInput}
+      />
+    </div>
+  ))
+  .add('input / placeholder', () => (
+    <div style={{display: 'grid', gridAutoRows: '50px'}}>
+      <FormField
+        appearance="outline"
+        labelAppearance="overlay"
+        alertAppearance="overlay"
+        label="Email"
+        name="email"
+        placeholder="Type your email"
+        component={TextInput}
+      />
+      <FormField
+        appearance="outline"
+        labelAppearance="overlay"
+        alertAppearance="overlay"
+        label="Email"
+        name="email"
+        placeholder="Type your email"
+        disabled
+        component={TextInput}
+      />
+    </div>
+  ))
+
+  .add('input / placeholder / no label', () => (
+    <div style={{display: 'grid', gridAutoRows: '50px'}}>
+      <FormField
+        appearance="outline"
+        labelAppearance="overlay"
+        alertAppearance="overlay"
+        name="email"
+        placeholder="Type your email"
+        component={TextInput}
+      />
+      <FormField
+        appearance="outline"
+        labelAppearance="overlay"
+        alertAppearance="overlay"
+        name="email"
+        placeholder="Type your email"
+        disabled
+        component={TextInput}
+      />
+    </div>
+  ))
+  .add('input / with suffix', () => (
+    <div style={{display: 'grid', gridAutoRows: '50px'}}>
+      <FormField
+        appearance="outline"
+        labelAppearance="overlay"
+        alertAppearance="overlay"
+        name="distance"
+        label="distance"
+        suffix="km"
+        component={TextInput}
+      />
+      <FormField
+        appearance="outline"
+        labelAppearance="overlay"
+        alertAppearance="overlay"
+        name="distance"
+        label="distance"
+        suffix="km"
+        disabled
+        component={TextInput}
+      />
+    </div>
+  ))
+  .add('select', () => (
+    <div style={{display: 'grid', gridAutoRows: '50px'}}>
+      <FormField
+        appearance="outline"
+        labelAppearance="overlay"
+        alertAppearance="overlay"
+        options={optionsWithLabels}
+        name="select"
+        label="Label"
+        component={Select}
+      />
+      <FormField
+        appearance="outline"
+        labelAppearance="overlay"
+        alertAppearance="overlay"
+        name="select"
+        label="Label"
+        disabled
+        component={Select}
+      />
+    </div>
+  ))
+  .add('textarea', () => (
+    <div style={{display: 'grid', gridAutoRows: '50px', gridRowGap: '10px'}}>
+      <FormField
+        appearance="outline"
+        labelAppearance="overlay"
+        alertAppearance="overlay"
+        name="name"
+        label="Label"
+        component={Textarea}
+      />
+      <FormField
+        appearance="outline"
+        labelAppearance="overlay"
+        alertAppearance="overlay"
+        name="name"
+        label="Label"
+        disabled
+        description="Lorem ipsum dolor sit amt"
+        component={Textarea}
+      />
+    </div>
+  ))
+  .add('checkbox', () => (
+    <div style={{display: 'grid', gridAutoRows: '50px'}}>
+      <FormField
+        appearance="outline"
+        alertAppearance="overlay"
+        name="checkbox"
+        component={Checkbox}
+      >
+        Content
+      </FormField>
+      <FormField
+        appearance="outline"
+        alertAppearance="overlay"
+        name="checkbox"
+        checked
+        component={Checkbox}
+      >
+        Content
+      </FormField>
+      <FormField
+        appearance="outline"
+        alertAppearance="overlay"
+        name="checkbox"
+        disabled
+        component={Checkbox}
+      >
+        Content
+      </FormField>
+      <FormField
+        appearance="outline"
+        alertAppearance="overlay"
+        name="checkbox"
+        disabled
+        checked
+        component={Checkbox}
+      >
+        Content
+      </FormField>
+    </div>
+  ))
+  .add('toggle', () => (
+    <div style={{display: 'grid', gridAutoRows: '50px'}}>
+      <FormField
+        appearance="toggle"
+        alertAppearance="overlay"
+        name="checkbox"
+        component={Checkbox}
+      >
+        Content
+      </FormField>
+      <FormField
+        appearance="toggle"
+        alertAppearance="overlay"
+        name="checkbox"
+        checked
+        component={Checkbox}
+      >
+        Content
+      </FormField>
+      <FormField
+        appearance="toggle"
+        alertAppearance="overlay"
+        name="checkbox"
+        disabled
+        component={Checkbox}
+      >
+        Content
+      </FormField>
+      <FormField
+        appearance="toggle"
+        alertAppearance="overlay"
+        name="checkbox"
+        disabled
+        checked
+        component={Checkbox}
+      >
+        Content
+      </FormField>
+    </div>
+  ))
+  .add('radio', () => (
+    <div style={{display: 'grid', gridAutoRows: '50px'}}>
+      <FormField
+        appearance="outline"
+        alertAppearance="overlay"
+        name="checkbox"
+        component={Radio}
+      >
+        Content
+      </FormField>
+      <FormField
+        appearance="outline"
+        alertAppearance="overlay"
+        name="checkbox"
+        checked
+        component={Radio}
+      >
+        Content
+      </FormField>
+      <FormField
+        appearance="outline"
+        alertAppearance="overlay"
+        name="checkbox"
+        disabled
+        component={Radio}
+      >
+        Content
+      </FormField>
+      <FormField
+        appearance="outline"
+        alertAppearance="overlay"
+        name="checkbox"
+        disabled
+        component={Radio}
+      >
+        Content
+      </FormField>
+    </div>
+  ))
+  .add('no input', () => (
+    <div style={{display: 'grid', gridAutoRows: '100px'}}>
+      <FormField
+        appearance="underline"
+        readOnly
+        alertAppearance="overlay"
+        label="Email"
+        name="email"
+        value="Content"
+        component={TextInput}
+      />
+      <FormField
+        appearance="underline"
+        readOnly
+        alertAppearance="overlay"
+        label="Email"
+        name="email"
+        value="Content"
+        suffix="h"
+        component={TextInput}
       />
     </div>
   ))

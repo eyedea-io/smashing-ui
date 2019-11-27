@@ -1,8 +1,8 @@
 import styled, {DefaultTheme} from 'styled-components'
 import {
-  ButtonAppearanceType,
   ButtonIntentType,
-  ButtonAs
+  ButtonAs,
+  ButtonAppearanceType
 } from '@smashing/button'
 import {SelectProps} from './types'
 
@@ -47,7 +47,6 @@ export const S = {
         : {
             display: 'inline-flex'
           }}
-
     &::before,
     &::after {
       position: absolute;
@@ -69,7 +68,7 @@ export const S = {
   SelectButtonComponent: styled<React.FC<SelectProps>>(
     ButtonAs<HTMLSelectElement>('select')
   )`
-    -webkit-appearance: button;
+    -webkit-appearance: none;
     padding-right: ${_ => Math.round(_.height || 0)}px;
   `
 }
