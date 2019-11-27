@@ -64,7 +64,7 @@ storiesOf('Atomic Elements|Avatar', module)
     </AvatarStack>
   ))
   .add('stack with limit', () => (
-    <AvatarStack limit={2}>
+    <AvatarStack limit={3} size={24}>
       <Avatar name="Anonymous User" hashValue="id-10" />
       <Avatar name="Anonymous User" hashValue="id-20" />
       <Avatar name="Anonymous User" hashValue="id-30" />

@@ -47,6 +47,8 @@ const Image = styled.img`
   height: 100%;
 `
 
+const AvatarContext = React.createContext({size: 32})
+
 const Avatar: React.FC<AvatarProps> = ({
   children,
   name,
@@ -56,14 +58,15 @@ const Avatar: React.FC<AvatarProps> = ({
   innerRef,
   ...props
 }) => {
+  const theme = React.useContext(ThemeContext)
+  const {size} = React.useContext(AvatarContext)
   const defaults = useDefaults('avatar', props, {
     appearance: 'subtle' as AvatarAppearanceType,
     color: 'automatic' as Exclude<AvatarProps['color'], undefined>,
-    size: 32,
+    size,
     sizeLimitOneCharacter: 20,
     forceShowInitials: false
   })
-  const theme = React.useContext(ThemeContext)
 
   const [imageHasFailedLoading, setImageHasFailedLoading] = React.useState(
     false
@@ -149,22 +152,27 @@ const Stack = styled.div<{borderColor: ColorProperty}>`
 const AvatarStack: React.FC<AvatarStackProps> = ({
   children,
   limit,
-  showMore = true,
-  borderColor = '#fff'
+  ...props
 }) => {
+  const defaults = useDefaults('avatar', props, {
+    size: 32,
+    showMore: true,
+    borderColor: '#fff'
+  })
+
   return (
-    <Stack borderColor={borderColor}>
-      {React.Children.toArray(children)
-        .slice(0, limit)
-        .map(child => {
-          return child
-        })}
-      {typeof limit === 'number' &&
-        showMore &&
-        React.Children.count(children) > limit && (
-          <More count={React.Children.count(children) - limit} />
-        )}
-    </Stack>
+    <AvatarContext.Provider value={{size: defaults.size}}>
+      <Stack borderColor={defaults.borderColor}>
+        {React.Children.toArray(children)
+          .slice(0, limit)
+          .map(child => child)}
+        {typeof limit === 'number' &&
+          defaults.showMore &&
+          React.Children.count(children) > limit && (
+            <More count={React.Children.count(children) - limit} />
+          )}
+      </Stack>
+    </AvatarContext.Provider>
   )
 }
 
