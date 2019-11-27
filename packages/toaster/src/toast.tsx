@@ -14,7 +14,7 @@ export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
     duration: 5000,
     onRemove: () => undefined,
     title: '',
-    hasCloseButton: true,
+    hasClose: true,
     isShown: true,
     appearance: 'card'
   })
@@ -78,7 +78,7 @@ export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
       onExited={defaults.onRemove}
     >
       {state => (
-        <S.ToastWrapperAnimated
+        <S.WrapperAnimated
           state={state}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
@@ -88,17 +88,18 @@ export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
             marginBottom: isShown ? '10px' : -height
           }}
         >
-          <S.ToastWrapper ref={onRef} hasCloseButton={defaults.hasCloseButton}>
-            <S.ToastAlert
+          <S.Wrapper ref={onRef} hasClose={defaults.hasClose}>
+            <S.Alert
               appearance={defaults.appearance}
               intent={defaults.intent}
               title={defaults.title}
-              closeOnClick={defaults.hasCloseButton && close}
+              hasClose={defaults.hasClose}
+              closeOnClick={defaults.hasClose && close}
             >
               {children}
-            </S.ToastAlert>
-          </S.ToastWrapper>
-        </S.ToastWrapperAnimated>
+            </S.Alert>
+          </S.Wrapper>
+        </S.WrapperAnimated>
       )}
     </Transition>
   )
