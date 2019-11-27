@@ -136,7 +136,7 @@ const Alert: React.FC<AlertProps> = ({
   )
 }
 
-export const StyledAlert = {
+export const AlertElements = {
   Box,
   BoxInner,
   Title,
