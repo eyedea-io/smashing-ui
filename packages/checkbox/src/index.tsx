@@ -69,6 +69,12 @@ const Checkbox = styled(CheckboxFC)``
 
 export {Checkbox, CheckboxProps, CheckboxAppearanceType}
 
+export const CheckboxElements = {
+  CustomCheckbox: S.CustomCheckbox,
+  HiddenCheckbox: S.HiddenCheckbox,
+  Label: S.Label
+}
+
 declare module 'styled-components' {
   export interface SmashingCheckboxDefaults
     extends Partial<{
