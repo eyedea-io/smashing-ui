@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styled, {ThemeContext, css} from 'styled-components'
+import styled, {ThemeContext} from 'styled-components'
 import {useDefaults} from '@smashing/theme'
 import {
   AvatarAppearanceType,
