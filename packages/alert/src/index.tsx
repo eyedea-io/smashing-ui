@@ -10,6 +10,7 @@ interface BoxProps {
   hasTrim: boolean
   intent: AlertIntentType
   appearance: AlertAppearanceType
+  closeOnBodyClick: boolean
 }
 
 const Box = styled.div.attrs({})<BoxProps>`
@@ -44,6 +45,7 @@ const Box = styled.div.attrs({})<BoxProps>`
         background-color: ${getTrimColorByIntent(_)};
       }
     `}
+    ${_ => _.closeOnBodyClick && {pointerEvents: 'all', cursor: 'pointer'}}
 `
 
 interface BoxInnerProps {
@@ -84,12 +86,14 @@ const Alert: React.FC<AlertProps> = ({
   children,
   title,
   className,
-  closeOnClick,
   ...props
 }) => {
   const defaults = useDefaults('alert', props, {
     hasTrim: true,
     hasIcon: true,
+    hasClose: false,
+    closeOnBodyClick: false,
+    closeOnClick: () => undefined,
     intent: 'info' as AlertIntentType,
     appearance: 'default' as AlertAppearanceType
   })
@@ -101,11 +105,13 @@ const Alert: React.FC<AlertProps> = ({
       intent={defaults.intent}
       hasTrim={defaults.hasTrim}
       className={className}
+      onClick={() => defaults.closeOnBodyClick && defaults.closeOnClick()}
+      closeOnBodyClick={defaults.closeOnBodyClick}
     >
       <BoxInner
         appearance={defaults.appearance}
         hasIcon={defaults.hasIcon}
-        closeOnClick={closeOnClick}
+        closeOnClick={defaults.closeOnClick}
       >
         {defaults.hasIcon && (
           <Icon>{getAlertIconForIntent(defaults.intent)({theme})}</Icon>
@@ -125,7 +131,7 @@ const Alert: React.FC<AlertProps> = ({
           )}
         </div>
       </BoxInner>
-      <CloseIcon closeOnClick={closeOnClick} />
+      {defaults.hasClose && <CloseIcon closeOnClick={defaults.closeOnClick} />}
     </Box>
   )
 }
