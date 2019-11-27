@@ -163,7 +163,11 @@ const AvatarStack: React.FC<AvatarStackProps> = ({
 
   return (
     <AvatarContext.Provider value={{size: defaults.size}}>
-      <Stack borderColor={defaults.borderColor} hasBorder={defaults.hasBorder}>
+      <Stack
+        borderColor={defaults.borderColor}
+        hasBorder={defaults.hasBorder}
+        {...props}
+      >
         {React.Children.toArray(children)
           .slice(0, limit)
           .map(child => child)}
