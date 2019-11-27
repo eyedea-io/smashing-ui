@@ -67,6 +67,7 @@ export interface AvatarStackProps {
   showMore?: boolean
   borderColor?: ColorProperty
   size?: number
+  withoutBorder?: boolean
 }
 
 export type InitialsProps = {

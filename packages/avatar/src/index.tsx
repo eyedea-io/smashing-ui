@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styled, {ThemeContext} from 'styled-components'
+import styled, {ThemeContext, css} from 'styled-components'
 import {useDefaults} from '@smashing/theme'
 import {
   AvatarAppearanceType,
@@ -130,17 +130,17 @@ const Avatar: React.FC<AvatarProps> = ({
 
 const More = styled(Avatar)``
 
-const Stack = styled.div<{borderColor: ColorProperty}>`
+const Stack = styled.div<{borderColor: ColorProperty; withoutBorder: boolean}>`
   display: flex;
   justify-content: flex-end;
   flex-direction: row-reverse;
   position: relative;
 
   > * {
-    border: 2px solid ${_ => _.borderColor};
     margin-right: -0.5rem;
     order: 2;
     z-index: 1;
+    ${_ => !_.withoutBorder && `border: 2px solid ${_.borderColor};`}
   }
 
   > ${More} {
@@ -157,12 +157,16 @@ const AvatarStack: React.FC<AvatarStackProps> = ({
   const defaults = useDefaults('avatar', props, {
     size: 32,
     showMore: true,
-    borderColor: '#fff'
+    borderColor: '#fff',
+    withoutBorder: false
   })
 
   return (
     <AvatarContext.Provider value={{size: defaults.size}}>
-      <Stack borderColor={defaults.borderColor}>
+      <Stack
+        borderColor={defaults.borderColor}
+        withoutBorder={defaults.withoutBorder}
+      >
         {React.Children.toArray(children)
           .slice(0, limit)
           .map(child => child)}
