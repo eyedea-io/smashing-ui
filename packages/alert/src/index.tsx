@@ -4,7 +4,7 @@ import {useDefaults} from '@smashing/theme'
 import {AlertIntentType, AlertAppearanceType, AlertProps} from './types'
 import {Text, Strong} from '@smashing/typography'
 import {getAlertIconForIntent, getTrimColorByIntent} from './styles'
-import {CloseIcon} from './close-icon'
+import {CloseButton, CloseIcon} from './close-icon'
 
 interface BoxProps {
   hasTrim: boolean
@@ -131,7 +131,13 @@ const Alert: React.FC<AlertProps> = ({
           )}
         </div>
       </BoxInner>
-      {defaults.hasClose && <CloseIcon closeOnClick={defaults.closeOnClick} />}
+      {defaults.hasClose && (
+        <CloseButton
+          iconAfter={CloseIcon}
+          onClick={defaults.closeOnClick}
+          appearance="minimal"
+        />
+      )}
     </Box>
   )
 }
@@ -142,7 +148,7 @@ export const AlertElements = {
   Title,
   Icon,
   Description,
-  CloseIcon
+  CloseButton
 }
 
 export {Alert, AlertProps, AlertAppearanceType}

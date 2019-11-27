@@ -8,7 +8,7 @@ import styled from 'styled-components'
 import {AlertElements} from '@smashing/alert'
 
 const Test = styled(Alert)`
-  ${AlertElements.CloseIcon} {
+  ${AlertElements.CloseButton} {
     background-color: yellow;
     svg {
       background-color: blue;
