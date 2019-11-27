@@ -4,7 +4,18 @@ import {Alert} from '@smashing/alert'
 import {Heading} from '@smashing/typography'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
+import styled from 'styled-components'
+import {AlertElements} from '@smashing/alert'
 
+const Test = styled(Alert)`
+  ${AlertElements.CloseIcon} {
+    background-color: yellow;
+    svg {
+      background-color: blue;
+      color: green;
+    }
+  }
+`
 addDecorator(withA11y)
 
 storiesOf('Feedback Indicators|Alert', module)
@@ -24,6 +35,19 @@ storiesOf('Feedback Indicators|Alert', module)
   ))
   .add('appearance:default', () => (
     <React.Fragment>
+      <Test closeOnClick={() => {}} appearance="inline">
+        dsfgdsfgsdf
+      </Test>
+      <Test intent="success" closeOnClick={() => {}} appearance="inline">
+        dsfgdsfgsdf
+      </Test>
+      <Test intent="danger" closeOnClick={() => {}} appearance="card">
+        dsfgdsfgsdf
+      </Test>
+      <Test intent="warning" closeOnClick={() => {}} appearance="default">
+        dsfgdsfgsdf
+      </Test>
+
       <Alert title="Your account is active" />
     </React.Fragment>
   ))
@@ -164,12 +188,23 @@ storiesOf('Feedback Indicators|Alert', module)
       </Alert>
     </React.Fragment>
   ))
-  .add('with close icon', () => (
+  .add('with close option', () => (
     <React.Fragment>
       <Alert
         title="Your account is active"
         hasIcon={false}
+        hasClose
         closeOnClick={() => alert('Need close function')}
+      >
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, sapiente
+        dolorem corporis.
+      </Alert>
+      <br />
+      <Alert
+        title="Close by clicking on body"
+        hasIcon={false}
+        closeOnClick={() => alert('Need close function')}
+        closeOnBodyClick
       >
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, sapiente
         dolorem corporis.
