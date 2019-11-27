@@ -130,7 +130,7 @@ const Avatar: React.FC<AvatarProps> = ({
 
 const More = styled(Avatar)``
 
-const Stack = styled.div<{borderColor: ColorProperty; withoutBorder: boolean}>`
+const Stack = styled.div<{borderColor: ColorProperty; hasBorder: boolean}>`
   display: flex;
   justify-content: flex-end;
   flex-direction: row-reverse;
@@ -140,7 +140,7 @@ const Stack = styled.div<{borderColor: ColorProperty; withoutBorder: boolean}>`
     margin-right: -0.5rem;
     order: 2;
     z-index: 1;
-    ${_ => !_.withoutBorder && `border: 2px solid ${_.borderColor};`}
+    ${_ => _.hasBorder && `border: 2px solid ${_.borderColor};`}
   }
 
   > ${More} {
@@ -158,15 +158,12 @@ const AvatarStack: React.FC<AvatarStackProps> = ({
     size: 32,
     showMore: true,
     borderColor: '#fff',
-    withoutBorder: false
+    hasBorder: true
   })
 
   return (
     <AvatarContext.Provider value={{size: defaults.size}}>
-      <Stack
-        borderColor={defaults.borderColor}
-        withoutBorder={defaults.withoutBorder}
-      >
+      <Stack borderColor={defaults.borderColor} hasBorder={defaults.hasBorder}>
         {React.Children.toArray(children)
           .slice(0, limit)
           .map(child => child)}
