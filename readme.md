@@ -1,5 +1,8 @@
 # Smashing UI
 
+
+## Preview
+
 > **[View Storybook](https://github.com/eyedea-io/smashing-ui/deployments?environment=storybook#activity-log)**
 
 ## Getting started
@@ -54,3 +57,8 @@ You can read more about [smashing theme provider](https://github.com/eyedea-io/s
 1. Install packages `yarn`
 2. Run `yarn build`
 3. Run `yarn watch` for hot reload and open a new terminal window in the same folder and run `yarn storybook`
+
+
+## Sponsored by
+
+[![Flow Platform](.github/flow-logo.png)](https://flowplatform.io)
