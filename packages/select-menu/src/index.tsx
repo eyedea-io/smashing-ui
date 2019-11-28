@@ -86,10 +86,7 @@ const SelectMenuFC = <T extends OptionBase>(props: SelectMenuProps<T>) => {
     )
     const hasOneSelectedValue = selected.length === 1
 
-    if (
-      typeof defaults.placeholder === 'function' &&
-      defaults.placeholder !== undefined
-    ) {
+    if (typeof defaults.placeholder === 'function') {
       return defaults.placeholder(selected)
     }
 
