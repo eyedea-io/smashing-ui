@@ -234,9 +234,7 @@ export const getCheckboxStyle = (
             content: '""',
             position: 'absolute' as 'absolute',
             top: `${indicatorSpace}px`,
-            left: checked
-              ? `calc(100% - ${indicatorSpace}px)`
-              : `${indicatorSpace}px`,
+            left: '1px',
             width: `${22 - indicatorSpace * 2}px`,
             height: `${22 - indicatorSpace * 2}px`,
             background: disabled
@@ -244,7 +242,7 @@ export const getCheckboxStyle = (
               : _.theme.colors.background.default,
             borderRadius: '100px',
             transition: '0.4s',
-            transform: `translateX(${checked ? -100 : 0}%);`,
+            transform: `translateX(${checked ? 16 : 0}px);`,
             border: disabled
               ? `1px solid ${_.theme.colors.border.muted}`
               : invalid
