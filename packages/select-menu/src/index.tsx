@@ -211,6 +211,7 @@ declare module 'styled-components' {
         | 'height'
         | 'appearance'
         | 'popoverAppearance'
+        | 'hasCloseButton'
         | 'placeholder'
         | 'placeholderForMultipleSelected'
       >
