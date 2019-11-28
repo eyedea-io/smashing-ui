@@ -61,4 +61,4 @@ You can read more about [smashing theme provider](https://github.com/eyedea-io/s
 
 ## Sponsored by
 
-![Flow Platform](.github/flow-logo.svg)
+[![Flow Platform](.github/flow-logo.svg)](https://flowplatform.io)
