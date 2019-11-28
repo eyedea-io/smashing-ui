@@ -10,7 +10,7 @@ import {
 } from './types'
 import * as S from './styled'
 
-const Textarea: React.FC<TextareaProps> = ({color, ...props}) => {
+const Textarea: React.FC<TextareaProps> = ({color, className, ...props}) => {
   const theme = useTheme()
   const scrollContainer = React.useRef<Scrollbars>(null)
   const defaults = useDefaults('textarea', props, {
@@ -21,7 +21,6 @@ const Textarea: React.FC<TextareaProps> = ({color, ...props}) => {
     variant: 300 as TextareaVariant,
     full: false
   })
-
   const focus = () => {
     if (scrollContainer.current) {
       scrollContainer.current.view.focus()
@@ -48,6 +47,7 @@ const Textarea: React.FC<TextareaProps> = ({color, ...props}) => {
 
   return (
     <S.TextareaContainer
+      className={className}
       onClick={focus}
       width={props.width}
       borderRadius={defaults.borderRadius}
