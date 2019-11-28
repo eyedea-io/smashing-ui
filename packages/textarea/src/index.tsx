@@ -27,6 +27,24 @@ const Textarea: React.FC<TextareaProps> = ({color, ...props}) => {
       scrollContainer.current.view.focus()
     }
   }
+  const scrollbars = React.useMemo(() => {
+    return defaults.scrollbarAppearance === 'outline'
+      ? {
+          renderTrackVertical: props => (
+            <S.VerticalScrollTrack
+              {...props}
+              style={{...props.style, width: 2}}
+            />
+          ),
+          renderThumbVertical: props => (
+            <S.VerticalScrollThumb
+              {...props}
+              style={{...props.style, width: 2}}
+            />
+          )
+        }
+      : {}
+  }, [defaults.scrollbarAppearance, props])
 
   return (
     <S.TextareaContainer
@@ -40,9 +58,8 @@ const Textarea: React.FC<TextareaProps> = ({color, ...props}) => {
     >
       <S.ScrollbarContainer
         hideTracksWhenNotNeeded
-        scrollbarAppearance={defaults.scrollbarAppearance}
         ref={scrollContainer}
-        appearance={defaults.appearance}
+        {...scrollbars}
         renderView={scrollbarProps => (
           <S.Textarea
             {...scrollbarProps}
