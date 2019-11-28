@@ -47,7 +47,7 @@ const SelectMenuFC = <T extends OptionBase>(props: SelectMenuProps<T>) => {
       }[defaults.popoverAppearance || 'accordion']),
     [defaults.popoverAppearance]
   )
-  const getFilteredOptions = () => {
+  const filteredOptions = React.useMemo(() => {
     const options =
       props.hideSelectedItem && props.value
         ? props.options.filter(o => o.value !== props.value)
@@ -63,7 +63,8 @@ const SelectMenuFC = <T extends OptionBase>(props: SelectMenuProps<T>) => {
           .toLowerCase()
           .indexOf(currentFilter.trim().toLowerCase()) > -1
     )
-  }
+  }, [props.hideSelectedItem, props.value, currentFilter, props.options])
+
   const scrollToSelectedItem = React.useCallback(() => {
     if (menuList.current) {
       const selectedOption = menuList.current.querySelector<HTMLDivElement>(
@@ -143,10 +144,10 @@ const SelectMenuFC = <T extends OptionBase>(props: SelectMenuProps<T>) => {
               />
             )}
             <S.MenuContainer ref={menuList}>
-              {getFilteredOptions().length > 0 ? (
+              {filteredOptions.length > 0 ? (
                 <Menu>
                   <Menu.OptionsGroup
-                    options={getFilteredOptions()}
+                    options={filteredOptions}
                     value={props.value}
                     itemHeight={defaults.height}
                     itemIsSelectable={defaults.isSelectable}
