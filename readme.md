@@ -1,5 +1,6 @@
 # Smashing UI
 
+React UI framework written in TypeScript.
 
 ## Preview
 
