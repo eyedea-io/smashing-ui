@@ -13,8 +13,8 @@ yarn add @smashing/select-menu
   options={options}
   value={singleSelectedOption}
   onSelect={changeSingleSelectedOption}
-  hasFilter="true"
-  hasTitle="true"
+  hasFilter
+  hasTitle
   title="Select Item"
 />
 ```
@@ -29,7 +29,7 @@ yarn add @smashing/select-menu
   value={singleSelectedOption}
   onSelect={changeSingleSelectedOption}
   appearance="card"
-  hasFilter="true"
+  hasFilter
 />
 ```
 
@@ -39,10 +39,9 @@ yarn add @smashing/select-menu
 
 ```jsx
 <SelectMenu
-  isMultiSelect
   options={options}
   value={selectedOptions}
-  multiOptionSelectedItemsLabel={num => `Items: ${num}`}
+  placeholderForMultipleSelected={selected => `Items: ${selected.length}`}
   onSelect={select}
   onDeselect={deselect}
   appearance="minimal"
@@ -55,7 +54,6 @@ yarn add @smashing/select-menu
 
 ```jsx
 <SelectMenu
-  isMultiSelect
   options={options}
   value={selectedOptions}
   onSelect={select}
@@ -90,5 +88,5 @@ yarn add @smashing/select-menu
 
 ### Remove title and filter
 
-- `hasFilter={true}`: to add the search input filter.
-- `hasTitle={true}`: to add the title to the popover.
+- `hasFilter={false}`: to remove the search input filter.
+- `hasTitle={false}`: to remove the title from the popover.

@@ -47,16 +47,11 @@ export interface SelectMenuProps<T extends OptionBase> {
   onChange: (value: string | string[]) => void
   onSelect: (value: string) => void
   onDeselect: (value: string) => void
-  multiOptionSelectedItemsLabel?: (itemsSelectedLength: number) => string
-  isMultiSelect?: boolean
-  // compareBy?: string
-  placeholder?: string
-  // renderItem?: (
-  //   option: T,
-  //   click: () => void,
-  //   selected: boolean,
-  //   options: T[]
-  // ) => React.ReactNode
+  placeholder?: string | ((selected: T[]) => React.ReactNode)
+  /**
+   * Placeholder used when multiple options are selected
+   */
+  placeholderForMultipleSelected?: (selected: T[]) => React.ReactNode
 
   /**
    * Class name passed to select button
