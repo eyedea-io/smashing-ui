@@ -1,4 +1,3 @@
-import * as React from 'react'
 import styled from 'styled-components'
 import {Scrollbars} from 'react-custom-scrollbars'
 import {getTextInputStyle} from '@smashing/text-input'
