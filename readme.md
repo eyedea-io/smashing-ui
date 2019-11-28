@@ -1,6 +1,6 @@
 # Smashing UI
 
-React UI framework written in TypeScript.
+Modern, TypeScript based, React UI framework ready for your next application.
 
 ## Preview
 
@@ -59,7 +59,6 @@ You can read more about [smashing theme provider](https://github.com/eyedea-io/s
 2. Run `yarn build`
 3. Run `yarn watch` for hot reload and open a new terminal window in the same folder and run `yarn storybook`
 
-
 ## Sponsored by
 
-[![Flow Platform](.github/flow-logo.png)](https://flowplatform.io)
+![Flow Platform](.github/flow-logo.svg)
