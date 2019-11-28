@@ -7,11 +7,12 @@ import {getValueWithUnit} from '@smashing/theme'
 type InputProps = TextInputProps &
   Required<Pick<TextInputProps, 'height' | 'appearance' | 'full'>>
 
-export const TextInputContainer = styled.div<
-  {
-    height: number | string
-  } & InputProps
->`
+type TextInputContainerProps = {
+  full?: boolean
+  width?: number | string
+}
+
+export const TextInputContainer = styled.div<TextInputContainerProps>`
   position: relative;
   ${_ => ({
     width: _.width ? getValueWithUnit(_.width) : _.full ? '100%' : 'fit-content'
