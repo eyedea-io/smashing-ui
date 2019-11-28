@@ -10,6 +10,7 @@ import {TextInputAffix} from './components/affix'
 
 const TextInput: React.FC<TextInputProps> = ({
   children,
+  className,
   innerRef,
   affixBefore,
   affixAfter,
@@ -30,6 +31,7 @@ const TextInput: React.FC<TextInputProps> = ({
       width={defaults.width}
       full={defaults.full}
       ref={innerRef}
+      className={className}
     >
       {affixBefore && (
         <TextInputAffix
