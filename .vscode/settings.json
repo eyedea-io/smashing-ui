@@ -2,7 +2,6 @@
   "typescript.tsdk": "./node_modules/typescript/lib",
   "eslint.autoFixOnSave": true,
   "editor.formatOnSave": true,
-  "prettier.eslintIntegration": true,
   "eslint.validate": [
     "javascript",
     "javascriptreact",
