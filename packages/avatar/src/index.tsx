@@ -47,6 +47,8 @@ const Image = styled.img`
   height: 100%;
 `
 
+const AvatarContext = React.createContext({size: 32})
+
 const Avatar: React.FC<AvatarProps> = ({
   children,
   name,
@@ -56,14 +58,15 @@ const Avatar: React.FC<AvatarProps> = ({
   innerRef,
   ...props
 }) => {
+  const theme = React.useContext(ThemeContext)
+  const {size} = React.useContext(AvatarContext)
   const defaults = useDefaults('avatar', props, {
     appearance: 'subtle' as AvatarAppearanceType,
     color: 'automatic' as Exclude<AvatarProps['color'], undefined>,
-    size: 32,
+    size,
     sizeLimitOneCharacter: 20,
     forceShowInitials: false
   })
-  const theme = React.useContext(ThemeContext)
 
   const [imageHasFailedLoading, setImageHasFailedLoading] = React.useState(
     false
@@ -127,17 +130,17 @@ const Avatar: React.FC<AvatarProps> = ({
 
 const More = styled(Avatar)``
 
-const Stack = styled.div<{borderColor: ColorProperty}>`
+const Stack = styled.div<{borderColor: ColorProperty; hasBorder: boolean}>`
   display: flex;
   justify-content: flex-end;
   flex-direction: row-reverse;
   position: relative;
 
   > * {
-    border: 2px solid ${_ => _.borderColor};
     margin-right: -0.5rem;
     order: 2;
     z-index: 1;
+    ${_ => _.hasBorder && `border: 2px solid ${_.borderColor};`}
   }
 
   > ${More} {
@@ -149,22 +152,32 @@ const Stack = styled.div<{borderColor: ColorProperty}>`
 const AvatarStack: React.FC<AvatarStackProps> = ({
   children,
   limit,
-  showMore = true,
-  borderColor = '#fff'
+  ...props
 }) => {
+  const defaults = useDefaults('avatarStack', props, {
+    size: 32,
+    showMore: true,
+    borderColor: '#fff',
+    hasBorder: true
+  })
+
   return (
-    <Stack borderColor={borderColor}>
-      {React.Children.toArray(children)
-        .slice(0, limit)
-        .map(child => {
-          return child
-        })}
-      {typeof limit === 'number' &&
-        showMore &&
-        React.Children.count(children) > limit && (
-          <More count={React.Children.count(children) - limit} />
-        )}
-    </Stack>
+    <AvatarContext.Provider value={{size: defaults.size}}>
+      <Stack
+        borderColor={defaults.borderColor}
+        hasBorder={defaults.hasBorder}
+        {...props}
+      >
+        {React.Children.toArray(children)
+          .slice(0, limit)
+          .map(child => child)}
+        {typeof limit === 'number' &&
+          defaults.showMore &&
+          React.Children.count(children) > limit && (
+            <More count={React.Children.count(children) - limit} />
+          )}
+      </Stack>
+    </AvatarContext.Provider>
   )
 }
 
@@ -174,4 +187,15 @@ export {
   AvatarStackProps,
   AvatarProps,
   AvatarAppearanceType
+}
+
+declare module 'styled-components' {
+  export interface SmashingAvatarDefaults
+    extends Partial<{
+      avatar: Pick<AvatarProps, 'appearance' | 'size' | 'sizeLimitOneCharacter'>
+      avatarStack: Pick<
+        AvatarStackProps,
+        'showMore' | 'borderColor' | 'size' | 'hasBorder'
+      >
+    }> {}
 }
