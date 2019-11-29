@@ -10,7 +10,7 @@ import {
 } from './types'
 import * as S from './styled'
 
-const Textarea: React.FC<TextareaProps> = ({color, ...props}) => {
+const Textarea: React.FC<TextareaProps> = ({color, className, ...props}) => {
   const theme = useTheme()
   const scrollContainer = React.useRef<Scrollbars>(null)
   const defaults = useDefaults('textarea', props, {
@@ -21,15 +21,33 @@ const Textarea: React.FC<TextareaProps> = ({color, ...props}) => {
     variant: 300 as TextareaVariant,
     full: false
   })
-
   const focus = () => {
     if (scrollContainer.current) {
       scrollContainer.current.view.focus()
     }
   }
+  const scrollbars = React.useMemo(() => {
+    return defaults.scrollbarAppearance === 'outline'
+      ? {
+          renderTrackVertical: props => (
+            <S.VerticalScrollTrack
+              {...props}
+              style={{...props.style, width: 2}}
+            />
+          ),
+          renderThumbVertical: props => (
+            <S.VerticalScrollThumb
+              {...props}
+              style={{...props.style, width: 2}}
+            />
+          )
+        }
+      : {}
+  }, [defaults.scrollbarAppearance, props])
 
   return (
     <S.TextareaContainer
+      className={className}
       onClick={focus}
       width={props.width}
       borderRadius={defaults.borderRadius}
@@ -40,9 +58,8 @@ const Textarea: React.FC<TextareaProps> = ({color, ...props}) => {
     >
       <S.ScrollbarContainer
         hideTracksWhenNotNeeded
-        scrollbarAppearance={defaults.scrollbarAppearance}
         ref={scrollContainer}
-        appearance={defaults.appearance}
+        {...scrollbars}
         renderView={scrollbarProps => (
           <S.Textarea
             {...scrollbarProps}
