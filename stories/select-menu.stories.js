@@ -213,7 +213,6 @@ storiesOf('Selects & Dropdown Menus|Select menu', module)
     <Wrapper>
       {({changeSelectedOptions, selectedOptions}) => (
         <SelectMenu
-          isMultiSelect
           options={options}
           value={selectedOptions}
           onChange={changeSelectedOptions}
@@ -232,7 +231,9 @@ storiesOf('Selects & Dropdown Menus|Select menu', module)
             value={selectedOptions}
             onSelect={select}
             onDeselect={deselect}
-            multiOptionSelectedItemsLabel={num => `Fruits: ${num}`}
+            placeholderForMultipleSelected={selected =>
+              `Fruit: ${selected.length}`
+            }
           />
         )}
       </Wrapper>
@@ -244,7 +245,9 @@ storiesOf('Selects & Dropdown Menus|Select menu', module)
             value={selectedOptions}
             onSelect={select}
             onDeselect={deselect}
-            multiOptionSelectedItemsLabel={num => `Fruits: ${num}`}
+            placeholderForMultipleSelected={selected =>
+              `Fruit: ${selected.length}`
+            }
           />
         )}
       </Wrapper>
@@ -257,7 +260,9 @@ storiesOf('Selects & Dropdown Menus|Select menu', module)
             value={selectedOptions}
             onSelect={select}
             onDeselect={deselect}
-            multiOptionSelectedItemsLabel={num => `Fruits: ${num}`}
+            placeholderForMultipleSelected={selected =>
+              `Fruit: ${selected.length}`
+            }
           />
         )}
       </Wrapper>
@@ -276,7 +281,9 @@ storiesOf('Selects & Dropdown Menus|Select menu', module)
             popoverProps={{
               height: 250
             }}
-            multiOptionSelectedItemsLabel={num => `Fruits: ${num}`}
+            placeholderForMultipleSelected={selected =>
+              `Fruit: ${selected.length}`
+            }
           />
         )}
       </Wrapper>
