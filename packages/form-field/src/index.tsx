@@ -1,5 +1,6 @@
 import * as React from 'react'
-import * as styled from './styles'
+import styled from 'styled-components'
+import * as S from './styles'
 import {useDefaults} from '@smashing/theme'
 import {useFormContext} from '@smashing/form'
 import {LabelVariant} from '@smashing/typography'
@@ -10,7 +11,7 @@ import {
   FormFieldAlertAppearance
 } from './types'
 
-export const FormField: React.FC<FormFieldProps> = ({
+const FormFieldFC: React.FC<FormFieldProps> = ({
   component,
   description,
   hint,
@@ -38,28 +39,28 @@ export const FormField: React.FC<FormFieldProps> = ({
     hasLabel: true
   })
   const ErrorComponent = ErrorMessage || (() => null)
-  const FieldComponent = Field || component || styled.DefaultInput
+  const FieldComponent = Field || component || S.DefaultInput
   return (
-    <styled.FormField
+    <S.Container
       labelAppearance={labelAppearance}
       labelColumnWidth={labelColumnWidth}
       className={className}
       gridArea={gridArea || name}
     >
       {hasLabel && (
-        <styled.Label
+        <S.Label
           variant={labelVariant}
           appearance={labelAppearance}
           hasDescription={Boolean(description)}
           htmlFor={htmlFor || name}
         >
           {label}
-        </styled.Label>
+        </S.Label>
       )}
       {labelAppearance === 'block' && (
         <React.Fragment>
           {description && typeof description === 'string' && (
-            <styled.Description>{description}</styled.Description>
+            <S.Description>{description}</S.Description>
           )}
           {description && typeof description !== 'string' && description}
         </React.Fragment>
@@ -73,7 +74,7 @@ export const FormField: React.FC<FormFieldProps> = ({
       <ErrorComponent
         name={name}
         component={({children}) => (
-          <styled.Alert
+          <S.Alert
             appearance="inline"
             intent="danger"
             hasIcon={alertAppearance === 'block'}
@@ -83,14 +84,16 @@ export const FormField: React.FC<FormFieldProps> = ({
         )}
       />
       {hint && typeof hint === 'string' && (
-        <styled.Hint variant={300}>{hint}</styled.Hint>
+        <S.Hint variant={300}>{hint}</S.Hint>
       )}
       {hint && typeof hint !== 'string' && hint}
-    </styled.FormField>
+    </S.Container>
   )
 }
 
-export const StyledFormField = styled
+export const FormField = styled(FormFieldFC)``
+
+export const FormFieldElements = S
 
 declare module 'styled-components' {
   export interface SmashingFormFieldDefaults
