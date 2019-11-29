@@ -7,6 +7,8 @@ import styled from 'styled-components'
 import {useCallback} from 'react'
 import {TransitionStatus} from 'react-transition-group/Transition'
 
+export type OverlayVerticalAlign = 'stretch' | 'center' | 'top' | 'bottom'
+
 const {stackingOrder: StackingOrder} = constants
 
 const animationEasing = {
@@ -19,8 +21,21 @@ const animationEasing = {
 
 const ANIMATION_DURATION = 240
 
+interface StyledBackgroundProps {
+  zIndex: number
+  state: TransitionStatus
+  verticalAlign: OverlayVerticalAlign
+}
+
+const verticalAlignMap: {[k in OverlayVerticalAlign]: string} = {
+  stretch: 'stretch',
+  top: 'flex-start',
+  bottom: 'flex-end',
+  center: 'center'
+}
+
 const S = {
-  Background: styled.div.attrs({})<{zIndex: number; state: TransitionStatus}>`
+  Background: styled.div.attrs({})<StyledBackgroundProps>`
     position: fixed;
     top: 0;
     left: 0;
@@ -28,7 +43,7 @@ const S = {
     bottom: 0;
     z-index: ${_ => _.zIndex};
     display: flex;
-    align-items: flex-start;
+    align-items: ${_ => verticalAlignMap[_.verticalAlign] || 'flex-start'};
     justify-content: center;
 
     &::before {
@@ -57,6 +72,7 @@ export const Overlay: React.FC<OverlayProps> = ({
   shouldCloseOnClick = true,
   shouldCloseOnEscapePress = true,
   preventBodyScrolling = false,
+  verticalAlign = 'stretch',
   autofocus = true,
   onExit = () => {},
   onExiting = () => {},
@@ -239,6 +255,7 @@ export const Overlay: React.FC<OverlayProps> = ({
                 ref={containerElement}
                 state={state}
                 zIndex={zIndex}
+                verticalAlign={verticalAlign}
                 {...containerProps}
               >
                 {typeof children === 'function'
@@ -291,6 +308,11 @@ export interface OverlayProps {
    * Boolean indicating if first element should be focused.
    */
   autofocus?: boolean
+
+  /**
+   * Vertical align of the content given as a flex align-items compatible value
+   */
+  verticalAlign?: OverlayVerticalAlign
 
   /**
    * Function called when overlay is about to close.
