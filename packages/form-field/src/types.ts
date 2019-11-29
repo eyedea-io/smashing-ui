@@ -41,5 +41,9 @@ export type FormFieldProps = FieldProps & {
    * An optional hint under the input element.
    */
   hint?: string | React.ReactNode
+  /**
+   * CSS grid-area property applied to field container. By default name will used.
+   */
+  gridArea?: string
   className?: string
 }

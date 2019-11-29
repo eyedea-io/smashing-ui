@@ -62,6 +62,7 @@ export const Alert = styled(PureAlert)<AlertProps>`
 `
 
 interface FormFieldProps {
+  gridArea?: string
   labelColumnWidth: string
   labelAppearance: FormFieldLabelAppearance
 }
@@ -72,6 +73,9 @@ export const DefaultInput = styled.input``
 export const FormField = styled.div<FormFieldProps>`
   position: relative;
   display: grid;
+  ${_ => ({
+    gridArea: _.gridArea
+  })}
 
   ${_ =>
     _.labelAppearance === 'inline' &&

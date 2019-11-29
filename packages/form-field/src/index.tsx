@@ -18,6 +18,7 @@ export const FormField: React.FC<FormFieldProps> = ({
   id,
   label,
   name,
+  gridArea,
   className,
   ...props
 }) => {
@@ -43,6 +44,7 @@ export const FormField: React.FC<FormFieldProps> = ({
       labelAppearance={labelAppearance}
       labelColumnWidth={labelColumnWidth}
       className={className}
+      gridArea={gridArea || name}
     >
       {hasLabel && (
         <styled.Label
