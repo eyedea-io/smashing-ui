@@ -47,9 +47,21 @@ export interface SelectMenuProps<T extends OptionBase> {
   onChange: (value: string | string[]) => void
   onSelect: (value: string) => void
   onDeselect: (value: string) => void
+  /*
+   * Configurable message shown when none, single or multiple options are selected.
+   * Can be either a string (which will be shown when no option(s) are selected) or a function that
+   * allows full message customization by passing an array of selected items.
+   */
   placeholder?: string | ((selected: T[]) => React.ReactNode)
   /**
-   * Placeholder used when multiple options are selected
+   * Helper function for configuring message in multiple-selection scenarios, a syntactic sugar over `placeholder` prop.
+   * Usage:
+   *
+   * ```ts
+   *    <SelectMenu value={[]} placeholderForMultipleSelected={selected => `Tags: ${selected.length}`} />
+   *    // is the same as
+   *    <SelectMenu value={[]} placeholder={selected => selected.length === 0 ? 'Select...' : selected.length === 1 ? selected[0].label : `Tags: ${selected.length}`} />
+   * ```
    */
   placeholderForMultipleSelected?: (selected: T[]) => React.ReactNode
 
