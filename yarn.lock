@@ -2497,6 +2497,15 @@
   dependencies:
     "@sentry/cli" "^1.49.0"
 
+"@smashing/button@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@smashing/button/-/button-0.3.0.tgz#e84ed519169f4e40c38a47fdd5a26ea7c38ad31c"
+  integrity sha512-luFuswZPYgdeyqyp2L2QT9AsE1hDkWedtyrOyxDKl2LHBvPUl+jSApz8atwVNOlwSAtfXubg4IKFkFeE9iQO9A==
+  dependencies:
+    "@smashing/spinner" "^0.1.15"
+    "@smashing/theme" "^0.13.0"
+    "@smashing/typography" "^0.4.28"
+
 "@smashing/form@^0.6.0":
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/@smashing/form/-/form-0.6.0.tgz#d04b7f5ca37f0661f51287ab4c021ab4e51378a8"
@@ -2504,6 +2513,14 @@
   dependencies:
     dot-prop "^5.1.0"
     react-fast-compare "^2.0.4"
+
+"@smashing/theme@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@smashing/theme/-/theme-0.13.0.tgz#7df64cba241107100889511382f34969e2ad29ed"
+  integrity sha512-VABi84/1O+jeqd0gCZJSq5FxwXB0p81I/959MX3z2pJqG1GVeZnViyluAY4D7P6nk/az+4Y3G0navhTeayk8NA==
+  dependencies:
+    deepmerge "^3.2.0"
+    tinycolor2 "^1.4.1"
 
 "@storybook/addon-a11y@5.2.0-beta.37":
   version "5.2.0-beta.37"
@@ -18108,36 +18125,7 @@ webpack@4.35.0:
     watchpack "^1.5.0"
     webpack-sources "^1.3.0"
 
-webpack@4.39.2:
-  version "4.39.2"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.39.2.tgz#c9aa5c1776d7c309d1b3911764f0288c8c2816aa"
-  integrity sha512-AKgTfz3xPSsEibH00JfZ9sHXGUwIQ6eZ9tLN8+VLzachk1Cw2LVmy+4R7ZiwTa9cZZ15tzySjeMui/UnSCAZhA==
-  dependencies:
-    "@webassemblyjs/ast" "1.8.5"
-    "@webassemblyjs/helper-module-context" "1.8.5"
-    "@webassemblyjs/wasm-edit" "1.8.5"
-    "@webassemblyjs/wasm-parser" "1.8.5"
-    acorn "^6.2.1"
-    ajv "^6.10.2"
-    ajv-keywords "^3.4.1"
-    chrome-trace-event "^1.0.2"
-    enhanced-resolve "^4.1.0"
-    eslint-scope "^4.0.3"
-    json-parse-better-errors "^1.0.2"
-    loader-runner "^2.4.0"
-    loader-utils "^1.2.3"
-    memory-fs "^0.4.1"
-    micromatch "^3.1.10"
-    mkdirp "^0.5.1"
-    neo-async "^2.6.1"
-    node-libs-browser "^2.2.1"
-    schema-utils "^1.0.0"
-    tapable "^1.1.3"
-    terser-webpack-plugin "^1.4.1"
-    watchpack "^1.6.0"
-    webpack-sources "^1.4.1"
-
-webpack@^4.33.0, webpack@^4.38.0:
+webpack@4.41.2, webpack@^4.33.0, webpack@^4.38.0:
   version "4.41.2"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.41.2.tgz#c34ec76daa3a8468c9b61a50336d8e3303dce74e"
   integrity sha512-Zhw69edTGfbz9/8JJoyRQ/pq8FYUoY0diOXqW0T6yhgdhCv6wr0hra5DwwWexNRns2Z2+gsnrNcbe9hbGBgk/A==

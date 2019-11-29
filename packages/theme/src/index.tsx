@@ -124,6 +124,7 @@ declare module 'styled-components' {
   export interface SmashingSideSheetDefaults {}
   export interface SmashingMenuDefaults {}
   export interface SmashingSelectMenuDefaults {}
+  export interface SmashingComponentGroupDefaults {}
   export interface SmashingDefaults
     extends SmashingButtonDefaults,
       SmashingCheckboxDefaults,
@@ -142,6 +143,7 @@ declare module 'styled-components' {
       SmashingSelectDefaults,
       SmashingMenuDefaults,
       SmashingSelectMenuDefaults,
+      SmashingComponentGroupDefaults,
       SmashingAvatarDefaults {}
   export interface DefaultTheme {
     radius: string

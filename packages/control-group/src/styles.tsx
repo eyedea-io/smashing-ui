@@ -1,8 +1,8 @@
 import {Button, getButtonStyle} from '@smashing/button'
 import styled from 'styled-components'
-import {ButtonGroupWrapperProps, StyledButtonProps} from './types'
+import {ControlGroupWrapperProps, StyledButtonProps} from './types'
 
-export const ButtonGroupWrapper = styled.div<ButtonGroupWrapperProps>`
+export const ControlGroupWrapper = styled.div<ControlGroupWrapperProps>`
   grid-template-columns: ${_ => '1fr '.repeat(_.childrenAmount)};
   border-radius: ${_ => _.theme.radius};
   display: ${_ => {

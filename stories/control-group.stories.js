@@ -1,6 +1,6 @@
 import React from 'react'
 import {storiesOf, addDecorator} from '@storybook/react'
-import {ButtonGroup} from '@smashing/button-group'
+import {ControlGroup} from '@smashing/control-group'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
 import {CalendarRegular} from './common/icon'
@@ -28,7 +28,7 @@ const options = [
 ]
 addDecorator(withA11y)
 
-storiesOf('Form|Buttons Group', module)
+storiesOf('Form|Control Group', module)
   .addDecorator(story => (
     <SmashingThemeProvider
       theme={{
@@ -43,41 +43,36 @@ storiesOf('Form|Buttons Group', module)
   .add('layout: default', () => {
     const [value, setValue] = React.useState(1)
 
+    const props = {
+      onChange: setValue,
+      value,
+      options: options.slice(0, 3)
+    }
+
     return (
       <React.Fragment>
         <Heading variant={100}>Default</Heading>
-        <ButtonGroup
-          onChange={v => setValue(v)}
-          value={value}
-          options={options.slice(0, 2)}
-        />
+        <ControlGroup {...props} />
         <Heading variant={100}>Flat</Heading>
-        <ButtonGroup
+        <ControlGroup
           appearance="flat"
-          onChange={v => setValue(v)}
-          value={value}
-          options={options.slice(0, 3)}
+          {...props}
         />
         <Heading variant={100}>Primary</Heading>
-        <ButtonGroup
+        <ControlGroup
           appearance="primary"
           textAlign="right"
-          onChange={v => setValue(v)}
-          value={value}
-          options={options.slice(0, 3)}
+          {...props}
         />
         <Heading variant={100}>Minimal</Heading>
-        <ButtonGroup
+        <ControlGroup
           appearance="minimal"
-          onChange={v => setValue(v)}
-          value={value}
-          options={options.slice(0, 3)}
+          {...props}
         />
         <Heading variant={100}>Subtle</Heading>
-        <ButtonGroup
+        <ControlGroup
           appearance="subtle"
-          onChange={v => setValue(v)}
-          value={value}
+          {...props}
           options={options}
         />
       </React.Fragment>
@@ -86,49 +81,46 @@ storiesOf('Form|Buttons Group', module)
   .add('layout: equal width', () => {
     const [value, setValue] = React.useState(1)
 
+    const props = {
+      onChange: setValue,
+      value,
+      options: options.slice(0, 3)
+    }
+
     return (
       <React.Fragment>
         <Heading variant={100}>Default</Heading>
-        <ButtonGroup
+        <ControlGroup
           layout="equal"
-          onChange={v => setValue(v)}
-          value={value}
+          {...props}
           options={options.slice(0, 2)}
         />
         <Heading variant={100}>Flat</Heading>
-        <ButtonGroup
+        <ControlGroup
           appearance="flat"
           layout="equal"
-          onChange={v => setValue(v)}
-          value={value}
-          options={options.slice(0, 3)}
+          {...props}
         />
         <Heading variant={100}>Primary</Heading>
-        <ButtonGroup
+        <ControlGroup
           appearance="primary"
           textAlign="right"
           layout="equal"
-          onChange={v => setValue(v)}
-          value={value}
-          options={options.slice(0, 3)}
+          {...props}
         />
         <Heading variant={100}>Minimal</Heading>
-        <ButtonGroup
+        <ControlGroup
           appearance="minimal"
           textAlign="center"
           layout="equal"
-          onChange={v => setValue(v)}
-          value={value}
-          options={options.slice(0, 3)}
+          {...props}
         />
         <Heading variant={100}>Subtle</Heading>
-        <ButtonGroup
+        <ControlGroup
           appearance="subtle"
           textAlign="center"
           layout="equal"
-          onChange={v => setValue(v)}
-          value={value}
-          options={options}
+          {...props}
         />
       </React.Fragment>
     )
@@ -136,48 +128,46 @@ storiesOf('Form|Buttons Group', module)
   .add('layout: full width', () => {
     const [value, setValue] = React.useState(1)
 
+    const props = {
+      onChange: setValue,
+      value,
+      options: options.slice(0, 3)
+    }
+
     return (
       <React.Fragment>
         <Heading variant={100}>Default</Heading>
-        <ButtonGroup
+        <ControlGroup
           layout="full"
-          onChange={v => setValue(v)}
-          value={value}
+          {...props}
           options={options.slice(0, 2)}
         />
         <Heading variant={100}>Flat</Heading>
-        <ButtonGroup
+        <ControlGroup
           appearance="flat"
           layout="full"
-          onChange={v => setValue(v)}
-          value={value}
-          options={options.slice(0, 3)}
+          {...props}
         />
         <Heading variant={100}>Primary</Heading>
-        <ButtonGroup
+        <ControlGroup
           appearance="primary"
           textAlign="right"
           layout="full"
-          onChange={v => setValue(v)}
-          value={value}
-          options={options.slice(0, 3)}
+          {...props}
         />
         <Heading variant={100}>Minimal</Heading>
-        <ButtonGroup
+        <ControlGroup
           appearance="minimal"
           textAlign="center"
           layout="full"
-          onChange={v => setValue(v)}
-          value={value}
-          options={options.slice(0, 3)}
+          {...props}
         />
         <Heading variant={100}>Subtle</Heading>
-        <ButtonGroup
+        <ControlGroup
           appearance="subtle"
           textAlign="center"
           layout="full"
-          onChange={v => setValue(v)}
-          value={value}
+          {...props}
           options={options}
         />
       </React.Fragment>
