@@ -154,7 +154,7 @@ const AvatarStack: React.FC<AvatarStackProps> = ({
   limit,
   ...props
 }) => {
-  const defaults = useDefaults('avatar', props, {
+  const defaults = useDefaults('avatarStack', props, {
     size: 32,
     showMore: true,
     borderColor: '#fff',
@@ -187,4 +187,15 @@ export {
   AvatarStackProps,
   AvatarProps,
   AvatarAppearanceType
+}
+
+declare module 'styled-components' {
+  export interface SmashingAvatarDefaults
+    extends Partial<{
+      avatar: Pick<AvatarProps, 'appearance' | 'size' | 'sizeLimitOneCharacter'>
+      avatarStack: Pick<
+        AvatarStackProps,
+        'showMore' | 'borderColor' | 'size' | 'hasBorder'
+      >
+    }> {}
 }
