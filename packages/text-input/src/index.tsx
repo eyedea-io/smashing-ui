@@ -1,12 +1,12 @@
 import * as React from 'react'
-import {TextInputAppearanceType, TextInputProps} from './types'
+import { TextInputAppearanceType, TextInputProps } from './types'
 import * as S from './styled'
 import {
   getTextSizeForControlHeight,
   getBorderRadiusForControlHeight,
   useDefaults
 } from '@smashing/theme'
-import {TextInputAffix} from './components/affix'
+import { TextInputAffix } from './components/affix'
 
 const TextInput: React.FC<TextInputProps> = ({
   children,
@@ -15,6 +15,8 @@ const TextInput: React.FC<TextInputProps> = ({
   affixAfter,
   onClickBefore,
   onClickAfter,
+  value,
+  readOnly,
   ...props
 }) => {
   const defaults = useDefaults('textInput', props, {
@@ -25,7 +27,7 @@ const TextInput: React.FC<TextInputProps> = ({
   const inputRef = React.useRef<HTMLInputElement>(null)
 
   return (
-    <S.TextInputContainer ref={innerRef} {...defaults}>
+    <S.TextInputContainer ref={innerRef} {...defaults} width={props.width}>
       {affixBefore && (
         <TextInputAffix
           isBefore
@@ -44,6 +46,8 @@ const TextInput: React.FC<TextInputProps> = ({
         ref={inputRef}
         affixBefore={affixBefore}
         affixAfter={affixAfter}
+        readOnly={readOnly}
+        value={value}
         {...defaults}
       />
       {affixAfter && (
@@ -59,8 +63,8 @@ const TextInput: React.FC<TextInputProps> = ({
 }
 
 export const TextInputComponents = S
-export {TextInput, TextInputProps, TextInputAppearanceType}
-export {getTextInputStyle} from './styles'
+export { TextInput, TextInputProps, TextInputAppearanceType }
+export { getTextInputStyle } from './styles'
 
 export const TextInputElements = {
   Container: S.TextInputContainer,
@@ -71,5 +75,5 @@ declare module 'styled-components' {
   export interface SmashingTextInputDefaults
     extends Partial<{
       textInput: Pick<TextInputProps, 'height' | 'appearance' | 'full'>
-    }> {}
+    }> { }
 }

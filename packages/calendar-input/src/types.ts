@@ -10,5 +10,8 @@ export type CalendarInputProps = {
   inputAppearance?: TextInputAppearanceType
   onChange?: (date: Date) => void
   value?: Date
-  locale?: string
+  withTime?: boolean
+  hoursLabel?: string
+  minutesLabel?: string
+  minutesInterval?: number
 }

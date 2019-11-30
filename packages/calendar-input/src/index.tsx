@@ -1,44 +1,38 @@
 import * as React from 'react'
-import {useState, useRef} from 'react'
 import getUserLocale from 'get-user-locale'
 import {useDefaults} from '@smashing/theme'
-import {CalendarInputProps, CalendarInputAppearanceType} from './types'
-import {StyledContainer, StyledInput, StyledCalendar} from './styles'
-import useOutsideClick from './useOutsideClick'
 import {TextInputAppearanceType} from '@smashing/text-input'
+import {PopoverProps} from '@smashing/popover'
+import {CalendarInputProps, CalendarInputAppearanceType} from './types'
+import * as S from './styles'
+import {DateInput} from './date-input'
+import {TimePicker} from './time-picker'
 
 const CalendarInput: React.FC<CalendarInputProps> = ({
   onChange = () => {},
   value,
-  inputAppearance,
+  withTime,
   ...props
 }) => {
-  const [isOpen, setIsOpen] = useState(false)
-  const node = useRef<HTMLDivElement>(null)
-  useOutsideClick(node, () => {
-    setIsOpen(false)
+  const [timeIsOpen, setTimeIsOpen] = React.useState(false)
+  const [timeValue, setTimeValue] = React.useState<{
+    minutes?: number
+    hours?: number
+  }>({
+    minutes: undefined,
+    hours: undefined
   })
 
   const defaults = useDefaults('calendar', props, {
     appearance: 'default' as CalendarInputAppearanceType,
-    inputAppearance: 'default' as TextInputAppearanceType
+    inputAppearance: 'default' as TextInputAppearanceType,
+    width: 200,
+    hoursLabel: 'Hours',
+    minutesLabel: 'Min',
+    minutesInterval: 5
   })
-
-  const getFormattedDate = () => {
-    if (!value) {
-      return ''
-    }
-    return value.toLocaleDateString(undefined, {
-      year: 'numeric',
-      month: '2-digit',
-      day: 'numeric'
-    })
-  }
-
-  const onDateChange = chosenDate => {
-    setIsOpen(false)
-    onChange(chosenDate)
-  }
+  const minutesInterval =
+    defaults.minutesInterval < 5 ? 5 : defaults.minutesInterval
 
   const formatShortWeekday = (locale, formattedDate) => {
     return formattedDate
@@ -48,27 +42,76 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
       .slice(0, 2)
   }
 
+  const popoverPropsForAppearance = {
+    outline: {
+      transitionType: 'expand',
+      targetOffset: -1
+    } as Partial<PopoverProps>,
+    default: {}
+  }[defaults.appearance || 'default']
+
+  const changeTimeValue = (hours?: number, minutes?: number) => {
+    setTimeValue({minutes, hours})
+  }
+
   return (
-    <StyledContainer ref={node}>
-      <StyledInput
-        appearance={defaults.inputAppearance}
-        open={isOpen}
-        readOnly
-        onFocus={() => setIsOpen(true)}
-        value={getFormattedDate()}
-      />
-      <StyledCalendar
-        // TODO: prevLabel, nextLabel - add icons
-        {...props}
-        onClickDay={onDateChange}
-        value={value}
-        appearance={defaults.appearance}
-        prev2Label={null}
-        next2Label={null}
-        open={isOpen}
-        formatShortWeekday={formatShortWeekday}
-      />
-    </StyledContainer>
+    <S.StyledContainer
+      position="bottom-left"
+      matchTargetWidth
+      appearance={defaults.appearance}
+      {...popoverPropsForAppearance}
+      onCloseComplete={() => setTimeIsOpen(false)}
+      content={({close}) => {
+        return (
+          <S.CalendarContainer>
+            <S.StyledCalendar
+              open={true}
+              {...props}
+              onClickDay={date => {
+                onChange(date)
+                close()
+              }}
+              value={value}
+              appearance={defaults.appearance}
+              prev2Label={null}
+              next2Label={null}
+              onDrillDown={() => null}
+              formatShortWeekday={formatShortWeekday}
+            />
+            {withTime && (
+              <S.TimeButton onClick={() => setTimeIsOpen(true)}>
+                Time icon
+              </S.TimeButton>
+            )}
+            {timeIsOpen && (
+              <TimePicker
+                changeTime={changeTimeValue}
+                minuteValue={value ? value.getMinutes() : timeValue.minutes}
+                hourValue={value ? value.getHours() : timeValue.hours}
+                minutesInterval={minutesInterval}
+                hoursLabel={defaults.hoursLabel}
+                minutesLabel={defaults.minutesLabel}
+              />
+            )}
+          </S.CalendarContainer>
+        )
+      }}
+    >
+      {({isShown, toggle, getRef}) => (
+        <DateInput
+          getRef={getRef}
+          openCalendar={() => !isShown && toggle()}
+          onClick={toggle}
+          onChange={onChange}
+          value={value}
+          withTime={withTime}
+          width={defaults.width}
+          minutesInterval={minutesInterval}
+          appearance={defaults.inputAppearance}
+          timeValue={timeValue}
+        />
+      )}
+    </S.StyledContainer>
   )
 }
 
