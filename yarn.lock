@@ -2556,13 +2556,13 @@
     dot-prop "^5.1.0"
     react-fast-compare "^2.0.4"
 
-"@smashing/theme@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@smashing/theme/-/theme-0.11.0.tgz#0cbc7bf06340fa1b35ead4c3972685cfd08bbc74"
-  integrity sha512-iKp5wRA/YUjqllzVf+rl3HBo2APs6k62bbEb/VNxSFb9zqPFvSfpYWhR5zWtBJM8jkmUWycjJ8QdwSn8onqKsQ==
+"@smashing/text-input@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@smashing/text-input/-/text-input-0.4.0.tgz#973559b6f5cae3ee0eaef206d67c89e4b3ea3f1c"
+  integrity sha512-mgLYofrZ1/rLImsIEteIrrVjiPp+y4ZQBfNDTywpKPGdvS8+lDnQ8Vu6LHAWfxzxyTBZ24Du+jfcLKm5py/QAA==
   dependencies:
-    deepmerge "^3.2.0"
-    tinycolor2 "^1.4.1"
+    "@smashing/theme" "^0.14.0"
+    "@smashing/typography" "^0.4.29"
 
 "@storybook/addon-a11y@5.2.0-beta.37":
   version "5.2.0-beta.37"

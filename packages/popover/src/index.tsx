@@ -1,13 +1,13 @@
 import * as React from 'react'
-import {Positioner} from '@smashing/positioner'
-import {Tooltip} from '@smashing/tooltip'
-import {constants} from '@smashing/theme'
-import {Portal} from '@smashing/portal'
+import { Positioner } from '@smashing/positioner'
+import { Tooltip } from '@smashing/tooltip'
+import { constants } from '@smashing/theme'
+import { Portal } from '@smashing/portal'
 import styled from 'styled-components'
 
 const MAX_Z_INDEX = '2147483638'
 
-const {position: Position} = constants
+const { position: Position } = constants
 export type Position =
   | 'top'
   | 'top-left'
@@ -32,7 +32,7 @@ export interface PopoverProps {
   /**
    * The content of the Popover.
    */
-  content: React.ReactNode | ((props: {close: () => void}) => React.ReactNode)
+  content: React.ReactNode | ((props: { close: () => void }) => React.ReactNode)
 
   /**
    * The target button of the Popover.
@@ -40,12 +40,12 @@ export interface PopoverProps {
    * ({ toggle: Function -> Void, getRef: Function -> Ref, isShown: Bool })
    */
   children:
-    | React.ReactNode
-    | ((props: {
-        toggle: () => void
-        getRef: (ref: any) => void
-        isShown: boolean
-      }) => React.ReactNode)
+  | React.ReactNode
+  | ((props: {
+    toggle: () => void
+    getRef: (ref: any) => void
+    isShown: boolean
+  }) => React.ReactNode)
 
   /**
    * The display property passed to the Popover card.
@@ -214,7 +214,7 @@ const Target = (props: {
 }
 
 const S = {
-  Popup: styled.div<PopoverProps & {popupWidth?: number}>`
+  Popup: styled.div<PopoverProps & { popupWidth?: number }>`
     ${_ => _.theme.elevation.dropdown};
     border-radius: ${_ => _.theme.radius};
     overflow: hidden;
@@ -225,7 +225,7 @@ const S = {
     })}
     ${_ => _.popupWidth && `width: ${_.popupWidth}px;`}
   `,
-  Overlay: styled.div<{isShown: boolean}>`
+  Overlay: styled.div<{ isShown: boolean }>`
     position: fixed;
     top: 0;
     left: 0;
@@ -244,11 +244,11 @@ export const Popover: React.FC<PopoverProps> = ({
   minHeight = 40,
   height,
   animationDuration = 300,
-  onOpen = () => {},
-  onClose = () => {},
-  onOpenComplete = () => {},
-  onCloseComplete = () => {},
-  onOpenStarted = () => {},
+  onOpen = () => { },
+  onClose = () => { },
+  onOpenComplete = () => { },
+  onCloseComplete = () => { },
+  onOpenStarted = () => { },
   targetOffset = 6,
   style: componentStyle,
   bringFocusInside = false,
@@ -302,7 +302,7 @@ export const Popover: React.FC<PopoverProps> = ({
   )
   const elevateTarget = () => {
     if (targetRef.current) {
-      const {style} = targetRef.current
+      const { style } = targetRef.current
       savedTargetStyles.current = [style.zIndex, style.position]
       const currentPosition = getComputedStyle(targetRef.current).position
       style.zIndex = MAX_Z_INDEX
@@ -312,7 +312,7 @@ export const Popover: React.FC<PopoverProps> = ({
   }
   const restoreElevatedTarget = () => {
     if (targetRef.current) {
-      const {style} = targetRef.current
+      const { style } = targetRef.current
       const [savedZIndex, savedPosition] = savedTargetStyles.current
       if (savedZIndex !== null) style.zIndex = savedZIndex
       if (savedPosition !== null) style.position = savedPosition
@@ -360,7 +360,7 @@ export const Popover: React.FC<PopoverProps> = ({
   return (
     <>
       <Positioner
-        target={({getRef}) => (
+        target={({ getRef }) => (
           <Target
             close={close}
             open={open}
@@ -382,7 +382,7 @@ export const Popover: React.FC<PopoverProps> = ({
         onOpenStarted={onOpenStarted}
         transitionType={transitionType}
       >
-        {({style, state, getRef}) => (
+        {({ style, state, getRef }) => (
           <S.Popup
             ref={ref => {
               getRef(ref)
@@ -393,12 +393,12 @@ export const Popover: React.FC<PopoverProps> = ({
             minWidth={props.matchTargetWidth ? undefined : minWidth}
             data-state={state}
             height={height}
-            style={{...style, ...componentStyle}}
+            style={{ ...style, ...componentStyle }}
             className={props.className}
             {...props.statelessProps}
           >
             {typeof props.content === 'function'
-              ? props.content({close})
+              ? props.content({ close })
               : props.content}
           </S.Popup>
         )}
