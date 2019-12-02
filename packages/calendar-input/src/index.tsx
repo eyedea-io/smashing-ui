@@ -13,7 +13,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
   onChange = () => {},
   value,
   withTime,
-  clockIcon = () => <ClockIcon />,
+  clockIcon = <ClockIcon />,
   nextIcon,
   prevIcon,
   collapseIcon,

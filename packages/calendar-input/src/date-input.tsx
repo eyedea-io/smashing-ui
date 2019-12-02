@@ -80,12 +80,12 @@ export const DateInput: React.FC<DateInputProps> = ({
 
   const setSelectionRange = (start: number, end: number) => {
     if (inputNode.current) {
-      for (let [, node] of inputNode.current.childNodes.entries()) {
+      inputNode.current.childNodes.forEach(node => {
         if (node.nodeName === 'INPUT' && activeDatePart) {
           ;(node as HTMLInputElement).focus()
           ;(node as HTMLInputElement).setSelectionRange(start, end)
         }
-      }
+      })
     }
   }
 
@@ -266,7 +266,7 @@ export const DateInput: React.FC<DateInputProps> = ({
       width={props.width}
       onClick={handleClick}
       appearance={props.appearance}
-      onKeyDown={e => handleKeyDown(e)}
+      onKeyDown={handleKeyDown}
       value={CalendarDate.getStringValueForParts(inputValue)}
       affixAfter={isExpanded ? collapseIcon : expandIcon}
     ></S.StyledInput>

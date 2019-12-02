@@ -13,7 +13,7 @@ export type CalendarInputProps = {
   hoursLabel?: string
   minutesLabel?: string
   minutesInterval?: number
-  clockIcon?: React.FC
+  clockIcon?: JSX.Element
   nextIcon?: JSX.Element
   prevIcon?: JSX.Element
   expandIcon?: React.FC
@@ -27,7 +27,7 @@ export type TimePickerProps = {
   hourValue?: number
   minuteValue?: number
   changeTime: (hours?: number, minutes?: number) => void
-  clockIcon: React.FC
+  clockIcon?: JSX.Element
   header: string
   close: () => void
   collapseIcon?: React.FC
