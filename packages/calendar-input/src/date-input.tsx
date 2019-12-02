@@ -74,6 +74,7 @@ export const DateInput: React.FC<DateInputProps> = ({
         )
       }
     } else {
+      onChange()
       setInputValue(newValue)
     }
   }

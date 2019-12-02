@@ -13,11 +13,14 @@ export const TimePicker: React.FC<TimePickerProps> = ({
   clockIcon,
   header,
   close,
+  isOpen,
   collapseIcon = () => <ChevronDownIconSm />
 }) => {
   return (
-    <>
+    <S.TimePicker isOpen={isOpen}>
       <S.TimePickerHeader
+        visible={isOpen}
+        tabIndex={isOpen ? 0 : -1}
         appearance="minimal"
         iconAfter={collapseIcon}
         onClick={close}
@@ -30,6 +33,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
         {Array.from(Array(24).keys()).map(elem => (
           <S.TimePickButton
             as="button"
+            tabIndex={isOpen ? 0 : -1}
             onClick={() => changeTime(elem, minuteValue)}
             active={elem === hourValue}
             key={elem}
@@ -45,6 +49,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
           .map(elem => (
             <S.TimePickButton
               as="button"
+              tabIndex={isOpen ? 0 : -1}
               onClick={() => changeTime(hourValue, elem)}
               active={elem === minuteValue}
               key={elem}
@@ -53,6 +58,6 @@ export const TimePicker: React.FC<TimePickerProps> = ({
             </S.TimePickButton>
           ))}
       </S.TimeButtonsContainer>
-    </>
+    </S.TimePicker>
   )
 }

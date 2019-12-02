@@ -44,7 +44,8 @@ const getTextInputStyle = (appearance?: TextInputAppearanceType) => {
   if (appearance === 'outline') {
     return css`
       transition: border-radius 0.3s ease;
-      &[aria-expanded='true'] {
+      &[aria-expanded='true'],
+      & > [aria-expanded='true'] {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
       }
@@ -152,7 +153,7 @@ export const ClockElement = styled.div`
   })};
 `
 
-export const TimePickerHeader = styled(Button)`
+export const TimePickerHeader = styled(Button)<{visible?: boolean}>`
   width: 100%;
   border: none;
   background: transparent;
@@ -162,7 +163,12 @@ export const TimePickerHeader = styled(Button)`
   ${_ => ({
     paddingTop: _.theme.spacing.xxs,
     paddingBottom: _.theme.spacing.xxs,
-    borderBottom: `1px solid ${_.theme.colors.border.default}`
+    borderBottom: `1px solid ${_.theme.colors.border.default}`,
+    ...(!_.visible && {
+      ':focus': {
+        outline: 'none'
+      }
+    })
   })};
 `
 
@@ -170,7 +176,7 @@ export const TimePickerHeaderText = styled(Strong)`
   flex: 1;
 `
 
-export const ClockButton = styled(Button)`
+export const ClockButton = styled(Button)<{visible?: boolean}>`
   width: 100%;
   border: none;
   background: transparent;
@@ -179,7 +185,12 @@ export const ClockButton = styled(Button)`
   ${_ => ({
     paddingTop: _.theme.spacing.xxs,
     paddingBottom: _.theme.spacing.xxs,
-    borderTop: `1px solid ${_.theme.colors.border.default}`
+    borderTop: `1px solid ${_.theme.colors.border.default}`,
+    ...(!_.visible && {
+      ':focus': {
+        outline: 'none'
+      }
+    })
   })};
 `
 
@@ -206,6 +217,7 @@ export const TimePickButton = styled(Text).attrs({
   width: 24px;
   height: 24px;
   padding: 0;
+  background: transparent;
   ${_ => ({
     ...(_.active
       ? {

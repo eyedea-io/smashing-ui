@@ -43,6 +43,13 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
     minutesLabel: 'Min',
     minutesInterval: 5
   })
+
+  React.useEffect(() => {
+    if (value) {
+      onChange(getDateWithTimeValue(value))
+    }
+  }, [timeValue])
+
   const minutesInterval =
     defaults.minutesInterval < 5 ? 5 : defaults.minutesInterval
 
@@ -54,6 +61,13 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
       .slice(0, 2)
   }
 
+  const getDateWithTimeValue = date => {
+    const newValue = new Date(date)
+    newValue.setHours(timeValue.hours || newValue.getHours())
+    newValue.setMinutes(timeValue.minutes || newValue.getMinutes())
+    return newValue
+  }
+
   const popoverPropsForAppearance = {
     outline: {
       transitionType: 'expand',
@@ -63,6 +77,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
   }[defaults.appearance || 'default']
 
   const changeTimeValue = (hours?: number, minutes?: number) => {
+    console.log({minutes, hours})
     setTimeValue({minutes, hours})
   }
 
@@ -80,7 +95,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
             <S.StyledCalendar
               {...props}
               onClickDay={date => {
-                onChange(date)
+                onChange(getDateWithTimeValue(date))
                 if (!withTime) {
                   close()
                 }
@@ -102,26 +117,27 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
             />
             {withTime && (
               <S.ClockButton
+                visible={!timeIsOpen}
                 appearance="minimal"
                 onClick={() => setTimeIsOpen(true)}
               >
                 {clockIcon}
               </S.ClockButton>
             )}
-            <S.TimePicker isOpen={timeIsOpen}>
-              <TimePicker
-                header={timeHeader}
-                close={() => setTimeIsOpen(false)}
-                clockIcon={clockIcon}
-                collapseIcon={collapseIcon}
-                changeTime={changeTimeValue}
-                minuteValue={value ? value.getMinutes() : timeValue.minutes}
-                hourValue={value ? value.getHours() : timeValue.hours}
-                minutesInterval={minutesInterval}
-                hoursLabel={defaults.hoursLabel}
-                minutesLabel={defaults.minutesLabel}
-              />
-            </S.TimePicker>
+
+            <TimePicker
+              isOpen={timeIsOpen}
+              header={timeHeader}
+              close={() => setTimeIsOpen(false)}
+              clockIcon={clockIcon}
+              collapseIcon={collapseIcon}
+              changeTime={changeTimeValue}
+              minuteValue={value ? value.getMinutes() : timeValue.minutes}
+              hourValue={value ? value.getHours() : timeValue.hours}
+              minutesInterval={minutesInterval}
+              hoursLabel={defaults.hoursLabel}
+              minutesLabel={defaults.minutesLabel}
+            />
           </S.CalendarContainer>
         )
       }}

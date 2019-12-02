@@ -7,7 +7,7 @@ export type StyledCalendarInputProps = {
 export type CalendarInputProps = {
   appearance: CalendarInputAppearanceType
   inputAppearance?: TextInputAppearanceType
-  onChange?: (date: Date) => void
+  onChange?: (date?: Date) => void
   value?: Date
   withTime?: boolean
   hoursLabel?: string
@@ -21,6 +21,7 @@ export type CalendarInputProps = {
 }
 
 export type TimePickerProps = {
+  isOpen: boolean
   hoursLabel: string
   minutesLabel: string
   minutesInterval: number
