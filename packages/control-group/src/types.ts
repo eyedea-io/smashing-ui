@@ -14,33 +14,26 @@ export type ControlGroupAppearanceType =
   | 'checkbox-vertical'
   | 'checkbox-horizontal'
 
-export interface ControlGroupWrapperProps {
-  appearance: ControlGroupAppearanceType
-  childrenAmount: number
-  layout?: Layout
-}
-export interface ControlGroupProps {
-  controlAppearance: ControlAppearanceType
-  groupAppearance: ControlGroupAppearanceType
-  value: string | string[]
-  onChange: (value: string) => void
-  items: ControlProps[]
-
-  textAlign?: TextAlign
-  layout?: Layout
-}
-
 export interface ControlProps {
   value?: string
   label: string
-  checked: boolean
-  textAlign?: TextAlign
-  handleSelect: (value: string | string[]) => void
 }
 
 export interface StyledButtonProps {
   checked: boolean
   textAlign?: TextAlign
 }
-
-export type ControlComponentProps<T> = React.FC<ControlProps & T>
+export interface ControlGroupWrapperProps {
+  appearance: ControlGroupAppearanceType
+  childrenAmount: number
+  layout?: Layout
+}
+export interface ControlGroupProps {
+  items: ControlProps[]
+  value: string | string[]
+  onChange: (value: string) => void
+  controlAppearance: ControlAppearanceType
+  groupAppearance: ControlGroupAppearanceType
+  layout?: Layout
+  textAlign?: TextAlign
+}

@@ -1,9 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import {ButtonProps} from '@smashing/button'
-import {Radio} from '@smashing/radio'
-import {Checkbox} from '@smashing/checkbox'
+import {ButtonProps, ButtonAppearanceType} from '@smashing/button'
+import {Radio, RadioAppearanceType} from '@smashing/radio'
+import {Checkbox, CheckboxAppearanceType} from '@smashing/checkbox'
 import {
+  ControlProps,
   ControlGroupProps,
   ControlAppearanceType,
   ControlGroupAppearanceType
@@ -23,28 +24,26 @@ const ControlGroupFC: React.FC<ControlGroupProps & ButtonProps> = props => {
 
   const {items, onChange, value: groupValue, layout, textAlign} = props
 
-  const handleOnChange = option => {
+  const handleOnChange = (itemValue: string) => {
     if (Array.isArray(groupValue)) {
-      if (groupValue.includes(option)) {
-        safeInvoke(onChange, groupValue.filter(item => item !== option))
+      if (groupValue.includes(itemValue)) {
+        safeInvoke(onChange, groupValue.filter(item => item !== itemValue))
       } else {
-        safeInvoke(onChange, groupValue.concat(option))
+        safeInvoke(onChange, groupValue.concat(itemValue))
       }
     } else {
-      const newValue = groupValue === option ? undefined : option
+      const newValue = groupValue === itemValue ? undefined : itemValue
       safeInvoke(onChange, newValue)
     }
   }
 
-  const renderControl = item => {
+  const renderControl = (item: ControlProps) => {
     const controlProps = {
       key: item.label,
       textAlign,
-      appearance: controlAppearance as any,
       checked: Array.isArray(groupValue)
         ? groupValue.includes(item.value || '')
         : groupValue === item.value,
-
       ...item
     }
 
@@ -54,6 +53,7 @@ const ControlGroupFC: React.FC<ControlGroupProps & ButtonProps> = props => {
         return (
           <Radio
             {...controlProps}
+            appearance={controlAppearance as RadioAppearanceType}
             onChange={() => safeInvoke(handleOnChange, item.value)}
           >
             {item.label}
@@ -64,6 +64,7 @@ const ControlGroupFC: React.FC<ControlGroupProps & ButtonProps> = props => {
         return (
           <Checkbox
             {...controlProps}
+            appearance={controlAppearance as CheckboxAppearanceType}
             onChange={() => safeInvoke(handleOnChange, item.value)}
           >
             {item.label}
@@ -74,6 +75,7 @@ const ControlGroupFC: React.FC<ControlGroupProps & ButtonProps> = props => {
         return (
           <StyledButton
             {...controlProps}
+            appearance={controlAppearance as ButtonAppearanceType}
             onClick={() => safeInvoke(handleOnChange, item.value)}
           >
             {item.label}
