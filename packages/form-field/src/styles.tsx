@@ -48,7 +48,7 @@ export const Alert = styled(PureAlert)<AlertProps>`
     css`
       position: relative;
       margin-bottom: -18px;
-      top: -18px;
+      top: -27px;
       margin-left: ${_.theme.spacing.xxs};
       background: ${_.theme.colors.background.default};
       padding: 0 4px;
