@@ -3,15 +3,22 @@ import styled, {DefaultTheme} from 'styled-components'
 import {
   ControlGroupWrapperProps,
   StyledButtonProps,
-  ControlGroupAppearanceType,
-  Layout
+  Layout,
+  TextAlign
 } from './types'
 
-export const ControlGroupWrapper = styled.div<ControlGroupWrapperProps>`
-  ${_ => getControlGroupStyle(_.layout, _.childrenAmount, _.appearance)}
-`
+const getTextAlign = (textAlign?: TextAlign) => {
+  switch (textAlign) {
+    case 'center':
+      return 'center'
+    case 'right':
+      return 'flex-end'
+    default:
+      return 'flex-start'
+  }
+}
 
-const display = (layout?: Layout) => {
+const getDisplay = (layout?: Layout) => {
   switch (layout) {
     case 'equal':
       return 'inline-grid'
@@ -22,31 +29,12 @@ const display = (layout?: Layout) => {
   }
 }
 
-const getControlGroupStyle = (
-  layout?: Layout,
-  childrenAmount?: number,
-  appearance?: ControlGroupAppearanceType
-) => {
-  switch (appearance) {
-    case 'button':
-      return getButtonGroupStyle(layout, childrenAmount)
-    case 'radio-horizontal':
-    case 'checkbox-horizontal':
-      return getHorizontalGroupStyle(layout, childrenAmount)
-    case 'radio-vertical':
-    case 'checkbox-vertical':
-      return getVerticalGroupStyle(layout)
-    default:
-      return {}
-  }
-}
-
 const getButtonGroupStyle = (layout?: Layout, childrenAmount?: number) => (_: {
   theme: DefaultTheme
 }) => {
   return {
     borderRadius: _.theme.radius,
-    display: display(layout),
+    display: getDisplay(layout),
     gridTemplateColumns: '1fr '.repeat(childrenAmount || 0)
   }
 }
@@ -54,37 +42,49 @@ const getButtonGroupStyle = (layout?: Layout, childrenAmount?: number) => (_: {
 const getHorizontalGroupStyle = (
   layout?: Layout,
   childrenAmount?: number
-) => (_: {theme: DefaultTheme}) => {
-  return {
-    display: layout === 'full' ? 'grid' : 'inline-grid',
-    gridTemplateColumns: '1fr '.repeat(childrenAmount || 0)
-  }
-}
+) => (_: {theme: DefaultTheme}) => ({
+  display: getDisplay(layout || 'equal'),
+  gridTemplateColumns: '1fr '.repeat(childrenAmount || 0)
+})
 
 const getVerticalGroupStyle = (layout?: Layout) => (_: {
   theme: DefaultTheme
-}) => {
-  return {
-    display: layout === 'full' ? 'grid' : 'inline-grid',
-    gridTemplateColumns: '1fr ',
-    '> *': {
-      marginBottom: _.theme.spacing.xs
-    }
+}) => ({
+  display: getDisplay(layout || 'equal'),
+  gridTemplateColumns: '1fr ',
+
+  '> *': {
+    marginBottom: _.theme.spacing.xxxs
+  }
+})
+
+export const ControlGroupWrapper = styled.div<ControlGroupWrapperProps>`
+  ${_ => getControlGroupStyle(_)}
+`
+
+const getControlGroupStyle = (
+  _: ControlGroupWrapperProps & {
+    theme: DefaultTheme
+  }
+) => {
+  switch (_.appearance) {
+    case 'button':
+      return getButtonGroupStyle(_.layout, _.childrenAmount)(_)
+    case 'radio-horizontal':
+    case 'checkbox-horizontal':
+      return getHorizontalGroupStyle(_.layout, _.childrenAmount)(_)
+    case 'radio-vertical':
+    case 'checkbox-vertical':
+      return getVerticalGroupStyle(_.layout)
+    default:
+      return {}
   }
 }
 
 export const StyledButton = styled(Button)<StyledButtonProps>`
   border-radius: 0;
-  justify-content: ${_ => {
-    switch (_.textAlign) {
-      case 'center':
-        return 'center'
-      case 'right':
-        return 'flex-end'
-      default:
-        return 'flex-start'
-    }
-  }};
+  justify-content: ${_ => getTextAlign(_.textAlign)};
+
   ${_ => {
     const activeStyle = getButtonStyle(_.appearance)(_)[':active']
     return _.checked ? activeStyle : {}

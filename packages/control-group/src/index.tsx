@@ -97,9 +97,10 @@ const ControlGroup = styled(ControlGroupFC)``
 export {ControlGroup}
 
 declare module 'styled-components' {
-  export interface SmashingRadioDefaults
+  export interface SmashingControlGroupDefaults
     extends Partial<{
-      controlGroup: ControlGroupProps
+      controlAppearance: ControlAppearanceType
+      groupAppearance: ControlGroupAppearanceType
     }> {}
 }
 
