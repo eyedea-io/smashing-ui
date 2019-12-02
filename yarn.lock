@@ -2497,15 +2497,6 @@
   dependencies:
     "@sentry/cli" "^1.49.0"
 
-"@smashing/button@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@smashing/button/-/button-0.3.0.tgz#e84ed519169f4e40c38a47fdd5a26ea7c38ad31c"
-  integrity sha512-luFuswZPYgdeyqyp2L2QT9AsE1hDkWedtyrOyxDKl2LHBvPUl+jSApz8atwVNOlwSAtfXubg4IKFkFeE9iQO9A==
-  dependencies:
-    "@smashing/spinner" "^0.1.15"
-    "@smashing/theme" "^0.13.0"
-    "@smashing/typography" "^0.4.28"
-
 "@smashing/form@^0.6.0":
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/@smashing/form/-/form-0.6.0.tgz#d04b7f5ca37f0661f51287ab4c021ab4e51378a8"
@@ -2513,14 +2504,6 @@
   dependencies:
     dot-prop "^5.1.0"
     react-fast-compare "^2.0.4"
-
-"@smashing/theme@^0.13.0":
-  version "0.13.0"
-  resolved "https://registry.yarnpkg.com/@smashing/theme/-/theme-0.13.0.tgz#7df64cba241107100889511382f34969e2ad29ed"
-  integrity sha512-VABi84/1O+jeqd0gCZJSq5FxwXB0p81I/959MX3z2pJqG1GVeZnViyluAY4D7P6nk/az+4Y3G0navhTeayk8NA==
-  dependencies:
-    deepmerge "^3.2.0"
-    tinycolor2 "^1.4.1"
 
 "@storybook/addon-a11y@5.2.0-beta.37":
   version "5.2.0-beta.37"
