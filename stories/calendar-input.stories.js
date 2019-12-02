@@ -10,7 +10,7 @@ const WrappedCalendar = props => {
 }
 
 addDecorator(withA11y)
-storiesOf('Core|Calendar input', module)
+storiesOf('Form|Calendar input', module)
   .addDecorator(story => (
     <SmashingThemeProvider
       theme={{
@@ -23,6 +23,10 @@ storiesOf('Core|Calendar input', module)
     </SmashingThemeProvider>
   ))
   .add('appearance:default', () => <WrappedCalendar />)
+  .add('appearance:default with time', () => <WrappedCalendar withTime />)
   .add('appearance:outline', () => (
-    <WrappedCalendar withTime inputAppearance="outline" appearance="outline" />
+    <WrappedCalendar inputAppearance="outline" appearance="outline" />
+  ))
+  .add('appearance:outline with time', () => (
+    <WrappedCalendar inputAppearance="outline" withTime appearance="outline" />
   ))

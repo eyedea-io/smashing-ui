@@ -17,11 +17,11 @@
   },
   "dependencies": {
     "@smashing/button": "^0.4.0",
-    "@smashing/text-input": "^0.5.0",
+    "@smashing/text-input": "^0.6.1",
     "@smashing/popover": "^0.4.1",
     "@smashing/theme": "^0.14.0",
     "@smashing/typography": "^0.4.26",
-    "react-calendar": "^2.19.2"
+    "react-calendar": "2.19.2"
   },
   "devDependencies": {
     "react": "^16.8.6"

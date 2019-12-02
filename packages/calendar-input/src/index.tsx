@@ -13,9 +13,11 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
   onChange = () => {},
   value,
   withTime,
-  timeIcon = <ClockIcon />,
+  clockIcon = () => <ClockIcon />,
   nextIcon,
   prevIcon,
+  collapseIcon,
+  expandIcon,
   ...props
 }) => {
   const [timeIsOpen, setTimeIsOpen] = React.useState(false)
@@ -99,18 +101,19 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
               formatShortWeekday={formatShortWeekday}
             />
             {withTime && (
-              <S.ClockElementButton
+              <S.ClockButton
                 appearance="minimal"
                 onClick={() => setTimeIsOpen(true)}
               >
-                {timeIcon}
-              </S.ClockElementButton>
+                {clockIcon}
+              </S.ClockButton>
             )}
             <S.TimePicker isOpen={timeIsOpen}>
               <TimePicker
                 header={timeHeader}
                 close={() => setTimeIsOpen(false)}
-                timeIcon={timeIcon}
+                clockIcon={clockIcon}
+                collapseIcon={collapseIcon}
                 changeTime={changeTimeValue}
                 minuteValue={value ? value.getMinutes() : timeValue.minutes}
                 hourValue={value ? value.getHours() : timeValue.hours}
@@ -136,6 +139,8 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
           minutesInterval={minutesInterval}
           appearance={defaults.inputAppearance}
           timeValue={timeValue}
+          expandIcon={expandIcon}
+          collapseIcon={collapseIcon}
         />
       )}
     </S.StyledContainer>

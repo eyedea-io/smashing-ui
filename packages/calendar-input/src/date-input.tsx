@@ -1,33 +1,15 @@
 import * as React from 'react'
-import {TextInputProps} from '@smashing/text-input'
-import {CalendarInputProps} from './types'
 import * as S from './styles'
 import {
-  KEYS,
-  getCharacter,
   CalendarDate as CalendarDateHelper,
   CalendarDateTime,
   DateTimePartsType,
-  DateValue
+  DateValue,
+  KEYS,
+  getCharacter
 } from './utils'
 import {CalendarIcon, ChevronUpIcon} from './icons'
-
-type DateInputProps = Pick<
-  CalendarInputProps,
-  'onChange' | 'value' | 'withTime'
-> &
-  Pick<TextInputProps, 'appearance' | 'onClick' | 'width'> & {
-    getRef: (ref: HTMLElement | null) => void
-    openCalendar: () => void
-    minutesInterval: number
-    timeValue: {
-      hours?: number
-      minutes?: number
-    }
-    isExpanded?: boolean
-    expandIcon?: React.FC
-    collapseIcon?: React.FC
-  }
+import {DateInputProps} from './types'
 
 export const DateInput: React.FC<DateInputProps> = ({
   onChange = () => {},
@@ -54,6 +36,7 @@ export const DateInput: React.FC<DateInputProps> = ({
   const [activeDatePart, setActiveDatePart] = React.useState<Partial<
     DateTimePartsType
   > | null>(null)
+
   React.useEffect(() => {
     setSelectionRange(cursorPosition, cursorPosition + 1)
   }, [cursorPosition])

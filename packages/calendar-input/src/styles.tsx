@@ -170,7 +170,7 @@ export const TimePickerHeaderText = styled(Strong)`
   flex: 1;
 `
 
-export const ClockElementButton = styled(Button)`
+export const ClockButton = styled(Button)`
   width: 100%;
   border: none;
   background: transparent;
