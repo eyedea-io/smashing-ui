@@ -1,7 +1,7 @@
 {
   "name": "@smashing/control-group",
   "version": "0.0.0",
-  "description": "Set of two or more buttons with controlled value.",
+  "description": "Set of two or more buttons/radios/checkboxes with controlled value.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
   "main": "lib/cjs/index.js",

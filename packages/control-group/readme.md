@@ -3,7 +3,7 @@
 </p>
 
 ```sh
-yarn add @smashing/button-group
+yarn add @smashing/control-group
 ```
 
 #### Default usage
@@ -15,10 +15,12 @@ const ReactComponent = () => {
   const [value, setValue] = React.useState(1)
 
   return (
-    <ButtonGroup
+    <ControlGroup
+      controlAppearance="flat"
+      groupAppearance="button"
       onChange={v => setValue(v)}
       value={value}
-      options={[
+      items={[
         {
           label: 'first button',
           value: 1
