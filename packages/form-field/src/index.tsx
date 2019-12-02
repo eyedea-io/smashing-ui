@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {toJS} from 'mobx'
+import {isArrayLike} from 'mobx'
 import styled from 'styled-components'
 import * as S from './styles'
 import {useDefaults} from '@smashing/theme'
@@ -80,7 +80,7 @@ const FormFieldFC: React.FC<FormFieldProps> = ({
             intent="danger"
             hasIcon={alertAppearance === 'block'}
             alertAppearance={alertAppearance}
-            children={toJS(children)}
+            children={isArrayLike(children) ? children[0] : children}
           />
         )}
       />
