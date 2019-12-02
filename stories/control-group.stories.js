@@ -6,7 +6,7 @@ import {SmashingThemeProvider} from '@smashing/theme'
 import {CalendarRegular} from './common/icon'
 import {Heading} from '@smashing/typography'
 
-const options = [
+const items = [
   {
     label: 'Lorem Ipsum',
     value: 1,
@@ -26,6 +26,69 @@ const options = [
     value: 4
   }
 ]
+
+const layouts = [
+  {
+    name: 'Default',
+    props: {
+      items: items.slice(0, 2)
+    }
+  },
+  {
+    name: 'Flat',
+    props: {
+      controlAppearance: 'flat'
+    }
+  },
+  {
+    name: 'Primary',
+    props: {
+      controlAppearance: 'primary',
+      textAlign: 'right'
+    }
+  },
+  {
+    name: 'Minimal',
+    props: {
+      controlAppearance: 'minimal',
+      textAlign: 'center'
+    }
+  },
+  {
+    name: 'Subtle',
+    props: {
+      controlAppearance: 'subtle',
+      textAlign: 'center',
+      items
+    },
+  },
+  {
+    name: 'Outline',
+    props: {
+      controlAppearance: 'outline',
+      items
+    },
+  },
+  {
+    name: 'Card',
+    props: {
+      controlAppearance: 'card',
+      items
+    },
+  },
+  {
+    name: 'Toggle',
+    props: {
+      controlAppearance: 'toggle',
+      items
+    },
+  }
+]
+
+const buttonAppearances = ['flat', 'primary', 'minimal', 'default', 'subtle', 'outline']
+const checkboxAppearances = ['primary', 'minimal', 'card', 'outline', 'toggle']
+const radioAppearances = ['default', 'outline']
+
 addDecorator(withA11y)
 
 storiesOf('Form|Control Group', module)
@@ -46,36 +109,16 @@ storiesOf('Form|Control Group', module)
     const props = {
       onChange: setValue,
       value,
-      options: options.slice(0, 3)
+      items: items.slice(0, 3)
     }
 
     return (
-      <React.Fragment>
-        <Heading variant={100}>Default</Heading>
-        <ControlGroup {...props} />
-        <Heading variant={100}>Flat</Heading>
-        <ControlGroup
-          appearance="flat"
-          {...props}
-        />
-        <Heading variant={100}>Primary</Heading>
-        <ControlGroup
-          appearance="primary"
-          textAlign="right"
-          {...props}
-        />
-        <Heading variant={100}>Minimal</Heading>
-        <ControlGroup
-          appearance="minimal"
-          {...props}
-        />
-        <Heading variant={100}>Subtle</Heading>
-        <ControlGroup
-          appearance="subtle"
-          {...props}
-          options={options}
-        />
-      </React.Fragment>
+      layouts.filter(layout => buttonAppearances.includes(layout.name.toLowerCase())).map(layout => (
+        <React.Fragment key={layout.name}>
+          <Heading variant={100}>{layout.name}</Heading>
+          <ControlGroup {...props} {...layout.props} />
+        </React.Fragment>
+      ))
     )
   })
   .add('layout: equal width', () => {
@@ -84,45 +127,16 @@ storiesOf('Form|Control Group', module)
     const props = {
       onChange: setValue,
       value,
-      options: options.slice(0, 3)
+      items: items.slice(0, 3)
     }
 
     return (
-      <React.Fragment>
-        <Heading variant={100}>Default</Heading>
-        <ControlGroup
-          layout="equal"
-          {...props}
-          options={options.slice(0, 2)}
-        />
-        <Heading variant={100}>Flat</Heading>
-        <ControlGroup
-          appearance="flat"
-          layout="equal"
-          {...props}
-        />
-        <Heading variant={100}>Primary</Heading>
-        <ControlGroup
-          appearance="primary"
-          textAlign="right"
-          layout="equal"
-          {...props}
-        />
-        <Heading variant={100}>Minimal</Heading>
-        <ControlGroup
-          appearance="minimal"
-          textAlign="center"
-          layout="equal"
-          {...props}
-        />
-        <Heading variant={100}>Subtle</Heading>
-        <ControlGroup
-          appearance="subtle"
-          textAlign="center"
-          layout="equal"
-          {...props}
-        />
-      </React.Fragment>
+      layouts.filter(layout => buttonAppearances.includes(layout.name.toLowerCase())).map(layout => (
+        <React.Fragment key={layout.name}>
+          <Heading variant={100}>{layout.name}</Heading>
+          <ControlGroup layout="equal" {...props} {...layout.props} />
+        </React.Fragment>
+      ))
     )
   })
   .add('layout: full width', () => {
@@ -131,45 +145,107 @@ storiesOf('Form|Control Group', module)
     const props = {
       onChange: setValue,
       value,
-      options: options.slice(0, 3)
+      items: items.slice(0, 3)
     }
 
     return (
-      <React.Fragment>
-        <Heading variant={100}>Default</Heading>
-        <ControlGroup
-          layout="full"
-          {...props}
-          options={options.slice(0, 2)}
-        />
-        <Heading variant={100}>Flat</Heading>
-        <ControlGroup
-          appearance="flat"
-          layout="full"
-          {...props}
-        />
-        <Heading variant={100}>Primary</Heading>
-        <ControlGroup
-          appearance="primary"
-          textAlign="right"
-          layout="full"
-          {...props}
-        />
-        <Heading variant={100}>Minimal</Heading>
-        <ControlGroup
-          appearance="minimal"
-          textAlign="center"
-          layout="full"
-          {...props}
-        />
-        <Heading variant={100}>Subtle</Heading>
-        <ControlGroup
-          appearance="subtle"
-          textAlign="center"
-          layout="full"
-          {...props}
-          options={options}
-        />
-      </React.Fragment>
+      layouts.filter(layout => buttonAppearances.includes(layout.name.toLowerCase())).map(layout => (
+        <React.Fragment key={layout.name}>
+          <Heading variant={100}>{layout.name}</Heading>
+          <ControlGroup layout="full" {...props} {...layout.props} />
+        </React.Fragment>
+      ))
+    )
+  })
+  .add('groupAppearance: button', () => {
+    const [value, setValue] = React.useState(1)
+
+    const props = {
+      onChange: setValue,
+      value,
+      items: items.slice(0, 3)
+    }
+
+    return (
+      layouts.filter(layout => buttonAppearances.includes(layout.name.toLowerCase())).map(layout => (
+        <React.Fragment key={layout.name}>
+          <Heading variant={100}>{layout.name}</Heading>
+          <ControlGroup {...props} {...layout.props} />
+        </React.Fragment>
+      ))
+    )
+  })
+  .add('groupAppearance: radio-horizontal', () => {
+    const [value, setValue] = React.useState(1)
+
+    const props = {
+      onChange: setValue,
+      value,
+      items: items.slice(0, 3)
+    }
+
+    return (
+      layouts.filter(layout => radioAppearances.includes(layout.name.toLowerCase())).map(layout => (
+        <React.Fragment key={layout.name}>
+          <Heading variant={100}>{layout.name}</Heading>
+          <ControlGroup groupAppearance="radio-horizontal" {...props} {...layout.props} />
+        </React.Fragment>
+      ))
+    )
+  })
+  .add('groupAppearance: radio-vertical', () => {
+    const [value, setValue] = React.useState(1)
+
+    const props = {
+      onChange: setValue,
+      value,
+      items: items.slice(0, 3)
+    }
+
+    return (
+      layouts.filter(layout => radioAppearances.includes(layout.name.toLowerCase())).map(layout => (
+        <React.Fragment key={layout.name}>
+          <Heading variant={100}>{layout.name}</Heading>
+          <ControlGroup groupAppearance="radio-vertical" {...props} {...layout.props} />
+        </React.Fragment>
+      ))
+    )
+  })
+  .add('groupAppearance: checkbox-horizontal', () => {
+    const [value, setValue] = React.useState([1])
+
+    const props = {
+      onChange: setValue,
+      value,
+      items: items.slice(0, 3)
+    }
+
+
+
+    return (
+      layouts.filter(layout => checkboxAppearances.includes(layout.name.toLowerCase())).map(layout => (
+        <React.Fragment key={layout.name}>
+          <Heading variant={100}>{layout.name}</Heading>
+          <ControlGroup groupAppearance="checkbox-horizontal" {...props} {...layout.props} />
+        </React.Fragment>
+      ))
+    )
+  })
+  .add('groupAppearance: checkbox-vertical', () => {
+    const [value, setValue] = React.useState([1])
+
+    const props = {
+      onChange: setValue,
+      value,
+      items: items.slice(0, 3)
+    }
+
+    return (
+      layouts.filter(layout => checkboxAppearances.includes(layout.name.toLowerCase())).map(layout => (
+        <React.Fragment key={layout.name}>
+          <Heading variant={100}>{layout.name}</Heading>
+          <ControlGroup groupAppearance="checkbox-vertical" {...props} {...layout.props} />
+        </React.Fragment>
+      ))
     )
   })
