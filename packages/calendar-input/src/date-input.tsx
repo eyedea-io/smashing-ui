@@ -9,7 +9,8 @@ import {
   CalendarDateTime,
   DateTimePartsType,
   DateValue
-} from './calendar-date'
+} from './utils'
+import {CalendarIcon, ChevronUpIcon} from './icons'
 
 type DateInputProps = Pick<
   CalendarInputProps,
@@ -23,6 +24,9 @@ type DateInputProps = Pick<
       hours?: number
       minutes?: number
     }
+    isExpanded?: boolean
+    expandIcon?: React.FC
+    collapseIcon?: React.FC
   }
 
 export const DateInput: React.FC<DateInputProps> = ({
@@ -34,6 +38,9 @@ export const DateInput: React.FC<DateInputProps> = ({
   withTime = false,
   minutesInterval,
   timeValue,
+  isExpanded,
+  expandIcon = () => <CalendarIcon />,
+  collapseIcon = () => <ChevronUpIcon />,
   ...props
 }) => {
   const CalendarDate = withTime
@@ -226,6 +233,37 @@ export const DateInput: React.FC<DateInputProps> = ({
     }
   }
 
+  const handlePaste = (e: React.ClipboardEvent) => {
+    const data = e.clipboardData.getData('text/plain')
+    const newDate = Date.parse(data)
+    if (isNaN(newDate)) {
+      e.preventDefault()
+    } else {
+      setInputValue(CalendarDate.getValue(new Date(newDate)))
+    }
+  }
+
+  const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
+    if (onClick) {
+      onClick(e)
+    }
+    const clickedCharPosition =
+      e.currentTarget && e.currentTarget.selectionStart
+    if (
+      clickedCharPosition &&
+      clickedCharPosition <
+        CalendarDate.getStringValueForParts(inputValue).length
+    ) {
+      CalendarDate.format.forEach(part => {
+        const partStartIndex = CalendarDate.getPartStartIndex(part)
+        if (clickedCharPosition && partStartIndex < clickedCharPosition) {
+          setCursorPosition(partStartIndex)
+          setActiveDatePart(part)
+        }
+      })
+    }
+  }
+
   return (
     <S.StyledInput
       innerRef={ref => {
@@ -234,18 +272,20 @@ export const DateInput: React.FC<DateInputProps> = ({
       }}
       readOnly
       onFocus={() => {
-        openCalendar()
         setActiveDatePart(CalendarDate.format[0])
       }}
       onBlur={() => {
         setActiveDatePart(null)
         setCursorPosition(0)
       }}
+      aria-expanded={isExpanded}
+      onPaste={handlePaste}
       width={props.width}
-      onClick={onClick}
+      onClick={handleClick}
       appearance={props.appearance}
       onKeyDown={e => handleKeyDown(e)}
       value={CalendarDate.getStringValueForParts(inputValue)}
+      affixAfter={isExpanded ? collapseIcon : expandIcon}
     ></S.StyledInput>
   )
 }

@@ -7,14 +7,24 @@ import {CalendarInputProps, CalendarInputAppearanceType} from './types'
 import * as S from './styles'
 import {DateInput} from './date-input'
 import {TimePicker} from './time-picker'
+import {ClockIcon} from './icons'
 
 const CalendarInput: React.FC<CalendarInputProps> = ({
   onChange = () => {},
   value,
   withTime,
+  timeIcon = <ClockIcon />,
+  nextIcon,
+  prevIcon,
   ...props
 }) => {
   const [timeIsOpen, setTimeIsOpen] = React.useState(false)
+  const [timeHeader, setTimeHeader] = React.useState(
+    `${new Date().toLocaleString('default', {
+      month: 'long'
+    })} ${new Date().getFullYear()}`
+  )
+
   const [timeValue, setTimeValue] = React.useState<{
     minutes?: number
     hours?: number
@@ -58,6 +68,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
     <S.StyledContainer
       position="bottom-left"
       matchTargetWidth
+      minHeight={timeIsOpen ? 240 : undefined}
       appearance={defaults.appearance}
       {...popoverPropsForAppearance}
       onCloseComplete={() => setTimeIsOpen(false)}
@@ -65,26 +76,41 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
         return (
           <S.CalendarContainer>
             <S.StyledCalendar
-              open={true}
               {...props}
               onClickDay={date => {
                 onChange(date)
-                close()
+                if (!withTime) {
+                  close()
+                }
               }}
               value={value}
               appearance={defaults.appearance}
+              prevLabel={prevIcon}
               prev2Label={null}
+              nextLabel={nextIcon}
               next2Label={null}
-              onDrillDown={() => null}
+              onActiveDateChange={params =>
+                setTimeHeader(
+                  `${params.activeStartDate.toLocaleDateString('default', {
+                    month: 'long'
+                  })} ${params.activeStartDate.getFullYear()}`
+                )
+              }
               formatShortWeekday={formatShortWeekday}
             />
             {withTime && (
-              <S.TimeButton onClick={() => setTimeIsOpen(true)}>
-                Time icon
-              </S.TimeButton>
+              <S.ClockElementButton
+                appearance="minimal"
+                onClick={() => setTimeIsOpen(true)}
+              >
+                {timeIcon}
+              </S.ClockElementButton>
             )}
-            {timeIsOpen && (
+            <S.TimePicker isOpen={timeIsOpen}>
               <TimePicker
+                header={timeHeader}
+                close={() => setTimeIsOpen(false)}
+                timeIcon={timeIcon}
                 changeTime={changeTimeValue}
                 minuteValue={value ? value.getMinutes() : timeValue.minutes}
                 hourValue={value ? value.getHours() : timeValue.hours}
@@ -92,13 +118,14 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
                 hoursLabel={defaults.hoursLabel}
                 minutesLabel={defaults.minutesLabel}
               />
-            )}
+            </S.TimePicker>
           </S.CalendarContainer>
         )
       }}
     >
       {({isShown, toggle, getRef}) => (
         <DateInput
+          isExpanded={isShown}
           getRef={getRef}
           openCalendar={() => !isShown && toggle()}
           onClick={toggle}

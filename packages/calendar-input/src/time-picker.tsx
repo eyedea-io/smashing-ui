@@ -1,5 +1,7 @@
 import * as React from 'react'
 import * as S from './styles'
+import {Strong} from '@smashing/typography'
+import {ChevronDownIconSm} from './icons'
 
 type TimePickerProps = {
   hoursLabel: string
@@ -8,6 +10,10 @@ type TimePickerProps = {
   hourValue?: number
   minuteValue?: number
   changeTime: (hours?: number, minutes?: number) => void
+  timeIcon: JSX.Element
+  header: string
+  close: () => void
+  collapseIcon?: React.FC
 }
 
 export const TimePicker: React.FC<TimePickerProps> = ({
@@ -16,11 +22,22 @@ export const TimePicker: React.FC<TimePickerProps> = ({
   minutesInterval,
   hourValue,
   minuteValue,
-  changeTime
+  changeTime,
+  timeIcon,
+  header,
+  close,
+  collapseIcon = () => <ChevronDownIconSm />
 }) => {
   return (
-    <S.TimePicker>
-      <S.TimeButton>Time picker</S.TimeButton>
+    <>
+      <S.TimePickerHeader
+        appearance="minimal"
+        iconAfter={collapseIcon}
+        onClick={close}
+      >
+        <S.TimePickerHeaderText variant={300}>{header}</S.TimePickerHeaderText>
+      </S.TimePickerHeader>
+      <S.ClockElement>{timeIcon}</S.ClockElement>
       <S.TimeLabel>{hoursLabel}</S.TimeLabel>
       <S.TimeButtonsContainer>
         {Array.from(Array(24).keys()).map(elem => (
@@ -49,6 +66,6 @@ export const TimePicker: React.FC<TimePickerProps> = ({
             </S.TimePickButton>
           ))}
       </S.TimeButtonsContainer>
-    </S.TimePicker>
+    </>
   )
 }

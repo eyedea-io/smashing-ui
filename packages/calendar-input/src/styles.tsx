@@ -3,7 +3,8 @@ import {StyledCalendarInputProps, CalendarInputAppearanceType} from './types'
 import ReactCalendar from 'react-calendar/dist/entry.nostyle'
 import {TextInput, TextInputAppearanceType} from '@smashing/text-input'
 import {Popover} from '@smashing/popover'
-import {Strong, Text} from '@smashing/typography'
+import {Text, Strong} from '@smashing/typography'
+import {Button} from '@smashing/button'
 
 const getCalendarStyle = (appearance?: CalendarInputAppearanceType) => (_: {
   theme: DefaultTheme
@@ -129,35 +130,57 @@ export const CalendarContainer = styled.div<{withTime?: boolean}>`
   position: relative;
 `
 
-export const TimePickerContainer = styled.div``
-
 export const TimePicker = styled.div<{isOpen?: boolean}>`
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   transition: height 0.5s ease;
-  height: calc(100% - 40px);
   ${_ => ({
-    borderTop: `1px solid ${_.theme.colors.border.default}`,
+    height: _.isOpen ? '100%' : 0,
     backgroundColor: _.theme.colors.background.default
   })}
 `
 
-export const TimeButton = styled.button`
+export const ClockElement = styled.div`
   width: 100%;
-  padding-top: ${_ => _.theme.spacing.xs};
   border: none;
   background: transparent;
+  text-align: center;
+  ${_ => ({
+    paddingTop: _.theme.spacing.xxs
+  })};
 `
 
-export const TimePickerHeader = styled(Strong).attrs({
-  variant: 300
-})`
-  background: transparent;
-  border: none;
+export const TimePickerHeader = styled(Button)`
   width: 100%;
-  height: 40px;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  ${_ => ({
+    paddingTop: _.theme.spacing.xxs,
+    paddingBottom: _.theme.spacing.xxs,
+    borderBottom: `1px solid ${_.theme.colors.border.default}`
+  })};
+`
+
+export const TimePickerHeaderText = styled(Strong)`
+  flex: 1;
+`
+
+export const ClockElementButton = styled(Button)`
+  width: 100%;
+  border: none;
+  background: transparent;
+  justify-content: center;
+  border-radius: 0;
+  ${_ => ({
+    paddingTop: _.theme.spacing.xxs,
+    paddingBottom: _.theme.spacing.xxs,
+    borderTop: `1px solid ${_.theme.colors.border.default}`
+  })};
 `
 
 export const TimeLabel = styled(Text).attrs({
@@ -169,9 +192,9 @@ export const TimeLabel = styled(Text).attrs({
 `
 
 export const TimeButtonsContainer = styled.div`
-  margin: ${_ => `${_.theme.spacing.xxs} ${_.theme.spacing.xs}`};
+  margin: ${_ => `0 ${_.theme.spacing.xs}`};
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(6, 1fr);
 `
 
 export const TimePickButton = styled(Text).attrs({
@@ -180,8 +203,9 @@ export const TimePickButton = styled(Text).attrs({
   border-radius: 100%;
   border: none;
   cursor: pointer;
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
+  padding: 0;
   ${_ => ({
     ...(_.active
       ? {

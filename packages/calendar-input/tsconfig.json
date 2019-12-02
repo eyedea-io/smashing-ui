@@ -5,6 +5,7 @@
     "rootDir": "src"
   },
   "references": [
+    {"path": "../button"},
     {"path": "../theme"},
     {"path": "../typography"},
     {"path": "../text-input"},

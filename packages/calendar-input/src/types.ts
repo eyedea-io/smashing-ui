@@ -3,7 +3,6 @@ export type CalendarInputAppearanceType = 'default' | 'outline'
 
 export type StyledCalendarInputProps = {
   appearance: CalendarInputAppearanceType
-  open: boolean
 }
 export type CalendarInputProps = {
   appearance: CalendarInputAppearanceType
@@ -14,4 +13,9 @@ export type CalendarInputProps = {
   hoursLabel?: string
   minutesLabel?: string
   minutesInterval?: number
+  timeIcon?: JSX.Element
+  nextIcon?: JSX.Element
+  prevIcon?: JSX.Element
+  downIcon?: JSX.Element
+  upIcon?: JSX.Element
 }
