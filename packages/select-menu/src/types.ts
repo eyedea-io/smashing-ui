@@ -105,6 +105,12 @@ export interface SelectMenuProps<T extends OptionBase> {
   isSelectable?: boolean
 
   disabled?: boolean
+
+  /**
+   * Sets arrow (chevron) icon to be displayed on the far right side of the select menu.
+   * No icon is displayed if property is unset.
+   */
+  arrowIcon?: React.ReactNode
 }
 
 export interface OptionBase {

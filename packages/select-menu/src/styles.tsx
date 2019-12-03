@@ -5,7 +5,10 @@ import {
 } from './types'
 import {TextInput} from '@smashing/text-input'
 import {MenuElements} from '@smashing/menu'
-import {Button as PureButton} from '@smashing/button'
+import {
+  Button as PureButton,
+  StyledButton as ButtonElements
+} from '@smashing/button'
 import {Popover as PopoverElement} from '@smashing/popover'
 import {Heading} from '@smashing/typography'
 
@@ -16,6 +19,7 @@ interface PopoverProps {
 }
 interface ButtonProps {
   popoverAppearance?: SelectMenuPopoverAppearanceType
+  isEmpty?: boolean
 }
 interface MenuContainerProps {
   appearance?: SelectMenuAppearanceType
@@ -58,8 +62,22 @@ export const Popover = styled(PopoverElement)<PopoverProps>`
 export const Title = styled(Heading)`
   margin: 0;
 `
-export const Button = styled(PureButton)<ButtonProps & {isEmpty?: boolean}>`
+export const Button = styled(PureButton)<ButtonProps>`
+  ${_ =>
+    _.iconAfter && {
+      justifyContent: 'space-between',
+      [ButtonElements.IconWrapper]: {
+        transition: 'transform 0.12s linear'
+      }
+    }}
+
   &[aria-expanded='true'] {
+    ${_ =>
+      _.iconAfter && {
+        [ButtonElements.IconWrapper]: {
+          transform: 'rotate(180deg)'
+        }
+      }}
     ${_ =>
       _.popoverAppearance === 'accordion' && {
         borderBottomLeftRadius: 0,
