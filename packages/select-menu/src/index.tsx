@@ -5,6 +5,7 @@ import {Strong} from '@smashing/typography'
 import {Menu} from '@smashing/menu'
 import {safeInvoke, useDefaults} from '@smashing/theme'
 import * as S from './styles'
+
 import {
   SelectMenuAppearanceType,
   OptionBase,
@@ -18,6 +19,7 @@ const SelectMenuFC = <T extends OptionBase>(props: SelectMenuProps<T>) => {
     height: 32,
     hasCloseButton: true,
     isSelectable: true,
+    arrowIcon: undefined,
     popoverAppearance: 'card' as SelectMenuPopoverAppearanceType,
     appearance: 'default' as SelectMenuAppearanceType,
     placeholder: undefined as SelectMenuProps<T>['placeholder'],
@@ -191,6 +193,7 @@ const SelectMenuFC = <T extends OptionBase>(props: SelectMenuProps<T>) => {
           appearance={defaults.appearance}
           popoverAppearance={defaults.popoverAppearance}
           type="button"
+          iconAfter={defaults.arrowIcon}
           {...(defaults.height ? {height: defaults.height} : {})}
         >
           {placeholder}
@@ -213,6 +216,7 @@ declare module 'styled-components' {
         | 'hasCloseButton'
         | 'placeholder'
         | 'placeholderForMultipleSelected'
+        | 'arrowIcon'
       >
     }> {}
 }
