@@ -21,10 +21,12 @@ export interface ControlProps {
 
 export interface StyledButtonProps {
   checked: boolean
+  activeGroup: boolean
   textAlign?: TextAlign
 }
 export interface ControlGroupWrapperProps {
-  appearance: ControlGroupAppearanceType
+  controlAppearance: ControlAppearanceType
+  groupAppearance: ControlGroupAppearanceType
   childrenAmount: number
   layout?: Layout
 }
@@ -36,4 +38,6 @@ export interface ControlGroupProps {
   groupAppearance: ControlGroupAppearanceType
   layout?: Layout
   textAlign?: TextAlign
+  disabled?: boolean
+  invalid?: boolean
 }

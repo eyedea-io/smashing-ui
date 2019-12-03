@@ -109,7 +109,7 @@ storiesOf('Form|Control Group', module)
     const props = {
       onChange: setValue,
       value,
-      items: items.slice(0, 3)
+      items: items.slice(0, 3),
     }
 
     return (

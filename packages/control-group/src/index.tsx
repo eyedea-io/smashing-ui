@@ -21,8 +21,15 @@ const ControlGroupFC: React.FC<ControlGroupProps & ButtonProps> = props => {
       groupAppearance: 'button' as ControlGroupAppearanceType
     }
   )
-
-  const {items, onChange, value: groupValue, layout, textAlign} = props
+  const {
+    items,
+    onChange,
+    value: groupValue,
+    layout,
+    textAlign,
+    disabled,
+    invalid
+  } = props
 
   const handleOnChange = (itemValue: string) => {
     if (Array.isArray(groupValue)) {
@@ -38,12 +45,14 @@ const ControlGroupFC: React.FC<ControlGroupProps & ButtonProps> = props => {
   }
 
   const renderControl = (item: ControlProps) => {
-    const controlProps = {
+    const renderProps = {
       key: item.label,
       textAlign,
       checked: Array.isArray(groupValue)
         ? groupValue.includes(item.value || '')
         : groupValue === item.value,
+      disabled,
+      invalid,
       ...item
     }
 
@@ -52,7 +61,7 @@ const ControlGroupFC: React.FC<ControlGroupProps & ButtonProps> = props => {
       case 'radio-vertical':
         return (
           <Radio
-            {...controlProps}
+            {...renderProps}
             appearance={controlAppearance as RadioAppearanceType}
             onChange={() => safeInvoke(handleOnChange, item.value)}
           >
@@ -63,7 +72,7 @@ const ControlGroupFC: React.FC<ControlGroupProps & ButtonProps> = props => {
       case 'checkbox-vertical':
         return (
           <Checkbox
-            {...controlProps}
+            {...renderProps}
             appearance={controlAppearance as CheckboxAppearanceType}
             onChange={() => safeInvoke(handleOnChange, item.value)}
           >
@@ -74,11 +83,14 @@ const ControlGroupFC: React.FC<ControlGroupProps & ButtonProps> = props => {
       default:
         return (
           <StyledButton
-            {...controlProps}
+            {...renderProps}
             appearance={controlAppearance as ButtonAppearanceType}
             onClick={() => safeInvoke(handleOnChange, item.value)}
+            activeGroup={Boolean(
+              Array.isArray(groupValue) ? groupValue.length : groupValue
+            )}
           >
-            {item.label}
+            <span>{item.label}</span>
           </StyledButton>
         )
     }
@@ -86,11 +98,20 @@ const ControlGroupFC: React.FC<ControlGroupProps & ButtonProps> = props => {
 
   return (
     <ControlGroupWrapper
-      appearance={groupAppearance}
+      groupAppearance={groupAppearance}
+      controlAppearance={controlAppearance}
       childrenAmount={items.length}
       layout={layout}
     >
+      {/* <ControlsWrapper
+        groupAppearance={groupAppearance}
+        controlAppearance={controlAppearance}
+        checked={Boolean(
+          Array.isArray(groupValue) ? groupValue.length : groupValue
+        )}
+      > */}
       {items.map(renderControl)}
+      {/* </ControlsWrapper> */}
     </ControlGroupWrapper>
   )
 }

@@ -1,4 +1,5 @@
 import {Button, getButtonStyle} from '@smashing/button'
+import {Text} from '@smashing/typography'
 import styled, {DefaultTheme} from 'styled-components'
 import {
   ControlGroupWrapperProps,
@@ -58,16 +59,12 @@ const getVerticalGroupStyle = (layout?: Layout) => (_: {
   }
 })
 
-export const ControlGroupWrapper = styled.div<ControlGroupWrapperProps>`
-  ${_ => getControlGroupStyle(_)}
-`
-
 const getControlGroupStyle = (
   _: ControlGroupWrapperProps & {
     theme: DefaultTheme
   }
 ) => {
-  switch (_.appearance) {
+  switch (_.groupAppearance) {
     case 'button':
       return getButtonGroupStyle(_.layout, _.childrenAmount)(_)
     case 'radio-horizontal':
@@ -81,14 +78,80 @@ const getControlGroupStyle = (
   }
 }
 
+export const ControlGroupWrapper = styled.div<ControlGroupWrapperProps>`
+  ${_ => ({
+    ...getControlGroupStyle(_)
+  })}
+`
+
 export const StyledButton = styled(Button)<StyledButtonProps>`
-  border-radius: 0;
+  box-shadow: none;
+  position: relative;
   justify-content: ${_ => getTextAlign(_.textAlign)};
 
   ${_ => {
-    const activeStyle = getButtonStyle(_.appearance)(_)[':active']
-    return _.checked ? activeStyle : {}
+    const {outline} = _.theme.colors.button
+    const border = (state: keyof typeof outline.borderColor) =>
+      `${outline.borderWidth}px solid ${outline.borderColor[state]}`
+
+    const getBorder = () => {
+      const borderStyle =
+        _.activeGroup || _.checked ? border('active') : border('default')
+
+      return {
+        borderTop: borderStyle,
+        borderBottom: borderStyle,
+        borderRight: border('default'),
+
+        '&:first-of-type': {
+          borderLeft: borderStyle
+        },
+        '&:last-of-type': {
+          borderRight: borderStyle
+        }
+      }
+    }
+
+    const activeLine = () => ({
+      color: _.theme.colors.text.intense,
+
+      '&:after': {
+        position: 'absolute',
+        content: '" "',
+        bottom: 0,
+        left: _.theme.spacing.xxs,
+        width: `calc(100% - ${_.theme.spacing.sm})`,
+        height: '2px',
+        backgroundColor: _.theme.colors.text.intense
+      }
+    })
+
+    let style
+    switch (_.appearance) {
+      case 'outline':
+        style = {
+          boxSizing: 'border-box',
+
+          ...(_.checked ? activeLine() : {}),
+          ...getBorder(),
+
+          '&:hover, &:active': {
+            boxShadow: 'none',
+            ...getBorder(),
+            ...activeLine()
+          }
+        }
+        break
+      default:
+        style = {
+          ...(_.checked ? getButtonStyle(_.appearance)(_)[':active'] : {})
+        }
+    }
+
+    return style
   }}
+
+  border-radius: 0;
   &:first-of-type {
     border-radius: ${_ => `${_.theme.radius} 0 0 ${_.theme.radius}`};
   }
