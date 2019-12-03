@@ -94,7 +94,7 @@ const Alert: React.FC<AlertProps> = ({
     hasIcon: true,
     hasClose: false,
     closeOnBodyClick: false,
-    closeOnClick: () => undefined,
+    onCloseClick: () => undefined,
     intent: 'info' as AlertIntentType,
     appearance: 'default' as AlertAppearanceType
   })
@@ -106,13 +106,13 @@ const Alert: React.FC<AlertProps> = ({
       intent={defaults.intent}
       hasTrim={defaults.hasTrim}
       className={className}
-      onClick={() => defaults.closeOnBodyClick && defaults.closeOnClick()}
+      onClick={() => defaults.closeOnBodyClick && defaults.onCloseClick()}
       closeOnBodyClick={defaults.closeOnBodyClick}
     >
       <BoxInner
         appearance={defaults.appearance}
         hasIcon={defaults.hasIcon}
-        closeOnClick={defaults.closeOnClick}
+        closeOnClick={defaults.onCloseClick}
       >
         {defaults.hasIcon && (
           <Icon>{getAlertIconForIntent(defaults.intent)({theme})}</Icon>
@@ -135,8 +135,9 @@ const Alert: React.FC<AlertProps> = ({
       {defaults.hasClose && (
         <CloseButton
           iconAfter={CloseIcon}
-          onClick={defaults.closeOnClick}
+          onClick={defaults.onCloseClick}
           appearance="minimal"
+          height={24}
         />
       )}
     </Box>

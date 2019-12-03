@@ -2,10 +2,15 @@ import * as React from 'react'
 import styled from 'styled-components'
 import {Button} from '@smashing/button'
 
-const CloseButton = styled(Button)`
-  margin-left: 1em;
-  box-sizing: content-box;
-  height: auto;
+const CloseButton = styled(Button)<{height: number}>`
+  margin: ${_ => {
+    const margin = (44 - _.height) / 2
+    return `${margin}px ${margin}px 0 ${_.theme.spacing.sm}`
+  }};
+  width: ${_ => _.height}px;
+  /* align-self: center; */
+  padding: 0;
+
   svg {
     color: ${_ => _.theme.colors.icon.default};
   }

@@ -168,23 +168,15 @@ storiesOf('Feedback Indicators|Alert', module)
     <React.Fragment>
       <Alert
         title="Your account is active"
-        hasIcon={false}
+        onCloseClick={() => alert('Need close function')}
         hasClose
-        closeOnClick={() => alert('Need close function')}
-      >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, sapiente
-        dolorem corporis.
-      </Alert>
+      />
       <br />
       <Alert
         title="Close by clicking on body"
-        hasIcon={false}
-        closeOnClick={() => alert('Need close function')}
+        onCloseClick={() => alert('Need close function')}
         closeOnBodyClick
-      >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, sapiente
-        dolorem corporis.
-      </Alert>
+      />
     </React.Fragment>
   ))
   .add('all', () => (
