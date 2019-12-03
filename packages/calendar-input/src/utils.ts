@@ -188,5 +188,6 @@ export const KEYS = {
   LEFT: 'ArrowLeft',
   UP: 'ArrowUp',
   RIGHT: 'ArrowRight',
-  DOWN: 'ArrowDown'
+  DOWN: 'ArrowDown',
+  TAB: 'Tab'
 }

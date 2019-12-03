@@ -23,10 +23,14 @@ storiesOf('Form|Calendar input', module)
     </SmashingThemeProvider>
   ))
   .add('appearance:default', () => <WrappedCalendar />)
-  .add('appearance:default with time', () => <WrappedCalendar withTime />)
+  .add('appearance:default with time', () => <WrappedCalendar hasTime />)
   .add('appearance:outline', () => (
-    <WrappedCalendar inputAppearance="outline" appearance="outline" />
+    <WrappedCalendar inputAppearance="outline" popoverAppearance="outline" />
   ))
   .add('appearance:outline with time', () => (
-    <WrappedCalendar inputAppearance="outline" withTime appearance="outline" />
+    <WrappedCalendar
+      inputAppearance="outline"
+      hasTime
+      popoverAppearance="outline"
+    />
   ))

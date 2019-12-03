@@ -12,7 +12,7 @@ import {ClockIcon} from './icons'
 const CalendarInput: React.FC<CalendarInputProps> = ({
   onChange = () => {},
   value,
-  withTime,
+  hasTime,
   clockIcon = <ClockIcon />,
   nextIcon,
   prevIcon,
@@ -36,7 +36,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
   })
 
   const defaults = useDefaults('calendar', props, {
-    appearance: 'default' as CalendarInputAppearanceType,
+    popoverAppearance: 'default' as CalendarInputAppearanceType,
     inputAppearance: 'default' as TextInputAppearanceType,
     width: 200,
     hoursLabel: 'Hours',
@@ -46,7 +46,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
 
   React.useEffect(() => {
     if (value) {
-      onChange(getDateWithTimeValue(value))
+      onChange(getDateAndTimeValue(value))
     }
   }, [timeValue])
 
@@ -61,7 +61,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
       .slice(0, 2)
   }
 
-  const getDateWithTimeValue = date => {
+  const getDateAndTimeValue = date => {
     const newValue = new Date(date)
     newValue.setHours(timeValue.hours || newValue.getHours())
     newValue.setMinutes(timeValue.minutes || newValue.getMinutes())
@@ -74,7 +74,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
       targetOffset: -1
     } as Partial<PopoverProps>,
     default: {}
-  }[defaults.appearance || 'default']
+  }[defaults.popoverAppearance || 'default']
 
   const changeTimeValue = (hours?: number, minutes?: number) => {
     setTimeValue({minutes, hours})
@@ -85,7 +85,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
       position="bottom-left"
       matchTargetWidth
       minHeight={timeIsOpen ? 240 : undefined}
-      appearance={defaults.appearance}
+      appearance={defaults.popoverAppearance}
       {...popoverPropsForAppearance}
       onCloseComplete={() => setTimeIsOpen(false)}
       content={({close}) => {
@@ -94,13 +94,13 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
             <S.StyledCalendar
               {...props}
               onClickDay={date => {
-                onChange(getDateWithTimeValue(date))
-                if (!withTime) {
+                onChange(getDateAndTimeValue(date))
+                if (!hasTime) {
                   close()
                 }
               }}
               value={value}
-              appearance={defaults.appearance}
+              appearance={defaults.popoverAppearance}
               prevLabel={prevIcon}
               prev2Label={null}
               nextLabel={nextIcon}
@@ -114,7 +114,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
               }
               formatShortWeekday={formatShortWeekday}
             />
-            {withTime && (
+            {hasTime && (
               <S.ClockButton
                 visible={!timeIsOpen}
                 appearance="minimal"
@@ -149,7 +149,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
           onClick={toggle}
           onChange={onChange}
           value={value}
-          withTime={withTime}
+          hasTime={hasTime}
           width={defaults.width}
           minutesInterval={minutesInterval}
           appearance={defaults.inputAppearance}

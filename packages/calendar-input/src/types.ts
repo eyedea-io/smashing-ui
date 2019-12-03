@@ -5,11 +5,11 @@ export type StyledCalendarInputProps = {
   appearance: CalendarInputAppearanceType
 }
 export type CalendarInputProps = {
-  appearance: CalendarInputAppearanceType
+  popoverAppearance: CalendarInputAppearanceType
   inputAppearance?: TextInputAppearanceType
   onChange?: (date?: Date) => void
   value?: Date
-  withTime?: boolean
+  hasTime?: boolean
   hoursLabel?: string
   minutesLabel?: string
   minutesInterval?: number
@@ -36,7 +36,7 @@ export type TimePickerProps = {
 
 export type DateInputProps = Pick<
   CalendarInputProps,
-  'onChange' | 'value' | 'withTime'
+  'onChange' | 'value' | 'hasTime'
 > &
   Pick<TextInputProps, 'appearance' | 'width'> & {
     getRef: (ref: HTMLElement | null) => void

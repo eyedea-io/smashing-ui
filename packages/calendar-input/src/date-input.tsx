@@ -16,7 +16,7 @@ export const DateInput: React.FC<DateInputProps> = ({
   value,
   getRef,
   openCalendar,
-  withTime = false,
+  hasTime = false,
   minutesInterval,
   timeValue,
   isExpanded,
@@ -24,7 +24,7 @@ export const DateInput: React.FC<DateInputProps> = ({
   collapseIcon = () => <ChevronUpIcon />,
   ...props
 }) => {
-  const CalendarDate = withTime
+  const CalendarDate = hasTime
     ? new CalendarDateTime()
     : new CalendarDateHelper()
   const [inputValue, setInputValue] = React.useState<DateValue>(
@@ -173,6 +173,17 @@ export const DateInput: React.FC<DateInputProps> = ({
       moveCursorLeft()
     } else if (e.key === KEYS.RIGHT) {
       moveCursorRight()
+    } else if (e.key === KEYS.TAB) {
+      if (
+        !e.shiftKey &&
+        activeDatePart !== CalendarDate.format[CalendarDate.format.length - 1]
+      ) {
+        e.preventDefault()
+        focusNextPart()
+      } else if (e.shiftKey && activeDatePart !== CalendarDate.format[0]) {
+        e.preventDefault()
+        focusPrevPart()
+      }
     } else if (e.key === KEYS.HOME) {
       setCursorPosition(0)
       setActiveDatePart(CalendarDate.format[0])

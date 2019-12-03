@@ -127,7 +127,7 @@ export const StyledContainer = styled(Popover)<{
   ${_ => getPopoverStyle(_.appearance)};
 `
 
-export const CalendarContainer = styled.div<{withTime?: boolean}>`
+export const CalendarContainer = styled.div<{hasTime?: boolean}>`
   position: relative;
 `
 
