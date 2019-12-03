@@ -3,16 +3,15 @@ import styled from 'styled-components'
 import {Button} from '@smashing/button'
 
 const CloseButton = styled(Button)`
-  margin-left: auto;
+  margin-left: 1em;
   box-sizing: content-box;
   height: auto;
   svg {
-    color: ${_ => _.theme.colors.text.muted};
+    color: ${_ => _.theme.colors.icon.default};
   }
   &:hover {
-    background: transparent;
     svg {
-      color: ${_ => _.theme.colors.text.default};
+      color: ${_ => _.theme.colors.icon.selected};
     }
   }
 `

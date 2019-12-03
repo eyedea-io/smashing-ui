@@ -56,6 +56,7 @@ interface BoxInnerProps {
 
 const BoxInner = styled.div<BoxInnerProps>`
   display: flex;
+  flex: 1;
   ${_ =>
     ['card', 'default'].includes(_.appearance) &&
     css`
