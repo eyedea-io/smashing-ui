@@ -38,8 +38,9 @@ export type DateInputProps = Pick<
   CalendarInputProps,
   'onChange' | 'value' | 'withTime'
 > &
-  Pick<TextInputProps, 'appearance' | 'onClick' | 'width'> & {
+  Pick<TextInputProps, 'appearance' | 'width'> & {
     getRef: (ref: HTMLElement | null) => void
+    onClick: () => void
     openCalendar: () => void
     minutesInterval: number
     timeValue: {

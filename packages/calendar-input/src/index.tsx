@@ -77,7 +77,6 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
   }[defaults.appearance || 'default']
 
   const changeTimeValue = (hours?: number, minutes?: number) => {
-    console.log({minutes, hours})
     setTimeValue({minutes, hours})
   }
 

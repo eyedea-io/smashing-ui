@@ -154,8 +154,7 @@ export class CalendarDateTime implements ICalendarDate {
     const datePart = this.getStringValueForDateParts(value, parts)
     const timePart = this.getStringValueForTimeParts(value, parts)
 
-    const v = `${datePart}${datePart && timePart ? ' ' : ''}${timePart}`
-    return v
+    return `${datePart}${datePart && timePart ? ' ' : ''}${timePart}`
   }
 
   getPartStartIndex = (part: DateTimePartsType): number => {
@@ -183,68 +182,11 @@ export class CalendarDateTime implements ICalendarDate {
 }
 
 export const KEYS = {
-  BACKSPACE: 8,
-  END: 35,
-  HOME: 36,
-  LEFT: 37,
-  UP: 38,
-  RIGHT: 39,
-  DOWN: 40,
-  NUM_0: 48,
-  NUM_1: 49,
-  NUM_2: 50,
-  NUM_3: 51,
-  NUM_4: 52,
-  NUM_5: 53,
-  NUM_6: 54,
-  NUM_7: 55,
-  NUM_8: 56,
-  NUM_9: 57,
-  NUMPAD_0: 96,
-  NUMPAD_1: 97,
-  NUMPAD_2: 98,
-  NUMPAD_3: 99,
-  NUMPAD_4: 100,
-  NUMPAD_5: 101,
-  NUMPAD_6: 102,
-  NUMPAD_7: 103,
-  NUMPAD_8: 104,
-  NUMPAD_9: 105
-}
-
-export function getCharacter(keyCode: number) {
-  switch (keyCode) {
-    default:
-      return '.'
-    case KEYS.NUM_0:
-    case KEYS.NUMPAD_0:
-      return '0'
-    case KEYS.NUM_1:
-    case KEYS.NUMPAD_1:
-      return '1'
-    case KEYS.NUM_2:
-    case KEYS.NUMPAD_2:
-      return '2'
-    case KEYS.NUM_3:
-    case KEYS.NUMPAD_3:
-      return '3'
-    case KEYS.NUM_4:
-    case KEYS.NUMPAD_4:
-      return '4'
-    case KEYS.NUM_5:
-    case KEYS.NUMPAD_5:
-      return '5'
-    case KEYS.NUM_6:
-    case KEYS.NUMPAD_6:
-      return '6'
-    case KEYS.NUM_7:
-    case KEYS.NUMPAD_7:
-      return '7'
-    case KEYS.NUM_8:
-    case KEYS.NUMPAD_8:
-      return '8'
-    case KEYS.NUM_9:
-    case KEYS.NUMPAD_9:
-      return '9'
-  }
+  BACKSPACE: 'Backspace',
+  END: 'End',
+  HOME: 'Home',
+  LEFT: 'ArrowLeft',
+  UP: 'ArrowUp',
+  RIGHT: 'ArrowRight',
+  DOWN: 'ArrowDown'
 }

@@ -5,8 +5,7 @@ import {
   CalendarDateTime,
   DateTimePartsType,
   DateValue,
-  KEYS,
-  getCharacter
+  KEYS
 } from './utils'
 import {CalendarIcon, ChevronUpIcon} from './icons'
 import {DateInputProps} from './types'
@@ -58,21 +57,16 @@ export const DateInput: React.FC<DateInputProps> = ({
     )
     if (isValidDate) {
       const minutes = Number(newValue.minutes)
-      if (minutes % minutesInterval > minutesInterval / 2) {
-        onChange(
-          CalendarDate.getDate({
-            ...newValue,
-            minutes: minutes + (minutesInterval - (minutes % minutesInterval))
-          })
-        )
-      } else {
-        onChange(
-          CalendarDate.getDate({
-            ...newValue,
-            minutes: minutes - (minutes % minutesInterval)
-          })
-        )
-      }
+      const increaseMinutes = minutes % minutesInterval > minutesInterval / 2
+      onChange(
+        CalendarDate.getDate({
+          ...newValue,
+          minutes:
+            minutes -
+            (minutes % minutesInterval) +
+            (increaseMinutes ? minutesInterval : 0)
+        })
+      )
     } else {
       onChange()
       setInputValue(newValue)
@@ -173,20 +167,20 @@ export const DateInput: React.FC<DateInputProps> = ({
 
   const handleKeyDown = (e: React.KeyboardEvent<{}>) => {
     e.stopPropagation()
-    if (e.keyCode === KEYS.DOWN) {
+    if (e.key === KEYS.DOWN) {
       openCalendar()
-    } else if (e.keyCode === KEYS.LEFT) {
+    } else if (e.key === KEYS.LEFT) {
       moveCursorLeft()
-    } else if (e.keyCode === KEYS.RIGHT) {
+    } else if (e.key === KEYS.RIGHT) {
       moveCursorRight()
-    } else if (e.keyCode === KEYS.HOME) {
+    } else if (e.key === KEYS.HOME) {
       setCursorPosition(0)
       setActiveDatePart(CalendarDate.format[0])
-    } else if (e.keyCode === KEYS.END) {
+    } else if (e.key === KEYS.END) {
       const endPart = CalendarDate.format[CalendarDate.format.length - 1]
-      setCursorPosition(CalendarDate.getPartEndIndex(endPart))
+      setCursorPosition(CalendarDate.getPartEndIndex(endPart) - 1)
       setActiveDatePart(endPart)
-    } else if (e.keyCode === KEYS.BACKSPACE && activeDatePart) {
+    } else if (e.key === KEYS.BACKSPACE && activeDatePart) {
       if (isStartCurrentPart()) {
         const activeDatePartIndex = CalendarDate.format.indexOf(activeDatePart)
         const prevDatePart = CalendarDate.format[activeDatePartIndex - 1]
@@ -197,7 +191,7 @@ export const DateInput: React.FC<DateInputProps> = ({
         setCursorPosition(CalendarDate.getPartStartIndex(activeDatePart))
       }
     } else {
-      const character = getCharacter(e.keyCode)
+      const character = e.key
       if (!/^[0-9]$/.test(character) || !activeDatePart) {
         return
       }
@@ -227,12 +221,12 @@ export const DateInput: React.FC<DateInputProps> = ({
     }
   }
 
-  const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
+  const handleClick = (e?: React.MouseEvent<HTMLInputElement>) => {
     if (onClick) {
-      onClick(e)
+      onClick()
     }
     const clickedCharPosition =
-      e.currentTarget && e.currentTarget.selectionStart
+      e && e.currentTarget && e.currentTarget.selectionStart
     if (
       clickedCharPosition &&
       clickedCharPosition <
@@ -245,6 +239,10 @@ export const DateInput: React.FC<DateInputProps> = ({
           setActiveDatePart(part)
         }
       })
+    } else {
+      setCursorPosition(0)
+      setActiveDatePart(CalendarDate.format[0])
+      setSelectionRange(cursorPosition, cursorPosition + 1)
     }
   }
 
@@ -270,6 +268,7 @@ export const DateInput: React.FC<DateInputProps> = ({
       onKeyDown={handleKeyDown}
       value={CalendarDate.getStringValueForParts(inputValue)}
       affixAfter={isExpanded ? collapseIcon : expandIcon}
+      onClickAfter={() => handleClick()}
     ></S.StyledInput>
   )
 }
