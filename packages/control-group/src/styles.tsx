@@ -26,7 +26,7 @@ const getDisplay = (layout?: Layout) => {
     case 'full':
       return 'grid'
     default:
-      return 'block'
+      return 'flex'
   }
 }
 
@@ -78,40 +78,139 @@ const getControlGroupStyle = (
   }
 }
 
-export const ControlGroupWrapper = styled.div<ControlGroupWrapperProps>`
+export const ControlGroupWrapper = styled.div<ControlGroupWrapperProps | any>`
   ${_ => ({
     ...getControlGroupStyle(_)
   })}
-`
 
-export const StyledButton = styled(Button)<StyledButtonProps>`
-  box-shadow: none;
   position: relative;
-  justify-content: ${_ => getTextAlign(_.textAlign)};
+  z-index: 1;
+  display: flex;
+  flex-direction: ${_ => (_.isOpen ? 'column' : 'row')};
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
 
   ${_ => {
-    const {outline} = _.theme.colors.button
-    const border = (state: keyof typeof outline.borderColor) =>
-      `${outline.borderWidth}px solid ${outline.borderColor[state]}`
-
-    const getBorder = () => {
-      const borderStyle =
-        _.activeGroup || _.checked ? border('active') : border('default')
-
-      return {
-        borderTop: borderStyle,
-        borderBottom: borderStyle,
-        borderRight: border('default'),
-
-        '&:first-of-type': {
-          borderLeft: borderStyle
-        },
-        '&:last-of-type': {
-          borderRight: borderStyle
-        }
+    const elemLiStyle = {}
+    if (!_.isOpen && _.visibleItemsCount) {
+      elemLiStyle[
+        `> button:nth-child(n + ${_.visibleItemsCount}):not(:nth-last-child(1))`
+      ] = {
+        display: 'none'
       }
     }
 
+    // if (_.isOpen) {
+    //   elemLiStyle['button:first-child'] = {
+    //     borderTopLeftRadius: 'inherit',
+    //     borderTopRightRadius: 'inherit'
+    //   }
+    //   elemLiStyle['button:last-child'] = {
+    //     borderBottomLeftRadius: 'inherit',
+    //     borderBottomRightRadius: 'inherit'
+    //   }
+    // } else {
+    //   elemLiStyle['button:first-child'] = {
+    //     borderTopLeftRadius: 'inherit',
+    //     borderBottomLeftRadius: 'inherit'
+    //   }
+    //   elemLiStyle['button:last-child'] = {
+    //     borderTopRightRadius: 'inherit',
+    //     borderBottomRightRadius: 'inherit'
+    //   }
+    // }
+
+    return elemLiStyle
+  }}
+`
+
+const getBorder = _ => {
+  const {outline} = _.theme.colors.button
+  const border = (state: keyof typeof outline.borderColor) =>
+    `${outline.borderWidth}px solid ${outline.borderColor[state]}`
+
+  const borderStyle =
+    _.activeGroup || _.checked ? border('active') : border('default')
+
+  return {
+    borderTop: borderStyle,
+    borderBottom: _.isOpen ? 'none' : borderStyle,
+    borderRight: _.isOpen ? borderStyle : border('default'),
+    borderLeft: _.isOpen ? borderStyle : 'none',
+
+    '&:first-of-type': {
+      borderLeft: borderStyle
+    },
+    '&:last-of-type': {
+      borderRight: borderStyle
+    },
+    '&:nth-last-of-type(2)': {
+      borderBottom: borderStyle
+    }
+  }
+}
+
+export const StyledButton = styled(Button)<
+  Partial<StyledButtonProps> & {isOpen?: boolean}
+>`
+  box-shadow: none;
+  position: relative;
+
+  ${_ => {
+    let style
+    switch (_.appearance) {
+      case 'outline':
+        style = {
+          boxSizing: 'border-box',
+
+          '&, &:hover, &:active': {
+            boxShadow: 'none',
+            ...getBorder(_)
+          }
+        }
+        break
+      default:
+        style = {
+          ...(_.checked ? getButtonStyle(_.appearance)(_)[':active'] : {})
+        }
+    }
+
+    return style
+  }}
+
+  border-radius: 0;
+  &:first-of-type {
+    border-radius: ${_ =>
+      _.isOpen
+        ? `${_.theme.radius} ${_.theme.radius} 0 0`
+        : `${_.theme.radius} 0 0 ${_.theme.radius}`};
+  }
+  &:last-of-type {
+    border-radius: ${_ => `0 ${_.theme.radius} ${_.theme.radius} 0`};
+    ${_ =>
+      _.isOpen && {
+        '&, &:hover, &:active': {
+          border: 0,
+          borderRadius: 0
+        }
+      }}
+  }
+
+  &:nth-last-of-type(2) {
+    border-radius: ${_ =>
+      _.isOpen ? `0 0 ${_.theme.radius} ${_.theme.radius}` : 0};
+  }
+  &:focus {
+    box-shadow: none;
+  }
+`
+
+export const RegularStyledButton = styled(StyledButton)<StyledButtonProps>`
+  justify-content: ${_ => getTextAlign(_.textAlign)};
+
+  ${_ => {
     const activeLine = () => ({
       color: _.theme.colors.text.intense,
 
@@ -130,35 +229,43 @@ export const StyledButton = styled(Button)<StyledButtonProps>`
     switch (_.appearance) {
       case 'outline':
         style = {
-          boxSizing: 'border-box',
-
           ...(_.checked ? activeLine() : {}),
-          ...getBorder(),
 
           '&:hover, &:active': {
-            boxShadow: 'none',
-            ...getBorder(),
             ...activeLine()
           }
         }
         break
       default:
-        style = {
-          ...(_.checked ? getButtonStyle(_.appearance)(_)[':active'] : {})
-        }
+        style = {}
     }
 
     return style
   }}
+`
 
-  border-radius: 0;
-  &:first-of-type {
-    border-radius: ${_ => `${_.theme.radius} 0 0 ${_.theme.radius}`};
+export const MoreButton = styled.span<{isOpen: boolean}>`
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  width: inherit;
+  height: 100%;
+
+  svg {
+    transform: ${_ => (_.isOpen ? 'rotateX(180deg)' : '')};
   }
-  &:last-of-type {
-    border-radius: ${_ => `0 ${_.theme.radius} ${_.theme.radius} 0`};
+  :focus {
+    outline: none;
   }
-  &:focus {
-    box-shadow: none;
-  }
+`
+
+export const MoreButtonContainer = styled(StyledButton)<{
+  isOpen?: boolean
+  invalid?: boolean
+}>`
+  width: 50px;
+  padding: 0;
+  position: ${_ => (_.isOpen ? 'absolute' : 'relative')};
+  top: 0;
+  right: 0;
 `

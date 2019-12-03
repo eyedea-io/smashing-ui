@@ -22,8 +22,48 @@ const items = [
     value: 3
   },
   {
-    label: 'and typesetting industry',
+    label: 'text of the printing',
     value: 4
+  },
+  {
+    label: 'text of the printing',
+    value: 5
+  },
+  {
+    label: 'text of the printing',
+    value: 6
+  },
+  {
+    label: 'text of the printing',
+    value: 7
+  },
+  {
+    label: 'text of the printing',
+    value: 8
+  },
+  {
+    label: 'text of the printing',
+    value: 9
+  },
+  {
+    label: 'text of the printing',
+    value: 10
+  },
+  {
+    label: 'text of the printing',
+    value: 11
+  },
+  {
+    label: 'text of the printing',
+    value: 12
+  },
+  {
+    label: 'ext of the printing',
+    value: 13
+  },
+  {
+    label: 'and typesetting industry',
+    value: 14
   }
 ]
 
@@ -110,6 +150,7 @@ storiesOf('Form|Control Group', module)
       onChange: setValue,
       value,
       items: items.slice(0, 3),
+      visibleCount: 3
     }
 
     return (

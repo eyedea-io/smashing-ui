@@ -40,4 +40,6 @@ export interface ControlGroupProps {
   textAlign?: TextAlign
   disabled?: boolean
   invalid?: boolean
+  height?: number
+  visibleCount?: number
 }
