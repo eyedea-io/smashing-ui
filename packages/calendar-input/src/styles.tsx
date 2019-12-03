@@ -165,8 +165,9 @@ export const TimePickerHeader = styled(Button)<{visible?: boolean}>`
     paddingBottom: _.theme.spacing.xxs,
     borderBottom: `1px solid ${_.theme.colors.border.default}`,
     ...(!_.visible && {
-      ':focus': {
-        outline: 'none'
+      '&:focus': {
+        outline: 'none',
+        boxShadow: 'none'
       }
     })
   })};
@@ -187,8 +188,9 @@ export const ClockButton = styled(Button)<{visible?: boolean}>`
     paddingBottom: _.theme.spacing.xxs,
     borderTop: `1px solid ${_.theme.colors.border.default}`,
     ...(!_.visible && {
-      ':focus': {
-        outline: 'none'
+      '&:focus': {
+        outline: 'none',
+        boxShadow: 'none'
       }
     })
   })};
