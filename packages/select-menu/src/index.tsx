@@ -190,6 +190,7 @@ const SelectMenuFC = <T extends OptionBase>(props: SelectMenuProps<T>) => {
           disabled={props.disabled}
           appearance={defaults.appearance}
           popoverAppearance={defaults.popoverAppearance}
+          type="button"
           {...(defaults.height ? {height: defaults.height} : {})}
         >
           {placeholder}
