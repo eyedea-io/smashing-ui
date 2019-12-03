@@ -14,7 +14,7 @@ export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
     duration: 5000,
     onRemove: () => undefined,
     title: '',
-    hasClose: true,
+    hasCloseButton: true,
     isShown: true,
     appearance: 'card'
   })
@@ -88,13 +88,13 @@ export const Toast: React.FC<ToastProps> = ({children, ...props}) => {
             marginBottom: isShown ? '10px' : -height
           }}
         >
-          <S.Wrapper ref={onRef} hasClose={defaults.hasClose}>
+          <S.Wrapper ref={onRef} hasCloseButton={defaults.hasCloseButton}>
             <S.Alert
               appearance={defaults.appearance}
               intent={defaults.intent}
               title={defaults.title}
-              hasClose={defaults.hasClose}
-              closeOnClick={defaults.hasClose && close}
+              hasClose={defaults.hasCloseButton}
+              closeOnClick={defaults.hasCloseButton && close}
             >
               {children}
             </S.Alert>

@@ -15,7 +15,6 @@ export const ToastsWrapper = styled.span`
   right: 0;
   top: 0;
   z-index: 30;
-  max-width: 560;
   padding: ${_ => _.theme.spacing.xxs};
   pointer-events: none;
   position: fixed;
@@ -34,9 +33,11 @@ export const WrapperAnimated = styled.div<{state: TransitionStatus}>`
   })}
 `
 
-export const Wrapper = styled.div<{hasClose?: boolean}>`
+export const Wrapper = styled.div<{hasCloseButton?: boolean}>`
   box-sizing: border-box;
   position: relative;
 `
 
-export const Alert = styled(SmashingAlert)``
+export const Alert = styled(SmashingAlert)`
+  pointer-events: all;
+`
