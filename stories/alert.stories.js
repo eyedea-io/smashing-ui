@@ -4,18 +4,7 @@ import {Alert} from '@smashing/alert'
 import {Heading} from '@smashing/typography'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
-import styled from 'styled-components'
-import {AlertElements} from '@smashing/alert'
 
-const Test = styled(Alert)`
-  ${AlertElements.CloseButton} {
-    background-color: yellow;
-    svg {
-      background-color: blue;
-      color: green;
-    }
-  }
-`
 addDecorator(withA11y)
 
 storiesOf('Feedback Indicators|Alert', module)
@@ -35,19 +24,6 @@ storiesOf('Feedback Indicators|Alert', module)
   ))
   .add('appearance:default', () => (
     <React.Fragment>
-      <Test closeOnClick={() => {}} appearance="inline">
-        dsfgdsfgsdf
-      </Test>
-      <Test intent="success" closeOnClick={() => {}} appearance="inline">
-        dsfgdsfgsdf
-      </Test>
-      <Test intent="danger" closeOnClick={() => {}} appearance="card">
-        dsfgdsfgsdf
-      </Test>
-      <Test intent="warning" closeOnClick={() => {}} appearance="default">
-        dsfgdsfgsdf
-      </Test>
-
       <Alert title="Your account is active" />
     </React.Fragment>
   ))
