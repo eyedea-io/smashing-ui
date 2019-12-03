@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import {ButtonProps, ButtonAppearanceType} from '@smashing/button'
+import {ButtonAppearanceType} from '@smashing/button'
 import {Radio, RadioAppearanceType} from '@smashing/radio'
 import {Checkbox, CheckboxAppearanceType} from '@smashing/checkbox'
 import {
@@ -35,7 +35,7 @@ const ArrowIcon = () => (
   </svg>
 )
 
-const ControlGroupFC: React.FC<ControlGroupProps & ButtonProps> = props => {
+const ControlGroupFC: React.FC<ControlGroupProps> = props => {
   const {height, controlAppearance, groupAppearance} = useDefaults(
     'controlGroup',
     props,
@@ -206,7 +206,9 @@ export {ControlGroup}
 declare module 'styled-components' {
   export interface SmashingControlGroupDefaults
     extends Partial<{
-      controlAppearance: ControlAppearanceType
-      groupAppearance: ControlGroupAppearanceType
+      controlGroup: Pick<
+        ControlGroupProps,
+        'controlAppearance' | 'groupAppearance'
+      >
     }> {}
 }

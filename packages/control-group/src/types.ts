@@ -29,6 +29,7 @@ export interface ControlGroupWrapperProps {
   groupAppearance: ControlGroupAppearanceType
   childrenAmount: number
   layout?: Layout
+  isOpen?: boolean
 }
 export interface ControlGroupProps {
   items: ControlProps[]

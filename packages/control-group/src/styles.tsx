@@ -1,5 +1,4 @@
 import {Button, getButtonStyle} from '@smashing/button'
-import {Text} from '@smashing/typography'
 import styled, {DefaultTheme} from 'styled-components'
 import {
   ControlGroupWrapperProps,
@@ -7,6 +6,10 @@ import {
   Layout,
   TextAlign
 } from './types'
+
+interface ThemeProps {
+  theme: DefaultTheme
+}
 
 const getTextAlign = (textAlign?: TextAlign) => {
   switch (textAlign) {
@@ -30,9 +33,9 @@ const getDisplay = (layout?: Layout) => {
   }
 }
 
-const getButtonGroupStyle = (layout?: Layout, childrenAmount?: number) => (_: {
-  theme: DefaultTheme
-}) => {
+const getButtonGroupStyle = (layout?: Layout, childrenAmount?: number) => (
+  _: ThemeProps
+) => {
   return {
     borderRadius: _.theme.radius,
     display: getDisplay(layout),
@@ -59,11 +62,7 @@ const getVerticalGroupStyle = (layout?: Layout) => (_: {
   }
 })
 
-const getControlGroupStyle = (
-  _: ControlGroupWrapperProps & {
-    theme: DefaultTheme
-  }
-) => {
+const getControlGroupStyle = (_: ControlGroupWrapperProps & ThemeProps) => {
   switch (_.groupAppearance) {
     case 'button':
       return getButtonGroupStyle(_.layout, _.childrenAmount)(_)
@@ -78,7 +77,7 @@ const getControlGroupStyle = (
   }
 }
 
-export const ControlGroupWrapper = styled.div<ControlGroupWrapperProps | any>`
+export const ControlGroupWrapper = styled.div<ControlGroupWrapperProps>`
   ${_ => ({
     ...getControlGroupStyle(_)
   })}
@@ -102,31 +101,11 @@ export const ControlGroupWrapper = styled.div<ControlGroupWrapperProps | any>`
       }
     }
 
-    // if (_.isOpen) {
-    //   elemLiStyle['button:first-child'] = {
-    //     borderTopLeftRadius: 'inherit',
-    //     borderTopRightRadius: 'inherit'
-    //   }
-    //   elemLiStyle['button:last-child'] = {
-    //     borderBottomLeftRadius: 'inherit',
-    //     borderBottomRightRadius: 'inherit'
-    //   }
-    // } else {
-    //   elemLiStyle['button:first-child'] = {
-    //     borderTopLeftRadius: 'inherit',
-    //     borderBottomLeftRadius: 'inherit'
-    //   }
-    //   elemLiStyle['button:last-child'] = {
-    //     borderTopRightRadius: 'inherit',
-    //     borderBottomRightRadius: 'inherit'
-    //   }
-    // }
-
     return elemLiStyle
   }}
 `
 
-const getBorder = _ => {
+const getBorder = (_: ThemeProps) => {
   const {outline} = _.theme.colors.button
   const border = (state: keyof typeof outline.borderColor) =>
     `${outline.borderWidth}px solid ${outline.borderColor[state]}`
@@ -151,6 +130,31 @@ const getBorder = _ => {
     }
   }
 }
+
+const getBorderRadius = (_: ThemeProps) => ({
+  borderRadius: 0,
+
+  '&:first-of-type': {
+    borderRadius: _.isOpen
+      ? `${_.theme.radius} ${_.theme.radius} 0 0`
+      : `${_.theme.radius} 0 0 ${_.theme.radius}`
+  },
+  '&:nth-last-of-type(2)': {
+    borderRadius: _.isOpen ? `0 0 ${_.theme.radius} ${_.theme.radius}` : 0
+  },
+
+  '&:last-of-type': {
+    borderRadius: `0 ${_.theme.radius} ${_.theme.radius} 0`,
+    ...(_.isOpen
+      ? {
+          '&, &:hover, &:active': {
+            border: 0,
+            borderRadius: 0
+          }
+        }
+      : {})
+  }
+})
 
 export const StyledButton = styled(Button)<
   Partial<StyledButtonProps> & {isOpen?: boolean}
@@ -180,28 +184,6 @@ export const StyledButton = styled(Button)<
     return style
   }}
 
-  border-radius: 0;
-  &:first-of-type {
-    border-radius: ${_ =>
-      _.isOpen
-        ? `${_.theme.radius} ${_.theme.radius} 0 0`
-        : `${_.theme.radius} 0 0 ${_.theme.radius}`};
-  }
-  &:last-of-type {
-    border-radius: ${_ => `0 ${_.theme.radius} ${_.theme.radius} 0`};
-    ${_ =>
-      _.isOpen && {
-        '&, &:hover, &:active': {
-          border: 0,
-          borderRadius: 0
-        }
-      }}
-  }
-
-  &:nth-last-of-type(2) {
-    border-radius: ${_ =>
-      _.isOpen ? `0 0 ${_.theme.radius} ${_.theme.radius}` : 0};
-  }
   &:focus {
     box-shadow: none;
   }
