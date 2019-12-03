@@ -5,6 +5,7 @@
     {"path": "packages/avatar"},
     {"path": "packages/badge"},
     {"path": "packages/button"},
+    {"path": "packages/calendar-input"},
     {"path": "packages/charts"},
     {"path": "packages/checkbox"},
     {"path": "packages/css"},

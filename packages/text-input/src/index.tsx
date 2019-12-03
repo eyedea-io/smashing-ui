@@ -16,6 +16,8 @@ const TextInput: React.FC<TextInputProps> = ({
   affixAfter,
   onClickBefore,
   onClickAfter,
+  value,
+  readOnly,
   ...props
 }) => {
   const defaults = useDefaults('textInput', props, {
@@ -51,6 +53,8 @@ const TextInput: React.FC<TextInputProps> = ({
         ref={inputRef}
         affixBefore={affixBefore}
         affixAfter={affixAfter}
+        readOnly={readOnly}
+        value={value}
         {...defaults}
       />
       {affixAfter && (
