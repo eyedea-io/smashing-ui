@@ -7,7 +7,6 @@ import {
   DateValue,
   KEYS
 } from './utils'
-import {CalendarIcon} from './icons'
 import {DateInputProps} from './types'
 
 export const DateInput: React.FC<DateInputProps> = ({
