@@ -5,7 +5,6 @@ import {Radio, RadioAppearanceType} from '@smashing/radio'
 import {Checkbox, CheckboxAppearanceType} from '@smashing/checkbox'
 import {
   ControlProps,
-  ControlItemProps,
   ControlGroupProps,
   ControlAppearanceType,
   ControlGroupAppearanceType

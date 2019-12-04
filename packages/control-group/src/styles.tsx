@@ -19,11 +19,11 @@ const getTextAlign = (textAlign?: TextAlign) => {
 const getTextColor = (invalid?: boolean, disabled?: boolean) => (
   _: ThemeProps
 ) => {
-  if (invalid) {
-    return _.theme.colors.text.danger
-  }
   if (disabled) {
     return _.theme.colors.text.muted
+  }
+  if (invalid) {
+    return _.theme.colors.text.danger
   }
 
   return _.theme.colors.text.intense
