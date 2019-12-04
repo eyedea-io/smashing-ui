@@ -14,22 +14,27 @@ export type ControlGroupAppearanceType =
   | 'checkbox-vertical'
   | 'checkbox-horizontal'
 
-export interface ControlProps {
+export interface ControlItemProps {
   value?: string
   label: string
 }
 
-export interface ControlGroupProps {
-  items: ControlProps[]
-  value: string | string[]
-  onChange: (value: string) => void
+export interface ControlProps {
   controlAppearance: ControlAppearanceType
   groupAppearance: ControlGroupAppearanceType
-  layout?: Layout
+  item: ControlItemProps
   textAlign?: TextAlign
   disabled?: boolean
   invalid?: boolean
   height?: number
+  value: string | string[]
+  onChange: (value: string) => void
+  isOpen?: boolean
+}
+
+export interface ControlGroupProps extends Omit<ControlProps, 'item' | 'isOpen'> {
+  items: ControlItemProps[]
+  layout?: Layout
   visibleCount?: number
 }
 

@@ -44,14 +44,6 @@ storiesOf('Atomic Elements|Tabs', module)
       <Tab appearance="outline">Tab 3</Tab>
       <Tab appearance="outline">Tab 4</Tab>
       <Tab appearance="outline">Tab 5</Tab>
-      <Tab appearance="outline">Tab 5</Tab>
-      <Tab appearance="outline">Tab 5</Tab>
-      <Tab appearance="outline">Tab 5</Tab>
-      <Tab appearance="outline">Tab 5</Tab>
-      <Tab appearance="outline">Tab 5</Tab>
-      <Tab appearance="outline">Tab 5</Tab>
-      <Tab appearance="outline">Tab 5</Tab>
-      <Tab appearance="outline">Tab 5</Tab>
       <Tab appearance="outline">Tab 6</Tab>
     </Tablist>
   ))

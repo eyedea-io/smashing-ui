@@ -3,69 +3,13 @@ import {storiesOf, addDecorator} from '@storybook/react'
 import {ControlGroup} from '@smashing/control-group'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
-import {CalendarRegular} from './common/icon'
 import {Heading} from '@smashing/typography'
 
-const items = [
-  {
-    label: 'Lorem Ipsum',
-    value: 1,
-    iconBefore: CalendarRegular
-  },
-  {
-    label: 'is simply dummy',
-    value: 2,
-    iconAfter: CalendarRegular
-  },
-  {
-    label: 'text of the printing',
-    value: 3
-  },
-  {
-    label: 'text of the printing',
-    value: 4
-  },
-  {
-    label: 'text of the printing',
-    value: 5
-  },
-  {
-    label: 'text of the printing',
-    value: 6
-  },
-  {
-    label: 'text of the printing',
-    value: 7
-  },
-  {
-    label: 'text of the printing',
-    value: 8
-  },
-  {
-    label: 'text of the printing',
-    value: 9
-  },
-  {
-    label: 'text of the printing',
-    value: 10
-  },
-  {
-    label: 'text of the printing',
-    value: 11
-  },
-  {
-    label: 'text of the printing',
-    value: 12
-  },
-  {
-    label: 'ext of the printing',
-    value: 13
-  },
-  {
-    label: 'and typesetting industry',
-    value: 14
-  }
-]
+const items = [...new Array(14)].map((_, index) =>
+  ({
+    label: `Lorem Ipsum ${index + 1}`,
+    value: index + 1
+  }))
 
 const layouts = [
   {
@@ -147,7 +91,7 @@ storiesOf('Form|ControlGroup', module)
   .addDecorator(Decorator)
   .add('layout: default', () => {
     const [value, setValue] = React.useState(1)
-
+    console.log(items)
     const props = {
       onChange: setValue,
       value,
@@ -294,17 +238,13 @@ storiesOf('Form|ControlGroup', module)
 storiesOf('Form|ControlGroup/controlAppearance:outline', module)
   .addDecorator(Decorator)
   .add('default', () => {
-    const [value, setValue] = React.useState(3)
-
-    const props = {
-      onChange: setValue,
-      value,
-      items: items.slice(2, items.length)
-    }
+    const [value, setValue] = React.useState([1, 3])
 
     return (
       <ControlGroup
-        {...props}
+        onChange={setValue}
+        value={value}
+        items={items}
         layout="equal"
         controlAppearance='outline'
       />
@@ -313,15 +253,11 @@ storiesOf('Form|ControlGroup/controlAppearance:outline', module)
   .add('invalid', () => {
     const [value, setValue] = React.useState(3)
 
-    const props = {
-      onChange: setValue,
-      value,
-      items: items.slice(2, items.length)
-    }
-
     return (
       <ControlGroup
-        {...props}
+        onChange={setValue}
+        value={value}
+        items={items}
         controlAppearance='outline'
         invalid
       />
@@ -330,15 +266,11 @@ storiesOf('Form|ControlGroup/controlAppearance:outline', module)
   .add('disabled', () => {
     const [value, setValue] = React.useState(3)
 
-    const props = {
-      onChange: setValue,
-      value,
-      items: items.slice(2, items.length)
-    }
-
     return (
       <ControlGroup
-        {...props}
+        onChange={setValue}
+        value={value}
+        items={items}
         controlAppearance='outline'
         disabled
       />
@@ -347,15 +279,11 @@ storiesOf('Form|ControlGroup/controlAppearance:outline', module)
   .add('height: 60', () => {
     const [value, setValue] = React.useState(3)
 
-    const props = {
-      onChange: setValue,
-      value,
-      items: items.slice(2, items.length)
-    }
-
     return (
       <ControlGroup
-        {...props}
+        onChange={setValue}
+        value={value}
+        items={items}
         controlAppearance='outline'
         height={60}
       />

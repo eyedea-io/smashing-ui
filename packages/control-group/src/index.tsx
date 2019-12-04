@@ -5,6 +5,7 @@ import {Radio, RadioAppearanceType} from '@smashing/radio'
 import {Checkbox, CheckboxAppearanceType} from '@smashing/checkbox'
 import {
   ControlProps,
+  ControlItemProps,
   ControlGroupProps,
   ControlAppearanceType,
   ControlGroupAppearanceType
@@ -35,6 +36,88 @@ const ArrowIcon = () => (
   </svg>
 )
 
+const Control: React.FC<ControlProps> = ({
+  item,
+  textAlign,
+  disabled,
+  invalid,
+  height,
+  value: groupValue,
+  groupAppearance,
+  controlAppearance,
+  isOpen,
+  onChange
+}) => {
+  const isOutline = controlAppearance === 'outline'
+
+  const checked = Array.isArray(groupValue)
+    ? groupValue.includes(item.value || '')
+    : groupValue === item.value
+
+  const renderProps = {
+    key: `${item.label}-${item.value}`,
+    textAlign,
+    checked,
+    disabled,
+    invalid,
+    height,
+    ...item
+  }
+
+  const handleOnChange = (itemValue: string) => {
+    if (Array.isArray(groupValue)) {
+      if (groupValue.includes(itemValue)) {
+        safeInvoke(onChange, groupValue.filter(item => item !== itemValue))
+      } else {
+        safeInvoke(onChange, groupValue.concat(itemValue))
+      }
+    } else {
+      const newValue = groupValue === itemValue ? undefined : itemValue
+      safeInvoke(onChange, newValue)
+    }
+  }
+
+  switch (groupAppearance) {
+    case 'radio-horizontal':
+    case 'radio-vertical':
+      return (
+        <Radio
+          {...renderProps}
+          appearance={controlAppearance as RadioAppearanceType}
+          onChange={() => safeInvoke(handleOnChange, item.value)}
+        >
+          {item.label}
+        </Radio>
+      )
+    case 'checkbox-horizontal':
+    case 'checkbox-vertical':
+      return (
+        <Checkbox
+          {...renderProps}
+          appearance={controlAppearance as CheckboxAppearanceType}
+          onChange={() => safeInvoke(handleOnChange, item.value)}
+        >
+          {item.label}
+        </Checkbox>
+      )
+    case 'button':
+    default:
+      return (
+        <ControlButton
+          {...renderProps}
+          appearance={controlAppearance as ButtonAppearanceType}
+          onClick={() => safeInvoke(handleOnChange, item.value)}
+          activeGroup={Boolean(
+            Array.isArray(groupValue) ? groupValue.length : groupValue
+          )}
+          isOpen={isOpen}
+        >
+          {isOutline ? <Strong>{item.label}</Strong> : item.label}
+        </ControlButton>
+      )
+  }
+}
+
 const ControlGroupFC: React.FC<ControlGroupProps> = props => {
   const {height, controlAppearance, groupAppearance} = useDefaults(
     'controlGroup',
@@ -48,7 +131,7 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
   const {
     items,
     onChange,
-    value: groupValue,
+    value,
     layout,
     textAlign,
     disabled,
@@ -56,16 +139,12 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
     visibleCount
   } = props
 
-  const [controlsNumber, setControlsNumber] = React.useState(0)
+  const [controlsNumber, setControlsNumber] = React.useState(visibleCount || 0)
   const [isOpen, setIsOpen] = React.useState(false)
-  const haveMoreButton =
+  const hasMoreButton =
     controlAppearance === 'outline' && groupAppearance === 'button'
   const wrapperNode = React.useRef<HTMLDivElement>(null)
   const moreButtonNode = React.useRef<HTMLButtonElement>(null)
-
-  React.useEffect(() => {
-    setControlsNumber(visibleCount || 0)
-  }, [])
 
   React.useEffect(() => {
     if (
@@ -97,80 +176,6 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
     }
   }
 
-  const handleOnChange = (itemValue: string) => {
-    if (Array.isArray(groupValue)) {
-      if (groupValue.includes(itemValue)) {
-        safeInvoke(onChange, groupValue.filter(item => item !== itemValue))
-      } else {
-        safeInvoke(onChange, groupValue.concat(itemValue))
-      }
-    } else {
-      const newValue = groupValue === itemValue ? undefined : itemValue
-      safeInvoke(onChange, newValue)
-    }
-  }
-
-  const renderControl = (item: ControlProps) => {
-    const checked = Array.isArray(groupValue)
-      ? groupValue.includes(item.value || '')
-      : groupValue === item.value
-
-    const renderProps = {
-      key: `${item.label}-${item.value}`,
-      textAlign,
-      checked,
-      disabled,
-      invalid,
-      height,
-      ...item
-    }
-
-    switch (groupAppearance) {
-      case 'radio-horizontal':
-      case 'radio-vertical':
-        return (
-          <Radio
-            {...renderProps}
-            appearance={controlAppearance as RadioAppearanceType}
-            onChange={() => safeInvoke(handleOnChange, item.value)}
-          >
-            {item.label}
-          </Radio>
-        )
-      case 'checkbox-horizontal':
-      case 'checkbox-vertical':
-        return (
-          <Checkbox
-            {...renderProps}
-            appearance={controlAppearance as CheckboxAppearanceType}
-            onChange={() => safeInvoke(handleOnChange, item.value)}
-          >
-            {item.label}
-          </Checkbox>
-        )
-      case 'button':
-      default:
-        return (
-          <ControlButton
-            {...renderProps}
-            appearance={controlAppearance as ButtonAppearanceType}
-            onClick={() => safeInvoke(handleOnChange, item.value)}
-            activeGroup={Boolean(
-              Array.isArray(groupValue) ? groupValue.length : groupValue
-            )}
-            isOpen={isOpen}
-          >
-            <Strong
-              color={disabled ? 'muted' : checked ? 'intense' : 'default'}
-              intent={invalid ? 'danger' : undefined}
-            >
-              {item.label}
-            </Strong>
-          </ControlButton>
-        )
-    }
-  }
-
   return (
     <ControlGroupWrapper
       ref={wrapperNode}
@@ -182,15 +187,26 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
       visibleItemsCount={controlsNumber}
       onClick={handleMoreClick}
     >
-      {items.map(renderControl)}
-      {haveMoreButton &&
+      {items.map(item => (
+        <Control
+          item={item}
+          onChange={onChange}
+          value={value}
+          textAlign={textAlign}
+          disabled={disabled}
+          invalid={invalid}
+          groupAppearance={groupAppearance}
+          controlAppearance={controlAppearance}
+          height={height}
+          isOpen={isOpen}
+        />
+      ))}
+      {hasMoreButton &&
         wrapperNode.current &&
         controlsNumber < wrapperNode.current.children.length && (
           <MoreButton
             appearance="outline"
-            activeGroup={Boolean(
-              Array.isArray(groupValue) ? groupValue.length : groupValue
-            )}
+            activeGroup={Boolean(Array.isArray(value) ? value.length : value)}
             isOpen={isOpen}
             checked={false}
             height={height}

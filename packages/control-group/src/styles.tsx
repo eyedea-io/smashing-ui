@@ -39,20 +39,18 @@ const getDisplay = (layout?: Layout) => {
   }
 }
 
-const getState = (_: ButtonProps & ThemeProps) => {
-  let state = 'default'
-
-  if (_.activeGroup || _.checked) {
-    state = 'active'
+const getState = (_: ButtonProps & ThemeProps, ommitActive?: boolean) => {
+  if (_.disabled) {
+    return 'disabled'
   }
   if (_.invalid) {
-    state = 'invalid'
+    return 'invalid'
   }
-  if (_.disabled) {
-    state = 'disabled'
+  if ((_.activeGroup || _.checked) && !ommitActive) {
+    return 'active'
   }
 
-  return state
+  return 'default'
 }
 
 const getButtonGroupStyle = (_: WrapperProps & ThemeProps) => {
@@ -126,15 +124,16 @@ const getBorder = (_: ThemeProps & ButtonProps) => {
     `${outline.borderWidth}px solid ${outline.borderColor[state]}`
 
   const state = getState(_) as keyof typeof outline.borderColor
-  let borderStyle = border(state)
+  const borderStyle = border(state)
 
   return {
-    borderTop: borderStyle,
+    borderTop: _.isOpen ? border(getState(_, true)) : borderStyle,
     borderBottom: _.isOpen ? 'none' : borderStyle,
-    borderRight: _.isOpen ? borderStyle : border(state),
+    borderRight: _.isOpen ? borderStyle : border(getState(_, true)),
     borderLeft: _.isOpen ? borderStyle : 'none',
 
     '&:first-of-type': {
+      borderTop: borderStyle,
       borderLeft: borderStyle
     },
     '&:nth-last-of-type(2)': {
@@ -211,7 +210,9 @@ export const ControlButton = styled(Button)<ButtonProps>`
 
   ${_ => {
     const activeLine = () => ({
-      color: getTextColor(_.invalid, _.disabled)(_),
+      '&, & > strong': {
+        color: getTextColor(_.invalid, _.disabled)(_)
+      },
 
       '&:after': {
         position: 'absolute',
