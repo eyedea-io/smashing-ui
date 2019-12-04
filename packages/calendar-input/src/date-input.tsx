@@ -15,6 +15,7 @@ export const DateInput: React.FC<DateInputProps> = ({
   value,
   getRef,
   openCalendar,
+  className,
   hasTime = false,
   minutesInterval,
   timeValue,
@@ -257,6 +258,7 @@ export const DateInput: React.FC<DateInputProps> = ({
 
   return (
     <S.StyledInput
+      className={className}
       innerRef={ref => {
         inputNode.current = ref
         getRef(ref)

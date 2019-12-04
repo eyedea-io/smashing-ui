@@ -11,6 +11,7 @@ import {ClockIcon, CalendarIcon} from './icons'
 
 const CalendarInput: React.FC<CalendarInputProps> = ({
   onChange = () => {},
+  className,
   value,
   hasTime,
   clockIcon = <ClockIcon />,
@@ -142,6 +143,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
     >
       {({isShown, toggle, getRef}) => (
         <DateInput
+          className={className}
           isExpanded={isShown}
           getRef={getRef}
           openCalendar={() => !isShown && toggle()}
