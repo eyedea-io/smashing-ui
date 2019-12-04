@@ -208,13 +208,18 @@ export const TimeLabel = styled(Text).attrs({
   color: 'muted'
 })`
   display: block;
-  padding: 0 16px;
+  max-width: 144px;
+  margin: 0 auto;
+  padding: 0 ${_ => _.theme.spacing.xxs};
 `
 
 export const TimeButtonsContainer = styled.div`
-  margin: ${_ => `0 ${_.theme.spacing.xs}`};
   display: grid;
   grid-template-columns: repeat(6, 1fr);
+  column-gap: 2px;
+  max-width: 154px;
+  margin: 0 auto;
+  padding: 0 ${_ => _.theme.spacing.xxs};
 `
 
 export const TimePickButton = styled(Text).attrs({
