@@ -1,16 +1,16 @@
 import styled, {DefaultTheme, css} from 'styled-components'
-import {StyledCalendarInputProps, CalendarInputAppearanceType} from './types'
+import {StyledCalendarInputProps, CalendarPopoverAppearanceType} from './types'
 import ReactCalendar from 'react-calendar/dist/entry.nostyle'
 import {TextInput, TextInputAppearanceType} from '@smashing/text-input'
 import {Popover} from '@smashing/popover'
 import {Text, Strong} from '@smashing/typography'
 import {Button} from '@smashing/button'
 
-const getCalendarStyle = (appearance?: CalendarInputAppearanceType) => (_: {
+const getCalendarStyle = (appearance?: CalendarPopoverAppearanceType) => (_: {
   theme: DefaultTheme
 }) => {
   switch (appearance) {
-    case 'outline':
+    case 'dropdown':
       return css`
         .react-calendar__tile.react-calendar__month-view__days__day.react-calendar__tile {
           border-radius: 100%;
@@ -21,8 +21,8 @@ const getCalendarStyle = (appearance?: CalendarInputAppearanceType) => (_: {
   }
 }
 
-const getPopoverStyle = (appearance?: CalendarInputAppearanceType) => {
-  if (appearance === 'outline') {
+const getPopoverStyle = (appearance?: CalendarPopoverAppearanceType) => {
+  if (appearance === 'dropdown') {
     return css`
       box-shadow: none;
       border-top-left-radius: 0;
@@ -88,12 +88,18 @@ export const StyledCalendar = styled(ReactCalendar)<StyledCalendarInputProps>`
   }
 
   ${_ => ({
+    fontFamily: _.theme.fontFamilies.ui,
+    color: _.theme.colors.text.default,
     backgroundColor: _.theme.colors.background.default,
+    button: {
+      fontFamily: 'inherit',
+      color: 'inherit'
+    },
     '.react-calendar__navigation__label': {
+      color: _.theme.colors.text.intense,
       fontWeight: 'bold'
     },
     '.react-calendar__month-view__weekdays, .react-calendar__month-view__days__day--neighboringMonth': {
-      fontFamily: _.theme.fontFamilies.ui,
       color: _.theme.colors.text.muted
     },
     '.react-calendar__tile.react-calendar__month-view__days__day.react-calendar__tile--active, .react-calendar__tile.react-calendar__month-view__days__day.react-calendar__tile--active:focus': {
@@ -113,17 +119,18 @@ export const StyledCalendar = styled(ReactCalendar)<StyledCalendarInputProps>`
   })}
   ${_ => getCalendarStyle(_.appearance)}
 `
-
-export const StyledInput = styled(TextInput)<{
+interface StyledInputProps {
   appearance?: TextInputAppearanceType
-}>`
+}
+export const StyledInput = styled(TextInput)<StyledInputProps>`
   box-sizing: border-box;
   ${_ => getTextInputStyle(_.appearance)}
 `
 
-export const StyledContainer = styled(Popover)<{
-  appearance?: CalendarInputAppearanceType
-}>`
+interface StyledContainerProps {
+  appearance?: CalendarPopoverAppearanceType
+}
+export const StyledContainer = styled(Popover)<StyledContainerProps>`
   ${_ => getPopoverStyle(_.appearance)};
 `
 
@@ -149,6 +156,7 @@ export const ClockElement = styled.div`
   background: transparent;
   text-align: center;
   ${_ => ({
+    color: _.theme.colors.icon.default,
     paddingTop: _.theme.spacing.xxs
   })};
 `
@@ -161,8 +169,6 @@ export const TimePickerHeader = styled(Button)<{visible?: boolean}>`
   align-items: center;
   justify-content: center;
   ${_ => ({
-    paddingTop: _.theme.spacing.xxs,
-    paddingBottom: _.theme.spacing.xxs,
     borderBottom: `1px solid ${_.theme.colors.border.default}`,
     ...(!_.visible && {
       '&:focus': {
@@ -184,6 +190,7 @@ export const ClockButton = styled(Button)<{visible?: boolean}>`
   justify-content: center;
   border-radius: 0;
   ${_ => ({
+    color: _.theme.colors.icon.default,
     paddingTop: _.theme.spacing.xxs,
     paddingBottom: _.theme.spacing.xxs,
     borderTop: `1px solid ${_.theme.colors.border.default}`,

@@ -3,11 +3,11 @@ import getUserLocale from 'get-user-locale'
 import {useDefaults} from '@smashing/theme'
 import {TextInputAppearanceType} from '@smashing/text-input'
 import {PopoverProps} from '@smashing/popover'
-import {CalendarInputProps, CalendarInputAppearanceType} from './types'
+import {CalendarInputProps, CalendarPopoverAppearanceType} from './types'
 import * as S from './styles'
 import {DateInput} from './date-input'
 import {TimePicker} from './time-picker'
-import {ClockIcon} from './icons'
+import {ClockIcon, CalendarIcon} from './icons'
 
 const CalendarInput: React.FC<CalendarInputProps> = ({
   onChange = () => {},
@@ -16,8 +16,6 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
   clockIcon = <ClockIcon />,
   nextIcon,
   prevIcon,
-  collapseIcon,
-  expandIcon,
   ...props
 }) => {
   const [timeIsOpen, setTimeIsOpen] = React.useState(false)
@@ -35,13 +33,15 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
     hours: undefined
   })
 
-  const defaults = useDefaults('calendar', props, {
-    popoverAppearance: 'default' as CalendarInputAppearanceType,
+  const defaults = useDefaults('calendarInput', props, {
+    popoverAppearance: 'default' as CalendarPopoverAppearanceType,
     inputAppearance: 'default' as TextInputAppearanceType,
+    height: 32,
     width: 200,
     hoursLabel: 'Hours',
     minutesLabel: 'Min',
-    minutesInterval: 5
+    minutesInterval: 5,
+    iconAfter: ({isShown}) => <CalendarIcon isShown={isShown} />
   })
 
   React.useEffect(() => {
@@ -69,12 +69,12 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
   }
 
   const popoverPropsForAppearance = {
-    outline: {
+    dropdown: {
       transitionType: 'expand',
       targetOffset: -1
     } as Partial<PopoverProps>,
-    default: {}
-  }[defaults.popoverAppearance || 'default']
+    card: {}
+  }[defaults.popoverAppearance || 'card']
 
   const changeTimeValue = (hours?: number, minutes?: number) => {
     setTimeValue({minutes, hours})
@@ -129,7 +129,6 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
               header={timeHeader}
               close={() => setTimeIsOpen(false)}
               clockIcon={clockIcon}
-              collapseIcon={collapseIcon}
               changeTime={changeTimeValue}
               minuteValue={value ? value.getMinutes() : timeValue.minutes}
               hourValue={value ? value.getHours() : timeValue.hours}
@@ -150,12 +149,12 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
           onChange={onChange}
           value={value}
           hasTime={hasTime}
+          height={defaults.height}
           width={defaults.width}
           minutesInterval={minutesInterval}
           appearance={defaults.inputAppearance}
           timeValue={timeValue}
-          expandIcon={expandIcon}
-          collapseIcon={collapseIcon}
+          iconAfter={defaults.iconAfter}
         />
       )}
     </S.StyledContainer>
@@ -165,5 +164,18 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
 export {CalendarInput, CalendarInputProps}
 
 declare module 'styled-components' {
-  export interface SmashingCalendarDefaults extends Partial<{}> {}
+  export interface SmashingCalendarInputDefaults
+    extends Partial<{
+      calendarInput: Pick<
+        CalendarInputProps,
+        | 'height'
+        | 'width'
+        | 'inputAppearance'
+        | 'popoverAppearance'
+        | 'hoursLabel'
+        | 'minutesLabel'
+        | 'minutesInterval'
+        | 'iconAfter'
+      >
+    }> {}
 }

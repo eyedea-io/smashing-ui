@@ -1,4 +1,5 @@
 import * as React from 'react'
+import styled from 'styled-components'
 
 export const ClockIcon = () => (
   <svg
@@ -60,91 +61,48 @@ export const ClockIcon = () => (
 
 export const ChevronUpIcon = () => (
   <svg
-    width="16"
-    height="10"
-    viewBox="0 0 16 10"
-    fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
   >
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M15.6891 9.19117C15.2745 9.60294 14.6023 9.60294 14.1877 9.19117L8 3.04558L1.81233 9.19117C1.39773 9.60294 0.725541 9.60294 0.310946 9.19117C-0.103649 8.77939 -0.103649 8.11177 0.310947 7.7L7.24931 0.808829C7.44841 0.611088 7.71844 0.499999 8 0.499999C8.28156 0.499999 8.5516 0.611088 8.75069 0.80883L15.6891 7.7C16.1036 8.11177 16.1036 8.77939 15.6891 9.19117Z"
-      fill="currentColor"
-    />
+    <g fill="currentColor">
+      <path d="M17 13.41l-4.29-4.24a1 1 0 0 0-1.42 0l-4.24 4.24a1 1 0 0 0 0 1.42 1 1 0 0 0 1.41 0L12 11.29l3.54 3.54a1 1 0 0 0 .7.29 1 1 0 0 0 .71-.29 1 1 0 0 0 .05-1.42z"></path>
+    </g>
   </svg>
 )
 
-export const ChevronDownIconSm = () => (
+export const ChevronDownIcon = () => (
   <svg
-    width="16"
-    height="16"
-    viewBox="0 0 16 16"
-    fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
   >
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M4.29289 5.29289C4.68342 4.90237 5.31658 4.90237 5.70711 5.29289L8 7.58579L10.2929 5.29289C10.6834 4.90237 11.3166 4.90237 11.7071 5.29289C12.0976 5.68342 12.0976 6.31658 11.7071 6.70711L8.70711 9.70711C8.51957 9.89464 8.26522 10 8 10C7.73478 10 7.48043 9.89464 7.29289 9.70711L4.29289 6.70711C3.90237 6.31658 3.90237 5.68342 4.29289 5.29289Z"
-      fill="currentColor"
-    />
+    <g fill="currentColor">
+      <path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 0 0-1.41 0 1 1 0 0 0 0 1.42l4.24 4.24a1 1 0 0 0 1.42 0L17 10.59a1 1 0 0 0 0-1.42z"></path>
+    </g>
   </svg>
 )
 
-export const CalendarIcon = () => (
+const CalendarIconFC: React.FC<{isShown: boolean}> = ({isShown, ...props}) => (
   <svg
-    width="16"
-    height="16"
-    viewBox="0 0 16 16"
-    fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    {...props}
   >
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M3 4C2.44772 4 2 4.44772 2 5V13C2 13.5523 2.44772 14 3 14H13C13.5523 14 14 13.5523 14 13V5C14 4.44772 13.5523 4 13 4V2C14.6569 2 16 3.34315 16 5V13C16 14.6569 14.6569 16 13 16H3C1.34315 16 0 14.6569 0 13V5C0 3.34315 1.34315 2 3 2V4Z"
-      fill="currentColor"
-    />
-    <path
-      d="M5 1C5 0.447715 5.44772 0 6 0C6.55228 0 7 0.447715 7 1V3C7 3.55228 6.55228 4 6 4C5.44772 4 5 3.55228 5 3V1Z"
-      fill="currentColor"
-    />
-    <path
-      d="M9 1C9 0.447715 9.44772 0 10 0C10.5523 0 11 0.447715 11 1V3C11 3.55228 10.5523 4 10 4C9.44772 4 9 3.55228 9 3V1Z"
-      fill="currentColor"
-    />
-    <path
-      d="M14 3C14 3.55228 13.5523 4 13 4C12.4477 4 12 3.55228 12 3C12 2.44772 12.4477 2 13 2C13.5523 2 14 2.44772 14 3Z"
-      fill="currentColor"
-    />
-    <path
-      d="M4 3C4 3.55228 3.55228 4 3 4C2.44772 4 2 3.55228 2 3C2 2.44772 2.44772 2 3 2C3.55228 2 4 2.44772 4 3Z"
-      fill="currentColor"
-    />
-    <path
-      d="M6 7C6 7.55228 5.55228 8 5 8C4.44772 8 4 7.55228 4 7C4 6.44772 4.44772 6 5 6C5.55228 6 6 6.44772 6 7Z"
-      fill="currentColor"
-    />
-    <path
-      d="M6 11C6 11.5523 5.55228 12 5 12C4.44772 12 4 11.5523 4 11C4 10.4477 4.44772 10 5 10C5.55228 10 6 10.4477 6 11Z"
-      fill="currentColor"
-    />
-    <path
-      d="M9 11C9 11.5523 8.55228 12 8 12C7.44772 12 7 11.5523 7 11C7 10.4477 7.44772 10 8 10C8.55228 10 9 10.4477 9 11Z"
-      fill="currentColor"
-    />
-    <path
-      d="M9 7C9 7.55228 8.55228 8 8 8C7.44772 8 7 7.55228 7 7C7 6.44772 7.44772 6 8 6C8.55228 6 9 6.44772 9 7Z"
-      fill="currentColor"
-    />
-    <path
-      d="M12 7C12 7.55228 11.5523 8 11 8C10.4477 8 10 7.55228 10 7C10 6.44772 10.4477 6 11 6C11.5523 6 12 6.44772 12 7Z"
-      fill="currentColor"
-    />
-    <path
-      d="M12 11C12 11.5523 11.5523 12 11 12C10.4477 12 10 11.5523 10 11C10 10.4477 10.4477 10 11 10C11.5523 10 12 10.4477 12 11Z"
-      fill="currentColor"
-    />
+    <g fill="currentColor">
+      <path d="M3 22h18a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-4V2h-2v2H9V2H7v2H3a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1zM4 6h3v1h2V6h6v1h2V6h3v2H4V6zm0 4h16v10H4V10z"></path>
+      <path d="M7 12h2v2H7zm0 4h2v2H7zm4-4h2v2h-2zm0 4h2v2h-2zm4-4h2v2h-2zm0 4h2v2h-2z"></path>
+    </g>
   </svg>
 )
+
+export const CalendarIcon = styled(CalendarIconFC)`
+  ${_ =>
+    _.isShown && {
+      color: _.theme.colors.icon.selected
+    }}
+`

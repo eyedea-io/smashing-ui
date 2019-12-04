@@ -7,7 +7,7 @@ import {
   DateValue,
   KEYS
 } from './utils'
-import {CalendarIcon, ChevronUpIcon} from './icons'
+import {CalendarIcon} from './icons'
 import {DateInputProps} from './types'
 
 export const DateInput: React.FC<DateInputProps> = ({
@@ -20,8 +20,7 @@ export const DateInput: React.FC<DateInputProps> = ({
   minutesInterval,
   timeValue,
   isExpanded,
-  expandIcon = () => <CalendarIcon />,
-  collapseIcon = () => <ChevronUpIcon />,
+  iconAfter,
   ...props
 }) => {
   const CalendarDate = hasTime
@@ -273,12 +272,21 @@ export const DateInput: React.FC<DateInputProps> = ({
       }}
       aria-expanded={isExpanded}
       onPaste={handlePaste}
+      height={props.height}
       width={props.width}
       onClick={handleClick}
       appearance={props.appearance}
       onKeyDown={handleKeyDown}
       value={CalendarDate.getStringValueForParts(inputValue)}
-      affixAfter={isExpanded ? collapseIcon : expandIcon}
+      affixAfter={
+        typeof iconAfter === 'function'
+          ? () =>
+              iconAfter({
+                toggle: handleClick,
+                isShown: isExpanded as boolean
+              })
+          : iconAfter
+      }
       onClickAfter={() => handleClick()}
     ></S.StyledInput>
   )

@@ -117,6 +117,7 @@ declare module 'styled-components' {
   export interface SmashingSpinnerDefaults {}
   export interface SmashingBarChartDefaults {}
   export interface SmashingListDefaults {}
+  export interface SmashingCalendarInputDefaults {}
   export interface SmashingPieChartDefaults {}
   export interface SmashingProgressBarChartDefaults {}
   export interface SmashingSpiderChartDefaults {}
@@ -125,24 +126,25 @@ declare module 'styled-components' {
   export interface SmashingMenuDefaults {}
   export interface SmashingSelectMenuDefaults {}
   export interface SmashingDefaults
-    extends SmashingButtonDefaults,
-      SmashingCheckboxDefaults,
-      SmashingTextInputDefaults,
-      SmashingTextareaDefaults,
-      SmashingAlertDefaults,
+    extends SmashingAlertDefaults,
+      SmashingAvatarDefaults,
       SmashingBarChartDefaults,
-      SmashingListDefaults,
-      SmashingPieChartDefaults,
-      SmashingSpiderChartDefaults,
-      SmashingRadialProgressDefaults,
+      SmashingButtonDefaults,
+      SmashingCalendarInputDefaults,
+      SmashingCheckboxDefaults,
       SmashingFormFieldDefaults,
-      SmashingProgressBarChartDefaults,
-      SmashingSideSheetDefaults,
-      SmashingSpinnerDefaults,
-      SmashingSelectDefaults,
+      SmashingListDefaults,
       SmashingMenuDefaults,
+      SmashingPieChartDefaults,
+      SmashingProgressBarChartDefaults,
+      SmashingRadialProgressDefaults,
+      SmashingSelectDefaults,
       SmashingSelectMenuDefaults,
-      SmashingAvatarDefaults {}
+      SmashingSideSheetDefaults,
+      SmashingSpiderChartDefaults,
+      SmashingSpinnerDefaults,
+      SmashingTextareaDefaults,
+      SmashingTextInputDefaults {}
   export interface DefaultTheme {
     radius: string
     elevation: SmashingThemeElevation
