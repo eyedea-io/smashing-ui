@@ -19,18 +19,6 @@ export interface ControlProps {
   label: string
 }
 
-export interface StyledButtonProps {
-  checked: boolean
-  activeGroup: boolean
-  textAlign?: TextAlign
-}
-export interface ControlGroupWrapperProps {
-  controlAppearance: ControlAppearanceType
-  groupAppearance: ControlGroupAppearanceType
-  childrenAmount: number
-  layout?: Layout
-  isOpen?: boolean
-}
 export interface ControlGroupProps {
   items: ControlProps[]
   value: string | string[]
@@ -43,4 +31,21 @@ export interface ControlGroupProps {
   invalid?: boolean
   height?: number
   visibleCount?: number
+}
+
+export interface ButtonProps {
+  checked: boolean
+  activeGroup: boolean
+  textAlign?: TextAlign
+  isOpen?: boolean
+  invalid?: boolean
+  disabled?: boolean
+}
+export interface WrapperProps {
+  controlAppearance: ControlAppearanceType
+  groupAppearance: ControlGroupAppearanceType
+  childrenAmount: number
+  layout?: Layout
+  isOpen?: boolean
+  visibleItemsCount?: number
 }

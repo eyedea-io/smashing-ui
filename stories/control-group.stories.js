@@ -150,7 +150,8 @@ storiesOf('Form|Control Group', module)
       onChange: setValue,
       value,
       items: items.slice(0, 3),
-      visibleCount: 3
+      visibleCount: 3,
+      disabled: true
     }
 
     return (

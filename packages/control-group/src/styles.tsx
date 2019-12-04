@@ -1,11 +1,6 @@
-import {Button, getButtonStyle} from '@smashing/button'
+import {Button as SmashingButton, getButtonStyle} from '@smashing/button'
 import styled, {DefaultTheme} from 'styled-components'
-import {
-  ControlGroupWrapperProps,
-  StyledButtonProps,
-  Layout,
-  TextAlign
-} from './types'
+import {WrapperProps, ButtonProps, Layout, TextAlign} from './types'
 
 interface ThemeProps {
   theme: DefaultTheme
@@ -31,6 +26,22 @@ const getDisplay = (layout?: Layout) => {
     default:
       return 'flex'
   }
+}
+
+const getState = (_: ButtonProps & ThemeProps) => {
+  let state = 'default'
+
+  if (_.activeGroup || _.checked) {
+    state = 'active'
+  }
+  if (_.invalid) {
+    state = 'invalid'
+  }
+  if (_.disabled) {
+    state = 'disabled'
+  }
+
+  return state
 }
 
 const getButtonGroupStyle = (layout?: Layout, childrenAmount?: number) => (
@@ -62,7 +73,7 @@ const getVerticalGroupStyle = (layout?: Layout) => (_: {
   }
 })
 
-const getControlGroupStyle = (_: ControlGroupWrapperProps & ThemeProps) => {
+const getControlGroupStyle = (_: WrapperProps & ThemeProps) => {
   switch (_.groupAppearance) {
     case 'button':
       return getButtonGroupStyle(_.layout, _.childrenAmount)(_)
@@ -77,7 +88,7 @@ const getControlGroupStyle = (_: ControlGroupWrapperProps & ThemeProps) => {
   }
 }
 
-export const ControlGroupWrapper = styled.div<ControlGroupWrapperProps>`
+export const ControlGroupWrapper = styled.div<WrapperProps>`
   ${_ => ({
     ...getControlGroupStyle(_)
   })}
@@ -105,33 +116,33 @@ export const ControlGroupWrapper = styled.div<ControlGroupWrapperProps>`
   }}
 `
 
-const getBorder = (_: ThemeProps) => {
+const getBorder = (_: ThemeProps & ButtonProps) => {
   const {outline} = _.theme.colors.button
   const border = (state: keyof typeof outline.borderColor) =>
     `${outline.borderWidth}px solid ${outline.borderColor[state]}`
 
-  const borderStyle =
-    _.activeGroup || _.checked ? border('active') : border('default')
+  const state = getState(_) as keyof typeof outline.borderColor
+  let borderStyle = border(state)
 
   return {
     borderTop: borderStyle,
     borderBottom: _.isOpen ? 'none' : borderStyle,
-    borderRight: _.isOpen ? borderStyle : border('default'),
+    borderRight: _.isOpen ? borderStyle : border(state),
     borderLeft: _.isOpen ? borderStyle : 'none',
 
     '&:first-of-type': {
       borderLeft: borderStyle
     },
-    '&:last-of-type': {
-      borderRight: borderStyle
-    },
     '&:nth-last-of-type(2)': {
       borderBottom: borderStyle
+    },
+    '&:last-of-type': {
+      borderRight: _.isOpen ? 'none' : borderStyle
     }
   }
 }
 
-const getBorderRadius = (_: ThemeProps) => ({
+const getBorderRadius = (_: ThemeProps & {isOpen?: boolean}) => ({
   borderRadius: 0,
 
   '&:first-of-type': {
@@ -139,6 +150,7 @@ const getBorderRadius = (_: ThemeProps) => ({
       ? `${_.theme.radius} ${_.theme.radius} 0 0`
       : `${_.theme.radius} 0 0 ${_.theme.radius}`
   },
+
   '&:nth-last-of-type(2)': {
     borderRadius: _.isOpen ? `0 0 ${_.theme.radius} ${_.theme.radius}` : 0
   },
@@ -147,7 +159,7 @@ const getBorderRadius = (_: ThemeProps) => ({
     borderRadius: `0 ${_.theme.radius} ${_.theme.radius} 0`,
     ...(_.isOpen
       ? {
-          '&, &:hover, &:active': {
+          '&, &:hover, &:active, &[aria-invalid="true"]': {
             border: 0,
             borderRadius: 0
           }
@@ -156,9 +168,7 @@ const getBorderRadius = (_: ThemeProps) => ({
   }
 })
 
-export const StyledButton = styled(Button)<
-  Partial<StyledButtonProps> & {isOpen?: boolean}
->`
+const Button = styled(SmashingButton)<ButtonProps>`
   box-shadow: none;
   position: relative;
 
@@ -168,8 +178,9 @@ export const StyledButton = styled(Button)<
       case 'outline':
         style = {
           boxSizing: 'border-box',
+          ...getBorderRadius(_),
 
-          '&, &:hover, &:active': {
+          '&, &:hover, &:active, &[aria-invalid="true"], &:disabled': {
             boxShadow: 'none',
             ...getBorder(_)
           }
@@ -177,6 +188,7 @@ export const StyledButton = styled(Button)<
         break
       default:
         style = {
+          ...getBorderRadius(_),
           ...(_.checked ? getButtonStyle(_.appearance)(_)[':active'] : {})
         }
     }
@@ -189,12 +201,14 @@ export const StyledButton = styled(Button)<
   }
 `
 
-export const RegularStyledButton = styled(StyledButton)<StyledButtonProps>`
+export const ControlButton = styled(Button)<ButtonProps>`
   justify-content: ${_ => getTextAlign(_.textAlign)};
 
   ${_ => {
     const activeLine = () => ({
-      color: _.theme.colors.text.intense,
+      color: _.invalid
+        ? _.theme.colors.text.danger
+        : _.theme.colors.text.intense,
 
       '&:after': {
         position: 'absolute',
@@ -203,7 +217,7 @@ export const RegularStyledButton = styled(StyledButton)<StyledButtonProps>`
         left: _.theme.spacing.xxs,
         width: `calc(100% - ${_.theme.spacing.sm})`,
         height: '2px',
-        backgroundColor: _.theme.colors.text.intense
+        backgroundColor: 'currentColor'
       }
     })
 
@@ -214,7 +228,7 @@ export const RegularStyledButton = styled(StyledButton)<StyledButtonProps>`
           ...(_.checked ? activeLine() : {}),
 
           '&:hover, &:active': {
-            ...activeLine()
+            ...(_.disabled ? {} : activeLine())
           }
         }
         break
@@ -226,25 +240,38 @@ export const RegularStyledButton = styled(StyledButton)<StyledButtonProps>`
   }}
 `
 
-export const MoreButton = styled.span<{isOpen: boolean}>`
+export const MoreButtonArrow = styled.div<{
+  isOpen: boolean
+  ref: any
+  invalid?: boolean
+  disabled?: boolean
+}>`
   border: none;
   background: transparent;
-  cursor: pointer;
+  cursor: ${_ => (_.disabled ? 'default' : 'pointer')};
   width: inherit;
   height: 100%;
 
   svg {
     transform: ${_ => (_.isOpen ? 'rotateX(180deg)' : '')};
+
+    fill: ${_ => {
+      if (_.invalid) {
+        return _.theme.colors.text.danger
+      }
+      if (_.disabled) {
+        return _.theme.colors.text.muted
+      }
+
+      return _.theme.colors.text.intense
+    }};
   }
   :focus {
     outline: none;
   }
 `
 
-export const MoreButtonContainer = styled(StyledButton)<{
-  isOpen?: boolean
-  invalid?: boolean
-}>`
+export const MoreButton = styled(Button)<{isOpen?: boolean}>`
   width: 50px;
   padding: 0;
   position: ${_ => (_.isOpen ? 'absolute' : 'relative')};

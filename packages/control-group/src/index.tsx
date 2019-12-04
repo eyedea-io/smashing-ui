@@ -11,10 +11,10 @@ import {
 } from './types'
 import {useDefaults, safeInvoke} from '@smashing/theme'
 import {
-  RegularStyledButton,
+  ControlButton,
   ControlGroupWrapper,
   MoreButton,
-  MoreButtonContainer
+  MoreButtonArrow
 } from './styles'
 
 // TODO: add icon component
@@ -23,14 +23,13 @@ const ArrowIcon = () => (
     width="16"
     height="10"
     viewBox="0 0 16 10"
-    fill="none"
+    fill="#1D304E"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
       fillRule="evenodd"
       clipRule="evenodd"
       d="M0.310946 0.808831C0.725541 0.397056 1.39773 0.397056 1.81233 0.808831L8 6.95442L14.1877 0.808831C14.6023 0.397056 15.2745 0.397056 15.6891 0.808831C16.1036 1.22061 16.1036 1.88823 15.6891 2.3L8.75069 9.19117C8.5516 9.38891 8.28156 9.5 8 9.5C7.71844 9.5 7.44841 9.38891 7.24931 9.19117L0.310946 2.3C-0.103649 1.88823 -0.103649 1.22061 0.310946 0.808831Z"
-      fill="#1D304E"
     />
   </svg>
 )
@@ -148,7 +147,7 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
       case 'button':
       default:
         return (
-          <RegularStyledButton
+          <ControlButton
             {...renderProps}
             appearance={controlAppearance as ButtonAppearanceType}
             onClick={() => safeInvoke(handleOnChange, item.value)}
@@ -158,7 +157,7 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
             isOpen={isOpen}
           >
             <span>{item.label}</span>
-          </RegularStyledButton>
+          </ControlButton>
         )
     }
   }
@@ -178,23 +177,27 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
       {haveMoreButton &&
         wrapperNode.current &&
         controlsNumber < wrapperNode.current.children.length && (
-          <MoreButtonContainer
+          <MoreButton
             height={height}
             appearance="outline"
             activeGroup={Boolean(
               Array.isArray(groupValue) ? groupValue.length : groupValue
             )}
             invalid={invalid}
+            disabled={disabled}
             isOpen={isOpen}
+            checked={false}
           >
-            <MoreButton
+            <MoreButtonArrow
               isOpen={isOpen}
               onClick={() => !props.disabled && setIsOpen(!isOpen)}
               ref={moreButtonNode}
+              invalid={invalid}
+              disabled={disabled}
             >
               <ArrowIcon />
-            </MoreButton>
-          </MoreButtonContainer>
+            </MoreButtonArrow>
+          </MoreButton>
         )}
     </ControlGroupWrapper>
   )
@@ -208,7 +211,7 @@ declare module 'styled-components' {
     extends Partial<{
       controlGroup: Pick<
         ControlGroupProps,
-        'controlAppearance' | 'groupAppearance'
+        'controlAppearance' | 'groupAppearance' | 'height'
       >
     }> {}
 }
