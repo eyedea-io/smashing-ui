@@ -16,7 +16,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@smashing/button": "^0.4.0",
+    "@smashing/button": "^0.4.1",
+    "@smashing/radio": "^0.1.1",
+    "@smashing/checkbox": "^0.3.1",
     "@smashing/theme": "^0.14.0"
   },
   "devDependencies": {

@@ -16,15 +16,26 @@ const getTextAlign = (textAlign?: TextAlign) => {
       return 'flex-start'
   }
 }
+const getTextColor = (invalid?: boolean, disabled?: boolean) => (
+  _: ThemeProps
+) => {
+  if (invalid) {
+    return _.theme.colors.text.danger
+  }
+  if (disabled) {
+    return _.theme.colors.text.muted
+  }
+
+  return _.theme.colors.text.intense
+}
 
 const getDisplay = (layout?: Layout) => {
   switch (layout) {
-    case 'equal':
-      return 'inline-grid'
     case 'full':
       return 'grid'
+    case 'equal':
     default:
-      return 'flex'
+      return 'inline-grid'
   }
 }
 
@@ -44,65 +55,8 @@ const getState = (_: ButtonProps & ThemeProps) => {
   return state
 }
 
-const getButtonGroupStyle = (layout?: Layout, childrenAmount?: number) => (
-  _: ThemeProps
-) => {
-  return {
-    borderRadius: _.theme.radius,
-    display: getDisplay(layout),
-    gridTemplateColumns: '1fr '.repeat(childrenAmount || 0)
-  }
-}
-
-const getHorizontalGroupStyle = (
-  layout?: Layout,
-  childrenAmount?: number
-) => (_: {theme: DefaultTheme}) => ({
-  display: getDisplay(layout || 'equal'),
-  gridTemplateColumns: '1fr '.repeat(childrenAmount || 0)
-})
-
-const getVerticalGroupStyle = (layout?: Layout) => (_: {
-  theme: DefaultTheme
-}) => ({
-  display: getDisplay(layout || 'equal'),
-  gridTemplateColumns: '1fr ',
-
-  '> *': {
-    marginBottom: _.theme.spacing.xxxs
-  }
-})
-
-const getControlGroupStyle = (_: WrapperProps & ThemeProps) => {
-  switch (_.groupAppearance) {
-    case 'button':
-      return getButtonGroupStyle(_.layout, _.childrenAmount)(_)
-    case 'radio-horizontal':
-    case 'checkbox-horizontal':
-      return getHorizontalGroupStyle(_.layout, _.childrenAmount)(_)
-    case 'radio-vertical':
-    case 'checkbox-vertical':
-      return getVerticalGroupStyle(_.layout)
-    default:
-      return {}
-  }
-}
-
-export const ControlGroupWrapper = styled.div<WrapperProps>`
-  ${_ => ({
-    ...getControlGroupStyle(_)
-  })}
-
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: ${_ => (_.isOpen ? 'column' : 'row')};
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  max-width: 100%;
-
-  ${_ => {
+const getButtonGroupStyle = (_: WrapperProps & ThemeProps) => {
+  const openStyle = () => {
     const elemLiStyle = {}
     if (!_.isOpen && _.visibleItemsCount) {
       elemLiStyle[
@@ -113,7 +67,57 @@ export const ControlGroupWrapper = styled.div<WrapperProps>`
     }
 
     return elemLiStyle
-  }}
+  }
+
+  return {
+    position: 'relative',
+    zIndex: 1,
+    display: 'flex',
+    flexDirection: _.isOpen ? 'column' : 'row',
+    margin: 0,
+    padding: 0,
+    maxWidth: '100%',
+
+    ...openStyle(),
+    borderRadius: _.theme.radius
+  }
+}
+
+const getHorizontalGroupStyle = (_: WrapperProps & ThemeProps) => ({
+  display: getDisplay(_.layout || 'equal'),
+  gridTemplateColumns: '1fr '.repeat(_.childrenAmount || 0),
+  gridColumnGap: _.theme.spacing.xxs
+})
+
+const getVerticalGroupStyle = (_: WrapperProps & ThemeProps) => ({
+  display: getDisplay(_.layout || 'equal'),
+  gridTemplateColumns: '1fr ',
+  gridRowGap: _.theme.spacing.xxs,
+
+  '> *': {
+    marginBottom: _.theme.spacing.xxxs
+  }
+})
+
+const getControlGroupStyle = (_: WrapperProps & ThemeProps) => {
+  switch (_.groupAppearance) {
+    case 'button':
+      return getButtonGroupStyle(_)
+    case 'radio-horizontal':
+    case 'checkbox-horizontal':
+      return getHorizontalGroupStyle(_)
+    case 'radio-vertical':
+    case 'checkbox-vertical':
+      return getVerticalGroupStyle(_)
+    default:
+      return {}
+  }
+}
+
+export const ControlGroupWrapper = styled.div<WrapperProps>`
+  ${_ => ({
+    ...getControlGroupStyle(_)
+  })}
 `
 
 const getBorder = (_: ThemeProps & ButtonProps) => {
@@ -171,6 +175,7 @@ const getBorderRadius = (_: ThemeProps & {isOpen?: boolean}) => ({
 const Button = styled(SmashingButton)<ButtonProps>`
   box-shadow: none;
   position: relative;
+  white-space: nowrap;
 
   ${_ => {
     let style
@@ -206,9 +211,7 @@ export const ControlButton = styled(Button)<ButtonProps>`
 
   ${_ => {
     const activeLine = () => ({
-      color: _.invalid
-        ? _.theme.colors.text.danger
-        : _.theme.colors.text.intense,
+      color: getTextColor(_.invalid, _.disabled)(_),
 
       '&:after': {
         position: 'absolute',
@@ -255,16 +258,7 @@ export const MoreButtonArrow = styled.div<{
   svg {
     transform: ${_ => (_.isOpen ? 'rotateX(180deg)' : '')};
 
-    fill: ${_ => {
-      if (_.invalid) {
-        return _.theme.colors.text.danger
-      }
-      if (_.disabled) {
-        return _.theme.colors.text.muted
-      }
-
-      return _.theme.colors.text.intense
-    }};
+    fill: ${_ => getTextColor(_.invalid, _.disabled)(_)};
   }
   :focus {
     outline: none;

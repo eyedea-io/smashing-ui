@@ -131,18 +131,20 @@ const radioAppearances = ['default', 'outline']
 
 addDecorator(withA11y)
 
-storiesOf('Form|Control Group', module)
-  .addDecorator(story => (
-    <SmashingThemeProvider
-      theme={{
-        defaults: {
-          button: {}
-        }
-      }}
-    >
-      {story()}
-    </SmashingThemeProvider>
-  ))
+const Decorator = story => (
+  <SmashingThemeProvider
+    theme={{
+      defaults: {
+        button: {}
+      }
+    }}
+  >
+    {story()}
+  </SmashingThemeProvider>
+)
+
+storiesOf('Form|ControlGroup', module)
+  .addDecorator(Decorator)
   .add('layout: default', () => {
     const [value, setValue] = React.useState(1)
 
@@ -151,7 +153,6 @@ storiesOf('Form|Control Group', module)
       value,
       items: items.slice(0, 3),
       visibleCount: 3,
-      disabled: true
     }
 
     return (
@@ -262,8 +263,6 @@ storiesOf('Form|Control Group', module)
       items: items.slice(0, 3)
     }
 
-
-
     return (
       layouts.filter(layout => checkboxAppearances.includes(layout.name.toLowerCase())).map(layout => (
         <React.Fragment key={layout.name}>
@@ -289,5 +288,76 @@ storiesOf('Form|Control Group', module)
           <ControlGroup groupAppearance="checkbox-vertical" {...props} {...layout.props} />
         </React.Fragment>
       ))
+    )
+  })
+
+storiesOf('Form|ControlGroup/controlAppearance:outline', module)
+  .addDecorator(Decorator)
+  .add('default', () => {
+    const [value, setValue] = React.useState(3)
+
+    const props = {
+      onChange: setValue,
+      value,
+      items: items.slice(2, items.length)
+    }
+
+    return (
+      <ControlGroup
+        {...props}
+        layout="equal"
+        controlAppearance='outline'
+      />
+    )
+  })
+  .add('invalid', () => {
+    const [value, setValue] = React.useState(3)
+
+    const props = {
+      onChange: setValue,
+      value,
+      items: items.slice(2, items.length)
+    }
+
+    return (
+      <ControlGroup
+        {...props}
+        controlAppearance='outline'
+        invalid
+      />
+    )
+  })
+  .add('disabled', () => {
+    const [value, setValue] = React.useState(3)
+
+    const props = {
+      onChange: setValue,
+      value,
+      items: items.slice(2, items.length)
+    }
+
+    return (
+      <ControlGroup
+        {...props}
+        controlAppearance='outline'
+        disabled
+      />
+    )
+  })
+  .add('height: 60', () => {
+    const [value, setValue] = React.useState(3)
+
+    const props = {
+      onChange: setValue,
+      value,
+      items: items.slice(2, items.length)
+    }
+
+    return (
+      <ControlGroup
+        {...props}
+        controlAppearance='outline'
+        height={60}
+      />
     )
   })

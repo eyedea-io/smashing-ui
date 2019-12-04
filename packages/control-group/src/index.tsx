@@ -10,6 +10,7 @@ import {
   ControlGroupAppearanceType
 } from './types'
 import {useDefaults, safeInvoke} from '@smashing/theme'
+import {Strong} from '@smashing/typography'
 import {
   ControlButton,
   ControlGroupWrapper,
@@ -57,7 +58,8 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
 
   const [controlsNumber, setControlsNumber] = React.useState(0)
   const [isOpen, setIsOpen] = React.useState(false)
-  const haveMoreButton = controlAppearance === 'outline'
+  const haveMoreButton =
+    controlAppearance === 'outline' && groupAppearance === 'button'
   const wrapperNode = React.useRef<HTMLDivElement>(null)
   const moreButtonNode = React.useRef<HTMLButtonElement>(null)
 
@@ -88,7 +90,7 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
     }
   }, [wrapperNode])
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleMoreClick = (e: React.MouseEvent) => {
     const moreButton = moreButtonNode.current
     if (!moreButton || !moreButton.contains(e.target as Node)) {
       setIsOpen(false)
@@ -109,12 +111,14 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
   }
 
   const renderControl = (item: ControlProps) => {
+    const checked = Array.isArray(groupValue)
+      ? groupValue.includes(item.value || '')
+      : groupValue === item.value
+
     const renderProps = {
       key: `${item.label}-${item.value}`,
       textAlign,
-      checked: Array.isArray(groupValue)
-        ? groupValue.includes(item.value || '')
-        : groupValue === item.value,
+      checked,
       disabled,
       invalid,
       height,
@@ -156,7 +160,12 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
             )}
             isOpen={isOpen}
           >
-            <span>{item.label}</span>
+            <Strong
+              color={disabled ? 'muted' : checked ? 'intense' : 'default'}
+              intent={invalid ? 'danger' : undefined}
+            >
+              {item.label}
+            </Strong>
           </ControlButton>
         )
     }
@@ -164,34 +173,34 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
 
   return (
     <ControlGroupWrapper
+      ref={wrapperNode}
       groupAppearance={groupAppearance}
       controlAppearance={controlAppearance}
       childrenAmount={items.length}
       layout={layout}
       isOpen={isOpen}
       visibleItemsCount={controlsNumber}
-      onClick={handleClick}
-      ref={wrapperNode}
+      onClick={handleMoreClick}
     >
       {items.map(renderControl)}
       {haveMoreButton &&
         wrapperNode.current &&
         controlsNumber < wrapperNode.current.children.length && (
           <MoreButton
-            height={height}
             appearance="outline"
             activeGroup={Boolean(
               Array.isArray(groupValue) ? groupValue.length : groupValue
             )}
-            invalid={invalid}
-            disabled={disabled}
             isOpen={isOpen}
             checked={false}
+            height={height}
+            invalid={invalid}
+            disabled={disabled}
           >
             <MoreButtonArrow
-              isOpen={isOpen}
-              onClick={() => !props.disabled && setIsOpen(!isOpen)}
               ref={moreButtonNode}
+              isOpen={isOpen}
+              onClick={() => !disabled && setIsOpen(!isOpen)}
               invalid={invalid}
               disabled={disabled}
             >
