@@ -225,22 +225,18 @@ export const ControlButton = styled(Button)<ButtonProps>`
       }
     })
 
-    let style
     switch (_.appearance) {
       case 'outline':
-        style = {
+        return {
           ...(_.checked ? activeLine() : {}),
 
           '&:hover, &:active': {
             ...(_.disabled ? {} : activeLine())
           }
         }
-        break
       default:
-        style = {}
+        return {}
     }
-
-    return style
   }}
 `
 
