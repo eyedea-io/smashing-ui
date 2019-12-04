@@ -1,6 +1,6 @@
 {
   "name": "@smashing/list",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Component is used to display a list.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -16,7 +16,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@smashing/theme": "^0.14.1"
+    "@smashing/theme": "^0.14.2"
   },
   "devDependencies": {
     "react": "^16.8.6"

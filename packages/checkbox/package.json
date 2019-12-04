@@ -1,6 +1,6 @@
 {
   "name": "@smashing/checkbox",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Simple Checkbox component",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -16,8 +16,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@smashing/theme": "^0.14.1",
-    "@smashing/typography": "^0.4.30"
+    "@smashing/theme": "^0.14.2",
+    "@smashing/typography": "^0.4.31"
   },
   "devDependencies": {
     "react": "^16.8.6"
