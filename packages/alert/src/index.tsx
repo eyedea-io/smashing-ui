@@ -4,11 +4,13 @@ import {useDefaults} from '@smashing/theme'
 import {AlertIntentType, AlertAppearanceType, AlertProps} from './types'
 import {Text, Strong} from '@smashing/typography'
 import {getAlertIconForIntent, getTrimColorByIntent} from './styles'
+import {CloseButton, CloseIcon} from './close-icon'
 
 interface BoxProps {
   hasTrim: boolean
   intent: AlertIntentType
   appearance: AlertAppearanceType
+  closeOnBodyClick: boolean
 }
 
 const Box = styled.div.attrs({})<BoxProps>`
@@ -32,7 +34,6 @@ const Box = styled.div.attrs({})<BoxProps>`
     ['card', 'default'].includes(_.appearance) &&
     css`
       background-color: #fff;
-      padding: 12px 16px;
 
       ::before {
         content: ${_.hasTrim ? '""' : 'none'};
@@ -44,6 +45,24 @@ const Box = styled.div.attrs({})<BoxProps>`
         background-color: ${getTrimColorByIntent(_)};
       }
     `}
+    ${_ => _.closeOnBodyClick && {pointerEvents: 'all', cursor: 'pointer'}}
+`
+
+interface BoxInnerProps {
+  appearance: AlertAppearanceType
+  hasIcon: boolean
+  closeOnClick?: () => void
+}
+
+const BoxInner = styled.div<BoxInnerProps>`
+  display: flex;
+  flex: 1;
+  ${_ =>
+    ['card', 'default'].includes(_.appearance) &&
+    css`
+      padding: 12px 16px;
+    `}
+  ${_ => _.closeOnClick && 'padding-right: 0;'}
 `
 
 const Title = styled(Strong)`
@@ -73,6 +92,9 @@ const Alert: React.FC<AlertProps> = ({
   const defaults = useDefaults('alert', props, {
     hasTrim: true,
     hasIcon: true,
+    hasClose: false,
+    closeOnBodyClick: false,
+    onCloseClick: () => undefined,
     intent: 'info' as AlertIntentType,
     appearance: 'default' as AlertAppearanceType
   })
@@ -84,29 +106,52 @@ const Alert: React.FC<AlertProps> = ({
       intent={defaults.intent}
       hasTrim={defaults.hasTrim}
       className={className}
+      onClick={() => defaults.closeOnBodyClick && defaults.onCloseClick()}
+      closeOnBodyClick={defaults.closeOnBodyClick}
     >
-      {defaults.hasIcon && (
-        <Icon>{getAlertIconForIntent(defaults.intent)({theme})}</Icon>
+      <BoxInner
+        appearance={defaults.appearance}
+        hasIcon={defaults.hasIcon}
+        closeOnClick={defaults.onCloseClick}
+      >
+        {defaults.hasIcon && (
+          <Icon>{getAlertIconForIntent(defaults.intent)({theme})}</Icon>
+        )}
+        <div>
+          {typeof title === 'string' ? (
+            <Title as="h4" color="intense">
+              {title}
+            </Title>
+          ) : (
+            title
+          )}
+          {typeof children === 'string' ? (
+            <Description>{children}</Description>
+          ) : (
+            children
+          )}
+        </div>
+      </BoxInner>
+      {defaults.hasClose && (
+        <CloseButton
+          iconAfter={CloseIcon}
+          onClick={defaults.onCloseClick}
+          appearance="minimal"
+          height={24}
+        />
       )}
-      <div>
-        {typeof title === 'string' ? (
-          <Title as="h4" color="intense">
-            {title}
-          </Title>
-        ) : (
-          title
-        )}
-        {typeof children === 'string' ? (
-          <Description>{children}</Description>
-        ) : (
-          children
-        )}
-      </div>
     </Box>
   )
 }
 
-export const StyledAlert = {Box, Title, Icon, Description}
+export const AlertElements = {
+  Box,
+  BoxInner,
+  Title,
+  Icon,
+  Description,
+  CloseButton
+}
 
 export {Alert, AlertProps, AlertAppearanceType}
 

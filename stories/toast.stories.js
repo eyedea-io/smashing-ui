@@ -57,17 +57,23 @@ storiesOf('Feedback Indicators|Toaster', module)
   .add('with custom duration', () => (
     <React.Fragment>
       <Button
-        onClick={() => toaster.success('Successful alert!', {duration: 5})}
+        onClick={() => toaster.success('Successful alert!', {duration: 5000})}
       >
         Success 5s
       </Button>
-      <Button onClick={() => toaster.notify('Notify alert!', {duration: 10})}>
+      <Button
+        onClick={() => toaster.notify('Notify alert!', {duration: 10000})}
+      >
         Notify 10s
       </Button>
-      <Button onClick={() => toaster.warning('Warning alert!', {duration: 15})}>
+      <Button
+        onClick={() => toaster.warning('Warning alert!', {duration: 10005})}
+      >
         Warning 15s
       </Button>
-      <Button onClick={() => toaster.danger('Danger alert!', {duration: 20})}>
+      <Button
+        onClick={() => toaster.danger('Danger alert!', {duration: 20000})}
+      >
         Danger 20s
       </Button>
       <Button onClick={toaster.closeAll}>Close all</Button>
@@ -76,6 +82,19 @@ storiesOf('Feedback Indicators|Toaster', module)
   .add('unique toast', () => (
     <React.Fragment>
       <Button onClick={() => toaster.success('Successful alert!', {id: 'a'})}>
+        Success
+      </Button>
+    </React.Fragment>
+  ))
+  .add('without close icon', () => (
+    <React.Fragment>
+      <Button
+        onClick={() =>
+          toaster.success('Successful alert!', {
+            hasCloseButton: false
+          })
+        }
+      >
         Success
       </Button>
     </React.Fragment>

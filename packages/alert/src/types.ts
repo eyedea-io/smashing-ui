@@ -8,4 +8,7 @@ export type AlertProps = {
   hasTrim?: boolean
   hasIcon?: boolean
   className?: string
+  hasClose?: boolean
+  closeOnBodyClick?: boolean
+  closeOnClick?: () => void
 }

@@ -1,35 +1,8 @@
 import * as React from 'react'
-import styled from 'styled-components'
-import {Toast, ToastModel} from './toast'
+import {Toast} from './toast'
+import {ToastModel, ToastManagerProps} from './types'
 import {TransitionGroup} from 'react-transition-group'
-
-const ToastsWrapper = styled.span`
-  max-width: 560;
-  margin: 0 auto;
-  top: 0;
-  left: 0;
-  right: 0;
-  position: fixed;
-  z-index: 30;
-  pointer-events: none;
-`
-
-interface ToastManagerProps {
-  /**
-   * Function called with the `this.notify` function.
-   */
-  bindNotify: any
-
-  /**
-   * Function called with the `this.getToasts` function.
-   */
-  bindGetToasts: any
-
-  /**
-   * Function called with the `this.closeAll` function.
-   */
-  bindCloseAll: any
-}
+import {ToastsWrapper} from './styles'
 
 const hasCustomId = settings => Object.hasOwnProperty.call(settings, 'id')
 
@@ -52,7 +25,6 @@ const ToastManager: React.FC<ToastManagerProps> = props => {
     },
     [toasts]
   )
-
   const removeToast = React.useCallback(id => {
     setToasts(toasts => toasts.filter(toast => toast.id !== id))
   }, [])
@@ -66,10 +38,11 @@ const ToastManager: React.FC<ToastManagerProps> = props => {
         id,
         title,
         description: settings.description,
-        hasCloseButton: settings.hasCloseButton || true,
-        duration: settings.duration || 5,
+        hasCloseButton: settings.hasCloseButton,
+        duration: settings.duration,
         close: () => closeToast(id),
         intent: settings.intent,
+        appearance: settings.appearance,
         isShown: true
       }
     },

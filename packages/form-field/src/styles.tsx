@@ -1,6 +1,6 @@
 import styled, {css} from 'styled-components'
 import {Label as PureLabel, Paragraph, getTextStyle} from '@smashing/typography'
-import {Alert as PureAlert, StyledAlert} from '@smashing/alert'
+import {Alert as PureAlert, AlertElements} from '@smashing/alert'
 import {FormFieldLabelAppearance, FormFieldAlertAppearance} from './types'
 
 export const Description = styled(Paragraph)`
@@ -56,7 +56,7 @@ export const Alert = styled(PureAlert)<AlertProps>`
       justify-self: flex-start;
     `}
 
-  ${StyledAlert.Description} {
+  ${AlertElements.Description} {
     ${getTextStyle({variant: 300, intent: 'danger'})};
   }
 `

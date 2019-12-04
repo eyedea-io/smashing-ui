@@ -164,6 +164,21 @@ storiesOf('Feedback Indicators|Alert', module)
       </Alert>
     </React.Fragment>
   ))
+  .add('with close option', () => (
+    <React.Fragment>
+      <Alert
+        title="Your account is active"
+        onCloseClick={() => alert('Need close function')}
+        hasClose
+      />
+      <br />
+      <Alert
+        title="Close by clicking on body"
+        onCloseClick={() => alert('Need close function')}
+        closeOnBodyClick
+      />
+    </React.Fragment>
+  ))
   .add('all', () => (
     <div style={{display: 'grid', rowGap: '8px'}}>
       <Heading>Default style</Heading>

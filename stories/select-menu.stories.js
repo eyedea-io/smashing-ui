@@ -528,7 +528,7 @@ storiesOf(
 //       font-size: 12px;
 //       font-weight: 600;
 //     }
-//     ${StyledAlert.Box} {
+//     ${AlertElements.Box} {
 //       margin-left: ${_ => _.theme.spacing.xs};
 //     }
 //   `
