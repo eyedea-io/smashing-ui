@@ -5,7 +5,7 @@ export type StyledCalendarInputProps = {
   appearance: CalendarPopoverAppearanceType
 }
 export type CalendarInputProps = {
-  popoverAppearance: CalendarPopoverAppearanceType
+  popoverAppearance?: CalendarPopoverAppearanceType
   inputAppearance?: TextInputAppearanceType
   onChange?: (date?: Date) => void
   height?: number
