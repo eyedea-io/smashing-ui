@@ -2,6 +2,7 @@ import React from 'react'
 import {storiesOf} from '@storybook/react'
 import {SelectMenu} from '@smashing/select-menu'
 import {SmashingThemeProvider} from '@smashing/theme'
+import {DownRegular} from './common/icon'
 
 const options = [
   {label: 'Apple', value: 'Apple'},
@@ -65,6 +66,20 @@ const Decorator = story => (
     }}
   >
     {story()}
+  </SmashingThemeProvider>
+)
+
+const IconDecorator = ({children}) => (
+  <SmashingThemeProvider
+    theme={{
+      defaults: {
+        selectMenu: {
+          arrowIcon: DownRegular
+        }
+      }
+    }}
+  >
+    {children}
   </SmashingThemeProvider>
 )
 
@@ -213,7 +228,6 @@ storiesOf('Selects & Dropdown Menus|Select menu', module)
     <Wrapper>
       {({changeSelectedOptions, selectedOptions}) => (
         <SelectMenu
-          isMultiSelect
           options={options}
           value={selectedOptions}
           onChange={changeSelectedOptions}
@@ -232,7 +246,9 @@ storiesOf('Selects & Dropdown Menus|Select menu', module)
             value={selectedOptions}
             onSelect={select}
             onDeselect={deselect}
-            multiOptionSelectedItemsLabel={num => `Fruits: ${num}`}
+            placeholderForMultipleSelected={selected =>
+              `Fruit: ${selected.length}`
+            }
           />
         )}
       </Wrapper>
@@ -244,7 +260,9 @@ storiesOf('Selects & Dropdown Menus|Select menu', module)
             value={selectedOptions}
             onSelect={select}
             onDeselect={deselect}
-            multiOptionSelectedItemsLabel={num => `Fruits: ${num}`}
+            placeholderForMultipleSelected={selected =>
+              `Fruit: ${selected.length}`
+            }
           />
         )}
       </Wrapper>
@@ -257,7 +275,9 @@ storiesOf('Selects & Dropdown Menus|Select menu', module)
             value={selectedOptions}
             onSelect={select}
             onDeselect={deselect}
-            multiOptionSelectedItemsLabel={num => `Fruits: ${num}`}
+            placeholderForMultipleSelected={selected =>
+              `Fruit: ${selected.length}`
+            }
           />
         )}
       </Wrapper>
@@ -276,7 +296,9 @@ storiesOf('Selects & Dropdown Menus|Select menu', module)
             popoverProps={{
               height: 250
             }}
-            multiOptionSelectedItemsLabel={num => `Fruits: ${num}`}
+            placeholderForMultipleSelected={selected =>
+              `Fruit: ${selected.length}`
+            }
           />
         )}
       </Wrapper>
@@ -371,6 +393,24 @@ storiesOf(
         />
       )}
     </Wrapper>
+  ))
+  .add('appearance: outline with arrow icon', () => (
+    <IconDecorator>
+      <Wrapper>
+        {({singleSelectedOption, changeSingleSelectedOption}) => (
+          <SelectMenu
+            options={optionsScroll}
+            value={singleSelectedOption}
+            onSelect={changeSingleSelectedOption}
+            appearance="outline"
+            popoverAppearance="accordion"
+            isSelectable={false}
+            hideSelectedItem
+            width={150}
+          />
+        )}
+      </Wrapper>
+    </IconDecorator>
   ))
   .add('height', () => (
     <>
@@ -488,7 +528,7 @@ storiesOf(
 //       font-size: 12px;
 //       font-weight: 600;
 //     }
-//     ${StyledAlert.Box} {
+//     ${AlertElements.Box} {
 //       margin-left: ${_ => _.theme.spacing.xs};
 //     }
 //   `

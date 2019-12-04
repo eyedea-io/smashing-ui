@@ -38,13 +38,13 @@ const IconWrapper = styled.div<IconWrapperProps>`
   })}
   margin-left: ${_ =>
     ({
-      center: 0,
+      center: 'auto',
       before: `${-Math.round(_.height / 8)}px`,
       after: `${Math.round(_.height / 4)}px`
     }[_.iconPosition])};
   margin-right: ${_ =>
     ({
-      center: 0,
+      center: 'auto',
       before: `${Math.round(_.height / 4)}px`,
       after: `${-Math.round(_.height / 8)}px`
     }[_.iconPosition])};
@@ -100,9 +100,11 @@ const ButtonFCFactory: <AdditionalProps extends {}>(
       children === undefined ? 'center' : IconBefore ? 'before' : 'after'
     const iconProps = {
       size: Math.round(defaults.height / 2),
-      color: getButtonTextColor(props.intent, props.appearance, props.disabled)(
-        {theme}
-      )
+      color: getButtonTextColor(
+        props.intent,
+        props.appearance,
+        props.disabled
+      )({theme})
     }
 
     return (

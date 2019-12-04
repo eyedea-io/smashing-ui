@@ -38,6 +38,30 @@ export var ArrowRightRegular = function(_a) {
   )
 }
 
+export var DownRegular = function(_a) {
+  var _b = _a.color,
+    color = _b === void 0 ? 'black' : _b,
+    _c = _a.size,
+    size = _c === void 0 ? 32 : _c
+  return React.createElement(
+    'svg',
+    {
+      width: size,
+      height: size,
+      viewBox: '0 0 16 16',
+      fill: 'none',
+      xmlns: 'http://www.w3.org/2000/svg'
+    },
+    React.createElement('path', {
+      fillRule: 'evenodd',
+      clipRule: 'evenodd',
+      d:
+        'M4.29289 5.29289C4.68342 4.90237 5.31658 4.90237 5.70711 5.29289L8 7.58579L10.2929 5.29289C10.6834 4.90237 11.3166 4.90237 11.7071 5.29289C12.0976 5.68342 12.0976 6.31658 11.7071 6.70711L8.70711 9.70711C8.51957 9.89464 8.26522 10 8 10C7.73478 10 7.48043 9.89464 7.29289 9.70711L4.29289 6.70711C3.90237 6.31658 3.90237 5.68342 4.29289 5.29289Z',
+      fill: color
+    })
+  )
+}
+
 export var CalendarRegular = function(_a) {
   var _b = _a.color,
     color = _b === void 0 ? 'black' : _b,
@@ -221,4 +245,3 @@ export var SearchRegular = function(_a) {
     })
   )
 }
-

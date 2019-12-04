@@ -7,11 +7,12 @@ import {getValueWithUnit} from '@smashing/theme'
 type InputProps = TextInputProps &
   Required<Pick<TextInputProps, 'height' | 'appearance' | 'full'>>
 
-export const TextInputContainer = styled.div<
-  {
-    height: number | string
-  } & InputProps
->`
+type TextInputContainerProps = {
+  full?: boolean
+  width?: number | string
+}
+
+export const TextInputContainer = styled.div<TextInputContainerProps>`
   position: relative;
   ${_ => ({
     width: _.width ? getValueWithUnit(_.width) : _.full ? '100%' : 'fit-content'
@@ -47,13 +48,14 @@ export const TextInput = styled(Text)<InputProps>`
   ${_ => getTextInputStyle(_.appearance)};
 `
 
-export const TextInputAffix = styled(Text)<{
+interface TextInputAffixProps {
   height: number
   isBefore?: boolean
   isClickable?: boolean
   isString?: boolean
   invalid?: boolean
-}>`
+}
+export const TextInputAffix = styled(Text)<TextInputAffixProps>`
   position: absolute;
   top: 0;
   box-sizing: border-box;
@@ -62,12 +64,22 @@ export const TextInputAffix = styled(Text)<{
   color: ${_ =>
     _.invalid ? _.theme.colors.text.danger : _.theme.colors.text.muted};
   ${_ => (_.isBefore ? 'left: 0;' : 'right: 0;')}
-  ${_ => _.isString && `padding: 0 ${_.theme.spacing.sm};`}
+  ${_ => {
+    const height =
+      typeof _.height === 'string' ? parseInt(_.height, 10) : _.height
+    const padding = Math.round(height / 3.2)
+    if (_.isString) {
+      return {padding: `0 ${padding}px`}
+    }
+    return {
+      svg: {padding: `0 ${padding}px`}
+    }
+  }}
 
   svg {
     width: calc(${_ => _.height}px / 2);
     height: ${_ => _.height}px;
-    padding: 0 ${_ => _.theme.spacing.sm};
+    align-self: center;
     ${_ => _.isClickable && 'cursor: pointer;'}
   }
 `

@@ -10,14 +10,18 @@ import {TextInputAffix} from './components/affix'
 
 const TextInput: React.FC<TextInputProps> = ({
   children,
+  className,
   innerRef,
   affixBefore,
   affixAfter,
   onClickBefore,
   onClickAfter,
+  value,
+  readOnly,
   ...props
 }) => {
   const defaults = useDefaults('textInput', props, {
+    width: undefined,
     height: 32,
     full: false,
     appearance: 'default' as TextInputAppearanceType
@@ -25,7 +29,12 @@ const TextInput: React.FC<TextInputProps> = ({
   const inputRef = React.useRef<HTMLInputElement>(null)
 
   return (
-    <S.TextInputContainer ref={innerRef} {...defaults}>
+    <S.TextInputContainer
+      width={defaults.width}
+      full={defaults.full}
+      ref={innerRef}
+      className={className}
+    >
       {affixBefore && (
         <TextInputAffix
           isBefore
@@ -44,6 +53,8 @@ const TextInput: React.FC<TextInputProps> = ({
         ref={inputRef}
         affixBefore={affixBefore}
         affixAfter={affixAfter}
+        readOnly={readOnly}
+        value={value}
         {...defaults}
       />
       {affixAfter && (

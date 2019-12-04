@@ -1,4 +1,3 @@
-import * as React from 'react'
 import styled from 'styled-components'
 import {Scrollbars} from 'react-custom-scrollbars'
 import {getTextInputStyle} from '@smashing/text-input'
@@ -9,6 +8,7 @@ import {getValueWithUnit} from '@smashing/theme'
 type InputProps = TextareaProps &
   Required<Pick<TextareaProps, 'borderRadius' | 'appearance' | 'full'>>
 
+export const ScrollbarContainer = styled(Scrollbars)``
 export const TextareaContainer = styled.div<InputProps>`
   border: none;
   border-radius: ${_ => getValueWithUnit(_.borderRadius)};
@@ -25,6 +25,11 @@ export const TextareaContainer = styled.div<InputProps>`
     }
   })}
   ${_ => getTextInputStyle(_.appearance)};
+  ${ScrollbarContainer} {
+    box-sizing: border-box;
+    width: fit-content;
+    padding: ${_ => (_.scrollbarAppearance === 'outline' ? 0 : '8px 10px')};
+  }
 `
 
 export const Textarea = styled(Text)`
@@ -39,22 +44,6 @@ export const Textarea = styled(Text)`
   ::-webkit-scrollbar {
     display: none;
   }
-`
-
-export const ScrollbarContainer = styled(Scrollbars).attrs(
-  ({scrollbarAppearance}) =>
-    scrollbarAppearance === 'outline' && {
-      renderTrackVertical: props => (
-        <VerticalScrollTrack {...props} style={{...props.style, width: 2}} />
-      ),
-      renderThumbVertical: props => (
-        <VerticalScrollThumb {...props} style={{...props.style, width: 2}} />
-      )
-    }
-)<{isScrollVisible?: boolean}>`
-  box-sizing: border-box;
-  width: fit-content;
-  padding: ${_ => (_.scrollbarAppearance === 'outline' ? 0 : '8px 10px')};
 `
 
 export const VerticalScrollTrack = styled.div`

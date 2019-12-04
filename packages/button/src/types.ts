@@ -20,6 +20,7 @@ export interface ButtonLikeProps {
   disabled?: boolean
   tabIndex?: number
   className?: string
+  type?: string
   innerRef?: any
   height?: number
   width?: number

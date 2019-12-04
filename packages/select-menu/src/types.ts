@@ -47,16 +47,23 @@ export interface SelectMenuProps<T extends OptionBase> {
   onChange: (value: string | string[]) => void
   onSelect: (value: string) => void
   onDeselect: (value: string) => void
-  multiOptionSelectedItemsLabel?: (itemsSelectedLength: number) => string
-  isMultiSelect?: boolean
-  // compareBy?: string
-  placeholder?: string
-  // renderItem?: (
-  //   option: T,
-  //   click: () => void,
-  //   selected: boolean,
-  //   options: T[]
-  // ) => React.ReactNode
+  /*
+   * Configurable message shown when none, single or multiple options are selected.
+   * Can be either a string (which will be shown when no option(s) are selected) or a function that
+   * allows full message customization by passing an array of selected items.
+   */
+  placeholder?: string | ((selected: T[]) => React.ReactNode)
+  /**
+   * Helper function for configuring message in multiple-selection scenarios, a syntactic sugar over `placeholder` prop.
+   * Usage:
+   *
+   * ```ts
+   *    <SelectMenu value={[]} placeholderForMultipleSelected={selected => `Tags: ${selected.length}`} />
+   *    // is the same as
+   *    <SelectMenu value={[]} placeholder={selected => selected.length === 0 ? 'Select...' : selected.length === 1 ? selected[0].label : `Tags: ${selected.length}`} />
+   * ```
+   */
+  placeholderForMultipleSelected?: (selected: T[]) => React.ReactNode
 
   /**
    * Class name passed to select button
@@ -98,6 +105,12 @@ export interface SelectMenuProps<T extends OptionBase> {
   isSelectable?: boolean
 
   disabled?: boolean
+
+  /**
+   * Sets arrow (chevron) icon to be displayed on the far right side of the select menu.
+   * No icon is displayed if property is unset.
+   */
+  arrowIcon?: React.ReactNode
 }
 
 export interface OptionBase {
