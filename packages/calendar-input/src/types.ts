@@ -1,13 +1,15 @@
 import {TextInputAppearanceType, TextInputProps} from '@smashing/text-input'
-export type CalendarInputAppearanceType = 'default' | 'outline'
+export type CalendarPopoverAppearanceType = 'card' | 'dropdown'
 
 export type StyledCalendarInputProps = {
-  appearance: CalendarInputAppearanceType
+  appearance: CalendarPopoverAppearanceType
 }
 export type CalendarInputProps = {
-  popoverAppearance: CalendarInputAppearanceType
+  popoverAppearance: CalendarPopoverAppearanceType
   inputAppearance?: TextInputAppearanceType
   onChange?: (date?: Date) => void
+  height?: number
+  width?: number
   value?: Date
   hasTime?: boolean
   hoursLabel?: string
@@ -16,8 +18,7 @@ export type CalendarInputProps = {
   clockIcon?: JSX.Element
   nextIcon?: JSX.Element
   prevIcon?: JSX.Element
-  expandIcon?: React.FC
-  collapseIcon?: React.FC
+  iconAfter?: React.FC<{toggle: () => void; isShown: boolean}>
 }
 
 export type TimePickerProps = {
@@ -38,7 +39,7 @@ export type DateInputProps = Pick<
   CalendarInputProps,
   'onChange' | 'value' | 'hasTime'
 > &
-  Pick<TextInputProps, 'appearance' | 'width'> & {
+  Pick<TextInputProps, 'appearance' | 'width' | 'height'> & {
     getRef: (ref: HTMLElement | null) => void
     onClick: () => void
     openCalendar: () => void
@@ -48,6 +49,5 @@ export type DateInputProps = Pick<
       minutes?: number
     }
     isExpanded?: boolean
-    expandIcon?: React.FC
-    collapseIcon?: React.FC
+    iconAfter?: React.FC<{toggle: () => void; isShown: boolean}>
   }

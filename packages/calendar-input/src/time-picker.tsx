@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as S from './styles'
-import {ChevronDownIconSm} from './icons'
+import {ChevronDownIcon} from './icons'
 import {TimePickerProps} from './types'
 
 export const TimePicker: React.FC<TimePickerProps> = ({
@@ -14,7 +14,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
   header,
   close,
   isOpen,
-  collapseIcon = () => <ChevronDownIconSm />
+  collapseIcon = () => <ChevronDownIcon />
 }) => {
   return (
     <S.TimePicker isOpen={isOpen}>
