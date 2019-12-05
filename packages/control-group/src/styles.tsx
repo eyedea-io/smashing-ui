@@ -220,6 +220,7 @@ const Button = styled(SmashingButton)<ButtonProps>`
         break
       default:
         style = {
+          ...getButtonStyle(_.appearance)(_),
           ...getBorderRadius(_),
           ...(_.checked ? getButtonStyle(_.appearance)(_)[':active'] : {})
         }

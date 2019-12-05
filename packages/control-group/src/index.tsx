@@ -124,7 +124,7 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
     'controlGroup',
     props,
     {
-      height: 40,
+      height: 32,
       controlAppearance: 'default' as ControlAppearanceType,
       groupAppearance: 'button' as ControlGroupAppearanceType
     }
