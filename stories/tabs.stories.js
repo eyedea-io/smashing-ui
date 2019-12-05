@@ -17,6 +17,15 @@ storiesOf('Atomic Elements|Tabs', module)
       <Tab>Tab 3</Tab>
     </Tablist>
   ))
+  .add('appearance:default invalid', () => (
+    <Tablist invalid>
+      <Tab invalid isSelected>
+        Tab 1
+      </Tab>
+      <Tab invalid>Tab 2</Tab>
+      <Tab invalid>Tab 3</Tab>
+    </Tablist>
+  ))
   .add('appearance:flat', () => (
     <Tablist appearance="flat">
       <Tab isSelected appearance="flat">
@@ -26,36 +35,4 @@ storiesOf('Atomic Elements|Tabs', module)
       <Tab>Tab 3</Tab>
     </Tablist>
   ))
-  .add('appearance:outline', () => (
-    <Tablist appearance="outline">
-      <Tab isSelected appearance="outline">
-        Tab 1
-      </Tab>
-      <Tab appearance="outline">Tab 2</Tab>
-      <Tab appearance="outline">Tab 3</Tab>
-    </Tablist>
-  ))
-  .add('appearance:outline more options', () => (
-    <Tablist appearance="outline">
-      <Tab isSelected appearance="outline">
-        Tab 1
-      </Tab>
-      <Tab appearance="outline">Tab 2</Tab>
-      <Tab appearance="outline">Tab 3</Tab>
-      <Tab appearance="outline">Tab 4</Tab>
-      <Tab appearance="outline">Tab 5</Tab>
-      <Tab appearance="outline">Tab 6</Tab>
-    </Tablist>
-  ))
-  .add('appearance:outline disabled', () => (
-    <Tablist appearance="outline" disabled>
-      <Tab isSelected appearance="outline">
-        Tab 1
-      </Tab>
-      <Tab appearance="outline">Tab 2</Tab>
-      <Tab appearance="outline">Tab 3</Tab>
-      <Tab appearance="outline">Tab 2</Tab>
-      <Tab appearance="outline">Tab 3</Tab>
-      <Tab appearance="outline">Tab 2</Tab>
-    </Tablist>
-  ))
+
