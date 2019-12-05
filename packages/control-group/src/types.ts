@@ -53,4 +53,5 @@ export interface WrapperProps {
   layout?: Layout
   isOpen?: boolean
   visibleItemsCount?: number
+  hasMoreButton?: boolean
 }

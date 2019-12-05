@@ -54,7 +54,6 @@ const Control: React.FC<ControlProps> = ({
     : groupValue === item.value
 
   const renderProps = {
-    key: `${item.label}-${item.value}`,
     textAlign,
     checked,
     disabled,
@@ -62,7 +61,6 @@ const Control: React.FC<ControlProps> = ({
     height,
     ...item
   }
-
   const handleOnChange = (itemValue: string) => {
     if (Array.isArray(groupValue)) {
       if (groupValue.includes(itemValue)) {
@@ -111,7 +109,11 @@ const Control: React.FC<ControlProps> = ({
           )}
           isOpen={isOpen}
         >
-          {isOutline ? <Strong>{item.label}</Strong> : item.label}
+          {isOutline ? (
+            <Strong>{item.label}</Strong>
+          ) : (
+            <span>{item.label}</span>
+          )}
         </ControlButton>
       )
   }
@@ -138,7 +140,7 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
     visibleCount
   } = props
 
-  const [controlsNumber, setControlsNumber] = React.useState(visibleCount || 0)
+  const [controlsNumber, setControlsNumber] = React.useState(0)
   const [isOpen, setIsOpen] = React.useState(false)
   const hasMoreButton =
     controlAppearance === 'outline' && groupAppearance === 'button'
@@ -146,11 +148,16 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
   const moreButtonNode = React.useRef<HTMLButtonElement>(null)
 
   React.useEffect(() => {
+    setControlsNumber(visibleCount ? visibleCount + 1 : 0)
+  }, [])
+
+  // TODO: add recalculate on window resize
+  React.useEffect(() => {
     if (
       wrapperNode &&
       wrapperNode.current &&
-      !controlsNumber &&
-      !visibleCount
+      !visibleCount &&
+      !controlsNumber
     ) {
       const {clientWidth, children: listChildren} = wrapperNode.current
       let widthSum = moreButtonNode.current
@@ -185,9 +192,11 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
       isOpen={isOpen}
       visibleItemsCount={controlsNumber}
       onClick={handleMoreClick}
+      hasMoreButton={hasMoreButton}
     >
       {items.map(item => (
         <Control
+          key={`${item.label}-${item.value}`}
           item={item}
           onChange={onChange}
           value={value}
@@ -204,6 +213,7 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
         wrapperNode.current &&
         controlsNumber < wrapperNode.current.children.length && (
           <MoreButton
+            key="more-button"
             appearance="outline"
             activeGroup={Boolean(Array.isArray(value) ? value.length : value)}
             isOpen={isOpen}

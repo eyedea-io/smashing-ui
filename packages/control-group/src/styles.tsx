@@ -6,6 +6,16 @@ interface ThemeProps {
   theme: DefaultTheme
 }
 
+const MORE_BUTTON_SIZE = '50px'
+
+const getEllipsisStyles = (lines: number) => ({
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  display: '-webkit-box',
+  WebkitLineClamp: lines,
+  WebkitBoxOrient: 'vertical'
+})
+
 const getTextAlign = (textAlign?: TextAlign) => {
   switch (textAlign) {
     case 'center':
@@ -55,29 +65,46 @@ const getState = (_: ButtonProps & ThemeProps, ommitActive?: boolean) => {
 
 const getButtonGroupStyle = (_: WrapperProps & ThemeProps) => {
   const openStyle = () => {
-    const elemLiStyle = {}
-    if (!_.isOpen && _.visibleItemsCount) {
-      elemLiStyle[
+    const style = {}
+
+    if (_.hasMoreButton && !_.isOpen && _.visibleItemsCount) {
+      style[
         `> button:nth-child(n + ${_.visibleItemsCount}):not(:nth-last-child(1))`
       ] = {
         display: 'none'
       }
     }
 
-    return elemLiStyle
+    return style
+  }
+
+  const getGridTemplateColumns = _ => {
+    const colSizeLayout = _.layout !== 'equal' ? 'auto ' : '1fr '
+    const lastColSize = _.hasMoreButton ? MORE_BUTTON_SIZE : ''
+    const repeatCount = _.hasMoreButton
+      ? (_.visibleItemsCount || _.childrenAmount || 1) - 1 || 0
+      : _.childrenAmount || 0
+
+    return `${colSizeLayout.repeat(repeatCount)} ${lastColSize}`
   }
 
   return {
     position: 'relative',
     zIndex: 1,
-    display: 'flex',
-    flexDirection: _.isOpen ? 'column' : 'row',
+    display: _.layout === 'full' || _.isOpen ? 'grid' : 'inline-grid',
+    gridTemplateColumns: _.isOpen ? '1fr' : getGridTemplateColumns(_),
     margin: 0,
     padding: 0,
     maxWidth: '100%',
-
+    borderRadius: _.theme.radius,
     ...openStyle(),
-    borderRadius: _.theme.radius
+
+    button: {
+      whiteSpace: _.layout === 'equal' ? 'unset' : 'nowrap',
+      '& > strong, & > span': {
+        ...(_.layout === 'equal' ? getEllipsisStyles(1) : {})
+      }
+    }
   }
 }
 
@@ -116,6 +143,10 @@ export const ControlGroupWrapper = styled.div<WrapperProps>`
   ${_ => ({
     ...getControlGroupStyle(_)
   })}
+
+  button, label {
+    white-space: nowrap;
+  }
 `
 
 const getBorder = (_: ThemeProps & ButtonProps) => {
@@ -132,12 +163,12 @@ const getBorder = (_: ThemeProps & ButtonProps) => {
     borderRight: _.isOpen ? borderStyle : border(getState(_, true)),
     borderLeft: _.isOpen ? borderStyle : 'none',
 
+    '&:nth-last-of-type(2)': {
+      borderBottom: borderStyle
+    },
     '&:first-of-type': {
       borderTop: borderStyle,
       borderLeft: borderStyle
-    },
-    '&:nth-last-of-type(2)': {
-      borderBottom: borderStyle
     },
     '&:last-of-type': {
       borderRight: _.isOpen ? 'none' : borderStyle
@@ -148,16 +179,14 @@ const getBorder = (_: ThemeProps & ButtonProps) => {
 const getBorderRadius = (_: ThemeProps & {isOpen?: boolean}) => ({
   borderRadius: 0,
 
+  '&:nth-last-of-type(2)': {
+    borderRadius: _.isOpen ? `0 0 ${_.theme.radius} ${_.theme.radius}` : 0
+  },
   '&:first-of-type': {
     borderRadius: _.isOpen
       ? `${_.theme.radius} ${_.theme.radius} 0 0`
       : `${_.theme.radius} 0 0 ${_.theme.radius}`
   },
-
-  '&:nth-last-of-type(2)': {
-    borderRadius: _.isOpen ? `0 0 ${_.theme.radius} ${_.theme.radius}` : 0
-  },
-
   '&:last-of-type': {
     borderRadius: `0 ${_.theme.radius} ${_.theme.radius} 0`,
     ...(_.isOpen
@@ -174,7 +203,6 @@ const getBorderRadius = (_: ThemeProps & {isOpen?: boolean}) => ({
 const Button = styled(SmashingButton)<ButtonProps>`
   box-shadow: none;
   position: relative;
-  white-space: nowrap;
 
   ${_ => {
     let style
@@ -210,10 +238,6 @@ export const ControlButton = styled(Button)<ButtonProps>`
 
   ${_ => {
     const activeLine = () => ({
-      '&, & > strong': {
-        color: getTextColor(_.invalid, _.disabled)(_)
-      },
-
       '&:after': {
         position: 'absolute',
         content: '" "',
@@ -228,6 +252,10 @@ export const ControlButton = styled(Button)<ButtonProps>`
     switch (_.appearance) {
       case 'outline':
         return {
+          '&, & strong': {
+            color: getTextColor(_.invalid, _.disabled)(_)
+          },
+
           ...(_.checked ? activeLine() : {}),
 
           '&:hover, &:active': {
@@ -263,7 +291,7 @@ export const MoreButtonArrow = styled.div<{
 `
 
 export const MoreButton = styled(Button)<{isOpen?: boolean}>`
-  width: 50px;
+  width: ${MORE_BUTTON_SIZE}
   padding: 0;
   position: ${_ => (_.isOpen ? 'absolute' : 'relative')};
   top: 0;

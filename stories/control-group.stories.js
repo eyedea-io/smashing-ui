@@ -50,7 +50,8 @@ const layouts = [
     name: 'Outline',
     props: {
       controlAppearance: 'outline',
-      items
+      items,
+      textAlign: 'center'
     },
   },
   {
@@ -91,8 +92,8 @@ storiesOf('Form|ControlGroup', module)
   .addDecorator(Decorator)
   .add('layout: default', () => {
     const [value, setValue] = React.useState(1)
-    console.log(items)
     const props = {
+
       onChange: setValue,
       value,
       items: items.slice(0, 3),
