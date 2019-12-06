@@ -203,12 +203,14 @@ const SelectMenuFC = <T extends OptionBase>(props: SelectMenuProps<T>) => {
   )
 }
 
-export const SelectMenu = styled(SelectMenuFC)``
+const SelectMenu = styled(SelectMenuFC)``
+
+export {SelectMenu, SelectMenuProps}
 
 declare module 'styled-components' {
   export interface SmashingSelectMenuDefaults
     extends Partial<{
-      selectMenu?: Pick<
+      selectMenu: Pick<
         SelectMenuProps<any>,
         | 'height'
         | 'appearance'
