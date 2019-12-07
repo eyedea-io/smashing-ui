@@ -44,9 +44,9 @@ export interface SelectMenuProps<T extends OptionBase> {
    * Select button height
    */
   height?: number
-  onChange: (value: string | string[]) => void
-  onSelect: (value: string) => void
-  onDeselect: (value: string) => void
+  onChange?: (value: string | string[]) => void
+  onSelect?: (value: string) => void
+  onDeselect?: (value: string) => void
   /*
    * Configurable message shown when none, single or multiple options are selected.
    * Can be either a string (which will be shown when no option(s) are selected) or a function that
