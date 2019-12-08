@@ -204,7 +204,7 @@ const SelectMenuFC = <T extends OptionBase>(props: SelectMenuProps<T>) => {
 }
 
 const SelectMenu = styled(SelectMenuFC)``
-
+export type SelectMenuOptionBase = OptionBase
 export {SelectMenu, SelectMenuProps}
 
 declare module 'styled-components' {
