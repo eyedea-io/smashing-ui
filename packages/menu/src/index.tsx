@@ -265,6 +265,8 @@ declare module 'styled-components' {
 
 export const MenuElements = S
 
+export type MenuOptionValue = string | number
+
 export interface MenuGroupProps {
   /**
    * Title of the menu group.
@@ -278,9 +280,11 @@ export interface MenuGroupProps {
 }
 
 export interface MenuOption {
-  label: string
-  value: string
+  label: React.ReactNode
+  value: MenuOptionValue
   disabled?: boolean
+  // Allow custom properties
+  [key: string]: any
 }
 
 export interface MenuOptionsGroupProps {
@@ -297,7 +301,7 @@ export interface MenuOptionsGroupProps {
   /**
    * Function called when selection changes.
    */
-  onChange?: (selected: string | string[]) => void
+  onChange?: (selected: MenuOptionValue | MenuOptionValue[]) => void
 
   /**
    * Function called when element is selected.
@@ -312,7 +316,7 @@ export interface MenuOptionsGroupProps {
   /**
    * The current value of the option group.
    */
-  value: string | string[]
+  value: MenuOptionValue | MenuOptionValue[]
 
   /**
    * Height of single menu item
