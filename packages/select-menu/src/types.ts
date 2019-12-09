@@ -1,5 +1,6 @@
 import {PopoverProps} from '@smashing/popover'
 import {ButtonAppearanceType} from '@smashing/button'
+import {MenuOptionValue, MenuOption} from '@smashing/menu'
 
 export type SelectMenuAppearanceType = ButtonAppearanceType
 export type SelectMenuPopoverAppearanceType = 'card' | 'accordion'
@@ -9,14 +10,16 @@ export type SelectButtonProps = {
   getRef: (ref: any) => void
   isShown: boolean
 }
-export type SelectMenuChildrenFn<T extends OptionBase> = <T>(
-  props: SelectButtonProps & {selectedItems: T | T[]}
+export type SelectMenuChildrenFn = (
+  props: SelectButtonProps & {
+    selectedItems: MenuOptionValue | MenuOptionValue[]
+  }
 ) => React.ReactNode
 
-export interface SelectMenuProps<T extends OptionBase> {
-  options: T[]
-  value: string | string[]
-  children?: React.ReactNode | SelectMenuChildrenFn<T>
+export interface SelectMenuProps {
+  options: MenuOption[]
+  value: MenuOptionValue | MenuOptionValue[]
+  children?: React.ReactNode | SelectMenuChildrenFn
   /**
    * Select button appearance
    */
@@ -44,15 +47,15 @@ export interface SelectMenuProps<T extends OptionBase> {
    * Select button height
    */
   height?: number
-  onChange?: (value: string | string[]) => void
-  onSelect?: (value: string) => void
-  onDeselect?: (value: string) => void
+  onChange?: (value: MenuOptionValue | MenuOptionValue[]) => void
+  onSelect?: (value: MenuOptionValue) => void
+  onDeselect?: (value: MenuOptionValue) => void
   /*
    * Configurable message shown when none, single or multiple options are selected.
    * Can be either a string (which will be shown when no option(s) are selected) or a function that
    * allows full message customization by passing an array of selected items.
    */
-  placeholder?: string | ((selected: T[]) => React.ReactNode)
+  placeholder?: MenuOption | ((selected: MenuOption[]) => React.ReactNode)
   /**
    * Helper function for configuring message in multiple-selection scenarios, a syntactic sugar over `placeholder` prop.
    * Usage:
@@ -63,7 +66,7 @@ export interface SelectMenuProps<T extends OptionBase> {
    *    <SelectMenu value={[]} placeholder={selected => selected.length === 0 ? 'Select...' : selected.length === 1 ? selected[0].label : `Tags: ${selected.length}`} />
    * ```
    */
-  placeholderForMultipleSelected?: (selected: T[]) => React.ReactNode
+  placeholderForMultipleSelected?: (selected: MenuOption[]) => React.ReactNode
 
   /**
    * Class name passed to select button
@@ -95,6 +98,7 @@ export interface SelectMenuProps<T extends OptionBase> {
    * Select button width
    */
   width?: number
+  // FIXME: Remove if unused
   // minWidth?: number
 
   /**
@@ -111,14 +115,4 @@ export interface SelectMenuProps<T extends OptionBase> {
    * No icon is displayed if property is unset.
    */
   arrowIcon?: React.ReactNode
-}
-
-export interface OptionBase {
-  label: string
-  value: string
-  disabled?: boolean
-}
-
-export interface SelectMenuState {
-  currentFilter: string
 }
