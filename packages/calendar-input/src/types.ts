@@ -7,11 +7,11 @@ export type StyledCalendarInputProps = {
 export type CalendarInputProps = {
   popoverAppearance?: CalendarPopoverAppearanceType
   inputAppearance?: TextInputAppearanceType
-  onChange?: (date?: Date) => void
+  onChange?: (date?: string) => void
   height?: number
   width?: number
   className?: string
-  value?: Date
+  value?: string
   hasTime?: boolean
   hoursLabel?: string
   minutesLabel?: string
@@ -38,7 +38,7 @@ export type TimePickerProps = {
 
 export type DateInputProps = Pick<
   CalendarInputProps,
-  'onChange' | 'value' | 'hasTime' | 'className'
+  'onChange' | 'hasTime' | 'className'
 > &
   Pick<TextInputProps, 'appearance' | 'width' | 'height'> & {
     getRef: (ref: HTMLElement | null) => void
@@ -49,6 +49,7 @@ export type DateInputProps = Pick<
       hours?: number
       minutes?: number
     }
+    value?: Date
     isExpanded?: boolean
     iconAfter?: React.FC<{toggle: () => void; isShown: boolean}>
   }

@@ -51,11 +51,17 @@ export const DateInput: React.FC<DateInputProps> = ({
   }, [value, timeValue])
 
   const changeInputValue = (newValue: DateValue) => {
-    const isValidDate = !Object.values(newValue).some(elem =>
-      isNaN(Number(elem))
-    )
-    if (isValidDate) {
-      const minutes = Number(newValue.minutes)
+    const isValidDate = () => {
+      if (hasTime) {
+        return !Object.values(newValue).some(elem => isNaN(Number(elem)))
+      }
+      return !['month', 'year', 'day'].some(part =>
+        isNaN(Number(newValue[part]))
+      )
+    }
+
+    if (isValidDate()) {
+      const minutes = hasTime ? Number(newValue.minutes) : 0
       const increaseMinutes = minutes % minutesInterval > minutesInterval / 2
       onChange(
         CalendarDate.getDate({
@@ -63,8 +69,9 @@ export const DateInput: React.FC<DateInputProps> = ({
           minutes:
             minutes -
             (minutes % minutesInterval) +
-            (increaseMinutes ? minutesInterval : 0)
-        })
+            (increaseMinutes ? minutesInterval : 0),
+          hours: hasTime ? newValue.hours : 0
+        }).toISOString()
       )
     } else {
       onChange()
