@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import Pie from './pie'
-import {PieChartData, PieChartProps} from '../../types'
+import {PieChartProps} from '../../types'
 
 const PieChart: React.SFC<PieChartProps> = props => {
   const x = props.width / 2
@@ -18,6 +18,8 @@ const PieChart: React.SFC<PieChartProps> = props => {
         data={props.data}
         colors={props.colors}
         isDonut={props.isDonut}
+        hideLabels={props.hideLabels}
+        elementsSpacing={props.elementsSpacing}
       />
     </svg>
   )
