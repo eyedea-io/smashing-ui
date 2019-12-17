@@ -9,18 +9,20 @@ interface IProps {
   fill?: string
   data: any
   isDonut?: boolean
+  hasLabels?: boolean
+  gutter?: number
 }
 
 export const Slice: React.FC<IProps> = props => {
-  const {value, fill, outerRadius, data, isDonut} = props
+  const {value, fill, outerRadius, data, isDonut, hasLabels, gutter} = props
   const ref = React.useRef(null)
   let innerRadius: number, padAngle: number | undefined
   if (isDonut) {
     innerRadius = outerRadius / 2
-    padAngle = 0.04
+    padAngle = gutter === undefined ? 0.04 : gutter
   } else {
     innerRadius = 0
-    padAngle = 0
+    padAngle = gutter === undefined ? 0 : gutter
   }
 
   const arc = d3
@@ -50,24 +52,28 @@ export const Slice: React.FC<IProps> = props => {
   )
   return (
     <g>
-      <path ref={ref} d={arc(value) as string} fill={fill} />
-      <text
-        transform={`translate(${arc.centroid(value)})`}
-        textAnchor="middle"
-        fill="white"
-        style={{fontFamily: 'sans-serif', fontSize: '12'}}
-      >
-        {label.name}
-      </text>
-      <text
-        transform={`translate(${arc.centroid(value)})`}
-        dy=".95em"
-        textAnchor="middle"
-        fill="white"
-        style={{fontFamily: 'sans-serif', fontSize: '12'}}
-      >
-        {value.data}
-      </text>
+      <path ref={ref} d={arc(value) as string} fill={label.color || fill} />
+      {hasLabels && (
+        <>
+          <text
+            transform={`translate(${arc.centroid(value)})`}
+            textAnchor="middle"
+            fill="white"
+            style={{fontFamily: 'sans-serif', fontSize: '12'}}
+          >
+            {label.name}
+          </text>
+          <text
+            transform={`translate(${arc.centroid(value)})`}
+            dy=".95em"
+            textAnchor="middle"
+            fill="white"
+            style={{fontFamily: 'sans-serif', fontSize: '12'}}
+          >
+            {value.data}
+          </text>
+        </>
+      )}
     </g>
   )
 }

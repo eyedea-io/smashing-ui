@@ -196,6 +196,14 @@ export interface PieChartProps {
    * If false : Pie Chart
    */
   isDonut?: boolean
+  /**
+   * Value of space between chart parts
+   */
+  gutter?: number
+  /**
+   * Show chart labels with values
+   */
+  hasLabels?: boolean
 }
 
 export interface PieChartData {
