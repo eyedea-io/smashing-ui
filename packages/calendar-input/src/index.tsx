@@ -34,6 +34,8 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
     hours: undefined
   })
 
+  const dateValue = value ? new Date(value) : undefined
+
   const defaults = useDefaults('calendarInput', props, {
     popoverAppearance: 'default' as CalendarPopoverAppearanceType,
     inputAppearance: 'default' as TextInputAppearanceType,
@@ -47,7 +49,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
 
   React.useEffect(() => {
     if (value) {
-      onChange(getDateAndTimeValue(value))
+      onChange(getDateAndTimeValue(value).toISOString())
     }
   }, [timeValue])
 
@@ -95,12 +97,12 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
             <S.StyledCalendar
               {...props}
               onClickDay={date => {
-                onChange(getDateAndTimeValue(date))
+                onChange(getDateAndTimeValue(date).toISOString())
                 if (!hasTime) {
                   close()
                 }
               }}
-              value={value}
+              value={dateValue}
               appearance={defaults.popoverAppearance}
               prevLabel={prevIcon}
               prev2Label={null}
@@ -131,8 +133,10 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
               close={() => setTimeIsOpen(false)}
               clockIcon={clockIcon}
               changeTime={changeTimeValue}
-              minuteValue={value ? value.getMinutes() : timeValue.minutes}
-              hourValue={value ? value.getHours() : timeValue.hours}
+              minuteValue={
+                dateValue ? dateValue.getMinutes() : timeValue.minutes
+              }
+              hourValue={dateValue ? dateValue.getHours() : timeValue.hours}
               minutesInterval={minutesInterval}
               hoursLabel={defaults.hoursLabel}
               minutesLabel={defaults.minutesLabel}
@@ -149,7 +153,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
           openCalendar={() => !isShown && toggle()}
           onClick={toggle}
           onChange={onChange}
-          value={value}
+          value={dateValue}
           hasTime={hasTime}
           height={defaults.height}
           width={defaults.width}
