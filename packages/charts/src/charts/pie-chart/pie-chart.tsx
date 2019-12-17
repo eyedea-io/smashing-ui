@@ -18,8 +18,8 @@ const PieChart: React.SFC<PieChartProps> = props => {
         data={props.data}
         colors={props.colors}
         isDonut={props.isDonut}
-        hideLabels={props.hideLabels}
-        elementsSpacing={props.elementsSpacing}
+        hasLabels={props.hasLabels}
+        gutter={props.gutter}
       />
     </svg>
   )

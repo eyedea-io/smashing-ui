@@ -14,8 +14,8 @@ interface IProps {
   data: PieChartData[]
   colors?: [string, string]
   isDonut?: boolean
-  hideLabels?: boolean
-  elementsSpacing?: number
+  hasLabels?: boolean
+  gutter?: number
 }
 
 const Pie: React.SFC<IProps> = ({
@@ -24,8 +24,8 @@ const Pie: React.SFC<IProps> = ({
   radius,
   data,
   isDonut,
-  hideLabels,
-  elementsSpacing,
+  hasLabels,
+  gutter,
   ...props
 }) => {
   const theme = React.useContext(ThemeContext)
@@ -46,8 +46,8 @@ const Pie: React.SFC<IProps> = ({
         data={data}
         fill={colorScale(i)}
         isDonut={isDonut}
-        hideLabels={hideLabels}
-        elementsSpacing={elementsSpacing}
+        hasLabels={hasLabels}
+        gutter={gutter}
       />
     )
   }

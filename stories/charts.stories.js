@@ -209,22 +209,20 @@ storiesOf('Charts|Pie Chart', module)
       <PieChart width={300} height={300} data={pieChartData} />
     </React.Fragment>
   ))
+  .add('with labels', () => (
+    <React.Fragment>
+      <PieChart hasLabels width={300} height={300} data={pieChartData} />
+    </React.Fragment>
+  ))
   .add('hidden labels, without spacing', () => (
     <React.Fragment>
-      <PieChart
-        hideLabels
-        elementsSpacing={0}
-        width={300}
-        height={300}
-        data={pieChartData}
-      />
+      <PieChart gutter={0} width={300} height={300} data={pieChartData} />
     </React.Fragment>
   ))
   .add('colors defined for specific element', () => (
     <React.Fragment>
       <PieChart
-        hideLabels
-        elementsSpacing={0}
+        gutter={0}
         width={300}
         height={300}
         data={pieChartData.map((elem, i) => ({

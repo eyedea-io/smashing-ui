@@ -199,11 +199,11 @@ export interface PieChartProps {
   /**
    * Value of space between chart parts
    */
-  elementsSpacing?: number
+  gutter?: number
   /**
-   * Hide chart labels with values
+   * Show chart labels with values
    */
-  hideLabels?: boolean
+  hasLabels?: boolean
 }
 
 export interface PieChartData {
