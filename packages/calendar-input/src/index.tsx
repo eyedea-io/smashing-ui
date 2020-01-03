@@ -97,7 +97,6 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
           <S.CalendarContainer>
             <S.StyledCalendar
               {...props}
-              view="year"
               onClickMonth={date => {
                 if (!hasDay) {
                   onChange(getDateAndTimeValue(date).toISOString())
