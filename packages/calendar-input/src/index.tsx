@@ -85,6 +85,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
 
   return (
     <S.StyledContainer
+      className={className}
       position="bottom-left"
       matchTargetWidth
       minHeight={timeIsOpen ? 240 : undefined}
@@ -156,7 +157,6 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
     >
       {({isShown, toggle, getRef}) => (
         <DateInput
-          className={className}
           isExpanded={isShown}
           getRef={getRef}
           hasDay={hasDay}
