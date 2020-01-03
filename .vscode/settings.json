@@ -1,6 +1,5 @@
 {
   "typescript.tsdk": "./node_modules/typescript/lib",
-  "eslint.autoFixOnSave": true,
   "editor.formatOnSave": true,
   "eslint.validate": [
     "javascript",
@@ -15,5 +14,8 @@
   },
   "cucumberautocomplete.steps": ["cypress/integration/**/*.js"],
   "cucumberautocomplete.syncfeatures": "cypress/integration/**/*.feature",
-  "cucumberautocomplete.strictGherkinCompletion": true
+  "cucumberautocomplete.strictGherkinCompletion": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
 }
