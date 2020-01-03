@@ -5,7 +5,8 @@ import {
   CalendarDateTime,
   DateTimePartsType,
   DateValue,
-  KEYS
+  KEYS,
+  CalendarYearMonthDate
 } from './utils'
 import {DateInputProps} from './types'
 
@@ -18,12 +19,15 @@ export const DateInput: React.FC<DateInputProps> = ({
   className,
   hasTime = false,
   minutesInterval,
+  hasDay = true,
   timeValue,
   isExpanded,
   iconAfter,
   ...props
 }) => {
-  const CalendarDate = hasTime
+  const CalendarDate = !hasDay
+    ? new CalendarYearMonthDate()
+    : hasTime
     ? new CalendarDateTime()
     : new CalendarDateHelper()
   const [inputValue, setInputValue] = React.useState<DateValue>(

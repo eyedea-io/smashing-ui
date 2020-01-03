@@ -5,7 +5,8 @@ import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
 
 const WrappedCalendar = props => {
-  const [date, setDate] = React.useState()
+  const [date, setDate] = React.useState(props.value)
+
   return (
     <>
       <style>
@@ -13,7 +14,13 @@ const WrappedCalendar = props => {
           'html, body {height: 100%; box-sizing: border-box; margin: 0;} body{ padding: 16px;}'
         }
       </style>
-      <CalendarInput value={date} onChange={setDate} {...props} />
+      <CalendarInput
+        {...props}
+        value={date}
+        onChange={value => {
+          setDate(value)
+        }}
+      />
     </>
   )
 }
@@ -59,6 +66,13 @@ storiesOf('Form|Calendar input', module)
   ))
   .add('appearance:default', () => <WrappedCalendar />)
   .add('appearance:default with time', () => <WrappedCalendar hasTime />)
+  .add('hasDay:false', () => (
+    <WrappedCalendar
+      hasDay={false}
+      inputAppearance="outline"
+      popoverAppearance="dropdown"
+    />
+  ))
   .add('appearance:outline', () => (
     <WrappedCalendar inputAppearance="outline" popoverAppearance="dropdown" />
   ))

@@ -80,6 +80,21 @@ export const StyledCalendar = styled(ReactCalendar)<StyledCalendarInputProps>`
     font-weight: bold;
   }
 
+  .react-calendar__tile--rangeEnd,
+  .react-calendar__tile--rangeStart,
+  .react-calendar__tile--hasActive,
+  .react-calendar__tile--active {
+    background: #66788a;
+    color: #f9f9fb;
+    outline: 0;
+  }
+
+  .react-calendar--selectRange .react-calendar__tile--hover {
+    background: #66788a;
+    color: #f9f9fb;
+    outline: 0;
+  }
+
   .react-calendar__tile {
     width: 24px;
     height: 24px;

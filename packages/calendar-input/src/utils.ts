@@ -80,6 +80,62 @@ export class CalendarDate implements ICalendarDate {
   }
 }
 
+export class CalendarYearMonthDate implements ICalendarDate {
+  format: DateTimePartsType[] = ['month', 'year']
+  dateSeparator = ' / '
+  initValue: DateValue = {
+    year: 'YYYY',
+    month: 'MM'
+  }
+
+  getValue = (date: Date): DateValue => {
+    return {
+      month: date.getMonth() + 1,
+      year: date.getFullYear()
+    }
+  }
+
+  getDate = (value: DateValue) => {
+    return new Date(Number(value.year), Number(value.month) - 1)
+  }
+
+  getStringValueForParts = (
+    value: DateValue,
+    parts: DateTimePartsType[] = this.format
+  ) => {
+    return parts
+      .map(part => {
+        const numberVal = Number(value[part])
+        if (['month', 'day'].includes(part) && numberVal < 10) {
+          return `0${value[part]}`
+        }
+        return value[part]
+      })
+      .join(this.dateSeparator)
+  }
+
+  getPartStartIndex = (part: DateTimePartsType) => {
+    const activeDatePartIndex = this.format.indexOf(part)
+    if (activeDatePartIndex === 0) {
+      return 0
+    }
+    return (
+      this.getStringValueForParts(
+        this.initValue,
+        this.format.slice(0, activeDatePartIndex)
+      ) + this.dateSeparator
+    ).length
+  }
+
+  getPartEndIndex = (part: DateTimePartsType) => {
+    const activeDatePartIndex = this.format.indexOf(part)
+    return this.getStringValueForParts(
+      this.initValue,
+      this.format.slice(0, activeDatePartIndex + 1)
+    ).length
+  }
+}
+
 export class CalendarDateTime implements ICalendarDate {
   format: DateTimePartsType[] = ['day', 'month', 'year', 'hours', 'minutes']
   dateSeparator = ' / '

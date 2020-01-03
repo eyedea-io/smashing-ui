@@ -14,6 +14,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
   className,
   value,
   hasTime,
+  hasDay = true,
   clockIcon = <ClockIcon />,
   nextIcon,
   prevIcon,
@@ -33,7 +34,6 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
     minutes: undefined,
     hours: undefined
   })
-
   const dateValue = value ? new Date(value) : undefined
 
   const defaults = useDefaults('calendarInput', props, {
@@ -96,8 +96,16 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
           <S.CalendarContainer>
             <S.StyledCalendar
               {...props}
+              view="year"
+              onClickMonth={date => {
+                if (!hasDay) {
+                  onChange(getDateAndTimeValue(date).toISOString())
+                  close()
+                }
+              }}
               onClickDay={date => {
                 onChange(getDateAndTimeValue(date).toISOString())
+
                 if (!hasTime) {
                   close()
                 }
@@ -106,6 +114,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
               appearance={defaults.popoverAppearance}
               prevLabel={prevIcon}
               prev2Label={null}
+              maxDetail={hasDay ? 'month' : 'year'}
               nextLabel={nextIcon}
               next2Label={null}
               onActiveDateChange={params =>
@@ -150,6 +159,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
           className={className}
           isExpanded={isShown}
           getRef={getRef}
+          hasDay={hasDay}
           openCalendar={() => !isShown && toggle()}
           onClick={toggle}
           onChange={onChange}
