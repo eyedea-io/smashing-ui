@@ -22,7 +22,7 @@ export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
         '::placeholder': {
           color: scales.neutral.N6A
         },
-        ':disabled': {
+        ':disabled, &[disabled]': {
           boxShadow: `inset 0 -2px 0 0 ${scales.neutral.N2A}`
         }
       }
@@ -36,7 +36,7 @@ export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
         ':focus': {
           outline: 'none'
         },
-        ':disabled': {
+        ':disabled, &[disabled]': {
           backgroundColor: scales.neutral.N2
         }
       }
@@ -54,7 +54,7 @@ export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
           backgroundColor: 'white',
           boxShadow: `inset 0 0 2px ${scales.neutral.N4A}, inset 0 0 0 1px ${scales.blue.B7}, 0 0 0 3px ${scales.blue.B4A}`
         },
-        ':disabled': {
+        ':disabled, &[disabled]': {
           boxShadow: `inset 0 0 0 1px ${scales.neutral.N4A}`,
           backgroundColor: scales.neutral.N2
         }
@@ -74,7 +74,7 @@ export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
         '::placeholder': {
           color: colors.text.muted
         },
-        ':disabled': {
+        ':disabled, &[disabled]': {
           boxShadow: colors.input.outline.boxShadow.disabled
         }
       }
@@ -96,7 +96,7 @@ export const getTextInputStyle = (appearance?: TextInputAppearanceType) => (_: {
         '::placeholder': {
           color: scales.neutral.N6A
         },
-        ':disabled': {
+        ':disabled, &[disabled]': {
           boxShadow: colors.input.boxShadow.disabled,
           backgroundColor: scales.neutral.N2
         }
