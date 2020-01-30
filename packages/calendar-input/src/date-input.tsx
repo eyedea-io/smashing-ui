@@ -22,6 +22,7 @@ export const DateInput: React.FC<DateInputProps> = ({
   hasDay = true,
   timeValue,
   isExpanded,
+  disabled,
   iconAfter,
   ...props
 }) => {
@@ -289,6 +290,7 @@ export const DateInput: React.FC<DateInputProps> = ({
       onClick={handleClick}
       appearance={props.appearance}
       onKeyDown={handleKeyDown}
+      disabled={disabled}
       value={CalendarDate.getStringValueForParts(inputValue)}
       affixAfter={
         typeof iconAfter === 'function'

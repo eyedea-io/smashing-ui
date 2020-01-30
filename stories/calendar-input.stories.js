@@ -65,6 +65,7 @@ storiesOf('Form|Calendar input', module)
     </SmashingThemeProvider>
   ))
   .add('appearance:default', () => <WrappedCalendar />)
+  .add('disabled', () => <WrappedCalendar disabled />)
   .add('appearance:default with time', () => <WrappedCalendar hasTime />)
   .add('hasDay:false', () => (
     <WrappedCalendar
