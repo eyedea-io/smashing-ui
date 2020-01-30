@@ -49,6 +49,7 @@ const TextInput: React.FC<TextInputProps> = ({
         variant={getTextSizeForControlHeight(defaults.height)}
         borderRadius={getBorderRadiusForControlHeight(defaults.height)}
         color={props.disabled ? 'muted' : undefined}
+        disabled={props.disabled}
         aria-invalid={props.invalid}
         ref={inputRef}
         affixBefore={affixBefore}
