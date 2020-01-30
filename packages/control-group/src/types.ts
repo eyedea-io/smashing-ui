@@ -5,7 +5,10 @@ import {CheckboxAppearanceType} from '@smashing/checkbox'
 export type Layout = 'default' | 'equal' | 'full'
 export type TextAlign = 'left' | 'center' | 'right'
 
-export type ControlAppearanceType = ButtonAppearanceType | RadioAppearanceType | CheckboxAppearanceType
+export type ControlAppearanceType =
+  | ButtonAppearanceType
+  | RadioAppearanceType
+  | CheckboxAppearanceType
 
 export type ControlGroupAppearanceType =
   | 'button'
@@ -15,8 +18,9 @@ export type ControlGroupAppearanceType =
   | 'checkbox-horizontal'
 
 export interface ControlItemProps {
-  value?: string
+  value: string
   label: string
+  disabled?: boolean
 }
 
 export interface ControlProps {
@@ -28,11 +32,12 @@ export interface ControlProps {
   invalid?: boolean
   height?: number
   value: string | string[]
-  onChange: (value: string) => void
+  onChange: (value: any) => void
   isOpen?: boolean
 }
 
-export interface ControlGroupProps extends Omit<ControlProps, 'item' | 'isOpen'> {
+export interface ControlGroupProps
+  extends Omit<ControlProps, 'item' | 'isOpen'> {
   items: ControlItemProps[]
   layout?: Layout
   visibleCount?: number
@@ -54,4 +59,9 @@ export interface WrapperProps {
   isOpen?: boolean
   visibleItemsCount?: number
   hasMoreButton?: boolean
+  width?: number | null
+}
+
+export interface SelectProps {
+  isOpen?: boolean
 }

@@ -73,6 +73,10 @@ const getButtonGroupStyle = (_: WrapperProps & ThemeProps) => {
       ] = {
         display: 'none'
       }
+    } else if (_.hasMoreButton && _.isOpen && _.visibleItemsCount) {
+      style[`> button:nth-child(n + ${2}):not(:nth-last-child(1))`] = {
+        display: 'none'
+      }
     }
 
     return style
@@ -95,7 +99,7 @@ const getButtonGroupStyle = (_: WrapperProps & ThemeProps) => {
     gridTemplateColumns: _.isOpen ? '1fr' : getGridTemplateColumns(_),
     margin: 0,
     padding: 0,
-    maxWidth: '100%',
+    maxWidth: _.width && _.width !== 0 ? _.width : '100%',
     borderRadius: _.theme.radius,
     ...openStyle(),
 
@@ -292,9 +296,21 @@ export const MoreButtonArrow = styled.div<{
 `
 
 export const MoreButton = styled(Button)<{isOpen?: boolean}>`
-  width: ${MORE_BUTTON_SIZE}
+  width: ${MORE_BUTTON_SIZE};
   padding: 0;
   position: ${_ => (_.isOpen ? 'absolute' : 'relative')};
   top: 0;
   right: 0;
+`
+
+export const ToggleWrapper = styled.div<{width: number; height: number}>`
+  position: absolute;
+  z-index: 1;
+  min-width: ${_ => (_.width && _.width !== 0 ? `${_.width}px` : '100%')};
+  display: grid;
+  margin-top: ${_ => _.height}px;
+  background: ivory;
+  :nth-last-of-type(2) {
+    background: red;
+  }
 `

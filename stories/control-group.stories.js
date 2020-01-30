@@ -5,11 +5,10 @@ import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
 import {Heading} from '@smashing/typography'
 
-const items = [...new Array(14)].map((_, index) =>
-  ({
-    label: `Lorem Ipsum ${index + 1}`,
-    value: index + 1
-  }))
+const items = [...new Array(14)].map((_, index) => ({
+  label: `Lorem Ipsum ${index + 1}`,
+  value: index + 1
+}))
 
 const layouts = [
   {
@@ -24,53 +23,60 @@ const layouts = [
       controlAppearance: 'flat'
     }
   },
-  {
-    name: 'Primary',
-    props: {
-      controlAppearance: 'primary',
-      textAlign: 'right'
-    }
-  },
-  {
-    name: 'Minimal',
-    props: {
-      controlAppearance: 'minimal',
-      textAlign: 'center'
-    }
-  },
-  {
-    name: 'Subtle',
-    props: {
-      controlAppearance: 'subtle',
-      textAlign: 'center',
-      items
-    },
-  },
+  // {
+  //   name: 'Primary',
+  //   props: {
+  //     controlAppearance: 'primary',
+  //     textAlign: 'right'
+  //   }
+  // },
+  // {
+  //   name: 'Minimal',
+  //   props: {
+  //     controlAppearance: 'minimal',
+  //     textAlign: 'center'
+  //   }
+  // },
+  // {
+  //   name: 'Subtle',
+  //   props: {
+  //     controlAppearance: 'subtle',
+  //     textAlign: 'center',
+  //     items
+  //   }
+  // },
   {
     name: 'Outline',
     props: {
       controlAppearance: 'outline',
       items,
       textAlign: 'center'
-    },
+    }
   },
   {
     name: 'Card',
     props: {
       controlAppearance: 'card',
       items
-    },
+    }
   },
   {
     name: 'Toggle',
     props: {
       controlAppearance: 'toggle',
       items
-    },
+    }
   }
 ]
 
-const buttonAppearances = ['flat', 'primary', 'minimal', 'default', 'subtle', 'outline']
+const buttonAppearances = [
+  'flat',
+  'primary',
+  'minimal',
+  'default',
+  'subtle',
+  'outline'
+]
 const checkboxAppearances = ['primary', 'minimal', 'card', 'outline', 'toggle']
 const radioAppearances = ['default', 'outline']
 
@@ -93,20 +99,27 @@ storiesOf('Form|ControlGroup', module)
   .add('layout: default', () => {
     const [value, setValue] = React.useState(1)
     const props = {
-
       onChange: setValue,
       value,
       items: items.slice(0, 3),
-      visibleCount: 3,
+      visibleCount: 3
     }
 
     return (
-      layouts.filter(layout => buttonAppearances.includes(layout.name.toLowerCase())).map(layout => (
-        <React.Fragment key={layout.name}>
-          <Heading variant={100}>{layout.name}</Heading>
-          <ControlGroup {...props} {...layout.props} />
-        </React.Fragment>
-      ))
+      <>
+        {layouts
+          .filter(layout =>
+            buttonAppearances.includes(layout.name.toLowerCase())
+          )
+          .map(layout => (
+            <React.Fragment key={layout.name}>
+              <Heading variant={100}>{layout.name}</Heading>
+              <ControlGroup {...props} {...layout.props} />
+            </React.Fragment>
+          ))}
+        <Heading>lslslslslsll</Heading>
+        <Heading>lslslslslsll</Heading>
+      </>
     )
   })
   .add('layout: equal width', () => {
@@ -118,14 +131,14 @@ storiesOf('Form|ControlGroup', module)
       items: items.slice(0, 3)
     }
 
-    return (
-      layouts.filter(layout => buttonAppearances.includes(layout.name.toLowerCase())).map(layout => (
+    return layouts
+      .filter(layout => buttonAppearances.includes(layout.name.toLowerCase()))
+      .map(layout => (
         <React.Fragment key={layout.name}>
           <Heading variant={100}>{layout.name}</Heading>
           <ControlGroup layout="equal" {...props} {...layout.props} />
         </React.Fragment>
       ))
-    )
   })
   .add('layout: full width', () => {
     const [value, setValue] = React.useState(1)
@@ -136,14 +149,14 @@ storiesOf('Form|ControlGroup', module)
       items: items.slice(0, 3)
     }
 
-    return (
-      layouts.filter(layout => buttonAppearances.includes(layout.name.toLowerCase())).map(layout => (
+    return layouts
+      .filter(layout => buttonAppearances.includes(layout.name.toLowerCase()))
+      .map(layout => (
         <React.Fragment key={layout.name}>
           <Heading variant={100}>{layout.name}</Heading>
           <ControlGroup layout="full" {...props} {...layout.props} />
         </React.Fragment>
       ))
-    )
   })
   .add('groupAppearance: button', () => {
     const [value, setValue] = React.useState(1)
@@ -154,14 +167,14 @@ storiesOf('Form|ControlGroup', module)
       items: items.slice(0, 3)
     }
 
-    return (
-      layouts.filter(layout => buttonAppearances.includes(layout.name.toLowerCase())).map(layout => (
+    return layouts
+      .filter(layout => buttonAppearances.includes(layout.name.toLowerCase()))
+      .map(layout => (
         <React.Fragment key={layout.name}>
           <Heading variant={100}>{layout.name}</Heading>
           <ControlGroup {...props} {...layout.props} />
         </React.Fragment>
       ))
-    )
   })
   .add('groupAppearance: radio-horizontal', () => {
     const [value, setValue] = React.useState(1)
@@ -172,14 +185,18 @@ storiesOf('Form|ControlGroup', module)
       items: items.slice(0, 3)
     }
 
-    return (
-      layouts.filter(layout => radioAppearances.includes(layout.name.toLowerCase())).map(layout => (
+    return layouts
+      .filter(layout => radioAppearances.includes(layout.name.toLowerCase()))
+      .map(layout => (
         <React.Fragment key={layout.name}>
           <Heading variant={100}>{layout.name}</Heading>
-          <ControlGroup groupAppearance="radio-horizontal" {...props} {...layout.props} />
+          <ControlGroup
+            groupAppearance="radio-horizontal"
+            {...props}
+            {...layout.props}
+          />
         </React.Fragment>
       ))
-    )
   })
   .add('groupAppearance: radio-vertical', () => {
     const [value, setValue] = React.useState(1)
@@ -190,14 +207,18 @@ storiesOf('Form|ControlGroup', module)
       items: items.slice(0, 3)
     }
 
-    return (
-      layouts.filter(layout => radioAppearances.includes(layout.name.toLowerCase())).map(layout => (
+    return layouts
+      .filter(layout => radioAppearances.includes(layout.name.toLowerCase()))
+      .map(layout => (
         <React.Fragment key={layout.name}>
           <Heading variant={100}>{layout.name}</Heading>
-          <ControlGroup groupAppearance="radio-vertical" {...props} {...layout.props} />
+          <ControlGroup
+            groupAppearance="radio-vertical"
+            {...props}
+            {...layout.props}
+          />
         </React.Fragment>
       ))
-    )
   })
   .add('groupAppearance: checkbox-horizontal', () => {
     const [value, setValue] = React.useState([1])
@@ -208,14 +229,18 @@ storiesOf('Form|ControlGroup', module)
       items: items.slice(0, 3)
     }
 
-    return (
-      layouts.filter(layout => checkboxAppearances.includes(layout.name.toLowerCase())).map(layout => (
+    return layouts
+      .filter(layout => checkboxAppearances.includes(layout.name.toLowerCase()))
+      .map(layout => (
         <React.Fragment key={layout.name}>
           <Heading variant={100}>{layout.name}</Heading>
-          <ControlGroup groupAppearance="checkbox-horizontal" {...props} {...layout.props} />
+          <ControlGroup
+            groupAppearance="checkbox-horizontal"
+            {...props}
+            {...layout.props}
+          />
         </React.Fragment>
       ))
-    )
   })
   .add('groupAppearance: checkbox-vertical', () => {
     const [value, setValue] = React.useState([1])
@@ -226,14 +251,18 @@ storiesOf('Form|ControlGroup', module)
       items: items.slice(0, 3)
     }
 
-    return (
-      layouts.filter(layout => checkboxAppearances.includes(layout.name.toLowerCase())).map(layout => (
+    return layouts
+      .filter(layout => checkboxAppearances.includes(layout.name.toLowerCase()))
+      .map(layout => (
         <React.Fragment key={layout.name}>
           <Heading variant={100}>{layout.name}</Heading>
-          <ControlGroup groupAppearance="checkbox-vertical" {...props} {...layout.props} />
+          <ControlGroup
+            groupAppearance="checkbox-vertical"
+            {...props}
+            {...layout.props}
+          />
         </React.Fragment>
       ))
-    )
   })
 
 storiesOf('Form|ControlGroup/controlAppearance:outline', module)
@@ -247,7 +276,7 @@ storiesOf('Form|ControlGroup/controlAppearance:outline', module)
         value={value}
         items={items}
         layout="equal"
-        controlAppearance='outline'
+        controlAppearance="outline"
       />
     )
   })
@@ -259,7 +288,7 @@ storiesOf('Form|ControlGroup/controlAppearance:outline', module)
         onChange={setValue}
         value={value}
         items={items}
-        controlAppearance='outline'
+        controlAppearance="outline"
         invalid
       />
     )
@@ -272,7 +301,7 @@ storiesOf('Form|ControlGroup/controlAppearance:outline', module)
         onChange={setValue}
         value={value}
         items={items}
-        controlAppearance='outline'
+        controlAppearance="outline"
         disabled
       />
     )
@@ -285,7 +314,7 @@ storiesOf('Form|ControlGroup/controlAppearance:outline', module)
         onChange={setValue}
         value={value}
         items={items}
-        controlAppearance='outline'
+        controlAppearance="outline"
         height={60}
       />
     )

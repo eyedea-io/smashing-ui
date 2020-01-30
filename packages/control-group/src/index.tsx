@@ -10,14 +10,13 @@ import {
   ControlGroupAppearanceType
 } from './types'
 import {useDefaults, safeInvoke} from '@smashing/theme'
-import {Strong} from '@smashing/typography'
 import {
   ControlButton,
   ControlGroupWrapper,
   MoreButton,
-  MoreButtonArrow
+  MoreButtonArrow,
+  ToggleWrapper
 } from './styles'
-
 // TODO: add icon component
 const ArrowIcon = () => (
   <svg
@@ -64,7 +63,10 @@ const Control: React.FC<ControlProps> = ({
   const handleOnChange = (itemValue: string) => {
     if (Array.isArray(groupValue)) {
       if (groupValue.includes(itemValue)) {
-        safeInvoke(onChange, groupValue.filter(item => item !== itemValue))
+        safeInvoke(
+          onChange,
+          groupValue.filter(item => item !== itemValue)
+        )
       } else {
         safeInvoke(onChange, groupValue.concat(itemValue))
       }
@@ -109,11 +111,7 @@ const Control: React.FC<ControlProps> = ({
           )}
           isOpen={isOpen}
         >
-          {isOutline ? (
-            <Strong>{item.label}</Strong>
-          ) : (
-            <span>{item.label}</span>
-          )}
+          {item.label}
         </ControlButton>
       )
   }
@@ -142,6 +140,8 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
 
   const [controlsNumber, setControlsNumber] = React.useState(0)
   const [isOpen, setIsOpen] = React.useState(false)
+  const [width, setWidth] = React.useState(0)
+  const [visibleItems, setVisibleItems] = React.useState([] as any)
   const hasMoreButton =
     controlAppearance === 'outline' && groupAppearance === 'button'
   const wrapperNode = React.useRef<HTMLDivElement>(null)
@@ -149,10 +149,13 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
 
   React.useEffect(() => {
     setControlsNumber(visibleCount ? visibleCount + 1 : 0)
+    if (visibleCount) {
+      setVisibleItems(items.filter((item, index) => index <= visibleCount))
+    }
   }, [])
 
   // TODO: add recalculate on window resize
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     if (
       wrapperNode &&
       wrapperNode.current &&
@@ -164,7 +167,6 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
         ? moreButtonNode.current.clientWidth
         : 0
       let childCount = 0
-
       Array.from(listChildren).forEach(child => {
         if (widthSum + child.scrollWidth <= clientWidth) {
           widthSum += child.scrollWidth
@@ -173,7 +175,10 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
       })
       setControlsNumber(childCount)
     }
-  }, [wrapperNode])
+    if (wrapperNode && wrapperNode.current) {
+      setWidth(wrapperNode.current.clientWidth)
+    }
+  }, [wrapperNode && wrapperNode.current && wrapperNode.current.clientWidth])
 
   const handleMoreClick = (e: React.MouseEvent) => {
     const moreButton = moreButtonNode.current
@@ -181,37 +186,58 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
       setIsOpen(false)
     }
   }
-
   return (
-    <ControlGroupWrapper
-      ref={wrapperNode}
-      groupAppearance={groupAppearance}
-      controlAppearance={controlAppearance}
-      childrenAmount={items.length}
-      layout={layout}
-      isOpen={isOpen}
-      visibleItemsCount={controlsNumber}
-      onClick={handleMoreClick}
-      hasMoreButton={hasMoreButton}
-    >
-      {items.map(item => (
-        <Control
-          key={`${item.label}-${item.value}`}
-          item={item}
-          onChange={onChange}
-          value={value}
-          textAlign={textAlign}
-          disabled={disabled}
-          invalid={invalid}
-          groupAppearance={groupAppearance}
-          controlAppearance={controlAppearance}
-          height={height}
-          isOpen={isOpen}
-        />
-      ))}
-      {hasMoreButton &&
-        wrapperNode.current &&
-        controlsNumber < wrapperNode.current.children.length && (
+    <>
+      <ControlGroupWrapper
+        ref={wrapperNode}
+        groupAppearance={groupAppearance}
+        controlAppearance={controlAppearance}
+        childrenAmount={items.length}
+        layout={layout}
+        isOpen={isOpen}
+        visibleItemsCount={controlsNumber}
+        onClick={handleMoreClick}
+        hasMoreButton={hasMoreButton}
+        width={width > 0 ? width : null}
+      >
+        {items.map(item => (
+          <Control
+            key={`${item.label}-${item.value}`}
+            item={item}
+            onChange={onChange}
+            value={value}
+            textAlign={textAlign}
+            disabled={disabled}
+            invalid={invalid}
+            groupAppearance={groupAppearance}
+            controlAppearance={controlAppearance}
+            height={height}
+            // isOpen={isOpen}
+          />
+        ))}
+        {isOpen && (
+          <ToggleWrapper width={width} height={height}>
+            {items
+              // .filter((item, index) => index !== 0)
+              .map(item => (
+                <Control
+                  key={`${item.label}-${item.value}`}
+                  item={item}
+                  onChange={onChange}
+                  value={value}
+                  textAlign={textAlign}
+                  disabled={disabled}
+                  invalid={invalid}
+                  groupAppearance={groupAppearance}
+                  controlAppearance={controlAppearance}
+                  height={height}
+                  isOpen={isOpen}
+                />
+              ))}
+          </ToggleWrapper>
+        )}
+
+        {hasMoreButton && (
           <MoreButton
             key="more-button"
             appearance="outline"
@@ -233,7 +259,8 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
             </MoreButtonArrow>
           </MoreButton>
         )}
-    </ControlGroupWrapper>
+      </ControlGroupWrapper>
+    </>
   )
 }
 const ControlGroup = styled(ControlGroupFC)``
