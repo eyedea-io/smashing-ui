@@ -13,6 +13,7 @@ export type CalendarInputProps = {
   className?: string
   value?: string
   hasTime?: boolean
+  disabled?: boolean
   hasDay?: boolean
   hoursLabel?: string
   minutesLabel?: string
@@ -39,7 +40,7 @@ export type TimePickerProps = {
 
 export type DateInputProps = Pick<
   CalendarInputProps,
-  'onChange' | 'hasTime' | 'className' | 'hasDay'
+  'onChange' | 'hasTime' | 'className' | 'hasDay' | 'disabled'
 > &
   Pick<TextInputProps, 'appearance' | 'width' | 'height'> & {
     getRef: (ref: HTMLElement | null) => void

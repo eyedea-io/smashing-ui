@@ -18,6 +18,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
   clockIcon = <ClockIcon />,
   nextIcon,
   prevIcon,
+  disabled,
   ...props
 }) => {
   const [timeIsOpen, setTimeIsOpen] = React.useState(false)
@@ -44,6 +45,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
     hoursLabel: 'Hours',
     minutesLabel: 'Min',
     minutesInterval: 5,
+    disabled: false,
     iconAfter: ({isShown}) => <CalendarIcon isShown={isShown} />
   })
 
@@ -159,8 +161,11 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
           isExpanded={isShown}
           getRef={getRef}
           hasDay={hasDay}
+          disabled={disabled}
           openCalendar={() => !isShown && toggle()}
-          onClick={toggle}
+          onClick={() => {
+            !disabled ? toggle() : null
+          }}
           onChange={onChange}
           value={dateValue}
           hasTime={hasTime}
