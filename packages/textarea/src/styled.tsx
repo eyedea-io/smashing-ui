@@ -24,7 +24,7 @@ export const TextareaContainer = styled.div<InputProps>`
       color: _.theme.colors.border.danger
     }
   })}
-  ${_ => getTextInputStyle(_.appearance)};
+  ${_ => getTextInputStyle(_.appearance, _.disabled)};
   ${ScrollbarContainer} {
     box-sizing: border-box;
     width: fit-content;

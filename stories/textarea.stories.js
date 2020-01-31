@@ -43,7 +43,11 @@ storiesOf('Form|Textarea', module)
   ))
   .add('disabled', () => (
     <React.Fragment>
-      <Textarea placeholder="Textarea placeholder..." disabled />
+      <Textarea
+        placeholder="Textarea placeholder..."
+        disabled
+        appearance="outline"
+      />
     </React.Fragment>
   ))
   .add('invalid', () => (
@@ -78,11 +82,19 @@ storiesOf('Form|Textarea', module)
   ))
   .add('default scrollbar', () => (
     <React.Fragment>
-      <Textarea value="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam architecto suscipit id, enim facilis unde aliquam soluta veniam velit itaque incidunt in facere. Ullam vero voluptates, nostrum possimus quibusdam eius." placeholder="Textarea placeholder..." />
+      <Textarea
+        value="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam architecto suscipit id, enim facilis unde aliquam soluta veniam velit itaque incidunt in facere. Ullam vero voluptates, nostrum possimus quibusdam eius."
+        placeholder="Textarea placeholder..."
+      />
     </React.Fragment>
   ))
   .add('outline scrollbar', () => (
     <React.Fragment>
-      <Textarea scrollbarAppearance="outline" appearance="outline" value="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam architecto suscipit id, enim facilis unde aliquam soluta veniam velit itaque incidunt in facere. Ullam vero voluptates, nostrum possimus quibusdam eius." placeholder="Textarea placeholder..." />
+      <Textarea
+        scrollbarAppearance="outline"
+        appearance="outline"
+        value="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam architecto suscipit id, enim facilis unde aliquam soluta veniam velit itaque incidunt in facere. Ullam vero voluptates, nostrum possimus quibusdam eius."
+        placeholder="Textarea placeholder..."
+      />
     </React.Fragment>
   ))

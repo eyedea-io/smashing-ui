@@ -54,6 +54,7 @@ const Textarea: React.FC<TextareaProps> = ({color, className, ...props}) => {
       appearance={defaults.appearance}
       aria-invalid={props.invalid}
       full={defaults.full}
+      disabled={props.disabled}
       scrollbarAppearance={defaults.scrollbarAppearance}
     >
       <S.ScrollbarContainer
