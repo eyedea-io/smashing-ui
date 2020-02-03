@@ -45,7 +45,7 @@ export interface ControlGroupProps
 
 export interface ButtonProps {
   checked: boolean
-  activeGroup: boolean
+  activeGroup?: boolean
   textAlign?: TextAlign
   isOpen?: boolean
   invalid?: boolean

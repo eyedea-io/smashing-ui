@@ -1,6 +1,7 @@
 import {Button as SmashingButton, getButtonStyle} from '@smashing/button'
 import styled, {DefaultTheme} from 'styled-components'
 import {WrapperProps, ButtonProps, Layout, TextAlign} from './types'
+import {SelectMenu} from '@smashing/select-menu'
 
 interface ThemeProps {
   theme: DefaultTheme
@@ -67,15 +68,22 @@ const getButtonGroupStyle = (_: WrapperProps & ThemeProps) => {
   const openStyle = () => {
     const style = {}
 
-    if (_.hasMoreButton && !_.isOpen && _.visibleItemsCount) {
+    if (_.hasMoreButton && _.visibleItemsCount) {
       style[
-        `> button:nth-child(n + ${_.visibleItemsCount}):not(:nth-last-child(1))`
+        `> button:nth-child(n + ${_.visibleItemsCount}):not(:nth-last-child(-n +2))`
       ] = {
         display: 'none'
       }
-    } else if (_.hasMoreButton && _.isOpen && _.visibleItemsCount) {
-      style[`> button:nth-child(n + ${2}):not(:nth-last-child(1))`] = {
-        display: 'none'
+      style['.select'] = {
+        visibility: 'hidden'
+      }
+    }
+    if (_.hasMoreButton && _.isOpen) {
+      style[`> button:not(.select)`] = {
+        visibility: 'hidden'
+      }
+      style['.select'] = {
+        visibility: 'visible'
       }
     }
 
@@ -95,8 +103,8 @@ const getButtonGroupStyle = (_: WrapperProps & ThemeProps) => {
   return {
     position: 'relative',
     zIndex: 1,
-    display: _.layout === 'full' || _.isOpen ? 'grid' : 'inline-grid',
-    gridTemplateColumns: _.isOpen ? '1fr' : getGridTemplateColumns(_),
+    display: _.layout === 'full' || 'inline-grid',
+    gridTemplateColumns: getGridTemplateColumns(_),
     margin: 0,
     padding: 0,
     maxWidth: _.width && _.width !== 0 ? _.width : '100%',
@@ -162,10 +170,10 @@ const getBorder = (_: ThemeProps & ButtonProps) => {
   const borderStyle = border(state)
 
   return {
-    borderTop: _.isOpen ? border(getState(_, true)) : borderStyle,
-    borderBottom: _.isOpen ? 'none' : borderStyle,
-    borderRight: _.isOpen ? borderStyle : border(getState(_, true)),
-    borderLeft: _.isOpen ? borderStyle : 'none',
+    borderTop: borderStyle,
+    borderBottom: borderStyle,
+    borderRight: border(getState(_, true)),
+    borderLeft: 'none',
 
     '&:nth-last-of-type(2)': {
       borderBottom: borderStyle
@@ -175,7 +183,7 @@ const getBorder = (_: ThemeProps & ButtonProps) => {
       borderLeft: borderStyle
     },
     '&:last-of-type': {
-      borderRight: _.isOpen ? 'none' : borderStyle
+      borderRight: borderStyle
     }
   }
 }
@@ -184,23 +192,13 @@ const getBorderRadius = (_: ThemeProps & {isOpen?: boolean}) => ({
   borderRadius: 0,
 
   '&:nth-last-of-type(2)': {
-    borderRadius: _.isOpen ? `0 0 ${_.theme.radius} ${_.theme.radius}` : 0
+    borderRadius: 0
   },
   '&:first-of-type': {
-    borderRadius: _.isOpen
-      ? `${_.theme.radius} ${_.theme.radius} 0 0`
-      : `${_.theme.radius} 0 0 ${_.theme.radius}`
+    borderRadius: `${_.theme.radius} 0 0 ${_.theme.radius}`
   },
   '&:last-of-type': {
-    borderRadius: `0 ${_.theme.radius} ${_.theme.radius} 0`,
-    ...(_.isOpen
-      ? {
-          '&, &:hover, &:active, &[aria-invalid="true"]': {
-            border: 0,
-            borderRadius: 0
-          }
-        }
-      : {})
+    borderRadius: `0 ${_.theme.radius} ${_.theme.radius} 0`
   }
 })
 
@@ -273,28 +271,6 @@ export const ControlButton = styled(Button)<ButtonProps>`
   }}
 `
 
-export const MoreButtonArrow = styled.div<{
-  isOpen: boolean
-  ref: any
-  invalid?: boolean
-  disabled?: boolean
-}>`
-  border: none;
-  background: transparent;
-  cursor: ${_ => (_.disabled ? 'default' : 'pointer')};
-  width: inherit;
-  height: 100%;
-
-  svg {
-    transform: ${_ => (_.isOpen ? 'rotateX(180deg)' : '')};
-
-    fill: ${_ => getTextColor(_.invalid, _.disabled)(_)};
-  }
-  :focus {
-    outline: none;
-  }
-`
-
 export const MoreButton = styled(Button)<{isOpen?: boolean}>`
   width: ${MORE_BUTTON_SIZE};
   padding: 0;
@@ -302,15 +278,6 @@ export const MoreButton = styled(Button)<{isOpen?: boolean}>`
   top: 0;
   right: 0;
 `
-
-export const ToggleWrapper = styled.div<{width: number; height: number}>`
+export const Select = styled(SelectMenu)`
   position: absolute;
-  z-index: 1;
-  min-width: ${_ => (_.width && _.width !== 0 ? `${_.width}px` : '100%')};
-  display: grid;
-  margin-top: ${_ => _.height}px;
-  background: ivory;
-  :nth-last-of-type(2) {
-    background: red;
-  }
 `

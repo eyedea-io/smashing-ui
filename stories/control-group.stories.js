@@ -23,28 +23,28 @@ const layouts = [
       controlAppearance: 'flat'
     }
   },
-  // {
-  //   name: 'Primary',
-  //   props: {
-  //     controlAppearance: 'primary',
-  //     textAlign: 'right'
-  //   }
-  // },
-  // {
-  //   name: 'Minimal',
-  //   props: {
-  //     controlAppearance: 'minimal',
-  //     textAlign: 'center'
-  //   }
-  // },
-  // {
-  //   name: 'Subtle',
-  //   props: {
-  //     controlAppearance: 'subtle',
-  //     textAlign: 'center',
-  //     items
-  //   }
-  // },
+  {
+    name: 'Primary',
+    props: {
+      controlAppearance: 'primary',
+      textAlign: 'right'
+    }
+  },
+  {
+    name: 'Minimal',
+    props: {
+      controlAppearance: 'minimal',
+      textAlign: 'center'
+    }
+  },
+  {
+    name: 'Subtle',
+    props: {
+      controlAppearance: 'subtle',
+      textAlign: 'center',
+      items
+    }
+  },
   {
     name: 'Outline',
     props: {

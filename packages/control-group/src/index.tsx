@@ -10,13 +10,8 @@ import {
   ControlGroupAppearanceType
 } from './types'
 import {useDefaults, safeInvoke} from '@smashing/theme'
-import {
-  ControlButton,
-  ControlGroupWrapper,
-  MoreButton,
-  MoreButtonArrow,
-  ToggleWrapper
-} from './styles'
+import {ControlButton, ControlGroupWrapper, MoreButton, Select} from './styles'
+import {SmashingThemeProvider} from '@smashing/theme'
 // TODO: add icon component
 const ArrowIcon = () => (
   <svg
@@ -32,6 +27,19 @@ const ArrowIcon = () => (
       d="M0.310946 0.808831C0.725541 0.397056 1.39773 0.397056 1.81233 0.808831L8 6.95442L14.1877 0.808831C14.6023 0.397056 15.2745 0.397056 15.6891 0.808831C16.1036 1.22061 16.1036 1.88823 15.6891 2.3L8.75069 9.19117C8.5516 9.38891 8.28156 9.5 8 9.5C7.71844 9.5 7.44841 9.38891 7.24931 9.19117L0.310946 2.3C-0.103649 1.88823 -0.103649 1.22061 0.310946 0.808831Z"
     />
   </svg>
+)
+const IconDecorator = ({children}) => (
+  <SmashingThemeProvider
+    theme={{
+      defaults: {
+        selectMenu: {
+          arrowIcon: ArrowIcon
+        }
+      }
+    }}
+  >
+    {children}
+  </SmashingThemeProvider>
 )
 
 const Control: React.FC<ControlProps> = ({
@@ -141,7 +149,6 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
   const [controlsNumber, setControlsNumber] = React.useState(0)
   const [isOpen, setIsOpen] = React.useState(false)
   const [width, setWidth] = React.useState(0)
-  const [visibleItems, setVisibleItems] = React.useState([] as any)
   const hasMoreButton =
     controlAppearance === 'outline' && groupAppearance === 'button'
   const wrapperNode = React.useRef<HTMLDivElement>(null)
@@ -149,9 +156,6 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
 
   React.useEffect(() => {
     setControlsNumber(visibleCount ? visibleCount + 1 : 0)
-    if (visibleCount) {
-      setVisibleItems(items.filter((item, index) => index <= visibleCount))
-    }
   }, [])
 
   // TODO: add recalculate on window resize
@@ -180,12 +184,6 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
     }
   }, [wrapperNode && wrapperNode.current && wrapperNode.current.clientWidth])
 
-  const handleMoreClick = (e: React.MouseEvent) => {
-    const moreButton = moreButtonNode.current
-    if (!moreButton || !moreButton.contains(e.target as Node)) {
-      setIsOpen(false)
-    }
-  }
   return (
     <>
       <ControlGroupWrapper
@@ -196,7 +194,6 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
         layout={layout}
         isOpen={isOpen}
         visibleItemsCount={controlsNumber}
-        onClick={handleMoreClick}
         hasMoreButton={hasMoreButton}
         width={width > 0 ? width : null}
       >
@@ -212,52 +209,35 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
             groupAppearance={groupAppearance}
             controlAppearance={controlAppearance}
             height={height}
-            // isOpen={isOpen}
+            isOpen={isOpen}
           />
         ))}
-        {isOpen && (
-          <ToggleWrapper width={width} height={height}>
-            {items
-              // .filter((item, index) => index !== 0)
-              .map(item => (
-                <Control
-                  key={`${item.label}-${item.value}`}
-                  item={item}
-                  onChange={onChange}
-                  value={value}
-                  textAlign={textAlign}
-                  disabled={disabled}
-                  invalid={invalid}
-                  groupAppearance={groupAppearance}
-                  controlAppearance={controlAppearance}
-                  height={height}
-                  isOpen={isOpen}
-                />
-              ))}
-          </ToggleWrapper>
-        )}
-
         {hasMoreButton && (
-          <MoreButton
-            key="more-button"
-            appearance="outline"
-            activeGroup={Boolean(Array.isArray(value) ? value.length : value)}
-            isOpen={isOpen}
-            checked={false}
-            height={height}
-            invalid={invalid}
-            disabled={disabled}
-          >
-            <MoreButtonArrow
-              ref={moreButtonNode}
+          <>
+            <IconDecorator>
+              <Select
+                className="select"
+                options={items}
+                value={value}
+                appearance="outline"
+                onSelect={onChange}
+                popoverAppearance="accordion"
+                width={width}
+              />
+            </IconDecorator>
+            <MoreButton
+              key="more-button"
+              appearance="outline"
+              activeGroup={Boolean(Array.isArray(value) ? value.length : value)}
               isOpen={isOpen}
-              onClick={() => !disabled && setIsOpen(!isOpen)}
+              checked={false}
+              height={height}
               invalid={invalid}
               disabled={disabled}
-            >
-              <ArrowIcon />
-            </MoreButtonArrow>
-          </MoreButton>
+              iconAfter={ArrowIcon}
+              onClick={() => setIsOpen(true)}
+            />
+          </>
         )}
       </ControlGroupWrapper>
     </>
