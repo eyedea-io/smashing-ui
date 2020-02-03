@@ -54,8 +54,6 @@ const Control: React.FC<ControlProps> = ({
   isOpen,
   onChange
 }) => {
-  const isOutline = controlAppearance === 'outline'
-
   const checked = Array.isArray(groupValue)
     ? groupValue.includes(item.value || '')
     : groupValue === item.value

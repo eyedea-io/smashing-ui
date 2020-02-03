@@ -117,8 +117,6 @@ storiesOf('Form|ControlGroup', module)
               <ControlGroup {...props} {...layout.props} />
             </React.Fragment>
           ))}
-        <Heading>lslslslslsll</Heading>
-        <Heading>lslslslslsll</Heading>
       </>
     )
   })

@@ -79,7 +79,7 @@ const getButtonGroupStyle = (_: WrapperProps & ThemeProps) => {
       }
     }
     if (_.hasMoreButton && _.isOpen) {
-      style[`> button:not(.select)`] = {
+      style['> button:not(.select)'] = {
         visibility: 'hidden'
       }
       style['.select'] = {
