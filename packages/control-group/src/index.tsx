@@ -223,6 +223,8 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
                 onSelect={onChange}
                 popoverAppearance="accordion"
                 width={width}
+                disabled={disabled}
+                invalid={invalid}
               />
             </IconDecorator>
             <MoreButton
