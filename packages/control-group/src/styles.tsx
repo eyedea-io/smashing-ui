@@ -280,4 +280,5 @@ export const MoreButton = styled(Button)<{isOpen?: boolean}>`
 `
 export const Select = styled(SelectMenu)`
   position: absolute;
+  left: 0;
 `

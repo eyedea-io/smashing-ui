@@ -150,12 +150,20 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
   const hasMoreButton =
     controlAppearance === 'outline' && groupAppearance === 'button'
   const wrapperNode = React.useRef<HTMLDivElement>(null)
-  const moreButtonNode = React.useRef<HTMLButtonElement>(null)
+  const moreButtonNode = React.createRef<HTMLButtonElement>()
 
   React.useEffect(() => {
     setControlsNumber(visibleCount ? visibleCount + 1 : 0)
   }, [])
-
+  const handleSelectTrigger = () => {
+    if (wrapperNode.current && hasMoreButton) {
+      let select = wrapperNode.current.children[
+        wrapperNode.current.children.length - 2
+      ] as HTMLButtonElement
+      select.click()
+      setIsOpen(true)
+    }
+  }
   // TODO: add recalculate on window resize
   React.useLayoutEffect(() => {
     if (
@@ -168,6 +176,7 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
       let widthSum = moreButtonNode.current
         ? moreButtonNode.current.clientWidth
         : 0
+
       let childCount = 0
       Array.from(listChildren).forEach(child => {
         if (widthSum + child.scrollWidth <= clientWidth) {
@@ -217,6 +226,7 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
                 className="select"
                 options={items}
                 value={value}
+                height={height}
                 appearance="outline"
                 onSelect={onChange}
                 popoverAppearance="accordion"
@@ -235,7 +245,7 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
               invalid={invalid}
               disabled={disabled}
               iconAfter={ArrowIcon}
-              onClick={() => setIsOpen(true)}
+              onClick={handleSelectTrigger}
             />
           </>
         )}
