@@ -1,6 +1,6 @@
 {
   "name": "@smashing/textarea",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "description": "Multi line text input component used in forms.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
