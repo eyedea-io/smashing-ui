@@ -12,7 +12,7 @@ export const ScrollbarContainer = styled(Scrollbars)``
 export const TextareaContainer = styled.div<InputProps>`
   border: none;
   border-radius: ${_ => getValueWithUnit(_.borderRadius)};
-  padding: ${_ => (_.scrollbarAppearance === 'outline' ? '8px 10px' : 0)};
+  padding: 0;
   box-sizing: border-box;
   width: fit-content;
   margin-bottom: 0;
