@@ -155,12 +155,15 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
   React.useEffect(() => {
     setControlsNumber(visibleCount ? visibleCount + 1 : 0)
   }, [])
+
+  // when user click More button, function triggers hidden select menu, makes it visible and hide control group
+  // TODO: getElementsByClassName is temporary solution, need to pass ref in props to Select Menu component
   const handleSelectTrigger = () => {
     if (wrapperNode.current && hasMoreButton) {
-      let select = wrapperNode.current.children[
-        wrapperNode.current.children.length - 2
-      ] as HTMLButtonElement
-      select.click()
+      let select = wrapperNode.current.getElementsByClassName(
+        'selectMenuInput'
+      ) as HTMLCollectionOf<HTMLButtonElement>
+      select[0].click()
       setIsOpen(true)
     }
   }
@@ -223,7 +226,8 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
           <>
             <IconDecorator>
               <Select
-                className="select"
+                className="selectMenuInput"
+                // name="select"
                 options={items}
                 value={value}
                 height={height}

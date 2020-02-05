@@ -27,9 +27,7 @@ const getTextAlign = (textAlign?: TextAlign) => {
       return 'flex-start'
   }
 }
-const getTextColor = (invalid?: boolean, disabled?: boolean) => (
-  _: ThemeProps
-) => {
+const getColor = (invalid?: boolean, disabled?: boolean) => (_: ThemeProps) => {
   if (disabled) {
     return _.theme.colors.text.muted
   }
@@ -74,15 +72,15 @@ const getButtonGroupStyle = (_: WrapperProps & ThemeProps) => {
       ] = {
         display: 'none'
       }
-      style['.select'] = {
+      style['.selectMenuInput'] = {
         visibility: 'hidden'
       }
     }
     if (_.hasMoreButton && _.isOpen) {
-      style['> button:not(.select)'] = {
+      style['> button:not(.selectMenuInput)'] = {
         visibility: 'hidden'
       }
-      style['.select'] = {
+      style['.selectMenuInput'] = {
         visibility: 'visible'
       }
     }
@@ -256,7 +254,7 @@ export const ControlButton = styled(Button)<ButtonProps>`
       case 'outline':
         return {
           '&, & strong': {
-            color: getTextColor(_.invalid, _.disabled)(_)
+            color: getColor(_.invalid, _.disabled)(_)
           },
 
           ...(_.checked ? activeLine() : {}),
@@ -277,6 +275,11 @@ export const MoreButton = styled(Button)<{isOpen?: boolean}>`
   position: ${_ => (_.isOpen ? 'absolute' : 'relative')};
   top: 0;
   right: 0;
+  div {
+    svg {
+      fill: ${_ => getColor(_.invalid, _.disabled)(_)};
+    }
+  }
 `
 export const Select = styled(SelectMenu)`
   position: absolute;
