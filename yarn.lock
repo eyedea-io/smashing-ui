@@ -2548,15 +2548,6 @@
   dependencies:
     "@sentry/cli" "^1.49.0"
 
-"@smashing/button@^0.4.3":
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/@smashing/button/-/button-0.4.3.tgz#9d6e6d3c8cb4a180889517455278a9ed31eda6d5"
-  integrity sha512-B9Gdvo39QC0pxJcevxBB027ePFPZ8qr8JiWtUu2rGdHkCGWqfNdZ+luAlBHgZt03WQucE2FcdvDot/pKDUJoSw==
-  dependencies:
-    "@smashing/spinner" "^0.1.18"
-    "@smashing/theme" "^0.14.2"
-    "@smashing/typography" "^0.4.31"
-
 "@smashing/form@^0.6.0":
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/@smashing/form/-/form-0.6.1.tgz#b46e79b01463deb4eddb6ad264ad54245e185b54"
@@ -2564,94 +2555,6 @@
   dependencies:
     dot-prop "^5.1.0"
     react-fast-compare "^2.0.4"
-
-"@smashing/menu@^0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@smashing/menu/-/menu-0.5.0.tgz#a6685d5392f622b948b034a88f7b1a9cd22b78d2"
-  integrity sha512-TCCpz74hIJrBBH2KpgINXjJAbhoyT1gr16/Ur7CNe2aVgLKfnOwolaoyAj+I6RjXVQxt/SeFaomjRKrBWM8huA==
-  dependencies:
-    "@smashing/theme" "^0.14.2"
-    "@smashing/typography" "^0.4.31"
-
-"@smashing/popover@^0.4.3":
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/@smashing/popover/-/popover-0.4.3.tgz#64d1a46d2868b739354de33b9944a567dfced727"
-  integrity sha512-q0vz6nVijnTjwC/tN1hVWXawwtDD3o8ptO7Rbk2gA0/n8OtzRXJelyjgvvuY6QE/VvxsIVmz9UYx3qcx1+LLkA==
-  dependencies:
-    "@smashing/positioner" "^0.2.3"
-    "@smashing/theme" "^0.14.2"
-    "@smashing/tooltip" "^0.2.2"
-
-"@smashing/positioner@^0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@smashing/positioner/-/positioner-0.2.3.tgz#eab09bfe8c0729f679ed0c7aeb834a9d3610df3b"
-  integrity sha512-CQW8fUTsL+g91iQc3Mtb32q/1FsYnTGx2K9/V/EatDo5w7Oi2+QKDwcwSHaeB1PEcHOc1zfZbtxTXBkLrwdQQw==
-  dependencies:
-    "@smashing/portal" "^0.1.6"
-    "@smashing/stack" "^0.1.26"
-    "@smashing/theme" "^0.14.2"
-    react-transition-group "^4.0.0"
-
-"@smashing/select-menu@^0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@smashing/select-menu/-/select-menu-0.8.0.tgz#3fdda746c6e0db53e0d966993a8867bc0a9887d5"
-  integrity sha512-LBB0AuHD8x2yQtg7X2WTvM8dgVKXbjlv7d/xQ3zqkHTf6CCABRjX5H57EpckurzYf43CiepqgYHBWU8JZpNejA==
-  dependencies:
-    "@smashing/button" "^0.4.3"
-    "@smashing/menu" "^0.5.0"
-    "@smashing/popover" "^0.4.3"
-    "@smashing/text-input" "^0.6.4"
-    "@smashing/theme" "^0.14.2"
-    "@smashing/typography" "^0.4.31"
-
-"@smashing/spinner@^0.1.18":
-  version "0.1.18"
-  resolved "https://registry.yarnpkg.com/@smashing/spinner/-/spinner-0.1.18.tgz#0b29473b5dbe315cb34b2f7735fb951831664cea"
-  integrity sha512-Hg1WLxxZJGy5YnWCzuQWbRYYOiimjsYUMHG7PCY+ioYotsvBpph2IFj8P8nXyShJqMODnLDk5uh538KIANStZg==
-  dependencies:
-    "@smashing/theme" "^0.14.2"
-    "@smashing/typography" "^0.4.31"
-
-"@smashing/stack@^0.1.26":
-  version "0.1.26"
-  resolved "https://registry.yarnpkg.com/@smashing/stack/-/stack-0.1.26.tgz#12803248f5cfcbe9514844ecfacb5b4ba52c122c"
-  integrity sha512-Myyvdib5HsN++aiqZMeIYFMUAci6Tx/1cBiQmfmCDlD9LBZ+z2frCXomUtynzLztwnSlbbipmDyL9YAVWInHPw==
-  dependencies:
-    "@smashing/theme" "^0.14.2"
-
-"@smashing/text-input@^0.6.4":
-  version "0.6.4"
-  resolved "https://registry.yarnpkg.com/@smashing/text-input/-/text-input-0.6.4.tgz#75447c904d88d8c9c466dfb62212ab4971882818"
-  integrity sha512-JtWIpUH55e+hxqAAC3oR9AEyY/iDICwH8kA5oF6BAumxG0/tsz02U+JxKQFGFcs2o8PVgCIJjWe61NqcpawR/Q==
-  dependencies:
-    "@smashing/theme" "^0.14.2"
-    "@smashing/typography" "^0.4.31"
-
-"@smashing/theme@^0.14.2":
-  version "0.14.2"
-  resolved "https://registry.yarnpkg.com/@smashing/theme/-/theme-0.14.2.tgz#09f310f64248fb5a124d616a4da5a0df45faab26"
-  integrity sha512-y92V3eFNEwxSTqfzB/vQjsU0Bsl+hFEQhJBPVzUku8W3dqGvAdhCNBMZReeOPeid3FQ4XUZ2O314ZSWhg9Vb4A==
-  dependencies:
-    deepmerge "^3.2.0"
-    tinycolor2 "^1.4.1"
-
-"@smashing/tooltip@^0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@smashing/tooltip/-/tooltip-0.2.2.tgz#a84e79044920da24e67232950b7a80b3be7ca8d6"
-  integrity sha512-sOJ8vwOTmhZu7QK+AEJ4t5HhQWOo1lC0d2OolyPTvtE0mqPJFInvSL4eyI6tv6WLOkiv3qz9jQolfNasY+Z0oQ==
-  dependencies:
-    "@smashing/positioner" "^0.2.3"
-    "@smashing/theme" "^0.14.2"
-    "@smashing/typography" "^0.4.31"
-    debounce "^1.2.0"
-    tinycolor2 "^1.4.1"
-
-"@smashing/typography@^0.4.31":
-  version "0.4.31"
-  resolved "https://registry.yarnpkg.com/@smashing/typography/-/typography-0.4.31.tgz#3a79bf28b2ba45deea45c52a1852115df45f9fea"
-  integrity sha512-lpzzsHaN9es7zeEfryR0lj5VG3vYZC+s/HKBJl1qqJOGaJTy0Mq1xCPxBDnWv9PBKGnIeNDxflm52efJfMz4rw==
-  dependencies:
-    "@smashing/theme" "^0.14.2"
 
 "@storybook/addon-a11y@5.2.0-beta.37":
   version "5.2.0-beta.37"
