@@ -11,7 +11,6 @@ import {
 } from './types'
 import {useDefaults, safeInvoke} from '@smashing/theme'
 import {ControlButton, ControlGroupWrapper, MoreButton, Select} from './styles'
-import {SmashingThemeProvider} from '@smashing/theme'
 // TODO: add icon component
 const ArrowIcon = () => (
   <svg
@@ -27,19 +26,6 @@ const ArrowIcon = () => (
       d="M0.310946 0.808831C0.725541 0.397056 1.39773 0.397056 1.81233 0.808831L8 6.95442L14.1877 0.808831C14.6023 0.397056 15.2745 0.397056 15.6891 0.808831C16.1036 1.22061 16.1036 1.88823 15.6891 2.3L8.75069 9.19117C8.5516 9.38891 8.28156 9.5 8 9.5C7.71844 9.5 7.44841 9.38891 7.24931 9.19117L0.310946 2.3C-0.103649 1.88823 -0.103649 1.22061 0.310946 0.808831Z"
     />
   </svg>
-)
-const IconDecorator = ({children}) => (
-  <SmashingThemeProvider
-    theme={{
-      defaults: {
-        selectMenu: {
-          arrowIcon: ArrowIcon
-        }
-      }
-    }}
-  >
-    {children}
-  </SmashingThemeProvider>
 )
 
 const Control: React.FC<ControlProps> = ({
@@ -224,21 +210,20 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
         ))}
         {hasMoreButton && (
           <>
-            <IconDecorator>
-              <Select
-                className="selectMenuInput"
-                // name="select"
-                options={items}
-                value={value}
-                height={height}
-                appearance="outline"
-                onSelect={onChange}
-                popoverAppearance="accordion"
-                width={width}
-                disabled={disabled}
-                invalid={invalid}
-              />
-            </IconDecorator>
+            <Select
+              className="selectMenuInput"
+              options={items}
+              value={value}
+              height={height}
+              appearance="outline"
+              onSelect={onChange}
+              popoverAppearance="accordion"
+              width={width}
+              hideSelectedItem
+              isSelectable={false}
+              disabled={disabled}
+              invalid={invalid}
+            />
             <MoreButton
               key="more-button"
               appearance="outline"
@@ -259,7 +244,7 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
 }
 const ControlGroup = styled(ControlGroupFC)``
 
-export {ControlGroup}
+export {ControlGroup, ControlGroupProps}
 
 declare module 'styled-components' {
   export interface SmashingControlGroupDefaults

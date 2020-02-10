@@ -8,6 +8,7 @@
     {"path": "../theme"},
     {"path": "../button"},
     {"path": "../radio"},
-    {"path": "../checkbox"}
+    {"path": "../checkbox"},
+    {"path": "../select-menu"}
   ]
 }
