@@ -1,0 +1,38 @@
+{
+  "name": "@smashing/control-group",
+  "version": "0.0.0",
+  "description": "Set of two or more buttons/radios/checkboxes with controlled value.",
+  "repository": "eyedea-io/smashing-ui",
+  "license": "MIT",
+  "main": "lib/cjs/index.js",
+  "types": "lib/esm/index.d.ts",
+  "module": "lib/esm/index.js",
+  "files": [
+    "lib/esm",
+    "lib/cjs"
+  ],
+  "author": "Eyedea AS",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@smashing/button": "^0.4.1",
+    "@smashing/checkbox": "^0.3.1",
+    "@smashing/popover": "^0.4.3",
+    "@smashing/radio": "^0.1.1",
+    "@smashing/select-menu": "^0.8.0",
+    "@smashing/theme": "^0.14.0"
+  },
+  "devDependencies": {
+    "react": "^16.8.6"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "styled-components": "^4.2.0"
+  },
+  "keywords": [
+    "smashing",
+    "react",
+    "ui"
+  ]
+}

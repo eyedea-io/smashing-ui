@@ -8,6 +8,7 @@
     {"path": "packages/calendar-input"},
     {"path": "packages/charts"},
     {"path": "packages/checkbox"},
+    {"path": "packages/control-group"},
     {"path": "packages/css"},
     {"path": "packages/dialog"},
     {"path": "packages/form-field"},
