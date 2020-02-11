@@ -96,6 +96,7 @@ const Control: React.FC<ControlProps> = ({
       return (
         <ControlButton
           {...renderProps}
+          type="button"
           appearance={controlAppearance as ButtonAppearanceType}
           onClick={() => safeInvoke(handleOnChange, item.value)}
           activeGroup={Boolean(
@@ -227,6 +228,7 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
             <MoreButton
               key="more-button"
               appearance="outline"
+              type="button"
               activeGroup={Boolean(Array.isArray(value) ? value.length : value)}
               isOpen={isOpen}
               checked={false}
