@@ -9,7 +9,7 @@ export interface ListProps {
   children: React.ReactNode[]
   overlapSize?: number
   className?: string
-  ref?:
+  innerRef?:
     | ((instance: HTMLDivElement | null) => void)
     | React.RefObject<HTMLDivElement>
     | null
@@ -18,7 +18,7 @@ export interface ListProps {
 export const List: React.FC<ListProps> = ({
   children,
   className,
-  ref,
+  innerRef,
   ...props
 }) => {
   const {overlapSize} = useDefaults('list', props, {
@@ -26,7 +26,7 @@ export const List: React.FC<ListProps> = ({
   })
 
   return (
-    <ListContainer className={className} ref={ref}>
+    <ListContainer className={className} ref={innerRef}>
       {children.map((child, key) => (
         <ListItem key={key} overlapSize={overlapSize}>
           {child}
