@@ -139,6 +139,9 @@ interface StyledInputProps {
 }
 export const StyledInput = styled(TextInput)<StyledInputProps>`
   box-sizing: border-box;
+  svg {
+    box-sizing: content-box;
+  }
   ${_ => getTextInputStyle(_.appearance)}
 `
 
