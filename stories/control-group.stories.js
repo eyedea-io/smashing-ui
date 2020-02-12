@@ -274,7 +274,11 @@ storiesOf('Form|ControlGroup/controlAppearance:outline', module)
         value={value}
         items={items}
         layout="equal"
+        visibleCount={3}
         controlAppearance="outline"
+        popoverProps={{
+          height: 100
+        }}
       />
     )
   })

@@ -1,6 +1,7 @@
 import {ButtonAppearanceType} from '@smashing/button'
 import {RadioAppearanceType} from '@smashing/radio'
 import {CheckboxAppearanceType} from '@smashing/checkbox'
+import {PopoverProps} from '@smashing/popover'
 
 export type Layout = 'default' | 'equal' | 'full'
 export type TextAlign = 'left' | 'center' | 'right'
@@ -41,6 +42,7 @@ export interface ControlGroupProps
   items: ControlItemProps[]
   layout?: Layout
   visibleCount?: number
+  popoverProps?: Partial<PopoverProps>
 }
 
 export interface ButtonProps {
