@@ -65,6 +65,7 @@ const Textarea: React.FC<TextareaProps> = ({color, className, ...props}) => {
           <S.Textarea
             {...scrollbarProps}
             {...props}
+            full={defaults.full}
             onChange={props.onChange}
             style={{marginBottom: 0}}
             data-gramm_editor={defaults.grammarly}
