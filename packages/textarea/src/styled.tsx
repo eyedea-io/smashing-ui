@@ -32,7 +32,7 @@ export const TextareaContainer = styled.div<InputProps>`
   }
 `
 
-export const Textarea = styled(Text)<{full?: boolean}>`
+export const Textarea = styled(Text)`
   height: 100%;
   border: none;
   background-color: transparent;
@@ -44,7 +44,7 @@ export const Textarea = styled(Text)<{full?: boolean}>`
   ::-webkit-scrollbar {
     display: none;
   }
-  width: ${_ => (_.full ? '100%' : undefined)};
+  width: 100%;
 `
 
 export const VerticalScrollTrack = styled.div`
