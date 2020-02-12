@@ -128,7 +128,8 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
     textAlign,
     disabled,
     invalid,
-    visibleCount
+    visibleCount,
+    popoverProps
   } = props
 
   const [controlsNumber, setControlsNumber] = React.useState(0)
@@ -224,6 +225,7 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
               isSelectable={false}
               disabled={disabled}
               invalid={invalid}
+              popoverProps={popoverProps}
             />
             <MoreButton
               key="more-button"
