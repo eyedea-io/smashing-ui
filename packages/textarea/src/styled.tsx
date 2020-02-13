@@ -44,6 +44,7 @@ export const Textarea = styled(Text)`
   ::-webkit-scrollbar {
     display: none;
   }
+  width: 100%;
 `
 
 export const VerticalScrollTrack = styled.div`
