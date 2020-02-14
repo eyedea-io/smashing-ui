@@ -8,7 +8,7 @@ export interface RadioProps {
    * @default 16
    */
   size?: number
-  value?: string
+  value?: string | number
   checked?: boolean
   disabled?: boolean
   appearance?: RadioAppearanceType
