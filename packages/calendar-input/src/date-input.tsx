@@ -48,7 +48,7 @@ export const DateInput: React.FC<DateInputProps> = ({
       setInputValue(CalendarDate.getValue(value))
     } else {
       setInputValue({
-        ...inputValue,
+        ...CalendarDate.initValue,
         hours: timeValue.hours || CalendarDate.initValue.hours,
         minutes: timeValue.minutes || CalendarDate.initValue.minutes
       })
