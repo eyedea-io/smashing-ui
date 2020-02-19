@@ -188,7 +188,7 @@ const SelectMenuFC = (props: SelectMenuProps) => {
           iconAfter={defaults.arrowIcon}
           {...(defaults.height ? {height: defaults.height} : {})}
         >
-          {placeholder}
+          <S.PlaceholderText>{placeholder}</S.PlaceholderText>
         </S.Button>
       )}
     </S.Popover>
