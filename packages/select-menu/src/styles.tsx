@@ -69,6 +69,12 @@ export const Popover = styled(PopoverElement)<PopoverProps>`
 export const Title = styled(Heading)`
   margin: 0;
 `
+export const PlaceholderText = styled.span`
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`
+
 export const Button = styled(PureButton)<ButtonProps>`
   ${_ =>
     _.iconAfter && {

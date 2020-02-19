@@ -20,7 +20,8 @@ const optionsScroll = [
   {label: 'Tomato', value: 'Tomato'},
   {label: 'Orange', value: 'Orange'},
   {label: 'Pepper', value: 'Pepper'},
-  {label: 'Potato', value: 'Potato'}
+  {label: 'Potato', value: 'Potato'},
+  {label: 'Very long vegetable name', value: 'Very long vegetable name'}
 ]
 
 const Wrapper = ({children}) => {
