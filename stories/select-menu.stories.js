@@ -304,6 +304,27 @@ storiesOf('Selects & Dropdown Menus|Select menu', module)
       </Wrapper>
     </div>
   ))
+  .add('popover height with few options', () => (
+    <div>
+      <Wrapper>
+        {({select, deselect, selectedOptions}) => (
+          <SelectMenu
+            isMultiSelect
+            options={[optionsScroll[0], optionsScroll[1]]}
+            value={selectedOptions}
+            onSelect={select}
+            onDeselect={deselect}
+            popoverProps={{
+              height: 250
+            }}
+            placeholderForMultipleSelected={selected =>
+              `Fruit: ${selected.length}`
+            }
+          />
+        )}
+      </Wrapper>
+    </div>
+  ))
 storiesOf(
   'Selects & Dropdown Menus|Select menu/popoverAppearance: accordion',
   module
