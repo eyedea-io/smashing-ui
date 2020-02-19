@@ -38,7 +38,8 @@ const Control: React.FC<ControlProps> = ({
   groupAppearance,
   controlAppearance,
   isOpen,
-  onChange
+  onChange,
+  multiselect
 }) => {
   const checked = Array.isArray(groupValue)
     ? groupValue.includes(item.value || '')
@@ -52,7 +53,7 @@ const Control: React.FC<ControlProps> = ({
     height,
     ...item
   }
-  const handleOnChange = (itemValue: string) => {
+  const handleOnChange = (itemValue: string | number) => {
     if (Array.isArray(groupValue)) {
       if (groupValue.includes(itemValue)) {
         safeInvoke(
@@ -62,9 +63,11 @@ const Control: React.FC<ControlProps> = ({
       } else {
         safeInvoke(onChange, groupValue.concat(itemValue))
       }
-    } else {
+    } else if (multiselect) {
       const newValue = groupValue === itemValue ? undefined : itemValue
       safeInvoke(onChange, newValue)
+    } else {
+      safeInvoke(onChange, itemValue)
     }
   }
 
@@ -129,7 +132,8 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
     disabled,
     invalid,
     visibleCount,
-    popoverProps
+    popoverProps,
+    multiselect = false
   } = props
 
   const [controlsNumber, setControlsNumber] = React.useState(0)
@@ -208,6 +212,7 @@ const ControlGroupFC: React.FC<ControlGroupProps> = props => {
             controlAppearance={controlAppearance}
             height={height}
             isOpen={isOpen}
+            multiselect={multiselect}
           />
         ))}
         {hasMoreButton && (

@@ -19,7 +19,7 @@ export type ControlGroupAppearanceType =
   | 'checkbox-horizontal'
 
 export interface ControlItemProps {
-  value: string
+  value: string | number
   label: string
   disabled?: boolean
 }
@@ -32,9 +32,10 @@ export interface ControlProps {
   disabled?: boolean
   invalid?: boolean
   height?: number
-  value: string | string[]
+  value: string | number | (string | number)[]
   onChange: (value: any) => void
   isOpen?: boolean
+  multiselect?: boolean
 }
 
 export interface ControlGroupProps
