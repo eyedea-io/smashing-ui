@@ -16,6 +16,7 @@ interface PopoverProps {
   buttonAppearance?: SelectMenuAppearanceType
   appearance?: SelectMenuPopoverAppearanceType
   invalid?: boolean
+  height?: number | string
 }
 interface ButtonProps {
   popoverAppearance?: SelectMenuPopoverAppearanceType
@@ -32,6 +33,8 @@ export const Popover = styled(PopoverElement)<PopoverProps>`
   }
 
   ${_ => {
+    const height = _.height
+
     let border = `inset 0 0 0 1px ${
       _.theme.colors.border[_.invalid ? 'invalid' : 'active']
     }`
@@ -45,18 +48,22 @@ export const Popover = styled(PopoverElement)<PopoverProps>`
       }`
     }
 
-    return (
-      _.appearance === 'accordion' &&
-      css`
-        box-sizing: border-box;
-        border-radius: 0px;
-        border-bottom-left-radius: ${_.theme.radius};
-        border-bottom-right-radius: ${_.theme.radius};
-        box-shadow: ${border};
-        padding: 0 1px;
-        background-color: ${_.theme.colors.background.default};
-      `
-    )
+    return _.appearance === 'accordion'
+      ? css`
+          box-sizing: border-box;
+          border-radius: 0px;
+          border-bottom-left-radius: ${_.theme.radius};
+          border-bottom-right-radius: ${_.theme.radius};
+          box-shadow: ${border};
+          padding: 0 1px;
+          background-color: ${_.theme.colors.background.default};
+          max-height: ${height};
+          height: ${height ? 'unset' : undefined};
+        `
+      : {
+          maxHeight: height,
+          height: height ? 'unset' : undefined
+        }
   }}
 `
 export const Title = styled(Heading)`
