@@ -1,6 +1,6 @@
 {
   "name": "@smashing/control-group",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Set of two or more buttons/radios/checkboxes with controlled value.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -20,7 +20,7 @@
     "@smashing/checkbox": "^0.3.4",
     "@smashing/popover": "^0.4.4",
     "@smashing/radio": "^0.1.5",
-    "@smashing/select-menu": "^0.8.5",
+    "@smashing/select-menu": "^0.8.6",
     "@smashing/theme": "^0.15.0"
   },
   "devDependencies": {
