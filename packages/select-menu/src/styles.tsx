@@ -16,25 +16,23 @@ interface PopoverProps {
   buttonAppearance?: SelectMenuAppearanceType
   appearance?: SelectMenuPopoverAppearanceType
   invalid?: boolean
-  height?: number | string
 }
 interface ButtonProps {
   popoverAppearance?: SelectMenuPopoverAppearanceType
   isEmpty?: boolean
 }
 interface MenuContainerProps {
+  height?: number | string
   appearance?: SelectMenuAppearanceType
-  height?: number
 }
 
 export const Popover = styled(PopoverElement)<PopoverProps>`
   ${MenuElements.Group} {
     padding: 0;
   }
+  height: unset;
 
   ${_ => {
-    const height = _.height
-
     let border = `inset 0 0 0 1px ${
       _.theme.colors.border[_.invalid ? 'invalid' : 'active']
     }`
@@ -57,13 +55,8 @@ export const Popover = styled(PopoverElement)<PopoverProps>`
           box-shadow: ${border};
           padding: 0 1px;
           background-color: ${_.theme.colors.background.default};
-          max-height: ${height};
-          height: ${height ? 'unset' : undefined};
         `
-      : {
-          maxHeight: height,
-          height: height ? 'unset' : undefined
-        }
+      : {}
   }}
 `
 export const Title = styled(Heading)`
@@ -125,8 +118,10 @@ export const PopoverHeader = styled.div`
 `
 export const MenuContainer = styled.div<MenuContainerProps>`
   overflow-y: auto;
-  height: 100%;
   position: relative;
+  ${_ => ({
+    maxHeight: _.height
+  })}
 
   &::-webkit-scrollbar {
     width: 4px;

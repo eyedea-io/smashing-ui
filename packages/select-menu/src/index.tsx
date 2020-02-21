@@ -135,7 +135,7 @@ const SelectMenuFC = (props: SelectMenuProps) => {
               placeholder="Filter..."
             />
           )}
-          <S.MenuContainer ref={menuList}>
+          <S.MenuContainer height={popoverProps.height} ref={menuList}>
             {filteredOptions.length > 0 ? (
               <Menu>
                 <Menu.OptionsGroup
