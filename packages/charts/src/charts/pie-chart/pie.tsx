@@ -43,7 +43,6 @@ const Pie: React.SFC<IProps> = ({
         key={i}
         outerRadius={radius}
         value={value}
-        data={data}
         fill={colorScale(i)}
         isDonut={isDonut}
         hasLabels={hasLabels}
@@ -51,16 +50,9 @@ const Pie: React.SFC<IProps> = ({
       />
     )
   }
-  const pie = d3.pie()
-  return (
-    <g transform={`translate(${x}, ${y})`}>
-      {pie(
-        data.map(function(d) {
-          return d.value
-        })
-      ).map(renderSlice)}
-    </g>
-  )
+  const pie = d3.pie<PieChartData>().value(d => d.value)
+
+  return <g transform={`translate(${x}, ${y})`}>{pie(data).map(renderSlice)}</g>
 }
 
 export default Pie

@@ -7,14 +7,13 @@ interface IProps {
   outerRadius: number
   value: any
   fill?: string
-  data: any
   isDonut?: boolean
   hasLabels?: boolean
   gutter?: number
 }
 
 export const Slice: React.FC<IProps> = props => {
-  const {value, fill, outerRadius, data, isDonut, hasLabels, gutter} = props
+  const {value, fill, outerRadius, isDonut, hasLabels, gutter} = props
   const ref = React.useRef(null)
   let innerRadius: number, padAngle: number | undefined
   if (isDonut) {
@@ -46,13 +45,13 @@ export const Slice: React.FC<IProps> = props => {
       .ease(d3.easeExpInOut)
       .attrTween('d', arcTween)
   })
-
-  const label = data.find(
-    (element: {value: any}) => element.value === value.data
-  )
   return (
     <g>
-      <path ref={ref} d={arc(value) as string} fill={label.color || fill} />
+      <path
+        ref={ref}
+        d={arc(value) as string}
+        fill={value.data.color || fill}
+      />
       {hasLabels && (
         <>
           <text
@@ -61,7 +60,7 @@ export const Slice: React.FC<IProps> = props => {
             fill="white"
             style={{fontFamily: 'sans-serif', fontSize: '12'}}
           >
-            {label.name}
+            {value.data.name}
           </text>
           <text
             transform={`translate(${arc.centroid(value)})`}
@@ -70,7 +69,7 @@ export const Slice: React.FC<IProps> = props => {
             fill="white"
             style={{fontFamily: 'sans-serif', fontSize: '12'}}
           >
-            {value.data}
+            {value.data.value}
           </text>
         </>
       )}
