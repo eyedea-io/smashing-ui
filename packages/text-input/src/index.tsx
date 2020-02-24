@@ -46,6 +46,7 @@ const TextInput: React.FC<TextInputProps> = ({
       )}
       <S.TextInput
         as="input"
+        autoComplete={props.autoComplete}
         variant={getTextSizeForControlHeight(defaults.height)}
         borderRadius={getBorderRadiusForControlHeight(defaults.height)}
         color={props.disabled ? 'muted' : undefined}

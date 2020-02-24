@@ -215,6 +215,10 @@ export interface PieChartData {
    * The value of each slice.
    */
   value: number
+  /**
+   * Color of the slice
+   */
+  color?: string
 }
 
 //Bar Chart types
