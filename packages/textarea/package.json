@@ -1,6 +1,6 @@
 {
   "name": "@smashing/textarea",
-  "version": "0.3.9",
+  "version": "0.3.10",
   "description": "Multi line text input component used in forms.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -16,7 +16,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@smashing/text-input": "^0.6.7",
+    "@smashing/text-input": "^0.6.8",
     "@smashing/theme": "^0.15.0",
     "@smashing/typography": "^0.4.32",
     "react-custom-scrollbars": "4.2.1"
