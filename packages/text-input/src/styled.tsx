@@ -59,8 +59,9 @@ export const TextInputAffix = styled(Text)<TextInputAffixProps>`
   position: absolute;
   top: 0;
   box-sizing: border-box;
-  height: ${_ => _.height}px;
-  line-height: ${_ => _.height}px;
+  height: 100%;
+  display: flex;
+  align-items: center;
   color: ${_ =>
     _.invalid ? _.theme.colors.text.danger : _.theme.colors.text.muted};
   ${_ => (_.isBefore ? 'left: 0;' : 'right: 0;')}
