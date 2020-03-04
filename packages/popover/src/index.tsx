@@ -140,6 +140,12 @@ export interface PopoverProps {
    * If set to true, popover width will match target size
    */
   matchTargetWidth?: boolean
+
+  /**
+   * If set to true, exact (real number) target's position
+   * will be used in positioner calculations
+   */
+  exactPosition?: boolean
 }
 
 const Target = (props: {
@@ -255,6 +261,7 @@ export const Popover: React.FC<PopoverProps> = ({
   overlay = false,
   elevate = false,
   transitionType,
+  exactPosition = false,
   ...props
 }) => {
   const [isShown, setIsShown] = React.useState(false)
@@ -343,7 +350,8 @@ export const Popover: React.FC<PopoverProps> = ({
     (ref: HTMLElement | null) => {
       targetRef.current = ref
       if (props.matchTargetWidth && ref && targetWidth !== ref.clientWidth) {
-        setTargetWidth(ref.clientWidth)
+        const boundingClientRect = ref.getBoundingClientRect()
+        setTargetWidth(boundingClientRect.width)
       }
     },
     [targetWidth]
@@ -381,6 +389,7 @@ export const Popover: React.FC<PopoverProps> = ({
         onCloseComplete={onCloseComplete}
         onOpenStarted={onOpenStarted}
         transitionType={transitionType}
+        exactPosition={exactPosition}
       >
         {({style, state, getRef}) => (
           <S.Popup

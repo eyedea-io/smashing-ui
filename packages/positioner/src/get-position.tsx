@@ -24,9 +24,9 @@ interface Coordinates {
 }
 
 /**
- * Function to create a Rect.
+ * Function to create a Rect with rounded values.
  */
-const makeRect = (
+const makeCeiledRect = (
   {width, height}: {width: number; height: number},
   {left, top}: {left: number; top: number}
 ): Rect => {
@@ -41,6 +41,22 @@ const makeRect = (
     bottom: ceiledTop + height
   }
 }
+
+/**
+ * Function to create a Rect.
+ */
+const makeRect = (
+  {width, height}: {width: number; height: number},
+  {left, top}: {left: number; top: number}
+): Rect => ({
+  width,
+  height,
+  left: left,
+  top: top,
+  right: left + width,
+  bottom: top + height
+})
+
 /**
  * Function to flip a position upside down.
  */
@@ -179,7 +195,8 @@ export default function getFittedPosition({
   targetRect,
   targetOffset,
   viewport,
-  viewportOffset = 8
+  viewportOffset = 8,
+  exactPosition = false
 }: {
   position: string
   dimensions: Dimensions
@@ -187,6 +204,7 @@ export default function getFittedPosition({
   targetOffset: number
   viewport: Dimensions
   viewportOffset: number
+  exactPosition?: boolean
 }): {
   rect: Rect
   position: string
@@ -198,31 +216,40 @@ export default function getFittedPosition({
     targetRect,
     targetOffset,
     viewport,
-    viewportOffset
+    viewportOffset,
+    exactPosition
   })
 
   // Push rect to the right if overflowing on the left side of the viewport.
   if (rect.left < viewportOffset) {
-    rect.right += Math.ceil(Math.abs(rect.left - viewportOffset))
-    rect.left = Math.ceil(viewportOffset)
+    rect.right += exactPosition
+      ? Math.abs(rect.left - viewportOffset)
+      : Math.ceil(Math.abs(rect.left - viewportOffset))
+    rect.left = exactPosition ? viewportOffset : Math.ceil(viewportOffset)
   }
 
   // Push rect to the left if overflowing on the right side of the viewport.
   if (rect.right > viewport.width - viewportOffset) {
-    const delta = Math.ceil(rect.right - (viewport.width - viewportOffset))
+    const delta = exactPosition
+      ? rect.right - (viewport.width - viewportOffset)
+      : Math.ceil(rect.right - (viewport.width - viewportOffset))
     rect.left -= delta
     rect.right -= delta
   }
 
   // Push rect down if overflowing on the top side of the viewport.
   if (rect.top < viewportOffset) {
-    rect.top += Math.ceil(Math.abs(rect.top - viewportOffset))
-    rect.bottom = Math.ceil(viewportOffset)
+    rect.top += exactPosition
+      ? Math.abs(rect.top - viewportOffset)
+      : Math.ceil(Math.abs(rect.top - viewportOffset))
+    rect.bottom = exactPosition ? viewportOffset : Math.ceil(viewportOffset)
   }
 
   // Push rect up if overflowing on the bottom side of the viewport.
   if (rect.bottom > viewport.height - viewportOffset) {
-    const delta = Math.ceil(rect.bottom - (viewport.height - viewportOffset))
+    const delta = exactPosition
+      ? rect.bottom - (viewport.height - viewportOffset)
+      : Math.ceil(rect.bottom - (viewport.height - viewportOffset))
     rect.top -= delta
     rect.right -= delta
   }
@@ -254,7 +281,8 @@ function getPosition({
   targetRect,
   targetOffset,
   viewport,
-  viewportOffset = 8
+  viewportOffset = 8,
+  exactPosition = false
 }: {
   position: string
   dimensions: Dimensions
@@ -262,6 +290,7 @@ function getPosition({
   targetOffset: number
   viewport: Dimensions
   viewportOffset: number
+  exactPosition?: boolean
 }) {
   const isHorizontal = isAlignedHorizontal(position)
 
@@ -271,14 +300,16 @@ function getPosition({
       position: Position.LEFT,
       dimensions,
       targetRect,
-      targetOffset
+      targetOffset,
+      exactPosition
     })
 
     const rightRect = getRect({
       position: Position.RIGHT,
       dimensions,
       targetRect,
-      targetOffset
+      targetOffset,
+      exactPosition
     })
 
     const fitsOnLeft = getFitsOnLeft(leftRect, viewportOffset)
@@ -344,26 +375,30 @@ function getPosition({
       position,
       dimensions,
       targetRect,
-      targetOffset
+      targetOffset,
+      exactPosition
     })
     bottomRect = getRect({
       position: flipHorizontal(position),
       dimensions,
       targetRect,
-      targetOffset
+      targetOffset,
+      exactPosition
     })
   } else {
     topRect = getRect({
       position: flipHorizontal(position),
       dimensions,
       targetRect,
-      targetOffset
+      targetOffset,
+      exactPosition
     })
     bottomRect = getRect({
       position,
       dimensions,
       targetRect,
-      targetOffset
+      targetOffset,
+      exactPosition
     })
   }
 
@@ -434,12 +469,14 @@ function getRect({
   position,
   targetOffset,
   dimensions,
-  targetRect
+  targetRect,
+  exactPosition = false
 }: {
   position: string
   targetOffset: number
   dimensions: Dimensions
   targetRect: Rect
+  exactPosition?: boolean
 }) {
   const leftRect = targetRect.left + targetRect.width / 2 - dimensions.width / 2
   const alignedTopY = targetRect.top - dimensions.height - targetOffset
@@ -450,43 +487,43 @@ function getRect({
 
   switch (position) {
     case Position.LEFT:
-      return makeRect(dimensions, {
+      return (exactPosition ? makeRect : makeCeiledRect)(dimensions, {
         left: targetRect.left - dimensions.width - targetOffset,
         top: alignedLeftRightY
       })
     case Position.RIGHT:
-      return makeRect(dimensions, {
+      return (exactPosition ? makeRect : makeCeiledRect)(dimensions, {
         left: targetRect.right + targetOffset,
         top: alignedLeftRightY
       })
     case Position.TOP:
-      return makeRect(dimensions, {
+      return (exactPosition ? makeRect : makeCeiledRect)(dimensions, {
         left: leftRect,
         top: alignedTopY
       })
     case Position.TOP_LEFT:
-      return makeRect(dimensions, {
+      return (exactPosition ? makeRect : makeCeiledRect)(dimensions, {
         left: targetRect.left,
         top: alignedTopY
       })
     case Position.TOP_RIGHT:
-      return makeRect(dimensions, {
+      return (exactPosition ? makeRect : makeCeiledRect)(dimensions, {
         left: alignedRightX,
         top: alignedTopY
       })
     default:
     case Position.BOTTOM:
-      return makeRect(dimensions, {
+      return (exactPosition ? makeRect : makeCeiledRect)(dimensions, {
         left: leftRect,
         top: alignedBottomY
       })
     case Position.BOTTOM_LEFT:
-      return makeRect(dimensions, {
+      return (exactPosition ? makeRect : makeCeiledRect)(dimensions, {
         left: targetRect.left,
         top: alignedBottomY
       })
     case Position.BOTTOM_RIGHT:
-      return makeRect(dimensions, {
+      return (exactPosition ? makeRect : makeCeiledRect)(dimensions, {
         left: alignedRightX,
         top: alignedBottomY
       })
