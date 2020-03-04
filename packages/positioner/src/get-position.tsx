@@ -485,45 +485,49 @@ function getRect({
   const alignedLeftRightY =
     targetRect.top + targetRect.height / 2 - dimensions.height / 2
 
+  const makeRectFn: typeof makeCeiledRect = exactPosition
+    ? makeRect
+    : makeCeiledRect
+
   switch (position) {
     case Position.LEFT:
-      return (exactPosition ? makeRect : makeCeiledRect)(dimensions, {
+      return makeRectFn(dimensions, {
         left: targetRect.left - dimensions.width - targetOffset,
         top: alignedLeftRightY
       })
     case Position.RIGHT:
-      return (exactPosition ? makeRect : makeCeiledRect)(dimensions, {
+      return makeRectFn(dimensions, {
         left: targetRect.right + targetOffset,
         top: alignedLeftRightY
       })
     case Position.TOP:
-      return (exactPosition ? makeRect : makeCeiledRect)(dimensions, {
+      return makeRectFn(dimensions, {
         left: leftRect,
         top: alignedTopY
       })
     case Position.TOP_LEFT:
-      return (exactPosition ? makeRect : makeCeiledRect)(dimensions, {
+      return makeRectFn(dimensions, {
         left: targetRect.left,
         top: alignedTopY
       })
     case Position.TOP_RIGHT:
-      return (exactPosition ? makeRect : makeCeiledRect)(dimensions, {
+      return makeRectFn(dimensions, {
         left: alignedRightX,
         top: alignedTopY
       })
     default:
     case Position.BOTTOM:
-      return (exactPosition ? makeRect : makeCeiledRect)(dimensions, {
+      return makeRectFn(dimensions, {
         left: leftRect,
         top: alignedBottomY
       })
     case Position.BOTTOM_LEFT:
-      return (exactPosition ? makeRect : makeCeiledRect)(dimensions, {
+      return makeRectFn(dimensions, {
         left: targetRect.left,
         top: alignedBottomY
       })
     case Position.BOTTOM_RIGHT:
-      return (exactPosition ? makeRect : makeCeiledRect)(dimensions, {
+      return makeRectFn(dimensions, {
         left: alignedRightX,
         top: alignedBottomY
       })
