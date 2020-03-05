@@ -1,6 +1,6 @@
 {
   "name": "@smashing/positioner",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "description": "Component utility to help with the ReactDOM.createstack API.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",

@@ -1,6 +1,6 @@
 {
   "name": "@smashing/tooltip",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Component used to describe icon buttons.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -16,7 +16,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@smashing/positioner": "^0.2.4",
+    "@smashing/positioner": "^0.3.0",
     "@smashing/theme": "^0.15.0",
     "@smashing/typography": "^0.4.32",
     "debounce": "^1.2.0",
