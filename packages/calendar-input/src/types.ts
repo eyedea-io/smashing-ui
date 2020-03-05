@@ -14,6 +14,7 @@ export type CalendarInputProps = {
   value?: string
   hasTime?: boolean
   disabled?: boolean
+  invalid?: boolean
   hasDay?: boolean
   hoursLabel?: string
   minutesLabel?: string
@@ -53,5 +54,7 @@ export type DateInputProps = Pick<
     }
     value?: Date
     isExpanded?: boolean
+    invalid?: boolean
+
     iconAfter?: React.FC<{toggle: () => void; isShown: boolean}>
   }
