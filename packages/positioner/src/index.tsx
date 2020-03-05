@@ -111,6 +111,11 @@ interface PositionerProps {
    * Type of animation
    */
   transitionType?: transitionType
+
+  /**
+   * If set to true, exact (real number) target's position will be used in calculations
+   */
+  exactPosition?: boolean
 }
 
 export interface PositionerState {
@@ -230,7 +235,8 @@ export class Positioner extends React.PureComponent<
         width: viewportWidth,
         height: viewportHeight
       },
-      viewportOffset: this.props.bodyOffset
+      viewportOffset: this.props.bodyOffset,
+      exactPosition: this.props.exactPosition
     })
     this.setState(
       {

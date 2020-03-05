@@ -108,6 +108,7 @@ const SelectMenuFC = (props: SelectMenuProps) => {
       minWidth={150}
       buttonAppearance={defaults.appearance}
       onOpenStarted={scrollToSelectedItem}
+      exactPosition
       content={({close}) => (
         <React.Fragment>
           {props.hasTitle && (
