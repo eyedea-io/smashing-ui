@@ -19,6 +19,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
   nextIcon,
   prevIcon,
   disabled,
+  invalid,
   ...props
 }) => {
   const [timeIsOpen, setTimeIsOpen] = React.useState(false)
@@ -171,6 +172,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
           hasTime={hasTime}
           height={defaults.height}
           width={defaults.width}
+          invalid={invalid}
           minutesInterval={minutesInterval}
           appearance={defaults.inputAppearance}
           timeValue={timeValue}
