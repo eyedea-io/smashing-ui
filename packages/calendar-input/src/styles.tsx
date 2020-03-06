@@ -185,9 +185,7 @@ export const ClockElement = styled.div`
   })};
 `
 
-export const TimePickerHeader = styled(Button)<{
-  visible?: boolean
-}>`
+export const TimePickerHeader = styled(Button)<{visible?: boolean}>`
   width: 100%;
   border: none;
   background: transparent;
@@ -209,9 +207,7 @@ export const TimePickerHeaderText = styled(Strong)`
   flex: 1;
 `
 
-export const ClockButton = styled(Button)<{
-  visible?: boolean
-}>`
+export const ClockButton = styled(Button)<{visible?: boolean}>`
   width: 100%;
   border: none;
   background: transparent;
