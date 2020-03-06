@@ -21,7 +21,10 @@ const getCalendarStyle = (appearance?: CalendarPopoverAppearanceType) => (_: {
   }
 }
 
-const getPopoverStyle = (appearance?: CalendarPopoverAppearanceType) => {
+const getPopoverStyle = (
+  appearance?: CalendarPopoverAppearanceType,
+  invalid?: boolean
+) => {
   if (appearance === 'dropdown') {
     return css`
       box-shadow: none;
@@ -30,7 +33,9 @@ const getPopoverStyle = (appearance?: CalendarPopoverAppearanceType) => {
       border: none;
       box-sizing: border-box;
       ${_ => ({
-        border: `1px solid ${_.theme.colors.border.active}`,
+        border: `1px solid ${
+          _.theme.colors.border[invalid ? 'danger' : 'active']
+        }`,
         borderTop: `1px solid ${_.theme.colors.border.default}`,
         borderBottomLeftRadius: _.theme.radius,
         borderBottomRightRadius: _.theme.radius
@@ -147,9 +152,10 @@ export const StyledInput = styled(TextInput)<StyledInputProps>`
 
 interface StyledContainerProps {
   appearance?: CalendarPopoverAppearanceType
+  invalid?: boolean
 }
 export const StyledContainer = styled(Popover)<StyledContainerProps>`
-  ${_ => getPopoverStyle(_.appearance)};
+  ${_ => getPopoverStyle(_.appearance, _.invalid)};
 `
 
 export const CalendarContainer = styled.div<{hasTime?: boolean}>`

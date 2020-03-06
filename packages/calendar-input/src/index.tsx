@@ -95,6 +95,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({
       appearance={defaults.popoverAppearance}
       {...popoverPropsForAppearance}
       onCloseComplete={() => setTimeIsOpen(false)}
+      invalid={invalid}
       content={({close}) => {
         return (
           <S.CalendarContainer>
