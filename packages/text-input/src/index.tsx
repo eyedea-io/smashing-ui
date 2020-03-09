@@ -34,6 +34,7 @@ const TextInput: React.FC<TextInputProps> = ({
       full={defaults.full}
       ref={innerRef}
       className={className}
+      data-expanded={props['aria-expanded']}
     >
       {affixBefore && (
         <TextInputAffix

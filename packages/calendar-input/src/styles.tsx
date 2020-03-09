@@ -259,7 +259,7 @@ export const TimePickButton = styled(Text).attrs({
   ${_ => ({
     ...(_.active
       ? {
-          background: _.theme.colors.text.default,
+          background: _.theme.colors.text.muted,
           color: _.theme.palette.neutral.lightest,
           outline: 0
         }

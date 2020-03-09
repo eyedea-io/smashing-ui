@@ -81,7 +81,7 @@ storiesOf('Form|Calendar input', module)
     <WrappedCalendar
       inputAppearance="outline"
       hasTime
-      popoverAppearance="accordion"
+      popoverAppearance="dropdown"
     />
   ))
   .add('popoverAppearance:dropdown', () => (
