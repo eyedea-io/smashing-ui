@@ -17,6 +17,10 @@ export const Item = styled.div<ItemProps>`
   display: flex;
   align-items: center;
 
+  ${Text} {
+    line-height: ${_ => _.height}px;
+  }
+
   &[data-isselectable='true'] {
     cursor: pointer;
   }
@@ -84,17 +88,19 @@ export const Group = styled.div<GroupProps>`
       },
       [Text]: {
         height: '100%',
-        display: 'flex',
-        alignItems: 'center',
         color: _.invalid
           ? _.theme.colors.text.danger
-          : _.theme.colors.text.intense
+          : _.theme.colors.text.intense,
+
+        overflow: 'hidden',
+        whiteSpace: 'nowrap',
+        textOverflow: 'ellipsis'
       },
       [Item]: {
         boxShadow: `inset 0 1px 0 0 ${
           _.invalid ? _.theme.colors.border.danger : _.theme.colors.border.muted
         }`,
-        '&:not([data-isselectable=\'false\']):hover': {
+        '&:not([data-isselectable="false"]):hover': {
           backgroundColor: 'unset'
         }
       }
