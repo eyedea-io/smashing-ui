@@ -27,8 +27,7 @@ if ! repository_id=$(echo "${repository}" | python -c 'import sys, json; print j
   exit 3
 fi
 
-path_to_repo=$(echo "$CIRCLE_WORKING_DIRECTORY" | sed -e "s:~:$HOME:g")
-url="https://${build_num}-${repository_id}-gh.circle-artifacts.com/0${path_to_repo}/storybook-static/index.html"
+url="https://${build_num}-${repository_id}-gh.circle-artifacts.com/0/storybook-static/index.html"
 
 if ! deployment=$(curl -s \
                   -X POST \
