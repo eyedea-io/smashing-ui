@@ -73,7 +73,7 @@ const getButtonGroupStyle = (_: WrapperProps & ThemeProps) => {
         display: 'none'
       }
       style['.selectMenuInput'] = {
-        visibility: 'hidden'
+        display: 'none'
       }
     }
     if (_.hasMoreButton && _.isOpen) {
@@ -81,7 +81,7 @@ const getButtonGroupStyle = (_: WrapperProps & ThemeProps) => {
         visibility: 'hidden'
       }
       style['.selectMenuInput'] = {
-        visibility: 'visible'
+        display: 'flex'
       }
     }
 
