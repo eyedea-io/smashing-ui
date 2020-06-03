@@ -33,7 +33,7 @@ export interface CheckboxProps {
   invalid?: boolean
   onChange?: React.ChangeEventHandler<HTMLInputElement>
   innerRef?: any
-  className?: string
+  className?: string | number
   value?: string
 }
 
