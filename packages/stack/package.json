@@ -1,6 +1,6 @@
 {
   "name": "@smashing/stack",
-  "version": "0.1.27",
+  "version": "1.0.0",
   "description": "Component utility to help with stacking dialogs, tooltips, etc.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",

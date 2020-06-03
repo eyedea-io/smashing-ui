@@ -1,6 +1,6 @@
 {
   "name": "@smashing/spinner",
-  "version": "0.1.19",
+  "version": "1.0.0",
   "description": "Component used to indicate a loading state.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@smashing/theme": "^0.15.0",
-    "@smashing/typography": "^0.4.32"
+    "@smashing/typography": "^1.0.0"
   },
   "devDependencies": {
     "react": "^16.12.0"
