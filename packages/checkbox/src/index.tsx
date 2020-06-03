@@ -22,6 +22,7 @@ const CheckboxFC: React.FC<CheckboxProps> = ({
   innerRef,
   onChange,
   className,
+  value,
   ...props
 }) => {
   const defaults = useDefaults('checkbox', props, {
@@ -41,6 +42,7 @@ const CheckboxFC: React.FC<CheckboxProps> = ({
       {...props}
     >
       <S.HiddenCheckbox
+        value={value}
         checked={props.checked}
         onChange={onChange}
         appearance={defaults.appearance}

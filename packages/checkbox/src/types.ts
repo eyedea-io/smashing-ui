@@ -34,6 +34,7 @@ export interface CheckboxProps {
   onChange?: React.ChangeEventHandler<HTMLInputElement>
   innerRef?: any
   className?: string
+  value?: string
 }
 
 export type StyledLabelProps = Pick<CheckboxProps, 'disabled' | 'checked'> &
