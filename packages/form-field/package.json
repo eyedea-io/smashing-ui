@@ -21,15 +21,15 @@
     "@smashing/typography": "^0.4.32"
   },
   "devDependencies": {
-    "@smashing/form": "^0.6.0",
+    "@smashing/form": "^0.7.0",
     "mobx": "^5.14.0",
     "mobx-react-lite": "^1.4.1",
-    "react": "^16.8.6"
+    "react": "^16.12.0"
   },
   "peerDependencies": {
-    "@smashing/form": "^0.6.0",
-    "react": "^16.8.6",
-    "styled-components": "^4.2.0"
+    "@smashing/form": "^0.7.0",
+    "react": "^16.12.0",
+    "styled-components": "^5.0.0"
   },
   "keywords": [
     "smashing",

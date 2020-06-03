@@ -1,6 +1,5 @@
 import * as React from 'react'
 import {useDefaults, useTheme} from '@smashing/theme'
-import {Scrollbars} from 'react-custom-scrollbars'
 
 import {
   TextareaProps,
@@ -12,7 +11,7 @@ import * as S from './styled'
 
 const Textarea: React.FC<TextareaProps> = ({color, className, ...props}) => {
   const theme = useTheme()
-  const scrollContainer = React.useRef<Scrollbars>(null)
+  const scrollContainer = React.useRef<any>(null)
   const defaults = useDefaults('textarea', props, {
     appearance: 'default' as TextareaAppearance,
     scrollbarAppearance: 'default' as ScrollbarAppearance,

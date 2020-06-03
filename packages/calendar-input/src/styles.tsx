@@ -1,6 +1,6 @@
 import styled, {DefaultTheme, css} from 'styled-components'
 import {StyledCalendarInputProps, CalendarPopoverAppearanceType} from './types'
-import ReactCalendar from 'react-calendar/dist/entry.nostyle'
+import ReactCalendar from 'react-calendar'
 import {TextInput, TextInputAppearanceType} from '@smashing/text-input'
 import {Popover} from '@smashing/popover'
 import {Text, Strong} from '@smashing/typography'

@@ -7,6 +7,7 @@
     "typescript",
     "typescriptreact"
   ],
+  "css.validate": false,
   "eslint.enable": true,
   "search.exclude": {
     "**/node_modules": true,

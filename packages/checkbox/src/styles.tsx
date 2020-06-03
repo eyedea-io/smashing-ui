@@ -55,7 +55,6 @@ export const getLabelStyle = (
   if (disabled && appearance === 'card') {
     return {
       color: _.theme.colors.text.muted,
-      backgroundColor: 'white',
       fontWeight: 600,
       padding: 16,
       borderRadius: _.theme.radius,

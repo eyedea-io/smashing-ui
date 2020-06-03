@@ -287,6 +287,11 @@ export interface MenuOption {
   [key: string]: any
 }
 
+export interface MenuOptionGroup {
+  title: string
+  items: MenuOption[]
+}
+
 export interface MenuOptionsGroupProps {
   /**
    * Title of the menu group.

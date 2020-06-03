@@ -27,10 +27,11 @@ interface MenuContainerProps {
 }
 
 export const Popover = styled(PopoverElement)<PopoverProps>`
+  height: unset;
+
   ${MenuElements.Group} {
     padding: 0;
   }
-  height: unset;
 
   ${_ => {
     let border = `inset 0 0 0 1px ${

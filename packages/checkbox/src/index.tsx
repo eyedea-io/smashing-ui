@@ -20,6 +20,7 @@ const CheckIcon = ({fill = 'currentColor'}) => (
 const CheckboxFC: React.FC<CheckboxProps> = ({
   children,
   innerRef,
+  onChange,
   ...props
 }) => {
   const defaults = useDefaults('checkbox', props, {
@@ -34,7 +35,7 @@ const CheckboxFC: React.FC<CheckboxProps> = ({
     <S.Label as="label" ref={innerRef} {...defaults} {...props}>
       <S.HiddenCheckbox
         checked={props.checked}
-        onChange={props.onChange}
+        onChange={onChange}
         appearance={defaults.appearance}
         {...props}
       />

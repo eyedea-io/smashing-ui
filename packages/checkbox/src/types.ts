@@ -35,5 +35,5 @@ export interface CheckboxProps {
   innerRef?: any
 }
 
-export type StyledLabelProps = CheckboxProps &
+export type StyledLabelProps = Pick<CheckboxProps, 'disabled' | 'checked'> &
   Required<Pick<CheckboxProps, 'appearance'>>
