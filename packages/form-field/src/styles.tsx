@@ -68,7 +68,7 @@ interface FormFieldProps {
 }
 
 export const ErrorWrapper = styled.div``
-export const DefaultInput = styled.input``
+export const DefaultInput = styled.input<{component: any}>``
 
 export const Container = styled.div<FormFieldProps>`
   position: relative;

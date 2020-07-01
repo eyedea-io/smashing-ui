@@ -3,7 +3,12 @@ import {LabelVariant} from '@smashing/typography'
 
 export type FormFieldLabelAppearance = 'block' | 'overlay' | 'inline'
 export type FormFieldAlertAppearance = 'block' | 'overlay'
-export type FormFieldProps = FieldProps & {
+export type FormFieldProps = Omit<FieldProps, 'component'> & {
+  /**
+   * Component used to render input
+   */
+  component?: React.ComponentType<any>
+
   /**
    * The label used above the input element.
    */
