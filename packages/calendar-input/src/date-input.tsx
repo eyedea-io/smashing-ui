@@ -86,13 +86,9 @@ export const DateInput: React.FC<DateInputProps> = ({
   }
 
   const setSelectionRange = (start: number, end: number) => {
-    if (inputNode.current) {
-      inputNode.current.childNodes.forEach(node => {
-        if (node.nodeName === 'INPUT' && activeDatePart) {
-          ;(node as HTMLInputElement).focus()
-          ;(node as HTMLInputElement).setSelectionRange(start, end)
-        }
-      })
+    if (inputNode.current && activeDatePart) {
+      inputNode.current.focus()
+      inputNode.current.setSelectionRange(start, end)
     }
   }
 
@@ -272,7 +268,7 @@ export const DateInput: React.FC<DateInputProps> = ({
   return (
     <S.StyledInput
       className={className}
-      innerRef={ref => {
+      ref={ref => {
         inputNode.current = ref
         getRef(ref)
       }}

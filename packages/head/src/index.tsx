@@ -93,7 +93,7 @@ export class Head extends React.Component<Props, State> {
   }
 
   render() {
-    const head = React.Children.map(this.props.children, c => c)
+    const head = React.Children.map(this.props.children || [], c => c)
       .filter(c => !!c)
       .map(children => React.Children.toArray(children))
       .reduce((a, b) => a.concat(b), [])

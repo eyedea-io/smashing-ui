@@ -24,11 +24,11 @@
   },
   "devDependencies": {
     "@types/debounce": "^1.2.0",
-    "react": "^16.12.0",
+    "react": "^16.13.1",
     "react-dom": "^16.12.0"
   },
   "peerDependencies": {
-    "react": "^16.12.0",
+    "react": "^16.13.1",
     "react-dom": "^16.12.0",
     "styled-components": "^5.0.0"
   },

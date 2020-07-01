@@ -19,10 +19,10 @@
     "@smashing/theme": "^0.15.0"
   },
   "devDependencies": {
-    "react": "^16.12.0"
+    "react": "^16.13.1"
   },
   "peerDependencies": {
-    "react": "^16.12.0",
+    "react": "^16.13.1",
     "styled-components": "^5.0.0"
   },
   "keywords": [

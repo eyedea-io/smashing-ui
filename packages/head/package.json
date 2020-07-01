@@ -16,10 +16,10 @@
     "access": "public"
   },
   "devDependencies": {
-    "react": "^16.12.0"
+    "react": "^16.13.1"
   },
   "peerDependencies": {
-    "react": "^16.12.0"
+    "react": "^16.13.1"
   },
   "keywords": [
     "smashing",

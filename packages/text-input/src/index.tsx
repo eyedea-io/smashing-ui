@@ -8,69 +8,71 @@ import {
 } from '@smashing/theme'
 import {TextInputAffix} from './components/affix'
 
-const TextInput: React.FC<TextInputProps> = ({
-  children,
-  className,
-  innerRef,
-  affixBefore,
-  affixAfter,
-  onClickBefore,
-  onClickAfter,
-  value,
-  readOnly,
-  ...props
-}) => {
-  const defaults = useDefaults('textInput', props, {
-    width: undefined,
-    height: 32,
-    full: false,
-    appearance: 'default' as TextInputAppearanceType
-  })
-  const inputRef = React.useRef<HTMLInputElement>(null)
+const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
+  (props, ref) => {
+    const {
+      children,
+      className,
+      affixBefore,
+      affixAfter,
+      containerRef,
+      onClickBefore,
+      onClickAfter,
+      value,
+      readOnly,
+      ...restProps
+    } = props
+    const defaults = useDefaults('textInput', restProps, {
+      width: undefined,
+      height: 32,
+      full: false,
+      appearance: 'default' as TextInputAppearanceType
+    })
 
-  return (
-    <S.TextInputContainer
-      width={defaults.width}
-      full={defaults.full}
-      ref={innerRef}
-      className={className}
-      data-expanded={props['aria-expanded']}
-    >
-      {affixBefore && (
-        <TextInputAffix
-          isBefore
-          inputRef={inputRef}
-          component={affixBefore}
-          onClickBefore={onClickBefore}
+    return (
+      <S.TextInputContainer
+        width={defaults.width}
+        full={defaults.full}
+        ref={containerRef}
+        className={className}
+        data-expanded={restProps['aria-expanded']}
+      >
+        {affixBefore && (
+          <TextInputAffix
+            isBefore
+            inputRef={ref}
+            component={affixBefore}
+            onClickBefore={onClickBefore}
+            {...defaults}
+          />
+        )}
+        <S.TextInput
+          as="input"
+          autoComplete={restProps.autoComplete}
+          variant={getTextSizeForControlHeight(defaults.height)}
+          borderRadius={getBorderRadiusForControlHeight(defaults.height)}
+          color={restProps.disabled ? 'muted' : undefined}
+          disabled={restProps.disabled}
+          aria-invalid={restProps.invalid}
+          ref={ref as any}
+          affixBefore={affixBefore}
+          affixAfter={affixAfter}
+          readOnly={readOnly}
+          value={value}
           {...defaults}
         />
-      )}
-      <S.TextInput
-        as="input"
-        autoComplete={props.autoComplete}
-        variant={getTextSizeForControlHeight(defaults.height)}
-        borderRadius={getBorderRadiusForControlHeight(defaults.height)}
-        color={props.disabled ? 'muted' : undefined}
-        disabled={props.disabled}
-        aria-invalid={props.invalid}
-        ref={inputRef}
-        affixBefore={affixBefore}
-        affixAfter={affixAfter}
-        readOnly={readOnly}
-        value={value}
-        {...defaults}
-      />
-      {affixAfter && (
-        <TextInputAffix
-          inputRef={inputRef}
-          component={affixAfter}
-          onClickAfter={onClickAfter}
-          {...defaults}
-        />
-      )}
-    </S.TextInputContainer>
-  )
-}
+        {affixAfter && (
+          <TextInputAffix
+            inputRef={ref}
+            component={affixAfter}
+            onClickAfter={onClickAfter}
+            {...defaults}
+          />
+        )}
+      </S.TextInputContainer>
+    )
+  }
+)
 
 export const TextInputComponents = S
 export {TextInput, TextInputProps, TextInputAppearanceType}
