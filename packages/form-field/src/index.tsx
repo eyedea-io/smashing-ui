@@ -12,18 +12,19 @@ import {
   FormFieldAlertAppearance
 } from './types'
 
-const FormFieldFC: React.FC<FormFieldProps> = ({
-  component,
-  description,
-  hint,
-  htmlFor,
-  id,
-  label,
-  name,
-  gridArea,
-  className,
-  ...props
-}) => {
+const FormFieldFC = React.forwardRef<HTMLElement, FormFieldProps>(props => {
+  const {
+    component,
+    description,
+    hint,
+    htmlFor,
+    id,
+    label,
+    name,
+    gridArea,
+    className,
+    ...restProps
+  } = props
   const {Field, ErrorMessage} = useFormContext()
   const {
     labelVariant,
@@ -32,7 +33,7 @@ const FormFieldFC: React.FC<FormFieldProps> = ({
     alertAppearance,
     hasLabel,
     ...inputProps
-  } = useDefaults('formField', props, {
+  } = useDefaults('formField', restProps, {
     labelVariant: 400 as LabelVariant,
     labelColumnWidth: '100px',
     labelAppearance: 'block' as FormFieldLabelAppearance,
@@ -90,7 +91,7 @@ const FormFieldFC: React.FC<FormFieldProps> = ({
       {hint && typeof hint !== 'string' && hint}
     </S.Container>
   )
-}
+})
 
 export const FormField = styled(FormFieldFC)``
 
