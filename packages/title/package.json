@@ -1,6 +1,6 @@
 {
   "name": "@smashing/title",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Manage page title",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -16,7 +16,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@smashing/head": "^1.0.0"
+    "@smashing/head": "^1.0.1"
   },
   "devDependencies": {
     "react": "^16.13.1"

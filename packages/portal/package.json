@@ -1,6 +1,6 @@
 {
   "name": "@smashing/portal",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Component utility to help with the ReactDOM.createPortal API.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",

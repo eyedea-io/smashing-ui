@@ -1,6 +1,6 @@
 {
   "name": "@smashing/menu",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Multiple component that help create menus.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@smashing/theme": "^0.15.0",
-    "@smashing/typography": "^1.0.0"
+    "@smashing/typography": "^1.0.1"
   },
   "devDependencies": {
     "react": "^16.13.1"

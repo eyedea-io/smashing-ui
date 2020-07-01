@@ -1,6 +1,6 @@
 {
   "name": "@smashing/calendar-input",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Input with calendar.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
@@ -16,11 +16,11 @@
     "access": "public"
   },
   "dependencies": {
-    "@smashing/button": "^1.0.0",
-    "@smashing/popover": "^1.0.0",
-    "@smashing/text-input": "^1.0.0",
+    "@smashing/button": "^1.0.1",
+    "@smashing/popover": "^1.0.1",
+    "@smashing/text-input": "^1.1.0",
     "@smashing/theme": "^0.15.0",
-    "@smashing/typography": "^1.0.0",
+    "@smashing/typography": "^1.0.1",
     "react-calendar": "^3.1.0"
   },
   "devDependencies": {
