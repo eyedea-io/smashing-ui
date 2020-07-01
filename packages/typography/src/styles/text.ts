@@ -29,7 +29,7 @@ export const getTextStyle = ({
       font-family: ${
         fontFamily ? getFontFamily(fontFamily)(_) : _.theme.fontFamilies.display
       };
-      color: ${getTextColor(intent || color)(_)}
+      color: ${getTextColor(intent || color)(_)};
     `,
     500: `
       font-size: 16px;
@@ -39,7 +39,7 @@ export const getTextStyle = ({
       font-family: ${
         fontFamily ? getFontFamily(fontFamily)(_) : _.theme.fontFamilies.ui
       };
-      color: ${getTextColor(intent || color)(_)}
+      color: ${getTextColor(intent || color)(_)};
     `,
     400: `
       font-size: 14px;
@@ -49,7 +49,7 @@ export const getTextStyle = ({
       font-family: ${
         fontFamily ? getFontFamily(fontFamily)(_) : _.theme.fontFamilies.ui
       };
-      color: ${getTextColor(intent || color)(_)}
+      color: ${getTextColor(intent || color)(_)};
     `,
     300: `
       font-size: 12px;
@@ -59,7 +59,7 @@ export const getTextStyle = ({
       font-family: ${
         fontFamily ? getFontFamily(fontFamily)(_) : _.theme.fontFamilies.ui
       };
-      color: ${getTextColor(intent || color)(_)}
+      color: ${getTextColor(intent || color)(_)};
     `
   }[variant]
 }
