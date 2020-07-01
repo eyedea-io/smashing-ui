@@ -2808,10 +2808,10 @@
   dependencies:
     "@sentry/cli" "^1.52.3"
 
-"@smashing/form@^0.7.0":
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/@smashing/form/-/form-0.7.0.tgz#e829f5513334a1e4562e393094cdad8a866c5369"
-  integrity sha512-NJnmAcJqKad+YNS3AgHIPKMN+z6mV9HAa5ZcILp4qvKzZwa1j4XvjDw8ITpvQUvMGhdoJ3WEUlCX5c1ffiMhcw==
+"@smashing/form@^0.7.2":
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/@smashing/form/-/form-0.7.2.tgz#ea72ef2f08dd4cebbcb120a345722bbf2e78c69c"
+  integrity sha512-5eJayfrdLtCgYrgRMUWJszHFZd16FZieuc1pY8Lpeoz+groEcXp7ELfHmCuiPdouFuRhVrJSmdESUXZZ+9kZXQ==
   dependencies:
     dot-prop "^5.1.0"
     react-fast-compare "^2.0.4"

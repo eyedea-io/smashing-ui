@@ -21,13 +21,13 @@
     "@smashing/typography": "^1.0.1"
   },
   "devDependencies": {
-    "@smashing/form": "^0.7.0",
+    "@smashing/form": "^0.7.2",
     "mobx": "^5.14.0",
     "mobx-react-lite": "^1.4.1",
     "react": "^16.13.1"
   },
   "peerDependencies": {
-    "@smashing/form": "^0.7.0",
+    "@smashing/form": "^0.7.2",
     "react": "^16.13.1",
     "styled-components": "^5.0.0"
   },

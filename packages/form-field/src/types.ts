@@ -7,7 +7,7 @@ export type FormFieldProps = FieldProps & {
   /**
    * The label used above the input element.
    */
-  label: string
+  label?: string
   /**
    * Passed on the label as a htmlFor prop.
    */
@@ -46,4 +46,5 @@ export type FormFieldProps = FieldProps & {
    */
   gridArea?: string
   className?: string
+  htmlFor?: string
 }
