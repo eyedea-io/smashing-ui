@@ -1,6 +1,6 @@
 {
   "name": "@smashing/alert",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Component used to give feedback to the user about an action or state.",
   "repository": "eyedea-io/smashing-ui",
   "license": "MIT",
