@@ -82,8 +82,8 @@ const Icon = styled.div`
 `
 
 const Content = styled.div`
-  display: flex;
   flex-direction: column;
+  display: flex;
 `
 
 const Description = styled(Text)``
