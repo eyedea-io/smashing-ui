@@ -57,6 +57,7 @@ interface BoxInnerProps {
 const BoxInner = styled.div<BoxInnerProps>`
   display: flex;
   flex: 1;
+  align-items: center;
   ${_ =>
     ['card', 'default'].includes(_.appearance) &&
     css`
@@ -71,7 +72,6 @@ const Title = styled(Strong)`
 `
 
 const Icon = styled.div`
-  margin-top: 3px;
   margin-left: 2px;
   margin-right: 10px;
 
@@ -79,6 +79,11 @@ const Icon = styled.div`
     display: block;
     height: 14px;
   }
+`
+
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
 `
 
 const Description = styled(Text)``
@@ -117,7 +122,7 @@ const Alert: React.FC<AlertProps> = ({
         {defaults.hasIcon && (
           <Icon>{getAlertIconForIntent(defaults.intent)({theme})}</Icon>
         )}
-        <div>
+        <Content>
           {typeof title === 'string' ? (
             <Title as="h4" color="intense">
               {title}
@@ -130,7 +135,7 @@ const Alert: React.FC<AlertProps> = ({
           ) : (
             children
           )}
-        </div>
+        </Content>
       </BoxInner>
       {defaults.hasClose && (
         <CloseButton

@@ -179,6 +179,14 @@ storiesOf('Feedback Indicators|Alert', module)
       />
     </React.Fragment>
   ))
+  .add('with description and icon', () => (
+    <React.Fragment>
+      <Alert appearance="inline">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, sapiente
+        dolorem corporis.
+      </Alert>
+    </React.Fragment>
+  ))
   .add('all', () => (
     <div style={{display: 'grid', rowGap: '8px'}}>
       <Heading>Default style</Heading>
