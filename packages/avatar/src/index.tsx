@@ -51,7 +51,15 @@ const AvatarContext = React.createContext({size: 32})
 
 const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
   (componentProps, ref) => {
-    const {children, name, src, hashValue, count, ...props} = componentProps
+    const {
+      children,
+      name,
+      src,
+      hashValue,
+      count,
+      className,
+      ...props
+    } = componentProps
     const theme = React.useContext(ThemeContext)
     const {size} = React.useContext(AvatarContext)
     const defaults = useDefaults('avatar', props, {
@@ -92,6 +100,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
         title={name}
         backgroundColor={colorProps.backgroundColor}
         ref={ref}
+        className={className}
         {...props}
       >
         {count !== undefined ? (

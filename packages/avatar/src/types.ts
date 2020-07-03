@@ -60,6 +60,8 @@ export interface AvatarProps {
    * Ref of the element being positioned.
    */
   innerRef?: RefObject<HTMLDivElement>
+
+  className?: string
 }
 
 export interface AvatarStackProps {
