@@ -49,84 +49,79 @@ const Image = styled.img`
 
 const AvatarContext = React.createContext({size: 32})
 
-const Avatar: React.FC<AvatarProps> = ({
-  children,
-  name,
-  src,
-  hashValue,
-  count,
-  innerRef,
-  ...props
-}) => {
-  const theme = React.useContext(ThemeContext)
-  const {size} = React.useContext(AvatarContext)
-  const defaults = useDefaults('avatar', props, {
-    appearance: 'subtle' as AvatarAppearanceType,
-    color: 'automatic' as Exclude<AvatarProps['color'], undefined>,
-    size,
-    sizeLimitOneCharacter: 20,
-    forceShowInitials: false
-  })
+const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
+  (componentProps, ref) => {
+    const {children, name, src, hashValue, count, ...props} = componentProps
+    const theme = React.useContext(ThemeContext)
+    const {size} = React.useContext(AvatarContext)
+    const defaults = useDefaults('avatar', props, {
+      appearance: 'subtle' as AvatarAppearanceType,
+      color: 'automatic' as Exclude<AvatarProps['color'], undefined>,
+      size,
+      sizeLimitOneCharacter: 20,
+      forceShowInitials: false
+    })
 
-  const [imageHasFailedLoading, setImageHasFailedLoading] = React.useState(
-    false
-  )
-  const handleError = React.useCallback(() => {
-    setImageHasFailedLoading(true)
-  }, [])
-  const imageUnavailable = !src || imageHasFailedLoading
-  const initialsFontSize = `${getAvatarInitialsFontSize(
-    defaults.size,
-    defaults.sizeLimitOneCharacter
-  )}px`
+    const [imageHasFailedLoading, setImageHasFailedLoading] = React.useState(
+      false
+    )
+    const handleError = React.useCallback(() => {
+      setImageHasFailedLoading(true)
+    }, [])
+    const imageUnavailable = !src || imageHasFailedLoading
+    const initialsFontSize = `${getAvatarInitialsFontSize(
+      defaults.size,
+      defaults.sizeLimitOneCharacter
+    )}px`
 
-  let initials = getInitials(name)
-  if (defaults.size <= defaults.sizeLimitOneCharacter) {
-    initials = initials.substring(0, 1)
+    let initials = getInitials(name)
+    if (defaults.size <= defaults.sizeLimitOneCharacter) {
+      initials = initials.substring(0, 1)
+    }
+
+    const colorProps = getAvatarProps({
+      theme,
+      appearance: defaults.appearance,
+      color: defaults.color,
+      hashValue: hashCode(hashValue || name)
+    })
+
+    return (
+      <Box
+        size={defaults.size}
+        title={name}
+        backgroundColor={colorProps.backgroundColor}
+        ref={ref}
+        {...props}
+      >
+        {count !== undefined ? (
+          <Initials
+            fontSize={initialsFontSize}
+            lineHeight={initialsFontSize}
+            size={defaults.size}
+            textColor={colorProps.color as any}
+          >
+            +{count}
+          </Initials>
+        ) : (
+          <React.Fragment>
+            {(imageUnavailable || defaults.forceShowInitials) && (
+              <Initials
+                fontSize={initialsFontSize}
+                lineHeight={initialsFontSize}
+                size={defaults.size}
+                textColor={colorProps.color as any}
+              >
+                {initials}
+              </Initials>
+            )}
+            {!imageUnavailable && <Image src={src} onError={handleError} />}
+          </React.Fragment>
+        )}
+      </Box>
+    )
   }
-
-  const colorProps = getAvatarProps({
-    theme,
-    appearance: defaults.appearance,
-    color: defaults.color,
-    hashValue: hashCode(hashValue || name)
-  })
-
-  return (
-    <Box
-      size={defaults.size}
-      title={name}
-      backgroundColor={colorProps.backgroundColor}
-      ref={innerRef}
-      {...props}
-    >
-      {count !== undefined ? (
-        <Initials
-          fontSize={initialsFontSize}
-          lineHeight={initialsFontSize}
-          size={defaults.size}
-          textColor={colorProps.color as any}
-        >
-          +{count}
-        </Initials>
-      ) : (
-        <React.Fragment>
-          {(imageUnavailable || defaults.forceShowInitials) && (
-            <Initials
-              fontSize={initialsFontSize}
-              lineHeight={initialsFontSize}
-              size={defaults.size}
-              textColor={colorProps.color as any}
-            >
-              {initials}
-            </Initials>
-          )}
-          {!imageUnavailable && <Image src={src} onError={handleError} />}
-        </React.Fragment>
-      )}
-    </Box>
-  )
-}
+)
 
 const More = styled(Avatar)``
 

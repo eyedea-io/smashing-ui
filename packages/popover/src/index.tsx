@@ -148,13 +148,14 @@ export interface PopoverProps {
   exactPosition?: boolean
 }
 
-const Target = (props: {
+type TargetProps = {
   isShown: boolean
   close: () => void
   open: () => void
   children: any
-  innerRef: any
-}) => {
+}
+
+const Target = React.forwardRef<HTMLElement, TargetProps>((props, ref) => {
   const toggle = React.useCallback(() => {
     if (props.isShown) {
       props.close()
@@ -205,7 +206,7 @@ const Target = (props: {
   if (typeof props.children === 'function') {
     return props.children({
       toggle,
-      getRef: props.innerRef,
+      getRef: ref,
       isShown: props.isShown
     })
   }
@@ -214,10 +215,10 @@ const Target = (props: {
    * With normal usage only popover props end up on the target.
    */
   return React.cloneElement(props.children, {
-    innerRef: props.innerRef,
+    ref,
     ...popoverTargetProps
   })
-}
+})
 
 const S = {
   Popup: styled.div<PopoverProps & {popupWidth?: number}>`
@@ -373,7 +374,7 @@ export const Popover: React.FC<PopoverProps> = ({
             close={close}
             open={open}
             isShown={isShown}
-            innerRef={ref => {
+            ref={ref => {
               getRef(ref)
               setTargetRef(ref)
             }}

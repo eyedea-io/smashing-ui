@@ -4,6 +4,9 @@ import {Button} from '@smashing/button'
 import {withA11y} from '@storybook/addon-a11y'
 import {SmashingThemeProvider} from '@smashing/theme'
 import {ArrowRightRegular, CalendarRegular} from './common/icon'
+import {createRef} from 'react'
+
+const buttonRef = createRef()
 
 addDecorator(withA11y)
 
@@ -313,7 +316,7 @@ storiesOf('Atomic Elements|Button', module)
       <p>
         <Button appearance="outline" intent="success" borderRadius={30}>
           Radius: 30
-          </Button>
+        </Button>
       </p>
     </React.Fragment>
   ))
@@ -546,3 +549,10 @@ storiesOf('Atomic Elements|Button', module)
       </p>
     </React.Fragment>
   ))
+  .add('with ref', () => {
+    return (
+      <React.Fragment>
+        <Button ref={buttonRef}>Hulk smash!</Button>
+      </React.Fragment>
+    )
+  })

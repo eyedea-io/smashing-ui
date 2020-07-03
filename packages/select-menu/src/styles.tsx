@@ -5,10 +5,7 @@ import {
 } from './types'
 import {TextInput} from '@smashing/text-input'
 import {MenuElements} from '@smashing/menu'
-import {
-  Button as PureButton,
-  StyledButton as ButtonElements
-} from '@smashing/button'
+import {Button as PureButton, ButtonElements} from '@smashing/button'
 import {Popover as PopoverElement} from '@smashing/popover'
 import {Heading} from '@smashing/typography'
 

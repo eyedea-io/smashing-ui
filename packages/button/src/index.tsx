@@ -81,83 +81,88 @@ const ButtonFCFactory: <AdditionalProps extends {}>(
 ) => React.FC<ButtonProps> = <AdditionalProps extends {}>(
   as: StyledComponentElement = 'button'
 ) => {
-  const ButtonFC = ({
-    children,
-    innerRef,
-    iconAfter: IconAfter,
-    iconBefore: IconBefore,
-    ...props
-  }) => {
-    const defaults = useDefaults('button', props, {
-      height: 32,
-      appearance: 'default' as ButtonAppearanceType,
-      intent: 'none' as ButtonIntentType,
-      isLoading: false,
-      full: false
-    })
-    const theme = useTheme()
-    const loaderIconPosition =
-      children === undefined ? 'center' : IconBefore ? 'before' : 'after'
-    const iconProps = {
-      size: Math.round(defaults.height / 2),
-      color: getButtonTextColor(
-        props.intent,
-        props.appearance,
-        props.disabled
-      )({theme})
+  const ButtonFC = React.forwardRef<typeof as, ButtonProps>(
+    (componentProps, ref) => {
+      const {
+        children,
+        innerRef,
+        iconAfter: IconAfter,
+        iconBefore: IconBefore,
+        ...props
+      } = componentProps
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const defaults = useDefaults('button', props, {
+        height: 32,
+        appearance: 'default' as ButtonAppearanceType,
+        intent: 'none' as ButtonIntentType,
+        isLoading: false,
+        full: false
+      })
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const theme = useTheme()
+      const loaderIconPosition =
+        children === undefined ? 'center' : IconBefore ? 'before' : 'after'
+      const iconProps = {
+        size: Math.round(defaults.height / 2),
+        color: getButtonTextColor(
+          props.intent,
+          props.appearance,
+          props.disabled
+        )({theme})
+      }
+
+      return (
+        <Container
+          as={as}
+          borderRadius={getBorderRadiusForControlHeight(defaults.height)}
+          variant={getTextSizeForControlHeight(defaults.height)}
+          ref={ref}
+          {...defaults}
+          {...props}
+          aria-invalid={props.invalid}
+          disabled={props.disabled || props.isLoading}
+        >
+          {IconBefore && (
+            <IconWrapper
+              iconPosition={children ? 'before' : 'center'}
+              height={defaults.height}
+            >
+              <IconBefore {...iconProps} />
+            </IconWrapper>
+          )}
+
+          {children}
+
+          {/* TODO: Handle loader position */}
+          {defaults.isLoading && (
+            <IconWrapper
+              iconPosition={loaderIconPosition}
+              height={defaults.height}
+            >
+              <Spinner height={defaults.height} size={iconProps.size} />
+            </IconWrapper>
+          )}
+
+          {IconAfter && !defaults.isLoading && (
+            <IconWrapper
+              iconPosition={children ? 'after' : 'center'}
+              height={defaults.height}
+            >
+              <IconAfter {...iconProps} />
+            </IconWrapper>
+          )}
+        </Container>
+      )
     }
+  )
 
-    return (
-      <Container
-        as={as}
-        borderRadius={getBorderRadiusForControlHeight(defaults.height)}
-        variant={getTextSizeForControlHeight(defaults.height)}
-        ref={innerRef}
-        {...defaults}
-        {...props}
-        aria-invalid={props.invalid}
-        disabled={props.disabled || props.isLoading}
-      >
-        {IconBefore && (
-          <IconWrapper
-            iconPosition={children ? 'before' : 'center'}
-            height={defaults.height}
-          >
-            <IconBefore {...iconProps} />
-          </IconWrapper>
-        )}
-
-        {children}
-
-        {/* TODO: Handle loader position */}
-        {defaults.isLoading && (
-          <IconWrapper
-            iconPosition={loaderIconPosition}
-            height={defaults.height}
-          >
-            <Spinner height={defaults.height} size={iconProps.size} />
-          </IconWrapper>
-        )}
-
-        {IconAfter && !defaults.isLoading && (
-          <IconWrapper
-            iconPosition={children ? 'after' : 'center'}
-            height={defaults.height}
-          >
-            <IconAfter {...iconProps} />
-          </IconWrapper>
-        )}
-      </Container>
-    )
-  }
-
-  return ButtonFC as React.FC<ButtonProps>
+  return ButtonFC
 }
 
 const Button = styled<React.FC<ButtonProps>>(ButtonFCFactory('button'))``
 const ButtonAs = <T extends {}>(as: StyledComponentElement) =>
   styled(ButtonFCFactory<React.HTMLAttributes<T>>(as))``
-const StyledButton = {Spinner, Container, IconWrapper}
+const ButtonElements = {Spinner, Container, IconWrapper}
 
 export {
   Button,
@@ -166,7 +171,7 @@ export {
   ButtonAppearanceType,
   ButtonIntentType,
   ButtonLikeProps,
-  StyledButton,
+  ButtonElements,
   getButtonStyle
 }
 

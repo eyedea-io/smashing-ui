@@ -51,7 +51,7 @@ const StyledParagraph = styled(Paragraph).attrs({})<StyledParagraphProps>`
     `};
 `
 
-class TooltipStateless extends React.Component<{
+type TooltipStatelessProps = {
   children: React.ReactNode
   /**
    * The appearance of the tooltip.
@@ -61,10 +61,11 @@ class TooltipStateless extends React.Component<{
   style: any
   onMouseEnter: React.MouseEventHandler
   onMouseLeave: React.MouseEventHandler
-  innerRef: any
-}> {
-  render() {
-    const {children, appearance, innerRef, ...props} = this.props
+}
+
+const TooltipStateless = React.forwardRef<any, TooltipStatelessProps>(
+  (componentProps, ref) => {
+    const {children, appearance, ...props} = componentProps
     let child: React.ReactNode
 
     if (typeof children === 'string') {
@@ -78,12 +79,12 @@ class TooltipStateless extends React.Component<{
     }
 
     return (
-      <Box ref={innerRef} appearance={appearance} {...props}>
+      <Box ref={ref} appearance={appearance} {...props}>
         {child}
       </Box>
     )
   }
-}
+)
 
 let idCounter = 0
 
@@ -188,7 +189,7 @@ export class Tooltip extends React.PureComponent<TooltipProps, TooltipState> {
         // Add the Tooltip props to the target.
         ...tooltipTargetProps,
 
-        innerRef: ref => {
+        ref: ref => {
           // Get the ref for the Tooltip.
           getRef(ref)
           // Pass the ref to the Popover.
@@ -202,7 +203,7 @@ export class Tooltip extends React.PureComponent<TooltipProps, TooltipState> {
      */
     return React.cloneElement(children, {
       ...tooltipTargetProps,
-      innerRef: getRef
+      ref: getRef
     })
   }
 
@@ -244,7 +245,7 @@ export class Tooltip extends React.PureComponent<TooltipProps, TooltipState> {
           <TooltipStateless
             id={this.state.id}
             appearance={appearance}
-            innerRef={ref => getRef(ref as any)}
+            ref={ref => getRef(ref as any)}
             data-state={state}
             style={style}
             onMouseEnter={this.handleMouseEnterTarget}
