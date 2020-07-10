@@ -17,63 +17,80 @@ const CheckIcon = ({fill = 'currentColor'}) => (
   </svg>
 )
 
-const CheckboxFC: React.FC<CheckboxProps> = ({
-  children,
-  innerRef,
-  onChange,
-  className,
-  value,
-  ...props
-}) => {
-  const defaults = useDefaults('checkbox', props, {
-    appearance: 'primary' as CheckboxAppearanceType
-  })
+const CheckboxFC = React.forwardRef<HTMLInputElement, CheckboxProps>(
+  (componentProps, ref) => {
+    const {
+      children,
+      containerRef,
+      onChange,
+      className,
+      value,
+      id,
+      checked,
+      disabled,
+      invalid,
+      name,
+      ...props
+    } = componentProps
+    const defaults = useDefaults('checkbox', props, {
+      appearance: 'primary' as CheckboxAppearanceType
+    })
 
-  const isCommonCheckbox = ['primary', 'minimal', 'outline', 'toggle'].includes(
-    defaults.appearance
-  )
+    const isCommonCheckbox = [
+      'primary',
+      'minimal',
+      'outline',
+      'toggle'
+    ].includes(defaults.appearance)
 
-  return (
-    <S.Label
-      as="label"
-      ref={innerRef}
-      className={className}
-      {...defaults}
-      {...props}
-    >
-      <S.HiddenCheckbox
-        value={value}
-        checked={props.checked}
-        onChange={onChange}
-        appearance={defaults.appearance}
+    return (
+      <S.Label
+        as="label"
+        ref={containerRef}
+        className={className}
+        disabled={disabled}
+        checked={checked}
+        {...defaults}
         {...props}
-      />
-      {isCommonCheckbox && (
-        <S.CustomCheckbox
+      >
+        <S.HiddenCheckbox
+          value={value}
+          checked={checked}
+          onChange={onChange}
           appearance={defaults.appearance}
-          checked={props.checked}
-          aria-invalid={props.invalid}
+          ref={ref}
+          id={id}
+          name={name}
+          invalid={invalid}
+          disabled={disabled}
           {...props}
-        >
-          <CheckIcon />
-        </S.CustomCheckbox>
-      )}
-      {typeof children === 'string' ? (
-        <Text
-          variant={300}
-          color={
-            props.disabled ? 'muted' : props.checked ? 'intense' : 'default'
-          }
-          intent={props.invalid ? 'danger' : undefined}
-        >
-          {children}
-        </Text>
-      ) : (
-        children
-      )}
-    </S.Label>
-  )
-}
+        />
+        {isCommonCheckbox && (
+          <S.CustomCheckbox
+            appearance={defaults.appearance}
+            checked={checked}
+            aria-invalid={invalid}
+            disabled={disabled}
+            {...props}
+          >
+            <CheckIcon />
+          </S.CustomCheckbox>
+        )}
+        {typeof children === 'string' ? (
+          <Text
+            variant={300}
+            color={disabled ? 'muted' : checked ? 'intense' : 'default'}
+            intent={invalid ? 'danger' : undefined}
+          >
+            {children}
+          </Text>
+        ) : (
+          children
+        )}
+      </S.Label>
+    )
+  }
+)
 
 const Checkbox = styled(CheckboxFC)``
 
