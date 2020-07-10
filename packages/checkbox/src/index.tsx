@@ -30,6 +30,7 @@ const CheckboxFC = React.forwardRef<HTMLInputElement, CheckboxProps>(
       disabled,
       invalid,
       name,
+      onBlur,
       ...props
     } = componentProps
     const defaults = useDefaults('checkbox', props, {
@@ -57,6 +58,7 @@ const CheckboxFC = React.forwardRef<HTMLInputElement, CheckboxProps>(
           value={value}
           checked={checked}
           onChange={onChange}
+          onBlur={onBlur}
           appearance={defaults.appearance}
           ref={ref}
           id={id}
