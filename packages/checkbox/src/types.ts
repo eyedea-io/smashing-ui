@@ -32,7 +32,7 @@ export interface CheckboxProps {
    */
   invalid?: boolean
   onChange?: React.ChangeEventHandler<HTMLInputElement>
-  onBlur?: React.FocusEvent<HTMLInputElement>
+  onBlur?: React.FocusEventHandler<HTMLInputElement>
   containerRef?: any
   className?: string
   value?: string | number
